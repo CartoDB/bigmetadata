@@ -64,7 +64,7 @@ Code example
           SELECT ROW_NUMBER() OVER () AS cartodb_id,
                  data->0->>'geomref' as geomref,
                  (data->0->>'value')::Geometry as the_geom,
-                 ST_Transform((data->0->>'value')::Geometry, 3857) as the_geom_webmercator
+                 ST_Transform((data->0->>'value')::Geometry, 3857) AS the_geom_webmercator
           FROM OBS_GetData((SELECT ids FROM ids), (SELECT meta FROM meta))
 
 {% else %}
@@ -82,7 +82,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -103,7 +103,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
@@ -113,7 +113,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_rate_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_rate_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -127,7 +127,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -147,7 +147,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
@@ -156,7 +156,7 @@ Code example
                "denom_id": "{{ denom_id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_estimate_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_estimate_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -173,7 +173,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -194,7 +194,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
           ),
           meta AS (
@@ -204,7 +204,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -222,7 +222,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -242,7 +242,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
@@ -251,7 +251,7 @@ Code example
                "normalization": "areaNormalized"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_per_sq_km_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_per_sq_km_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -264,7 +264,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -284,7 +284,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_Buffer(ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326), 0.01) the_geom
           ),
           meta AS (
@@ -293,7 +293,7 @@ Code example
                "normalization": "predenominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -307,7 +307,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id as id, the_geom FROM <table_to_update>
+            SELECT cartodb_id AS id, the_geom FROM <table_to_update>
           ),
           meta AS (
             SELECT OBS_GetMeta(ST_SetSRID(ST_Extent(the_geom), 4326),
@@ -326,7 +326,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT 1 as id,
+            SELECT 1 AS id,
             ST_SetSRID(ST_Point({{ col['latlng'][1] }}, {{ col['latlng'][0] }}), 4326) the_geom
           ),
           meta AS (
@@ -334,7 +334,7 @@ Code example
             '[{"numer_id": "{{ col.id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} as {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
