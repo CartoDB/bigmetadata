@@ -197,6 +197,8 @@ class GenerateRST(Task):
                     FIRST(ctab.extra),
                     FIRST(c.aggregate),
                     JSONB_Object_Agg(t.type || '/' || t.id, t.name),
+                    'name' suggested_name,
+                    FIRST(tab.timespan) timespan,
                     ARRAY[]::Text[] denoms,
                     ARRAY[]::Text[],
                     ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
@@ -210,7 +212,7 @@ class GenerateRST(Task):
                 AND ct.tag_id = t.id
                 AND c.id = ctab.column_id
                 AND tab.id = ctab.table_id
-            GROUP BY c.id
+            GROUP BY 1, 8
         '''.format("', '".join(boundary_ids)))
         boundary_data = self._parse_columns(boundaries_detail_result)
         return {k: {} for k in boundary_data.keys()}, boundary_data
@@ -249,6 +251,8 @@ class GenerateRST(Task):
                     numer_extra,
                     numer_aggregate,
                     numer_tags,
+                    numer_colname suggested_name,
+                    numer_timespan timespan,
                     ARRAY_AGG(DISTINCT ARRAY[
                     denom_reltype,
                     denom_id,
@@ -261,7 +265,7 @@ class GenerateRST(Task):
                     FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
             FROM observatory.obs_meta
             WHERE numer_id = ANY (ARRAY['{}'])
-            GROUP BY 1, 2, 3, 4, 5, 6, 7
+            GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
         '''.format("', '".join(numerator_ids)))
         return numerator_tree, self._parse_columns(numerator_details_result)
 
@@ -269,7 +273,7 @@ class GenerateRST(Task):
         all_columns = {}
         for col in all_columns_result:
             geom_timespans = {}
-            for gt in col[8]:
+            for gt in col[10]:
                 if gt[0] in geom_timespans:
                     geom_timespans[gt[0]]['timespans'].append(gt[2])
                 else:
@@ -288,15 +292,17 @@ class GenerateRST(Task):
                 'extra': col[4],
                 'aggregate': col[5],
                 'tags': col[6],
+                'suggested_name': col[7],
+                'timespan': col[8],
                 'licenses': [tag_id.split('/')[1]
                              for tag_id, tag_name in col[6].iteritems()
                              if tag_id.startswith('license/')],
                 'sources': [tag_id.split('/')[1]
                             for tag_id, tag_name in col[6].iteritems()
                             if tag_id.startswith('source/')],
-                'denoms': col[7],
+                'denoms': col[9],
                 'geom_timespans': geom_timespans,
-                'envelope': col[9]
+                'envelope': col[11]
             }
         return all_columns
 
