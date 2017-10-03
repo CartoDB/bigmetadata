@@ -208,8 +208,7 @@ class QCEW(TableTask):
         }
         for naics_code in NAICS_CODES.keys():
             # Only include the more general NAICS codes
-            if not is_public_administration(naics_code) and (
-                    is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10'):
+            if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
                 requirements['naics'][naics_code] = QCEWColumns(
                     naics_code=naics_code
                 )
