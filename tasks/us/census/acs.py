@@ -7,28 +7,34 @@ tasks to download and create metadata
 '''
 
 from collections import OrderedDict
-from sqlalchemy import Column, Numeric, Text
-from luigi import Parameter, BoolParameter, Task, WrapperTask, LocalTarget
-from psycopg2 import ProgrammingError
-
-from tasks.util import (LoadPostgresFromURL, classpath, shell, grouper,
-                        CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        ColumnTarget, ColumnsTask, TagsTask, MetaWrapper)
+from luigi import Parameter, WrapperTask
+from tasks.util import (LoadPostgresFromURL, grouper, get_logger, TableTask,
+                        ColumnsTask, TagsTask, MetaWrapper)
 from tasks.us.census.tiger import SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns)
 from tasks.us.census.segments import SegmentTags
-
-from tasks.meta import (OBSColumn, OBSTag, OBSColumnTable, current_session)
+from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-
 from time import time
+
 LOGGER = get_logger(__name__)
 
-GEOGRAPHIES = ['state', 'county', 'census_tract', 'block_group',
-               'puma', 'zcta5', 'school_district_elementary',
-               'congressional_district',
-               'school_district_secondary',
-               'school_district_unified', 'cbsa', 'place']
+STATE = 'state'
+COUNTY = 'county'
+CENSUS_TRACT = 'census_tract'
+BLOCK_GROUP = 'block_group'
+PUMA = 'puma'
+ZCTA5 = 'zcta5'
+CONGRESSIONAL_DISTRICT = 'congressional_district'
+SCHOOL_DISTRICT_ELEMENTARY = 'school_district_elementary'
+SCHOOL_DISTRICT_SECONDARY = 'school_district_secondary'
+SCHOOL_DISTRICT_UNIFIED = 'school_district_unified'
+CBSA = 'cbsa'
+PLACE = 'place'
+
+GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
+               SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
+               CBSA, PLACE]
 YEARS = ['2015', '2014', '2010']
 SAMPLES = ['5yr', '1yr']
 
@@ -52,6 +58,7 @@ class ACSTags(TagsTask):
 
 
 class Columns(ColumnsTask):
+    geography = Parameter()
 
     def requires(self):
         return {
@@ -3021,9 +3028,6 @@ class Columns(ColumnsTask):
             ("associates_degree", associates_degree),
             ("bachelors_degree", bachelors_degree),
             ("masters_degree", masters_degree),
-            ("pop_5_years_over", pop_5_years_over),
-            ("speak_only_english_at_home", speak_only_english_at_home),
-            ("speak_spanish_at_home", speak_spanish_at_home),
             ("pop_determined_poverty_status", pop_determined_poverty_status),
             ("poverty", poverty),
             ("median_income", median_income),
@@ -3089,12 +3093,6 @@ class Columns(ColumnsTask):
              father_one_parent_families_with_young_children),
             ("father_in_labor_force_one_parent_families_with_young_children",
              father_in_labor_force_one_parent_families_with_young_children),
-            ("pop_15_and_over", pop_15_and_over),
-            ("pop_never_married", pop_never_married),
-            ("pop_now_married", pop_now_married),
-            ("pop_separated", pop_separated),
-            ("pop_widowed", pop_widowed),
-            ("pop_divorced", pop_divorced),
             ("commuters_16_over", commuters_16_over),
             ("commute_less_10_mins", commute_less_10_mins),
             ("commute_10_14_mins", commute_10_14_mins),
@@ -3145,7 +3143,6 @@ class Columns(ColumnsTask):
             ('male_male_households', male_male_households),
             ('female_female_households', female_female_households),
             ('some_college_and_associates_degree', some_college_and_associates_degree),
-            ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
             ('housing_units_renter_occupied', housing_units_renter_occupied),
             ('dwellings_1_units_detached', dwellings_1_units_detached),
             ('dwellings_1_units_attached', dwellings_1_units_attached),
@@ -3234,7 +3231,6 @@ class Columns(ColumnsTask):
             ('black_including_hispanic', black_including_hispanic),
             ('amerindian_including_hispanic', amerindian_including_hispanic),
             ('asian_including_hispanic', asian_including_hispanic),
-            ('hispanic_any_race', hispanic_any_race),
             ('commute_5_9_mins', commute_5_9_mins),
             ('commute_35_39_mins', commute_35_39_mins),
             ('commute_40_44_mins', commute_40_44_mins),
@@ -3256,6 +3252,23 @@ class Columns(ColumnsTask):
             ('group_quarters', group_quarters),
             ('no_car', no_car),
         ])
+
+        if (self.geography not in (CBSA, STATE, COUNTY, PUMA, CONGRESSIONAL_DISTRICT,
+                SCHOOL_DISTRICT_UNIFIED, SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY)):
+            columns.update([("pop_15_and_over", pop_15_and_over),
+                ("pop_never_married", pop_never_married),
+                ("pop_now_married", pop_now_married),
+                ("pop_separated", pop_separated),
+                ("pop_widowed", pop_widowed),
+                ("pop_divorced", pop_divorced)])
+
+        if (self.geography != SCHOOL_DISTRICT_ELEMENTARY):
+            columns.update([("pop_5_years_over", pop_5_years_over),
+                ("speak_only_english_at_home", speak_only_english_at_home),
+                ("speak_spanish_at_home", speak_spanish_at_home),
+                ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
+                ('hispanic_any_race', hispanic_any_race)])
+
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
         no_restrictions = input_['license']['no-restrictions']
@@ -3286,6 +3299,7 @@ class DownloadACS(LoadPostgresFromURL):
 
 
 class QuantileColumns(ColumnsTask):
+    geography = Parameter()
 
     def requires(self):
         return {
@@ -3295,7 +3309,7 @@ class QuantileColumns(ColumnsTask):
             'segmenttags': SegmentTags(),
             'unittags': UnitTags(),
             'license': LicenseTags(),
-            'columns': Columns(),
+            'columns': Columns(geography=self.geography),
         }
 
     def version(self):
@@ -3332,7 +3346,7 @@ class Quantiles(TableTask):
 
     def requires(self):
         return {
-            'columns' : QuantileColumns(),
+            'columns' : QuantileColumns(geography=self.geography),
             'table'   : Extract(year=self.year,
                                 sample=self.sample,
                                 geography=self.geography),
@@ -3419,7 +3433,7 @@ class Extract(TableTask):
 
     def requires(self):
         return {
-            'acs': Columns(),
+            'acs': Columns(geography=self.geography),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
             'tigerdata': SumLevel(geography=self.geography, year='2015')
@@ -3510,11 +3524,11 @@ class ACSMetaWrapper(MetaWrapper):
 
     def tables(self):
         # no ZCTA for 2010
-        if self.year == '2010' and self.geography == 'zcta5':
+        if self.year == '2010' and self.geography == ZCTA5:
             pass
         # 1yr sample doesn't have block group or census_tract
         elif self.sample == '1yr' and self.geography in (
-            'census_tract', 'block_group', 'zcta5'):
+            CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
@@ -3528,11 +3542,11 @@ class ExtractAll(WrapperTask):
     def requires(self):
         geographies = set(GEOGRAPHIES)
         if self.sample == '1yr':
-            geographies.remove('zcta5')
-            geographies.remove('block_group')
-            geographies.remove('census_tract')
+            geographies.remove(ZCTA5)
+            geographies.remove(BLOCK_GROUP)
+            geographies.remove(CENSUS_TRACT)
         elif self.year == '2010':
-            geographies.remove('zcta5')
+            geographies.remove(ZCTA5)
         for geo in geographies:
             yield Quantiles(geography=geo, year=self.year, sample=self.sample)
 
