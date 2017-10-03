@@ -141,8 +141,8 @@ class SimplifyGeometriesPostGIS(Task):
 
         factor = postgis_simplification_factor(self.schema, self.table_input, self.geomfield, self.retainfactor)
 
-        simplified_geomfield = 'ST_MakeValid(ST_SimplifyVW({geomfield}, {factor})) {geomfield}'.format(
-                                geomfield=self.geomfield, factor=factor)
+        simplified_geomfield = 'ST_CollectionExtract(ST_MakeValid(ST_SimplifyVW({geomfield}, {factor})), 3) ' \
+                               '{geomfield}'.format(geomfield=self.geomfield, factor=factor)
 
         session.execute('CREATE TABLE "{schema}".{table_out} '
                         'AS SELECT {fields} '
