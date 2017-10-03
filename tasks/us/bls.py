@@ -207,11 +207,12 @@ class QCEW(TableTask):
             'naics': OrderedDict()
         }
         for naics_code in NAICS_CODES.keys():
-            # Only include the more general NAICS codes
-            if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
-                requirements['naics'][naics_code] = QCEWColumns(
-                    naics_code=naics_code
-                )
+            if not is_public_administration(naics_code):
+                # Only include the more general NAICS codes
+                if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
+                    requirements['naics'][naics_code] = QCEWColumns(
+                        naics_code=naics_code
+                    )
         return requirements
 
     def timespan(self):
@@ -226,12 +227,11 @@ class QCEW(TableTask):
             ('area_fips', input_['geoid_cols']['county_geoid'])
         ])
         for naics_code, naics_cols in input_['naics'].iteritems():
-            if not is_public_administration(naics_code):
-                for key, coltarget in naics_cols.iteritems():
-                    naics_name = NAICS_CODES[naics_code]
-                    colname = underscore_slugify(u'{}_{}_{}'.format(
-                            key, naics_code, naics_name))
-                    cols[colname] = coltarget
+            for key, coltarget in naics_cols.iteritems():
+                naics_name = NAICS_CODES[naics_code]
+                colname = underscore_slugify(u'{}_{}_{}'.format(
+                        key, naics_code, naics_name))
+                cols[colname] = coltarget
         return cols
 
     def populate(self):
@@ -244,12 +244,11 @@ class QCEW(TableTask):
         select_colnames = []
         input_ = self.input()
         for naics_code, naics_columns in input_['naics'].iteritems():
-            if not is_public_administration(naics_code):
-                for colname in naics_columns.keys():
-                    select_colnames.append('''MAX(CASE
-                        WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
-                    END)::Numeric'''.format(naics_code=naics_code,
-                                            colname=colname))
+            for colname in naics_columns.keys():
+                select_colnames.append('''MAX(CASE
+                    WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
+                END)::Numeric'''.format(naics_code=naics_code,
+                                        colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
                     SELECT area_fips, {select_colnames}
                     FROM {input}
