@@ -259,11 +259,11 @@ def tag_creator(tagtarget):
     tag = tagtarget.get()
     if not tag:
         tag = tagtarget._tag
+    if tag in tagtarget._session:
+        tagtarget._session.expunge(tag)
     coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
     if coltag in tagtarget._session:
         tagtarget._session.expunge(coltag)
-    if tag in tagtarget._session:
-        tagtarget._session.expunge(tag)
     return coltag
 
 

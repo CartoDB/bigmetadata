@@ -5,17 +5,19 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
                         DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
                         underscore_slugify, shell, classpath, LOGGER)
-from tasks.database import DatabaseWrapperTask
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
 from collections import OrderedDict
 from time import time
+from sqlalchemy import inspect
 
 import csv
 import os
 import re
 import itertools
 import logging
+
+import pystuck
 
 #
 # dl_code_list = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=dic%2Fen%2F{code}.dic".format(code=code)
@@ -395,6 +397,7 @@ class FlexEurostatColumns(ColumnsTask):
                 aggregate = 'sum'
             tags = [eu, subsectiontags[self.subsection], unittags[final_unit_tag]]
 
+
             if ('ths' in var_code or 'th_t' in var_code) and '(thousand persons)' not in description:
                 description = description + ' (thousands)'
 
@@ -479,6 +482,13 @@ class TableEU(TableTask):
         return cols
 
     def populate(self):
+        port = (os.getpid() + 5000)
+        logging.warning('Trying Pystuck in {}'.format(port))
+        logging.warning('OS PID {}'.format(os.getpid()))
+        try:
+            pystuck.run_server(port=port)
+        except:
+            logging.warning('Pystuck already running at {}'.format(port))
         input_ = self.input()
         path_to_csv = input_['csv'].path
         with open(path_to_csv) as csvfile:
@@ -539,10 +549,15 @@ class AllEUTableYears(Task):
     unit = Parameter()
 
     def requires(self):
-        return ProcessCSV(table_code=self.table_name)
+        return {
+            'meta': FlexEurostatColumns(table_name=self.table_name,
+                                        subsection=self.subsection,
+                                        units=self.unit),
+            'csv': ProcessCSV(table_code=self.table_name)
+        }
 
     def run(self):
-        csv_path = self.input().path
+        csv_path = self.input()['csv'].path
         with open(csv_path, 'r') as csvfile:
             headers = csvfile.next().split(',')
 
@@ -556,11 +571,7 @@ class AllEUTableYears(Task):
         self._complete = True
 
     def complete(self):
-        is_complete = getattr(self, '_complete', False)
-        logging.info('Checking complete for ALLEUTableYars [{}/{}/{}/{}] is {}'.format(
-            self.table_name, self.subsection, self.nuts_level, self.unit, is_complete
-        ))
-        return is_complete
+        return getattr(self, '_complete', False)
 
 class EURegionalTables(Task):
 
@@ -570,9 +581,9 @@ class EURegionalTables(Task):
             for subsection, table_code, nuts, units in reader:
                 nuts = int(nuts)
                 yield AllEUTableYears(table_name=table_code,
-                                            subsection=subsection,
-                                            nuts_level=nuts,
-                                            unit=units)
+                                      subsection=subsection,
+                                      nuts_level=nuts,
+                                      unit=units)
 
         self._complete = True
 

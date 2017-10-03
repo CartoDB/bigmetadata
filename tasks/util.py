@@ -620,7 +620,6 @@ class TagTarget(Target):
         new_version = float(self._tag.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
-            self._session.expunge(existing)
         else:
             existing_version = 0.0
         if existing and existing_version == new_version:
@@ -671,6 +670,7 @@ class TableTarget(Target):
         We always want to run this at least once, because we can always
         regenerate tabular data from scratch.
         '''
+        logging.info('Checking existence for {}'.format(self._obs_table.tablename))
         existing = self.get()
         new_version = float(self._obs_table.version or 0.0)
         if existing:
@@ -687,13 +687,16 @@ class TableTarget(Target):
                     schema='observatory',
                     tablename=existing.tablename))
             if int(resp.fetchone()[0]) == 0:
+                logging.info('Checking existence for {} with result {}'.format(self._obs_table.tablename, False))
                 return False
             resp = self._session.execute(
                 'SELECT row_number() over () '
                 'FROM "{schema}".{tablename} LIMIT 1 '.format(
                     schema='observatory',
                     tablename=existing.tablename))
-            return resp.fetchone() is not None
+            result = resp.fetchone() is not None
+            logging.info('Checking existence for {} with result {}'.format(self._obs_table.tablename, result))
+            return result
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
                             '(id "{id}") '
@@ -702,6 +705,7 @@ class TableTarget(Target):
                                                id=self._id,
                                                etl=new_version,
                                                db=existing_version))
+        logging.info('Checking existence for {} with result {}'.format(self._obs_table.tablename, False))
         return False
 
     def get(self):
@@ -758,7 +762,8 @@ class TableTarget(Target):
             coltarget._session.expunge(col)
 
             if _testmode:
-                coltable = OBSColumnTable(colname=colname, table=obs_table,
+                coltable = OBSColumnTable(colname=colname,
+                                          table=obs_table,
                                           column=col)
             else:
                 # Column info for obs metadata
@@ -943,19 +948,6 @@ class TagsTask(DatabaseTask):
                 tag.version = self.version()
             output[orig_id] = TagTarget(tag, self, self.current_session())
         return output
-
-    def complete(self):
-        '''
-        Custom complete method that attempts to check if output exists, as is
-        default, but in case of failure allows attempt to run dependencies (a
-        missing dependency could result in exception on `output`).
-        '''
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-        else:
-            return super(TagsTask, self).complete()
-
 
 class TableToCartoViaImportAPI(DatabaseTask):
     '''
@@ -1590,35 +1582,42 @@ class TableTask(DatabaseTask):
         colname, colid = geometry_columns[0]
         # Use SQL directly instead of SQLAlchemy because we need the_geom set
         # on obs_table in this session
+        logging.info("Updating the obs_table data with the created geometries")
         self.current_session().execute("UPDATE observatory.obs_table "
                                   "SET the_geom = ST_GeomFromText('{the_geom}', 4326) "
                                   "WHERE id = '{id}'".format(
                                       the_geom=self.the_geom(output, colname),
                                       id=output._id
                                   ))
+        logging.info("Updated the obs_table data with the created geometries")
+        logging.info("Generating tile summary")
         generate_tile_summary(self.current_session(),
                               output._id, colid, output.table, colname)
+        logging.info("Generated tile summary")
 
     def output(self):
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
-        tt = TableTarget(classpath(self),
-                         underscore_slugify(self.task_id),
-                         OBSTable(description=self.description(),
-                                  version=self.version(),
-                                  timespan=self.timespan()),
-                         self._columns, self, self.current_session())
-        return tt
+        return TableTarget(classpath(self),
+                           underscore_slugify(self.task_id),
+                           OBSTable(description=self.description(),
+                                    version=self.version(),
+                                    timespan=self.timespan()),
+                           self._columns,
+                           self,
+                           self.current_session())
 
     def complete(self):
         table_model = OBSTable(description=self.description(),
                                version=self.version(),
                                timespan=self.timespan())
-        logging.info('Checking completion for table {}'.format(table_model.tablename))
+        logging.info('Checking completion for table {}'.format(table_model))
         return TableTarget(classpath(self),
                            underscore_slugify(self.task_id),
-                           table_model, [], self,
+                           table_model,
+                           [],
+                           self,
                            self.current_session()).exists()
 
 

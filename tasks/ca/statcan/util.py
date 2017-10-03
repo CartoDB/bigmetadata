@@ -9,7 +9,6 @@ from operator import itemgetter
 
 from tasks.util import underscore_slugify
 
-
 class StatCanParser(object):
     # Geography id column
     GEO_COLUMN = 'geo_code'

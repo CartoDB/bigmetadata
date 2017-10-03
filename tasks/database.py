@@ -16,16 +16,20 @@ class DatabaseTask(Task):
             port=os.environ.get('PGPORT', '5432'),
             db=os.environ.get('PGDATABASE', 'postgres')
         )
-        self.engine = self._engine()
-        self.session = sessionmaker(bind=self.engine)()
+        self._engine = None
+        self._session = None
 
-    def _engine(self):
-        return create_engine(
-            self.connection_string,
-        )
+    def engine(self):
+        if not self._engine:
+            self._engine = create_engine(
+                self.connection_string
+            )
+        return self._engine
 
     def current_session(self):
-        return self.session
+        if not self._session:
+            self._session = sessionmaker(bind=self.engine())()
+        return self._session
 
     def on_success(self):
         self.commit()
@@ -36,25 +40,25 @@ class DatabaseTask(Task):
     def commit(self):
         try:
             logging.info('commit {}'.format(self.task_id))
-            self.session.commit()
+            self.current_session().commit()
         except:
-            self.session.rollback()
-            self.session.expunge_all()
+            self.current_session().rollback()
+            self.current_session().expunge_all()
             raise
         finally:
-            self.session.close()
-            self.session = None
+            self.current_session().close()
+            self._session = None
 
     def rollback(self, e):
         try:
             logging.info('rollback {}: {}'.format(self.task_id, e))
-            self.session.rollback()
+            self.current_session().rollback()
         except:
             raise
         finally:
-            self.session.expunge_all()
-            self.session.close()
-            self.session = None
+            self.current_session().expunge_all()
+            self.current_session().close()
+            self._session = None
 
 class DatabaseWrapperTask(WrapperTask):
 
@@ -67,16 +71,20 @@ class DatabaseWrapperTask(WrapperTask):
             port=os.environ.get('PGPORT', '5432'),
             db=os.environ.get('PGDATABASE', 'postgres')
         )
-        self.engine = self._engine()
-        self.session = sessionmaker(bind=self.engine)()
+        self._engine = None
+        self._session = None
 
-    def _engine(self):
-        return create_engine(
-            self.connection_string,
-        )
+    def engine(self):
+        if not self._engine:
+            self._engine = create_engine(
+                self.connection_string
+            )
+        return self._engine
 
     def current_session(self):
-        return self.session
+        if not self._session:
+            self._session = sessionmaker(bind=self.engine())()
+        return self._session
 
     def on_success(self):
         self.commit()
@@ -87,22 +95,22 @@ class DatabaseWrapperTask(WrapperTask):
     def commit(self):
         try:
             logger.info('commit {}'.format(self.task_id))
-            self.session.commit()
+            self.current_session().commit()
         except:
-            self.session.rollback()
-            self.session.expunge_all()
+            self.current_session().rollback()
+            self.current_session().expunge_all()
             raise
         finally:
-            self.session.close()
-            self.session = None
+            self.current_session().close()
+            self._session = None
 
     def rollback(self, e):
         try:
             logging.info('rollback {}: {}'.format(self.task_id, e))
-            self.session.rollback()
+            self.current_session().rollback()
         except:
             raise
         finally:
-            self.session.expunge_all()
-            self.session.close()
-            self.session = None
+            self.current_session().expunge_all()
+            self.current_session().close()
+            self._session = None
