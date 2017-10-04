@@ -3254,20 +3254,20 @@ class Columns(ColumnsTask):
         ])
 
         if (self.geography not in (CBSA, STATE, PLACE, COUNTY, PUMA, CONGRESSIONAL_DISTRICT,
-                SCHOOL_DISTRICT_UNIFIED, SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY)):
+                                   SCHOOL_DISTRICT_UNIFIED, SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY)):
             columns.update([("pop_15_and_over", pop_15_and_over),
-                ("pop_never_married", pop_never_married),
-                ("pop_now_married", pop_now_married),
-                ("pop_separated", pop_separated),
-                ("pop_widowed", pop_widowed),
-                ("pop_divorced", pop_divorced)])
+                            ("pop_never_married", pop_never_married),
+                            ("pop_now_married", pop_now_married),
+                            ("pop_separated", pop_separated),
+                            ("pop_widowed", pop_widowed),
+                            ("pop_divorced", pop_divorced)])
 
         if (self.geography != SCHOOL_DISTRICT_ELEMENTARY):
             columns.update([("pop_5_years_over", pop_5_years_over),
-                ("speak_only_english_at_home", speak_only_english_at_home),
-                ("speak_spanish_at_home", speak_spanish_at_home),
-                ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
-                ('hispanic_any_race', hispanic_any_race)])
+                            ("speak_only_english_at_home", speak_only_english_at_home),
+                            ("speak_spanish_at_home", speak_spanish_at_home),
+                            ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
+                            ('hispanic_any_race', hispanic_any_race)])
 
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
@@ -3334,7 +3334,6 @@ class QuantileColumns(ColumnsTask):
         return quantile_columns
 
 
-
 class Quantiles(TableTask):
     '''
     Calculate the quantiles for each ACS column
@@ -3346,11 +3345,11 @@ class Quantiles(TableTask):
 
     def requires(self):
         return {
-            'columns' : QuantileColumns(geography=self.geography),
-            'table'   : Extract(year=self.year,
-                                sample=self.sample,
-                                geography=self.geography),
-            'tiger'   : GeoidColumns()
+            'columns': QuantileColumns(geography=self.geography),
+            'table': Extract(year=self.year,
+                             sample=self.sample,
+                             geography=self.geography),
+            'tiger': GeoidColumns()
         }
 
     def version(self):
@@ -3527,8 +3526,7 @@ class ACSMetaWrapper(MetaWrapper):
         if self.year == '2010' and self.geography == ZCTA5:
             pass
         # 1yr sample doesn't have block group or census_tract
-        elif self.sample == '1yr' and self.geography in (
-            CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
+        elif self.sample == '1yr' and self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
