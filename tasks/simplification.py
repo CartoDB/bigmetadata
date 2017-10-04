@@ -104,6 +104,12 @@ class SimplifyGeometriesMapshaper(Task):
                     shp_path=os.path.join(self.input().path, shp_filename(self.table_out)))
         shell(cmd)
 
+        session = CurrentSession().get()
+        session.execute('UPDATE "{schema}".{table} '
+                        'SET {geomfield}=ST_CollectionExtract(ST_MakeValid({geomfield}), 3)'.format(
+                                schema=self.output().schema, table=self.output().tablename, geomfield=self.geomfield))
+        session.commit()
+
     def output(self):
         return PostgresTarget(self.schema, self.table_out)
 
