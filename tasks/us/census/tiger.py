@@ -56,7 +56,7 @@ class ClippedGeomColumns(ColumnsTask):
         license = input_['license']['no-restrictions']
         boundary_type = input_['boundary']
 
-        for colname, coltarget in self.input()['geom_columns'].iteritems():
+        for colname, coltarget in input_['geom_columns'].iteritems():
             col = coltarget.get(session)
 
             level = SUMLEVELS[colname]
@@ -159,8 +159,9 @@ class GeoidColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        clipped = self.input()['clipped']
-        for colname, coltarget in self.input()['raw'].iteritems():
+        input_ = self.input()
+        clipped = input_['clipped']
+        for colname, coltarget in input_['raw'].iteritems():
             col = coltarget._column
             cols[colname + '_geoid'] = OBSColumn(
                 type='Text',
@@ -356,13 +357,14 @@ class SimpleShoreline(TempTableTask):
         }
 
     def run(self):
+        input_ = self.input()
         session = current_session()
         session.execute('CREATE TABLE {output} AS '
                         'SELECT ST_Subdivide(geom) geom, false in_landmask, '
                         '       aland, awater, mtfcc '
                         'FROM {input} '
                         "WHERE mtfcc != 'H2030' OR awater > 300000".format(
-                            input=self.input()['data'].table,
+                            input=input_['data'].table,
                             output=self.output().table
                         ))
         session.execute('CREATE INDEX ON {output} USING GIST (geom)'.format(
@@ -372,7 +374,7 @@ class SimpleShoreline(TempTableTask):
         session.execute('UPDATE {output} data SET in_landmask = True '
                         'FROM {landmask} landmask '
                         'WHERE ST_WITHIN(data.geom, landmask.the_geom)'.format(
-                            landmask=self.input()['us_landmask'].table,
+                            landmask=input_['us_landmask'].table,
                             output=self.output().table
                         ))
 
@@ -429,6 +431,7 @@ class JoinTigerWaterGeoms(TempTableTask):
 
     def run(self):
         session = current_session()
+        input_ = self.input()
         stmt = ('CREATE TABLE {output} AS '
                 'SELECT id, geoid, ST_Union(ST_MakeValid(neg.geom)) neg_geom, '
                 '       MAX(pos.the_geom) pos_geom '
@@ -437,9 +440,9 @@ class JoinTigerWaterGeoms(TempTableTask):
                 '      AND pos.awater > 0 '
                 '      {mask_clause} '
                 'GROUP BY id '.format(
-                    neg=self.input()['neg'].table,
+                    neg=input_['neg'].table,
                     mask_clause=' AND in_landmask = false' if self.use_mask() else '',
-                    pos=self.input()['pos'].table,
+                    pos=input_['pos'].table,
                     output=self.output().table), )[0]
         session.execute(stmt)
 
@@ -483,23 +486,24 @@ class PreunionTigerWaterGeoms(TempTableTask):
 
     def run(self):
         session = current_session()
+        input_ = self.input()
         session.execute('CREATE TABLE {output} '
                         'AS SELECT geoid::text, id::int, the_geom::geometry, '
                         'aland::numeric, awater::Numeric '
                         'FROM {split} LIMIT 0 '.format(
                             output=self.output().table,
-                            split=self.input()['split'].table))
+                            split=input_['split'].table))
         session.execute('INSERT INTO {output} (geoid, id, the_geom) '
                         'SELECT geoid, id, the_geom FROM {diffed} '
                         'WHERE ST_Area(ST_Transform(the_geom, 3857)) > 5000'
                         '  AND ST_NPoints(the_geom) > 10 '.format(
                             output=self.output().table,
-                            diffed=self.input()['diffed'].table))
+                            diffed=input_['diffed'].table))
         session.execute('INSERT INTO {output} '
                         'SELECT geoid, id, the_geom, aland, awater FROM {split} '
                         'WHERE id NOT IN (SELECT id from {diffed})'.format(
-                            split=self.input()['split'].table,
-                            diffed=self.input()['diffed'].table,
+                            split=input_['split'].table,
+                            diffed=input_['diffed'].table,
                             output=self.output().table))
         session.execute('CREATE INDEX ON {output} (geoid) '.format(
             output=self.output().table))
@@ -552,10 +556,11 @@ class ShorelineClip(TableTask):
         }
 
     def columns(self):
+        input_ = self.input()
         return OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
-            ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
-            ('aland', self.input()['attributes']['aland'])
+            ('geoid', input_['geoids'][self.geography + '_geoid']),
+            ('the_geom', input_['geoms'][self.geography + '_clipped']),
+            ('aland', input_['attributes']['aland'])
         ])
 
     def timespan(self):
@@ -665,9 +670,10 @@ class GeoNamesTable(TableTask):
         }
 
     def columns(self):
+        input_ = self.input()
         return OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
-            ('geoname', self.input()['geonames'][self.geography + '_geoname'])
+            ('geoid', input_['geoids'][self.geography + '_geoid']),
+            ('geoname', input_['geonames'][self.geography + '_geoname'])
         ])
 
     def timespan(self):
@@ -810,8 +816,9 @@ class PointLandmark(TableTask):
         return self.year
 
     def columns(self):
-        shared = self.input()['shared']
-        cols = self.input()['meta']
+        input_ = self.input()
+        shared = input_['shared']
+        cols = input_['meta']
         return OrderedDict([
             ('pointid', cols['pointlm_id']),
             ('fullname', shared['fullname']),
@@ -891,8 +898,9 @@ class PriSecRoads(TableTask):
         return self.year
 
     def columns(self):
-        shared = self.input()['shared']
-        cols = self.input()['meta']
+        input_ = self.input()
+        shared = input_['shared']
+        cols = input_['meta']
         return OrderedDict([
             ('linearid', cols['prisecroads_id']),
             ('fullname', shared['fullname']),
