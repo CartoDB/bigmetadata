@@ -12,6 +12,7 @@ from collections import OrderedDict
 import os
 import shutil
 import json
+from zipfile import ZipFile
 
 
 def load_definition():
@@ -47,7 +48,7 @@ class DownloadEnglandWalesLocal(DownloadUnzipTask):
         try:
             for filename in os.listdir(work_dir):
                 if filename.endswith('.zip'):
-                    shell('unzip -d {path} {path}/{zipfile}'.format(path=work_dir, zipfile=filename))
+                    ZipFile(os.path.join(work_dir, filename)).extractall(work_dir)
         except:
             shutil.rmtree(work_dir)
             raise
