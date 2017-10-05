@@ -3435,8 +3435,7 @@ class Extract(TableTask):
         cols = OrderedDict([
             ('geoid', input_['tiger'][self.geography + '_geoid']),
         ])
-        for colkey, col in input_['acs'].iteritems():
-            cols[colkey] = col
+        cols.update(input_['acs'])
         return cols
 
     def populate(self):
