@@ -1587,6 +1587,13 @@ class TableTask(Task):
         after = time.time()
         LOGGER.info('time: %s', after - before)
 
+        LOGGER.info('analyzing the table %s', self.output().table)
+        session = current_session()
+        session.execute('ANALYZE {table}'.format(table=self.output().table))
+
+        LOGGER.info('checking for null columns on %s', self.output().table)
+        self.check_null_columns()
+
         if not self._testmode:
             LOGGER.info('create_indexes')
             self.create_indexes(output)
@@ -1594,8 +1601,6 @@ class TableTask(Task):
 
             LOGGER.info('create_geom_summaries')
             self.create_geom_summaries(output)
-
-        self.check_null_columns()
 
     def create_indexes(self, output):
         session = current_session()

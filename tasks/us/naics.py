@@ -2492,9 +2492,7 @@ def is_supersector(code):
 
 
 def is_public_administration(code):
-    if code in ('1028', '92'):
-        return True
-    return False
+    return code in ('1028', '92')
 
 
 def get_parent_code(code):

@@ -3253,8 +3253,7 @@ class Columns(ColumnsTask):
             ('no_car', no_car),
         ])
 
-        if (self.geography not in (CBSA, STATE, PLACE, COUNTY, PUMA, CONGRESSIONAL_DISTRICT,
-                                   SCHOOL_DISTRICT_UNIFIED, SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY)):
+        if (self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5)):
             columns.update([("pop_15_and_over", pop_15_and_over),
                             ("pop_never_married", pop_never_married),
                             ("pop_now_married", pop_now_married),
