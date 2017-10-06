@@ -1,0 +1,926 @@
+{
+    "total_pop": {
+        "id": "LC2102EW0001",
+        "name": "Total Population",
+        "weight": 10,
+        "denominators": [],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_0_to_24": {
+        "id": "LC2102EW0016",
+        "name": "Population age 0 to 24",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_25_to_49": {
+        "id": "LC2102EW0031",
+        "name": "Population age 25 to 49",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_50_to_64": {
+        "id": "LC2102EW0046",
+        "name": "Population age 50 to 64",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_65_to_74": {
+        "id": "LC2102EW0061",
+        "name": "Population age 65 to 74",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_75_and_over": {
+        "id": "LC2102EW0076",
+        "name": "Population age 75 and over",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_3_and_over": {
+        "id": "LC2104EW0001",
+        "name": "Population age 3 and over",
+        "weight": 3,
+        "denominators": [],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_3_to_15": {
+        "id": "LC2104EW0024",
+        "name": "Population age 3 to 15",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "pop_16_to_49": {
+        "id": "LC2104EW0047",
+        "name": "Population age 16 to 49",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "age_gender"
+    },
+    "language_english": {
+        "id": "LC2104EW0002",
+        "name": "Population whose main language is English (English or Welsh if in Wales)",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_french": {
+        "id": "LC2104EW0003",
+        "name": "Population whose main language is French",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_portuguese": {
+        "id": "LC2104EW0004",
+        "name": "Population whose main language is Portuguese",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_spanish": {
+        "id": "LC2104EW0005",
+        "name": "Population whose main language is Spanish",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_polish": {
+        "id": "LC2104EW0007",
+        "name": "Population whose main language is Polish",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_arabic": {
+        "id": "LC2104EW0010",
+        "name": "Population whose main language is Arabic",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_panjabi": {
+        "id": "LC2104EW0013",
+        "name": "Population whose main language is Panjabi",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_urdu": {
+        "id": "LC2104EW0014",
+        "name": "Population whose main language is Urdu",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_bengali": {
+        "id": "LC2104EW0015",
+        "name": "Population whose main language is Bengali (with Sylheti and Chatgaya)",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_gujarati": {
+        "id": "LC2104EW0016",
+        "name": "Population whose main language is Gujarati",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_tamil": {
+        "id": "LC2104EW0017",
+        "name": "Population whose main language is Tamil",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "language_chinese": {
+        "id": "LC2104EW0020",
+        "name": "Population whose main language is Chinese",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "language"
+    },
+    "religion_christian": {
+        "id": "LC2107EW0002",
+        "name": "Christian Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_buddhist": {
+        "id": "LC2107EW0003",
+        "name": "Buddhist Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_hindu": {
+        "id": "LC2107EW0004",
+        "name": "Hindu Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_jewish": {
+        "id": "LC2107EW0005",
+        "name": "Jewish Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_muslim": {
+        "id": "LC2107EW0006",
+        "name": "Muslim Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_sikh": {
+        "id": "LC2107EW0007",
+        "name": "Sikh Population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "religion_none": {
+        "id": "LC2107EW0009",
+        "name": "Population who are not religious",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "religion"
+    },
+    "white": {
+        "id": "LC2201EW0011",
+        "name": "White population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "white_english_welsh_scottish_n_irish_british": {
+        "id": "LC2201EW0021",
+        "name": "White English/Welsh/Scottish/Northern Irish/British population",
+        "weight": 3,
+        "denominators": [
+            "white"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "white_irish": {
+        "id": "LC2201EW0031",
+        "name": "White Irish population",
+        "weight": 3,
+        "denominators": [
+            "white"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "mixed_multiple_ethnic_group": {
+        "id": "LC2201EW0051",
+        "name": "Mixed/multiple ethnic group population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "asian_pop": {
+        "id": "LC2201EW0061",
+        "name": "Asian/Asian British population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "black_pop": {
+        "id": "LC2201EW0071",
+        "name": "Black/African/Caribbean/Black British population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "other_race_pop": {
+        "id": "LC2201EW0081",
+        "name": "Other ethnic group population",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity"
+    },
+    "born_europe": {
+        "id": "LC2205EW0010",
+        "name": "Born in Europe",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_uk": {
+        "id": "LC2205EW0019",
+        "name": "Born in the UK",
+        "weight": 3,
+        "denominators": [
+            "born_europe"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_england": {
+        "id": "LC2205EW0028",
+        "name": "Born in England",
+        "weight": 3,
+        "denominators": [
+            "born_uk"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_northern_ireland": {
+        "id": "LC2205EW0037",
+        "name": "Born in Northern Ireland",
+        "weight": 3,
+        "denominators": [
+            "born_uk"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_scotland": {
+        "id": "LC2205EW0046",
+        "name": "Born in Scotland",
+        "weight": 3,
+        "denominators": [
+            "born_uk"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_wales": {
+        "id": "LC2205EW0055",
+        "name": "Born in Wales",
+        "weight": 3,
+        "denominators": [
+            "born_uk"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_ireland": {
+        "id": "LC2205EW0082",
+        "name": "Born in Ireland",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_europe_outside_uk_ireland": {
+        "id": "LC2205EW0091",
+        "name": "Born in Europe outside the UK and Ireland",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_africa": {
+        "id": "LC2205EW0136",
+        "name": "Born in Africa",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_north_africa": {
+        "id": "LC2205EW0145",
+        "name": "Born in North Africa",
+        "weight": 3,
+        "denominators": [
+            "born_africa"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_central_western_africa": {
+        "id": "LC2205EW0154",
+        "name": "Born in Central and Western Africa",
+        "weight": 3,
+        "denominators": [
+            "born_africa"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_south_eastern_africa": {
+        "id": "LC2205EW0163",
+        "name": "Born in South and Eastern Africa",
+        "weight": 3,
+        "denominators": [
+            "born_africa"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_asia_middle_east": {
+        "id": "LC2205EW0181",
+        "name": "Born in the Middle East and Asia",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_middle_east": {
+        "id": "LC2205EW0190",
+        "name": "Born in the Middle East",
+        "weight": 3,
+        "denominators": [
+            "born_asia_middle_east"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_eastern_asia": {
+        "id": "LC2205EW0199",
+        "name": "Born in Eastern Asia",
+        "weight": 3,
+        "denominators": [
+            "born_asia_middle_east"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_southern_asia": {
+        "id": "LC2205EW0208",
+        "name": "Born in Southern Asia",
+        "weight": 3,
+        "denominators": [
+            "born_asia_middle_east"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_southeast_asia": {
+        "id": "LC2205EW0217",
+        "name": "Born in Southeast Asia",
+        "weight": 3,
+        "denominators": [
+            "born_asia_middle_east"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_central_asia": {
+        "id": "LC2205EW0226",
+        "name": "Born in Central Asia",
+        "weight": 3,
+        "denominators": [
+            "born_asia_middle_east"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_americas": {
+        "id": "LC2205EW0235",
+        "name": "Born in the Americas and Caribbean",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_north_america": {
+        "id": "LC2205EW0244",
+        "name": "Born in North America",
+        "weight": 3,
+        "denominators": [
+            "born_americas"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_central_south_america": {
+        "id": "LC2205EW0253",
+        "name": "Born in Central and South America",
+        "weight": 3,
+        "denominators": [
+            "born_americas"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "born_australia": {
+        "id": "LC2205EW0262",
+        "name": "Born in Australia, Australaisa, Oceania, and Antarctica",
+        "weight": 3,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "nationality"
+    },
+    "good_health": {
+        "id": "LC3202WA0004",
+        "name": "Very good or good health",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "fair_health": {
+        "id": "LC3202WA0007",
+        "name": "Fair health",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "bad_health": {
+        "id": "LC3202WA0010",
+        "name": "Bad or very bad health",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "very_limited_activities": {
+        "id": "LC3204WA0004",
+        "name": "Day-to-day activities very limited",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "limited_activities": {
+        "id": "LC3204WA0007",
+        "name": "Day-to-day activities somewhat limited",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "activities_not_limited": {
+        "id": "LC3204WA0010",
+        "name": "Day-to-day activities not limited",
+        "weight": 3,
+        "denominators": [
+            "pop_3_and_over"
+        ],
+        "units": "people",
+        "subsection": "health"
+    },
+    "pop_16_over": {
+        "id": "LC6201EW0001",
+        "name": "Population age 16 and over",
+        "weight": 3,
+        "denominators": [],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "economically_active": {
+        "id": "LC6201EW0010",
+        "name": "Economically active",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "employed": {
+        "id": "LC6201EW0019",
+        "name": "Employed population",
+        "weight": 3,
+        "denominators": [
+            "economically_active"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "employed_as_employee": {
+        "id": "LC6201EW0028",
+        "name": "Employed as an employee",
+        "weight": 3,
+        "denominators": [
+            "employed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "part_time_employee": {
+        "id": "LC6201EW0037",
+        "name": "Part-time employees",
+        "weight": 3,
+        "denominators": [
+            "employed_as_employee"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "full_time_employee": {
+        "id": "LC6201EW0046",
+        "name": "Full-time employees",
+        "weight": 3,
+        "denominators": [
+            "employed_as_employee"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "self_employed": {
+        "id": "LC6201EW0055",
+        "name": "Self-employed",
+        "weight": 3,
+        "denominators": [
+            "employed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "self_employed_part_time": {
+        "id": "LC6201EW0064",
+        "name": "Self-employed part-time",
+        "weight": 3,
+        "denominators": [
+            "self_employed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "self_employed_full_time": {
+        "id": "LC6201EW0073",
+        "name": "Self-employed full-time",
+        "weight": 3,
+        "denominators": [
+            "self_employed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "full_time_students": {
+        "id": "LC6201EW0082",
+        "name": "Full-time students",
+        "weight": 3,
+        "denominators": [
+            "employed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "unemployed": {
+        "id": "LC6201EW0091",
+        "name": "Unemployed",
+        "weight": 3,
+        "denominators": [
+            "economically_active"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "unemployed_not_student": {
+        "id": "LC6201EW0100",
+        "name": "Unemployed (excluding full-time students)",
+        "weight": 3,
+        "denominators": [
+            "unemployed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "unemployed_student": {
+        "id": "LC6201EW0109",
+        "name": "Full-time students, unemployed",
+        "weight": 3,
+        "denominators": [
+            "unemployed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "economically_inactive": {
+        "id": "LC6201EW0118",
+        "name": "Economically inactive",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "retired": {
+        "id": "LC6201EW0127",
+        "name": "Retired population",
+        "weight": 3,
+        "denominators": [
+            "economically_inactive"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "student_economically_inactive": {
+        "id": "LC6201EW0136",
+        "name": "Economically inactive students",
+        "weight": 3,
+        "denominators": [
+            "economically_inactive"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "looking_after_home": {
+        "id": "LC6201EW0145",
+        "name": "Looking after home or family",
+        "weight": 3,
+        "denominators": [
+            "economically_inactive"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "long_term_sick_disabled": {
+        "id": "LC6201EW0154",
+        "name": "Long-term sick or disabled",
+        "weight": 3,
+        "denominators": [
+            "economically_inactive"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "managerial_admin_occupations": {
+        "id": "LC6206EW0010",
+        "name": "Higher managerial, administrative and professional occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "large_employers": {
+        "id": "LC6206EW0019",
+        "name": "Large employers and higher managerial and administrative occupations",
+        "weight": 3,
+        "denominators": [
+            "managerial_admin_occupations"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "higher_professional_occupations": {
+        "id": "LC6206EW0028",
+        "name": "Higher professional occupations",
+        "weight": 3,
+        "denominators": [
+            "managerial_admin_occupations"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "lower_managerial_occupations": {
+        "id": "LC6206EW0037",
+        "name": "Lower managerial, administrative and professional occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "intermediate_occupations": {
+        "id": "LC6206EW0046",
+        "name": "Intermediate occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "small_employers_account_workers": {
+        "id": "LC6206EW0055",
+        "name": "Small employers and account workers",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "lower_supervisory": {
+        "id": "LC6206EW0064",
+        "name": "Lower supervisory and technical occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "semi_routine_occupations": {
+        "id": "LC6206EW0073",
+        "name": "Semi-routine occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "routine_occupations": {
+        "id": "LC6206EW0082",
+        "name": "Routine occupations",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "never_worked_long_term_unemployed": {
+        "id": "LC6206EW0091",
+        "name": "Never worked and long-term unemployed",
+        "weight": 3,
+        "denominators": [
+            "pop_16_over"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "never_worked": {
+        "id": "LC6206EW0100",
+        "name": "Never worked",
+        "weight": 3,
+        "denominators": [
+            "never_worked_long_term_unemployed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    },
+    "long_term_unemployed": {
+        "id": "LC6206EW0109",
+        "name": "Long-term unemployed",
+        "weight": 3,
+        "denominators": [
+            "never_worked_long_term_unemployed"
+        ],
+        "units": "people",
+        "subsection": "employment"
+    }
+}
