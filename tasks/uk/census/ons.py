@@ -8,8 +8,8 @@ from zipfile import ZipFile
 from luigi import Task, Parameter, LocalTarget
 
 from tasks.meta import current_session
-from tasks.util import TableTask, classpath, shell, DownloadUnzipTask, TempTableTask, MetaWrapper, create_temp_schema
-from tasks.uk.cdrc import OutputAreaColumns, OutputAreas
+from tasks.util import TableTask, classpath, shell, DownloadUnzipTask, TempTableTask, create_temp_schema
+from tasks.uk.cdrc import OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 
 
@@ -138,9 +138,3 @@ class EnglandWalesLocal(TableTask):
                             output=self.output().table,
                             input=intable)
                 session.execute(stmt)
-
-
-class EnglandWalesMetaWrapper(MetaWrapper):
-    def tables(self):
-        yield EnglandWalesLocal()
-        yield OutputAreas()
