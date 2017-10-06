@@ -11,7 +11,8 @@ from tasks.meta import current_session
 from tasks.util import TableTask, classpath, shell, DownloadUnzipTask, TempTableTask, create_temp_schema
 from tasks.uk.cdrc import OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
-
+from .common import table_from_id
+from .metadata import COLUMNS_DEFINITION
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
@@ -58,35 +59,15 @@ class ImportEnglandWalesLocal(TempTableTask):
         ))
 
 
-class ImportAllEnglandWalesLocal(Task):
-    def requires(self):
-        return DownloadEnglandWalesLocal()
-
-    def run(self):
-        # Create schema in this wrapper task, avoid race conditions with the dependencies
-        create_temp_schema(self)
-
-        infiles = shell('ls {input}/LC*DATA.CSV'.format(
-            input=self.input().path))
-
-        tables = [os.path.split(infile)[-1].split('DATA.CSV')[0] for infile in infiles.strip().split('\n')]
-        task_results = yield [ImportEnglandWalesLocal(table=table) for table in tables]
-
-        with self.output().open('w') as fhandle:
-            for result in task_results:
-                fhandle.write('{table}\n'.format(table=result.table))
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
-
-
 class EnglandWalesLocal(TableTask):
     def requires(self):
-        return {
-            'data': ImportAllEnglandWalesLocal(),
+        deps = {
             'geom_columns': OutputAreaColumns(),
             'data_columns': CensusColumns(),
         }
+        for t in self.source_tables():
+            deps[t] = ImportEnglandWalesLocal(table=t)
+        return deps
 
     def timespan(self):
         return 2011
@@ -98,13 +79,15 @@ class EnglandWalesLocal(TableTask):
         cols.update(input_['data_columns'])
         return cols
 
+    def source_tables(self):
+        return set([table_from_id(col['fields']['ons']) for col in COLUMNS_DEFINITION.values()])
+
     def populate(self):
         session = current_session()
         cols = self.columns()
         inserted = False
-        for line in self.input()['data'].open():
-            intable = line.strip()
-            table = intable.split('_')[1]
+        for table in self.source_tables():
+            intable = self.requires()[table].output().table
             cols_for_table = OrderedDict([
                 (n, t,) for n, t in cols.iteritems() if table in t._id
             ])
