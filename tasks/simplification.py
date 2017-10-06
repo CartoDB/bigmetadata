@@ -10,8 +10,8 @@ SIMPLIFICATION_DIRECTORY = 'simplification'
 SIMPLIFIED_SUFFIX = '_simpl'
 SKIPFAILURES_NO = 'no'  # Avoids https://trac.osgeo.org/gdal/ticket/6803
 SKIPFAILURES_YES = 'yes'
-DEFAULT_M_RETAIN_PERCENTAGE = '50'  # [0-100] Percentage of removable vertices retained by mapshaper
-DEFAULT_P_RETAIN_FACTOR = '50'  # Retain factor used for PostGIS simplification (this is NOT a percentage) \
+DEFAULT_P_RETAIN_FACTOR_MAPSHAPER = '10'
+DEFAULT_P_RETAIN_FACTOR_POSTGIS = '50'  # Retain factors used for simplification (this is NOT a percentage) \
 # The higher the retain factor, the lower the simplification
 DEFAULT_MAX_MEMORY = '8192'
 SIMPL_SUFFIX = '_simpl'
@@ -49,7 +49,8 @@ class SimplifyShapefile(Task):
     schema = Parameter()
     table_input = Parameter()
     table_output = Parameter()
-    retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
+    geomfield = Parameter(default=DEFAULT_GEOMFIELD)
+    retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR_MAPSHAPER)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
     maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
@@ -57,13 +58,15 @@ class SimplifyShapefile(Task):
         return ExportShapefile(schema=self.schema, table=self.table_input, skipfailures=self.skipfailures)
 
     def run(self):
+        factor = simplification_factor(self.schema, self.table_input, self.geomfield, self.retainfactor)
+
         with self.output().temporary_path() as temp_path:
             self.output().fs.mkdir(temp_path)
             cmd = 'node --max-old-space-size={maxmemory} `which mapshaper` ' \
-                '{input} snap -simplify {retainpercentage}% keep-shapes -o {output}'.format(
+                '{input} snap -simplify interval={interval} planar keep-shapes -o {output}'.format(
                     maxmemory=self.maxmemory,
                     input=os.path.join(self.input().path, shp_filename(self.table_input)),
-                    retainpercentage=self.retainpercentage,
+                    interval=factor,
                     output=os.path.join(temp_path, shp_filename(self.table_output)))
             shell(cmd)
 
@@ -76,7 +79,7 @@ class SimplifyGeometriesMapshaper(Task):
     table_input = Parameter()
     table_output = Parameter(default='')
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
-    retainpercentage = Parameter(default=DEFAULT_M_RETAIN_PERCENTAGE)
+    retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR_MAPSHAPER)
     skipfailures = Parameter(default=SKIPFAILURES_NO)
     maxmemory = Parameter(default=DEFAULT_MAX_MEMORY)
 
@@ -89,8 +92,8 @@ class SimplifyGeometriesMapshaper(Task):
 
     def requires(self):
         return SimplifyShapefile(schema=self.schema, table_input=self.table_input, table_output=self.table_out,
-                                 retainpercentage=self.retainpercentage, skipfailures=self.skipfailures,
-                                 maxmemory=self.maxmemory)
+                                 geomfield=self.geomfield, retainfactor=self.retainfactor,
+                                 skipfailures=self.skipfailures, maxmemory=self.maxmemory)
 
     def run(self):
         cmd = 'PG_USE_COPY=yes ' \
@@ -114,7 +117,7 @@ class SimplifyGeometriesMapshaper(Task):
         return PostgresTarget(self.schema, self.table_out)
 
 
-def postgis_simplification_factor(schema, table, geomfield, divisor_power):
+def simplification_factor(schema, table, geomfield, divisor_power):
     session = CurrentSession().get()
     return session.execute('SELECT AVG(ST_Perimeter({geomfield}) / ST_NPoints({geomfield})) / 10 ^ ({divisor} / 10) '
                            'from "{schema}".{table}'.format(
@@ -127,7 +130,7 @@ class SimplifyGeometriesPostGIS(Task):
     table_input = Parameter()
     table_output = Parameter(default='')
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
-    retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR)
+    retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR_POSTGIS)
 
     def __init__(self, *args, **kwargs):
         super(SimplifyGeometriesPostGIS, self).__init__(*args, **kwargs)
@@ -145,7 +148,7 @@ class SimplifyGeometriesPostGIS(Task):
                                   "AND table_name   = '{table}'".format(
                                     schema=self.schema, table=self.table_input.lower())).fetchall()
 
-        factor = postgis_simplification_factor(self.schema, self.table_input, self.geomfield, self.retainfactor)
+        factor = simplification_factor(self.schema, self.table_input, self.geomfield, self.retainfactor)
 
         simplified_geomfield = 'ST_CollectionExtract(ST_MakeValid(ST_SimplifyVW({geomfield}, {factor})), 3) ' \
                                '{geomfield}'.format(geomfield=self.geomfield, factor=factor)
