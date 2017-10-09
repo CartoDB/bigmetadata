@@ -1,6 +1,7 @@
 from collections import OrderedDict
 import json
 import os
+import re
 
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
 from tasks.util import ColumnsTask, TagsTask
@@ -13,6 +14,13 @@ def load_definition():
 
 
 COLUMNS_DEFINITION = load_definition()
+
+
+def parse_table(table_id):
+    '''
+    Returns a tuple like (KS, NI)
+    '''
+    return re.match('(\D+)\d+(\D+)', table_id).groups()
 
 
 class SourceTags(TagsTask):

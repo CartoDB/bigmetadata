@@ -14,6 +14,42 @@ from tasks.uk.census.metadata import CensusColumns
 from .common import table_from_id
 from .metadata import COLUMNS_DEFINITION
 
+
+class DownloadONS(DownloadUnzipTask):
+    URL = 'https://www.nomisweb.co.uk/output/census/2011/{}_2011_oa.zip'
+
+    table = Parameter()
+
+    def download(self):
+        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL.format(self.table.lower())))
+
+
+class ImportONS(TempTableTask):
+    table = Parameter()
+
+    def requires(self):
+        return DownloadONS(table=self.table)
+
+    def run(self):
+        infile = os.path.join(self.input().path, os.listdir(self.input().path)[0], self.table + 'DATA.CSV')
+        headers = shell('head -n 1 "{csv}"'.format(csv=infile))
+        cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
+
+        session = current_session()
+        session.execute('CREATE TABLE {output} (GeographyCode TEXT, {cols})'.format(
+            output=self.output().table,
+            cols=', '.join(cols)
+        ))
+        session.commit()
+        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
+            output=self.output().table,
+            infile=infile,
+        ))
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geographycode)'.format(
+            output=self.output().table
+        ))
+
+
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
     URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
