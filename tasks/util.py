@@ -1645,7 +1645,7 @@ class TableTask(Task):
         session = current_session()
         result = session.execute("SELECT attname FROM pg_stats WHERE schemaname = 'observatory' "
                                  "AND tablename = '{table}' AND null_frac = 1".format(
-                                    table=self.output().table)).fetchall()
+                                    table=self.output()._tablename)).fetchall()
 
         if result:
             raise ValueError('The following columns of the table "{table}" contain only NULL values: {columns}'.format(
