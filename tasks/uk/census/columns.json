@@ -6,11 +6,9 @@
         "denominators": [],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0001",
-            "ons": "LC2102EW0001",
-            "scotland": "LC2102EW0001"
-        }
+        "data": [
+            { "table": "QS104UK", "field": "Sex: All persons" }
+        ]
     },
     "pop_0_to_24": {
         "id": "LC2102EW0016",
@@ -21,11 +19,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0016",
-            "ons": "LC2102EW0016",
-            "scotland": "LC2102EW0016"
-        }
+        "data": [
+            { "table": "AGE", "from": 0, "to": 24 }
+        ]
     },
     "pop_25_to_49": {
         "id": "LC2102EW0031",
@@ -36,11 +32,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0031",
-            "ons": "LC2102EW0031",
-            "scotland": "LC2102EW0031"
-        }
+        "data": [
+            { "table": "AGE", "from": 25, "to": 49 }
+        ]
     },
     "pop_50_to_64": {
         "id": "LC2102EW0046",
@@ -51,11 +45,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0046",
-            "ons": "LC2102EW0046",
-            "scotland": "LC2102EW0046"
-        }
+        "data": [
+            { "table": "AGE", "from": 50, "to": 64 }
+        ]
     },
     "pop_65_to_74": {
         "id": "LC2102EW0061",
@@ -66,11 +58,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0061",
-            "ons": "LC2102EW0061",
-            "scotland": "LC2102EW0061"
-        }
+        "data": [
+            { "table": "AGE", "from": 65, "to": 74 }
+        ]
     },
     "pop_75_and_over": {
         "id": "LC2102EW0076",
@@ -81,11 +71,35 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2102EW0076",
-            "ons": "LC2102EW0076",
-            "scotland": "LC2102EW0076"
-        }
+        "data": [
+            { "table": "AGE", "from": 75, "to": -1 }
+        ]
+    },
+    "males": {
+        "id": "males",
+        "name": "Males",
+        "weight": 5,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender",
+        "data": [
+            { "table": "QS104UK", "field": "Sex: Males" }
+        ]
+    },
+    "females": {
+        "id": "females",
+        "name": "Females",
+        "weight": 5,
+        "denominators": [
+            "total_pop"
+        ],
+        "units": "people",
+        "subsection": "age_gender",
+        "data": [
+            { "table": "QS104UK", "field": "Sex: Females" }
+        ]
     },
     "pop_3_and_over": {
         "id": "LC2104EW0001",
@@ -94,11 +108,9 @@
         "denominators": [],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2104EW0001",
-            "ons": "LC2104EW0001",
-            "scotland": "LC2104EW0001"
-        }
+        "data": [
+            { "table": "AGE", "from": 3, "to": -1 }
+        ]
     },
     "pop_3_to_15": {
         "id": "LC2104EW0024",
@@ -109,11 +121,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2104EW0024",
-            "ons": "LC2104EW0024",
-            "scotland": "LC2104EW0024"
-        }
+        "data": [
+            { "table": "AGE", "from": 3, "to": 15 }
+        ]
     },
     "pop_16_to_49": {
         "id": "LC2104EW0047",
@@ -124,11 +134,9 @@
         ],
         "units": "people",
         "subsection": "age_gender",
-        "fields": {
-            "nisra": "LC2104EW0047",
-            "ons": "LC2104EW0047",
-            "scotland": "LC2104EW0047"
-        }
+        "data": [
+            { "table": "AGE", "from": 16, "to": 49 }
+        ]
     },
     "language_english": {
         "id": "LC2104EW0002",
@@ -139,11 +147,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0002",
-            "ons": "LC2104EW0002",
-            "scotland": "LC2104EW0002"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0002" }
+        ]
     },
     "language_french": {
         "id": "LC2104EW0003",
@@ -154,11 +160,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0003",
-            "ons": "LC2104EW0003",
-            "scotland": "LC2104EW0003"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0003" }
+        ]
     },
     "language_portuguese": {
         "id": "LC2104EW0004",
@@ -169,11 +173,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0004",
-            "ons": "LC2104EW0004",
-            "scotland": "LC2104EW0004"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0004" }
+        ]
     },
     "language_spanish": {
         "id": "LC2104EW0005",
@@ -184,11 +186,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0005",
-            "ons": "LC2104EW0005",
-            "scotland": "LC2104EW0005"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0005" }
+        ]
     },
     "language_polish": {
         "id": "LC2104EW0007",
@@ -199,11 +199,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0007",
-            "ons": "LC2104EW0007",
-            "scotland": "LC2104EW0007"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0007" }
+        ]
     },
     "language_arabic": {
         "id": "LC2104EW0010",
@@ -214,11 +212,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0010",
-            "ons": "LC2104EW0010",
-            "scotland": "LC2104EW0010"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0010" }
+        ]
     },
     "language_panjabi": {
         "id": "LC2104EW0013",
@@ -229,11 +225,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0013",
-            "ons": "LC2104EW0013",
-            "scotland": "LC2104EW0013"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0013" }
+        ]
     },
     "language_urdu": {
         "id": "LC2104EW0014",
@@ -244,11 +238,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0014",
-            "ons": "LC2104EW0014",
-            "scotland": "LC2104EW0014"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0014" }
+        ]
     },
     "language_bengali": {
         "id": "LC2104EW0015",
@@ -259,11 +251,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0015",
-            "ons": "LC2104EW0015",
-            "scotland": "LC2104EW0015"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0015" }
+        ]
     },
     "language_gujarati": {
         "id": "LC2104EW0016",
@@ -274,11 +264,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0016",
-            "ons": "LC2104EW0016",
-            "scotland": "LC2104EW0016"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0016" }
+        ]
     },
     "language_tamil": {
         "id": "LC2104EW0017",
@@ -289,11 +277,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0017",
-            "ons": "LC2104EW0017",
-            "scotland": "LC2104EW0017"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0017" }
+        ]
     },
     "language_chinese": {
         "id": "LC2104EW0020",
@@ -304,11 +290,9 @@
         ],
         "units": "people",
         "subsection": "language",
-        "fields": {
-            "nisra": "LC2104EW0020",
-            "ons": "LC2104EW0020",
-            "scotland": "LC2104EW0020"
-        }
+        "data": [
+            { "table": "LC2104EW", "field": "LC2104EW0020" }
+        ]
     },
     "religion_christian": {
         "id": "LC2107EW0002",
@@ -319,11 +303,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0002",
-            "ons": "LC2107EW0002",
-            "scotland": "LC2107EW0002"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0002" },
+            { "table": "KS209SCa", "field": "Christian" }
+        ]
     },
     "religion_buddhist": {
         "id": "LC2107EW0003",
@@ -334,11 +317,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0003",
-            "ons": "LC2107EW0003",
-            "scotland": "LC2107EW0003"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0003" },
+            { "table": "KS209SCa", "field": "Buddhist" }
+        ]
     },
     "religion_hindu": {
         "id": "LC2107EW0004",
@@ -349,11 +331,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0004",
-            "ons": "LC2107EW0004",
-            "scotland": "LC2107EW0004"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0004" },
+            { "table": "KS209SCa", "field": "Hindu" }
+        ]
     },
     "religion_jewish": {
         "id": "LC2107EW0005",
@@ -364,11 +345,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0005",
-            "ons": "LC2107EW0005",
-            "scotland": "LC2107EW0005"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0005" },
+            { "table": "KS209SCa", "field": "Jewish" }
+        ]
     },
     "religion_muslim": {
         "id": "LC2107EW0006",
@@ -379,11 +359,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0006",
-            "ons": "LC2107EW0006",
-            "scotland": "LC2107EW0006"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0006" },
+            { "table": "KS209SCa", "field": "Muslim" }
+        ]
     },
     "religion_sikh": {
         "id": "LC2107EW0007",
@@ -394,11 +373,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0007",
-            "ons": "LC2107EW0007",
-            "scotland": "LC2107EW0007"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0007" },
+            { "table": "KS209SCa", "field": "Sikh" }
+        ]
     },
     "religion_none": {
         "id": "LC2107EW0009",
@@ -409,11 +387,10 @@
         ],
         "units": "people",
         "subsection": "religion",
-        "fields": {
-            "nisra": "LC2107EW0009",
-            "ons": "LC2107EW0009",
-            "scotland": "LC2107EW0009"
-        }
+        "data": [
+            { "table": "LC2107EW", "field": "LC2107EW0009" },
+            { "table": "KS209SCa", "field": "No religion" }
+        ]
     },
     "white": {
         "id": "LC2201EW0011",
@@ -424,41 +401,9 @@
         ],
         "units": "people",
         "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0011",
-            "ons": "LC2201EW0011",
-            "scotland": "LC2201EW0011"
-        }
-    },
-    "white_english_welsh_scottish_n_irish_british": {
-        "id": "LC2201EW0021",
-        "name": "White English/Welsh/Scottish/Northern Irish/British population",
-        "weight": 3,
-        "denominators": [
-            "white"
-        ],
-        "units": "people",
-        "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0021",
-            "ons": "LC2201EW0021",
-            "scotland": "LC2201EW0021"
-        }
-    },
-    "white_irish": {
-        "id": "LC2201EW0031",
-        "name": "White Irish population",
-        "weight": 3,
-        "denominators": [
-            "white"
-        ],
-        "units": "people",
-        "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0031",
-            "ons": "LC2201EW0031",
-            "scotland": "LC2201EW0031"
-        }
+        "data": [
+            { "table": "KS201UK", "field": "Ethnic Group: White" }
+        ]
     },
     "mixed_multiple_ethnic_group": {
         "id": "LC2201EW0051",
@@ -469,11 +414,9 @@
         ],
         "units": "people",
         "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0051",
-            "ons": "LC2201EW0051",
-            "scotland": "LC2201EW0051"
-        }
+        "data": [
+            { "table": "KS201UK", "field": "Ethnic Group: Mixed / Multiple ethnic group" }
+        ]
     },
     "asian_pop": {
         "id": "LC2201EW0061",
@@ -484,11 +427,15 @@
         ],
         "units": "people",
         "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0061",
-            "ons": "LC2201EW0061",
-            "scotland": "LC2201EW0061"
-        }
+        "data": [
+            { "type": "sum", "fields":[
+                { "table": "KS201UK", "field": "Ethnic Group: Asian / Asian British: Indian; measures: Value" },
+                { "table": "KS201UK", "field": "Ethnic Group: Asian / Asian British: Pakistani" },
+                { "table": "KS201UK", "field": "Ethnic Group: Asian / Asian British: Bangladeshi" },
+                { "table": "KS201UK", "field": "Ethnic Group: Asian / Asian British: Chinese" },
+                { "table": "KS201UK", "field": "Ethnic Group: Asian / Asian British: Other Asian" }
+            ]}
+        ]
     },
     "black_pop": {
         "id": "LC2201EW0071",
@@ -499,11 +446,9 @@
         ],
         "units": "people",
         "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0071",
-            "ons": "LC2201EW0071",
-            "scotland": "LC2201EW0071"
-        }
+        "data": [
+            { "table": "KS201UK", "field": "Ethnic Group: Black / African / Caribbean / Black British" }
+        ]
     },
     "other_race_pop": {
         "id": "LC2201EW0081",
@@ -514,11 +459,9 @@
         ],
         "units": "people",
         "subsection": "race_ethnicity",
-        "fields": {
-            "nisra": "LC2201EW0081",
-            "ons": "LC2201EW0081",
-            "scotland": "LC2201EW0081"
-        }
+        "data": [
+            { "table": "KS201UK", "field": "Ethnic Group: Other Ethnic Group" }
+        ]
     },
     "born_europe": {
         "id": "LC2205EW0010",
@@ -529,11 +472,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0010",
-            "ons": "LC2205EW0010",
-            "scotland": "LC2205EW0010"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: Total" }
+        ]
     },
     "born_uk": {
         "id": "LC2205EW0019",
@@ -544,11 +485,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0019",
-            "ons": "LC2205EW0019",
-            "scotland": "LC2205EW0019"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: United Kingdom: Total" }
+        ]
     },
     "born_england": {
         "id": "LC2205EW0028",
@@ -559,11 +498,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0028",
-            "ons": "LC2205EW0028",
-            "scotland": "LC2205EW0028"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: United Kingdom: England" }
+        ]
     },
     "born_northern_ireland": {
         "id": "LC2205EW0037",
@@ -574,11 +511,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0037",
-            "ons": "LC2205EW0037",
-            "scotland": "LC2205EW0037"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: United Kingdom: Northern Ireland" }
+        ]
     },
     "born_scotland": {
         "id": "LC2205EW0046",
@@ -589,11 +524,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0046",
-            "ons": "LC2205EW0046",
-            "scotland": "LC2205EW0046"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: United Kingdom: Scotland" }
+        ]
     },
     "born_wales": {
         "id": "LC2205EW0055",
@@ -604,11 +537,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0055",
-            "ons": "LC2205EW0055",
-            "scotland": "LC2205EW0055"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: United Kingdom: Wales" }
+        ]
     },
     "born_ireland": {
         "id": "LC2205EW0082",
@@ -619,11 +550,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0082",
-            "ons": "LC2205EW0082",
-            "scotland": "LC2205EW0082"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: Ireland" }
+        ]
     },
     "born_europe_outside_uk_ireland": {
         "id": "LC2205EW0091",
@@ -634,11 +563,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0091",
-            "ons": "LC2205EW0091",
-            "scotland": "LC2205EW0091"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Europe: Other Europe: Total" }
+        ]
     },
     "born_africa": {
         "id": "LC2205EW0136",
@@ -649,11 +576,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0136",
-            "ons": "LC2205EW0136",
-            "scotland": "LC2205EW0136"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Africa: Total" }
+        ]
     },
     "born_north_africa": {
         "id": "LC2205EW0145",
@@ -664,11 +589,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0145",
-            "ons": "LC2205EW0145",
-            "scotland": "LC2205EW0145"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Africa: North Africa" }
+        ]
     },
     "born_central_western_africa": {
         "id": "LC2205EW0154",
@@ -679,11 +602,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0154",
-            "ons": "LC2205EW0154",
-            "scotland": "LC2205EW0154"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Africa: Central and Western Africa: Total" }
+        ]
     },
     "born_south_eastern_africa": {
         "id": "LC2205EW0163",
@@ -694,11 +615,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0163",
-            "ons": "LC2205EW0163",
-            "scotland": "LC2205EW0163"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Africa: South and Eastern Africa: Total" }
+        ]
     },
     "born_asia_middle_east": {
         "id": "LC2205EW0181",
@@ -709,11 +628,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0181",
-            "ons": "LC2205EW0181",
-            "scotland": "LC2205EW0181"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: Total" }
+        ]
     },
     "born_middle_east": {
         "id": "LC2205EW0190",
@@ -724,11 +641,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0190",
-            "ons": "LC2205EW0190",
-            "scotland": "LC2205EW0190"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: Middle East: Total" }
+        ]
     },
     "born_eastern_asia": {
         "id": "LC2205EW0199",
@@ -739,11 +654,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0199",
-            "ons": "LC2205EW0199",
-            "scotland": "LC2205EW0199"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: Eastern Asia: Total" }
+        ]
     },
     "born_southern_asia": {
         "id": "LC2205EW0208",
@@ -754,11 +667,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0208",
-            "ons": "LC2205EW0208",
-            "scotland": "LC2205EW0208"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: Southern Asia: Total" }
+        ]
     },
     "born_southeast_asia": {
         "id": "LC2205EW0217",
@@ -769,11 +680,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0217",
-            "ons": "LC2205EW0217",
-            "scotland": "LC2205EW0217"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: South-East Asia: Total" }
+        ]
     },
     "born_central_asia": {
         "id": "LC2205EW0226",
@@ -784,11 +693,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0226",
-            "ons": "LC2205EW0226",
-            "scotland": "LC2205EW0226"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Middle East and Asia: Central Asia" }
+        ]
     },
     "born_americas": {
         "id": "LC2205EW0235",
@@ -799,11 +706,9 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0235",
-            "ons": "LC2205EW0235",
-            "scotland": "LC2205EW0235"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: The Americas and the Caribbean: Total" }
+        ]
     },
     "born_north_america": {
         "id": "LC2205EW0244",
@@ -814,26 +719,25 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0244",
-            "ons": "LC2205EW0244",
-            "scotland": "LC2205EW0244"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: The Americas and the Caribbean: North Americas and the Caribbean: Total" }
+        ]
     },
     "born_central_south_america": {
         "id": "LC2205EW0253",
-        "name": "Born in Central and South America",
+        "name": "Born in Central America",
         "weight": 3,
         "denominators": [
             "born_americas"
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0253",
-            "ons": "LC2205EW0253",
-            "scotland": "LC2205EW0253"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS203UK", "field": "Country of Birth: The Americas and the Caribbean: Central America" },
+                { "table": "QS203UK", "field": "Country of Birth: The Americas and the Caribbean: South America" }
+            ]}
+        ]
     },
     "born_australia": {
         "id": "LC2205EW0262",
@@ -844,26 +748,25 @@
         ],
         "units": "people",
         "subsection": "nationality",
-        "fields": {
-            "nisra": "LC2205EW0262",
-            "ons": "LC2205EW0262",
-            "scotland": "LC2205EW0262"
-        }
+        "data": [
+            { "table": "QS203UK", "field": "Country of Birth: Antarctica and Oceania: Total" }
+        ]
     },
     "good_health": {
         "id": "LC3202WA0004",
-        "name": "Very good or good health",
+        "name": "Good or very good health",
         "weight": 3,
         "denominators": [
             "pop_3_and_over"
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3202WA0004",
-            "ons": "LC3202WA0004",
-            "scotland": "LC3202WA0004"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS302UK", "field": "General Health: Very good health" },
+                { "table": "QS302UK", "field": "General Health: Good health" }
+            ]}
+        ]
     },
     "fair_health": {
         "id": "LC3202WA0007",
@@ -874,11 +777,9 @@
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3202WA0007",
-            "ons": "LC3202WA0007",
-            "scotland": "LC3202WA0007"
-        }
+        "data": [
+            { "table": "QS302UK", "field": "General Health: Fair health" }
+        ]
     },
     "bad_health": {
         "id": "LC3202WA0010",
@@ -889,11 +790,12 @@
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3202WA0010",
-            "ons": "LC3202WA0010",
-            "scotland": "LC3202WA0010"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS302UK", "field": "General Health: Bad health" },
+                { "table": "QS302UK", "field": "General Health: Very bad health" }
+            ]}
+        ]
     },
     "very_limited_activities": {
         "id": "LC3204WA0004",
@@ -904,11 +806,9 @@
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3204WA0004",
-            "ons": "LC3204WA0004",
-            "scotland": "LC3204WA0004"
-        }
+        "data": [
+            { "table": "QS303UK", "field": "Disability: Day-to-day activities limited a lot" }
+        ]
     },
     "limited_activities": {
         "id": "LC3204WA0007",
@@ -919,11 +819,9 @@
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3204WA0007",
-            "ons": "LC3204WA0007",
-            "scotland": "LC3204WA0007"
-        }
+        "data": [
+            { "table": "QS303UK", "field": "Disability: Day-to-day activities limited a little" }
+        ]
     },
     "activities_not_limited": {
         "id": "LC3204WA0010",
@@ -934,11 +832,9 @@
         ],
         "units": "people",
         "subsection": "health",
-        "fields": {
-            "nisra": "LC3204WA0010",
-            "ons": "LC3204WA0010",
-            "scotland": "LC3204WA0010"
-        }
+        "data": [
+            { "table": "QS303UK", "field": "Disability: Day-to-day activities not limited" }
+        ]
     },
     "pop_16_over": {
         "id": "LC6201EW0001",
@@ -947,11 +843,9 @@
         "denominators": [],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0001",
-            "ons": "LC6201EW0001",
-            "scotland": "LC6201EW0001"
-        }
+        "data": [
+            { "table": "AGE", "from": 16, "to": -1 }
+        ]
     },
     "economically_active": {
         "id": "LC6201EW0010",
@@ -962,11 +856,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0010",
-            "ons": "LC6201EW0010",
-            "scotland": "LC6201EW0010"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Total" }
+        ]
     },
     "employed": {
         "id": "LC6201EW0019",
@@ -977,11 +869,16 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0019",
-            "ons": "LC6201EW0019",
-            "scotland": "LC6201EW0019"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Full-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Full-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Full-time" }
+            ]}
+        ]
     },
     "employed_as_employee": {
         "id": "LC6201EW0028",
@@ -992,11 +889,12 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0028",
-            "ons": "LC6201EW0028",
-            "scotland": "LC6201EW0028"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Full-time" }
+            ]}
+        ]
     },
     "part_time_employee": {
         "id": "LC6201EW0037",
@@ -1007,11 +905,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0037",
-            "ons": "LC6201EW0037",
-            "scotland": "LC6201EW0037"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Part-time" }
+        ]
     },
     "full_time_employee": {
         "id": "LC6201EW0046",
@@ -1022,11 +918,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0046",
-            "ons": "LC6201EW0046",
-            "scotland": "LC6201EW0046"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Employee: Full-time" }
+        ]
     },
     "self_employed": {
         "id": "LC6201EW0055",
@@ -1037,11 +931,14 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0055",
-            "ons": "LC6201EW0055",
-            "scotland": "LC6201EW0055"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Full-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Full-time" }
+            ]}
+        ]
     },
     "self_employed_part_time": {
         "id": "LC6201EW0064",
@@ -1052,11 +949,12 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0064",
-            "ons": "LC6201EW0064",
-            "scotland": "LC6201EW0064"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Part-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Part-time" }
+            ]}
+        ]
     },
     "self_employed_full_time": {
         "id": "LC6201EW0073",
@@ -1067,11 +965,12 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0073",
-            "ons": "LC6201EW0073",
-            "scotland": "LC6201EW0073"
-        }
+        "data": [
+            { "type": "sum", "fields": [
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed with employees: Full-time" },
+                { "table": "QS601UK", "field": "Economic Activity: Economically active: Self-employed without employees: Full-time" }
+            ]}
+        ]
     },
     "full_time_students": {
         "id": "LC6201EW0082",
@@ -1082,11 +981,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0082",
-            "ons": "LC6201EW0082",
-            "scotland": "LC6201EW0082"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Full-time student" }
+        ]
     },
     "unemployed": {
         "id": "LC6201EW0091",
@@ -1097,26 +994,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0091",
-            "ons": "LC6201EW0091",
-            "scotland": "LC6201EW0091"
-        }
-    },
-    "unemployed_not_student": {
-        "id": "LC6201EW0100",
-        "name": "Unemployed (excluding full-time students)",
-        "weight": 3,
-        "denominators": [
-            "unemployed"
-        ],
-        "units": "people",
-        "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0100",
-            "ons": "LC6201EW0100",
-            "scotland": "LC6201EW0100"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Unemployed" }
+        ]
     },
     "unemployed_student": {
         "id": "LC6201EW0109",
@@ -1127,11 +1007,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0109",
-            "ons": "LC6201EW0109",
-            "scotland": "LC6201EW0109"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically active: Full-time student" }
+        ]
     },
     "economically_inactive": {
         "id": "LC6201EW0118",
@@ -1142,11 +1020,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0118",
-            "ons": "LC6201EW0118",
-            "scotland": "LC6201EW0118"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically inactive: Total" }
+        ]
     },
     "retired": {
         "id": "LC6201EW0127",
@@ -1157,11 +1033,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0127",
-            "ons": "LC6201EW0127",
-            "scotland": "LC6201EW0127"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically inactive: Retired" }
+        ]
     },
     "student_economically_inactive": {
         "id": "LC6201EW0136",
@@ -1172,11 +1046,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0136",
-            "ons": "LC6201EW0136",
-            "scotland": "LC6201EW0136"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically inactive: Student (including full-time students)" }
+        ]
     },
     "looking_after_home": {
         "id": "LC6201EW0145",
@@ -1187,11 +1059,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0145",
-            "ons": "LC6201EW0145",
-            "scotland": "LC6201EW0145"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically inactive: Looking after home or family" }
+        ]
     },
     "long_term_sick_disabled": {
         "id": "LC6201EW0154",
@@ -1202,11 +1072,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6201EW0154",
-            "ons": "LC6201EW0154",
-            "scotland": "LC6201EW0154"
-        }
+        "data": [
+            { "table": "QS601UK", "field": "Economic Activity: Economically inactive: Long-term sick or disabled" }
+        ]
     },
     "managerial_admin_occupations": {
         "id": "LC6206EW0010",
@@ -1217,11 +1085,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0010",
-            "ons": "LC6206EW0010",
-            "scotland": "LC6206EW0010"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 1. Higher managerial, administrative and professional occupations" }
+        ]
     },
     "large_employers": {
         "id": "LC6206EW0019",
@@ -1232,11 +1098,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0019",
-            "ons": "LC6206EW0019",
-            "scotland": "LC6206EW0019"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 1.1 Large employers and higher managerial and administrative occupations" }
+        ]
     },
     "higher_professional_occupations": {
         "id": "LC6206EW0028",
@@ -1247,11 +1111,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0028",
-            "ons": "LC6206EW0028",
-            "scotland": "LC6206EW0028"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 1.2 Higher professional occupations" }
+        ]
     },
     "lower_managerial_occupations": {
         "id": "LC6206EW0037",
@@ -1262,11 +1124,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0037",
-            "ons": "LC6206EW0037",
-            "scotland": "LC6206EW0037"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 2. Lower managerial, administrative and professional occupations" }
+        ]
     },
     "intermediate_occupations": {
         "id": "LC6206EW0046",
@@ -1277,11 +1137,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0046",
-            "ons": "LC6206EW0046",
-            "scotland": "LC6206EW0046"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 3. Intermediate occupations" }
+        ]
     },
     "small_employers_account_workers": {
         "id": "LC6206EW0055",
@@ -1292,11 +1150,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0055",
-            "ons": "LC6206EW0055",
-            "scotland": "LC6206EW0055"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 4. Small employers and own account workers" }
+        ]
     },
     "lower_supervisory": {
         "id": "LC6206EW0064",
@@ -1307,11 +1163,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0064",
-            "ons": "LC6206EW0064",
-            "scotland": "LC6206EW0064"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 5. Lower supervisory and technical occupations" }
+        ]
     },
     "semi_routine_occupations": {
         "id": "LC6206EW0073",
@@ -1322,11 +1176,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0073",
-            "ons": "LC6206EW0073",
-            "scotland": "LC6206EW0073"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 6. Semi-routine occupations" }
+        ]
     },
     "routine_occupations": {
         "id": "LC6206EW0082",
@@ -1337,11 +1189,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0082",
-            "ons": "LC6206EW0082",
-            "scotland": "LC6206EW0082"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 7. Routine occupations" }
+        ]
     },
     "never_worked_long_term_unemployed": {
         "id": "LC6206EW0091",
@@ -1352,11 +1202,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0091",
-            "ons": "LC6206EW0091",
-            "scotland": "LC6206EW0091"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: 8. Never worked and long-term unemployed" }
+        ]
     },
     "never_worked": {
         "id": "LC6206EW0100",
@@ -1367,11 +1215,9 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0100",
-            "ons": "LC6206EW0100",
-            "scotland": "LC6206EW0100"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: L14.1 Never worked" }
+        ]
     },
     "long_term_unemployed": {
         "id": "LC6206EW0109",
@@ -1382,10 +1228,8 @@
         ],
         "units": "people",
         "subsection": "employment",
-        "fields": {
-            "nisra": "LC6206EW0109",
-            "ons": "LC6206EW0109",
-            "scotland": "LC6206EW0109"
-        }
+        "data": [
+            { "table": "QS606UK", "field": "NS-SeC: L14.2 Long-term unemployed" }
+        ]
     }
 }
