@@ -83,41 +83,21 @@ class EnglandWalesLocal(TableTask):
         return set([table_from_id(col['fields']['ons']) for col in COLUMNS_DEFINITION.values()])
 
     def populate(self):
-        session = current_session()
-        cols = self.columns()
-        inserted = False
-        for table in self.source_tables():
-            intable = self.requires()[table].output().table
-            cols_for_table = OrderedDict([
-                (n, t,) for n, t in cols.iteritems() if table in t._id
-            ])
-            out_colnames = cols_for_table.keys()
-            in_colnames = [t._id.split('.')[-1] for t in cols_for_table.values()]
-            assert len(out_colnames) == len(in_colnames)
-            if not out_colnames:
-                continue
-            if not inserted:
-                stmt = 'INSERT INTO {output} (geographycode, {out_colnames}) ' \
-                        'SELECT geographycode, {in_colnames} ' \
-                        'FROM {input} ' \
-                        'WHERE geographycode LIKE \'E00%\' OR ' \
-                        '      geographycode LIKE \'W00%\''.format(
-                            output=self.output().table,
-                            out_colnames=', '.join(out_colnames),
-                            in_colnames=', '.join(in_colnames),
-                            input=intable)
-                session.execute(stmt)
-                inserted = True
-            else:
-                stmt = 'UPDATE {output} out ' \
-                        'SET {set} ' \
-                        'FROM {input} intable ' \
-                        'WHERE intable.geographycode = out.geographycode ' \
-                        .format(
-                            set=', '.join([
-                                '{} = {}'.format(a, b) for a, b in zip(
-                                    out_colnames, in_colnames)
-                            ]),
-                            output=self.output().table,
-                            input=intable)
-                session.execute(stmt)
+        tables = [self.requires()[table].output().table for table in self.source_tables()]
+        in_colnames = [col['fields']['ons'] for col in COLUMNS_DEFINITION.values()]
+        out_colnames = COLUMNS_DEFINITION.keys()
+
+        from_part = tables[0]
+        for t in tables[1:]:
+            from_part += ' FULL JOIN {} USING (geographycode)'.format(t)
+
+        stmt = 'INSERT INTO {output} (geographycode, {out_colnames}) ' \
+               'SELECT geographycode, {in_colnames} ' \
+               'FROM {from_part} ' \
+               'WHERE geographycode LIKE \'E00%\' OR ' \
+               '      geographycode LIKE \'W00%\''.format(
+                   output=self.output().table,
+                   out_colnames=', '.join(out_colnames),
+                   in_colnames=', '.join(in_colnames),
+                   from_part=from_part)
+        current_session().execute(stmt)
