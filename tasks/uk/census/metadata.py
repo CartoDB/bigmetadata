@@ -31,7 +31,15 @@ class SourceTags(TagsTask):
         return [OBSTag(id='ons',
                        name='Office for National Statistics (ONS)',
                        type='source',
-                       description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)")]
+                       description="The UK's largest independent producer of official statistics and the recognised national statistical institute of the UK (`ONS <https://www.ons.gov.uk/>`_)"),
+                OBSTag(id='scotland-census',
+                       name="Scotland's Census Data Warehouse by National Records of Scotland",
+                       type='source',
+                       description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_"),
+                OBSTag(id='nisra',
+                       name="Northern Ireland Statistics and Research Agency",
+                       type='source',
+                       description="`Northern Ireland Statistics and Research Agency <https://www.nisra.gov.uk/`_")]
 
 
 class CensusColumns(ColumnsTask):
@@ -49,7 +57,7 @@ class CensusColumns(ColumnsTask):
 
     def columns(self):
         input_ = self.input()
-        source = input_['source']['ons']
+        sources = input_['source'].values()
         license = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']
@@ -65,7 +73,7 @@ class CensusColumns(ColumnsTask):
                 weight=column['weight'],
                 aggregate='sum',
                 targets={columns[denom]: DENOMINATOR for denom in column['denominators']},
-                tags=[uk, source, license, units[column['units']], subsections[column['subsection']]]
+                tags=sources + [uk, license, units[column['units']], subsections[column['subsection']]]
             )
 
         return columns

@@ -10,17 +10,6 @@ from tasks.util import TagsTask, shell, DownloadUnzipTask, TempTableTask
 from tasks.meta import OBSTag, current_session
 
 
-class SourceTags(TagsTask):
-    def version(self):
-        return 1
-
-    def tags(self):
-        return [OBSTag(id='scotland-census',
-                name="Scotland's Census Data Warehouse by National Records of Scotland",
-                type='source',
-                description="`Scotland Census <http://www.scotlandscensus.gov.uk/`_")]
-
-
 class DownloadScotlandLocal(DownloadUnzipTask):
 
     URL = 'http://www.scotlandscensus.gov.uk/ods-web/download/getDownloadFile.html?downloadFileIds=Output%20Area%20blk'
