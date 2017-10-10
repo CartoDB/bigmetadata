@@ -6,8 +6,8 @@ import re
 
 from luigi import Parameter
 
-from tasks.util import TagsTask, shell, DownloadUnzipTask, TempTableTask
-from tasks.meta import OBSTag, current_session
+from tasks.util import shell, DownloadUnzipTask, TempTableTask
+from tasks.meta import current_session
 
 
 class DownloadScotlandLocal(DownloadUnzipTask):
