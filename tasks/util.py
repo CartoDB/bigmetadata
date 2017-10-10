@@ -834,6 +834,9 @@ class ColumnsTask(Task):
         '''
         return 0
 
+    def prefix(self):
+        return classpath(self)
+
     def output(self):
         session = current_session()
 
@@ -856,7 +859,7 @@ class ColumnsTask(Task):
                     '"{col}" is type {type}'.format(col=col_key, type=type(col)))
             if not col.version:
                 col.version = self.version()
-            col.id = '.'.join([classpath(self), col.id or col_key])
+            col.id = '.'.join([self.prefix(), col.id or col_key])
             tags = self.tags(input_, col_key, col)
             if isinstance(tags, TagTarget):
                 col.tags.append(tags)

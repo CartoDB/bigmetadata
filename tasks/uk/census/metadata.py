@@ -53,7 +53,10 @@ class CensusColumns(ColumnsTask):
         }
 
     def version(self):
-        return 4
+        return 5
+
+    def prefix(self):
+        return 'uk.ons'
 
     def columns(self):
         input_ = self.input()

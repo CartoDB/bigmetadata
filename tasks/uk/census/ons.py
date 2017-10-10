@@ -123,4 +123,3 @@ class ImportEnglandWalesLocal(TempTableTask):
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geographycode)'.format(
             output=self.output().table
         ))
-
