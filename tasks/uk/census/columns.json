@@ -20,7 +20,33 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 0, "to": 24 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age under 1" },
+                { "table": "QS103UK", "field": "Age: Age 1" },
+                { "table": "QS103UK", "field": "Age: Age 2" },
+                { "table": "QS103UK", "field": "Age: Age 3" },
+                { "table": "QS103UK", "field": "Age: Age 4" },
+                { "table": "QS103UK", "field": "Age: Age 5" },
+                { "table": "QS103UK", "field": "Age: Age 6" },
+                { "table": "QS103UK", "field": "Age: Age 7" },
+                { "table": "QS103UK", "field": "Age: Age 8" },
+                { "table": "QS103UK", "field": "Age: Age 9" },
+                { "table": "QS103UK", "field": "Age: Age 10" },
+                { "table": "QS103UK", "field": "Age: Age 11" },
+                { "table": "QS103UK", "field": "Age: Age 12" },
+                { "table": "QS103UK", "field": "Age: Age 13" },
+                { "table": "QS103UK", "field": "Age: Age 14" },
+                { "table": "QS103UK", "field": "Age: Age 15" },
+                { "table": "QS103UK", "field": "Age: Age 16" },
+                { "table": "QS103UK", "field": "Age: Age 17" },
+                { "table": "QS103UK", "field": "Age: Age 18" },
+                { "table": "QS103UK", "field": "Age: Age 19" },
+                { "table": "QS103UK", "field": "Age: Age 20" },
+                { "table": "QS103UK", "field": "Age: Age 21" },
+                { "table": "QS103UK", "field": "Age: Age 22" },
+                { "table": "QS103UK", "field": "Age: Age 23" },
+                { "table": "QS103UK", "field": "Age: Age 24" }
+            ]}
         ]
     },
     "pop_25_to_49": {
@@ -33,7 +59,33 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 25, "to": 49 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 25" },
+                { "table": "QS103UK", "field": "Age: Age 26" },
+                { "table": "QS103UK", "field": "Age: Age 27" },
+                { "table": "QS103UK", "field": "Age: Age 28" },
+                { "table": "QS103UK", "field": "Age: Age 29" },
+                { "table": "QS103UK", "field": "Age: Age 30" },
+                { "table": "QS103UK", "field": "Age: Age 31" },
+                { "table": "QS103UK", "field": "Age: Age 32" },
+                { "table": "QS103UK", "field": "Age: Age 33" },
+                { "table": "QS103UK", "field": "Age: Age 34" },
+                { "table": "QS103UK", "field": "Age: Age 35" },
+                { "table": "QS103UK", "field": "Age: Age 36" },
+                { "table": "QS103UK", "field": "Age: Age 37" },
+                { "table": "QS103UK", "field": "Age: Age 38" },
+                { "table": "QS103UK", "field": "Age: Age 39" },
+                { "table": "QS103UK", "field": "Age: Age 40" },
+                { "table": "QS103UK", "field": "Age: Age 41" },
+                { "table": "QS103UK", "field": "Age: Age 42" },
+                { "table": "QS103UK", "field": "Age: Age 43" },
+                { "table": "QS103UK", "field": "Age: Age 44" },
+                { "table": "QS103UK", "field": "Age: Age 45" },
+                { "table": "QS103UK", "field": "Age: Age 46" },
+                { "table": "QS103UK", "field": "Age: Age 47" },
+                { "table": "QS103UK", "field": "Age: Age 48" },
+                { "table": "QS103UK", "field": "Age: Age 49" }
+            ]}
         ]
     },
     "pop_50_to_64": {
@@ -46,7 +98,22 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 50, "to": 64 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 51" },
+                { "table": "QS103UK", "field": "Age: Age 52" },
+                { "table": "QS103UK", "field": "Age: Age 53" },
+                { "table": "QS103UK", "field": "Age: Age 54" },
+                { "table": "QS103UK", "field": "Age: Age 55" },
+                { "table": "QS103UK", "field": "Age: Age 56" },
+                { "table": "QS103UK", "field": "Age: Age 57" },
+                { "table": "QS103UK", "field": "Age: Age 58" },
+                { "table": "QS103UK", "field": "Age: Age 59" },
+                { "table": "QS103UK", "field": "Age: Age 60" },
+                { "table": "QS103UK", "field": "Age: Age 61" },
+                { "table": "QS103UK", "field": "Age: Age 62" },
+                { "table": "QS103UK", "field": "Age: Age 63" },
+                { "table": "QS103UK", "field": "Age: Age 64" }
+            ]}
         ]
     },
     "pop_65_to_74": {
@@ -59,7 +126,18 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 65, "to": 74 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 65" },
+                { "table": "QS103UK", "field": "Age: Age 66" },
+                { "table": "QS103UK", "field": "Age: Age 67" },
+                { "table": "QS103UK", "field": "Age: Age 68" },
+                { "table": "QS103UK", "field": "Age: Age 69" },
+                { "table": "QS103UK", "field": "Age: Age 70" },
+                { "table": "QS103UK", "field": "Age: Age 71" },
+                { "table": "QS103UK", "field": "Age: Age 72" },
+                { "table": "QS103UK", "field": "Age: Age 73" },
+                { "table": "QS103UK", "field": "Age: Age 74" }
+            ]}
         ]
     },
     "pop_75_and_over": {
@@ -72,7 +150,34 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 75, "to": -1 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 75" },
+                { "table": "QS103UK", "field": "Age: Age 76" },
+                { "table": "QS103UK", "field": "Age: Age 77" },
+                { "table": "QS103UK", "field": "Age: Age 78" },
+                { "table": "QS103UK", "field": "Age: Age 79" },
+                { "table": "QS103UK", "field": "Age: Age 80" },
+                { "table": "QS103UK", "field": "Age: Age 81" },
+                { "table": "QS103UK", "field": "Age: Age 82" },
+                { "table": "QS103UK", "field": "Age: Age 83" },
+                { "table": "QS103UK", "field": "Age: Age 84" },
+                { "table": "QS103UK", "field": "Age: Age 85" },
+                { "table": "QS103UK", "field": "Age: Age 86" },
+                { "table": "QS103UK", "field": "Age: Age 87" },
+                { "table": "QS103UK", "field": "Age: Age 88" },
+                { "table": "QS103UK", "field": "Age: Age 89" },
+                { "table": "QS103UK", "field": "Age: Age 90" },
+                { "table": "QS103UK", "field": "Age: Age 91" },
+                { "table": "QS103UK", "field": "Age: Age 92" },
+                { "table": "QS103UK", "field": "Age: Age 93" },
+                { "table": "QS103UK", "field": "Age: Age 94" },
+                { "table": "QS103UK", "field": "Age: Age 95" },
+                { "table": "QS103UK", "field": "Age: Age 96" },
+                { "table": "QS103UK", "field": "Age: Age 97" },
+                { "table": "QS103UK", "field": "Age: Age 98" },
+                { "table": "QS103UK", "field": "Age: Age 99" },
+                { "table": "QS103UK", "field": "Age: Age 100 and over" }
+            ]}
         ]
     },
     "males": {
@@ -109,7 +214,106 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 3, "to": -1 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 3" },
+                { "table": "QS103UK", "field": "Age: Age 4" },
+                { "table": "QS103UK", "field": "Age: Age 5" },
+                { "table": "QS103UK", "field": "Age: Age 6" },
+                { "table": "QS103UK", "field": "Age: Age 7" },
+                { "table": "QS103UK", "field": "Age: Age 8" },
+                { "table": "QS103UK", "field": "Age: Age 9" },
+                { "table": "QS103UK", "field": "Age: Age 10" },
+                { "table": "QS103UK", "field": "Age: Age 11" },
+                { "table": "QS103UK", "field": "Age: Age 12" },
+                { "table": "QS103UK", "field": "Age: Age 13" },
+                { "table": "QS103UK", "field": "Age: Age 14" },
+                { "table": "QS103UK", "field": "Age: Age 15" },
+                { "table": "QS103UK", "field": "Age: Age 16" },
+                { "table": "QS103UK", "field": "Age: Age 17" },
+                { "table": "QS103UK", "field": "Age: Age 18" },
+                { "table": "QS103UK", "field": "Age: Age 19" },
+                { "table": "QS103UK", "field": "Age: Age 20" },
+                { "table": "QS103UK", "field": "Age: Age 21" },
+                { "table": "QS103UK", "field": "Age: Age 22" },
+                { "table": "QS103UK", "field": "Age: Age 23" },
+                { "table": "QS103UK", "field": "Age: Age 24" },
+                { "table": "QS103UK", "field": "Age: Age 25" },
+                { "table": "QS103UK", "field": "Age: Age 26" },
+                { "table": "QS103UK", "field": "Age: Age 27" },
+                { "table": "QS103UK", "field": "Age: Age 28" },
+                { "table": "QS103UK", "field": "Age: Age 29" },
+                { "table": "QS103UK", "field": "Age: Age 30" },
+                { "table": "QS103UK", "field": "Age: Age 31" },
+                { "table": "QS103UK", "field": "Age: Age 32" },
+                { "table": "QS103UK", "field": "Age: Age 33" },
+                { "table": "QS103UK", "field": "Age: Age 34" },
+                { "table": "QS103UK", "field": "Age: Age 35" },
+                { "table": "QS103UK", "field": "Age: Age 36" },
+                { "table": "QS103UK", "field": "Age: Age 37" },
+                { "table": "QS103UK", "field": "Age: Age 38" },
+                { "table": "QS103UK", "field": "Age: Age 39" },
+                { "table": "QS103UK", "field": "Age: Age 40" },
+                { "table": "QS103UK", "field": "Age: Age 41" },
+                { "table": "QS103UK", "field": "Age: Age 42" },
+                { "table": "QS103UK", "field": "Age: Age 43" },
+                { "table": "QS103UK", "field": "Age: Age 44" },
+                { "table": "QS103UK", "field": "Age: Age 45" },
+                { "table": "QS103UK", "field": "Age: Age 46" },
+                { "table": "QS103UK", "field": "Age: Age 47" },
+                { "table": "QS103UK", "field": "Age: Age 48" },
+                { "table": "QS103UK", "field": "Age: Age 49" },
+                { "table": "QS103UK", "field": "Age: Age 50" },
+                { "table": "QS103UK", "field": "Age: Age 51" },
+                { "table": "QS103UK", "field": "Age: Age 52" },
+                { "table": "QS103UK", "field": "Age: Age 53" },
+                { "table": "QS103UK", "field": "Age: Age 54" },
+                { "table": "QS103UK", "field": "Age: Age 55" },
+                { "table": "QS103UK", "field": "Age: Age 56" },
+                { "table": "QS103UK", "field": "Age: Age 57" },
+                { "table": "QS103UK", "field": "Age: Age 58" },
+                { "table": "QS103UK", "field": "Age: Age 59" },
+                { "table": "QS103UK", "field": "Age: Age 60" },
+                { "table": "QS103UK", "field": "Age: Age 61" },
+                { "table": "QS103UK", "field": "Age: Age 62" },
+                { "table": "QS103UK", "field": "Age: Age 63" },
+                { "table": "QS103UK", "field": "Age: Age 64" },
+                { "table": "QS103UK", "field": "Age: Age 65" },
+                { "table": "QS103UK", "field": "Age: Age 66" },
+                { "table": "QS103UK", "field": "Age: Age 67" },
+                { "table": "QS103UK", "field": "Age: Age 68" },
+                { "table": "QS103UK", "field": "Age: Age 69" },
+                { "table": "QS103UK", "field": "Age: Age 70" },
+                { "table": "QS103UK", "field": "Age: Age 71" },
+                { "table": "QS103UK", "field": "Age: Age 72" },
+                { "table": "QS103UK", "field": "Age: Age 73" },
+                { "table": "QS103UK", "field": "Age: Age 74" },
+                { "table": "QS103UK", "field": "Age: Age 75" },
+                { "table": "QS103UK", "field": "Age: Age 76" },
+                { "table": "QS103UK", "field": "Age: Age 77" },
+                { "table": "QS103UK", "field": "Age: Age 78" },
+                { "table": "QS103UK", "field": "Age: Age 79" },
+                { "table": "QS103UK", "field": "Age: Age 80" },
+                { "table": "QS103UK", "field": "Age: Age 81" },
+                { "table": "QS103UK", "field": "Age: Age 82" },
+                { "table": "QS103UK", "field": "Age: Age 83" },
+                { "table": "QS103UK", "field": "Age: Age 84" },
+                { "table": "QS103UK", "field": "Age: Age 85" },
+                { "table": "QS103UK", "field": "Age: Age 86" },
+                { "table": "QS103UK", "field": "Age: Age 87" },
+                { "table": "QS103UK", "field": "Age: Age 88" },
+                { "table": "QS103UK", "field": "Age: Age 89" },
+                { "table": "QS103UK", "field": "Age: Age 90" },
+                { "table": "QS103UK", "field": "Age: Age 91" },
+                { "table": "QS103UK", "field": "Age: Age 92" },
+                { "table": "QS103UK", "field": "Age: Age 93" },
+                { "table": "QS103UK", "field": "Age: Age 94" },
+                { "table": "QS103UK", "field": "Age: Age 95" },
+                { "table": "QS103UK", "field": "Age: Age 96" },
+                { "table": "QS103UK", "field": "Age: Age 97" },
+                { "table": "QS103UK", "field": "Age: Age 98" },
+                { "table": "QS103UK", "field": "Age: Age 99" },
+                { "table": "QS103UK", "field": "Age: Age 100 and over" }
+            ]}
         ]
     },
     "pop_3_to_15": {
@@ -122,7 +326,21 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 3, "to": 15 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 3" },
+                { "table": "QS103UK", "field": "Age: Age 4" },
+                { "table": "QS103UK", "field": "Age: Age 5" },
+                { "table": "QS103UK", "field": "Age: Age 6" },
+                { "table": "QS103UK", "field": "Age: Age 7" },
+                { "table": "QS103UK", "field": "Age: Age 8" },
+                { "table": "QS103UK", "field": "Age: Age 9" },
+                { "table": "QS103UK", "field": "Age: Age 10" },
+                { "table": "QS103UK", "field": "Age: Age 11" },
+                { "table": "QS103UK", "field": "Age: Age 12" },
+                { "table": "QS103UK", "field": "Age: Age 13" },
+                { "table": "QS103UK", "field": "Age: Age 14" },
+                { "table": "QS103UK", "field": "Age: Age 15" }
+            ]}
         ]
     },
     "pop_16_to_49": {
@@ -135,7 +353,42 @@
         "units": "people",
         "subsection": "age_gender",
         "data": [
-            { "table": "AGE", "from": 16, "to": 49 }
+            { "type": "sum", "fields": [
+                { "table": "QS103UK", "field": "Age: Age 16" },
+                { "table": "QS103UK", "field": "Age: Age 17" },
+                { "table": "QS103UK", "field": "Age: Age 18" },
+                { "table": "QS103UK", "field": "Age: Age 19" },
+                { "table": "QS103UK", "field": "Age: Age 20" },
+                { "table": "QS103UK", "field": "Age: Age 21" },
+                { "table": "QS103UK", "field": "Age: Age 22" },
+                { "table": "QS103UK", "field": "Age: Age 23" },
+                { "table": "QS103UK", "field": "Age: Age 24" },
+                { "table": "QS103UK", "field": "Age: Age 25" },
+                { "table": "QS103UK", "field": "Age: Age 26" },
+                { "table": "QS103UK", "field": "Age: Age 27" },
+                { "table": "QS103UK", "field": "Age: Age 28" },
+                { "table": "QS103UK", "field": "Age: Age 29" },
+                { "table": "QS103UK", "field": "Age: Age 30" },
+                { "table": "QS103UK", "field": "Age: Age 31" },
+                { "table": "QS103UK", "field": "Age: Age 32" },
+                { "table": "QS103UK", "field": "Age: Age 33" },
+                { "table": "QS103UK", "field": "Age: Age 34" },
+                { "table": "QS103UK", "field": "Age: Age 35" },
+                { "table": "QS103UK", "field": "Age: Age 36" },
+                { "table": "QS103UK", "field": "Age: Age 37" },
+                { "table": "QS103UK", "field": "Age: Age 38" },
+                { "table": "QS103UK", "field": "Age: Age 39" },
+                { "table": "QS103UK", "field": "Age: Age 40" },
+                { "table": "QS103UK", "field": "Age: Age 41" },
+                { "table": "QS103UK", "field": "Age: Age 42" },
+                { "table": "QS103UK", "field": "Age: Age 43" },
+                { "table": "QS103UK", "field": "Age: Age 44" },
+                { "table": "QS103UK", "field": "Age: Age 45" },
+                { "table": "QS103UK", "field": "Age: Age 46" },
+                { "table": "QS103UK", "field": "Age: Age 47" },
+                { "table": "QS103UK", "field": "Age: Age 48" },
+                { "table": "QS103UK", "field": "Age: Age 49" }
+            ]}
         ]
     },
     "language_english": {
@@ -836,15 +1089,15 @@
             { "table": "QS303UK", "field": "Disability: Day-to-day activities not limited" }
         ]
     },
-    "pop_16_over": {
+    "labour_force": {
         "id": "LC6201EW0001",
-        "name": "Population age 16 and over",
+        "name": "Labour force (population 16 to 74)",
         "weight": 3,
         "denominators": [],
         "units": "people",
         "subsection": "employment",
         "data": [
-            { "table": "AGE", "from": 16, "to": -1 }
+            { "table": "QS601UK", "field": "Economic Activity: All categories: Economic activity" }
         ]
     },
     "economically_active": {
@@ -852,7 +1105,7 @@
         "name": "Economically active",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1016,7 +1269,7 @@
         "name": "Economically inactive",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1081,7 +1334,7 @@
         "name": "Higher managerial, administrative and professional occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1120,7 +1373,7 @@
         "name": "Lower managerial, administrative and professional occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1133,7 +1386,7 @@
         "name": "Intermediate occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1146,7 +1399,7 @@
         "name": "Small employers and account workers",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1159,7 +1412,7 @@
         "name": "Lower supervisory and technical occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1172,7 +1425,7 @@
         "name": "Semi-routine occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1185,7 +1438,7 @@
         "name": "Routine occupations",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",
@@ -1198,7 +1451,7 @@
         "name": "Never worked and long-term unemployed",
         "weight": 3,
         "denominators": [
-            "pop_16_over"
+            "labour_force"
         ],
         "units": "people",
         "subsection": "employment",

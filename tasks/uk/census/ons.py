@@ -1,7 +1,10 @@
 # http://webarchive.nationalarchives.gov.uk/20160105160709/http://ons.gov.uk/ons/guide-method/census/2011/census-data/bulk-data/bulk-data-downloads/index.html
 
 from collections import OrderedDict
+import csv
+import json
 import os
+import urllib
 import shutil
 from zipfile import ZipFile
 
@@ -13,6 +16,68 @@ from tasks.uk.cdrc import OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from .common import table_from_id
 from .metadata import COLUMNS_DEFINITION
+
+
+class DownloadUK(Task):
+    API_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/def.sdmx.json?search={}*'
+    DOWNLOAD_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/{id}.bulk.csv?time=2011&measures=20100&geography={geo}'
+
+    table = Parameter()
+
+    def run(self):
+        # Query API, extract table ID from name
+        meta = json.load(urllib.urlopen(self.API_URL.format(self.table)))
+        api_id = (meta['structure']['keyfamilies']['keyfamily'][0]['id']).lower()
+
+        # Download for SA (EW,S) and OA (NI) in a single file
+        with self.output().temporary_path() as tmp:
+            os.mkdir(tmp)
+            with open(os.path.join(tmp, '{}.csv'.format(self.table)), 'w') as outcsv:
+                skip_header = False
+                for geo in ['TYPE258', 'TYPE299']:
+                    remote_file = urllib.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
+                    if skip_header:
+                        remote_file.next()
+                    else:
+                        skip_header = True
+                    for l in remote_file:
+                        outcsv.write(l)
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+class ImportUK(TempTableTask):
+    table = Parameter()
+
+    def requires(self):
+        return DownloadUK(self.table)
+
+    @staticmethod
+    def clean_id(colid):
+        return colid.split(';')[0].replace(':', '').replace(' ', '_')
+
+    def run(self):
+        with open(os.path.join(self.input().path, self.table + '.csv')) as csvfile:
+            reader = csv.reader(csvfile)
+            header = reader.next()
+
+            # We are faking the IDs, because Scotland bulk downloads uses the column name instead of the ID
+            cols = [self.clean_id(x) for x in header]
+
+            session = current_session()
+            with session.connection().connection.cursor() as cursor:
+                cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geography_code TEXT PRIMARY KEY, {cols})'.format(
+                    output=self.output().table,
+                    cols=', '.join(['{} NUMERIC'.format(c) for c in cols[3:]])
+                ))
+                csvfile.seek(0)
+
+                cursor.copy_expert(
+                    'COPY {table} ({cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
+                        cols=', '.join(cols),
+                        table=self.output().table),
+                    csvfile)
 
 
 class DownloadONS(DownloadUnzipTask):
