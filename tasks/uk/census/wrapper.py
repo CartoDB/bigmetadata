@@ -12,6 +12,7 @@ from .metadata import parse_table, COLUMNS_DEFINITION
 
 
 class Census(TableTask):
+    # Which task to use to import an specific table
     REGION_MAPPING = {
         "UK": ImportUK,
         "EW": ImportEnglandWalesLocal,
@@ -45,47 +46,69 @@ class Census(TableTask):
         return self.REGION_MAPPING[region](table=table)
 
     def populate(self):
-        def column_expression(table, fields):
-            return '+'.join(['{table}.{column}'.format(table=table, column=cn) for cn in fields])
+        '''
+        Joins data from all UK sub-census dependencies.
 
-        tables = [self.requires()[table].output().table for table in self.source_tables()]
+        For each column, there are multiple possiblities:
+          - The column has a single datasource and field: ``"data" : [{"table": "t", "fields": ["f"]}]``.
+            The table will be added to the FROM, and the column to the SELECT
+            ``SELECT t.f AS id FROM ... FULL JOIN t USING (geographycode)``
 
-        in_colnames = []
-        out_colnames = []
-        from_tables = set()
-        ctes = defaultdict(lambda: defaultdict(list))
+          - The column has multiple fields: ``"data" : [{"table": "t", "fields": ["f1", "f2"]}]``.
+            The table will be added to the FROM, and an expression adding all columns to the SELECT
+            ``SELECT t.f1 + t.f2 AS id FROM ... FULL JOIN t USING (geographycode)``
+
+          - The column has multiple tables: ``"data" : [{"table": "t1", "fields": ["f"]}, {"table": "t2", "fields": ["f"]}]``.
+            The tables will be added to a CTE that UNIONS them, the CTE to the FROM, and the column to the SELECT
+            ``WITH t1t2 AS (SELECT f AS id FROM t1 UNION SELECT f as id FROM t2)
+              SELECT t1t2.id FROM ... FULL JOIN t1t2 USING (geographycode)``
+
+          - The combination of both, which works as above, putting the summing expression inside the CTE
+        '''
+        def table_column_expression(data):
+            tabletask = self.requires()[data['table']]
+            table = tabletask.output().table
+            column_names = [tabletask.id_to_column(f) for f in data[0]['fields']]
+            col_expression = '+'.join(['{table}.{column}'.format(table=table, column=cn) for cn in column_names])
+
+            return table, col_expression
+
+        in_colnames = []  # Column names in source tables
+        out_colnames = []  # Column names in destination table
+        from_tables = set()  # Set of all source tables / CTEs (FROM generation)
+        ctes = defaultdict(lambda: defaultdict(list))  # CTEs to be generated. {t1t2: { t1: [c1, c2], t2: [d1, d2]}}
+
+        # Generate SQL parts for each column
         for k, v in COLUMNS_DEFINITION.items():
             data = v['data']
             if len(data) == 1:
                 # Single table source
-                tabletask = self.requires()[data[0]['table']]
-                table = tabletask.output().table
-                column_names = [tabletask.id_to_column(f) for f in data[0]['fields']]
-                from_tables.add(table)
+                table, col_expression = table_column_expression(data[0])
 
-                in_colnames.append(column_expression(table, column_names))
+                from_tables.add(table)
+                in_colnames.append(col_expression)
                 out_colnames.append(k)
             else:
                 # Multi data source
                 cte_name = '_'.join([d['table'] for d in data]).lower()
                 cte = ctes[cte_name]
                 for d in data:
-                    tabletask = self.requires()[d['table']]
-                    table = tabletask.output().table
-                    column_names = [tabletask.id_to_column(f) for f in d['fields']]
+                    table, col_expression = table_column_expression(data[0])
+                    cte[table].append('{expression} AS {id}'.format(expression=col_expression, id=k))
 
-                    cte[table].append(column_expression(table, column_names) + ' AS ' + k)
-                in_colnames.append(cte_name + '.' + k)
+                in_colnames.append('{cte_name}.{id}'.format(cte_name=cte_name, id=k))
                 out_colnames.append(k)
 
+        # Generate SQL for CTEs
         ctes_sql = []
         for name, cte in ctes.items():
             selects = []
             for table, columns in cte.items():
-                selects.append('SELECT geographycode, ' + ', '.join(columns) + ' FROM ' + table)
+                selects.append('SELECT geographycode, {cols} FROM {table}'.format(cols=', '.join(columns), table=table))
             ctes_sql.append('{name} AS ({union})'.format(name=name, union=' UNION '.join(selects)))
             from_tables.add(name)
 
+        # Generate FROM clause. Uses FULL JOIN because not all tables are complete.
         tables = list(from_tables)
         from_part = tables[0]
         for t in tables[1:]:
@@ -100,7 +123,6 @@ class Census(TableTask):
                    out_colnames=', '.join(out_colnames),
                    in_colnames=', '.join(in_colnames),
                    from_part=from_part)
-        print(stmt)
         current_session().execute(stmt)
 
 
