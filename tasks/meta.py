@@ -9,7 +9,7 @@ import re
 import weakref
 
 import luigi
-from luigi import Task, BooleanParameter, Target, Event
+from luigi import Task, BoolParameter, Target, Event
 
 from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, PrimaryKeyConstraint,
@@ -65,7 +65,7 @@ def get_engine(user=None, password=None, host=None, port=None,
     return engine
 
 
-def catalog_lonlat(column_id):
+def catalog_latlng(column_id):
     # TODO we should do this from metadata instead of hardcoding
     if column_id == 'whosonfirst.wof_disputed_geom':
         return (76.57, 33.78)
@@ -78,17 +78,17 @@ def catalog_lonlat(column_id):
         return (40.7025, -73.7067)
     elif column_id.startswith('uk'):
         if 'WA' in column_id:
-            return (51.46844551219723, -3.184833526611328)
+            return (51.468, -3.184)
         else:
-            return (51.51461834694225, -0.08883476257324219)
+            return (51.514, -0.0888)
     elif column_id.startswith('es'):
-        return (42.8226119029222, -2.51141249535454)
+        return (42.822, -2.511)
     elif column_id.startswith('us.zillow'):
-        return (28.3305906291771, -81.3544048197256)
+        return (28.330, -81.354)
     elif column_id.startswith('mx.'):
-        return (19.41347699386547, -99.17019367218018)
+        return (19.413, -99.170)
     elif column_id.startswith('th.'):
-        return (13.725377712079784, 100.49263000488281)
+        return (13.725, 100.492)
     # cols for French Guyana only
     elif column_id in ('fr.insee.P12_RP_CHOS', 'fr.insee.P12_RP_HABFOR'
                        , 'fr.insee.P12_RP_EAUCH', 'fr.insee.P12_RP_BDWC'
@@ -102,11 +102,11 @@ def catalog_lonlat(column_id):
                        , 'fr.insee.P12_RP_MIBOIS', 'fr.insee.P12_RP_CASE'
                        , 'fr.insee.P12_RP_TTEGOU', 'fr.insee.P12_RP_ELEC'
                        , 'fr.insee.P12_ACTOCC15P_ILT45D'):
-        return (4.938408371206558, -52.32908248901367)
+        return (4.938, -52.329)
     elif column_id.startswith('fr.'):
-        return (48.860875144709475, 2.3613739013671875)
+        return (48.860, 2.361)
     elif column_id.startswith('ca.'):
-        return (43.65594991256823, -79.37965393066406)
+        return (43.655, -79.379)
     elif column_id.startswith('us.census.'):
         return (40.7, -73.9)
     elif column_id.startswith('us.dma.'):
@@ -120,13 +120,13 @@ def catalog_lonlat(column_id):
     elif column_id.startswith('whosonfirst.'):
         return (40.7, -73.9)
     elif column_id.startswith('eu.'):
-        return (52.52207036136366, 13.40606689453125)
+        return (52.522, 13.406)
     elif column_id.startswith('us.epa.'):
         return (40.7, -73.9)
     elif column_id.startswith('br.'):
         return (-43.19, -22.9)
     elif column_id.startswith('au.'):
-        return (-33.8806, 151.2131)
+        return (-33.880, 151.213)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
 
@@ -783,6 +783,11 @@ class CurrentSession(object):
             print 'FORKED: {} not {}'.format(self._pid, os.getpid())
         if not self._session:
             self.begin()
+        try:
+            self._session.execute("SELECT 1")
+        except:
+            self._session = None
+            self.begin()
         return self._session
 
     def commit(self):
@@ -858,7 +863,6 @@ def fromkeys(d, l):
     return dict((k, v) for k, v in d.iteritems() if v is not None)
 
 DENOMINATOR = 'denominator'
-UNIVERSE = 'universe'
 GEOM_REF = 'geom_ref'
 GEOM_NAME = 'geom_name'
 
@@ -880,3 +884,141 @@ if not os.environ.get('READTHEDOCS') == 'True':
         );
     ''')
     Base.metadata.create_all()
+
+class UpdatedMetaTarget(Target):
+    def exists(self):
+        session = current_session()
+
+        # identify tags that have appeared, changed or disappeared
+        # version shifts won't crop up in and of themselves, but name changes will
+        changed_tags = '''
+        with tags as (
+            SELECT jsonb_each_text(numer_tags)
+            FROM observatory.obs_meta_numer
+            UNION ALL
+            SELECT jsonb_each_text(denom_tags)
+            FROM observatory.obs_meta_denom
+            UNION ALL
+            SELECT jsonb_each_text(geom_tags)
+            FROM observatory.obs_meta_geom
+        ),
+        distinct_tags as (
+            SELECT DISTINCT
+            SPLIT_PART((jsonb_each_text).key, '/', 1) AS type,
+            SPLIT_PART((jsonb_each_text).key, '/', 2) AS id,
+            ((jsonb_each_text).value)::TEXT AS name
+            FROM tags
+        ),
+        meta as (
+            SELECT distinct t.id, t.type, t.name
+            FROM observatory.obs_tag t
+            JOIN observatory.obs_column_tag ct ON t.id = ct.tag_id
+            JOIN observatory.obs_column c ON ct.column_id = c.id
+            JOIN observatory.obs_column_table ctab ON c.id = ctab.column_id
+        )
+        SELECT meta.id, meta.type, meta.name,
+                distinct_tags.id, distinct_tags.type, distinct_tags.name
+        FROM distinct_tags FULL JOIN meta
+        ON meta.id = distinct_tags.id AND
+            meta.type = distinct_tags.type AND
+            meta.name = distinct_tags.name
+        WHERE meta.id IS NULL OR distinct_tags.id IS NULL
+        '''
+        resp = session.execute(changed_tags)
+        if resp.fetchone():
+            return False
+
+        # identify columns that have appeared, changed, or disappeared
+        changed_columns = '''
+        WITH columns AS (
+            SELECT DISTINCT c.id, c.version
+            FROM observatory.obs_column c
+                LEFT JOIN observatory.obs_column_to_column c2c ON c.id = c2c.source_id,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t,
+                observatory.obs_column_table ctab
+            WHERE c.id = ct.column_id
+            AND ct.tag_id = t.id
+            AND c.type NOT ILIKE 'geometry%'
+            AND c.weight > 0
+            AND (c2c.reltype != 'geom_ref' OR c2c.reltype IS NULL)
+            AND c.id = ctab.column_id
+        ),
+        meta AS (
+            SELECT numer_id, numer_version FROM observatory.obs_meta_numer
+        )
+        SELECT id, version, numer_id, numer_version
+        FROM columns FULL JOIN meta
+        ON id = numer_id AND version = numer_version
+        WHERE numer_id IS NULL OR id IS NULL;
+        '''
+        resp = session.execute(changed_columns)
+        if resp.fetchone():
+            return False
+
+        # identify tables that have appeared, changed, or disappeared
+        changed_tables = '''
+        with numer_tables as (
+            select distinct tab.id, tab.version
+            from observatory.obs_table tab,
+                observatory.obs_column_table ctab,
+                observatory.obs_column c
+                    left join observatory.obs_column_to_column c2c on c.id = c2c.source_id,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t
+                where c.id = ct.column_id
+                    and ct.tag_id = t.id
+                    and ctab.column_id = c.id
+                    and ctab.table_id = tab.id
+                    and c.type not ilike 'geometry%'
+                    and c.weight > 0
+                    and (c2c.reltype != 'geom_ref' or c2c.reltype is null)
+        ),
+        geom_tables as (
+            select tab.id, tab.version,
+                    rank() over (partition by c.id order by tab.timespan desc)
+            from observatory.obs_table tab,
+                observatory.obs_column_table ctab,
+                observatory.obs_column c,
+                observatory.obs_column_to_column c2c,
+                observatory.obs_column_tag ct,
+                observatory.obs_tag t,
+                observatory.obs_column c2,
+                observatory.obs_column_table ctab2,
+                numer_tables
+                where c.id = ct.column_id
+                    and ct.tag_id = t.id
+                    and ctab.column_id = c.id
+                    and ctab.table_id = tab.id
+                    and c.type ilike 'geometry%'
+                    and c.weight > 0
+                    and c2c.reltype = 'geom_ref'
+                    and c.id = c2c.target_id
+                    and c2.id = c2c.source_id
+                    and c2.id = ctab2.column_id
+                    and numer_tables.id = ctab2.table_id
+            group by c.id, tab.id, tab.version
+        ),
+        numer_meta as (
+            select distinct numer_tid, numer_t_version
+            from observatory.obs_meta
+        ),
+        geom_meta as (
+            select distinct geom_tid, geom_t_version
+            from observatory.obs_meta
+        )
+        select distinct id, version, numer_tid, numer_t_version
+        from numer_tables full join numer_meta on
+            id = numer_tid and version = numer_t_version
+        where numer_tid is null or id is null
+        union all
+        select distinct id, version, geom_tid, geom_t_version
+        from geom_tables full join geom_meta on
+            id = geom_tid and version = geom_t_version
+        where rank = 1 and (geom_tid is null or id is null)
+        ;
+        '''
+        resp = session.execute(changed_tables)
+        if resp.fetchone():
+            return False
+        return True

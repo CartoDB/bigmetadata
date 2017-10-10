@@ -40,20 +40,30 @@ See [QUICKSTART](docs/source/quickstart.rst).
 
 ### Tasks
 
-Most of the common tasks have already been wrapped up in the `Makefile`.
+Most of the common tasks have already been wrapped up in the `Makefile`:
 
 * `make catalog`: Regenerate the catalog
 * `make pdf-catalog`: Regenerate the PDF version of the catalog
 * `make deploy-catalog`: Deploy the catalog to Github Pages. This will also
   rebuild both the HTML and PDF catalogs
-* `make acs`: ETL the entirety of the American Community Survey (Census)
-* `make tiger`: ETL the boundary files of the census
 * `make sh`: Drop into the bigmetadata container to run shell scripts
 * `make python`: Drop into an interactive Python shell in the bigmetadata
   container
 * `make psql`: Drop into an interactive psql session in the bigmetadata
   container's database
 * `make sync`: Sync local data and metadata to the Observatory account.
+
+The ETL tasks have also already been wrapped up in the Makefile:
+
+* `make au-all`: ETL the entirety of the Australian data
+* `make br-all`: ETL the entirety of the Brazilian data
+* `make ca-all`: ETL the entirety of the Canadian data
+* `make es-all`: ETL the entirety of the Spanish data
+* `make eu-all`: ETL the entirety of the Eurostat data
+* `make fr-all`: ETL the entirety of the French data
+* `make mx-all`: ETL the entirety of the Mexican data
+* `make uk-all`: ETL the entirety of the United Kingdom data
+* `make us-all`: ETL the entirety of the United States data
 
 Any other task can be run using `docker-compose`:
 

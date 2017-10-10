@@ -1,0 +1,23 @@
+var_code	short_name	long_name	universe	unit	denominators	subsections
+DISP_NBMENFISC12	Nombre de ménages fiscaux	Nombre de ménages fiscaux		households		income
+DISP_NBPERSMENFISC12	Nombre de personnes dans les ménages fiscaux	Nombre de personnes dans les ménages fiscaux	DISP_NBMENFISC12	people		income
+DISP_NBUC12	Nombre d'unités de consommation dans les ménages fiscaux	Nombre d'unités de consommation dans les ménages fiscaux	DISP_NBMENFISC12	tax_consumption_units		income
+DISP_TP6012	Taux de pauvreté (%)	Taux de pauvreté au seuil de 60 % du revenu disponible par UC médian métropolitain (%)		ratio		income
+DISP_D112	1er décile (€)	1er décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D212	2e décile (€)	2e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D312	3e décile (€)	3e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D412	4e décile (€)	4e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_MED12	Médiane (€)	Médiane du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D612	6e décile (€)	6e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D712	7e décile (€)	7e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D812	8e décile (€)	8e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_D912	9e décile (€)	9e décile du revenu disponible par unité de consommation (en euros)		money		income
+DISP_RD12	Rapport interdécile	Rapport interdécile D9/D1 du revenu disponible par unité de consommation		ratio		income
+DISP_PRAC12	Part des revenus d'activités (salariées et non salariées), y compris indemnités de chômage (%)	Part des revenus d'activités (salariées et non salariées), y compris indemnités de chômage (%)		ratio		income
+DISP_PPEN12	Part des pensions, retraites et rentes (%)	Part des pensions, retraites et rentes (%)		ratio		income
+DISP_PPAT12	Part des revenus du patrimoine (%)	Part des revenus du patrimoine (%)		ratio		income
+DISP_PPSOC12	Part de l'ensemble des prestations sociales (%)	Part de l'ensemble des prestations sociales (%)		ratio		income
+DISP_PPFAM12	dont part des prestations familiales (%)	dont part des prestations familiales (%)		ratio		income
+DISP_PPMINI12	dont part des minima sociaux (%)	dont part des minima sociaux (%)		ratio		income
+DISP_PPLOGT12	dont part des prestations logement (%)	dont part des prestations logement (%)		ratio		income
+DISP_PIMPOT12	Part des impôts (%)	Part des impôts (%)		ratio		income

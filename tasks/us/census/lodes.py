@@ -15,7 +15,7 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel
 from tasks.us.census.acs import ACSTags
 
-from luigi import (Task, Parameter, LocalTarget, BooleanParameter, WrapperTask,
+from luigi import (Task, Parameter, LocalTarget, BoolParameter, WrapperTask,
                    IntParameter)
 
 
@@ -100,7 +100,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         input_ = self.input()
@@ -561,11 +561,6 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['employment'], tags['commerce_economy']]
             )),
-            ('createdate', OBSColumn(
-                type='Date',
-                name='Date on which data was created, formatted as YYYYMMDD ',
-                weight=0
-            )),
         ])
         for colname, col in cols.iteritems():
             col.tags.append(source)
@@ -611,7 +606,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 0
+        return 1
 
     def requires(self):
         return {
@@ -635,7 +630,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     def populate(self):
         for infile in self.input()['data']:
             # gunzip each CSV into the table
-            cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
+            cmd = r"gunzip -c '{input}' | cut -d',' -f-52 | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path,
                                              tablename=self.output().table)
             print cmd
@@ -690,10 +685,11 @@ CREATE TABLE {tablename} (
                   r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)
             shell(cmd)
 
+
 class LODESMetaWrapper(MetaWrapper):
     geography = Parameter()
     year = IntParameter()
-    
+
     params = {
         'geography': ['block'],
         'year': [2013]
@@ -701,4 +697,4 @@ class LODESMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield WorkplaceAreaCharacteristics()
-        yield SumLevel(geography = self.geography, year=str(self.year))
+        yield SumLevel(geography = self.geography, year=str(2015))

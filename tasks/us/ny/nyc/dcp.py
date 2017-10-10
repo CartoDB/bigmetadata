@@ -5,10 +5,13 @@ from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
 from tasks.us.ny.nyc.tags import NYCTags
 
-from luigi import Parameter
+from luigi import Parameter, WrapperTask
 
 from collections import OrderedDict
 import os
+
+RELEASES = ['17', '16', '15']
+
 
 class DownloadUnzipMapPLUTO(DownloadUnzipTask):
 
@@ -881,6 +884,13 @@ class MapPLUTO(TableTask):
         session.execute('''create unique index on {output} (bbl)'''.format(
             output=self.output().table
         ))
+
+
+class MapPLUTOAll(WrapperTask):
+
+    def requires(self):
+        for release in RELEASES:
+            yield MapPLUTO(release=release)
 
 # class MapPLUTOMetaWrapper(MetaWrapper):
 #     release = Parameter()

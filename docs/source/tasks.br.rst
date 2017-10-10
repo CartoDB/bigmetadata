@@ -4,10 +4,22 @@ tasks.br package
 Submodules
 ----------
 
-.. toctree::
+tasks.br.data module
+--------------------
 
-   tasks.br.data
-   tasks.br.geo
+.. automodule:: tasks.br.data
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tasks.br.geo module
+-------------------
+
+.. automodule:: tasks.br.geo
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

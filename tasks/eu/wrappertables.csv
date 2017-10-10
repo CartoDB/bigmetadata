@@ -25,3 +25,4 @@ health,TGS00063,2,people
 health,TGS00064,2,beds
 employment,TGS00039,2,ratio
 commerce_economy,TGS00042,2,ratio
+commerce_economy,NAMA_AUX_CRA,0,money

@@ -59,7 +59,7 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
-class SourceTags(TagsTask):
+class BLSSourceTags(TagsTask):
     def version(self):
         return 1
 
@@ -83,7 +83,7 @@ class QCEWColumns(ColumnsTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'units': UnitTags(),
-            'source': SourceTags(),
+            'source': BLSSourceTags(),
             'license': LicenseTags(),
         }
         parent_code = get_parent_code(self.naics_code)
@@ -280,4 +280,4 @@ class QCEWMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield QCEW(year=self.year, qtr=self.qtr)
-        yield SumLevel(year=str(self.year), geography=self.geography)
+        yield SumLevel(year='2015', geography=self.geography)

@@ -19,6 +19,7 @@ from tasks.br.geo import (
     DATA_STATES,
     Geography,
     GeographyColumns,
+    GEOGRAPHY_CODES,
     GEO_I
 )
 
@@ -58,7 +59,6 @@ class LicenseTags(TagsTask):
         ]
 
 
-
 class DownloadData(DownloadUnzipTask):
 
     state = Parameter()
@@ -69,12 +69,13 @@ class DownloadData(DownloadUnzipTask):
         cmd += ' | '
         cmd += 'awk \'{print $9}\''
         cmd += ' | '
-        cmd += 'grep -i {state}_[0-9].*zip$'.format(state=self.state)
+        cmd += 'grep -i ^{state}_[0-9]*\.zip$'.format(state=self.state)
 
         return shell(cmd)
 
     def download(self):
         filename = self._get_filename()
+
         shell('wget -O {output}.zip {url}{filename}'.format(
             output=self.output().path, url=self.URL, filename=filename
         ))
@@ -101,7 +102,8 @@ class ImportData(CSV2TempTableTask):
         else:
             state_code = self.state.upper()
 
-        filename = '{tablename}_{state_code}.[xX][lL][sS]'.format(
+        # All files are {tablename}_{state}.xls, except Basico-MG.xls
+        filename = '{tablename}[-_]{state_code}.xls'.format(
             tablename=self.tablename,
             state_code=state_code
         )
@@ -255,16 +257,12 @@ class Columns(ColumnsTask):
 
                 # parse targets
                 denominators = denominators.split('|')
-                # print(denominators)
-                # universes = universes.split('|')
 
                 targets_dict = {}
                 for x in denominators:
                     x = x.strip()
                     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
-                # for x in universes:
-                #     x = x.strip()
-                #     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
+
                 targets_dict.pop(None, None)
 
                 col_id = self.tablename+'_'+col_id
@@ -316,10 +314,7 @@ class Censos(TableTask):
         '''
         Exclude Basico/mg, which seems to be missing
         '''
-        if self.tablename == 'Basico':
-            return [s for s in DATA_STATES if s != 'mg']
-        else:
-            return DATA_STATES
+        return DATA_STATES
 
     def requires(self):
         import_data = {}
@@ -338,7 +333,7 @@ class Censos(TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['Cod_setor'] = input_['geometa']['geom_id']
+        cols['Cod_setor'] = input_['geometa']['{}'.format(GEOGRAPHY_CODES[self.resolution])]
         # For some reason, state 'go' is missing columns 843 through 860 in
         # Entorno05
         for colname, coltarget in input_['meta'].iteritems():
@@ -400,7 +395,8 @@ class CensosMetaWrapper(MetaWrapper):
     tablename = Parameter()
 
     params = {
-        'resolution': GEOGRAPHIES,
+        #'resolution': GEOGRAPHIES,
+        'resolution': [GEO_I], # data only for setores_censitarios
         'tablename': TABLES
     }
 

@@ -2,7 +2,7 @@ from luigi import Task, Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from abc import ABCMeta
 from collections import OrderedDict
@@ -36,10 +36,22 @@ GEOGRAPHY_DESCS = {
 }
 
 GEOGRAPHY_CODES = {
-    GEO_M: 'cd_geocodm',   # eg: 1200203
-    GEO_D: 'cd_geocodd',   # eg: 120020305
-    GEO_S: 'cd_geocods',   # eg: 12002030500
-    GEO_I: 'cd_geocodi',   # eg: 120020305000030
+    GEO_M: 'cd_geocodm',   # Counties eg: 1200203
+    GEO_D: 'cd_geocodd',   # Districts, eg: 120020305
+    GEO_S: 'cd_geocods',   # Subdistricts, eg: 12002030500
+    GEO_I: 'cd_geocodi',   # Census tracts, eg: 120020305000030
+}
+
+GEOGRAPHY_PROPERNAMES = {
+    GEO_M: 'nm_municip',            # Counties eg: 2700102 "Gua Branca"
+    GEO_D: 'nm_distrit',            # Districts, eg: 270010205 "Gua Branca"
+    GEO_S: 'nm_subdist',            # Subdistricts, eg: 27001020500 ""
+    GEO_I: ['nm_micro','nm_meso'],  # Census tracts, eg: 270010205000012 "Serrana do Serto Alagoano", "Serto Alagoana"
+}
+
+REGION_TYPE = {
+    'nm_micro': 'microregion',
+    'nm_meso': 'mesoregion',
 }
 
 # 27 Federative Units
@@ -172,7 +184,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 3
+        return 5
 
     def requires(self):
         return {
@@ -184,7 +196,9 @@ class GeographyColumns(ColumnsTask):
     def columns(self):
         sections = self.input()['sections']
         subsections = self.input()['subsections']
+        cols = OrderedDict()
         boundary_type = self.input()['boundary']
+
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
@@ -200,18 +214,38 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
-        return OrderedDict([
-            ('geom_id', geom_id),   #
-            ('the_geom', geom),     # the_geom
-        ])
 
+        if self.resolution != 'setores_censitarios':
+            geom_name = OBSColumn(
+                id = self.resolution + '_name',
+                name="Name of the {}".format(GEOGRAPHY_NAMES[self.resolution]),
+                type='Text',
+                weight=1,
+                tags=[sections['br'], subsections['names']],
+                targets={geom: GEOM_NAME}
+            )
+            cols['{}'.format(GEOGRAPHY_PROPERNAMES[self.resolution])] = geom_name
+        else:
+            for region in GEOGRAPHY_PROPERNAMES[GEO_I]:
+                cols['{}'.format(region)] = OBSColumn(
+                    id=self.resolution + region + '_name',
+                    name="Name of the {}".format(REGION_TYPE[region]),
+                    type='Text',
+                    weight=1,
+                    tags=[sections['br'], subsections['names']],
+                    targets={geom: GEOM_NAME}
+                )
+        cols['{}'.format(GEOGRAPHY_CODES[self.resolution])] = geom_id
+        cols['wkb_geometry'] = geom
+
+        return cols
 
 class Geography(TableTask):
 
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         import_data = {}
@@ -232,12 +266,16 @@ class Geography(TableTask):
         session = current_session()
         for _, input_ in self.input()['data'].iteritems():
             intable = input_.table
-            session.execute('INSERT INTO {output} '
-                            'SELECT {code} as geom_id, '
-                            '       wkb_geometry as geom '
+            column_targets = self.columns()
+            out_colnames = column_targets.keys()
+            in_columns = ['"{}"::{}'.format(colname, ct.get(session).type)
+                           for colname, ct in column_targets.iteritems()]
+            session.execute('INSERT INTO {output} ({out_colnames}) '
+                            'SELECT {in_columns} '
                             'FROM {input} '.format(
                                 output=self.output().table,
-                                code=GEOGRAPHY_CODES[self.resolution],
+                                out_colnames=', '.join(out_colnames),
+                                in_columns=', '.join(in_columns),
                                 input=intable))
 
 

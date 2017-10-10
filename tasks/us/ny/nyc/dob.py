@@ -91,8 +91,6 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
                     vals.extend(["NULL"] * (len(coldefs) - len(vals)))
 
                 if len(vals) != len(coldefs):
-                    #import pdb
-                    #pdb.set_trace()
                     LOGGER.error('FIXME: cannot parse year %s month %s row %s',
                                  self.year, self.month, rownum)
                     continue
@@ -104,8 +102,6 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
                 allvals=u'), ('.join(allvals)
             ))
         except Exception as err:
-            import pdb
-            pdb.set_trace()
             print(err)
             raise
 

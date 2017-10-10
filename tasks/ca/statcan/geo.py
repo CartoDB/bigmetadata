@@ -2,7 +2,7 @@ from luigi import Parameter, WrapperTask
 
 from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
                         ColumnsTask, TableTask)
-from tasks.meta import GEOM_REF, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
@@ -39,6 +39,14 @@ GEOGRAPHY_DESCS = {
     GEO_CMA: '',
 }
 
+GEOGRAPHY_PROPERNAMES = {
+    GEO_CT: 'CTNAME',
+    GEO_PR: 'PRNAME',
+    GEO_CD: 'CDNAME',
+    GEO_CSD: 'CSDNAME',
+    GEO_CMA: 'CMANAME',
+}
+
 GEOGRAPHY_CODES = {
     GEO_CT: 401,
     GEO_PR: 101,
@@ -52,7 +60,7 @@ GEOGRAPHY_TAGS = {
     GEO_PR: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
-    GEO_CMA: [],
+    GEO_CMA: ['cartographic_boundary', 'interpolation_boundary']
 }
 
 
@@ -94,15 +102,15 @@ class GeographyColumns(ColumnsTask):
     resolution = Parameter(default=GEO_PR)
 
     weights = {
+        GEO_PR: 1,
+        GEO_CD: 2,
+        GEO_CMA: 3,
+        GEO_CSD: 4,
         GEO_CT: 5,
-        GEO_PR: 4,
-        GEO_CD: 3,
-        GEO_CSD: 2,
-        GEO_CMA: 1,
     }
 
     def version(self):
-        return 8
+        return 13
 
     def requires(self):
         return {
@@ -124,12 +132,22 @@ class GeographyColumns(ColumnsTask):
             tags=[sections['ca'], subsections['boundary']],
         )
         geom_id = OBSColumn(
+            id=self.resolution + '_id',
             type='Text',
             weight=0,
             targets={geom: GEOM_REF},
         )
+        geom_name = OBSColumn(
+            type='Text',
+            weight=1,
+            name='Name of ' + GEOGRAPHY_NAMES[self.resolution],
+            targets={geom: GEOM_NAME},
+            tags=[sections['ca'], subsections['names']]
+        )
         geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
+
         return OrderedDict([
+            ('geom_name', geom_name),
             ('geom_id', geom_id),   # cvegeo
             ('the_geom', geom),     # the_geom
         ])
@@ -142,7 +160,7 @@ class Geography(TableTask):
     resolution = Parameter(default=GEO_PR)
 
     def version(self):
-        return 2
+        return 8
 
     def requires(self):
         return {
@@ -159,9 +177,11 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT {code}uid as geom_id, '
+                        'SELECT {name} as geom_name, '
+                        '       {code}uid as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
+                            name=GEOGRAPHY_PROPERNAMES[self.resolution],
                             output=self.output().table,
                             code=self.resolution.replace('_', ''),
                             input=self.input()['data'].table))
@@ -172,3 +192,9 @@ class AllGeographies(WrapperTask):
     def requires(self):
         for resolution in GEOGRAPHIES:
             yield Geography(resolution=resolution)
+
+class AllGeographyColumns(WrapperTask):
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield GeographyColumns(resolution=resolution)

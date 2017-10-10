@@ -151,6 +151,12 @@ class UnitTags(TagsTask):
                    name='Kilometers squared',
                    type='unit',
                    description=''),
+            OBSTag(id='tax_consumption_units',
+                   name='Tax Consumption Units',
+                   type='unit',
+                   description=' CU for the first adult in the household, '
+                               ' 0.5 CU for the other persons aged 14 years or older, '
+                               ' 0.3 CU for the children under 14 years. '),
         ]
 
 
@@ -215,7 +221,7 @@ class SectionTags(TagsTask):
 class SubsectionTags(TagsTask):
 
     def version(self):
-        return 23
+        return 24
 
     def tags(self):
         return [
@@ -276,7 +282,7 @@ class SubsectionTags(TagsTask):
                    type='subsection',
                    description='Breakdowns of the population by health.'),
             OBSTag(id='commerce_economy',
-                   name='Commerce & Economy',
+                   name='Commerce and Economy',
                    type='subsection',
                    description='Broader measures of economic and commercial activity.'),
             OBSTag(id='business_demography',
@@ -328,3 +334,14 @@ class BoundaryTags(TagsTask):
                    type='boundary_type',
                    description='Boundary appropriate for cartographic use'),
             ]
+
+class PublicTags(TagsTask):
+    def version(self):
+        return 1
+    def tags(self):
+        return [
+            OBSTag(id='public',
+                   name='Key variable',
+                   type='public_type',
+                   description='This tag is a flag for key variables')
+        ]

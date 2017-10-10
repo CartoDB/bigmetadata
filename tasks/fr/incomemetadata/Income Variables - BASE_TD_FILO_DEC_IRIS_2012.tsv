@@ -1,0 +1,20 @@
+var_code	short_name	long_name	universe	unit	denominators	subsections
+DEC_NBMENFISC12	Nombre de ménages fiscaux	Nombre de ménages fiscaux		households		income
+DEC_NBPERSMENFISC12	Nombre de personnes dans les ménages fiscaux	Nombre de personnes dans les ménages fiscaux	DEC_NBMENFISC12	people		income
+DEC_NBUC12	Nombre d'unités de consommation dans les ménages fiscaux	Nombre d'unités de consommation dans les ménages fiscaux	DEC_NBMENFISC12	tax_consumption_units		income
+DEC_PIMP12	Part des ménages fiscaux imposés (%)	Part des ménages fiscaux imposés (%)		ratio		income
+DEC_TP6012	Taux de bas revenus déclarés au seuil de 60 % (%)	Taux de bas revenus déclarés au seuil de 60 % du revenu déclaré par unité de consommation médian métropolitain (%)		ratio		income
+DEC_D112	1er décile (€)	1er décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D212	2e décile (€)	2e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D312	3e décile (€)	3e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D412	4e décile (€)	4e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_MED12	Médiane (€)	Médiane du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D612	6e décile (€)	6e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D712	7e décile (€)	7e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D812	8e décile (€)	8e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_D912	9e décile (€)	9e décile du revenu déclaré par unité de consommation (en euros)		money		income
+DEC_RD12	Rapport interdécile	Rapport interdécile D9/D1 du revenu déclaré par unité de consommation		ratio		income
+DEC_PRA12	Part des revenus d'activités (salariées et non salariées), hors indemnités de chômage (%)	Part des revenus d'activités (salariées et non salariées), hors indemnités de chômage (%)		ratio		income
+DEC_PCHO12	Part des indemnités de chômage (%)	Part des indemnités de chômage (%)		ratio		income
+DEC_PPEN12	Part des pensions, retraites et rentes (%)	Part des pensions, retraites et rentes (%)		ratio		income
+DEC_PAUT12	Part des autres revenus (%)	Part des autres revenus (essentiellement des revenus du patrimoine) (%)		ratio		income

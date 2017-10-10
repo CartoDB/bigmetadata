@@ -13,7 +13,7 @@ class DownloadHUC(DownloadUnzipTask):
     URL = 'ftp://newftp.epa.gov/epadatacommons/ORD/EnviroAtlas/NHDPlusV2_WBDSnapshot_EnviroAtlas_CONUS.gdb.zip'
 
     def download(self):
-        shell('wget -O "{output}".zip "{url}"'.format(
+        shell('curl -o "{output}".zip "{url}"'.format(
             url=self.URL,
             output=self.output().path
         ))

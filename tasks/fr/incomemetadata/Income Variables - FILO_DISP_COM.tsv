@@ -1,0 +1,28 @@
+var_code	short_name	long_name	universe	unit	denominators	subsections
+NBMEN12	nombre de ménages fiscaux	nombre de ménages fiscaux	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	households		income
+NBPERS12	nombre de personnes dans les ménages fiscaux	nombre de personnes dans les ménages fiscaux	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	people		income
+NBUC12	nbre d'unités de consommation dans les ménages fiscaux	nbre d'unités de consommation dans les ménages fiscaux	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	tax_consumption_units		income
+Q112	1er quartile	1er quartile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+Q212	médiane	médiane	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+Q312	3e quartile	3e quartile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+Q3_Q1	Ecart interquartile	Ecart interquartile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D112	1er décile	1er décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D212	2e décile	2e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D312	3e décile	3e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D412	4e décile	4e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D612	6e décile	6e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D712	7e décile	7e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D812	8e décile	8e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+D912	9e décile	9e décile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	money		income
+RD	rapport inter-décile 9e décile/1er decile	rapport inter-décile 9e décile/1er decile	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+S80S2012	S80/20	S80/20	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+GI12	indice de gini	indice de gini	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	index		income
+PTSAC12	Part des salaires, traitements ou chômage	Part des salaires, traitements ou chômage	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PBEN12	Part des revenus d'activités non salariées	Part des revenus d'activités non salariées	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPEN12	Part des pensions, retraites et rentes	Part des pensions, retraites et rentes	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPAT12	Part des revenus du patrimoine	Part des revenus du patrimoine	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPSOC12	Part de l'ensemble des prestations sociales	Part de l'ensemble des prestations sociales	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPFAM12	dont part des prestations familiales	dont part des prestations familiales	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPMINI12	dont part des minimas sociaux	dont part des minimas sociaux	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PPLOGT12	dont part des prestations logement	dont part des prestations logement	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income
+PIMPOT12	Part des impôts	Part des impôts	Distribution des niveaux de vie et composition du revenu disponible - Ensemble	ratio		income

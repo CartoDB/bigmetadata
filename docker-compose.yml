@@ -2,11 +2,9 @@
 # https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
   "postgres": {
-    "image": "recessionporn/bigmetadata_postgres",
+    "image": "carto/bigmetadata_postgres",
     "volumes": [
-      "./postgres/postgresql.conf:/etc/postgresql/9.5/main/postgresql.conf",
-      "./postgres/data:/var/lib/postgresql",  # commented to work on mac --
-                                              # will cause persistence issues!!
+      "./postgres/data:/var/lib/postgresql",
       "./observatory-extension:/observatory-extension",
       "./dataservices-api:/dataservices-api",
       "./data-services:/data-services",
@@ -23,7 +21,10 @@
     "links": [
       "redis:localhost"
     ],
-    "privileged": true
+    "privileged": true,
+    "ports": [
+      "5554:5432" 
+    ]
   },
   "nginx": {
     "image": "nginx:latest",
@@ -39,7 +40,7 @@
   },
   "bigmetadata_daemon": {
     #"build": ".",
-    "image": "recessionporn/bigmetadata",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres"
     ],
@@ -64,7 +65,7 @@
     "command": "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && cron && crontab ./crontab && luigid'"
   },
   "bigmetadata": {
-    "image": "recessionporn/bigmetadata",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres",
       "bigmetadata_daemon",
@@ -82,7 +83,9 @@
       "LANG": "C.UTF-8",
       "LUIGI_CONFIG_PATH": "/bigmetadata/conf/luigi_client.cfg",
     },
-    "env_file": ".env"
+    "env_file": ".env",
+    "stdin_open": true,
+    "tty": true
   },
   "ipython": {
     "build": "ipython",
