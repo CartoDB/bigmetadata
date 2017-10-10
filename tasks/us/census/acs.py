@@ -32,11 +32,14 @@ SCHOOL_DISTRICT_UNIFIED = 'school_district_unified'
 CBSA = 'cbsa'
 PLACE = 'place'
 
+SAMPLE_1YR = '1yr'
+SAMPLE_5YR = '5yr'
+
 GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
 YEARS = ['2015', '2014', '2010']
-SAMPLES = ['5yr', '1yr']
+SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
 
 
 class ACSTags(TagsTask):
@@ -58,6 +61,8 @@ class ACSTags(TagsTask):
 
 
 class Columns(ColumnsTask):
+    year = Parameter()
+    sample = Parameter()
     geography = Parameter()
 
     def requires(self):
@@ -2969,10 +2974,6 @@ class Columns(ColumnsTask):
             tags=[subsections['housing'], unit_years])
 
         columns = OrderedDict([
-            ("sales_office_employed", sales_office_employed),
-            ("management_business_sci_arts_employed", management_business_sci_arts_employed),
-            ("pop_25_64", pop_25_64),
-            ("bachelors_degree_or_higher_25_64", bachelors_degree_or_higher_25_64),
             ("nonfamily_households", nonfamily_households),
             ("family_households", family_households),
             ("median_year_structure_built", median_year_structure_built),
@@ -2998,40 +2999,9 @@ class Columns(ColumnsTask):
             ("other_race_pop", other_race_pop),
             ("two_or_more_races_pop", two_or_more_races_pop),
             ("not_hispanic_pop", not_hispanic_pop),
-            ("not_us_citizen_pop", not_us_citizen_pop),
-            ("workers_16_and_over", workers_16_and_over),
-            ("commuters_by_car_truck_van", commuters_by_car_truck_van),
-            ('commuters_drove_alone', commuters_drove_alone),
-            ('no_cars', no_cars),
-            ('one_car', one_car),
-            ('two_cars', two_cars),
-            ('three_cars', three_cars),
-            ('four_more_cars', four_more_cars),
-            ('commuters_by_carpool', commuters_by_carpool),
             ("commuters_by_public_transportation", commuters_by_public_transportation),
-            ("commuters_by_bus", commuters_by_bus),
-            ("commuters_by_subway_or_elevated", commuters_by_subway_or_elevated),
-            ("walked_to_work", walked_to_work),
-            ("worked_at_home", worked_at_home),
-            ("children", children),
             ("households", households),
-            ("population_3_years_over", population_3_years_over),
-            ("in_school", in_school),
-            ("in_grades_1_to_4", in_grades_1_to_4),
-            ("in_grades_5_to_8", in_grades_5_to_8),
-            ("in_grades_9_to_12", in_grades_9_to_12),
-            ("in_undergrad_college", in_undergrad_college),
-            ("pop_25_years_over", pop_25_years_over),
-            ("high_school_diploma", high_school_diploma),
-            ("less_one_year_college", less_one_year_college),
-            ("one_year_more_college", one_year_more_college),
-            ("associates_degree", associates_degree),
-            ("bachelors_degree", bachelors_degree),
-            ("masters_degree", masters_degree),
-            ("pop_determined_poverty_status", pop_determined_poverty_status),
-            ("poverty", poverty),
             ("median_income", median_income),
-            ("gini_index", gini_index),
             ("income_per_capita", income_per_capita),
             ("housing_units", housing_units),
             ("vacant_housing_units", vacant_housing_units),
@@ -3056,28 +3026,6 @@ class Columns(ColumnsTask):
              one_parent_families_with_young_children),
             ("father_one_parent_families_with_young_children",
              father_one_parent_families_with_young_children),
-            ('pop_16_over', pop_16_over),
-            ('pop_in_labor_force', pop_in_labor_force),
-            ('civilian_labor_force', civilian_labor_force),
-            ('employed_pop', employed_pop),
-            ('unemployed_pop', unemployed_pop),
-            ('armed_forces', armed_forces),
-            ('not_in_labor_force', not_in_labor_force),
-            ('black_male_45_54', black_male_45_54),
-            ('black_male_55_64', black_male_55_64),
-            ('hispanic_male_45_54', hispanic_male_45_54),
-            ('hispanic_male_55_64', hispanic_male_55_64),
-            ('white_male_45_54', white_male_45_54),
-            ('white_male_55_64', white_male_55_64),
-            ('asian_male_45_54', asian_male_45_54),
-            ('asian_male_55_64', asian_male_55_64),
-            ('male_45_64_less_than_9_grade', male_45_64_less_than_9_grade),
-            ('male_45_64_grade_9_12', male_45_64_grade_9_12),
-            ('male_45_64_high_school', male_45_64_high_school),
-            ('male_45_64_some_college', male_45_64_some_college),
-            ('male_45_64_associates_degree', male_45_64_associates_degree),
-            ('male_45_64_bachelors_degree', male_45_64_bachelors_degree),
-            ('male_45_64_graduate_degree', male_45_64_graduate_degree),
             ("two_parent_families_with_young_children", two_parent_families_with_young_children),
             ("two_parents_in_labor_force_families_with_young_children",
              two_parents_in_labor_force_families_with_young_children),
@@ -3093,16 +3041,12 @@ class Columns(ColumnsTask):
              father_one_parent_families_with_young_children),
             ("father_in_labor_force_one_parent_families_with_young_children",
              father_in_labor_force_one_parent_families_with_young_children),
-            ("commuters_16_over", commuters_16_over),
-            ("commute_less_10_mins", commute_less_10_mins),
             ("commute_10_14_mins", commute_10_14_mins),
             ("commute_15_19_mins", commute_15_19_mins),
             ("commute_20_24_mins", commute_20_24_mins),
             ("commute_25_29_mins", commute_25_29_mins),
             ("commute_30_34_mins", commute_30_34_mins),
-            ("commute_35_44_mins", commute_35_44_mins),
             ("commute_45_59_mins", commute_45_59_mins),
-            ("commute_60_more_mins", commute_60_more_mins),
             ("aggregate_travel_time_to_work", aggregate_travel_time_to_work),
             ("income_less_10000", income_less_10000),
             ("income_10000_14999", income_10000_14999),
@@ -3128,21 +3072,9 @@ class Columns(ColumnsTask):
              owner_occupied_housing_units_median_value),
             ("owner_occupied_housing_units_upper_value_quartile",
              owner_occupied_housing_units_upper_value_quartile),
-            ('less_than_high_school_graduate', less_than_high_school_graduate),
-            ('high_school_including_ged', high_school_including_ged),
-            ('some_college_and_associates_degree', some_college_and_associates_degree),
-            ('bachelors_degree_2', bachelors_degree_2),
-            ('graduate_professional_degree', graduate_professional_degree),
-            ('children_in_single_female_hh', children_in_single_female_hh),
             ('married_households', married_households),
-            ('male_male_households', male_male_households),
-            ('female_female_households', female_female_households),
             ('occupied_housing_units', occupied_housing_units),
-            ('children_in_single_female_hh', children_in_single_female_hh),
             ('married_households', married_households),
-            ('male_male_households', male_male_households),
-            ('female_female_households', female_female_households),
-            ('some_college_and_associates_degree', some_college_and_associates_degree),
             ('housing_units_renter_occupied', housing_units_renter_occupied),
             ('dwellings_1_units_detached', dwellings_1_units_detached),
             ('dwellings_1_units_attached', dwellings_1_units_attached),
@@ -3157,29 +3089,6 @@ class Columns(ColumnsTask):
             ('housing_built_2000_to_2004', housing_built_2000_to_2004),
             ('housing_built_1939_or_earlier', housing_built_1939_or_earlier),
             ('two_parent_families_with_young_children', two_parent_families_with_young_children),
-            ('employed_agriculture_forestry_fishing_hunting_mining',
-             employed_agriculture_forestry_fishing_hunting_mining),
-            ('employed_construction', employed_construction),
-            ('employed_manufacturing', employed_manufacturing),
-            ('employed_wholesale_trade', employed_wholesale_trade),
-            ('employed_retail_trade', employed_retail_trade),
-            ('employed_transportation_warehousing_utilities',
-             employed_transportation_warehousing_utilities),
-            ('employed_information', employed_information),
-            ('employed_finance_insurance_real_estate', employed_finance_insurance_real_estate),
-            ('employed_science_management_admin_waste', employed_science_management_admin_waste),
-            ('employed_education_health_social', employed_education_health_social),
-            ('employed_arts_entertainment_recreation_accommodation_food',
-             employed_arts_entertainment_recreation_accommodation_food),
-            ('employed_other_services_not_public_admin', employed_other_services_not_public_admin),
-            ('employed_public_administration', employed_public_administration),
-            ('occupation_management_arts', occupation_management_arts),
-            ('occupation_services', occupation_services),
-            ('occupation_sales_office', occupation_sales_office),
-            ('occupation_natural_resources_construction_maintenance',
-             occupation_natural_resources_construction_maintenance),
-            ('occupation_production_transportation_material',
-             occupation_production_transportation_material),
             ('male_under_5', male_under_5),
             ('male_5_to_9', male_5_to_9),
             ('male_10_to_14', male_10_to_14),
@@ -3192,7 +3101,6 @@ class Columns(ColumnsTask):
             ('male_30_to_34', male_30_to_34),
             ('male_35_to_39', male_35_to_39),
             ('male_40_to_44', male_40_to_44),
-            ('male_45_to_64', male_45_to_64),
             ('male_45_to_49', male_45_to_49),
             ('male_50_to_54', male_50_to_54),
             ('male_55_to_59', male_55_to_59),
@@ -3236,7 +3144,6 @@ class Columns(ColumnsTask):
             ('commute_40_44_mins', commute_40_44_mins),
             ('commute_60_89_mins', commute_60_89_mins),
             ('commute_90_more_mins', commute_90_more_mins),
-            ('households_public_asst_or_food_stamps', households_public_asst_or_food_stamps),
             ('households_retirement_income', households_retirement_income),
             ('renter_occupied_housing_units_paying_cash_median_gross_rent',
              renter_occupied_housing_units_paying_cash_median_gross_rent),
@@ -3246,27 +3153,136 @@ class Columns(ColumnsTask):
              owner_occupied_housing_units_median_value),
             ('owner_occupied_housing_units_upper_value_quartile',
              owner_occupied_housing_units_upper_value_quartile),
-            ('population_1_year_and_over', population_1_year_and_over),
-            ('different_house_year_ago_same_city', different_house_year_ago_same_city),
-            ('different_house_year_ago_different_city', different_house_year_ago_different_city),
-            ('group_quarters', group_quarters),
-            ('no_car', no_car),
         ])
 
-        if (self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5)):
+        if self.year != '2010':
+            columns.update([('armed_forces', armed_forces),
+                            ('civilian_labor_force', civilian_labor_force),
+                            ('employed_pop', employed_pop),
+                            ('unemployed_pop', unemployed_pop),
+                            ('not_in_labor_force', not_in_labor_force),
+                            ('pop_16_over', pop_16_over),
+                            ('pop_in_labor_force', pop_in_labor_force)])
+
+        if not (self.geography == BLOCK_GROUP
+                and self.sample == SAMPLE_5YR
+                and self.year in ('2010', '2014', '2015')):
+            columns.update([('asian_male_45_54', asian_male_45_54),
+                            ('asian_male_55_64', asian_male_55_64),
+                            ('black_male_45_54', black_male_45_54),
+                            ('black_male_55_64', black_male_55_64),
+                            ('hispanic_male_45_54', hispanic_male_45_54),
+                            ('hispanic_male_55_64', hispanic_male_55_64),
+                            ('white_male_45_54', white_male_45_54),
+                            ('white_male_55_64', white_male_55_64),
+                            ('bachelors_degree_2', bachelors_degree_2),
+                            ("bachelors_degree_or_higher_25_64", bachelors_degree_or_higher_25_64),
+                            ("children", children),
+                            ('children_in_single_female_hh', children_in_single_female_hh),
+                            ("commuters_by_bus", commuters_by_bus),
+                            ("commuters_by_car_truck_van", commuters_by_car_truck_van),
+                            ('commuters_by_carpool', commuters_by_carpool),
+                            ("commuters_by_subway_or_elevated", commuters_by_subway_or_elevated),
+                            ('commuters_drove_alone', commuters_drove_alone),
+                            ('different_house_year_ago_different_city', different_house_year_ago_different_city),
+                            ('different_house_year_ago_same_city', different_house_year_ago_same_city),
+                            ('employed_agriculture_forestry_fishing_hunting_mining',
+                            employed_agriculture_forestry_fishing_hunting_mining),
+                            ('employed_arts_entertainment_recreation_accommodation_food',
+                            employed_arts_entertainment_recreation_accommodation_food),
+                            ('employed_construction', employed_construction),
+                            ('employed_education_health_social', employed_education_health_social),
+                            ('employed_finance_insurance_real_estate', employed_finance_insurance_real_estate),
+                            ('employed_information', employed_information),
+                            ('employed_manufacturing', employed_manufacturing),
+                            ('employed_other_services_not_public_admin', employed_other_services_not_public_admin),
+                            ('employed_public_administration', employed_public_administration),
+                            ('employed_retail_trade', employed_retail_trade),
+                            ('employed_science_management_admin_waste', employed_science_management_admin_waste),
+                            ('employed_transportation_warehousing_utilities',
+                            employed_transportation_warehousing_utilities),
+                            ('employed_wholesale_trade', employed_wholesale_trade),
+                            ('female_female_households', female_female_households),
+                            ('four_more_cars', four_more_cars),
+                            ("gini_index", gini_index),
+                            ('graduate_professional_degree', graduate_professional_degree),
+                            ('group_quarters', group_quarters),
+                            ('high_school_including_ged', high_school_including_ged),
+                            ('households_public_asst_or_food_stamps', households_public_asst_or_food_stamps),
+                            ("in_grades_1_to_4", in_grades_1_to_4),
+                            ("in_grades_5_to_8", in_grades_5_to_8),
+                            ("in_grades_9_to_12", in_grades_9_to_12),
+                            ("in_school", in_school),
+                            ("in_undergrad_college", in_undergrad_college),
+                            ('less_than_high_school_graduate', less_than_high_school_graduate),
+                            ('male_45_64_associates_degree', male_45_64_associates_degree),
+                            ('male_45_64_bachelors_degree', male_45_64_bachelors_degree),
+                            ('male_45_64_graduate_degree', male_45_64_graduate_degree),
+                            ('male_45_64_less_than_9_grade', male_45_64_less_than_9_grade),
+                            ('male_45_64_grade_9_12', male_45_64_grade_9_12),
+                            ('male_45_64_high_school', male_45_64_high_school),
+                            ('male_45_64_some_college', male_45_64_some_college),
+                            ('male_45_to_64', male_45_to_64),
+                            ('male_male_households', male_male_households),
+                            ("management_business_sci_arts_employed", management_business_sci_arts_employed),
+                            ('no_car', no_car),
+                            ('no_cars', no_cars),
+                            ("not_us_citizen_pop", not_us_citizen_pop),
+                            ('occupation_management_arts', occupation_management_arts),
+                            ('occupation_natural_resources_construction_maintenance',
+                            occupation_natural_resources_construction_maintenance),
+                            ('occupation_production_transportation_material',
+                            occupation_production_transportation_material),
+                            ('occupation_sales_office', occupation_sales_office),
+                            ('occupation_services', occupation_services),
+                            ('one_car', one_car),
+                            ('two_cars', two_cars),
+                            ('three_cars', three_cars),
+                            ("pop_25_64", pop_25_64),
+                            ("pop_determined_poverty_status", pop_determined_poverty_status),
+                            ('population_1_year_and_over', population_1_year_and_over),
+                            ("population_3_years_over", population_3_years_over),
+                            ("poverty", poverty),
+                            ("sales_office_employed", sales_office_employed),
+                            ('some_college_and_associates_degree', some_college_and_associates_degree),
+                            ("walked_to_work", walked_to_work),
+                            ("worked_at_home", worked_at_home),
+                            ("workers_16_and_over", workers_16_and_over)])
+
+        if not (self.sample == SAMPLE_5YR and self.year == '2010'):
+            columns.update([("associates_degree", associates_degree),
+                            ("bachelors_degree", bachelors_degree),
+                            ("high_school_diploma", high_school_diploma),
+                            ("less_one_year_college", less_one_year_college),
+                            ("masters_degree", masters_degree),
+                            ("one_year_more_college", one_year_more_college),
+                            ("pop_25_years_over", pop_25_years_over)])
+
+        if not ((self.sample == SAMPLE_5YR and self.year == '2010')
+                or (self.sample == SAMPLE_1YR and self.year in ('2010', '2014') 
+                    and self.geography in (SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED))):
+            columns.update([("commute_35_44_mins", commute_35_44_mins),
+                            ("commute_60_more_mins", commute_60_more_mins),
+                            ("commute_less_10_mins", commute_less_10_mins),
+                            ("commuters_16_over", commuters_16_over)])
+
+        if not ((self.year in ('2010', '2014', '2015') and self.sample == SAMPLE_5YR and self.geography == BLOCK_GROUP)
+                or (self.year in ('2010', '2014', '2015') and self.sample == SAMPLE_1YR
+                    and self.geography in (SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED))):
+            columns.update([('hispanic_any_race', hispanic_any_race),
+                            ("pop_5_years_over", pop_5_years_over),
+                            ("speak_only_english_at_home", speak_only_english_at_home),
+                            ("speak_spanish_at_home", speak_spanish_at_home),
+                            ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english)])
+
+        if not (self.year == '2015'
+                or (self.year in ('2010', '2014') and self.geography == BLOCK_GROUP)):
             columns.update([("pop_15_and_over", pop_15_and_over),
                             ("pop_never_married", pop_never_married),
                             ("pop_now_married", pop_now_married),
                             ("pop_separated", pop_separated),
                             ("pop_widowed", pop_widowed),
                             ("pop_divorced", pop_divorced)])
-
-        if (self.geography != SCHOOL_DISTRICT_ELEMENTARY):
-            columns.update([("pop_5_years_over", pop_5_years_over),
-                            ("speak_only_english_at_home", speak_only_english_at_home),
-                            ("speak_spanish_at_home", speak_spanish_at_home),
-                            ('speak_spanish_at_home_low_english', speak_spanish_at_home_low_english),
-                            ('hispanic_any_race', hispanic_any_race)])
 
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
@@ -3298,6 +3314,8 @@ class DownloadACS(LoadPostgresFromURL):
 
 
 class QuantileColumns(ColumnsTask):
+    year = Parameter()
+    sample = Parameter()
     geography = Parameter()
 
     def requires(self):
@@ -3308,7 +3326,7 @@ class QuantileColumns(ColumnsTask):
             'segmenttags': SegmentTags(),
             'unittags': UnitTags(),
             'license': LicenseTags(),
-            'columns': Columns(geography=self.geography),
+            'columns': Columns(year=self.year, sample=self.sample, geography=self.geography),
         }
 
     def version(self):
@@ -3344,7 +3362,7 @@ class Quantiles(TableTask):
 
     def requires(self):
         return {
-            'columns': QuantileColumns(geography=self.geography),
+            'columns': QuantileColumns(year=self.year, sample=self.sample, geography=self.geography),
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
@@ -3431,7 +3449,7 @@ class Extract(TableTask):
 
     def requires(self):
         return {
-            'acs': Columns(geography=self.geography),
+            'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
             'tigerdata': SumLevel(geography=self.geography, year='2015')
@@ -3525,7 +3543,7 @@ class ACSMetaWrapper(MetaWrapper):
         if self.year == '2010' and self.geography == ZCTA5:
             pass
         # 1yr sample doesn't have block group or census_tract
-        elif self.sample == '1yr' and self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
+        elif self.sample == SAMPLE_1YR and self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
@@ -3538,7 +3556,7 @@ class ExtractAll(WrapperTask):
 
     def requires(self):
         geographies = set(GEOGRAPHIES)
-        if self.sample == '1yr':
+        if self.sample == SAMPLE_1YR:
             geographies.remove(ZCTA5)
             geographies.remove(BLOCK_GROUP)
             geographies.remove(CENSUS_TRACT)
