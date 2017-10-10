@@ -2,6 +2,7 @@
 
 import csv
 import os
+import re
 
 from luigi import Parameter
 
@@ -34,13 +35,16 @@ class ImportScotland(TempTableTask):
     def requires(self):
         return DownloadScotlandLocal()
 
+    @staticmethod
+    def id_to_column(colid):
+        return re.sub(r'[:/, \-\.\(\)]', '_', '_'.join(colid.split(';')[0].split(':')[-2:]))
+
     def run(self):
         with open(os.path.join(self.input().path, self.table + '.csv')) as csvfile:
             reader = csv.reader(csvfile)
             header = reader.next()
 
-            # We are faking the IDs, because Scotland bulk downloads uses the column name instead of the ID
-            cols = ['{table}{idx:04}'.format(table=self.table, idx=i) for i in range(1, len(header))]
+            cols = [ImportScotland.id_to_column(c) for c in header[1:]]
 
             session = current_session()
             session.execute('CREATE TABLE {output} (GeographyCode TEXT PRIMARY KEY, {cols})'.format(
@@ -53,11 +57,9 @@ class ImportScotland(TempTableTask):
                 if r[0].startswith('S92'):
                     continue  # Skip contry-level summary
 
-                rcols = {'geographycode': r[0]}
-                for i, v in enumerate(r[1:], 1):
-                    key = '{table}{idx:04}'.format(table=self.table, idx=i)
-                    rcols[key] = 0 if v == '-' else v.replace(',', '')
-                rows.append(rcols)
+                binds = {cols[i]: (0 if v == '-' else v.replace(',', '')) for i, v in enumerate(r[1:])}
+                binds['geographycode'] = r[0]
+                rows.append(binds)
 
             session.execute('INSERT INTO {output} (geographycode, {cols}) VALUES (:geographycode, {pcols})'.format(
                 output=self.output().table,

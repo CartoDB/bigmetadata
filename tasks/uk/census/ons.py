@@ -4,6 +4,7 @@ from collections import OrderedDict
 import csv
 import json
 import os
+import re
 import urllib
 import shutil
 from zipfile import ZipFile
@@ -54,8 +55,8 @@ class ImportUK(TempTableTask):
         return DownloadUK(self.table)
 
     @staticmethod
-    def clean_id(colid):
-        return colid.split(';')[0].replace(':', '').replace(' ', '_')
+    def id_to_column(colid):
+        return re.sub(r'[:/, \-\.\(\)]', '_', '_'.join(colid.split(';')[0].split(':')[-2:]))
 
     def run(self):
         with open(os.path.join(self.input().path, self.table + '.csv')) as csvfile:
@@ -63,19 +64,19 @@ class ImportUK(TempTableTask):
             header = reader.next()
 
             # We are faking the IDs, because Scotland bulk downloads uses the column name instead of the ID
-            cols = [self.clean_id(x) for x in header]
+            datacols = [self.id_to_column(x) for x in header[3:]]
 
             session = current_session()
             with session.connection().connection.cursor() as cursor:
-                cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geography_code TEXT PRIMARY KEY, {cols})'.format(
+                cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geographycode TEXT PRIMARY KEY, {cols})'.format(
                     output=self.output().table,
-                    cols=', '.join(['{} NUMERIC'.format(c) for c in cols[3:]])
+                    cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
                 ))
                 csvfile.seek(0)
 
                 cursor.copy_expert(
-                    'COPY {table} ({cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
-                        cols=', '.join(cols),
+                    'COPY {table} (date, geography, geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
+                        cols=', '.join(datacols),
                         table=self.output().table),
                     csvfile)
 
@@ -140,6 +141,10 @@ class ImportEnglandWalesLocal(TempTableTask):
 
     def requires(self):
         return DownloadEnglandWalesLocal()
+
+    @staticmethod
+    def id_to_column(colid):
+        return colid
 
     def run(self):
         session = current_session()

@@ -18,9 +18,9 @@ COLUMNS_DEFINITION = load_definition()
 
 def parse_table(table_id):
     '''
-    Returns a tuple like (KS, NI)
+    Returns a tuple like (KS, NI) from a table string like KS201NI
     '''
-    return re.match('(\D+)\d+(\D+)', table_id).groups()
+    return re.match('([A-Z]{2})\d+([A-Z]{2})[a-z]?', table_id).groups()
 
 
 class SourceTags(TagsTask):

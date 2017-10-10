@@ -1,1945 +1,1945 @@
 {
     "total_pop": {
-        "id": "LC2102EW0001", 
-        "name": "Total Population", 
-        "weight": 10, 
-        "denominators": [], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        "id": "LC2102EW0001",
+        "name": "Total Population",
+        "weight": 10,
+        "denominators": [],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS104UK", 
+                "table": "QS104UK",
                 "fields": [
                     "Sex: All persons"
                 ]
             }
         ]
-    }, 
+    },
     "pop_0_to_24": {
-        "id": "LC2102EW0016", 
-        "name": "Population age 0 to 24", 
-        "weight": 3, 
+        "id": "LC2102EW0016",
+        "name": "Population age 0 to 24",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age under 1", 
-                    "Age: Age 1", 
-                    "Age: Age 2", 
-                    "Age: Age 3", 
-                    "Age: Age 4", 
-                    "Age: Age 5", 
-                    "Age: Age 6", 
-                    "Age: Age 7", 
-                    "Age: Age 8", 
-                    "Age: Age 9", 
-                    "Age: Age 10", 
-                    "Age: Age 11", 
-                    "Age: Age 12", 
-                    "Age: Age 13", 
-                    "Age: Age 14", 
-                    "Age: Age 15", 
-                    "Age: Age 16", 
-                    "Age: Age 17", 
-                    "Age: Age 18", 
-                    "Age: Age 19", 
-                    "Age: Age 20", 
-                    "Age: Age 21", 
-                    "Age: Age 22", 
-                    "Age: Age 23", 
+                    "Age: Age under 1",
+                    "Age: Age 1",
+                    "Age: Age 2",
+                    "Age: Age 3",
+                    "Age: Age 4",
+                    "Age: Age 5",
+                    "Age: Age 6",
+                    "Age: Age 7",
+                    "Age: Age 8",
+                    "Age: Age 9",
+                    "Age: Age 10",
+                    "Age: Age 11",
+                    "Age: Age 12",
+                    "Age: Age 13",
+                    "Age: Age 14",
+                    "Age: Age 15",
+                    "Age: Age 16",
+                    "Age: Age 17",
+                    "Age: Age 18",
+                    "Age: Age 19",
+                    "Age: Age 20",
+                    "Age: Age 21",
+                    "Age: Age 22",
+                    "Age: Age 23",
                     "Age: Age 24"
                 ]
             }
         ]
-    }, 
+    },
     "pop_25_to_49": {
-        "id": "LC2102EW0031", 
-        "name": "Population age 25 to 49", 
-        "weight": 3, 
+        "id": "LC2102EW0031",
+        "name": "Population age 25 to 49",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 25", 
-                    "Age: Age 26", 
-                    "Age: Age 27", 
-                    "Age: Age 28", 
-                    "Age: Age 29", 
-                    "Age: Age 30", 
-                    "Age: Age 31", 
-                    "Age: Age 32", 
-                    "Age: Age 33", 
-                    "Age: Age 34", 
-                    "Age: Age 35", 
-                    "Age: Age 36", 
-                    "Age: Age 37", 
-                    "Age: Age 38", 
-                    "Age: Age 39", 
-                    "Age: Age 40", 
-                    "Age: Age 41", 
-                    "Age: Age 42", 
-                    "Age: Age 43", 
-                    "Age: Age 44", 
-                    "Age: Age 45", 
-                    "Age: Age 46", 
-                    "Age: Age 47", 
-                    "Age: Age 48", 
+                    "Age: Age 25",
+                    "Age: Age 26",
+                    "Age: Age 27",
+                    "Age: Age 28",
+                    "Age: Age 29",
+                    "Age: Age 30",
+                    "Age: Age 31",
+                    "Age: Age 32",
+                    "Age: Age 33",
+                    "Age: Age 34",
+                    "Age: Age 35",
+                    "Age: Age 36",
+                    "Age: Age 37",
+                    "Age: Age 38",
+                    "Age: Age 39",
+                    "Age: Age 40",
+                    "Age: Age 41",
+                    "Age: Age 42",
+                    "Age: Age 43",
+                    "Age: Age 44",
+                    "Age: Age 45",
+                    "Age: Age 46",
+                    "Age: Age 47",
+                    "Age: Age 48",
                     "Age: Age 49"
                 ]
             }
         ]
-    }, 
+    },
     "pop_50_to_64": {
-        "id": "LC2102EW0046", 
-        "name": "Population age 50 to 64", 
-        "weight": 3, 
+        "id": "LC2102EW0046",
+        "name": "Population age 50 to 64",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 51", 
-                    "Age: Age 52", 
-                    "Age: Age 53", 
-                    "Age: Age 54", 
-                    "Age: Age 55", 
-                    "Age: Age 56", 
-                    "Age: Age 57", 
-                    "Age: Age 58", 
-                    "Age: Age 59", 
-                    "Age: Age 60", 
-                    "Age: Age 61", 
-                    "Age: Age 62", 
-                    "Age: Age 63", 
+                    "Age: Age 51",
+                    "Age: Age 52",
+                    "Age: Age 53",
+                    "Age: Age 54",
+                    "Age: Age 55",
+                    "Age: Age 56",
+                    "Age: Age 57",
+                    "Age: Age 58",
+                    "Age: Age 59",
+                    "Age: Age 60",
+                    "Age: Age 61",
+                    "Age: Age 62",
+                    "Age: Age 63",
                     "Age: Age 64"
                 ]
             }
         ]
-    }, 
+    },
     "pop_65_to_74": {
-        "id": "LC2102EW0061", 
-        "name": "Population age 65 to 74", 
-        "weight": 3, 
+        "id": "LC2102EW0061",
+        "name": "Population age 65 to 74",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 65", 
-                    "Age: Age 66", 
-                    "Age: Age 67", 
-                    "Age: Age 68", 
-                    "Age: Age 69", 
-                    "Age: Age 70", 
-                    "Age: Age 71", 
-                    "Age: Age 72", 
-                    "Age: Age 73", 
+                    "Age: Age 65",
+                    "Age: Age 66",
+                    "Age: Age 67",
+                    "Age: Age 68",
+                    "Age: Age 69",
+                    "Age: Age 70",
+                    "Age: Age 71",
+                    "Age: Age 72",
+                    "Age: Age 73",
                     "Age: Age 74"
                 ]
             }
         ]
-    }, 
+    },
     "pop_75_and_over": {
-        "id": "LC2102EW0076", 
-        "name": "Population age 75 and over", 
-        "weight": 3, 
+        "id": "LC2102EW0076",
+        "name": "Population age 75 and over",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 75", 
-                    "Age: Age 76", 
-                    "Age: Age 77", 
-                    "Age: Age 78", 
-                    "Age: Age 79", 
-                    "Age: Age 80", 
-                    "Age: Age 81", 
-                    "Age: Age 82", 
-                    "Age: Age 83", 
-                    "Age: Age 84", 
-                    "Age: Age 85", 
-                    "Age: Age 86", 
-                    "Age: Age 87", 
-                    "Age: Age 88", 
-                    "Age: Age 89", 
-                    "Age: Age 90", 
-                    "Age: Age 91", 
-                    "Age: Age 92", 
-                    "Age: Age 93", 
-                    "Age: Age 94", 
-                    "Age: Age 95", 
-                    "Age: Age 96", 
-                    "Age: Age 97", 
-                    "Age: Age 98", 
-                    "Age: Age 99", 
+                    "Age: Age 75",
+                    "Age: Age 76",
+                    "Age: Age 77",
+                    "Age: Age 78",
+                    "Age: Age 79",
+                    "Age: Age 80",
+                    "Age: Age 81",
+                    "Age: Age 82",
+                    "Age: Age 83",
+                    "Age: Age 84",
+                    "Age: Age 85",
+                    "Age: Age 86",
+                    "Age: Age 87",
+                    "Age: Age 88",
+                    "Age: Age 89",
+                    "Age: Age 90",
+                    "Age: Age 91",
+                    "Age: Age 92",
+                    "Age: Age 93",
+                    "Age: Age 94",
+                    "Age: Age 95",
+                    "Age: Age 96",
+                    "Age: Age 97",
+                    "Age: Age 98",
+                    "Age: Age 99",
                     "Age: Age 100 and over"
                 ]
             }
         ]
-    }, 
+    },
     "males": {
-        "id": "males", 
-        "name": "Males", 
-        "weight": 5, 
+        "id": "males",
+        "name": "Males",
+        "weight": 5,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS104UK", 
+                "table": "QS104UK",
                 "fields": [
                     "Sex: Males"
                 ]
             }
         ]
-    }, 
+    },
     "females": {
-        "id": "females", 
-        "name": "Females", 
-        "weight": 5, 
+        "id": "females",
+        "name": "Females",
+        "weight": 5,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS104UK", 
+                "table": "QS104UK",
                 "fields": [
                     "Sex: Females"
                 ]
             }
         ]
-    }, 
+    },
     "pop_3_and_over": {
-        "id": "LC2104EW0001", 
-        "name": "Population age 3 and over", 
-        "weight": 3, 
-        "denominators": [], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        "id": "LC2104EW0001",
+        "name": "Population age 3 and over",
+        "weight": 3,
+        "denominators": [],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 3", 
-                    "Age: Age 4", 
-                    "Age: Age 5", 
-                    "Age: Age 6", 
-                    "Age: Age 7", 
-                    "Age: Age 8", 
-                    "Age: Age 9", 
-                    "Age: Age 10", 
-                    "Age: Age 11", 
-                    "Age: Age 12", 
-                    "Age: Age 13", 
-                    "Age: Age 14", 
-                    "Age: Age 15", 
-                    "Age: Age 16", 
-                    "Age: Age 17", 
-                    "Age: Age 18", 
-                    "Age: Age 19", 
-                    "Age: Age 20", 
-                    "Age: Age 21", 
-                    "Age: Age 22", 
-                    "Age: Age 23", 
-                    "Age: Age 24", 
-                    "Age: Age 25", 
-                    "Age: Age 26", 
-                    "Age: Age 27", 
-                    "Age: Age 28", 
-                    "Age: Age 29", 
-                    "Age: Age 30", 
-                    "Age: Age 31", 
-                    "Age: Age 32", 
-                    "Age: Age 33", 
-                    "Age: Age 34", 
-                    "Age: Age 35", 
-                    "Age: Age 36", 
-                    "Age: Age 37", 
-                    "Age: Age 38", 
-                    "Age: Age 39", 
-                    "Age: Age 40", 
-                    "Age: Age 41", 
-                    "Age: Age 42", 
-                    "Age: Age 43", 
-                    "Age: Age 44", 
-                    "Age: Age 45", 
-                    "Age: Age 46", 
-                    "Age: Age 47", 
-                    "Age: Age 48", 
-                    "Age: Age 49", 
-                    "Age: Age 50", 
-                    "Age: Age 51", 
-                    "Age: Age 52", 
-                    "Age: Age 53", 
-                    "Age: Age 54", 
-                    "Age: Age 55", 
-                    "Age: Age 56", 
-                    "Age: Age 57", 
-                    "Age: Age 58", 
-                    "Age: Age 59", 
-                    "Age: Age 60", 
-                    "Age: Age 61", 
-                    "Age: Age 62", 
-                    "Age: Age 63", 
-                    "Age: Age 64", 
-                    "Age: Age 65", 
-                    "Age: Age 66", 
-                    "Age: Age 67", 
-                    "Age: Age 68", 
-                    "Age: Age 69", 
-                    "Age: Age 70", 
-                    "Age: Age 71", 
-                    "Age: Age 72", 
-                    "Age: Age 73", 
-                    "Age: Age 74", 
-                    "Age: Age 75", 
-                    "Age: Age 76", 
-                    "Age: Age 77", 
-                    "Age: Age 78", 
-                    "Age: Age 79", 
-                    "Age: Age 80", 
-                    "Age: Age 81", 
-                    "Age: Age 82", 
-                    "Age: Age 83", 
-                    "Age: Age 84", 
-                    "Age: Age 85", 
-                    "Age: Age 86", 
-                    "Age: Age 87", 
-                    "Age: Age 88", 
-                    "Age: Age 89", 
-                    "Age: Age 90", 
-                    "Age: Age 91", 
-                    "Age: Age 92", 
-                    "Age: Age 93", 
-                    "Age: Age 94", 
-                    "Age: Age 95", 
-                    "Age: Age 96", 
-                    "Age: Age 97", 
-                    "Age: Age 98", 
-                    "Age: Age 99", 
+                    "Age: Age 3",
+                    "Age: Age 4",
+                    "Age: Age 5",
+                    "Age: Age 6",
+                    "Age: Age 7",
+                    "Age: Age 8",
+                    "Age: Age 9",
+                    "Age: Age 10",
+                    "Age: Age 11",
+                    "Age: Age 12",
+                    "Age: Age 13",
+                    "Age: Age 14",
+                    "Age: Age 15",
+                    "Age: Age 16",
+                    "Age: Age 17",
+                    "Age: Age 18",
+                    "Age: Age 19",
+                    "Age: Age 20",
+                    "Age: Age 21",
+                    "Age: Age 22",
+                    "Age: Age 23",
+                    "Age: Age 24",
+                    "Age: Age 25",
+                    "Age: Age 26",
+                    "Age: Age 27",
+                    "Age: Age 28",
+                    "Age: Age 29",
+                    "Age: Age 30",
+                    "Age: Age 31",
+                    "Age: Age 32",
+                    "Age: Age 33",
+                    "Age: Age 34",
+                    "Age: Age 35",
+                    "Age: Age 36",
+                    "Age: Age 37",
+                    "Age: Age 38",
+                    "Age: Age 39",
+                    "Age: Age 40",
+                    "Age: Age 41",
+                    "Age: Age 42",
+                    "Age: Age 43",
+                    "Age: Age 44",
+                    "Age: Age 45",
+                    "Age: Age 46",
+                    "Age: Age 47",
+                    "Age: Age 48",
+                    "Age: Age 49",
+                    "Age: Age 50",
+                    "Age: Age 51",
+                    "Age: Age 52",
+                    "Age: Age 53",
+                    "Age: Age 54",
+                    "Age: Age 55",
+                    "Age: Age 56",
+                    "Age: Age 57",
+                    "Age: Age 58",
+                    "Age: Age 59",
+                    "Age: Age 60",
+                    "Age: Age 61",
+                    "Age: Age 62",
+                    "Age: Age 63",
+                    "Age: Age 64",
+                    "Age: Age 65",
+                    "Age: Age 66",
+                    "Age: Age 67",
+                    "Age: Age 68",
+                    "Age: Age 69",
+                    "Age: Age 70",
+                    "Age: Age 71",
+                    "Age: Age 72",
+                    "Age: Age 73",
+                    "Age: Age 74",
+                    "Age: Age 75",
+                    "Age: Age 76",
+                    "Age: Age 77",
+                    "Age: Age 78",
+                    "Age: Age 79",
+                    "Age: Age 80",
+                    "Age: Age 81",
+                    "Age: Age 82",
+                    "Age: Age 83",
+                    "Age: Age 84",
+                    "Age: Age 85",
+                    "Age: Age 86",
+                    "Age: Age 87",
+                    "Age: Age 88",
+                    "Age: Age 89",
+                    "Age: Age 90",
+                    "Age: Age 91",
+                    "Age: Age 92",
+                    "Age: Age 93",
+                    "Age: Age 94",
+                    "Age: Age 95",
+                    "Age: Age 96",
+                    "Age: Age 97",
+                    "Age: Age 98",
+                    "Age: Age 99",
                     "Age: Age 100 and over"
                 ]
             }
         ]
-    }, 
+    },
     "pop_3_to_15": {
-        "id": "LC2104EW0024", 
-        "name": "Population age 3 to 15", 
-        "weight": 3, 
+        "id": "LC2104EW0024",
+        "name": "Population age 3 to 15",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 3", 
-                    "Age: Age 4", 
-                    "Age: Age 5", 
-                    "Age: Age 6", 
-                    "Age: Age 7", 
-                    "Age: Age 8", 
-                    "Age: Age 9", 
-                    "Age: Age 10", 
-                    "Age: Age 11", 
-                    "Age: Age 12", 
-                    "Age: Age 13", 
-                    "Age: Age 14", 
+                    "Age: Age 3",
+                    "Age: Age 4",
+                    "Age: Age 5",
+                    "Age: Age 6",
+                    "Age: Age 7",
+                    "Age: Age 8",
+                    "Age: Age 9",
+                    "Age: Age 10",
+                    "Age: Age 11",
+                    "Age: Age 12",
+                    "Age: Age 13",
+                    "Age: Age 14",
                     "Age: Age 15"
                 ]
             }
         ]
-    }, 
+    },
     "pop_16_to_49": {
-        "id": "LC2104EW0047", 
-        "name": "Population age 16 to 49", 
-        "weight": 3, 
+        "id": "LC2104EW0047",
+        "name": "Population age 16 to 49",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "age_gender", 
+        ],
+        "units": "people",
+        "subsection": "age_gender",
         "data": [
             {
-                "table": "QS103UK", 
+                "table": "QS103UK",
                 "fields": [
-                    "Age: Age 16", 
-                    "Age: Age 17", 
-                    "Age: Age 18", 
-                    "Age: Age 19", 
-                    "Age: Age 20", 
-                    "Age: Age 21", 
-                    "Age: Age 22", 
-                    "Age: Age 23", 
-                    "Age: Age 24", 
-                    "Age: Age 25", 
-                    "Age: Age 26", 
-                    "Age: Age 27", 
-                    "Age: Age 28", 
-                    "Age: Age 29", 
-                    "Age: Age 30", 
-                    "Age: Age 31", 
-                    "Age: Age 32", 
-                    "Age: Age 33", 
-                    "Age: Age 34", 
-                    "Age: Age 35", 
-                    "Age: Age 36", 
-                    "Age: Age 37", 
-                    "Age: Age 38", 
-                    "Age: Age 39", 
-                    "Age: Age 40", 
-                    "Age: Age 41", 
-                    "Age: Age 42", 
-                    "Age: Age 43", 
-                    "Age: Age 44", 
-                    "Age: Age 45", 
-                    "Age: Age 46", 
-                    "Age: Age 47", 
-                    "Age: Age 48", 
+                    "Age: Age 16",
+                    "Age: Age 17",
+                    "Age: Age 18",
+                    "Age: Age 19",
+                    "Age: Age 20",
+                    "Age: Age 21",
+                    "Age: Age 22",
+                    "Age: Age 23",
+                    "Age: Age 24",
+                    "Age: Age 25",
+                    "Age: Age 26",
+                    "Age: Age 27",
+                    "Age: Age 28",
+                    "Age: Age 29",
+                    "Age: Age 30",
+                    "Age: Age 31",
+                    "Age: Age 32",
+                    "Age: Age 33",
+                    "Age: Age 34",
+                    "Age: Age 35",
+                    "Age: Age 36",
+                    "Age: Age 37",
+                    "Age: Age 38",
+                    "Age: Age 39",
+                    "Age: Age 40",
+                    "Age: Age 41",
+                    "Age: Age 42",
+                    "Age: Age 43",
+                    "Age: Age 44",
+                    "Age: Age 45",
+                    "Age: Age 46",
+                    "Age: Age 47",
+                    "Age: Age 48",
                     "Age: Age 49"
                 ]
             }
         ]
-    }, 
+    },
     "language_english": {
-        "id": "LC2104EW0002", 
-        "name": "Population whose main language is English (English or Welsh if in Wales)", 
-        "weight": 3, 
+        "id": "LC2104EW0002",
+        "name": "Population whose main language is English (English or Welsh if in Wales)",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0002"
                 ]
             }
         ]
-    }, 
+    },
     "language_french": {
-        "id": "LC2104EW0003", 
-        "name": "Population whose main language is French", 
-        "weight": 3, 
+        "id": "LC2104EW0003",
+        "name": "Population whose main language is French",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0003"
                 ]
             }
         ]
-    }, 
+    },
     "language_portuguese": {
-        "id": "LC2104EW0004", 
-        "name": "Population whose main language is Portuguese", 
-        "weight": 3, 
+        "id": "LC2104EW0004",
+        "name": "Population whose main language is Portuguese",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0004"
                 ]
             }
         ]
-    }, 
+    },
     "language_spanish": {
-        "id": "LC2104EW0005", 
-        "name": "Population whose main language is Spanish", 
-        "weight": 3, 
+        "id": "LC2104EW0005",
+        "name": "Population whose main language is Spanish",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0005"
                 ]
             }
         ]
-    }, 
+    },
     "language_polish": {
-        "id": "LC2104EW0007", 
-        "name": "Population whose main language is Polish", 
-        "weight": 3, 
+        "id": "LC2104EW0007",
+        "name": "Population whose main language is Polish",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0007"
                 ]
             }
         ]
-    }, 
+    },
     "language_arabic": {
-        "id": "LC2104EW0010", 
-        "name": "Population whose main language is Arabic", 
-        "weight": 3, 
+        "id": "LC2104EW0010",
+        "name": "Population whose main language is Arabic",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0010"
                 ]
             }
         ]
-    }, 
+    },
     "language_panjabi": {
-        "id": "LC2104EW0013", 
-        "name": "Population whose main language is Panjabi", 
-        "weight": 3, 
+        "id": "LC2104EW0013",
+        "name": "Population whose main language is Panjabi",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0013"
                 ]
             }
         ]
-    }, 
+    },
     "language_urdu": {
-        "id": "LC2104EW0014", 
-        "name": "Population whose main language is Urdu", 
-        "weight": 3, 
+        "id": "LC2104EW0014",
+        "name": "Population whose main language is Urdu",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0014"
                 ]
             }
         ]
-    }, 
+    },
     "language_bengali": {
-        "id": "LC2104EW0015", 
-        "name": "Population whose main language is Bengali (with Sylheti and Chatgaya)", 
-        "weight": 3, 
+        "id": "LC2104EW0015",
+        "name": "Population whose main language is Bengali (with Sylheti and Chatgaya)",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0015"
                 ]
             }
         ]
-    }, 
+    },
     "language_gujarati": {
-        "id": "LC2104EW0016", 
-        "name": "Population whose main language is Gujarati", 
-        "weight": 3, 
+        "id": "LC2104EW0016",
+        "name": "Population whose main language is Gujarati",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0016"
                 ]
             }
         ]
-    }, 
+    },
     "language_tamil": {
-        "id": "LC2104EW0017", 
-        "name": "Population whose main language is Tamil", 
-        "weight": 3, 
+        "id": "LC2104EW0017",
+        "name": "Population whose main language is Tamil",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0017"
                 ]
             }
         ]
-    }, 
+    },
     "language_chinese": {
-        "id": "LC2104EW0020", 
-        "name": "Population whose main language is Chinese", 
-        "weight": 3, 
+        "id": "LC2104EW0020",
+        "name": "Population whose main language is Chinese",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "language", 
+        ],
+        "units": "people",
+        "subsection": "language",
         "data": [
             {
-                "table": "LC2104EW", 
+                "table": "LC2104EW",
                 "fields": [
                     "LC2104EW0020"
                 ]
             }
         ]
-    }, 
+    },
     "religion_christian": {
-        "id": "LC2107EW0002", 
-        "name": "Christian Population", 
-        "weight": 3, 
+        "id": "LC2107EW0002",
+        "name": "Christian Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0002"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Christian"
                 ]
             }
         ]
-    }, 
+    },
     "religion_buddhist": {
-        "id": "LC2107EW0003", 
-        "name": "Buddhist Population", 
-        "weight": 3, 
+        "id": "LC2107EW0003",
+        "name": "Buddhist Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0003"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Buddhist"
                 ]
             }
         ]
-    }, 
+    },
     "religion_hindu": {
-        "id": "LC2107EW0004", 
-        "name": "Hindu Population", 
-        "weight": 3, 
+        "id": "LC2107EW0004",
+        "name": "Hindu Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0004"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Hindu"
                 ]
             }
         ]
-    }, 
+    },
     "religion_jewish": {
-        "id": "LC2107EW0005", 
-        "name": "Jewish Population", 
-        "weight": 3, 
+        "id": "LC2107EW0005",
+        "name": "Jewish Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0005"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Jewish"
                 ]
             }
         ]
-    }, 
+    },
     "religion_muslim": {
-        "id": "LC2107EW0006", 
-        "name": "Muslim Population", 
-        "weight": 3, 
+        "id": "LC2107EW0006",
+        "name": "Muslim Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0006"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Muslim"
                 ]
             }
         ]
-    }, 
+    },
     "religion_sikh": {
-        "id": "LC2107EW0007", 
-        "name": "Sikh Population", 
-        "weight": 3, 
+        "id": "LC2107EW0007",
+        "name": "Sikh Population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0007"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "Sikh"
                 ]
             }
         ]
-    }, 
+    },
     "religion_none": {
-        "id": "LC2107EW0009", 
-        "name": "Population who are not religious", 
-        "weight": 3, 
+        "id": "LC2107EW0009",
+        "name": "Population who are not religious",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "religion", 
+        ],
+        "units": "people",
+        "subsection": "religion",
         "data": [
             {
-                "table": "LC2107EW", 
+                "table": "LC2107EW",
                 "fields": [
                     "LC2107EW0009"
                 ]
-            }, 
+            },
             {
-                "table": "KS209SCa", 
+                "table": "KS209SCa",
                 "fields": [
                     "No religion"
                 ]
             }
         ]
-    }, 
+    },
     "white": {
-        "id": "LC2201EW0011", 
-        "name": "White population", 
-        "weight": 3, 
+        "id": "LC2201EW0011",
+        "name": "White population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "race_ethnicity", 
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity",
         "data": [
             {
-                "table": "KS201UK", 
+                "table": "KS201UK",
                 "fields": [
                     "Ethnic Group: White"
                 ]
             }
         ]
-    }, 
+    },
     "mixed_multiple_ethnic_group": {
-        "id": "LC2201EW0051", 
-        "name": "Mixed/multiple ethnic group population", 
-        "weight": 3, 
+        "id": "LC2201EW0051",
+        "name": "Mixed/multiple ethnic group population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "race_ethnicity", 
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity",
         "data": [
             {
-                "table": "KS201UK", 
+                "table": "KS201UK",
                 "fields": [
                     "Ethnic Group: Mixed / Multiple ethnic group"
                 ]
             }
         ]
-    }, 
+    },
     "asian_pop": {
-        "id": "LC2201EW0061", 
-        "name": "Asian/Asian British population", 
-        "weight": 3, 
+        "id": "LC2201EW0061",
+        "name": "Asian/Asian British population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "race_ethnicity", 
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity",
         "data": [
             {
-                "table": "KS201UK", 
+                "table": "KS201UK",
                 "fields": [
-                    "Ethnic Group: Asian / Asian British: Indian; measures: Value", 
-                    "Ethnic Group: Asian / Asian British: Pakistani", 
-                    "Ethnic Group: Asian / Asian British: Bangladeshi", 
-                    "Ethnic Group: Asian / Asian British: Chinese", 
+                    "Ethnic Group: Asian / Asian British: Indian; measures: Value",
+                    "Ethnic Group: Asian / Asian British: Pakistani",
+                    "Ethnic Group: Asian / Asian British: Bangladeshi",
+                    "Ethnic Group: Asian / Asian British: Chinese",
                     "Ethnic Group: Asian / Asian British: Other Asian"
                 ]
             }
         ]
-    }, 
+    },
     "black_pop": {
-        "id": "LC2201EW0071", 
-        "name": "Black/African/Caribbean/Black British population", 
-        "weight": 3, 
+        "id": "LC2201EW0071",
+        "name": "Black/African/Caribbean/Black British population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "race_ethnicity", 
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity",
         "data": [
             {
-                "table": "KS201UK", 
+                "table": "KS201UK",
                 "fields": [
                     "Ethnic Group: Black / African / Caribbean / Black British"
                 ]
             }
         ]
-    }, 
+    },
     "other_race_pop": {
-        "id": "LC2201EW0081", 
-        "name": "Other ethnic group population", 
-        "weight": 3, 
+        "id": "LC2201EW0081",
+        "name": "Other ethnic group population",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "race_ethnicity", 
+        ],
+        "units": "people",
+        "subsection": "race_ethnicity",
         "data": [
             {
-                "table": "KS201UK", 
+                "table": "KS201UK",
                 "fields": [
                     "Ethnic Group: Other Ethnic Group"
                 ]
             }
         ]
-    }, 
+    },
     "born_europe": {
-        "id": "LC2205EW0010", 
-        "name": "Born in Europe", 
-        "weight": 3, 
+        "id": "LC2205EW0010",
+        "name": "Born in Europe",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_uk": {
-        "id": "LC2205EW0019", 
-        "name": "Born in the UK", 
-        "weight": 3, 
+        "id": "LC2205EW0019",
+        "name": "Born in the UK",
+        "weight": 3,
         "denominators": [
             "born_europe"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: United Kingdom: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_england": {
-        "id": "LC2205EW0028", 
-        "name": "Born in England", 
-        "weight": 3, 
+        "id": "LC2205EW0028",
+        "name": "Born in England",
+        "weight": 3,
         "denominators": [
             "born_uk"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: United Kingdom: England"
                 ]
             }
         ]
-    }, 
+    },
     "born_northern_ireland": {
-        "id": "LC2205EW0037", 
-        "name": "Born in Northern Ireland", 
-        "weight": 3, 
+        "id": "LC2205EW0037",
+        "name": "Born in Northern Ireland",
+        "weight": 3,
         "denominators": [
             "born_uk"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: United Kingdom: Northern Ireland"
                 ]
             }
         ]
-    }, 
+    },
     "born_scotland": {
-        "id": "LC2205EW0046", 
-        "name": "Born in Scotland", 
-        "weight": 3, 
+        "id": "LC2205EW0046",
+        "name": "Born in Scotland",
+        "weight": 3,
         "denominators": [
             "born_uk"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: United Kingdom: Scotland"
                 ]
             }
         ]
-    }, 
+    },
     "born_wales": {
-        "id": "LC2205EW0055", 
-        "name": "Born in Wales", 
-        "weight": 3, 
+        "id": "LC2205EW0055",
+        "name": "Born in Wales",
+        "weight": 3,
         "denominators": [
             "born_uk"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: United Kingdom: Wales"
                 ]
             }
         ]
-    }, 
+    },
     "born_ireland": {
-        "id": "LC2205EW0082", 
-        "name": "Born in Ireland", 
-        "weight": 3, 
+        "id": "LC2205EW0082",
+        "name": "Born in Ireland",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: Ireland"
                 ]
             }
         ]
-    }, 
+    },
     "born_europe_outside_uk_ireland": {
-        "id": "LC2205EW0091", 
-        "name": "Born in Europe outside the UK and Ireland", 
-        "weight": 3, 
+        "id": "LC2205EW0091",
+        "name": "Born in Europe outside the UK and Ireland",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Europe: Other Europe: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_africa": {
-        "id": "LC2205EW0136", 
-        "name": "Born in Africa", 
-        "weight": 3, 
+        "id": "LC2205EW0136",
+        "name": "Born in Africa",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Africa: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_north_africa": {
-        "id": "LC2205EW0145", 
-        "name": "Born in North Africa", 
-        "weight": 3, 
+        "id": "LC2205EW0145",
+        "name": "Born in North Africa",
+        "weight": 3,
         "denominators": [
             "born_africa"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Africa: North Africa"
                 ]
             }
         ]
-    }, 
+    },
     "born_central_western_africa": {
-        "id": "LC2205EW0154", 
-        "name": "Born in Central and Western Africa", 
-        "weight": 3, 
+        "id": "LC2205EW0154",
+        "name": "Born in Central and Western Africa",
+        "weight": 3,
         "denominators": [
             "born_africa"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Africa: Central and Western Africa: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_south_eastern_africa": {
-        "id": "LC2205EW0163", 
-        "name": "Born in South and Eastern Africa", 
-        "weight": 3, 
+        "id": "LC2205EW0163",
+        "name": "Born in South and Eastern Africa",
+        "weight": 3,
         "denominators": [
             "born_africa"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Africa: South and Eastern Africa: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_asia_middle_east": {
-        "id": "LC2205EW0181", 
-        "name": "Born in the Middle East and Asia", 
-        "weight": 3, 
+        "id": "LC2205EW0181",
+        "name": "Born in the Middle East and Asia",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_middle_east": {
-        "id": "LC2205EW0190", 
-        "name": "Born in the Middle East", 
-        "weight": 3, 
+        "id": "LC2205EW0190",
+        "name": "Born in the Middle East",
+        "weight": 3,
         "denominators": [
             "born_asia_middle_east"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: Middle East: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_eastern_asia": {
-        "id": "LC2205EW0199", 
-        "name": "Born in Eastern Asia", 
-        "weight": 3, 
+        "id": "LC2205EW0199",
+        "name": "Born in Eastern Asia",
+        "weight": 3,
         "denominators": [
             "born_asia_middle_east"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: Eastern Asia: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_southern_asia": {
-        "id": "LC2205EW0208", 
-        "name": "Born in Southern Asia", 
-        "weight": 3, 
+        "id": "LC2205EW0208",
+        "name": "Born in Southern Asia",
+        "weight": 3,
         "denominators": [
             "born_asia_middle_east"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: Southern Asia: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_southeast_asia": {
-        "id": "LC2205EW0217", 
-        "name": "Born in Southeast Asia", 
-        "weight": 3, 
+        "id": "LC2205EW0217",
+        "name": "Born in Southeast Asia",
+        "weight": 3,
         "denominators": [
             "born_asia_middle_east"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: South-East Asia: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_central_asia": {
-        "id": "LC2205EW0226", 
-        "name": "Born in Central Asia", 
-        "weight": 3, 
+        "id": "LC2205EW0226",
+        "name": "Born in Central Asia",
+        "weight": 3,
         "denominators": [
             "born_asia_middle_east"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Middle East and Asia: Central Asia"
                 ]
             }
         ]
-    }, 
+    },
     "born_americas": {
-        "id": "LC2205EW0235", 
-        "name": "Born in the Americas and Caribbean", 
-        "weight": 3, 
+        "id": "LC2205EW0235",
+        "name": "Born in the Americas and Caribbean",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: The Americas and the Caribbean: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_north_america": {
-        "id": "LC2205EW0244", 
-        "name": "Born in North America", 
-        "weight": 3, 
+        "id": "LC2205EW0244",
+        "name": "Born in North America",
+        "weight": 3,
         "denominators": [
             "born_americas"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: The Americas and the Caribbean: North Americas and the Caribbean: Total"
                 ]
             }
         ]
-    }, 
+    },
     "born_central_south_america": {
-        "id": "LC2205EW0253", 
-        "name": "Born in Central America", 
-        "weight": 3, 
+        "id": "LC2205EW0253",
+        "name": "Born in Central America",
+        "weight": 3,
         "denominators": [
             "born_americas"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
-                    "Country of Birth: The Americas and the Caribbean: Central America", 
+                    "Country of Birth: The Americas and the Caribbean: Central America",
                     "Country of Birth: The Americas and the Caribbean: South America"
                 ]
             }
         ]
-    }, 
+    },
     "born_australia": {
-        "id": "LC2205EW0262", 
-        "name": "Born in Australia, Australaisa, Oceania, and Antarctica", 
-        "weight": 3, 
+        "id": "LC2205EW0262",
+        "name": "Born in Australia, Australaisa, Oceania, and Antarctica",
+        "weight": 3,
         "denominators": [
             "total_pop"
-        ], 
-        "units": "people", 
-        "subsection": "nationality", 
+        ],
+        "units": "people",
+        "subsection": "nationality",
         "data": [
             {
-                "table": "QS203UK", 
+                "table": "QS203UK",
                 "fields": [
                     "Country of Birth: Antarctica and Oceania: Total"
                 ]
             }
         ]
-    }, 
+    },
     "good_health": {
-        "id": "LC3202WA0004", 
-        "name": "Good or very good health", 
-        "weight": 3, 
+        "id": "LC3202WA0004",
+        "name": "Good or very good health",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS302UK", 
+                "table": "QS302UK",
                 "fields": [
-                    "General Health: Very good health", 
+                    "General Health: Very good health",
                     "General Health: Good health"
                 ]
             }
         ]
-    }, 
+    },
     "fair_health": {
-        "id": "LC3202WA0007", 
-        "name": "Fair health", 
-        "weight": 3, 
+        "id": "LC3202WA0007",
+        "name": "Fair health",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS302UK", 
+                "table": "QS302UK",
                 "fields": [
                     "General Health: Fair health"
                 ]
             }
         ]
-    }, 
+    },
     "bad_health": {
-        "id": "LC3202WA0010", 
-        "name": "Bad or very bad health", 
-        "weight": 3, 
+        "id": "LC3202WA0010",
+        "name": "Bad or very bad health",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS302UK", 
+                "table": "QS302UK",
                 "fields": [
-                    "General Health: Bad health", 
+                    "General Health: Bad health",
                     "General Health: Very bad health"
                 ]
             }
         ]
-    }, 
+    },
     "very_limited_activities": {
-        "id": "LC3204WA0004", 
-        "name": "Day-to-day activities very limited", 
-        "weight": 3, 
+        "id": "LC3204WA0004",
+        "name": "Day-to-day activities very limited",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS303UK", 
+                "table": "QS303UK",
                 "fields": [
                     "Disability: Day-to-day activities limited a lot"
                 ]
             }
         ]
-    }, 
+    },
     "limited_activities": {
-        "id": "LC3204WA0007", 
-        "name": "Day-to-day activities somewhat limited", 
-        "weight": 3, 
+        "id": "LC3204WA0007",
+        "name": "Day-to-day activities somewhat limited",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS303UK", 
+                "table": "QS303UK",
                 "fields": [
                     "Disability: Day-to-day activities limited a little"
                 ]
             }
         ]
-    }, 
+    },
     "activities_not_limited": {
-        "id": "LC3204WA0010", 
-        "name": "Day-to-day activities not limited", 
-        "weight": 3, 
+        "id": "LC3204WA0010",
+        "name": "Day-to-day activities not limited",
+        "weight": 3,
         "denominators": [
             "pop_3_and_over"
-        ], 
-        "units": "people", 
-        "subsection": "health", 
+        ],
+        "units": "people",
+        "subsection": "health",
         "data": [
             {
-                "table": "QS303UK", 
+                "table": "QS303UK",
                 "fields": [
                     "Disability: Day-to-day activities not limited"
                 ]
             }
         ]
-    }, 
+    },
     "labour_force": {
-        "id": "LC6201EW0001", 
-        "name": "Labour force (population 16 to 74)", 
-        "weight": 3, 
-        "denominators": [], 
-        "units": "people", 
-        "subsection": "employment", 
+        "id": "LC6201EW0001",
+        "name": "Labour force (population 16 to 74)",
+        "weight": 3,
+        "denominators": [],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: All categories: Economic activity"
                 ]
             }
         ]
-    }, 
+    },
     "economically_active": {
-        "id": "LC6201EW0010", 
-        "name": "Economically active", 
-        "weight": 3, 
+        "id": "LC6201EW0010",
+        "name": "Economically active",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Total"
                 ]
             }
         ]
-    }, 
+    },
     "employed": {
-        "id": "LC6201EW0019", 
-        "name": "Employed population", 
-        "weight": 3, 
+        "id": "LC6201EW0019",
+        "name": "Employed population",
+        "weight": 3,
         "denominators": [
             "economically_active"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
-                    "Economic Activity: Economically active: Employee: Part-time", 
-                    "Economic Activity: Economically active: Employee: Full-time", 
-                    "Economic Activity: Economically active: Self-employed with employees: Part-time", 
-                    "Economic Activity: Economically active: Self-employed without employees: Part-time", 
-                    "Economic Activity: Economically active: Self-employed with employees: Full-time", 
+                    "Economic Activity: Economically active: Employee: Part-time",
+                    "Economic Activity: Economically active: Employee: Full-time",
+                    "Economic Activity: Economically active: Self-employed with employees: Part-time",
+                    "Economic Activity: Economically active: Self-employed without employees: Part-time",
+                    "Economic Activity: Economically active: Self-employed with employees: Full-time",
                     "Economic Activity: Economically active: Self-employed without employees: Full-time"
                 ]
             }
         ]
-    }, 
+    },
     "employed_as_employee": {
-        "id": "LC6201EW0028", 
-        "name": "Employed as an employee", 
-        "weight": 3, 
+        "id": "LC6201EW0028",
+        "name": "Employed as an employee",
+        "weight": 3,
         "denominators": [
             "employed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
-                    "Economic Activity: Economically active: Employee: Part-time", 
+                    "Economic Activity: Economically active: Employee: Part-time",
                     "Economic Activity: Economically active: Employee: Full-time"
                 ]
             }
         ]
-    }, 
+    },
     "part_time_employee": {
-        "id": "LC6201EW0037", 
-        "name": "Part-time employees", 
-        "weight": 3, 
+        "id": "LC6201EW0037",
+        "name": "Part-time employees",
+        "weight": 3,
         "denominators": [
             "employed_as_employee"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Employee: Part-time"
                 ]
             }
         ]
-    }, 
+    },
     "full_time_employee": {
-        "id": "LC6201EW0046", 
-        "name": "Full-time employees", 
-        "weight": 3, 
+        "id": "LC6201EW0046",
+        "name": "Full-time employees",
+        "weight": 3,
         "denominators": [
             "employed_as_employee"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Employee: Full-time"
                 ]
             }
         ]
-    }, 
+    },
     "self_employed": {
-        "id": "LC6201EW0055", 
-        "name": "Self-employed", 
-        "weight": 3, 
+        "id": "LC6201EW0055",
+        "name": "Self-employed",
+        "weight": 3,
         "denominators": [
             "employed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
-                    "Economic Activity: Economically active: Self-employed with employees: Part-time", 
-                    "Economic Activity: Economically active: Self-employed without employees: Part-time", 
-                    "Economic Activity: Economically active: Self-employed with employees: Full-time", 
+                    "Economic Activity: Economically active: Self-employed with employees: Part-time",
+                    "Economic Activity: Economically active: Self-employed without employees: Part-time",
+                    "Economic Activity: Economically active: Self-employed with employees: Full-time",
                     "Economic Activity: Economically active: Self-employed without employees: Full-time"
                 ]
             }
         ]
-    }, 
+    },
     "self_employed_part_time": {
-        "id": "LC6201EW0064", 
-        "name": "Self-employed part-time", 
-        "weight": 3, 
+        "id": "LC6201EW0064",
+        "name": "Self-employed part-time",
+        "weight": 3,
         "denominators": [
             "self_employed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
-                    "Economic Activity: Economically active: Self-employed with employees: Part-time", 
+                    "Economic Activity: Economically active: Self-employed with employees: Part-time",
                     "Economic Activity: Economically active: Self-employed without employees: Part-time"
                 ]
             }
         ]
-    }, 
+    },
     "self_employed_full_time": {
-        "id": "LC6201EW0073", 
-        "name": "Self-employed full-time", 
-        "weight": 3, 
+        "id": "LC6201EW0073",
+        "name": "Self-employed full-time",
+        "weight": 3,
         "denominators": [
             "self_employed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
-                    "Economic Activity: Economically active: Self-employed with employees: Full-time", 
+                    "Economic Activity: Economically active: Self-employed with employees: Full-time",
                     "Economic Activity: Economically active: Self-employed without employees: Full-time"
                 ]
             }
         ]
-    }, 
+    },
     "full_time_students": {
-        "id": "LC6201EW0082", 
-        "name": "Full-time students", 
-        "weight": 3, 
+        "id": "LC6201EW0082",
+        "name": "Full-time students",
+        "weight": 3,
         "denominators": [
             "employed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Full-time student"
                 ]
             }
         ]
-    }, 
+    },
     "unemployed": {
-        "id": "LC6201EW0091", 
-        "name": "Unemployed", 
-        "weight": 3, 
+        "id": "LC6201EW0091",
+        "name": "Unemployed",
+        "weight": 3,
         "denominators": [
             "economically_active"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Unemployed"
                 ]
             }
         ]
-    }, 
+    },
     "unemployed_student": {
-        "id": "LC6201EW0109", 
-        "name": "Full-time students, unemployed", 
-        "weight": 3, 
+        "id": "LC6201EW0109",
+        "name": "Full-time students, unemployed",
+        "weight": 3,
         "denominators": [
             "unemployed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically active: Full-time student"
                 ]
             }
         ]
-    }, 
+    },
     "economically_inactive": {
-        "id": "LC6201EW0118", 
-        "name": "Economically inactive", 
-        "weight": 3, 
+        "id": "LC6201EW0118",
+        "name": "Economically inactive",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically inactive: Total"
                 ]
             }
         ]
-    }, 
+    },
     "retired": {
-        "id": "LC6201EW0127", 
-        "name": "Retired population", 
-        "weight": 3, 
+        "id": "LC6201EW0127",
+        "name": "Retired population",
+        "weight": 3,
         "denominators": [
             "economically_inactive"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically inactive: Retired"
                 ]
             }
         ]
-    }, 
+    },
     "student_economically_inactive": {
-        "id": "LC6201EW0136", 
-        "name": "Economically inactive students", 
-        "weight": 3, 
+        "id": "LC6201EW0136",
+        "name": "Economically inactive students",
+        "weight": 3,
         "denominators": [
             "economically_inactive"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically inactive: Student (including full-time students)"
                 ]
             }
         ]
-    }, 
+    },
     "looking_after_home": {
-        "id": "LC6201EW0145", 
-        "name": "Looking after home or family", 
-        "weight": 3, 
+        "id": "LC6201EW0145",
+        "name": "Looking after home or family",
+        "weight": 3,
         "denominators": [
             "economically_inactive"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically inactive: Looking after home or family"
                 ]
             }
         ]
-    }, 
+    },
     "long_term_sick_disabled": {
-        "id": "LC6201EW0154", 
-        "name": "Long-term sick or disabled", 
-        "weight": 3, 
+        "id": "LC6201EW0154",
+        "name": "Long-term sick or disabled",
+        "weight": 3,
         "denominators": [
             "economically_inactive"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS601UK", 
+                "table": "QS601UK",
                 "fields": [
                     "Economic Activity: Economically inactive: Long-term sick or disabled"
                 ]
             }
         ]
-    }, 
+    },
     "managerial_admin_occupations": {
-        "id": "LC6206EW0010", 
-        "name": "Higher managerial, administrative and professional occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0010",
+        "name": "Higher managerial, administrative and professional occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 1. Higher managerial, administrative and professional occupations"
                 ]
             }
         ]
-    }, 
+    },
     "large_employers": {
-        "id": "LC6206EW0019", 
-        "name": "Large employers and higher managerial and administrative occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0019",
+        "name": "Large employers and higher managerial and administrative occupations",
+        "weight": 3,
         "denominators": [
             "managerial_admin_occupations"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 1.1 Large employers and higher managerial and administrative occupations"
                 ]
             }
         ]
-    }, 
+    },
     "higher_professional_occupations": {
-        "id": "LC6206EW0028", 
-        "name": "Higher professional occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0028",
+        "name": "Higher professional occupations",
+        "weight": 3,
         "denominators": [
             "managerial_admin_occupations"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 1.2 Higher professional occupations"
                 ]
             }
         ]
-    }, 
+    },
     "lower_managerial_occupations": {
-        "id": "LC6206EW0037", 
-        "name": "Lower managerial, administrative and professional occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0037",
+        "name": "Lower managerial, administrative and professional occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 2. Lower managerial, administrative and professional occupations"
                 ]
             }
         ]
-    }, 
+    },
     "intermediate_occupations": {
-        "id": "LC6206EW0046", 
-        "name": "Intermediate occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0046",
+        "name": "Intermediate occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 3. Intermediate occupations"
                 ]
             }
         ]
-    }, 
+    },
     "small_employers_account_workers": {
-        "id": "LC6206EW0055", 
-        "name": "Small employers and account workers", 
-        "weight": 3, 
+        "id": "LC6206EW0055",
+        "name": "Small employers and account workers",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 4. Small employers and own account workers"
                 ]
             }
         ]
-    }, 
+    },
     "lower_supervisory": {
-        "id": "LC6206EW0064", 
-        "name": "Lower supervisory and technical occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0064",
+        "name": "Lower supervisory and technical occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 5. Lower supervisory and technical occupations"
                 ]
             }
         ]
-    }, 
+    },
     "semi_routine_occupations": {
-        "id": "LC6206EW0073", 
-        "name": "Semi-routine occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0073",
+        "name": "Semi-routine occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 6. Semi-routine occupations"
                 ]
             }
         ]
-    }, 
+    },
     "routine_occupations": {
-        "id": "LC6206EW0082", 
-        "name": "Routine occupations", 
-        "weight": 3, 
+        "id": "LC6206EW0082",
+        "name": "Routine occupations",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 7. Routine occupations"
                 ]
             }
         ]
-    }, 
+    },
     "never_worked_long_term_unemployed": {
-        "id": "LC6206EW0091", 
-        "name": "Never worked and long-term unemployed", 
-        "weight": 3, 
+        "id": "LC6206EW0091",
+        "name": "Never worked and long-term unemployed",
+        "weight": 3,
         "denominators": [
             "labour_force"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: 8. Never worked and long-term unemployed"
                 ]
             }
         ]
-    }, 
+    },
     "never_worked": {
-        "id": "LC6206EW0100", 
-        "name": "Never worked", 
-        "weight": 3, 
+        "id": "LC6206EW0100",
+        "name": "Never worked",
+        "weight": 3,
         "denominators": [
             "never_worked_long_term_unemployed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: L14.1 Never worked"
                 ]
             }
         ]
-    }, 
+    },
     "long_term_unemployed": {
-        "id": "LC6206EW0109", 
-        "name": "Long-term unemployed", 
-        "weight": 3, 
+        "id": "LC6206EW0109",
+        "name": "Long-term unemployed",
+        "weight": 3,
         "denominators": [
             "never_worked_long_term_unemployed"
-        ], 
-        "units": "people", 
-        "subsection": "employment", 
+        ],
+        "units": "people",
+        "subsection": "employment",
         "data": [
             {
-                "table": "QS606UK", 
+                "table": "QS607UK",
                 "fields": [
                     "NS-SeC: L14.2 Long-term unemployed"
                 ]
