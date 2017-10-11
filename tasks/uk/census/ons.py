@@ -1,5 +1,6 @@
 # http://webarchive.nationalarchives.gov.uk/20160105160709/http://ons.gov.uk/ons/guide-method/census/2011/census-data/bulk-data/bulk-data-downloads/index.html
 
+from collections import OrderedDict
 import csv
 import json
 import os
@@ -10,6 +11,7 @@ from zipfile import ZipFile
 
 from luigi import Task, Parameter
 
+from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
 from tasks.util import DownloadUnzipTask, TempTableTask
@@ -58,24 +60,22 @@ class ImportUK(TempTableTask):
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + '.csv')
+
+        cols = OrderedDict([['date', 'TEXT'], ['geography', 'TEXT'], ['geographycode', 'TEXT PRIMARY KEY']])
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
             header = reader.next()
 
-            datacols = [self.id_to_column(x) for x in header[3:]]
+            for c in header[3:]:
+                cols[self.id_to_column(c)] = 'NUMERIC'
 
-        session = current_session()
-        with session.connection().connection.cursor() as cursor, open(infile) as csvfile:
-            cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geographycode TEXT PRIMARY KEY, {cols})'.format(
-                output=self.output().table,
-                cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
-            ))
-
-            cursor.copy_expert(
-                'COPY {table} (date, geography, geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
-                    cols=', '.join(datacols),
-                    table=self.output().table),
-                csvfile)
+        with open(infile) as csvfile:
+            copy_from_csv(
+                current_session(),
+                self.output().table,
+                cols,
+                csvfile
+            )
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
@@ -108,20 +108,18 @@ class ImportEnglandWalesLocal(TempTableTask):
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + 'DATA.CSV')
+        cols = OrderedDict({'geographycode': 'TEXT PRIMARY KEY'})
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
             header = reader.next()
 
-            datacols = header[1:]
+            for c in header[1:]:
+                cols[self.id_to_column(c)] = 'NUMERIC'
 
-        with current_session().connection().connection.cursor() as cursor, open(infile) as csvfile:
-            cursor.execute('CREATE TABLE {output} (geographycode TEXT PRIMARY KEY, {cols})'.format(
-                output=self.output().table,
-                cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
-            ))
-
-            cursor.copy_expert(
-                'COPY {table} (geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
-                    cols=', '.join(datacols),
-                    table=self.output().table),
-                csvfile)
+        with open(infile) as csvfile:
+            copy_from_csv(
+                current_session(),
+                self.output().table,
+                cols,
+                csvfile
+            )

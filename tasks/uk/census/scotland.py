@@ -1,5 +1,6 @@
 # http://www.scotlandscensus.gov.uk/ods-web/data-warehouse.html#bulkdatatab
 
+from collections import OrderedDict
 import csv
 import os
 import re
@@ -8,6 +9,7 @@ import urllib
 from luigi import Parameter
 
 from lib.csv_stream import CSVNormalizerStream
+from lib.copy import copy_from_csv
 from tasks.util import DownloadUnzipTask, TempTableTask
 from tasks.meta import current_session
 
@@ -31,20 +33,19 @@ class ImportScotland(TempTableTask):
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + '.csv')
+
+        cols = OrderedDict({'geographycode': 'TEXT PRIMARY KEY'})
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
             header = reader.next()
 
-            datacols = [ImportScotland.id_to_column(c) for c in header[1:]]
+            for c in header[1:]:
+                cols[self.id_to_column(c)] = 'NUMERIC'
 
-        with current_session().connection().connection.cursor() as cursor, open(infile) as csvfile:
-            cursor.execute('CREATE TABLE {output} (geographycode TEXT PRIMARY KEY, {cols})'.format(
-                output=self.output().table,
-                cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
-            ))
-
-            cursor.copy_expert(
-                'COPY {table} (geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
-                    cols=', '.join(datacols),
-                    table=self.output().table),
-                CSVNormalizerStream(csvfile, lambda row: ['0' if f == '-' else f.replace(',', '') for f in row]))
+        with open(infile) as csvfile:
+            copy_from_csv(
+                current_session(),
+                self.output().table,
+                cols,
+                CSVNormalizerStream(csvfile, lambda row: ['0' if f == '-' else f.replace(',', '') for f in row])
+            )
