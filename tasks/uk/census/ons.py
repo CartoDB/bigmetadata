@@ -12,7 +12,7 @@ from luigi import Task, Parameter
 
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
-from tasks.util import shell, DownloadUnzipTask, TempTableTask
+from tasks.util import DownloadUnzipTask, TempTableTask
 
 
 class DownloadUK(Task):
@@ -62,7 +62,6 @@ class ImportUK(TempTableTask):
             reader = csv.reader(csvfile)
             header = reader.next()
 
-            # We are faking the IDs, because Scotland bulk downloads uses the column name instead of the ID
             datacols = [self.id_to_column(x) for x in header[3:]]
 
         session = current_session()
@@ -109,8 +108,11 @@ class ImportEnglandWalesLocal(TempTableTask):
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + 'DATA.CSV')
-        headers = shell('head -n 1 {csv}'.format(csv=infile))
-        datacols = headers.split(',')[1:]
+        with open(infile) as csvfile:
+            reader = csv.reader(csvfile)
+            header = reader.next()
+
+            datacols = header[1:]
 
         with current_session().connection().connection.cursor() as cursor, open(infile) as csvfile:
             cursor.execute('CREATE TABLE {output} (geographycode TEXT PRIMARY KEY, {cols})'.format(
