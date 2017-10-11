@@ -98,7 +98,6 @@ class DownloadEnglandWalesLocal(DownloadUnzipTask):
 
 
 class ImportEnglandWalesLocal(TempTableTask):
-
     table = Parameter()
 
     def requires(self):
@@ -109,19 +108,18 @@ class ImportEnglandWalesLocal(TempTableTask):
         return colid
 
     def run(self):
-        session = current_session()
         infile = os.path.join(self.input().path, self.table + 'DATA.CSV')
         headers = shell('head -n 1 {csv}'.format(csv=infile))
-        cols = ['{} NUMERIC'.format(h) for h in headers.split(',')[1:]]
-        session.execute('CREATE TABLE {output} (GeographyCode TEXT, {cols})'.format(
-            output=self.output().table,
-            cols=', '.join(cols)
-        ))
-        session.commit()
-        shell("cat '{infile}' | psql -c 'COPY {output} FROM STDIN WITH CSV HEADER'".format(
-            output=self.output().table,
-            infile=infile,
-        ))
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geographycode)'.format(
-            output=self.output().table
-        ))
+        datacols = headers.split(',')[1:]
+
+        with current_session().connection().connection.cursor() as cursor:
+            cursor.execute('CREATE TABLE {output} (geographycode TEXT PRIMARY KEY, {cols})'.format(
+                output=self.output().table,
+                cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
+            ))
+
+            cursor.copy_expert(
+                'COPY {table} (geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
+                    cols=', '.join(datacols),
+                    table=self.output().table),
+                open(infile))
