@@ -1,5 +1,4 @@
 from collections import OrderedDict, defaultdict
-import itertools
 
 from luigi import WrapperTask, Parameter
 
