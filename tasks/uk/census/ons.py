@@ -2,9 +2,9 @@
 
 from collections import OrderedDict
 import csv
-import json
 import os
 import re
+import requests
 import urllib
 import shutil
 from zipfile import ZipFile
@@ -29,7 +29,7 @@ class DownloadUK(Task):
 
     def run(self):
         # Query API, extract table ID from name
-        meta = json.load(urllib.urlopen(self.API_URL.format(self.table)))
+        meta = requests.get(self.API_URL.format(self.table)).json()
         api_id = (meta['structure']['keyfamilies']['keyfamily'][0]['id']).lower()
 
         # Download for SA (EW,S) and OA (NI) in a single file
