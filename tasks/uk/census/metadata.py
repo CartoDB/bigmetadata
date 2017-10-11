@@ -61,7 +61,7 @@ class CensusColumns(ColumnsTask):
     def columns(self):
         input_ = self.input()
         sources = input_['source'].values()
-        license = input_['license']['uk_ogl']
+        license_tag = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']
         units = input_['units']
@@ -76,7 +76,7 @@ class CensusColumns(ColumnsTask):
                 weight=column['weight'],
                 aggregate='sum',
                 targets={columns[denom]: DENOMINATOR for denom in column['denominators']},
-                tags=sources + [uk, license, units[column['units']], subsections[column['subsection']]]
+                tags=sources + [uk, license_tag, units[column['units']], subsections[column['subsection']]]
             )
 
         return columns
