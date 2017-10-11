@@ -8,7 +8,8 @@ from tasks.util import classpath
 
 class DirectoryTarget(Target):
     def __init__(self, task):
-        self._target = LocalTarget(os.path.join('tmp', classpath(task), task.task_id))
+        self.path = os.path.join('tmp', classpath(task), task.task_id)
+        self._target = LocalTarget(self.path)
 
     def exists(self):
         return self._target.exists()
