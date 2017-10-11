@@ -8,10 +8,11 @@ import urllib
 import shutil
 from zipfile import ZipFile
 
-from luigi import Task, Parameter, LocalTarget
+from luigi import Task, Parameter
 
+from lib.targets import DirectoryTarget
 from tasks.meta import current_session
-from tasks.util import classpath, shell, DownloadUnzipTask, TempTableTask
+from tasks.util import shell, DownloadUnzipTask, TempTableTask
 
 
 class DownloadUK(Task):
@@ -30,21 +31,19 @@ class DownloadUK(Task):
         api_id = (meta['structure']['keyfamilies']['keyfamily'][0]['id']).lower()
 
         # Download for SA (EW,S) and OA (NI) in a single file
-        with self.output().temporary_path() as tmp:
-            os.mkdir(tmp)
-            with open(os.path.join(tmp, '{}.csv'.format(self.table)), 'w') as outcsv:
-                skip_header = False
-                for geo in self.GEO_TYPES:
-                    remote_file = urllib.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
-                    if skip_header:
-                        remote_file.next()
-                    else:
-                        skip_header = True
-                    for l in remote_file:
-                        outcsv.write(l)
+        with self.output().temporary_path() as tmp, open(os.path.join(tmp, '{}.csv'.format(self.table)), 'w') as outcsv:
+            skip_header = False
+            for geo in self.GEO_TYPES:
+                remote_file = urllib.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
+                if skip_header:
+                    remote_file.next()
+                else:
+                    skip_header = True
+                for l in remote_file:
+                    outcsv.write(l)
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+        return DirectoryTarget(self)
 
 
 class ImportUK(TempTableTask):
