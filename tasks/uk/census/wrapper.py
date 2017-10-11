@@ -1,6 +1,8 @@
 from collections import OrderedDict, defaultdict
 import itertools
 
+from luigi import WrapperTask, Parameter
+
 from tasks.meta import current_session
 from tasks.util import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
@@ -11,7 +13,7 @@ from .scotland import ImportScotland
 from .metadata import parse_table, COLUMNS_DEFINITION
 
 
-class Census(TableTask):
+class CensusTableTask(WrapperTask):
     # Which task to use to import an specific table
     REGION_MAPPING = {
         "UK": ImportUK,
@@ -19,13 +21,28 @@ class Census(TableTask):
         "SC": ImportScotland
     }
 
+    table = Parameter()
+
+    def requires(self):
+        _, region = parse_table(self.table)
+        return self.REGION_MAPPING[region](table=self.table)
+
+    def id_to_column(self, column_id):
+        return self.requires().id_to_column(column_id)
+
+    def output_table(self):
+        return self.requires().output().table
+
+
+class Census(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
             'data_columns': CensusColumns(),
         }
         for t in self.source_tables():
-            deps[t] = self.task_for_table(t)
+            deps[t] = CensusTableTask(table=t)
+
         return deps
 
     def timespan(self):
@@ -41,10 +58,6 @@ class Census(TableTask):
     def source_tables(self):
         return set(itertools.chain(*[[d['table'] for d in col['data']] for col in COLUMNS_DEFINITION.values()]))
 
-    def task_for_table(self, table):
-        _, region = parse_table(table)
-        return self.REGION_MAPPING[region](table=table)
-
     def populate(self):
         '''
         Joins data from all UK sub-census dependencies.
@@ -52,23 +65,23 @@ class Census(TableTask):
         For each column, there are multiple possiblities:
           - The column has a single datasource and field: ``"data" : [{"table": "t", "fields": ["f"]}]``.
             The table will be added to the FROM, and the column to the SELECT
-            ``SELECT t.f AS id FROM ... FULL JOIN t USING (geographycode)``
+            ``SELECT t.f AS out_name FROM ... FULL JOIN t USING (geographycode)``
 
           - The column has multiple fields: ``"data" : [{"table": "t", "fields": ["f1", "f2"]}]``.
             The table will be added to the FROM, and an expression adding all columns to the SELECT
-            ``SELECT t.f1 + t.f2 AS id FROM ... FULL JOIN t USING (geographycode)``
+            ``SELECT t.f1 + t.f2 AS out_name FROM ... FULL JOIN t USING (geographycode)``
 
           - The column has multiple tables: ``"data" : [{"table": "t1", "fields": ["f"]}, {"table": "t2", "fields": ["f"]}]``.
             The tables will be added to a CTE that UNIONS them, the CTE to the FROM, and the column to the SELECT
-            ``WITH t1t2 AS (SELECT f AS id FROM t1 UNION SELECT f as id FROM t2)
-              SELECT t1t2.id FROM ... FULL JOIN t1t2 USING (geographycode)``
+            ``WITH t1t2 AS (SELECT f AS out_name FROM t1 UNION SELECT f as out_name FROM t2)
+              SELECT t1t2.out_name FROM ... FULL JOIN t1t2 USING (geographycode)``
 
           - The combination of both, which works as above, putting the summing expression inside the CTE
         '''
         def table_column_expression(data):
             tabletask = self.requires()[data['table']]
-            table = tabletask.output().table
-            column_names = [tabletask.id_to_column(f) for f in data[0]['fields']]
+            table = tabletask.output_table()
+            column_names = [tabletask.id_to_column(f) for f in data['fields']]
             col_expression = '+'.join(['{table}.{column}'.format(table=table, column=cn) for cn in column_names])
 
             return table, col_expression
@@ -93,7 +106,7 @@ class Census(TableTask):
                 cte_name = '_'.join([d['table'] for d in data]).lower()
                 cte = ctes[cte_name]
                 for d in data:
-                    table, col_expression = table_column_expression(data[0])
+                    table, col_expression = table_column_expression(d)
                     cte[table].append('{expression} AS {id}'.format(expression=col_expression, id=k))
 
                 in_colnames.append('{cte_name}.{id}'.format(cte_name=cte_name, id=k))
