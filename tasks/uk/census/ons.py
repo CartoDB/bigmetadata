@@ -17,6 +17,10 @@ from tasks.util import classpath, shell, DownloadUnzipTask, TempTableTask
 class DownloadUK(Task):
     API_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/def.sdmx.json?search={}*'
     DOWNLOAD_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/{id}.bulk.csv?time=2011&measures=20100&geography={geo}'
+    GEO_TYPES = [
+        'TYPE258',  # Small Areas (Northern Ireland)
+        'TYPE299'   # Output Areas (England, Wales, Scotland)
+    ]
 
     table = Parameter()
 
@@ -30,7 +34,7 @@ class DownloadUK(Task):
             os.mkdir(tmp)
             with open(os.path.join(tmp, '{}.csv'.format(self.table)), 'w') as outcsv:
                 skip_header = False
-                for geo in ['TYPE258', 'TYPE299']:
+                for geo in self.GEO_TYPES:
                     remote_file = urllib.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
                     if skip_header:
                         remote_file.next()
