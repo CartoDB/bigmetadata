@@ -56,7 +56,10 @@ class Census(TableTask):
         return cols
 
     def source_tables(self):
-        return set(itertools.chain(*[[d['table'] for d in col['data']] for col in COLUMNS_DEFINITION.values()]))
+        tables = set()
+        for col in COLUMNS_DEFINITION.values():
+            tables.update([d['table'] for d in col['data']])
+        return tables
 
     def populate(self):
         '''
