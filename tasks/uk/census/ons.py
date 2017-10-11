@@ -57,26 +57,26 @@ class ImportUK(TempTableTask):
         return re.sub(r'[:/, \-\.\(\)]', '_', '_'.join(colid.split(';')[0].split(':')[-2:]))
 
     def run(self):
-        with open(os.path.join(self.input().path, self.table + '.csv')) as csvfile:
+        infile = os.path.join(self.input().path, self.table + '.csv')
+        with open(infile) as csvfile:
             reader = csv.reader(csvfile)
             header = reader.next()
 
             # We are faking the IDs, because Scotland bulk downloads uses the column name instead of the ID
             datacols = [self.id_to_column(x) for x in header[3:]]
 
-            session = current_session()
-            with session.connection().connection.cursor() as cursor:
-                cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geographycode TEXT PRIMARY KEY, {cols})'.format(
-                    output=self.output().table,
-                    cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
-                ))
-                csvfile.seek(0)
+        session = current_session()
+        with session.connection().connection.cursor() as cursor, open(infile) as csvfile:
+            cursor.execute('CREATE TABLE {output} (date TEXT, geography TEXT, geographycode TEXT PRIMARY KEY, {cols})'.format(
+                output=self.output().table,
+                cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
+            ))
 
-                cursor.copy_expert(
-                    'COPY {table} (date, geography, geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
-                        cols=', '.join(datacols),
-                        table=self.output().table),
-                    csvfile)
+            cursor.copy_expert(
+                'COPY {table} (date, geography, geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
+                    cols=', '.join(datacols),
+                    table=self.output().table),
+                csvfile)
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
@@ -112,7 +112,7 @@ class ImportEnglandWalesLocal(TempTableTask):
         headers = shell('head -n 1 {csv}'.format(csv=infile))
         datacols = headers.split(',')[1:]
 
-        with current_session().connection().connection.cursor() as cursor:
+        with current_session().connection().connection.cursor() as cursor, open(infile) as csvfile:
             cursor.execute('CREATE TABLE {output} (geographycode TEXT PRIMARY KEY, {cols})'.format(
                 output=self.output().table,
                 cols=', '.join(['{} NUMERIC'.format(c) for c in datacols])
@@ -122,4 +122,4 @@ class ImportEnglandWalesLocal(TempTableTask):
                 'COPY {table} (geographycode, {cols}) FROM stdin WITH (FORMAT CSV, HEADER)'.format(
                     cols=', '.join(datacols),
                     table=self.output().table),
-                open(infile))
+                csvfile)
