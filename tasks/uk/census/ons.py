@@ -3,7 +3,6 @@
 from collections import OrderedDict
 import csv
 import os
-import re
 import requests
 import urllib
 import shutil
@@ -15,6 +14,8 @@ from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
 from tasks.util import DownloadUnzipTask, TempTableTask
+
+from .metadata import sanitize_identifier
 
 
 class DownloadUK(Task):
@@ -56,7 +57,7 @@ class ImportUK(TempTableTask):
 
     @staticmethod
     def id_to_column(colid):
-        return re.sub(r'[:/, \-\.\(\)]', '_', '_'.join(colid.split(';')[0].split(':')[-2:]))
+        return sanitize_identifier(colid)
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + '.csv')

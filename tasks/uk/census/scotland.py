@@ -3,7 +3,6 @@
 from collections import OrderedDict
 import csv
 import os
-import re
 import urllib
 
 from luigi import Parameter
@@ -12,6 +11,8 @@ from lib.csv_stream import CSVNormalizerStream
 from lib.copy import copy_from_csv
 from tasks.util import DownloadUnzipTask, TempTableTask
 from tasks.meta import current_session
+
+from .metadata import sanitize_identifier
 
 
 class DownloadScotlandLocal(DownloadUnzipTask):
@@ -29,7 +30,7 @@ class ImportScotland(TempTableTask):
 
     @staticmethod
     def id_to_column(colid):
-        return re.sub(r'[:/, \-\.\(\)]', '_', '_'.join(colid.split(';')[0].split(':')[-2:]))
+        return sanitize_identifier(colid)
 
     def run(self):
         infile = os.path.join(self.input().path, self.table + '.csv')

@@ -16,6 +16,13 @@ def load_definition():
 COLUMNS_DEFINITION = load_definition()
 
 
+DISALLOWED_CHARACTERS_RE = re.compile(r'[:/, \-\.\(\)]')
+
+
+def sanitize_identifier(colid):
+    return DISALLOWED_CHARACTERS_RE.sub('_', '_'.join(colid.split(';')[0].split(':')[-2:]))
+
+
 def parse_table(table_id):
     '''
     Returns a tuple like (KS, NI) from a table string like KS201NI
