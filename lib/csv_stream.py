@@ -3,7 +3,14 @@ import csv
 
 
 class CSVNormalizerStream(io.IOBase):
+    '''
+    Filter for applying a function to each line of a CSV file, compatible with iostreams
+    '''
     def __init__(self, infile, func):
+        '''
+        :param infile: A stream that reads a CSV file. e.g: a file
+        :param func: A function to apply to each CSV row. It takes an array of fields and returns an array of fields.
+        '''
         self._csvreader = csv.reader(infile)
         self._buffer = ''
         self._func = func

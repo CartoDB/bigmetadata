@@ -7,6 +7,9 @@ from tasks.util import classpath
 
 
 class DirectoryTarget(Target):
+    '''
+    Similar to :class:`LocalTarget <luigi.LocalTarget>` but automatically creates and destroys temp directories
+    '''
     def __init__(self, task):
         self.path = os.path.join('tmp', classpath(task), task.task_id)
         self._target = LocalTarget(self.path)
