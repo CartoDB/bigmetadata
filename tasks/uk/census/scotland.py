@@ -1,45 +1,22 @@
 # http://www.scotlandscensus.gov.uk/ods-web/data-warehouse.html#bulkdatatab
 
 import csv
-import io
 import os
 import re
+import urllib
 
 from luigi import Parameter
 
 from lib.normalization import CSVNormalizerStream
-from tasks.util import shell, DownloadUnzipTask, TempTableTask
+from tasks.util import DownloadUnzipTask, TempTableTask
 from tasks.meta import current_session
 
 
 class DownloadScotlandLocal(DownloadUnzipTask):
-
     URL = 'http://www.scotlandscensus.gov.uk/ods-web/download/getDownloadFile.html?downloadFileIds=Output%20Area%20blk'
 
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL))
-
-
-class NormalizerStream(io.IOBase):
-    def __init__(self, infile):
-        self._csvreader = csv.reader(infile)
-        self._buffer = ''
-
-    def read(self, nbytes):
-        try:
-            while len(self._buffer) < nbytes:
-                self.getline()
-            out, self._buffer = self._buffer[:nbytes], self._buffer[nbytes:]
-            return out
-        except StopIteration:
-            out = self._buffer
-            self._buffer = ''
-            return out
-
-    def getline(self):
-        line = self._csvreader.next()
-        clean_line = ['0' if f == '-' else f.replace(',', '') for f in line]
-        self._buffer += (','.join(clean_line) + ' \n')
+        urllib.retrieve(self.URL, '{}.zip'.format(self.output().path))
 
 
 class ImportScotland(TempTableTask):
