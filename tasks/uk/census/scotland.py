@@ -7,7 +7,7 @@ import urllib
 
 from luigi import Parameter
 
-from lib.normalization import CSVNormalizerStream
+from lib.csv_stream import CSVNormalizerStream
 from tasks.util import DownloadUnzipTask, TempTableTask
 from tasks.meta import current_session
 
