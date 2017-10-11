@@ -80,11 +80,10 @@ class ImportUK(TempTableTask):
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
-
     URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL))
+        urllib.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
 
     def run(self):
         super(DownloadEnglandWalesLocal, self).run()
