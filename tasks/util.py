@@ -966,6 +966,17 @@ class TagsTask(Task):
             output[orig_id] = TagTarget(tag, self)
         return output
 
+    @property
+    def tagids(self):
+        '''
+        Return tagids for the output tags, this can be cached
+        '''
+        if not hasattr(self, '_tagids'):
+            self._tagids = OrderedDict([
+                (tagkey, tt._id) for tagkey, tt in self.output().iteritems()
+            ])
+        return self._tagids
+
     def complete(self):
         '''
         Custom complete method that attempts to check if output exists, as is
@@ -976,7 +987,17 @@ class TagsTask(Task):
         if deps and not all([d.complete() for d in deps]):
             return False
         else:
-            return super(TagsTask, self).complete()
+            # bulk check that all tags exist at proper version
+            cnt = current_session().execute(
+                '''
+                SELECT COUNT(*)
+                FROM observatory.obs_tag
+                WHERE id IN ('{ids}') AND version = '{version}'
+                '''.format(
+                    ids="', '".join(self.tagids.values()),
+                    version=self.version()
+                )).fetchone()[0]
+            return cnt == len(self.tagids.values())
 
 
 class TableToCartoViaImportAPI(Task):
