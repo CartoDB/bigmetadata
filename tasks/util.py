@@ -31,7 +31,10 @@ from sqlalchemy.dialects.postgresql import JSON
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, current_session,
-                        session_commit, session_rollback, OBSColumnTag)
+                        session_commit, session_rollback)
+
+OBSERVATORY_PREFIX = 'obs_'
+OBSERVATORY_SCHEMA = 'observatory'
 
 
 def get_logger(name):
@@ -644,8 +647,9 @@ class TableTarget(Target):
         '''
         self._id = '.'.join([schema, name])
         obs_table.id = self._id
-        obs_table.tablename = 'obs_' + sha1(underscore_slugify(self._id)).hexdigest()
-        self.table = 'observatory.' + obs_table.tablename
+        obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX,
+                                                      name=sha1(underscore_slugify(self._id)).hexdigest())
+        self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self._tablename = obs_table.tablename
         self._schema = schema
         self._name = name
