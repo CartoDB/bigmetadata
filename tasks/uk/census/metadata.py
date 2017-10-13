@@ -17,6 +17,7 @@ COLUMNS_DEFINITION = load_definition()
 
 
 DISALLOWED_CHARACTERS_RE = re.compile(r'[:/, \-\.\(\)]')
+TABLE_CODE_PARTS_RE = re.compile('([A-Z]{2})\d+([A-Z]{2})[a-z]?')
 
 
 def sanitize_identifier(colid):
@@ -27,7 +28,7 @@ def parse_table(table_id):
     '''
     Returns a tuple like (KS, NI) from a table string like KS201NI
     '''
-    return re.match('([A-Z]{2})\d+([A-Z]{2})[a-z]?', table_id).groups()
+    return TABLE_CODE_PARTS_RE.match(table_id).groups()
 
 
 class SourceTags(TagsTask):
