@@ -42,8 +42,4 @@ class ColumnsDeclarations:
         return False
 
     def filter_columns(self, columns, parameters):
-        filtered = OrderedDict()
-        for colid, value in columns.iteritems():
-            if self._is_column_filtered(colid, parameters):
-                filtered[colid] = value
-        return filtered
+        return OrderedDict([[k, v] for k, v in columns.items() if self._is_column_filtered(k, parameters)])
