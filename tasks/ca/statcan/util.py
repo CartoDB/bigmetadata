@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 import csv
 import itertools
@@ -163,7 +163,7 @@ class StatCanParser(object):
         geo_col = ((self.GEO_COLUMN, record[0][self.GEO_COLUMN],),)
         # For each row in record transpose columns defined
         # in TRANSPOSE_COLUMNS.
-        transposed_row = map(self._transpose_row, record)
+        transposed_row = list(map(self._transpose_row, record))
         transposed_cols = tuple(itertools.chain.from_iterable(transposed_row))
         return OrderedDict(geo_col + transposed_cols)
 
@@ -180,10 +180,10 @@ class StatCanParser(object):
             self._file_handlers[parse_col] = file_handle
             self._topic_idx += 1
             self._char_idx = 1
-            print('"{}"'.format('","'.join(formatted_record.keys())),
+            print('"{}"'.format('","'.join(list(formatted_record.keys()))),
                   file=self._file_handlers[parse_col])
 
-        print(','.join(map(str, formatted_record.values())),
+        print(','.join(map(str, list(formatted_record.values()))),
               file=self._file_handlers[parse_col])
 
     def _map_row(self, row):
@@ -209,7 +209,7 @@ class StatCanParser(object):
         -> match has to be at the beginning of the string
         '''
 
-        for col_key, pat in self.COLUMN_MATCH_PATTERNS.items():
+        for col_key, pat in list(self.COLUMN_MATCH_PATTERNS.items()):
             r = pat.match(col)
             if r is not None and r.start() == 0:
                 return col_key
@@ -271,7 +271,7 @@ class StatCanParser(object):
         self._space_divisor = 2
 
         try:
-            if isinstance(csv_paths, (str, unicode,)):
+            if isinstance(csv_paths, str):
                 csv_paths = [csv_paths]
 
             for csv_path in csv_paths:
@@ -305,7 +305,7 @@ class StatCanParser(object):
                     self._write_record(record)
 
         finally:
-            for file_handler in self._file_handlers.values():
+            for file_handler in list(self._file_handlers.values()):
                 file_handler.close()
 
             self._output_dir = None

@@ -3259,7 +3259,7 @@ class Columns(ColumnsTask):
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
         no_restrictions = input_['license']['no-restrictions']
-        for _, col in columns.iteritems():
+        for _, col in columns.items():
             col.tags.append(united_states_section)
             col.tags.append(acs_source)
             col.tags.append(no_restrictions)
@@ -3304,7 +3304,7 @@ class QuantileColumns(ColumnsTask):
     def columns(self):
         quantile_columns = OrderedDict()
         input_ = self.input()
-        for colname, coltarget in input_['columns'].iteritems():
+        for colname, coltarget in input_['columns'].items():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
                 id=col.id.split('.')[-1]+'_quantile',
@@ -3358,12 +3358,12 @@ class Quantiles(TableTask):
     def populate(self):
         connection = current_session()
         input_ = self.input()
-        quant_col_names = input_['columns'].keys()
+        quant_col_names = list(input_['columns'].keys())
         old_col_names = [name.split("_quantile")[0]
                          for name in quant_col_names]
 
         insert = True
-        for cols in grouper(zip(quant_col_names, old_col_names), 20):
+        for cols in grouper(list(zip(quant_col_names, old_col_names)), 20):
             selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) as {old_col} ".format(old_col=c[1])
                        for c in cols if c is not None]
 
@@ -3435,7 +3435,7 @@ class Extract(TableTask):
         cols = OrderedDict([
             ('geoid', input_['tiger'][self.geography + '_geoid']),
         ])
-        for colkey, col in input_['acs'].iteritems():
+        for colkey, col in input_['acs'].items():
             cols[colkey] = col
         return cols
 
@@ -3449,7 +3449,7 @@ class Extract(TableTask):
         colnames = []
         tableids = set()
         inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-        for colname, coltarget in self.columns().iteritems():
+        for colname, coltarget in self.columns().items():
             colid = coltarget.get(session).id
             tableid = colid.split('.')[-1][0:-3]
             if colid.endswith('geoid'):

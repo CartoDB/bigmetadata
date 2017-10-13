@@ -15,9 +15,9 @@ import importlib
 import inspect
 
 from hashlib import sha1
-from itertools import izip_longest
+from itertools import zip_longest
 from datetime import date
-from urllib import quote_plus
+from urllib.parse import quote_plus
 
 from slugify import slugify
 import requests
@@ -128,7 +128,7 @@ def query_cartodb(query, carto_url=None, api_key=None):
 
 def upload_via_ogr2ogr(outname, localname, schema, api_key=None):
     api_key = api_key or os.environ['CARTODB_API_KEY']
-    cmd = u'''
+    cmd = '''
 ogr2ogr --config CARTODB_API_KEY {api_key} \
         -f CartoDB "CartoDB:observatory" \
         -overwrite \
@@ -137,7 +137,7 @@ ogr2ogr --config CARTODB_API_KEY {api_key} \
         PG:dbname=$PGDATABASE' active_schema={schema}' '{tablename}'
     '''.format(private_outname=outname, tablename=localname,
                schema=schema, api_key=api_key)
-    print cmd
+    print(cmd)
     shell(cmd)
 
 
@@ -175,7 +175,7 @@ def import_api(request, json_column_names=None, api_key=None, carto_url=None):
             break
         elif resp.json()['state'] == 'failure':
             raise Exception('Import failed: {}'.format(resp.json()))
-        print resp.json()['state']
+        print(resp.json()['state'])
         time.sleep(1)
 
     # if failing below, try reloading https://observatory.cartodb.com/dashboard/datasets
@@ -187,7 +187,7 @@ def import_api(request, json_column_names=None, api_key=None, carto_url=None):
                 'SET DATA TYPE json USING NULLIF({colname}, '')::json'.format(
                     outname=resp.json()['table_name'], colname=colname
                 )
-        print query
+        print(query)
         resp = query_cartodb(query)
         assert resp.status_code == 200
 
@@ -220,7 +220,7 @@ def sql_to_cartodb_table(outname, localname, json_column_names=None,
     )
     assert resp.status_code == 200
 
-    print 'copying via import api'
+    print('copying via import api')
     import_api({
         'table_name': outname,
         'table_copy': private_outname,
@@ -554,7 +554,7 @@ def grouper(iterable, n, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
     args = [iter(iterable)] * n
-    return izip_longest(fillvalue=fillvalue, *args)
+    return zip_longest(fillvalue=fillvalue, *args)
 
 
 class ColumnTarget(Target):
@@ -719,7 +719,7 @@ class TableTarget(Target):
 
         # create new local data table
         columns = []
-        for colname, coltarget in self._columns.items():
+        for colname, coltarget in list(self._columns.items()):
             colname = colname.lower()
             col = coltarget.get(session)
 
@@ -733,7 +733,7 @@ class TableTarget(Target):
 
             # For enum type, pull keys from extra["categories"]
             elif col.type.lower().startswith('enum'):
-                cats = col.extra['categories'].keys()
+                cats = list(col.extra['categories'].keys())
                 coltype = types.Enum(*cats, name=col.id + '_enum')
             else:
                 coltype = getattr(types, col.type.capitalize())
@@ -758,7 +758,7 @@ class TableTarget(Target):
         self._obs_table = session.merge(self._obs_table)
         obs_table = self._obs_table
 
-        for i, colname_coltarget in enumerate(self._columns.iteritems()):
+        for i, colname_coltarget in enumerate(self._columns.items()):
             colname, coltarget = colname_coltarget
             colname = colname.lower()
             col = coltarget.get(session)
@@ -826,7 +826,7 @@ class ColumnsTask(Task):
         session_commit(self)
 
     def run(self):
-        for _, coltarget in self.output().iteritems():
+        for _, coltarget in self.output().items():
             coltarget.update_or_create()
 
     def version(self):
@@ -845,7 +845,7 @@ class ColumnsTask(Task):
         if hasattr(self, '_colids') and self.complete():
             return OrderedDict([
                 (colkey, ColumnTarget(session.query(OBSColumn).get(cid), self))
-                for colkey, cid in self.colids.iteritems()
+                for colkey, cid in self.colids.items()
             ])
 
         # Otherwise, run `columns` (slow!) to generate output
@@ -853,7 +853,7 @@ class ColumnsTask(Task):
         output = OrderedDict()
 
         input_ = self.input()
-        for col_key, col in self.columns().iteritems():
+        for col_key, col in self.columns().items():
             if not isinstance(col, OBSColumn):
                 raise RuntimeError(
                     'Values in `.columns()` must be of type OBSColumn, but '
@@ -882,7 +882,7 @@ class ColumnsTask(Task):
         '''
         if not hasattr(self, '_colids'):
             self._colids = OrderedDict([
-                (colkey, ct._id) for colkey, ct in self.output().iteritems()
+                (colkey, ct._id) for colkey, ct in self.output().items()
             ])
         return self._colids
 
@@ -903,10 +903,10 @@ class ColumnsTask(Task):
                 FROM observatory.obs_column
                 WHERE id IN ('{ids}') AND version = '{version}'
                 '''.format(
-                    ids="', '".join(self.colids.values()),
+                    ids="', '".join(list(self.colids.values())),
                     version=self.version()
                 )).fetchone()[0]
-            return cnt == len(self.colids.values())
+            return cnt == len(list(self.colids.values()))
 
     def tags(self, input_, col_key, col):
         '''
@@ -948,7 +948,7 @@ class TagsTask(Task):
         session_commit(self)
 
     def run(self):
-        for _, tagtarget in self.output().iteritems():
+        for _, tagtarget in self.output().items():
             tagtarget.update_or_create()
 
     def version(self):
@@ -1047,7 +1047,7 @@ class TableToCartoViaImportAPI(Task):
             elif resp.json()['state'] == 'failure':
                 raise Exception('Import failed: {}'.format(resp.json()))
 
-            print resp.json()['state']
+            print(resp.json()['state'])
             time.sleep(1)
 
         # If CARTO still renames our table to _1, just force alter it
@@ -1124,7 +1124,7 @@ class TableToCarto(Task):
         table = '.'.join([self.schema, self.table])
         if table in metadata.tables:
             cols = metadata.tables[table].columns
-            for colname, coldef in cols.items():
+            for colname, coldef in list(cols.items()):
                 coltype = coldef.type
                 if isinstance(coltype, JSON):
                     json_colnames.append(colname)
@@ -1288,7 +1288,7 @@ class Shp2TempTableTask(TempTableTask):
         raise NotImplementedError("Must specify `input_shp` method")
 
     def run(self):
-        if isinstance(self.input_shp(), basestring):
+        if isinstance(self.input_shp(), str):
             shps = [self.input_shp()]
         else:
             shps = self.input_shp()
@@ -1372,7 +1372,7 @@ class CSV2TempTableTask(TempTableTask):
         * If :attr:`~.util.CSV2TempTableTask.has_header` is ``False``, then
           column names will be the postgres defaults.
         '''
-        if isinstance(self.input_csv(), basestring):
+        if isinstance(self.input_csv(), str):
             csv = self.input_csv()
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
@@ -1384,15 +1384,15 @@ class CSV2TempTableTask(TempTableTask):
         return 'cat "{input}"'.format(input=fname)
 
     def run(self):
-        if isinstance(self.input_csv(), basestring):
+        if isinstance(self.input_csv(), str):
             csvs = [self.input_csv()]
         else:
             csvs = self.input_csv()
 
         session = current_session()
-        session.execute(u'CREATE TABLE {output} ({coldef})'.format(
+        session.execute('CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=u', '.join([u'"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
+            coldef=', '.join(['"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
         ))
         session.commit()
         options = ['''
@@ -1456,7 +1456,7 @@ class TableTask(Task):
     def _requires(self):
         reqs = super(TableTask, self)._requires()
         if self._testmode:
-            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask,))]
+            return [r for r in reqs if isinstance(r, (TagsTask, TableTask, ColumnsTask))]
         else:
             return reqs
 
@@ -1508,7 +1508,7 @@ class TableTask(Task):
         session = current_session()
         session.execute('INSERT INTO {output} ({col}) VALUES (NULL)'.format(
             output=output.table,
-            col=self._columns.keys()[0]
+            col=list(self._columns.keys())[0]
         ))
 
     def description(self):
@@ -1602,7 +1602,7 @@ class TableTask(Task):
     def create_indexes(self, output):
         session = current_session()
         tablename = output.table
-        for colname, coltarget in self._columns.iteritems():
+        for colname, coltarget in self._columns.items():
             col = coltarget._column
             index_type = col.index_type
             if index_type:
@@ -1618,7 +1618,7 @@ class TableTask(Task):
     def create_geom_summaries(self, output):
         geometry_columns = [
             (colname, coltarget._id) for colname, coltarget in
-            self.columns().iteritems() if coltarget._column.type.lower().startswith('geometry')
+            self.columns().items() if coltarget._column.type.lower().startswith('geometry')
         ]
 
         if len(geometry_columns) == 0:
@@ -1691,11 +1691,11 @@ class RenameTables(Task):
                 else:
                     cmd = 'ALTER TABLE {old} RENAME TO {new}'.format(
                         old=table_id, new=tablename)
-                    print cmd
+                    print(cmd)
                     session.execute(cmd)
                     cmd = 'ALTER TABLE "{schema}".{new} SET SCHEMA observatory'.format(
                         new=tablename, schema=schema)
-                    print cmd
+                    print(cmd)
                     session.execute(cmd)
             else:
                 resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
@@ -1705,7 +1705,7 @@ class RenameTables(Task):
                 if int(resp.fetchone()[0]) > 0:
                     cmd = 'ALTER TABLE public.{new} SET SCHEMA observatory'.format(
                         new=tablename)
-                    print cmd
+                    print(cmd)
                     session.execute(cmd)
 
         session.commit()
@@ -1840,7 +1840,7 @@ class Carto2TempTableTask(TempTableTask):
         if resp.status_code != 200:
             raise Exception('Non-200 code (%s): %s', resp.status_code, resp.text)
         coltypes = dict([
-            (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].iteritems()
+            (k, self.TYPE_MAP[v['type']]) for k, v in resp.json()['fields'].items()
         ])
         resp = self._query(
             q='SELECT * FROM {table} LIMIT 0'.format(table=self.table),
@@ -1953,7 +1953,7 @@ class BackupIPython(Task):
     def output(self):
         path = 's3://cartodb-observatory-data/ipython/{}'.format(
             self.input().path.split(os.path.sep)[-1])
-        print path
+        print(path)
         return S3Target(path)
 
 
@@ -2138,7 +2138,7 @@ def collect_meta_wrappers(test_module=None, test_all=True):
 
     for t, in collect_tasks(MetaWrapper):
         outparams = [{}]
-        for key, val in t.params.iteritems():
+        for key, val in t.params.items():
             outparams = cross(outparams, key, val)
         req_types = None
         for params in outparams:

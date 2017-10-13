@@ -51,7 +51,7 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
         allvals = []
         for rownum, row in enumerate(sheet.get_rows()):
             if rownum == 2:
-                coldefs = ['"{}" VARCHAR'.format(cell.value.replace(u'"', u'').strip()) for cell in row if cell.value]
+                coldefs = ['"{}" VARCHAR'.format(cell.value.replace('"', '').strip()) for cell in row if cell.value]
                 session.execute('CREATE TABLE {output} ({coldefs})'.format(
                     coldefs=', '.join(coldefs),
                     output=self.output().table
@@ -67,19 +67,19 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
                     # should be an integer
                     elif cell.ctype == 2:
                         if cell.value == int(cell.value):
-                            vals.append(unicode(int(cell.value)))
+                            vals.append(str(int(cell.value)))
                         else:
-                            vals.append(unicode(cell.value))
+                            vals.append(str(cell.value))
                     # type 3 is date
                     elif cell.ctype == 3:
-                        vals.append(u"'{}-{}-{}'".format(*xldate_as_tuple(cell.value, 0)))
+                        vals.append("'{}-{}-{}'".format(*xldate_as_tuple(cell.value, 0)))
                     # everything else just pass in as unicode string, unless
                     # it's blank, in which case send in NULL
                     else:
                         if cell.value:
-                            vals.append(u"'{}'".format(unicode(cell.value)\
-                                                       .replace(u":", u"::") \
-                                                       .replace(u"'", u"''")))
+                            vals.append("'{}'".format(str(cell.value)\
+                                                       .replace(":", "::") \
+                                                       .replace("'", "''")))
                         else:
                             vals.append('NULL')
 
@@ -95,11 +95,11 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
                                  self.year, self.month, rownum)
                     continue
 
-                allvals.append(u', '.join(vals))
+                allvals.append(', '.join(vals))
         try:
-            session.execute(u'INSERT INTO {output} VALUES ({allvals})'.format(
+            session.execute('INSERT INTO {output} VALUES ({allvals})'.format(
                 output=self.output().table,
-                allvals=u'), ('.join(allvals)
+                allvals='), ('.join(allvals)
             ))
         except Exception as err:
             print(err)
@@ -428,7 +428,7 @@ class PermitIssuance(TableTask):
     def requires(self):
         data_tables = {}
         now = datetime.now()
-        for year in xrange(3, 18):
+        for year in range(3, 18):
             # 2003 only has from March onwards but we skip it because of
             # different schema -- no Self-Cert
             # 2004 onwards seems similar but no "Site Fill"
@@ -436,10 +436,10 @@ class PermitIssuance(TableTask):
                 continue
             # current year, only grab to prior month
             elif year == now.year - 2000:
-                months = xrange(1, now.month)
+                months = range(1, now.month)
             # grab all months
             else:
-                months = xrange(1, 13)
+                months = range(1, 13)
 
             for month in months:
                 data_tables[year, month] = \
@@ -514,7 +514,7 @@ class PermitIssuance(TableTask):
     def populate(self):
         input_ = self.input()
         session = current_session()
-        for yearmonth, data in input_['data'].iteritems():
+        for yearmonth, data in input_['data'].items():
             year, month = yearmonth
             try:
                 session.execute('''

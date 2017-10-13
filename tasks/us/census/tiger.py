@@ -56,7 +56,7 @@ class ClippedGeomColumns(ColumnsTask):
         license = input_['license']['no-restrictions']
         boundary_type = input_['boundary']
 
-        for colname, coltarget in self.input()['geom_columns'].iteritems():
+        for colname, coltarget in self.input()['geom_columns'].items():
             col = coltarget.get(session)
 
             level = SUMLEVELS[colname]
@@ -109,7 +109,7 @@ class GeomColumns(ColumnsTask):
         license = input_['license']['no-restrictions']
 
         columns = {}
-        for level in SUMLEVELS.values():
+        for level in list(SUMLEVELS.values()):
             columns[level['slug']] = OBSColumn(
                 type='Geometry',
                 name=level['name'],
@@ -160,7 +160,7 @@ class GeoidColumns(ColumnsTask):
     def columns(self):
         cols = OrderedDict()
         clipped = self.input()['clipped']
-        for colname, coltarget in self.input()['raw'].iteritems():
+        for colname, coltarget in self.input()['raw'].items():
             col = coltarget._column
             cols[colname + '_geoid'] = OBSColumn(
                 type='Text',
@@ -193,7 +193,7 @@ class GeonameColumns(ColumnsTask):
         clipped = self.input()['clipped']
         subsection = self.input()['subsections']
         sections = self.input()['sections']
-        for colname, coltarget in self.input()['raw'].iteritems():
+        for colname, coltarget in self.input()['raw'].items():
             col = coltarget._column
             cols[colname + '_geoname'] = OBSColumn(
                 type='Text',
@@ -322,7 +322,7 @@ class TigerGeographyShapefileToSQL(TempTableTask):
                     shapefiles='\n'.join([shp for shp in shape_group if shp]),
                     tablename=self.output().tablename, nlt=nlt,
                     schema=self.output().schema))
-            print 'imported {} shapefiles'.format((i + 1) * 500)
+            print('imported {} shapefiles'.format((i + 1) * 500))
 
         session = current_session()
         # Spatial index
@@ -635,7 +635,7 @@ class SumLevel(TableTask):
         )
         in_colnames = [self.geoid, 'geom', self.aland, self.awater]
 
-        out_colnames = self.columns().keys()
+        out_colnames = list(self.columns().keys())
         session.execute('INSERT INTO {output} ({out_colnames}) '
                         'SELECT {in_colnames} '
                         'FROM {from_clause} '.format(
@@ -702,7 +702,7 @@ class AllSumLevels(WrapperTask):
     year = Parameter()
 
     def requires(self):
-        for geo, config in SUMLEVELS.items():
+        for geo, config in list(SUMLEVELS.items()):
             yield SumLevel(year=self.year, geography=geo)
             yield ShorelineClip(year=self.year, geography=geo)
             if config['fields']['name']:

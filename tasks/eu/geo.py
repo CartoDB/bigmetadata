@@ -116,7 +116,7 @@ class NUTSSHNCrosswalk(TempTableTask):
 
     def run(self):
         session = current_session()
-        session.execute(u'''
+        session.execute('''
             CREATE TABLE {output} AS
             with nuts_unprocessed as (
               SELECT LOWER(CASE

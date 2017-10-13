@@ -1116,7 +1116,7 @@ class CensusColumns(ColumnsTask):
             ('never_worked', never_worked),
             ('long_term_unemployed', long_term_unemployed),
         ])
-        for _, col in columns.iteritems():
+        for _, col in columns.items():
             col.tags.append(source)
             col.tags.append(license)
         return columns
@@ -1171,10 +1171,10 @@ class EnglandWalesLocal(TableTask):
             intable = line.strip()
             table = intable.split('_')[1]
             cols_for_table = OrderedDict([
-                (n, t,) for n, t in cols.iteritems() if table in t._id
+                (n, t,) for n, t in cols.items() if table in t._id
             ])
-            out_colnames = cols_for_table.keys()
-            in_colnames = [t._id.split('.')[-1] for t in cols_for_table.values()]
+            out_colnames = list(cols_for_table.keys())
+            in_colnames = [t._id.split('.')[-1] for t in list(cols_for_table.values())]
             assert len(out_colnames) == len(in_colnames)
             if not out_colnames:
                 continue

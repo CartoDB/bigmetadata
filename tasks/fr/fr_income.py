@@ -181,9 +181,9 @@ class FranceIncome(TableTask):
         session = current_session()
 
         column_targets = self.columns()
-        colnames = ', '.join(column_targets.keys())
+        colnames = ', '.join(list(column_targets.keys()))
         colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
-                                   for colname, ct in column_targets.iteritems()])
+                                   for colname, ct in column_targets.items()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
                         'FROM {input} '.format(

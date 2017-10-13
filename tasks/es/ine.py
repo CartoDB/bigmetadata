@@ -77,7 +77,7 @@ class GeometryColumns(ColumnsTask):
         source = input_['source']['ine-source']
         boundary_type = input_['boundary']
         cusec_geom = OBSColumn(
-            name=u'Secci\xf3n Censal',
+            name='Secci\xf3n Censal',
             type="Geometry",
             weight=10,
             description='The smallest division of the Spanish Census.',
@@ -86,7 +86,7 @@ class GeometryColumns(ColumnsTask):
                   boundary_type['cartographic_boundary']],
         )
         cusec_id = OBSColumn(
-            name=u"Secci\xf3n Censal",
+            name="Secci\xf3n Censal",
             type="Text",
             targets={cusec_geom: GEOM_REF}
         )
@@ -1684,7 +1684,7 @@ class SeccionColumns(ColumnsTask):
             ('households_6_more_people', households_6_more_people),
             ])
 
-        for _, col in columns.iteritems():
+        for _, col in columns.items():
             col.tags.append(source)
             col.tags.append(license)
 
@@ -1759,7 +1759,7 @@ class PopulationHouseholdsHousing(TableTask):
         metacols = self.input()['meta']
         cols = OrderedDict()
         cols['cusec_id'] = self.input()['geometa']['cusec_id']
-        for key, col in metacols.iteritems():
+        for key, col in metacols.items():
             cols[key] = col
         return cols
 
@@ -1880,7 +1880,7 @@ class FiveYearPopulationColumns(ColumnsTask):
         genders = [None, MALE, FEMALE]
 
         for gender in genders:
-            for i in xrange(0, 20):
+            for i in range(0, 20):
                 start = i * 5
                 end = start + 4
 
@@ -1957,7 +1957,7 @@ class RawFiveYearPopulation(TempTableTask):
         cols['cusec_id'] = self.input()['geometa']['cusec_id'].get(session).type
         cols['total_pop'] = self.input()['seccion_columns']['total_pop'].get(session).type
 
-        for key, col in metacols.iteritems():
+        for key, col in metacols.items():
             if not key.endswith('_male') and not key.endswith('_female'):
                 cols[key] = col.get(session).type
 
@@ -1967,7 +1967,7 @@ class RawFiveYearPopulation(TempTableTask):
         session = current_session()
         cols = ['{colname} {coltype}'.format(colname=colname,
                                              coltype=coltarget)
-                for colname, coltarget in self.columns().iteritems()]
+                for colname, coltarget in self.columns().items()]
         create_table = 'CREATE TABLE {output} ({cols})'.format(
             cols=', '.join(cols),
             output=self.output().table
@@ -2005,7 +2005,7 @@ class FiveYearPopulation(TableTask):
         cols['total_pop'] = self.input()['seccion_columns']['total_pop']
         cols['male_pop'] = self.input()['seccion_columns']['male_pop']
         cols['female_pop'] = self.input()['seccion_columns']['female_pop']
-        for key, col in metacols.iteritems():
+        for key, col in metacols.items():
             cols[key] = col
 
         return cols
@@ -2021,7 +2021,7 @@ class FiveYearPopulation(TableTask):
             cols['male_pop'] = self.input()['seccion_columns']['male_pop']
         elif gender == FEMALE:
             cols['female_pop'] = self.input()['seccion_columns']['female_pop']
-        for key, col in metacols.iteritems():
+        for key, col in metacols.items():
             if gender is None:
                 if not key.endswith('_male') and not key.endswith('_female'):
                     cols[key] = col
@@ -2039,9 +2039,9 @@ class FiveYearPopulation(TableTask):
 
     def populate(self):
         session = current_session()
-        cols_all = self.columns_by_gender(None).keys()
-        cols_male = self.columns_by_gender(MALE).keys()
-        cols_female = self.columns_by_gender(FEMALE).keys()
+        cols_all = list(self.columns_by_gender(None).keys())
+        cols_male = list(self.columns_by_gender(MALE).keys())
+        cols_female = list(self.columns_by_gender(FEMALE).keys())
 
         query = 'INSERT INTO {output} ({insert_cols}, {select_cols_male}, {select_cols_female})' + \
                 'SELECT {select_cols}, {select_cols_male}, {select_cols_female} from ' + \

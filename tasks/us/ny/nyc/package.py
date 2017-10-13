@@ -15,7 +15,7 @@ def _case_for(colname, col, ifnull=None):
     ifnull = ifnull or colname
     whens = [" WHEN '{k}' THEN '{v}' ".format(k=k.replace("'", "''"),
                                               v=v.replace("'", "''"))
-             for k, v in col.get(session).extra['categories'].iteritems()]
+             for k, v in col.get(session).extra['categories'].items()]
     return ' CASE "{colname}" {whens} ELSE {ifnull} END '.format(
         colname=colname,
         whens='\n'.join(whens),
@@ -164,7 +164,7 @@ class PermitPLUTO(TempTableTask):
 class AllPermitData(WrapperTask):
 
     def requires(self):
-        for year in xrange(2010, 2018):
+        for year in range(2010, 2018):
             yield PermitPLUTO(year=year)
             yield Permits(year=year)
 
@@ -190,7 +190,7 @@ class Upload(WrapperTask):
         #    table=PointPLUTO(release='16v2').output()._tablename,
         #    outname='pluto_16v2',
         #)
-        for year in xrange(2010, 2018):
+        for year in range(2010, 2018):
             yield TableToCartoViaImportAPI(
                 username=self.username,
                 api_key=self.api_key,
@@ -258,5 +258,5 @@ class TweakAllACRIS(WrapperTask):
 
     def requires(self):
 
-        for year in xrange(2013, 2018):
+        for year in range(2013, 2018):
             yield TweakACRIS(year=str(year))

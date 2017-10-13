@@ -278,7 +278,7 @@ class OutputAreaClassificationColumns(ColumnsTask):
         uk = input_['sections']['uk']
         segments = input_['subsections']['segments']
         gen_cats = lambda d: OrderedDict([
-            (catname, {'description': '', 'details': {}}) for catname in d.keys()
+            (catname, {'description': '', 'details': {}}) for catname in list(d.keys())
         ])
         segmentation = input_['units']['segmentation']
         license = input_['license']['opengeodemographics-license']
@@ -358,13 +358,13 @@ class OutputAreaClassifications(TableTask):
         session = current_session()
         oacc = OutputAreaClassificationColumns
         sprgrp_case = ' '.join([
-            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in oacc.sprgrp_mapping.items()
+            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in list(oacc.sprgrp_mapping.items())
         ])
         grp_case = ' '.join([
-            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in oacc.grp_mapping.items()
+            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in list(oacc.grp_mapping.items())
         ])
         subgrp_case = ' '.join([
-            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in oacc.subgrp_mapping.items()
+            "WHEN '{}' THEN '{}'".format(c[1], c[0]) for c in list(oacc.subgrp_mapping.items())
         ])
         session.execute('INSERT INTO {output} '
                         'SELECT oa_sa, '
