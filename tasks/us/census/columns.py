@@ -18,21 +18,16 @@ class ColumnsDeclarations:
         params = json.loads(parameters)
 
         conditions = self._find_column(colid).get(CONDITIONS)
-        if conditions is not None:
-            if not self._check_requirements(params, conditions):
+        if conditions and not self._check_requirements(params, conditions):
                 return False
 
         exceptions = self._find_column(colid).get(EXCEPTIONS)
-        if exceptions is not None:
-            if self._check_requirements(params, exceptions):
+        if exceptions and self._check_requirements(params, exceptions):
                 return False
 
         return True
 
     def _check_requirements(self, parameters, requirements):
-        if not requirements:
-            return True
-
         for requirement in requirements:
             check = True
             for id, value in parameters.iteritems():
