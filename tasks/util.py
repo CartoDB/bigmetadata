@@ -647,8 +647,8 @@ class TableTarget(Target):
         '''
         self._id = '.'.join([schema, name])
         obs_table.id = self._id
-        obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX,
-                                                      name=sha1(underscore_slugify(self._id)).hexdigest())
+        obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
+            underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self._tablename = obs_table.tablename
         self._schema = schema
