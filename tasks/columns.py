@@ -14,21 +14,15 @@ class ColumnsDeclarations:
     def _find_column(self, colid):
         return self._columns[colid]
 
-    def _get_requirements(self, colid, requirement):
-        try:
-            return self._find_column(colid)[requirement]
-        except:
-            return None
-
     def _is_column_filtered(self, colid, parameters):
         params = json.loads(parameters)
 
-        conditions = self._get_requirements(colid, CONDITIONS)
+        conditions = self._find_column(colid).get(CONDITIONS)
         if conditions is not None:
             if not self._check_requirements(params, conditions):
                 return False
 
-        exceptions = self._get_requirements(colid, EXCEPTIONS)
+        exceptions = self._find_column(colid).get(EXCEPTIONS)
         if exceptions is not None:
             if self._check_requirements(params, exceptions):
                 return False
