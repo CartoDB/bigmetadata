@@ -1,5 +1,5 @@
 import os
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
 import csv
 import re
 

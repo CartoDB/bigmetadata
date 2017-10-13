@@ -1189,7 +1189,6 @@ class DownloadUnzipTask(Task):
         derived from the subclass's :meth:`~.util.classpath` and its
         :attr:`~.task_id`.
         '''
-        import pdb; pdb.set_trace()
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
