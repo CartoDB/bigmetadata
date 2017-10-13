@@ -2080,7 +2080,7 @@ class RunDiff(WrapperTask):
             resp = shell("git diff '{compare}' --name-only | grep '^tasks'".format(
                 compare=self.compare
             ))
-        except CalledProcessError:
+        except subprocess.CalledProcessError:
             # No diffs
             return
         for line in resp.split('\n'):
