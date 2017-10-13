@@ -1,5 +1,3 @@
-# Thanks to
-# https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
 {
   "postgres": {
     "image": "carto/bigmetadata_postgres",
@@ -18,12 +16,9 @@
       "LC_ALL": "C.UTF-8",
       "LANG": "C.UTF-8"
     },
-    "links": [
-      "redis:localhost"
-    ],
     "privileged": true,
     "ports": [
-      "5554:5432" 
+      "5554:5432"
     ]
   },
   "nginx": {
@@ -39,7 +34,6 @@
     ],
   },
   "bigmetadata_daemon": {
-    #"build": ".",
     "image": "carto/bigmetadata",
     "links": [
       "postgres"
@@ -86,36 +80,5 @@
     "env_file": ".env",
     "stdin_open": true,
     "tty": true
-  },
-  "ipython": {
-    "build": "ipython",
-    "ports": [
-      "8888"
-    ],
-    "links": [
-      "bigmetadata_daemon",
-      "postgres"
-    ],
-    "volumes": [
-      ".:/bigmetadata"
-    ],
-    "environment": {
-      "PYTHONPATH": "/bigmetadata",
-      "PGHOST": "postgres",
-      "PGUSER": "docker",
-      "PGPASSWORD": "docker",
-      "PGDATABASE": "test",
-      "LC_ALL": "C.UTF-8",
-      "LANG": "C.UTF-8"
-    },
-    "env_file": ".env",
-    "working_dir": "/tmp/ipython",
-    "command": "sh -c /bigmetadata/ipython/start.sh"
-  },
-  "redis": {
-    "image": "redis",
-    "ports": [
-      "6379"
-    ]
-  },
+  }
 }
