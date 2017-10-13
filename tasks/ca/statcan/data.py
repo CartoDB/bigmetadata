@@ -1,5 +1,5 @@
 import os
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
 
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget

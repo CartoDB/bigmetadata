@@ -431,13 +431,13 @@ class FlexEurostatColumns(ColumnsTask):
         targets_dict = {}
         for colname, col in columns.items():
             if 'flag' not in col.id:
-                for i,v in col.extra.items():
+                for i, v in col.extra.items():
                     if v == 'TOTAL' or v == 'T':
-                        temp = dict((key,value) for key, value in col.extra.items() if key != i)
+                        temp = dict((key, value) for key, value in col.extra.items() if key != i)
                         targets_dict[tuple(temp.items())] = colname
         for colname, col in columns.items():
             denoms = {}
-            for nontotals,code in targets_dict.items():
+            for nontotals, code in targets_dict.items():
                 if all(item in list(col.extra.items()) for item in nontotals) and code != colname:
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms

@@ -266,6 +266,7 @@ class AllQCEW(WrapperTask):
             for qtr in range(1, 5):
                 yield QCEW(year=year, qtr=qtr)
 
+
 class QCEWMetaWrapper(MetaWrapper):
 
     year = IntParameter()
@@ -273,8 +274,8 @@ class QCEWMetaWrapper(MetaWrapper):
     geography = Parameter()
 
     params = {
-        'year': list(range(2012,2016)),
-        'qtr': list(range(1,5)),
+        'year': list(range(2012, 2016)),
+        'qtr': list(range(1, 5)),
         'geography': ['county']
     }
 

@@ -257,7 +257,7 @@ class FranceCensus(TableTask):
         column_targets = self.columns()
         colnames = ', '.join(list(column_targets.keys()))
         colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
-                              for colname, ct in column_targets.items()])
+                                   for colname, ct in column_targets.items()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
                         'FROM {input} '.format(

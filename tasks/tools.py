@@ -17,26 +17,21 @@ def remove_from_do(id):
     numtables = session.execute(
         "SELECT count(*) FROM observatory.obs_table WHERE id LIKE '{}%'"
         .format(id)).fetchone()[0]
-    print(" --> This will delete {} entries from observatory.OBS_TABLE" \
-        .format(numtables))
+    print(" --> This will delete {} entries from observatory.OBS_TABLE".format(numtables))
     for table in session.execute("SELECT id FROM observatory.obs_table WHERE id LIKE '{}%'".format(id)).fetchall():
         print("\t" + table[0])
 
     numcols = session.execute(
         "SELECT count(*) FROM observatory.obs_column WHERE id LIKE '{}%'"
         .format(id)).fetchone()[0]
-    print(" --> This will delete {} entries from observatory.OBS_COLUMNS" \
-        .format(numcols))
+    print(" --> This will delete {} entries from observatory.OBS_COLUMNS".format(numcols))
     for column in session.execute(
-            "SELECT id FROM observatory.obs_column WHERE id LIKE '{}%'".format(id)
-            ).fetchmany(MAX_COLS_TO_PRINT):
+            "SELECT id FROM observatory.obs_column WHERE id LIKE '{}%'".format(id)).fetchmany(MAX_COLS_TO_PRINT):
         print("\t" + column[0])
     if numcols > MAX_COLS_TO_PRINT:
         print("\t... ({} more)".format(numcols - MAX_COLS_TO_PRINT))
-    print(" --> This will drop {} tables from the 'observatory' schema" \
-        .format(session.execute(
-            "SELECT count(*) FROM observatory.obs_table WHERE id LIKE '{}%'"
-            .format(id)).fetchone()[0]))
+    print(" --> This will drop {} tables from the 'observatory' schema".format(session.execute(
+        "SELECT count(*) FROM observatory.obs_table WHERE id LIKE '{}%'".format(id)).fetchone()[0]))
 
     yn = input("Continue? (Y/N) ")
 
@@ -44,8 +39,7 @@ def remove_from_do(id):
         return
 
     for table in session.execute(
-            "SELECT tablename FROM observatory.obs_table WHERE id LIKE '{}%'"
-            .format(id)).fetchall():
+            "SELECT tablename FROM observatory.obs_table WHERE id LIKE '{}%'".format(id)).fetchall():
         session.execute("DROP TABLE observatory.{}".format(table[0]))
         print("Table {} dropped".format(table[0]))
     session.execute("DELETE FROM observatory.obs_table WHERE id LIKE '{}%'".format(id))

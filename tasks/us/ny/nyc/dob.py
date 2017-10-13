@@ -77,9 +77,9 @@ class PermitIssuanceXLS2TempTableTask(TempTableTask):
                     # it's blank, in which case send in NULL
                     else:
                         if cell.value:
-                            vals.append("'{}'".format(str(cell.value)\
-                                                       .replace(":", "::") \
-                                                       .replace("'", "''")))
+                            vals.append("'{}'".format(str(cell.value)
+                                                      .replace(":", "::")
+                                                      .replace("'", "''")))
                         else:
                             vals.append('NULL')
 
