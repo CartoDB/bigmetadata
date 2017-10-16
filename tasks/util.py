@@ -1591,10 +1591,10 @@ class TableTask(Task):
         session = current_session()
         session.execute('ANALYZE {table}'.format(table=self.output().table))
 
-        LOGGER.info('checking for null columns on %s', self.output().table)
-        self.check_null_columns()
-
         if not self._testmode:
+            LOGGER.info('checking for null columns on %s', self.output().table)
+            self.check_null_columns()
+
             LOGGER.info('create_indexes')
             self.create_indexes(output)
             current_session().flush()
