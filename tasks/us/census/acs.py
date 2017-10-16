@@ -223,22 +223,22 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
             tags=[subsections['housing'],subsections['income'],unit_housing])
-    	rent_10_to_15_percent = OBSColumn(
-    		id='B25070003',
-    		type='Numeric',
-    		name='Housing units spending 10 to 14.9% income on rent',
-    		description='Gross rent from 10.0 to 14.9 percent of household income. '
+        rent_10_to_15_percent = OBSColumn(
+            id='B25070003',
+            type='Numeric',
+            name='Housing units spending 10 to 14.9% income on rent',
+            description='Gross rent from 10.0 to 14.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". '
             'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
-    		weight=5,
-    		aggregate='sum',
-    		targets={housing_units_renter_occupied:'denominator'},
-    		tags=[subsections['housing'],subsections['income'],unit_housing])
-    	rent_under_10_percent = OBSColumn(
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing])
+        rent_under_10_percent = OBSColumn(
             id='B25070002',
             type='Numeric',
             name='Housing units spending less than 10% on rent',
