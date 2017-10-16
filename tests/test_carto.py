@@ -7,6 +7,7 @@ from tests.util import runtask, setup, teardown, FakeTask
 from tasks.meta import current_session
 
 import tasks.carto
+import imp
 
 
 @with_setup(setup, teardown)
@@ -16,7 +17,7 @@ def test_empty_obs_meta_to_local():
     creation of blank obs_meta, obs_meta_numer, obs_meta_denom, obs_meta_geom,
     obs_meta_timespan tables.
     '''
-    reload(tasks.carto)
+    imp.reload(tasks.carto)
     task = tasks.carto.OBSMetaToLocal()
     runtask(task)
     session = current_session()
@@ -33,7 +34,7 @@ def test_obs_meta_to_local_overwrites_changes():
     If OBSMetaToLocal is run when obs_meta* already exists, it replaces the
     existing data.
     '''
-    reload(tasks.carto)
+    imp.reload(tasks.carto)
     task = tasks.carto.OBSMetaToLocal()
     runtask(task)
     session = current_session()
@@ -61,7 +62,7 @@ def test_obs_meta_to_local_overwrites_changes():
     assert_equals(session.execute(
         'SELECT COUNT(*) FROM observatory.obs_meta_geom_numer_timespan').fetchone()[0], 1)
 
-    reload(tasks.carto)
+    imp.reload(tasks.carto)
     task = tasks.carto.OBSMetaToLocal(force=True)
     runtask(task)
     assert_equals(session.execute('SELECT COUNT(*) FROM observatory.obs_meta').fetchone()[0], 0)
@@ -84,7 +85,7 @@ def test_obs_meta_to_local_works_twice():
     '''
     Should be possible to run OBSMetaToLocal twice in a row.
     '''
-    reload(tasks.carto)
+    imp.reload(tasks.carto)
     task = tasks.carto.OBSMetaToLocal()
     runtask(task)
     runtask(task)
