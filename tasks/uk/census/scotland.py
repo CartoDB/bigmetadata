@@ -19,7 +19,7 @@ class DownloadScotlandLocal(DownloadUnzipTask):
     URL = 'http://www.scotlandscensus.gov.uk/ods-web/download/getDownloadFile.html?downloadFileIds=Output%20Area%20blk'
 
     def download(self):
-        urllib.retrieve(self.URL, '{}.zip'.format(self.output().path))
+        urllib.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
 
 
 class ImportScotland(TempTableTask):
