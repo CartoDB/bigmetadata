@@ -1,0 +1,554 @@
+{
+	"obs_b9cfbb7fddb54af1cfec091140d7ca8cc7aa753e": {
+		"tableid": "au.geo.geography_ced_2011_1da5f01951",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_0b2dc5db92a3981fa170a8c7c118faf107b8b5c7": {
+		"tableid": "au.geo.geography_gccsa_2011_97245b66f9",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_5af9d7aebcccd055e4ecf8db5d7e56bee6102225": {
+		"tableid": "au.geo.geography_lga_2011_f929b111af",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_f3b628a458375dad12bd56636a8ce7175ec0691b": {
+		"tableid": "au.geo.geography_poa_2011_3934ad5df1",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_29cff3b532d5a31a997450c4ea34ff92670449f5": {
+		"tableid": "au.geo.geography_ra_2011_38be5b45b7",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_c846ae4ea19a71b5026754ec730334e1828c09f2": {
+		"tableid": "au.geo.geography_sa1_2011_a3e9272ad2",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_c8b3f3674d3e6cc15d3e539e99a3446595e4e3e1": {
+		"tableid": "au.geo.geography_sa2_2011_b504ddc185",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_a93b8305fdaca6353f13d524b5699e09d2a43024": {
+		"tableid": "au.geo.geography_sa3_2011_519c1855d0",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_b5b7ab6bbfc1acdd58e7bf770655274468c10988": {
+		"tableid": "au.geo.geography_sa4_2011_cf0a4addb3",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_159cdbfdca8a05f2e857e2fb73778e5a42c4469f": {
+		"tableid": "au.geo.geography_sed_2011_175a8c496d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_a04a326182636456d35810ff5b959ab22a266593": {
+		"tableid": "au.geo.geography_sla_2011_f86dbced1b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_0720c6d6b3e68aade656038ae3abb61d25e5c496": {
+		"tableid": "au.geo.geography_sos_2011_ef0a61a695",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_08118367dd47e63a8c62c075f8eea848e4f66492": {
+		"tableid": "au.geo.geography_sosr_2011_4218ee06c0",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_b520775096e9a55b90407105912efe551d000c34": {
+		"tableid": "au.geo.geography_ssc_2011_35b6f6e60f",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_093ecf5a50ad68bd51d4046fb92e97857eb2ff24": {
+		"tableid": "au.geo.geography_ste_2011_5ec693838b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_07ddb0a92161a5591cb1fa48dc461e28cd8017bf": {
+		"tableid": "au.geo.geography_sua_2011_384b34d687",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_697b5e7e76f3dfde89ff1b4640dac3ccb735e3c6": {
+		"tableid": "au.geo.geography_ucl_2011_1846e88735",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_8252ce72a385c856b9c511b358be3093f321fbc9": {
+		"tableid": "br.geo.geography_distritos_54cf057d29",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_c4368d24861f71128d312aca67c3b67bfadab2bd": {
+		"tableid": "br.geo.geography_municipios_eb72c5cd33",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_eeecc5c3c91f59c30cb1172bc110627d028bb1e7": {
+		"tableid": "br.geo.geography_setores_censitar_65c41a95ac",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_acd076bc2682579524d839ecf4926d58c9754c73": {
+		"tableid": "br.geo.geography_subdistritos_8973b63a7a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_375053d0769d282bd0ce966038a4dbcbda7bb2b6": {
+		"tableid": "ca.statcan.geo.geography_cd_e928e96afb",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_609d382a95d946135a126379f991de6ddc9efc69": {
+		"tableid": "ca.statcan.geo.geography_cma_42eb24c786",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_eec7efe6673a21367062128ab89c2fc30ade88c4": {
+		"tableid": "ca.statcan.geo.geography_csd_06e4ed8015",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_c39a7f544c336527eafd0ec4e3997cf2e0cf4f7f": {
+		"tableid": "ca.statcan.geo.geography_ct_3d994ee11d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_aa1f4434a2a59b2c3bddcc151faac88bf8d6c8e6": {
+		"tableid": "ca.statcan.geo.geography_pr_ce37f70250",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_43157a9633ea9b512d00a8416d5faf1d0c8452fd": {
+		"tableid": "es.cnig.geometry_ccaa_20150101_d1555ad486",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_996dd3a9892052780c1324cfc30905a3baa7c104": {
+		"tableid": "es.cnig.geometry_muni_20150101_03284bbe1a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_1e1b477b08795049609b103572d4174e3bc8c49b": {
+		"tableid": "es.cnig.geometry_prov_20150101_7e66451a39",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_01b060d28ba00522076d6f7d7e8939adc6069c28": {
+		"tableid": "es.ine.geometry_99914b932b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_eee3c3bbab05606724ebe3a5f6d65abadce49f9b": {
+		"tableid": "eu.geo.nuts_geometries_0_5af288f97f",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_ff7c4f032893cee931db20396a7943e1d1aedbae": {
+		"tableid": "eu.geo.nuts_geometries_2_8fd682437e",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_b4cc2483374fbc0ba72657bb7bc24b788a6a01b6": {
+		"tableid": "eu.geo.nuts_geometries_3_6f2da1a549",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_3fb1ba19c92f2d395ca973c1b20d26d73f719e7e": {
+		"tableid": "fr.geo.output_areas_99914b932b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_641417f1852b29b3b71f25176a5b27a81ba6a410": {
+		"tableid": "fr.insee.output_areas_99914b932b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_8d0a17401722815401817127385e57f92986349d": {
+		"tableid": "mx.inegi.geography_ageb_c2b831cb13",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_6a3eaf38fccbb0b955ff489f391a528e260030b4": {
+		"tableid": "mx.inegi.geography_entidad_e0c18e465f",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_61393b71678423695f9bfed791590dd81073d771": {
+		"tableid": "mx.inegi.geography_localidad_urbana_26b065cdbd",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_9ee9d74ff21d3da9784fcd516b20b22ba928c6c4": {
+		"tableid": "mx.inegi.geography_manzana_fc213a4a44",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_366a1365508f0a27c925858ba2afb2d09884e576": {
+		"tableid": "mx.inegi.geography_municipio_1f5cc946d5",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_0f962581687822f24b04f2c7291cace213330abf": {
+		"tableid": "mx.inegi.geography_servicios_area_23d5143f6f",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_22ef53ead17e44478fb65e19006722b304dd7359": {
+		"tableid": "uk.cdrc.output_areas_99914b932b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_06b3cddafd8b3e04b10fc99b06f82f31691adc1f": {
+		"tableid": "us.census.tiger.shoreline_clip_block_2015_51839c2b6d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_33cabe86372ca1577bc7d80917f68f8e90f17fe0": {
+		"tableid": "us.census.tiger.shoreline_clip_block_group_2015_3fe72a3f5a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_3be140b6f2f86ec32666e75ab0ebdfe86d94c8cc": {
+		"tableid": "us.census.tiger.shoreline_clip_cbsa_2015_55f4537bff",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_a852194c8e1fb99ec02b857e9d697f6a4ebb8153": {
+		"tableid": "us.census.tiger.shoreline_clip_census_tract_2015_5b61831d6a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_0a7c48a0e801a67d04065bf13af482c16fdf1304": {
+		"tableid": "us.census.tiger.shoreline_clip_congressional_di_2015_7ff9600e36",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_3b537fe9a1dcdd3be4a53f64429e30a836ecb6ee": {
+		"tableid": "us.census.tiger.shoreline_clip_county_2015_c512ae8318",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_fae094ddb7157380e2495b9867e1f067fdbdf288": {
+		"tableid": "us.census.tiger.shoreline_clip_place_2015_185a6818d6",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_26618855121cec46d025bed89858f0d01e74ec8a": {
+		"tableid": "us.census.tiger.shoreline_clip_puma_2015_4f4037e8c9",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_9ff330b0ce6ba50b58fa12babc86a4a7011e1af2": {
+		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_369babab2d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_f616f1a266f0426af743e4eb5c3971680f7665c1": {
+		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_49f6a20ccd",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_2fa7e708e730b955d88f006d5667be7057f00b9e": {
+		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_75e6b93f63",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_79854433ead0c56f8eccb0eec5d9c43546c9c0b4": {
+		"tableid": "us.census.tiger.shoreline_clip_state_2015_edb7353cc9",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_2ff6a0fbd931c42a5b3a8551c9cf3e81d064aa83": {
+		"tableid": "us.census.tiger.shoreline_clip_zcta5_2015_002ffff4ff",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_5209899540a6fe3f86015ed12ab8d78b67f05efd": {
+		"tableid": "us.census.tiger.sum_level_block_2015_51839c2b6d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_78fb6c1d6ff6505225175922c2c389ce48d7632c": {
+		"tableid": "us.census.tiger.sum_level_block_group_2015_3fe72a3f5a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_b8bfcaa44ee3539892ca501dea806fd2b7edf7f9": {
+		"tableid": "us.census.tiger.sum_level_cbsa_2015_55f4537bff",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_87a814e485deabe3b12545a537f693d16ca702c2": {
+		"tableid": "us.census.tiger.sum_level_census_tract_2015_5b61831d6a",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_664d0ac6cc93a8f8d83553cb454738843132cb4c": {
+		"tableid": "us.census.tiger.sum_level_congressional_di_2015_7ff9600e36",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_0310c639744a2014bb1af82709228f05b59e7d3d": {
+		"tableid": "us.census.tiger.sum_level_county_2015_c512ae8318",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_fd90cd1113e9c4613b771d3546abf96ecbd15bab": {
+		"tableid": "us.census.tiger.sum_level_place_2015_185a6818d6",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_8e4bca8563684e3e6e55902f73e4450148bd591f": {
+		"tableid": "us.census.tiger.sum_level_puma_2015_4f4037e8c9",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_d5cfd7148bd0d1d3522390caa79b3ccd427b1444": {
+		"tableid": "us.census.tiger.sum_level_school_district_2015_369babab2d",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_d7d22bc3c407c27d0c1a9e89a0f31b2d0396c350": {
+		"tableid": "us.census.tiger.sum_level_school_district_2015_49f6a20ccd",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_086a1505412f8a08d57e4230d364a31e28e40c08": {
+		"tableid": "us.census.tiger.sum_level_school_district_2015_75e6b93f63",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_9812b21f90f3e6a885dc546a3c6ad32e0190d723": {
+		"tableid": "us.census.tiger.sum_level_state_2015_edb7353cc9",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_c4411eba732408d47d73281772dbf03d60645dec": {
+		"tableid": "us.census.tiger.sum_level_zcta5_2015_002ffff4ff",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"obs_79bc7396d6368c513fcf707fb1f95bb225e559cd": {
+		"tableid": "us.epa.huc.huc_99914b932b",
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	}
+}
