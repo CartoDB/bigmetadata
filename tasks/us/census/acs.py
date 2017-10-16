@@ -17,7 +17,7 @@ from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from time import time
-from tasks.columns import ColumnsDeclarations
+from columns import ColumnsDeclarations
 
 LOGGER = get_logger(__name__)
 
@@ -3267,10 +3267,9 @@ class Columns(ColumnsTask):
             ("pop_divorced", pop_divorced),
         ])
 
-        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'columns.json'))
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'acs_columns.json'))
         parameters = '{{"year":"{year}","sample":"{sample}", "geography":"{geography}"}}'.format(
                         year=self.year, sample=self.sample, geography=self.geography)
-
         columns = columnsFilter.filter_columns(allColumns, parameters)
 
         united_states_section = input_['sections']['united_states']

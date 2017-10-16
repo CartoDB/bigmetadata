@@ -12,31 +12,29 @@ class ColumnsDeclarations:
             self._columns = json.load(file)
 
     def _find_column(self, colid):
-        return self._columns[colid]
+        return self._columns.get(colid)
 
     def _is_column_filtered(self, colid, parameters):
         params = json.loads(parameters)
 
-        conditions = self._find_column(colid).get(CONDITIONS)
-        if conditions and not self._check_requirements(params, conditions):
+        column = self._find_column(colid)
+        if column:
+            conditions = column.get(CONDITIONS)
+            if conditions and not self._check_requirements(params, conditions):
                 return False
 
-        exceptions = self._find_column(colid).get(EXCEPTIONS)
-        if exceptions and self._check_requirements(params, exceptions):
+            exceptions = column.get(EXCEPTIONS)
+            if exceptions and self._check_requirements(params, exceptions):
                 return False
 
         return True
 
     def _check_requirements(self, parameters, requirements):
         for requirement in requirements:
-            check = True
-            for id, value in parameters.iteritems():
-                try:
-                    if requirement[id] != value:
-                        check = False
-                except:
-                    pass
-            if check:
+            for param_id, value in parameters.iteritems():
+                if param_id in requirement and requirement[param_id] != value:
+                    break
+            else:
                 return True
 
         return False
