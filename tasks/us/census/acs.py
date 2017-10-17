@@ -67,6 +67,8 @@ class Columns(ColumnsTask):
     sample = Parameter()
     geography = Parameter()
 
+    resources = {"obs_column": 1}
+
     def requires(self):
         return {
             'sections': SectionTags(),
@@ -3305,6 +3307,8 @@ class QuantileColumns(ColumnsTask):
     year = Parameter()
     sample = Parameter()
     geography = Parameter()
+
+    resources = {"obs_column": 1}
 
     def requires(self):
         return {
