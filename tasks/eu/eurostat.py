@@ -412,30 +412,20 @@ class FlexEurostatColumns(ColumnsTask):
                 tags=tags,
                 extra=i,
                 )
-            columns[var_code + '_flag'] = OBSColumn(
-                id=var_code + '_flag',
-                name='',
-                type='Text',
-                weight=0,
-                aggregate=None, #???
-                targets={}, #???
-                tags={},
-                extra=i,
-            )
 
-        for colname, col in columns.iteritems():
+        for _, col in columns.iteritems():
             col.tags.append(source)
             col.tags.append(license)
 
 
         targets_dict = {}
-        for colname, col in columns.iteritems():
+        for _, col in columns.iteritems():
             if 'flag' not in col.id:
                 for i,v in col.extra.iteritems():
                     if v == 'TOTAL' or v == 'T':
                         temp = dict((key,value) for key, value in col.extra.iteritems() if key != i)
                         targets_dict[tuple(temp.items())] = colname
-        for colname, col in columns.iteritems():
+        for _, col in columns.iteritems():
             denoms = {}
             for nontotals,code in targets_dict.iteritems():
                 if all(item in col.extra.items() for item in nontotals) and code != colname:
@@ -504,7 +494,7 @@ class TableEU(TableTask):
         column_targets = self._columns
         for colname, coltarget in column_targets.items():
             # print colname
-            if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
+            if colname != 'nuts{}_id'.format(self.nuts_level):
                 col = coltarget.get(session)
                 extra = col.extra
                 multiple = ''
@@ -526,10 +516,9 @@ class TableEU(TableTask):
                     if 'unit' in keys:
                         keys[keys.index('unit')] = unit
                 stmt = '''
-                    INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
+                    INSERT INTO {output} (nuts{level}_id, {colname})
                     SELECT "{geo}",
-                      {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric,
-                      NullIf(SPLIT_PART("{year}", ' ', 2), '')::Text
+                      {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric
                     FROM {input}
                     WHERE ("{input_dims}") = ('{output_dims}')
                     ON CONFLICT (nuts{level}_id)
