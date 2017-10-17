@@ -1,10 +1,10 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
                         DownloadUnzipTask, TagsTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath, MetaWrapper)
+                        underscore_slugify, shell, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR
-from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
+from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSTable, OBSColumn, OBSTag
+from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel
 
@@ -12,6 +12,7 @@ from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
 
 import os
+
 
 class DownloadQCEW(DownloadUnzipTask):
 
@@ -59,6 +60,7 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
+
 class BLSSourceTags(TagsTask):
     def version(self):
         return 1
@@ -68,7 +70,6 @@ class BLSSourceTags(TagsTask):
                        name='Quartery Census of Employment and Wages (QCEW)',
                        type='source',
                        description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
-
 
 
 class QCEWColumns(ColumnsTask):
@@ -190,6 +191,7 @@ class QCEWColumns(ColumnsTask):
             col.tags.append(license)
         return cols
 
+
 class QCEW(TableTask):
 
     year = IntParameter()
@@ -205,11 +207,12 @@ class QCEW(TableTask):
             'naics': OrderedDict()
         }
         for naics_code in NAICS_CODES.keys():
-            # Only include the more general NAICS codes
-            if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
-                requirements['naics'][naics_code] = QCEWColumns(
-                    naics_code=naics_code
-                )
+            if not is_public_administration(naics_code):
+                # Only include the more general NAICS codes
+                if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
+                    requirements['naics'][naics_code] = QCEWColumns(
+                        naics_code=naics_code
+                    )
         return requirements
 
     def timespan(self):
@@ -245,8 +248,7 @@ class QCEW(TableTask):
                 select_colnames.append('''MAX(CASE
                     WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
                 END)::Numeric'''.format(naics_code=naics_code,
-                                        colname=colname
-                                       ))
+                                        colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
                     SELECT area_fips, {select_colnames}
                     FROM {input}
@@ -266,6 +268,7 @@ class AllQCEW(WrapperTask):
             for qtr in xrange(1, 5):
                 yield QCEW(year=year, qtr=qtr)
 
+
 class QCEWMetaWrapper(MetaWrapper):
 
     year = IntParameter()
@@ -273,8 +276,8 @@ class QCEWMetaWrapper(MetaWrapper):
     geography = Parameter()
 
     params = {
-        'year': range(2012,2016),
-        'qtr': range(1,5),
+        'year': range(2012, 2016),
+        'qtr': range(1, 5),
         'geography': ['county']
     }
 
