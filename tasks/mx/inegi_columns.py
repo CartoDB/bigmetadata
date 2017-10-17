@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import os
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
 from tasks.util import ColumnsTask, TagsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-
+from lib.columns import ColumnsDeclarations
+from luigi import Parameter
 from collections import OrderedDict
 
 
@@ -34,6 +36,8 @@ class LicenseTags(TagsTask):
 
 
 class DemographicColumns(ColumnsTask):
+    resolution = Parameter()
+    table = Parameter()
 
     def requires(self):
         return {
@@ -2985,7 +2989,7 @@ class DemographicColumns(ColumnsTask):
             targets={},
         )
 
-        cols = OrderedDict([
+        allColumns = OrderedDict([
             ('pop', pop),
             ('pop_0_2', pop_0_2),
             ('pop_0_4', pop_0_4),
@@ -3316,8 +3320,13 @@ class DemographicColumns(ColumnsTask):
             ('people_per_room', people_per_room),
         ])
 
-        for colname, col in cols.items():
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'inegi_columns.json'))
+        parameters = '{{"resolution":"{resolution}","table":"{table}"}}'.format(
+                        resolution=self.resolution, table=self.table)
+        columns = columnsFilter.filter_columns(allColumns, parameters)
+
+        for _, col in columns.items():
             col.tags.append(source)
             col.tags.append(license)
 
-        return cols
+        return columns
