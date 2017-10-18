@@ -1,26 +1,23 @@
 from tasks.eu.geo import NUTSColumns
-from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
-                        DENOMINATOR, GEOM_REF)
+from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
+from tasks.util import (TableTask, TagsTask, ColumnsTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath, LOGGER)
 
-from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
+from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
-from time import time
+from lib.columns import ColumnsDeclarations
 
 import csv
 import os
 import re
-import itertools
 
-#
 # dl_code_list = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=dic%2Fen%2F{code}.dic".format(code=code)
 # flag_explanation = "http://ec.europa.eu/eurostat/data/database/information"
 # database = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir=data&sort=1&sort=2&start={}".format(first_letter)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=data%2F{}.tsv.gz".format(table_code)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fdemo_r_pjangrp3.tsv.gz
+
 
 class DownloadEurostat(Task):
     table_code = Parameter()
@@ -290,15 +287,18 @@ def simplify_description(description):
     description = re.sub(r' zero$', ' zero employees', description)
     return description
 
+
 class FlexEurostatColumns(ColumnsTask):
 
-    subsection = Parameter() # Ex. 'age_gender'
-    units = Parameter() # Ex. 'people'
+    subsection = Parameter()  # Ex. 'age_gender'
+    units = Parameter()  # Ex. 'people'
+    nuts_level = Parameter()
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
 
     # From tablename, determine basis of name for columns from table_dic.dic
     # Then, look at metabase.txt to find relevant dimensions (exclude "geo" and "time", utilize "unit")
-    # Finally, look up definitions for dimensions from their .dic files, and use that to complete the metadata definition
+    # Finally, look up definitions for dimensions from their .dic files, and use that to complete the
+    # metadata definition
 
     def requires(self):
         return {
@@ -413,6 +413,11 @@ class FlexEurostatColumns(ColumnsTask):
                 extra=i,
                 )
 
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'eurostat_columns.json'))
+        parameters = '{{"subsection":"{subsection}","units":"{units}","nuts_level":"{nuts_level}"}}'.format(
+                         subsection=self.subsection, units=self.units, nuts_level=self.nuts_level)
+        columns = columnsFilter.filter_columns(columns, parameters)
+
         for _, col in columns.iteritems():
             col.tags.append(source)
             col.tags.append(license)
@@ -458,7 +463,8 @@ class TableEU(TableTask):
             'csv': ProcessCSV(table_code=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection,
-                                        units=self.unit),
+                                        units=self.unit,
+                                        nuts_level=self.nuts_level),
             'geometa': NUTSColumns(level=self.nuts_level),
         }
         return requirements
@@ -562,6 +568,7 @@ class AllEUTableYears(Task):
     def complete(self):
         return getattr(self, '_complete', False)
 
+
 class EUColumns(WrapperTask):
     def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
@@ -569,7 +576,9 @@ class EUColumns(WrapperTask):
             for subsection, table_code, nuts, units in reader:
                 yield FlexEurostatColumns(subsection=subsection,
                                           table_name=table_code,
-                                          units=units)
+                                          units=units,
+                                          nuts_level=nuts)
+
 
 class EURegionalTables(WrapperTask):
 
