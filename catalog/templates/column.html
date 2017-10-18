@@ -33,10 +33,11 @@ Code example
 
    .. tab:: {"tab_name": "Boundaries within polygon"}
 
-      Obtain all {% if col.extra['stats'] %}{{ col.extra['stats']['count'] }}{% endif %} "{{ col.name }}" geometries:
+      Insert all {% if col.extra['stats'] %}{{ col.extra['stats']['count'] }}{% endif %} "{{ col.name }}" geometries into another table:
 
       .. code-block:: postgresql
 
+          INSERT INTO <table_to_update> (cartodb_id, the_geom, geom_refs, the_geom_webmercator)
           SELECT ROW_NUMBER() OVER () AS cartodb_id,
                  the_geom,
                  geom_refs,
@@ -48,12 +49,34 @@ Code example
 
    .. tab:: {"tab_name": "Boundaries by identifier in another table"}
 
+      Update the boundaries in another table matching the table's ID column.
+
+      .. code-block:: postgresql
+
+          WITH data AS (
+            SELECT cartodb_id AS id
+            FROM <table_to_update>
+          ),
+          meta AS (
+            SELECT OBS_GetMeta(ST_MakeEnvelope(-179, 89, 179, -89, 4326),
+              '[{"geom_id": "{{ col.id }}"}]'
+            ) meta
+          )
+          UPDATE <table_to_update> SET
+                geomref = data->0->>'geomref',
+                the_geom = (data->0->>'value')::Geometry,
+                the_geom_webmercator = ST_Transform((data->0->>'value')::Geometry, 3857)
+          FROM OBS_GetData(
+                (SELECT Array_agg(id) FROM data),
+                (SELECT meta FROM meta)) obs_data
+          WHERE <table_to_update>.cartodb_id = obs_data.id
+
       Obtain boundaries matched to another table's ID column.
 
       .. code-block:: postgresql
 
           WITH ids AS (
-          SELECT ARRAY_AGG(<id_col>) ids
+          SELECT ARRAY_AGG(cartodb_id) ids
             FROM <table_with_ids>
           ),
           meta AS (
@@ -417,6 +440,14 @@ Source
     {% else %}
       * Not available
     {% endfor %}
+
+{% if col.type.lower() == 'geometry' %}
+Time (default is latest)
+~~~~~~~~~~~~~~~~~~~~~~~~
+  {% for gt in col.timespan|sort(True) %}
+      * {{ gt }}
+  {% endfor %}
+{% endif %}
 
 License
 ~~~~~~~
