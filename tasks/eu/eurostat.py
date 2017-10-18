@@ -424,22 +424,22 @@ class FlexEurostatColumns(ColumnsTask):
 
         targets_dict = {}
         for colname, col in columns.iteritems():
-            for i,v in col.extra.iteritems():
+            for i, v in col.extra.iteritems():
                 if v == 'TOTAL' or v == 'T':
-                    temp = dict((key,value) for key, value in col.extra.iteritems() if key != i)
+                    temp = dict((key, value) for key, value in col.extra.iteritems() if key != i)
                     targets_dict[tuple(temp.items())] = colname
 
         for colname, col in columns.iteritems():
             denoms = {}
-            for nontotals,code in targets_dict.iteritems():
+            for nontotals, code in targets_dict.iteritems():
                 if all(item in col.extra.items() for item in nontotals) and code != colname:
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms
 
-        nonsum = ['proportion','average','percentage','rate',r'%','share']
+        nonsum = ['proportion', 'average', 'percentage', 'rate', r'%', 'share']
         for _, col in columns.iteritems():
             if any(word in col.name.lower() for word in nonsum):
-                col.aggregate=None
+                col.aggregate = None
         return columns
 
 
