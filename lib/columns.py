@@ -8,8 +8,8 @@ EXCEPTIONS = "exceptions"
 
 class ColumnsDeclarations:
     def __init__(self, JSONFile):
-        with open(JSONFile) as file:
-            self._columns = json.load(file)
+        with open(JSONFile) as infile:
+            self._columns = json.load(infile)
 
     def _find_column(self, colid):
         return self._columns.get(colid)
@@ -21,13 +21,13 @@ class ColumnsDeclarations:
         if column:
             conditions = column.get(CONDITIONS)
             if conditions and not self._check_requirements(params, conditions):
-                return False
+                return True
 
             exceptions = column.get(EXCEPTIONS)
             if exceptions and self._check_requirements(params, exceptions):
-                return False
+                return True
 
-        return True
+        return False
 
     def _check_requirements(self, parameters, requirements):
         for requirement in requirements:
@@ -40,4 +40,4 @@ class ColumnsDeclarations:
         return False
 
     def filter_columns(self, columns, parameters):
-        return OrderedDict([[k, v] for k, v in columns.items() if self._is_column_filtered(k, parameters)])
+        return OrderedDict([[k, v] for k, v in columns.items() if not self._is_column_filtered(k, parameters)])
