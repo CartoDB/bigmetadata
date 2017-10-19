@@ -119,7 +119,7 @@ class SimplifyGeometriesMapshaper(Task):
 
 def simplification_factor(schema, table, geomfield, divisor_power):
     session = CurrentSession().get()
-    return session.execute('SELECT AVG(ST_Perimeter({geomfield}) / ST_NPoints({geomfield})) / 10 ^ ({divisor} / 10) '
+    return session.execute('SELECT AVG(ST_Perimeter({geomfield}) / ST_NPoints({geomfield})) / 10 ^ ({divisor}::Decimal / 10) '
                            'from "{schema}".{table}'.format(
                             schema=schema, table=table, geomfield=geomfield, divisor=divisor_power
                            )).fetchone()[0]
