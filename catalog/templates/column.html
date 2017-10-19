@@ -37,7 +37,7 @@ Code example
 
       .. code-block:: postgresql
 
-          INSERT INTO <table_to_update> (cartodb_id, the_geom, geom_refs, the_geom_webmercator)
+          INSERT INTO <table_to_update> (cartodb_id, the_geom, name, the_geom_webmercator)
           SELECT ROW_NUMBER() OVER () AS cartodb_id,
                  the_geom,
                  geom_refs,
