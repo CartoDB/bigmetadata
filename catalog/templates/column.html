@@ -54,7 +54,7 @@ Code example
       .. code-block:: postgresql
 
           WITH data AS (
-            SELECT cartodb_id AS id
+            SELECT geo_id AS id
             FROM <table_to_update>
           ),
           meta AS (
@@ -63,20 +63,19 @@ Code example
             ) meta
           )
           UPDATE <table_to_update> SET
-                geomref = data->0->>'geomref',
                 the_geom = (data->0->>'value')::Geometry,
                 the_geom_webmercator = ST_Transform((data->0->>'value')::Geometry, 3857)
           FROM OBS_GetData(
                 (SELECT Array_agg(id) FROM data),
                 (SELECT meta FROM meta)) obs_data
-          WHERE <table_to_update>.cartodb_id = obs_data.id
+          WHERE <table_to_update>.geo_id = obs_data.id
 
       Obtain boundaries matched to another table's ID column.
 
       .. code-block:: postgresql
 
           WITH ids AS (
-          SELECT ARRAY_AGG(cartodb_id) ids
+            SELECT ARRAY_AGG(geo_id) ids
             FROM <table_with_ids>
           ),
           meta AS (
