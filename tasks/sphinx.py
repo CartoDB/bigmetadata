@@ -198,7 +198,7 @@ class GenerateRST(Task):
                     FIRST(c.aggregate),
                     JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                     'name' suggested_name,
-                    FIRST(tab.timespan) timespan,
+                    ARRAY_AGG(DISTINCT tab.timespan) timespan,
                     ARRAY[]::Text[] denoms,
                     ARRAY[]::Text[],
                     ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
