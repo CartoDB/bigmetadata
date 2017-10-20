@@ -138,7 +138,7 @@
 	"obs_8252ce72a385c856b9c511b358be3093f321fbc9": {
 		"tableid": "br.geo.geography_distritos_54cf057d29",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "10",
 		"maxmemory": "8192",
 		"skipfailures": "no"
@@ -146,7 +146,7 @@
 	"obs_c4368d24861f71128d312aca67c3b67bfadab2bd": {
 		"tableid": "br.geo.geography_municipios_eb72c5cd33",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "10",
 		"maxmemory": "8192",
 		"skipfailures": "no"
@@ -154,7 +154,7 @@
 	"obs_eeecc5c3c91f59c30cb1172bc110627d028bb1e7": {
 		"tableid": "br.geo.geography_setores_censitar_65c41a95ac",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "10",
 		"maxmemory": "8192",
 		"skipfailures": "no"
@@ -162,7 +162,7 @@
 	"obs_acd076bc2682579524d839ecf4926d58c9754c73": {
 		"tableid": "br.geo.geography_subdistritos_8973b63a7a",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "10",
 		"maxmemory": "8192",
 		"skipfailures": "no"
