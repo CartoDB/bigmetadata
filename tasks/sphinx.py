@@ -102,7 +102,7 @@ class GenerateRST(Task):
             licenses=session.query(OBSTag).filter(
                 OBSTag.type == 'license').order_by(OBSTag.name),
             **self.template_globals()
-        ).encode('utf8'))
+        ))
         fhandle.close()
 
     def build_sources(self, target):
@@ -112,7 +112,7 @@ class GenerateRST(Task):
             sources=session.query(OBSTag).filter(
                 OBSTag.type == 'source').order_by(OBSTag.name),
             **self.template_globals()
-        ).encode('utf8'))
+        ))
         fhandle.close()
 
     def run(self):
@@ -155,7 +155,7 @@ class GenerateRST(Task):
                 subsection=subsection,
                 format=self.format,
                 **self.template_globals()
-            ).encode('utf8'))
+            ))
 
             fhandle.close()
 
@@ -323,7 +323,7 @@ class GenerateRST(Task):
             column_file.write(COLUMN_TEMPLATE.render(
                 intermediate_path='/'.join(path[:-1]),
                 numchildren=numchildren,
-                col=column, **self.template_globals()).encode('utf8'))
+                col=column, **self.template_globals()))
 
 class Catalog(Task):
 
