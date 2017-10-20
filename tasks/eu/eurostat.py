@@ -321,7 +321,7 @@ class FlexEurostatColumns(ColumnsTask):
         subsectiontags = input_['subsection']
         unittags = input_['units']
         eu = input_['section']['eu']
-        license = input_['license']['eurostat-license']
+        licensing = input_['license']['eurostat-license']
         source = input_['source']['eurostat-source']
 
         cache = CACHE
@@ -354,11 +354,6 @@ class FlexEurostatColumns(ColumnsTask):
 
         table_desc = tables[self.table_name]
         variable_name = table_desc.split('by')[0].strip()
-        # for possible_tablenames, table_description in cache.get('table_dic.dic')
-        #     if self.table_name.lower() == possible_tablenames.lower():
-                # table_desc = table_description
-                # variable_name = table_description.split('by')[0].strip()
-                # break
 
         for i in cross_prod:
             dimdefs = []
@@ -420,7 +415,7 @@ class FlexEurostatColumns(ColumnsTask):
 
         for _, col in columns.iteritems():
             col.tags.append(source)
-            col.tags.append(license)
+            col.tags.append(licensing)
 
         targets_dict = {}
         for colname, col in columns.iteritems():
@@ -497,21 +492,10 @@ class TableEU(TableTask):
         session.flush()
         column_targets = self._columns
         for colname, coltarget in column_targets.items():
-            # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level):
                 col = coltarget.get(session)
                 extra = col.extra
                 multiple = ''
-                # if 'unit' in extra.keys():
-                #     multiplier = extra['unit']
-                #     if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
-                #         multiple = '1000*'
-                #     if "MIO" in multiplier:
-                #         multiple = '1000000*'
-                #     else:
-                #         multiple = ''
-                # else:
-                #     multiple = ''
                 keys = extra.keys()
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
@@ -591,26 +575,3 @@ class EURegionalTables(WrapperTask):
                                       subsection=subsection,
                                       nuts_level=nuts,
                                       unit=units)
-
-# class EUMetaWrapper(MetaWrapper):
-#
-#     table_name = Parameter()
-#     subsection = Parameter()
-#     nuts_level = Parameter()
-#     unit = Parameter()
-#     year = Parameter()
-#
-#     params = {
-#         'table_name': ,
-#         'subsection': ,
-#         'nuts_level': ,
-#         'unit': ,
-#         'year': ,
-#     }
-#
-#     def tables(self):
-#         yield TableEU(table_name=self.table_name,
-#                       subsection=self.subsection,
-#                       nuts_level=self.nuts_level,
-#                       unit=self.unit,
-#                       year=self.year)
