@@ -36,7 +36,7 @@ class ExportShapefile(Task):
             self.output().fs.mkdir(temp_path)
             cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
                 '{skipfailures} ' \
-                '"PG:dbname=$PGDATABASE active_schema={schema}" {table} '.format(
+                '"PG:dbname=$PGDATABASE active_schema={schema}" {table} -nlt MultiPolygon'.format(
                     shapefile=os.path.join(temp_path, shp_filename(self.table)), schema=self.schema, table=self.table,
                     skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
             shell(cmd)
