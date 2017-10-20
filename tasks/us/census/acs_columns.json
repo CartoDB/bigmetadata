@@ -1,0 +1,2153 @@
+{
+	"armed_forces": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"asian_male_45_54": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"asian_male_55_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"black_male_45_54": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"black_male_55_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"bachelors_degree_2": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"bachelors_degree_or_higher_25_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"children": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"children_in_single_female_hh": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"commuters_by_bus": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"commuters_by_car_truck_van": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"commuters_by_carpool": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"commuters_by_subway_or_elevated": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"commuters_drove_alone": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"different_house_year_ago_different_city": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"different_house_year_ago_same_city": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_agriculture_forestry_fishing_hunting_mining": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_arts_entertainment_recreation_accommodation_food": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_construction": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_education_health_social": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_finance_insurance_real_estate": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_information": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_manufacturing": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_other_services_not_public_admin": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_public_administration": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_retail_trade": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_science_management_admin_waste": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_transportation_warehousing_utilities": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"employed_wholesale_trade": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"female_female_households": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"four_more_cars": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"gini_index": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"graduate_professional_degree": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"group_quarters": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"high_school_including_ged": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"hispanic_male_45_54": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"hispanic_male_55_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"households_public_asst_or_food_stamps": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"in_grades_1_to_4": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"in_grades_5_to_8": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"in_grades_9_to_12": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"in_school": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"in_undergrad_college": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"less_than_high_school_graduate": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_associates_degree": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_bachelors_degree": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_graduate_degree": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_grade_9_12": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_high_school": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_some_college": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_64_less_than_9_grade": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_45_to_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"male_male_households": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"management_business_sci_arts_employed": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"no_car": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"no_cars": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"not_us_citizen_pop": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"occupation_management_arts": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"occupation_natural_resources_construction_maintenance": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"occupation_production_transportation_material": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"occupation_sales_office": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"occupation_services": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"one_car": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"three_cars": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"two_cars": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"pop_25_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"pop_determined_poverty_status": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"population_1_year_and_over": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"population_3_years_over": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"poverty": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"sales_office_employed": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"some_college_and_associates_degree": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"walked_to_work": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"white_male_45_54": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"white_male_55_64": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"worked_at_home": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"workers_16_and_over": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			}
+		]
+	},
+	"associates_degree": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"bachelors_degree": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"high_school_diploma": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"less_one_year_college": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"masters_degree": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"one_year_more_college": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"pop_25_years_over": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"commute_35_44_mins": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"commute_60_more_mins": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"commute_less_10_mins": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"commuters_16_over": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2014",
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "state"
+			}
+		]
+	},
+	"civilian_labor_force": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"employed_pop": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"not_in_labor_force": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"pop_16_over": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"pop_in_labor_force": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"unemployed_pop": {
+		"exceptions": [
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2010",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2010",
+				"geography": "county"
+			},
+			{
+				"year": "2010",
+				"geography": "place"
+			},
+			{
+				"year": "2010",
+				"geography": "puma"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2010",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2010",
+				"geography": "state"
+			}
+		]
+	},
+	"hispanic_any_race": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			}
+		]
+	},
+	"pop_5_years_over": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			}
+		]
+	},
+	"speak_only_english_at_home": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			}
+		]
+	},
+	"speak_spanish_at_home": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			}
+		]
+	},
+	"speak_spanish_at_home_low_english": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"sample": "1yr",
+				"geography": "school_district_unified"
+			}
+		]
+	},
+	"pop_15_and_over": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	},
+	"pop_divorced": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	},
+	"pop_never_married": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	},
+	"pop_now_married": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	},
+	"pop_separated": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	},
+	"pop_widowed": {
+		"exceptions": [
+			{
+				"sample": "5yr",
+				"geography": "block_group"
+			},
+			{
+				"year": "2015",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2015",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2015",
+				"geography": "county"
+			},
+			{
+				"year": "2015",
+				"geography": "place"
+			},
+			{
+				"year": "2015",
+				"geography": "puma"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2015",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2015",
+				"geography": "state"
+			},
+			{
+				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			}
+		]
+	}
+}

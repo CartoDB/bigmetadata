@@ -383,7 +383,7 @@ mx-census:
 		--parallel-scheduling --workers=8
 
 ### uk
-uk-all: uk-census uk-geo
+uk-all: uk-geo uk-census
 
 uk-geo:
 	docker-compose run --rm bigmetadata luigi \
@@ -392,7 +392,7 @@ uk-geo:
 
 uk-census:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.uk.ons tasks.uk.ons.EnglandWalesMetaWrapper \
+		--module tasks.uk.census tasks.uk.census.wrapper.CensusWrapper \
 		--parallel-scheduling --workers=8
 
 ### us
