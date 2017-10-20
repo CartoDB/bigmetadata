@@ -231,8 +231,8 @@ class Columns(ColumnsTask):
         filepath = "meta/{tablename}.csv".format(tablename=self.tablename)
 
         session = current_session()
-        with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
-            reader = csv.reader(tsvfile, delimiter=',', quotechar='"')
+        with open(os.path.join(os.path.dirname(__file__), filepath)) as tsvfile:
+            reader = csv.reader(tsvfile, delimiter=',', quotechar='"', encoding='latin1')
 
             for line in reader:
                 # skip headers
@@ -240,8 +240,7 @@ class Columns(ColumnsTask):
                     continue
 
                 col_id = line[0]
-                col_name_pt = line[1].decode('latin1')
-                col_name_en = line[2]
+                col_name_pt = line[1]
                 col_unit = line[3]
                 denominators = line[4]
                 col_subsections = line[5]

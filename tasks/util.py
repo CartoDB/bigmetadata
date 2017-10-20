@@ -53,7 +53,7 @@ def get_logger(name):
 LOGGER = get_logger(__name__)
 
 
-def shell(cmd):
+def shell(cmd, encoding='utf-8'):
     '''
     Run a shell command, uses :py:func:`subprocess.check_output(cmd,
     shell=True)` under the hood.
@@ -62,7 +62,7 @@ def shell(cmd):
     none-zero exit code.
     '''
     try:
-        return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode('utf-8')
+        return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode(encoding)
     except subprocess.CalledProcessError as err:
         LOGGER.error(err.output)
         raise
@@ -1377,7 +1377,7 @@ class CSV2TempTableTask(TempTableTask):
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 "{csv}"'.format(csv=csv)).strip()
+        header_row = shell('head -n 1 "{csv}"'.format(csv=csv), encoding=self.encoding).strip()
         return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
 
     def read_method(self, fname):
@@ -1392,7 +1392,7 @@ class CSV2TempTableTask(TempTableTask):
         session = current_session()
         session.execute('CREATE TABLE {output} ({coldef})'.format(
             output=self.output().table,
-            coldef=', '.join(['"{}" {}'.format(c[0].decode(self.encoding), c[1]) for c in self.coldef()])
+            coldef=', '.join(['"{}" {}'.format(c[0], c[1]) for c in self.coldef()])
         ))
         session.commit()
         options = ['''
