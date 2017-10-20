@@ -3,7 +3,7 @@
 		"tableid": "au.geo.geography_ced_2011_1da5f01951",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -19,7 +19,7 @@
 		"tableid": "au.geo.geography_lga_2011_f929b111af",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "17",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -27,7 +27,7 @@
 		"tableid": "au.geo.geography_poa_2011_3934ad5df1",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "15",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -43,7 +43,7 @@
 		"tableid": "au.geo.geography_sa1_2011_a3e9272ad2",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "11",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -51,7 +51,7 @@
 		"tableid": "au.geo.geography_sa2_2011_b504ddc185",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "11",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -59,7 +59,7 @@
 		"tableid": "au.geo.geography_sa3_2011_519c1855d0",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "11",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -75,7 +75,7 @@
 		"tableid": "au.geo.geography_sed_2011_175a8c496d",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "11",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -83,7 +83,7 @@
 		"tableid": "au.geo.geography_sla_2011_f86dbced1b",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "14",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -107,7 +107,7 @@
 		"tableid": "au.geo.geography_ssc_2011_35b6f6e60f",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "13",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -123,7 +123,7 @@
 		"tableid": "au.geo.geography_sua_2011_384b34d687",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "12",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -131,7 +131,7 @@
 		"tableid": "au.geo.geography_ucl_2011_1846e88735",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "13",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -139,7 +139,7 @@
 		"tableid": "br.geo.geography_distritos_54cf057d29",
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -147,7 +147,7 @@
 		"tableid": "br.geo.geography_municipios_eb72c5cd33",
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
+		"factor": "12",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -155,7 +155,7 @@
 		"tableid": "br.geo.geography_setores_censitar_65c41a95ac",
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -171,7 +171,7 @@
 		"tableid": "ca.statcan.geo.geography_cd_e928e96afb",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "13.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -195,7 +195,7 @@
 		"tableid": "ca.statcan.geo.geography_ct_3d994ee11d",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -203,7 +203,7 @@
 		"tableid": "ca.statcan.geo.geography_pr_ce37f70250",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "12",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -243,7 +243,7 @@
 		"tableid": "eu.geo.nuts_geometries_0_5af288f97f",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "9.7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -251,7 +251,7 @@
 		"tableid": "eu.geo.nuts_geometries_2_8fd682437e",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "9.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -259,7 +259,7 @@
 		"tableid": "eu.geo.nuts_geometries_3_6f2da1a549",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "9.1",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -283,7 +283,7 @@
 		"tableid": "mx.inegi.geography_ageb_c2b831cb13",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -291,7 +291,7 @@
 		"tableid": "mx.inegi.geography_entidad_e0c18e465f",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -299,7 +299,7 @@
 		"tableid": "mx.inegi.geography_localidad_urbana_26b065cdbd",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "6.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -307,7 +307,7 @@
 		"tableid": "mx.inegi.geography_manzana_fc213a4a44",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -315,7 +315,7 @@
 		"tableid": "mx.inegi.geography_municipio_1f5cc946d5",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -331,7 +331,7 @@
 		"tableid": "uk.cdrc.output_areas_99914b932b",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "9",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
