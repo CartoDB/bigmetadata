@@ -267,7 +267,7 @@ test-catalog:
 diff-catalog: clean-catalog
 	git fetch origin master
 	docker-compose run -e PGDATABASE=test -e ENVIRONMENT=test --rm bigmetadata /bin/bash -c \
-	  'python -c "from tests.util import recreate_db; recreate_db()" && \
+	  'python3 -c "from tests.util import recreate_db; recreate_db()" && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog'
 
