@@ -62,7 +62,7 @@ def shell(cmd):
     none-zero exit code.
     '''
     try:
-        return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+        return subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode('utf-8')
     except subprocess.CalledProcessError as err:
         LOGGER.error(err.output)
         raise
