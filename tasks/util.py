@@ -788,7 +788,18 @@ class TableTarget(Target):
             session.add(coltable)
 
 
-class ColumnsTask(Task):
+class NamespacedTask(Task):
+    '''
+    This task overrides the default luigi task id in order to include the classpath.
+    This avoids naming conflicts with tasks with the same name in different packages.
+    '''
+
+    def __init__(self, *args, **kwargs):
+        Task.__init__(self, *args, **kwargs)
+        self.task_id = '{path}.{id}'.format(path=classpath(self), id=self.task_id)
+
+
+class ColumnsTask(NamespacedTask):
     '''
     The ColumnsTask provides a structure for generating metadata. The only
     required method is :meth:`~.ColumnsTask.columns`.
@@ -809,7 +820,6 @@ class ColumnsTask(Task):
     column is updated or not depends on whether it exists in the database with
     the same :meth:`~.ColumnsTask.version` number.
     '''
-
     def columns(self):
         '''
         This method must be overriden in subclasses.  It must return a
@@ -921,7 +931,7 @@ class ColumnsTask(Task):
         return []
 
 
-class TagsTask(Task):
+class TagsTask(NamespacedTask):
     '''
     This will update-or-create :class:`OBSTag <tasks.meta.OBSTag>` objects
     int the database when run.
@@ -930,7 +940,6 @@ class TagsTask(Task):
 
     :meth:`~TagsTask.version` is used to control updates to the database.
     '''
-
     def tags(self):
         '''
         This method must be overwritten in subclasses.
