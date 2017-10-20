@@ -788,18 +788,7 @@ class TableTarget(Target):
             session.add(coltable)
 
 
-class NamespacedTask(Task):
-    '''
-    This task overrides the default luigi task id in order to include the classpath.
-    This avoids naming conflicts with tasks with the same name in different packages.
-    '''
-
-    def __init__(self, *args, **kwargs):
-        Task.__init__(self, *args, **kwargs)
-        self.task_id = '{path}.{id}'.format(path=classpath(self), id=self.task_id)
-
-
-class ColumnsTask(NamespacedTask):
+class ColumnsTask(Task):
     '''
     The ColumnsTask provides a structure for generating metadata. The only
     required method is :meth:`~.ColumnsTask.columns`.
@@ -820,6 +809,7 @@ class ColumnsTask(NamespacedTask):
     column is updated or not depends on whether it exists in the database with
     the same :meth:`~.ColumnsTask.version` number.
     '''
+
     def columns(self):
         '''
         This method must be overriden in subclasses.  It must return a
@@ -931,7 +921,7 @@ class ColumnsTask(NamespacedTask):
         return []
 
 
-class TagsTask(NamespacedTask):
+class TagsTask(Task):
     '''
     This will update-or-create :class:`OBSTag <tasks.meta.OBSTag>` objects
     int the database when run.
@@ -940,6 +930,7 @@ class TagsTask(NamespacedTask):
 
     :meth:`~TagsTask.version` is used to control updates to the database.
     '''
+
     def tags(self):
         '''
         This method must be overwritten in subclasses.
@@ -1237,7 +1228,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), self.task_id)
+        return PostgresTarget(classpath(self), self.task_id.split('.')[-1])
 
 
 @TempTableTask.event_handler(Event.START)
