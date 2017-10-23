@@ -8,6 +8,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -20,6 +24,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -32,6 +40,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -44,6 +56,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -56,6 +72,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -68,6 +88,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -80,6 +104,10 @@
 			{
 				"resolution": "ageb",
 				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
 			}
 		]
 	},
@@ -92,6 +120,10 @@
 			{
 				"resolution": "manzana",
 				"table": "scony"
+			},
+			{
+				"resolution": "manzana",
+				"table": "mig"
 			}
 		]
 	},
