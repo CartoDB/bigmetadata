@@ -34,7 +34,7 @@
     ],
   },
   "bigmetadata_daemon": {
-    "image": "carto/bigmetadata:python3",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres"
     ],
@@ -58,7 +58,7 @@
     "command": "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && luigid'"
   },
   "bigmetadata": {
-    "image": "carto/bigmetadata:python3",
+    "image": "carto/bigmetadata",
     "links": [
       "postgres",
       "bigmetadata_daemon",

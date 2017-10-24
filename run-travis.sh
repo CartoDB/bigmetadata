@@ -8,4 +8,4 @@ docker run \
              -e LC_ALL=C.UTF-8 -e LANG=C.UTF-8 \
              -e LUIGI_CONFIG_PATH=/bigmetadata/conf/luigi_client.cfg \
              -e TRAVIS=$TRAVIS \
-   carto/bigmetadata:python3 /bin/bash -c "$1"
+   carto/bigmetadata /bin/bash -c "$1"
