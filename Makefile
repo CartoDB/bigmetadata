@@ -366,7 +366,7 @@ fr-insee:
 
 fr-income:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.fr_income IRISIncomeTables \
+		--module tasks.fr.fr_income tasks.fr.fr_income.IRISIncomeTables \
 		--parallel-scheduling --workers=8
 
 ### mx
