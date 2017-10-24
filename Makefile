@@ -330,7 +330,7 @@ es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.$1 tasks.$1.$2 \
+		--module tasks.es.ine tasks.es.ine.PopulationHouseholdsHousingMeta \
 		--parallel-scheduling --workers=8
 
 es-ine-fyp:
