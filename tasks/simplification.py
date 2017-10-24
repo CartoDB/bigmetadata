@@ -161,6 +161,9 @@ class SimplifyGeometriesPostGIS(Task):
                             fields=', '.join([x[0] if x[0] != self.geomfield else simplified_geomfield
                                              for x in columns])))
         session.commit()
+        session.execute('CREATE INDEX {table_out}_{geomfield}_geo ON '
+                        '"{schema}".{table_out} USING GIST ({geomfield})'.format(
+                            table_out=self.output().tablename, geomfield=self.geomfield))
 
     def output(self):
         return PostgresTarget(self.schema, self.table_out)

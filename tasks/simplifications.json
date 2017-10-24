@@ -337,11 +337,9 @@
 	},
 	"obs_06b3cddafd8b3e04b10fc99b06f82f31691adc1f": {
 		"tableid": "us.census.tiger.shoreline_clip_block_2015_51839c2b6d",
-		"simplification": "mapshaper",
+		"simplification": "postgis",
 		"geomfield": "the_geom",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "40"
 	},
 	"obs_33cabe86372ca1577bc7d80917f68f8e90f17fe0": {
 		"tableid": "us.census.tiger.shoreline_clip_block_group_2015_3fe72a3f5a",
@@ -441,11 +439,9 @@
 	},
 	"obs_5209899540a6fe3f86015ed12ab8d78b67f05efd": {
 		"tableid": "us.census.tiger.sum_level_block_2015_51839c2b6d",
-		"simplification": "mapshaper",
+		"simplification": "postgis",
 		"geomfield": "the_geom",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "40"
 	},
 	"obs_78fb6c1d6ff6505225175922c2c389ce48d7632c": {
 		"tableid": "us.census.tiger.sum_level_block_group_2015_3fe72a3f5a",
