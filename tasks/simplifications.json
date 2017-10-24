@@ -347,7 +347,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_block_group_2015_3fe72a3f5a",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -355,7 +355,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_cbsa_2015_55f4537bff",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -363,7 +363,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_census_tract_2015_5b61831d6a",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -371,7 +371,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_congressional_di_2015_7ff9600e36",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -379,7 +379,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_county_2015_c512ae8318",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -387,7 +387,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_place_2015_185a6818d6",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -395,7 +395,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_puma_2015_4f4037e8c9",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -403,7 +403,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_369babab2d",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -411,7 +411,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_49f6a20ccd",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -419,7 +419,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_school_district_2015_75e6b93f63",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -427,7 +427,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_state_2015_edb7353cc9",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -435,7 +435,7 @@
 		"tableid": "us.census.tiger.shoreline_clip_zcta5_2015_002ffff4ff",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -451,7 +451,7 @@
 		"tableid": "us.census.tiger.sum_level_block_group_2015_3fe72a3f5a",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -459,7 +459,7 @@
 		"tableid": "us.census.tiger.sum_level_cbsa_2015_55f4537bff",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -467,7 +467,7 @@
 		"tableid": "us.census.tiger.sum_level_census_tract_2015_5b61831d6a",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -475,7 +475,7 @@
 		"tableid": "us.census.tiger.sum_level_congressional_di_2015_7ff9600e36",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -483,7 +483,7 @@
 		"tableid": "us.census.tiger.sum_level_county_2015_c512ae8318",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -491,7 +491,7 @@
 		"tableid": "us.census.tiger.sum_level_place_2015_185a6818d6",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -499,7 +499,7 @@
 		"tableid": "us.census.tiger.sum_level_puma_2015_4f4037e8c9",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -507,7 +507,7 @@
 		"tableid": "us.census.tiger.sum_level_school_district_2015_369babab2d",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -515,7 +515,7 @@
 		"tableid": "us.census.tiger.sum_level_school_district_2015_49f6a20ccd",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -523,7 +523,7 @@
 		"tableid": "us.census.tiger.sum_level_school_district_2015_75e6b93f63",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -531,7 +531,7 @@
 		"tableid": "us.census.tiger.sum_level_state_2015_edb7353cc9",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -539,7 +539,7 @@
 		"tableid": "us.census.tiger.sum_level_zcta5_2015_002ffff4ff",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
@@ -547,7 +547,7 @@
 		"tableid": "us.epa.huc.huc_99914b932b",
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
-		"factor": "10",
+		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	}
