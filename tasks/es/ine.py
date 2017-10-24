@@ -1805,7 +1805,7 @@ class FiveYearPopulationParse(Task):
         self.output().makedirs()
         with self.output().open('w') as outfile:
             section = None
-            with self.input().open() as infile:
+            with open(self.input().path, encoding='latin1') as infile:
                 for line in infile:
                     line = line.strip()
                     if line.startswith('VALUES'):
