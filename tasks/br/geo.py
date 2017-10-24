@@ -116,9 +116,8 @@ DATA_STATES = (
     'to'
 )
 
-class BaseParams:
-    __metaclass__ = ABCMeta
 
+class BaseParams(metaclass=ABCMeta):
     resolution = Parameter(default=GEO_I)
     state = Parameter(default='ac')
 
@@ -264,12 +263,12 @@ class Geography(TableTask):
 
     def populate(self):
         session = current_session()
-        for _, input_ in self.input()['data'].iteritems():
+        for _, input_ in self.input()['data'].items():
             intable = input_.table
             column_targets = self.columns()
-            out_colnames = column_targets.keys()
+            out_colnames = list(column_targets.keys())
             in_columns = ['"{}"::{}'.format(colname, ct.get(session).type)
-                           for colname, ct in column_targets.iteritems()]
+                          for colname, ct in column_targets.items()]
             session.execute('INSERT INTO {output} ({out_colnames}) '
                             'SELECT {in_columns} '
                             'FROM {input} '.format(

@@ -57,17 +57,17 @@ def populate():
                                        tile_id=1,
                                        tile=EMPTY_RASTER
                                       ))
-        for colname, datacol in datacols.iteritems():
+        for colname, datacol in datacols.items():
             if colname.endswith('pop'):
                 datacol.tags.append(TagTarget(population_tag, FakeTask()))
                 datacol.tags.append(TagTarget(source_tag, FakeTask()))
-            for table in tables.values():
+            for table in list(tables.values()):
                 coltable = OBSColumnTable(column=datacol,
                                           table=table,
                                           colname=colname)
                 session.add(coltable)
             session.add(datacol)
-        for table in tables.values():
+        for table in list(tables.values()):
             session.add(table)
 
 
@@ -130,7 +130,7 @@ def test_column_to_column_target():
         assert_equals(0, len(column.sources))
         assert_equals(1, len(column.targets))
 
-        target, reltype = column.targets.items()[0]
+        target, reltype = list(column.targets.items())[0]
         assert_equals(target.id, '"us.census.acs".total_pop')
         assert_equals(reltype, 'denominator')
 

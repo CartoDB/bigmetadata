@@ -363,21 +363,21 @@ class FlexEurostatColumns(ColumnsTask):
         for i in cross_prod:
             dimdefs = []
             if len(cross_prod) > 1: # Multiple variables
-                var_code = underscore_slugify(self.table_name+"_".join(i.values()))
+                var_code = underscore_slugify(self.table_name+"_".join(list(i.values())))
                 if len(i) == 1: # Only one dimension, usually "unit"
-                    for unit_dic, unit_value in i.iteritems():
+                    for unit_dic, unit_value in i.items():
                         units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
                         dimdefs.append(units[unit_value])
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
                 else: # multiple dimensions, ignore "unit" when building name
-                    for dimname, dimvalue in i.iteritems():
+                    for dimname, dimvalue in i.items():
                         if dimname != 'unit':
                             dim_dic = cache.get('dic_lists/{dimension}.dic'.format(dimension=dimname))
                             dimdefs.append(dim_dic[dimvalue])
                         description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
             else: # Only one variable
                 var_code = underscore_slugify(self.table_name)
-                for unit_dic, unit_value in i.iteritems():
+                for unit_dic, unit_value in i.items():
                     units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
                     dimdefs.append(units[unit_value])
                 description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
@@ -423,27 +423,27 @@ class FlexEurostatColumns(ColumnsTask):
                 extra=i,
             )
 
-        for colname, col in columns.iteritems():
+        for colname, col in columns.items():
             col.tags.append(source)
             col.tags.append(license)
 
 
         targets_dict = {}
-        for colname, col in columns.iteritems():
+        for colname, col in columns.items():
             if 'flag' not in col.id:
-                for i,v in col.extra.iteritems():
+                for i, v in col.extra.items():
                     if v == 'TOTAL' or v == 'T':
-                        temp = dict((key,value) for key, value in col.extra.iteritems() if key != i)
+                        temp = dict((key, value) for key, value in col.extra.items() if key != i)
                         targets_dict[tuple(temp.items())] = colname
-        for colname, col in columns.iteritems():
+        for colname, col in columns.items():
             denoms = {}
-            for nontotals,code in targets_dict.iteritems():
-                if all(item in col.extra.items() for item in nontotals) and code != colname:
+            for nontotals, code in targets_dict.items():
+                if all(item in list(col.extra.items()) for item in nontotals) and code != colname:
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms
 
         nonsum = ['proportion','average','percentage','rate',r'%','share']
-        for colname, col in columns.iteritems():
+        for colname, col in columns.items():
             if 'flag' not in col.id:
                 if any(word in col.name.lower() for word in nonsum):
                     col.aggregate=None
@@ -486,7 +486,7 @@ class TableEU(TableTask):
         input_ = self.input()
         path_to_csv = input_['csv'].path
         with open(path_to_csv) as csvfile:
-            header = csvfile.next()
+            header = next(csvfile)
             header = re.split(',',header)
         unit = None
         for i,val in enumerate(header):
@@ -502,7 +502,7 @@ class TableEU(TableTask):
             level=self.nuts_level))
         session.flush()
         column_targets = self._columns
-        for colname, coltarget in column_targets.items():
+        for colname, coltarget in list(column_targets.items()):
             # print colname
             if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
                 col = coltarget.get(session)
@@ -518,7 +518,7 @@ class TableEU(TableTask):
                 #         multiple = ''
                 # else:
                 #     multiple = ''
-                keys = extra.keys()
+                keys = list(extra.keys())
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
                 # \time"

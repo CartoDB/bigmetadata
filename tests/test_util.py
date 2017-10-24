@@ -228,8 +228,8 @@ def test_columns_task_creates_columns_only_when_run():
         foobar = session.query(OBSColumn).get('test_util.foobar')
         assert_equals(len(pop.sources), 1)
         assert_equals(len(foobar.targets), 1)
-        assert_equals(pop.sources.keys()[0].id, foobar.id)
-        assert_equals(foobar.targets.keys()[0].id, pop.id)
+        assert_equals(list(pop.sources.keys())[0].id, foobar.id)
+        assert_equals(list(foobar.targets.keys())[0].id, pop.id)
 
     assert_equals(True, task.complete())
 
@@ -261,7 +261,7 @@ def test_columns_task_with_tags_def_one_tag():
     task = TestColumnsTaskWithOneTag()
     runtask(task)
     output = task.output()
-    for coltarget in output.values():
+    for coltarget in list(output.values()):
         assert_in('section', [t.name for t in coltarget._column.tags],
                   'Section tag not added from tags method')
 
@@ -284,7 +284,7 @@ def test_columns_task_with_tags_def_two_tags():
     task = TestColumnsTaskWithTwoTags()
     runtask(task)
     output = task.output()
-    for coltarget in output.values():
+    for coltarget in list(output.values()):
         assert_in('section', [t.name for t in coltarget._column.tags],
                   'Section tag not added from tags method')
         assert_in('subsection', [t.name for t in coltarget._column.tags],

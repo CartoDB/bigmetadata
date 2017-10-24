@@ -105,7 +105,7 @@ def measures_for_hometype(hometype):
 
 
 def hometype_measures():
-    for hometype, hometype_human in HOMETYPES.iteritems():
+    for hometype, hometype_human in HOMETYPES.items():
         for measure in measures_for_hometype(hometype):
             measure_human = MEASURES_HUMAN[measure]
             measure_unit = MEASURES_UNITS[measure]
@@ -358,8 +358,8 @@ class AllZillow(WrapperTask):
     def requires(self):
         now = datetime.now()
         for geography in ('Zip', ):
-            for year in xrange(2010, now.year + 1):
-                for month in xrange(1, 13):
+            for year in range(2010, now.year + 1):
+                for month in range(1, 13):
                     if now.year == year and now.month <= month:
                         continue
                     if year == 2010 and month <= 10:
@@ -376,8 +376,8 @@ class ZillowMetaWrapper(MetaWrapper):
 
     params = {
         'geography': ['Zip'],
-        'year': range(2010, now.year + 1),
-        'month': range(1, 13)
+        'year': list(range(2010, now.year + 1)),
+        'month': list(range(1, 13))
     }
 
     def tables(self):

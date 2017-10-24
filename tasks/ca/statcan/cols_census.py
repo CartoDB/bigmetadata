@@ -12453,7 +12453,7 @@ class CensusColumns(ColumnsTask):
             ('t010c006_t', t010c006_t),
             ('t010c007_t', t010c007_t),
         ])
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             col.tags.append(license)
             col.tags.append(source)
         return cols

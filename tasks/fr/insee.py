@@ -121,8 +121,8 @@ class SourceTags(TagsTask):
             OBSTag(id='insee',
                    name='National Institute of Statistics and Economic Studies (INSEE)',
                    type='source',
-                   description=u'The `Institut national de la statistique et '
-                   u'des études économiques <http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm>`_.')
+                   description='The `Institut national de la statistique et '
+                   'des études économiques <http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensement/resultats/2012/donnees-detaillees-recensement-2012.htm>`_.')
         ]
 
 
@@ -135,7 +135,7 @@ class LicenseTags(TagsTask):
             OBSTag(id='insee-license',
                    name='INSEE Copyright',
                    type='license',
-                   description=u'Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`_.')
+                   description='Commercial reuse permissible, more details `here <http://www.insee.fr/en/service/default.asp?page=rediffusion/copyright.htm>`_.')
         ]
 
 
@@ -219,7 +219,7 @@ class FrenchColumns(ColumnsTask):
         source = input_['source']['insee']
         license = input_['license']['insee-license']
 
-        for _, col in cols.iteritems():
+        for _, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
 
@@ -255,9 +255,9 @@ class FranceCensus(TableTask):
         session = current_session()
 
         column_targets = self.columns()
-        colnames = ', '.join(column_targets.keys())
+        colnames = ', '.join(list(column_targets.keys()))
         colnames_typed = ','.join(['"{}"::{}'.format(colname, ct.get(session).type)
-                              for colname, ct in column_targets.iteritems()])
+                                   for colname, ct in column_targets.items()])
         session.execute('INSERT INTO {output} ({ids}) '
                         'SELECT {ids_typed} '
                         'FROM {input} '.format(

@@ -44,7 +44,7 @@ class SourceTags(TagsTask):
             OBSTag(id='ibge-censo',
                    name='Censo Demográfico Instituto Brasileiro de Geografia e Estatística (IBGE)',
                    type='source',
-                   description=u'The `Instituto Brasileiro de Geografia e Estatística <http://ibge.gov.br>`_ `Censo Demográfico <http://censo2010.ibge.gov.br/>`')
+                   description='The `Instituto Brasileiro de Geografia e Estatística <http://ibge.gov.br>`_ `Censo Demográfico <http://censo2010.ibge.gov.br/>`')
         ]
 
 
@@ -55,7 +55,7 @@ class LicenseTags(TagsTask):
             OBSTag(id='ibge-license',
                    name='Law No. 12,527, OF November 18, 2011',
                    type='license',
-                   description=u'Full text is `here <http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Lei/L12527.htm>`_')
+                   description='Full text is `here <http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Lei/L12527.htm>`_')
         ]
 
 
@@ -231,7 +231,7 @@ class Columns(ColumnsTask):
         filepath = "meta/{tablename}.csv".format(tablename=self.tablename)
 
         session = current_session()
-        with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
+        with open(os.path.join(os.path.dirname(__file__), filepath), encoding='latin1') as tsvfile:
             reader = csv.reader(tsvfile, delimiter=',', quotechar='"')
 
             for line in reader:
@@ -240,8 +240,7 @@ class Columns(ColumnsTask):
                     continue
 
                 col_id = line[0]
-                col_name_pt = line[1].decode('latin1')
-                col_name_en = line[2]
+                col_name_pt = line[1]
                 col_unit = line[3]
                 denominators = line[4]
                 col_subsections = line[5]
@@ -252,7 +251,7 @@ class Columns(ColumnsTask):
 
                 # validate the col_id (VXXX)
                 if not self.validate_id(col_id):
-                    print('*******col_id not valid', col_id)
+                    print(('*******col_id not valid', col_id))
                     continue
 
                 # parse targets
@@ -336,7 +335,7 @@ class Censos(TableTask):
         cols['Cod_setor'] = input_['geometa']['{}'.format(GEOGRAPHY_CODES[self.resolution])]
         # For some reason, state 'go' is missing columns 843 through 860 in
         # Entorno05
-        for colname, coltarget in input_['meta'].iteritems():
+        for colname, coltarget in input_['meta'].items():
             # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
             #if skip_pre_861 and int(colname.split('V')[-1]) < 861:
             #    continue
@@ -348,13 +347,13 @@ class Censos(TableTask):
             raise Exception('Data only supported for setores_censitarios')
         session = current_session()
         column_targets = self.columns()
-        out_colnames = column_targets.keys()
+        out_colnames = list(column_targets.keys())
 
-        for state, input_ in self.input()['data'].iteritems():
+        for state, input_ in self.input()['data'].items():
             intable = input_.table
 
             in_colnames = ['"{}"::{}'.format(colname.split('_')[1], ct.get(session).type)
-                           for colname, ct in column_targets.iteritems()]
+                           for colname, ct in column_targets.items()]
             # skip_pre_861
             if self.tablename == 'Entorno05' and state.lower() == 'go':
                 for i, in_colname in enumerate(in_colnames):

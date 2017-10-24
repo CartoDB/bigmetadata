@@ -138,7 +138,7 @@ class GeometryColumns(ColumnsTask):
             ('muni', muni),
         ])
 
-        for _, col in columns.iteritems():
+        for _, col in columns.items():
             col.tags.append(source)
             col.tags.append(license)
 
@@ -158,7 +158,7 @@ class GeomRefColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        for colname, coltarget in self.input()['geom_cols'].iteritems():
+        for colname, coltarget in self.input()['geom_cols'].items():
             cols['id_' + colname] = OBSColumn(
                 type='Text',
                 name='',
@@ -181,7 +181,7 @@ class GeomNameColumns(ColumnsTask):
 
     def columns(self):
         cols = OrderedDict()
-        for colname, coltarget in self.input()['geom_cols'].iteritems():
+        for colname, coltarget in self.input()['geom_cols'].items():
             cols['name_' + colname] = OBSColumn(
                 id='name_' + colname,
                 type='Text',

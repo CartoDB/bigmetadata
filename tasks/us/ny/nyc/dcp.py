@@ -871,8 +871,8 @@ class MapPLUTO(TableTask):
         input_ = self.input()
         session = current_session()
         incols = ['"{}"::{}'.format(colname, col.get(session).type)
-                  for colname, col in self.columns().iteritems()]
-        for borough, data in self.input()['data'].iteritems():
+                  for colname, col in self.columns().items()]
+        for borough, data in self.input()['data'].items():
             session.execute('''
                 INSERT INTO {output}
                 SELECT {incols} FROM {intable}

@@ -17,7 +17,7 @@ from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from time import time
-from columns import ColumnsDeclarations
+from .columns import ColumnsDeclarations
 
 LOGGER = get_logger(__name__)
 
@@ -239,22 +239,22 @@ class Columns(ColumnsTask):
             aggregate='sum',
             targets={housing_units_renter_occupied:'denominator'},
             tags=[subsections['housing'],subsections['income'],unit_housing])
-    	rent_10_to_15_percent = OBSColumn(
-    		id='B25070003',
-    		type='Numeric',
-    		name='Housing units spending 10 to 14.9% income on rent',
-    		description='Gross rent from 10.0 to 14.9 percent of household income. '
+        rent_10_to_15_percent = OBSColumn(
+            id='B25070003',
+            type='Numeric',
+            name='Housing units spending 10 to 14.9% income on rent',
+            description='Gross rent from 10.0 to 14.9 percent of household income. '
             'Computed ratio of monthly gross rent to monthly household income '
             '(total household income divided by 12). '
             'The ratio is computed separately for each unit and is rounded to the nearest tenth. '
             'Units for which no rent is paid and units occupied by households that report no income or a net '
             'loss comprise the category, "Not computed". '
             'Gross rent as a percentage of household income provides information on the monthly housing cost expenses for renters. ',
-    		weight=5,
-    		aggregate='sum',
-    		targets={housing_units_renter_occupied:'denominator'},
-    		tags=[subsections['housing'],subsections['income'],unit_housing])
-    	rent_under_10_percent = OBSColumn(
+            weight=5,
+            aggregate='sum',
+            targets={housing_units_renter_occupied:'denominator'},
+            tags=[subsections['housing'],subsections['income'],unit_housing])
+        rent_under_10_percent = OBSColumn(
             id='B25070002',
             type='Numeric',
             name='Housing units spending less than 10% on rent',
@@ -3277,7 +3277,7 @@ class Columns(ColumnsTask):
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
         no_restrictions = input_['license']['no-restrictions']
-        for _, col in columns.iteritems():
+        for _, col in columns.items():
             col.tags.append(united_states_section)
             col.tags.append(acs_source)
             col.tags.append(no_restrictions)
@@ -3327,7 +3327,7 @@ class QuantileColumns(ColumnsTask):
     def columns(self):
         quantile_columns = OrderedDict()
         input_ = self.input()
-        for colname, coltarget in input_['columns'].iteritems():
+        for colname, coltarget in input_['columns'].items():
             col = coltarget.get(current_session())
             quantile_columns[colname+'_quantile'] = OBSColumn(
                 id=col.id.split('.')[-1]+'_quantile',
@@ -3380,12 +3380,12 @@ class Quantiles(TableTask):
     def populate(self):
         connection = current_session()
         input_ = self.input()
-        quant_col_names = input_['columns'].keys()
+        quant_col_names = list(input_['columns'].keys())
         old_col_names = [name.split("_quantile")[0]
                          for name in quant_col_names]
 
         insert = True
-        for cols in grouper(zip(quant_col_names, old_col_names), 20):
+        for cols in grouper(list(zip(quant_col_names, old_col_names)), 20):
             selects = [" percent_rank() OVER (ORDER BY {old_col} ASC) as {old_col} ".format(old_col=c[1])
                        for c in cols if c is not None]
 
@@ -3457,7 +3457,7 @@ class Extract(TableTask):
         cols = OrderedDict([
             ('geoid', input_['tiger'][self.geography + '_geoid']),
         ])
-        for colkey, col in input_['acs'].iteritems():
+        for colkey, col in input_['acs'].items():
             cols[colkey] = col
         return cols
 
@@ -3471,7 +3471,7 @@ class Extract(TableTask):
         colnames = []
         tableids = set()
         inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-        for colname, coltarget in self.columns().iteritems():
+        for colname, coltarget in self.columns().items():
             colid = coltarget.get(session).id
             tableid = colid.split('.')[-1][0:-3]
             if colid.endswith('geoid'):
