@@ -107,17 +107,29 @@ kill:
 
 # http://stackoverflow.com/questions/2214575/passing-arguments-to-make-run#2214593
 ifeq (run,$(firstword $(MAKECMDGOALS)))
-  # use the rest as arguments for "run"
-  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # https://stackoverflow.com/questions/10571658/gnu-make-convert-spaces-to-colons
+  space :=
+  space +=
+  # From word 2 to the end is the task
+  TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # Split the quelified task into words and remove the last word (task name) to get the module name
+  MOD_NAME := $(subst $(space),.,$(filter-out $(word $(words $(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))),$(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))), $(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))))
   # ...and turn them into do-nothing targets
-  $(eval $(RUN_ARGS):;@:)
+  $(eval $(TASK):;@:)
+  $(eval $(MOD_NAME):;@:)
 endif
 
 ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
-  # use the rest as arguments for "run"
-  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # https://stackoverflow.com/questions/10571658/gnu-make-convert-spaces-to-colons
+  space :=
+  space +=
+  # From word 2 to the end is the task
+  TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # Split the quelified task into words and remove the last word (task name) to get the module name
+  MOD_NAME := $(subst $(space),.,$(filter-out $(word $(words $(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))),$(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))), $(subst ., ,$(wordlist 2,2,$(MAKECMDGOALS)))))
   # ...and turn them into do-nothing targets
-  $(eval $(RUN_ARGS):;@:)
+  $(eval $(TASK):;@:)
+  $(eval $(MOD_NAME):;@:)
 endif
 
 ifeq (deps-tree,$(firstword $(MAKECMDGOALS)))
@@ -130,10 +142,10 @@ endif
 .PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
-	docker-compose run --rm bigmetadata luigi --local-scheduler --module $(RUN_ARGS)
+	docker-compose run --rm bigmetadata luigi --local-scheduler --module $(MOD_NAME) $(TASK)
 
 run-parallel:
-	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module $(RUN_ARGS)
+	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module $(MOD_NAME) $(TASK)
 
 dump: test
 	docker-compose run --rm bigmetadata luigi --module tasks.carto tasks.carto.DumpS3
