@@ -537,7 +537,7 @@ class AllEUTableYears(Task):
     def run(self):
         csv_path = self.input().path
         with open(csv_path, 'r') as csvfile:
-            headers = csvfile.next().split(',')
+            headers = next(csvfile).split(',')
 
         years = [h.strip() for h in headers if h.strip()[-4:].isdigit()]
         for year in years:
