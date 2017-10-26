@@ -1,5 +1,5 @@
 import sys
-from .meta import CurrentSession
+from meta import CurrentSession
 
 REMOVE_FROM_DO = "removeFromDO"
 
