@@ -68,7 +68,7 @@ class CensusColumns(ColumnsTask):
 
     def columns(self):
         input_ = self.input()
-        sources = input_['source'].values()
+        sources = list(input_['source'].values())
         license_tag = input_['license']['uk_ogl']
         uk = input_['sections']['uk']
         subsections = input_['subsections']

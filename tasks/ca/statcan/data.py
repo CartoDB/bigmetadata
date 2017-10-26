@@ -1,5 +1,5 @@
 import os
-import urllib
+import urllib.request
 
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
@@ -35,16 +35,14 @@ SURVEY_URLS = {
 URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-telecharger/comprehensive/comp_download.cfm?CTLG={survey_code}&FMT=CSV{geo_code}'
 
 
-class BaseParams:
-    __metaclass__ = ABCMeta
-
+class BaseParams(metaclass=ABCMeta):
     resolution = Parameter(default=GEO_PR)
     survey = Parameter(default=SURVEY_CEN)
 
 
 class DownloadData(BaseParams, DownloadUnzipTask):
     def download(self):
-        urllib.urlretrieve(url=URL.format(
+        urllib.request.urlretrieve(url=URL.format(
                            survey_url=SURVEY_URLS[self.survey],
                            survey_code=SURVEY_CODES[self.survey],
                            geo_code=GEOGRAPHY_CODES[self.resolution],
@@ -195,7 +193,7 @@ class Survey(BaseParams, TableTask):
         cols = OrderedDict()
         input_ = self.input()
         cols['geo_code'] = input_['geometa']['geom_id']
-        for colname, coltarget in input_['meta'].iteritems():
+        for colname, coltarget in input_['meta'].items():
             if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
                 cols[colname] = coltarget
         return cols
@@ -203,9 +201,9 @@ class Survey(BaseParams, TableTask):
     def populate(self):
         session = current_session()
         columns = self.columns()
-        out_colnames = columns.keys()
+        out_colnames = list(columns.keys())
         in_table = self.input()['data']
-        in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+        in_colnames = [ct._id.split('.')[-1] for ct in list(columns.values())]
         in_colnames[0] = 'geo_code'
         for i, in_c in enumerate(in_colnames):
             cmd =   "SELECT 'exists' FROM information_schema.columns " \
@@ -249,7 +247,7 @@ class Census(Survey):
 
 class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
-        topic_range = range(1, 11)   # 1-10
+        topic_range = list(range(1, 11))   # 1-10
 
         for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
             for count in topic_range:
@@ -273,7 +271,7 @@ class NHS(Survey):
 
 class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
-        topic_range = range(1, 30)   # 1-29
+        topic_range = list(range(1, 30))   # 1-29
 
         for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
             for count in topic_range:

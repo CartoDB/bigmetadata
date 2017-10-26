@@ -102,7 +102,7 @@ class GenerateRST(Task):
             licenses=session.query(OBSTag).filter(
                 OBSTag.type == 'license').order_by(OBSTag.name),
             **self.template_globals()
-        ).encode('utf8'))
+        ))
         fhandle.close()
 
     def build_sources(self, target):
@@ -112,13 +112,13 @@ class GenerateRST(Task):
             sources=session.query(OBSTag).filter(
                 OBSTag.type == 'source').order_by(OBSTag.name),
             **self.template_globals()
-        ).encode('utf8'))
+        ))
         fhandle.close()
 
     def run(self):
         session = current_session()
 
-        for section_subsection, target in self.output().iteritems():
+        for section_subsection, target in self.output().items():
             section_id, subsection_id = section_subsection
 
             if section_id == 'licenses':
@@ -155,7 +155,7 @@ class GenerateRST(Task):
                 subsection=subsection,
                 format=self.format,
                 **self.template_globals()
-            ).encode('utf8'))
+            ))
 
             fhandle.close()
 
@@ -198,7 +198,7 @@ class GenerateRST(Task):
                     FIRST(c.aggregate),
                     JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                     'name' suggested_name,
-                    FIRST(tab.timespan) timespan,
+                    ARRAY_AGG(DISTINCT tab.timespan) timespan,
                     ARRAY[]::Text[] denoms,
                     ARRAY[]::Text[],
                     ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
@@ -215,7 +215,7 @@ class GenerateRST(Task):
             GROUP BY 1, 8
         '''.format("', '".join(boundary_ids)))
         boundary_data = self._parse_columns(boundaries_detail_result)
-        return {k: {} for k in boundary_data.keys()}, boundary_data
+        return {k: {} for k in list(boundary_data.keys())}, boundary_data
 
     def _numerators_tree(self, section_id, subsection_id):
         numerator_paths_result = current_session().execute('''
@@ -295,10 +295,10 @@ class GenerateRST(Task):
                 'suggested_name': col[7],
                 'timespan': col[8],
                 'licenses': [tag_id.split('/')[1]
-                             for tag_id, tag_name in col[6].iteritems()
+                             for tag_id, tag_name in col[6].items()
                              if tag_id.startswith('license/')],
                 'sources': [tag_id.split('/')[1]
-                            for tag_id, tag_name in col[6].iteritems()
+                            for tag_id, tag_name in col[6].items()
                             if tag_id.startswith('source/')],
                 'denoms': col[9],
                 'geom_timespans': geom_timespans,
@@ -307,7 +307,7 @@ class GenerateRST(Task):
         return all_columns
 
     def _write_column_tree(self, path, tree, all_columns):
-        for column_id, subtree in tree.iteritems():
+        for column_id, subtree in tree.items():
             column_path = path + [column_id]
             self._write_column(
                 column_path,
@@ -323,7 +323,7 @@ class GenerateRST(Task):
             column_file.write(COLUMN_TEMPLATE.render(
                 intermediate_path='/'.join(path[:-1]),
                 numchildren=numchildren,
-                col=column, **self.template_globals()).encode('utf8'))
+                col=column, **self.template_globals()))
 
 class Catalog(Task):
 

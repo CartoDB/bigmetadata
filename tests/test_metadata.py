@@ -1,6 +1,7 @@
 import os
 from tests.util import runtask, setup, teardown
 from tasks.util import TableTask
+import imp
 # Monkeypatch TableTask
 TableTask._test = True
 
@@ -29,7 +30,7 @@ def test_table_task(klass, params):
     task = klass(**params)
     runtask(task, superclasses=[TagsTask, ColumnsTask, TableTask])
 
-    reload(tasks.carto)
+    imp.reload(tasks.carto)
     obs_meta_to_local = tasks.carto.OBSMetaToLocal()
 
     runtask(obs_meta_to_local)

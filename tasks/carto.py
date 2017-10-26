@@ -99,7 +99,7 @@ class SyncAllData(WrapperTask):
             '''
         )])
 
-        for tablename, version in tables.iteritems():
+        for tablename, version in tables.items():
             if version > existing_table_versions.get(tablename):
                 force = True
             else:
@@ -857,7 +857,7 @@ class DropRemoteOrphanTables(Task):
         resp = query_cartodb('SELECT tablename FROM obs_table')
         tablenames = set([r['tablename'] for r in resp.json()['rows']])
         remote_tables = []
-        for page in xrange(self.start, self.end + 1):
+        for page in range(self.start, self.end + 1):
             remote_tables.extend(shell("curl -s '{cartodb_url}/datasets?page={page}' "
                                        "| grep -Eo 'obs_[0-f]{{40}}' | uniq".format(
                                            cartodb_url=os.environ['CARTODB_URL'],
@@ -901,7 +901,7 @@ class OBSMetaToLocal(OBSMeta):
         shell("psql -c 'VACUUM ANALYZE observatory.obs_meta_next'")
 
         try:
-            for dimension, queries in self.DIMENSIONS.iteritems():
+            for dimension, queries in self.DIMENSIONS.items():
                 before = time.time()
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next_{dimension}'.format(
                     dimension=dimension))
@@ -927,7 +927,7 @@ class OBSMetaToLocal(OBSMeta):
         try:
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
             session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta')
-            for dimension, query in self.DIMENSIONS.iteritems():
+            for dimension, query in self.DIMENSIONS.items():
                 session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
                     dimension=dimension
                 ))
