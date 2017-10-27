@@ -286,178 +286,118 @@ deps-tree:
 
 ### au
 au-all:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.data tasks.au.data.BCPAllGeographiesAllTables --year 2011 \
-	  --parallel-scheduling --workers=8
+	 au.data.BCPAllGeographiesAllTables --year 2011
 
 au-geo:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.geo tasks.au.geo.AllGeographies --year 2011 \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel au.geo.AllGeographies --year 2011
 
 ### br
 br-all: br-geo br-census
 
 br-census:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.br.data tasks.br.data.CensosAllGeographiesAllTables \
-		--parallel-scheduling --workers=8
+	make -- run-parallel br.data.CensosAllGeographiesAllTables
 
 br-geo:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.br.geo tasks.br.geo.AllGeographies \
-		--parallel-scheduling --workers=8
+	make -- run-parallel br.geo.AllGeographies
 
 ### ca
 ca-all: ca-nhs-all ca-census-all
 
 ca-nhs-all:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.data tasks.ca.statcan.data.AllNHSTopics \
-		--parallel-scheduling --workers=8
+	make -- run-parallel ca.statcan.data.AllNHSTopics
 
 ca-census-all:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.data tasks.ca.statcan.data.AllCensusTopics \
-		--parallel-scheduling --workers=8
+	make -- run-parallel ca.statcan.data.AllCensusTopics
 
 ca-geo:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.geo tasks.ca.statcan.geo.AllGeographies \
-		--parallel-scheduling --workers=8
+	make -- run-parallel ca.statcan.geo.AllGeographies
 
 ### es
 es-all: es-cnig es-ine
 
 es-cnig:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.cnig tasks.es.cnig.AllGeometries \
-		--parallel-scheduling --workers=8
+	make -- run-parallel es.cnig.AllGeometries
 
 es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.ine tasks.es.ine.PopulationHouseholdsHousingMeta \
-		--parallel-scheduling --workers=8
+	make -- run-parallel es.ine.PopulationHouseholdsHousingMeta
 
 es-ine-fyp:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.ine tasks.es.ine.FiveYearPopulationMeta \
-		--parallel-scheduling --workers=8
+	make -- run-parallel es.ine.FiveYearPopulationMeta
 
 ### eurostat
 eu-all: eu-geo eu-data
 
 eu-geo:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.geo tasks.eu.geo.AllNUTSGeometries \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel eu.geo.AllNUTSGeometries
 
 eu-data:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.eurostat tasks.eu.eurostat.EURegionalTables \
-	  --workers=1
+	make -- run eu.eurostat.EURegionalTables
 
 ### fr
 fr-all: fr-geo fr-insee fr-income
 
 fr-geo:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.geo tasks.fr.geo.AllGeo \
-		--parallel-scheduling --workers=8
+	make -- run-parallel fr.geo.AllGeo
 
 fr-insee:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.insee tasks.fr.insee.InseeAll \
-		--parallel-scheduling --workers=8
+	make -- run-parallel fr.insee.InseeAll
 
 fr-income:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.fr_income tasks.fr.fr_income.IRISIncomeTables \
-		--parallel-scheduling --workers=8
+	make -- run-parallel fr.fr_income.IRISIncomeTables
 
 ### mx
 mx-all: mx-geo mx-census
 
 mx-geo:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.mx.inegi tasks.mx.inegi.AllGeographies \
-		--parallel-scheduling --workers=8
+	make -- run-parallel mx.inegi.AllGeographies
 
 mx-census:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.mx.inegi tasks.mx.inegi.AllCensus \
-		--parallel-scheduling --workers=8
+	make -- run-parallel mx.inegi.AllCensus
 
 ### uk
 uk-all: uk-geo uk-census
 
 uk-geo:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.uk.cdrc tasks.uk.cdrc.CDRCMetaWrapper \
-		--parallel-scheduling --workers=8
+	make -- run-parallel uk.cdrc.CDRCMetaWrapper
 
 uk-census:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.uk.census tasks.uk.census.wrapper.CensusWrapper \
-		--parallel-scheduling --workers=8
+	make -- run-parallel uk.census.wrapper.CensusWrapper
 
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
 us-bls:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.bls tasks.us.bls.AllQCEW \
-		--parallel-scheduling --workers=8
+	make -- run-parallel us.bls.AllQCEW
 
 us-acs:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.census.acs tasks.us.census.acs.ACSAll \
-		--parallel-scheduling --workers=8
+	make -- run-parallel us.census.acs.ACSAll
 
 us-lodes:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.census.lodes tasks.us.census.lodes.LODESMetaWrapper --geography block --year 2013 \
-		--parallel-scheduling --workers=8
+	make -- run-parallel us.census.lodes.LODESMetaWrapper --geography block --year 2013
 
 us-spielman:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper \
-		--parallel-scheduling --workers=8
+	make -- run-parallel us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper
 
 us-tiger:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.tiger tasks.us.census.tiger.AllSumLevels --year 2015 \
-	  --workers=8
+	make -- run-parallel us.census.tiger tasks.us.census.tiger.AllSumLevels --year 2015
 
 us-enviroatlas:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.epa.enviroatlas tasks.us.epa.enviroatlas.AllTables \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel us.epa.enviroatlas tasks.us.epa.enviroatlas.AllTables
 
 us-huc:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.epa.huc tasks.us.epa.huc.HUC \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel us.epa.huc tasks.us.epa.huc.HUC
 
 us-dcp:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.ny.nyc.dcp tasks.us.ny.nyc.dcp.MapPLUTOAll \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel us.ny.nyc.dcp tasks.us.ny.nyc.dcp.MapPLUTOAll
 
 us-dob:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.ny.nyc.dob tasks.us.ny.nyc.dob.PermitIssuance \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel us.ny.nyc.dob tasks.us.ny.nyc.dob.PermitIssuance
 
 us-zillow:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.zillow tasks.us.zillow.AllZillow \
-	  --parallel-scheduling --workers=8
+	make -- run-parallel us.zillow tasks.us.zillow.AllZillow
 
 ### who's on first
 wof-all:
-	docker-compose run --rm bigmetadata luigi \
-		--module tasks.whosonfirst tasks.whosonfirst.AllWOF \
-		--parallel-scheduling --workers=8
+	make -- run-parallel whosonfirst tasks.whosonfirst.AllWOF
