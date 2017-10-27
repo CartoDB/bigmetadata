@@ -1,9 +1,9 @@
 from luigi import WrapperTask, Parameter
 import json
 import os
-from util import get_logger
-from simplification import SimplifyGeometriesMapshaper, SimplifyGeometriesPostGIS
-from meta import CurrentSession
+from .util import get_logger
+from .simplification import SimplifyGeometriesMapshaper, SimplifyGeometriesPostGIS
+from .meta import CurrentSession
 
 TABLE_ID = 'tableid'
 SIMPLIFICATION = 'simplification'
