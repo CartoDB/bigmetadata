@@ -142,10 +142,10 @@ endif
 .PHONY: run run-parallel catalog docs carto restore dataservices-api
 
 run:
-	docker-compose run --rm bigmetadata luigi --local-scheduler --module $(MOD_NAME) $(TASK)
+	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
-	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module $(MOD_NAME) $(TASK)
+	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 dump: test
 	docker-compose run --rm bigmetadata luigi --module tasks.carto tasks.carto.DumpS3
