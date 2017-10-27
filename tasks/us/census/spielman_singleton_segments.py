@@ -53,19 +53,19 @@ class ProcessSpielmanSingletonFile(Task):
 
     def run(self):
         try:
-            print 'decompressing'
+            print('decompressing')
             self.decompress()
-            print 'renaming'
+            print('renaming')
             self.rename_files()
-            print 'converting to csv'
+            print('converting to csv')
             self.convert_to_csv()
-            print 'parsing'
+            print('parsing')
             self.grab_relevant_columns()
-            print 'cleanup'
+            print('cleanup')
             self.cleanup()
 
         except subprocess.CalledProcessError:
-            print 'problem encountered exiting  '
+            print('problem encountered exiting  ')
             self.cleanup()
             raise
 
@@ -96,7 +96,7 @@ class ProcessSpielmanSingletonFile(Task):
         rename = {
             'US_tract_clusters_new_20150720_427PM.shp': 'US_tract_clusters_new.shp',
         }
-        for old_name, new_name in rename.iteritems():
+        for old_name, new_name in rename.items():
             shell('mv {folder}/{old_name} {folder}/{new_name}'.format(
                 old_name=old_name,
                 new_name=new_name,
@@ -127,7 +127,7 @@ class SpielmanSingletonTable(TableTask):
             table=table_name,
             file_path=self.input()['data_file'].path
         ))
-        for name, segment_id in SpielmanSingletonColumns.x10_mapping.iteritems():
+        for name, segment_id in SpielmanSingletonColumns.x10_mapping.items():
             current_session().execute("update {table} set X10 = '{name}' "
                                       "where X10 ='{segment_id}'; ".format(
                                           table=table_name,
@@ -135,7 +135,7 @@ class SpielmanSingletonTable(TableTask):
                                           segment_id=segment_id
                                       ))
 
-        for name, segment_id in SpielmanSingletonColumns.x55_mapping.iteritems():
+        for name, segment_id in SpielmanSingletonColumns.x55_mapping.items():
             current_session().execute("update {table} set X55 = '{name}' "
                                       "where X55 ='{segment_id}'; ".format(
                                           table=table_name,

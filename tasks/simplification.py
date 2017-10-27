@@ -1,7 +1,7 @@
 import os
 from luigi import Task, Parameter, LocalTarget
-from util import PostgresTarget, shell
-from meta import CurrentSession
+from .util import PostgresTarget, shell
+from .meta import CurrentSession
 
 OBSERVATORY_SCHEMA = 'observatory'
 DEFAULT_GEOMFIELD = 'the_geom'

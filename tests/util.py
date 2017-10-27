@@ -81,7 +81,7 @@ def runtask(task, superclasses=None):
             assert dep.complete() is True, 'dependency {} not complete'.format(dep)
     try:
         before = time()
-        for klass, cb_dict in task._event_callbacks.iteritems():
+        for klass, cb_dict in task._event_callbacks.items():
             if isinstance(task, klass):
                 start_callbacks = cb_dict.get('event.core.start', [])
                 for scb in start_callbacks:

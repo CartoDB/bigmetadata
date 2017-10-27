@@ -1,10 +1,10 @@
 from tasks.util import (TempTableTask, TableTask, ColumnsTask,
                         DownloadUnzipTask, TagsTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath, MetaWrapper)
+                        underscore_slugify, shell, MetaWrapper)
 from tasks.meta import current_session, DENOMINATOR
-from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector,
+from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSTable, OBSColumn, OBSTag
+from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel
 
@@ -12,6 +12,7 @@ from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
 
 import os
+
 
 class DownloadQCEW(DownloadUnzipTask):
 
@@ -59,6 +60,7 @@ class SimpleQCEW(TempTableTask):
                             qtr=self.qtr,
                         ))
 
+
 class BLSSourceTags(TagsTask):
     def version(self):
         return 1
@@ -68,7 +70,6 @@ class BLSSourceTags(TagsTask):
                        name='Quartery Census of Employment and Wages (QCEW)',
                        type='source',
                        description='`Bureau of Labor Statistics QCEW <http://www.bls.gov/cew/home.htm>`_')]
-
 
 
 class QCEWColumns(ColumnsTask):
@@ -105,15 +106,15 @@ class QCEWColumns(ColumnsTask):
         cols['avg_wkly_wage'] = OBSColumn(
             # Make sure the column ID is unique within this module
             # If left blank, will be taken from this column's key in the output OrderedDict
-            id=underscore_slugify(u'avg_wkly_wage_{}'.format(code)),
+            id=underscore_slugify('avg_wkly_wage_{}'.format(code)),
             # The PostgreSQL type of this column.  Generally Numeric for numbers and Text
             # for categories.
             type='Numeric',
             # Human-readable name.  Will be used as header in the catalog
-            name=u'Average weekly wage for {} establishments'.format(name),
+            name='Average weekly wage for {} establishments'.format(name),
             # Human-readable description.  Will be used as content in the catalog.
-            description=u'Average weekly wage for a given quarter in the {name} industry (NAICS {code}).'
-                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            description='Average weekly wage for a given quarter in the {name} industry (NAICS {code}).'
+                        '{name} is {description}.'.format(name=name, code=code, description=description),
             # Ranking of importance, sometimes used to favor certain measures in auto-selection
             # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
             weight=5,
@@ -126,22 +127,22 @@ class QCEWColumns(ColumnsTask):
             tags=[units['money'], sections['united_states'], subsections['income']],
         )
         cols['qtrly_estabs'] = OBSColumn(
-            id=underscore_slugify(u'qtrly_estabs_{}'.format(code)),
+            id=underscore_slugify('qtrly_estabs_{}'.format(code)),
             type='Numeric',
-            name=u'Establishments in {}'.format(name),
-            description=u'Count of establishments in a given quarter in the {name} industry (NAICS {code}).'
-                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            name='Establishments in {}'.format(name),
+            description='Count of establishments in a given quarter in the {name} industry (NAICS {code}).'
+                        '{name} is {description}.'.format(name=name, code=code, description=description),
             weight=5,
             aggregate='sum',
             tags=[units['businesses'], sections['united_states'], subsections['commerce_economy']],
             targets={parent['qtrly_estabs']: DENOMINATOR} if parent else {},
         )
         cols['month3_emplvl'] = OBSColumn(
-            id=underscore_slugify(u'month3_emplvl_{}'.format(code)),
+            id=underscore_slugify('month3_emplvl_{}'.format(code)),
             type='Numeric',
-            name=u'Employees in {} establishments'.format(name),
-            description=u'Number of employees in the third month of a given quarter with the {name} '
-                        u'industry (NAICS {code}). {name} is {description}.'.format(
+            name='Employees in {} establishments'.format(name),
+            description='Number of employees in the third month of a given quarter with the {name} '
+                        'industry (NAICS {code}). {name} is {description}.'.format(
                             name=name, code=code, description=description),
             weight=5,
             aggregate='sum',
@@ -149,34 +150,34 @@ class QCEWColumns(ColumnsTask):
             targets={parent['month3_emplvl']: DENOMINATOR} if parent else {},
         )
         cols['lq_avg_wkly_wage'] = OBSColumn(
-            id=underscore_slugify(u'lq_avg_wkly_wage_{}'.format(code)),
+            id=underscore_slugify('lq_avg_wkly_wage_{}'.format(code)),
             type='Numeric',
-            name=u'Average weekly wage location quotient for {} establishments'.format(name),
-            description=u'Location quotient of the average weekly wage for a given quarter relative to '
-                        u'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
-                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            name='Average weekly wage location quotient for {} establishments'.format(name),
+            description='Location quotient of the average weekly wage for a given quarter relative to '
+                        'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
+                        '{name} is {description}.'.format(name=name, code=code, description=description),
             weight=3,
             aggregate=None,
             tags=[units['ratio'], sections['united_states'], subsections['income']],
         )
         cols['lq_qtrly_estabs'] = OBSColumn(
-            id=underscore_slugify(u'lq_qtrly_estabs_{}'.format(code)),
+            id=underscore_slugify('lq_qtrly_estabs_{}'.format(code)),
             type='Numeric',
-            name=u'Location quotient of establishments in {}'.format(name),
-            description=u'Location quotient of the quarterly establishment count relative to '
-                        u'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
-                        u'{name} is {description}.'.format(name=name, code=code, description=description),
+            name='Location quotient of establishments in {}'.format(name),
+            description='Location quotient of the quarterly establishment count relative to '
+                        'the U.S. (Rounded to the hundredths place) within the {name} industry (NAICS {code}).'
+                        '{name} is {description}.'.format(name=name, code=code, description=description),
             weight=3,
             aggregate=None,
             tags=[units['ratio'], sections['united_states'], subsections['commerce_economy']],
         )
         cols['lq_month3_emplvl'] = OBSColumn(
-            id=underscore_slugify(u'lq_month3_emplvl_{}'.format(code)),
+            id=underscore_slugify('lq_month3_emplvl_{}'.format(code)),
             type='Numeric',
-            name=u'Employment level location quotient in {} establishments'.format(name),
-            description=u'Location quotient of the employment level for the third month of a given quarter '
-                        u'relative to the U.S. (Rounded to the hundredths place) within the {name} '
-                        u'industry (NAICS {code}). {name} is {description}.'.format(
+            name='Employment level location quotient in {} establishments'.format(name),
+            description='Location quotient of the employment level for the third month of a given quarter '
+                        'relative to the U.S. (Rounded to the hundredths place) within the {name} '
+                        'industry (NAICS {code}). {name} is {description}.'.format(
                             name=name, code=code, description=description),
             weight=3,
             aggregate=None,
@@ -185,10 +186,11 @@ class QCEWColumns(ColumnsTask):
 
         source = input_['source']['qcew']
         license = input_['license']['no-restrictions']
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
         return cols
+
 
 class QCEW(TableTask):
 
@@ -205,11 +207,12 @@ class QCEW(TableTask):
             'naics': OrderedDict()
         }
         for naics_code in NAICS_CODES.keys():
-            # Only include the more general NAICS codes
-            if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
-                requirements['naics'][naics_code] = QCEWColumns(
-                    naics_code=naics_code
-                )
+            if not is_public_administration(naics_code):
+                # Only include the more general NAICS codes
+                if is_supersector(naics_code) or is_sector(naics_code) or naics_code == '10':
+                    requirements['naics'][naics_code] = QCEWColumns(
+                        naics_code=naics_code
+                    )
         return requirements
 
     def timespan(self):
@@ -223,10 +226,10 @@ class QCEW(TableTask):
         cols = OrderedDict([
             ('area_fips', input_['geoid_cols']['county_geoid'])
         ])
-        for naics_code, naics_cols in input_['naics'].iteritems():
-            for key, coltarget in naics_cols.iteritems():
+        for naics_code, naics_cols in input_['naics'].items():
+            for key, coltarget in naics_cols.items():
                 naics_name = NAICS_CODES[naics_code]
-                colname = underscore_slugify(u'{}_{}_{}'.format(
+                colname = underscore_slugify('{}_{}_{}'.format(
                         key, naics_code, naics_name))
                 cols[colname] = coltarget
         return cols
@@ -237,16 +240,15 @@ class QCEW(TableTask):
         # The session is automatically committed if there are no errors.
         session = current_session()
         columns = self.columns()
-        colnames = columns.keys()
+        colnames = list(columns.keys())
         select_colnames = []
         input_ = self.input()
-        for naics_code, naics_columns in input_['naics'].iteritems():
-            for colname in naics_columns.keys():
+        for naics_code, naics_columns in input_['naics'].items():
+            for colname in list(naics_columns.keys()):
                 select_colnames.append('''MAX(CASE
                     WHEN industry_code = '{naics_code}' THEN {colname} ELSE NULL
                 END)::Numeric'''.format(naics_code=naics_code,
-                                        colname=colname
-                                       ))
+                                        colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
                     SELECT area_fips, {select_colnames}
                     FROM {input}
@@ -262,9 +264,10 @@ class QCEW(TableTask):
 class AllQCEW(WrapperTask):
 
     def requires(self):
-        for year in xrange(2012, 2016):
-            for qtr in xrange(1, 5):
+        for year in range(2012, 2016):
+            for qtr in range(1, 5):
                 yield QCEW(year=year, qtr=qtr)
+
 
 class QCEWMetaWrapper(MetaWrapper):
 
@@ -273,8 +276,8 @@ class QCEWMetaWrapper(MetaWrapper):
     geography = Parameter()
 
     params = {
-        'year': range(2012,2016),
-        'qtr': range(1,5),
+        'year': list(range(2012, 2016)),
+        'qtr': list(range(1, 5)),
         'geography': ['county']
     }
 

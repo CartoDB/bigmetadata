@@ -1,4 +1,6 @@
-tmp/*
-env/*
+tmp
+env
 postgres/data
-catalog/*
+catalog
+.git
+observatory-extension

@@ -426,7 +426,7 @@ class OBSColumn(Base):
     def index_type(self):
         if hasattr(self, '_index_type'):
             pass
-        elif 'geom_ref' in self.targets.values():
+        elif 'geom_ref' in list(self.targets.values()):
             self._index_type = 'btree'
         elif self.type.lower() == 'geometry':
             self._index_type = 'gist'
@@ -436,7 +436,7 @@ class OBSColumn(Base):
         return self._index_type
 
     def children(self):
-        children = [col for col, reltype in self.sources.iteritems() if reltype == DENOMINATOR]
+        children = [col for col, reltype in self.sources.items() if reltype == DENOMINATOR]
         children.sort(key=lambda x: natural_sort_key(x.name))
         return children
 
@@ -462,7 +462,7 @@ class OBSColumn(Base):
         '''
         Returns True if the column is a geomref, else Null
         '''
-        return GEOM_REF in self.targets.values()
+        return GEOM_REF in list(self.targets.values())
 
     def has_children(self):
         '''
@@ -474,7 +474,7 @@ class OBSColumn(Base):
         '''
         Returns True if this column has no denominator, False otherwise.
         '''
-        return DENOMINATOR in self.targets.values()
+        return DENOMINATOR in list(self.targets.values())
 
     def has_catalog_image(self):
         '''
@@ -488,7 +488,7 @@ class OBSColumn(Base):
         '''
         if not self.has_denominators():
             return []
-        return [k for k, v in self.targets.iteritems() if v == DENOMINATOR]
+        return [k for k, v in self.targets.items() if v == DENOMINATOR]
 
     def unit(self):
         '''
@@ -520,7 +520,7 @@ class OBSColumn(Base):
         for table in self.tables:
             table = table.table
             geomref_column = table.geomref_column()
-            geom_column = [t for t, rt in geomref_column.targets.iteritems()
+            geom_column = [t for t, rt in geomref_column.targets.items()
                            if rt == GEOM_REF][0]
             if geom_column not in geom_timespans:
                 geom_timespans[geom_column] = []
@@ -780,7 +780,7 @@ class CurrentSession(object):
         # connection
         if self._pid != os.getpid():
             self._session = None
-            print 'FORKED: {} not {}'.format(self._pid, os.getpid())
+            print('FORKED: {} not {}'.format(self._pid, os.getpid()))
         if not self._session:
             self.begin()
         try:
@@ -837,11 +837,11 @@ def session_commit(task):
     '''
     commit the global session
     '''
-    print 'commit {}'.format(task.task_id if task else '')
+    print('commit {}'.format(task.task_id if task else ''))
     try:
         _current_session.commit()
     except Exception as err:
-        print err
+        print(err)
         raise
 
 
@@ -850,7 +850,7 @@ def session_rollback(task, exception):
     '''
     rollback the global session
     '''
-    print 'rollback {}: {}'.format(task.task_id if task else '', exception)
+    print('rollback {}: {}'.format(task.task_id if task else '', exception))
     _current_session.rollback()
 
 
@@ -860,7 +860,7 @@ def fromkeys(d, l):
     of None
     '''
     d = d.fromkeys(l)
-    return dict((k, v) for k, v in d.iteritems() if v is not None)
+    return dict((k, v) for k, v in d.items() if v is not None)
 
 DENOMINATOR = 'denominator'
 GEOM_REF = 'geom_ref'
