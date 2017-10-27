@@ -15,7 +15,7 @@ RUN apt-get -y install npm nodejs-legacy
 RUN npm install -g mapshaper
 
 # Shell utils used in ETL tasks (TODO: remove them)
-RUN apt-get -y install wget curl unzip git
+RUN apt-get -y install wget curl unzip git p7zip-full
 
 # Luigi
 RUN apt-get -y install python3-pip
