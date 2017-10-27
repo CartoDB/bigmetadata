@@ -1,4 +1,4 @@
-from luigi import Task, Parameter
+from luigi import WrapperTask, Parameter
 import json
 import os
 from util import get_logger
@@ -25,10 +25,10 @@ def find_table_name(table_id):
                             tableid=table_id)).fetchone()[0]
 
 
-class SimplifyOne(Task):
+class SimplifyOne(WrapperTask):
     table = Parameter()
 
-    def run(self):
+    def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'simplifications.json')) as file:
             tables = json.load(file)
 
@@ -38,18 +38,18 @@ class SimplifyOne(Task):
 
             simplification = table[SIMPLIFICATION]
             if simplification == SIMPLIFICATION_MAPSHAPER:
-                yield SimplifyGeometriesMapshaper(schema=OBSERVATORY_SCHEMA, table_input=tablename,
-                                                  geomfield=table[GEOM_FIELD], retainfactor=table[FACTOR],
-                                                  skipfailures=table[SKIP_FAILURES], maxmemory=table[MAX_MEMORY])
+                return SimplifyGeometriesMapshaper(schema=OBSERVATORY_SCHEMA, table_input=tablename,
+                                                   geomfield=table[GEOM_FIELD], retainfactor=table[FACTOR],
+                                                   skipfailures=table[SKIP_FAILURES], maxmemory=table[MAX_MEMORY])
             elif simplification == SIMPLIFICATION_POSTGIS:
-                yield SimplifyGeometriesPostGIS(schema=OBSERVATORY_SCHEMA, table_input=tablename,
-                                                geomfield=table[GEOM_FIELD], retainfactor=table[FACTOR])
+                return SimplifyGeometriesPostGIS(schema=OBSERVATORY_SCHEMA, table_input=tablename,
+                                                 geomfield=table[GEOM_FIELD], retainfactor=table[FACTOR])
             else:
                 raise ValueError('Invalid simplification "{simplification}" for {table}'.format(
                     simplification=simplification, table=self.table))
 
 
-class SimplifyAll(Task):
+class SimplifyAll(WrapperTask):
     def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'simplifications.json')) as file:
             return [SimplifyOne(table=table) for table in json.load(file)]
