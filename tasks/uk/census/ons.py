@@ -34,12 +34,12 @@ class DownloadUK(Task):
         api_id = (meta['structure']['keyfamilies']['keyfamily'][0]['id']).lower()
 
         # Download for SA (EW,S) and OA (NI) in a single file
-        with self.output().temporary_path() as tmp, open(os.path.join(tmp, '{}.csv'.format(self.table)), 'w') as outcsv:
+        with self.output().temporary_path() as tmp, open(os.path.join(tmp, '{}.csv'.format(self.table)), 'wb') as outcsv:
             skip_header = False
             for geo in self.GEO_TYPES:
-                remote_file = urllib.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
+                remote_file = urllib.request.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
                 if skip_header:
-                    remote_file.next()
+                    next(remote_file)
                 else:
                     skip_header = True
                 for l in remote_file:
@@ -65,7 +65,7 @@ class ImportUK(TempTableTask):
         cols = OrderedDict([['date', 'TEXT'], ['geography', 'TEXT'], ['geographycode', 'TEXT PRIMARY KEY']])
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
-            header = reader.next()
+            header = next(reader)
 
             for c in header[3:]:
                 cols[self.id_to_column(c)] = 'NUMERIC'
@@ -83,7 +83,7 @@ class DownloadEnglandWalesLocal(DownloadUnzipTask):
     URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
     def download(self):
-        urllib.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
+        urllib.request.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
 
     def run(self):
         super(DownloadEnglandWalesLocal, self).run()
@@ -112,7 +112,7 @@ class ImportEnglandWalesLocal(TempTableTask):
         cols = OrderedDict({'geographycode': 'TEXT PRIMARY KEY'})
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
-            header = reader.next()
+            header = next(reader)
 
             for c in header[1:]:
                 cols[self.id_to_column(c)] = 'NUMERIC'
