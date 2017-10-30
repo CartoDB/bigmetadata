@@ -3325,11 +3325,7 @@ class DemographicColumns(ColumnsTask):
                         resolution=self.resolution, table=self.table)
         columns = columnsFilter.filter_columns(allColumns, parameters)
 
-<<<<<<< HEAD
-        for _, col in columns.iteritems():
-=======
         for _, col in columns.items():
->>>>>>> 539e828f0f4f6d421716c8d37a168d78ed10dc65
             col.tags.append(source)
             col.tags.append(license)
 
