@@ -286,7 +286,7 @@ deps-tree:
 
 ### au
 au-all:
-	 au.data.BCPAllGeographiesAllTables --year 2011
+	make -- run-parallel au.data.BCPAllGeographiesAllTables --year 2011
 
 au-geo:
 	make -- run-parallel au.geo.AllGeographies --year 2011
