@@ -1,26 +1,23 @@
 from tasks.eu.geo import NUTSColumns
-from tasks.meta import (OBSTable, OBSColumn, OBSTag, current_session,
-                        DENOMINATOR, GEOM_REF)
+from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.util import (Shp2TempTableTask, TempTableTask, TableTask, TagsTask, ColumnsTask,
-                        DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
+from tasks.util import (TableTask, TagsTask, ColumnsTask, CSV2TempTableTask,
                         underscore_slugify, shell, classpath, LOGGER)
 
-from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget, ListParameter
+from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
-from time import time
+from lib.columns import ColumnsDeclarations
 
 import csv
 import os
 import re
-import itertools
 
-#
 # dl_code_list = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=dic%2Fen%2F{code}.dic".format(code=code)
 # flag_explanation = "http://ec.europa.eu/eurostat/data/database/information"
 # database = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir=data&sort=1&sort=2&start={}".format(first_letter)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=data%2F{}.tsv.gz".format(table_code)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fdemo_r_pjangrp3.tsv.gz
+
 
 class DownloadEurostat(Task):
     table_code = Parameter()
@@ -290,15 +287,18 @@ def simplify_description(description):
     description = re.sub(r' zero$', ' zero employees', description)
     return description
 
+
 class FlexEurostatColumns(ColumnsTask):
 
-    subsection = Parameter() # Ex. 'age_gender'
-    units = Parameter() # Ex. 'people'
+    subsection = Parameter()  # Ex. 'age_gender'
+    units = Parameter()  # Ex. 'people'
+    nuts_level = Parameter()
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
 
     # From tablename, determine basis of name for columns from table_dic.dic
     # Then, look at metabase.txt to find relevant dimensions (exclude "geo" and "time", utilize "unit")
-    # Finally, look up definitions for dimensions from their .dic files, and use that to complete the metadata definition
+    # Finally, look up definitions for dimensions from their .dic files, and use that to complete the
+    # metadata definition
 
     def requires(self):
         return {
@@ -321,7 +321,7 @@ class FlexEurostatColumns(ColumnsTask):
         subsectiontags = input_['subsection']
         unittags = input_['units']
         eu = input_['section']['eu']
-        license = input_['license']['eurostat-license']
+        licensing = input_['license']['eurostat-license']
         source = input_['source']['eurostat-source']
 
         cache = CACHE
@@ -354,11 +354,6 @@ class FlexEurostatColumns(ColumnsTask):
 
         table_desc = tables[self.table_name]
         variable_name = table_desc.split('by')[0].strip()
-        # for possible_tablenames, table_description in cache.get('table_dic.dic')
-        #     if self.table_name.lower() == possible_tablenames.lower():
-                # table_desc = table_description
-                # variable_name = table_description.split('by')[0].strip()
-                # break
 
         for i in cross_prod:
             dimdefs = []
@@ -412,41 +407,34 @@ class FlexEurostatColumns(ColumnsTask):
                 tags=tags,
                 extra=i,
                 )
-            columns[var_code + '_flag'] = OBSColumn(
-                id=var_code + '_flag',
-                name='',
-                type='Text',
-                weight=0,
-                aggregate=None, #???
-                targets={}, #???
-                tags={},
-                extra=i,
-            )
 
-        for colname, col in columns.items():
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'eurostat_columns.json'))
+        parameters = '{{"subsection":"{subsection}","units":"{units}","nuts_level":"{nuts_level}"}}'.format(
+                         subsection=self.subsection, units=self.units, nuts_level=self.nuts_level)
+        columns = columnsFilter.filter_columns(columns, parameters)
+
+        for _, col in columns.items():
             col.tags.append(source)
-            col.tags.append(license)
-
+            col.tags.append(licensing)
 
         targets_dict = {}
         for colname, col in columns.items():
-            if 'flag' not in col.id:
-                for i, v in col.extra.items():
-                    if v == 'TOTAL' or v == 'T':
-                        temp = dict((key, value) for key, value in col.extra.items() if key != i)
-                        targets_dict[tuple(temp.items())] = colname
+            for i, v in col.extra.items():
+                if v == 'TOTAL' or v == 'T':
+                    temp = dict((key, value) for key, value in col.extra.items() if key != i)
+                    targets_dict[tuple(temp.items())] = colname
+
         for colname, col in columns.items():
             denoms = {}
             for nontotals, code in targets_dict.items():
-                if all(item in list(col.extra.items()) for item in nontotals) and code != colname:
+                if all(item in col.extra.items() for item in nontotals) and code != colname:
                     denoms[columns.get(code)] = 'denominator'
             col.targets = denoms
 
-        nonsum = ['proportion','average','percentage','rate',r'%','share']
-        for colname, col in columns.items():
-            if 'flag' not in col.id:
-                if any(word in col.name.lower() for word in nonsum):
-                    col.aggregate=None
+        nonsum = ['proportion', 'average', 'percentage', 'rate', r'%', 'share']
+        for _, col in columns.items():
+            if any(word in col.name.lower() for word in nonsum):
+                col.aggregate = None
         return columns
 
 
@@ -470,7 +458,8 @@ class TableEU(TableTask):
             'csv': ProcessCSV(table_code=self.table_name),
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection,
-                                        units=self.unit),
+                                        units=self.unit,
+                                        nuts_level=self.nuts_level),
             'geometa': NUTSColumns(level=self.nuts_level),
         }
         return requirements
@@ -503,21 +492,10 @@ class TableEU(TableTask):
         session.flush()
         column_targets = self._columns
         for colname, coltarget in list(column_targets.items()):
-            # print colname
-            if colname != 'nuts{}_id'.format(self.nuts_level) and not colname.endswith('_flag'):
+            if colname != 'nuts{}_id'.format(self.nuts_level):
                 col = coltarget.get(session)
                 extra = col.extra
                 multiple = ''
-                # if 'unit' in extra.keys():
-                #     multiplier = extra['unit']
-                #     if "THS" in multiplier or "1000" in multiplier or multiplier == 'KTOE':
-                #         multiple = '1000*'
-                #     if "MIO" in multiplier:
-                #         multiple = '1000000*'
-                #     else:
-                #         multiple = ''
-                # else:
-                #     multiple = ''
                 keys = list(extra.keys())
                 vals = [extra[k_] for k_ in keys]
                 # metabase unit does not correspond to headers due to lack of
@@ -526,10 +504,9 @@ class TableEU(TableTask):
                     if 'unit' in keys:
                         keys[keys.index('unit')] = unit
                 stmt = '''
-                    INSERT INTO {output} (nuts{level}_id, {colname}, {colname}_flag)
+                    INSERT INTO {output} (nuts{level}_id, {colname})
                     SELECT "{geo}",
-                      {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric,
-                      NullIf(SPLIT_PART("{year}", ' ', 2), '')::Text
+                      {multiply}NullIf(SPLIT_PART("{year}", ' ', 1), ':')::Numeric
                     FROM {input}
                     WHERE ("{input_dims}") = ('{output_dims}')
                     ON CONFLICT (nuts{level}_id)
@@ -560,7 +537,7 @@ class AllEUTableYears(Task):
     def run(self):
         csv_path = self.input().path
         with open(csv_path, 'r') as csvfile:
-            headers = csvfile.next().split(',')
+            headers = next(csvfile).split(',')
 
         years = [h.strip() for h in headers if h.strip()[-4:].isdigit()]
         for year in years:
@@ -575,6 +552,7 @@ class AllEUTableYears(Task):
     def complete(self):
         return getattr(self, '_complete', False)
 
+
 class EUColumns(WrapperTask):
     def requires(self):
         with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
@@ -582,7 +560,9 @@ class EUColumns(WrapperTask):
             for subsection, table_code, nuts, units in reader:
                 yield FlexEurostatColumns(subsection=subsection,
                                           table_name=table_code,
-                                          units=units)
+                                          units=units,
+                                          nuts_level=nuts)
+
 
 class EURegionalTables(WrapperTask):
 
@@ -595,26 +575,3 @@ class EURegionalTables(WrapperTask):
                                       subsection=subsection,
                                       nuts_level=nuts,
                                       unit=units)
-
-# class EUMetaWrapper(MetaWrapper):
-#
-#     table_name = Parameter()
-#     subsection = Parameter()
-#     nuts_level = Parameter()
-#     unit = Parameter()
-#     year = Parameter()
-#
-#     params = {
-#         'table_name': ,
-#         'subsection': ,
-#         'nuts_level': ,
-#         'unit': ,
-#         'year': ,
-#     }
-#
-#     def tables(self):
-#         yield TableEU(table_name=self.table_name,
-#                       subsection=self.subsection,
-#                       nuts_level=self.nuts_level,
-#                       unit=self.unit,
-#                       year=self.year)
