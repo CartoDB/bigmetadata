@@ -1310,7 +1310,7 @@
         "name": "Good or very good health",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
@@ -1329,7 +1329,7 @@
         "name": "Fair health",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
@@ -1347,7 +1347,7 @@
         "name": "Bad or very bad health",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
@@ -1366,7 +1366,7 @@
         "name": "Day-to-day activities very limited",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
@@ -1384,7 +1384,7 @@
         "name": "Day-to-day activities somewhat limited",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
@@ -1402,7 +1402,7 @@
         "name": "Day-to-day activities not limited",
         "weight": 3,
         "denominators": [
-            "pop_3_and_over"
+            "total_pop"
         ],
         "units": "people",
         "subsection": "health",
