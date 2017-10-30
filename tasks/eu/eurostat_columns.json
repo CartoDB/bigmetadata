@@ -116,5 +116,23 @@
 				"unit": "people"
 			}
 		]
+	},
+	"ilc_lvhl21_pc_lw95": {
+		"exceptions": [
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"ilc_lvhl21_pc_up95": {
+		"exceptions": [
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
 	}
 }
