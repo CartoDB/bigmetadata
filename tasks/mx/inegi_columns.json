@@ -1,0 +1,1034 @@
+{
+	"disability_dress_bathe_eat": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"disability_movement": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"disability_sight": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"disability_speak": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"hearing_disability": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"learning_disability": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"mental_limitation": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "disc"
+			},
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "disc"
+			}
+		]
+	},
+	"male_female_ratio_in_us_june_05": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "mig"
+			},
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			},
+			{
+				"resolution": "manzana",
+				"table": "mig"
+			}
+		]
+	},
+	"female_basic_education_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_high_school_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_illiterate_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_illiterate_8_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_in_school_12_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_in_school_3_5": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_in_school_6_11": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_literate_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_literate_8_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_no_basic_education_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_no_school_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_not_in_school_12_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_not_in_school_3_5": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_not_in_school_6_11": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_some_high_school_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_university_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_basic_education_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_high_school_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_illiterate_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_illiterate_8_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_in_school_12_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_in_school_3_5": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_in_school_6_11": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_literate_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_literate_8_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_no_basic_education_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_no_school_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_not_in_school_12_14": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_not_in_school_3_5": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_not_in_school_6_11": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_some_high_school_15_more": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"male_university_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "edu"
+			},
+			{
+				"resolution": "manzana",
+				"table": "edu"
+			}
+		]
+	},
+	"female_econ_inactive_phys_mental_limitation": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_econ_inactive_some_other_reason": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_basic_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_high_school_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_incomplete_secondary_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_primary_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_university_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_employed_without_school": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_houseworker": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_retiree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_student": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_econ_inactive_phys_mental_limitation": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_econ_inactive_some_other_reason": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_basic_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_high_school_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_incomplete_secondary_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_primary_education": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_university_degree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_employed_without_school": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_houseworker": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_retiree": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"male_student": {
+		"exceptions": [
+			{
+				"resolution": "ageb",
+				"table": "eco"
+			},
+			{
+				"resolution": "manzana",
+				"table": "eco"
+			}
+		]
+	},
+	"female_married": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"female_married_15_24": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"female_single": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"male_formerly_married": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"female_formerly_married": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"male_married": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"male_married_15_24": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"male_single": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "scony"
+			}
+		]
+	},
+	"female_household_30_59": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"female_household_under_30": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"female_households_60_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"male_household_30_59": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"male_household_under_30": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"male_households_60_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_female_households_30_59": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_female_households_60_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_female_households_under_30": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_male_households_30_59": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_male_households_60_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"pop_in_male_households_under_30": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "hogar"
+			}
+		]
+	},
+	"female_ind_language": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"female_ind_language_and_spanish": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"female_ind_language_no_spanish": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"female_speak_ind_language_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"female_speak_ind_language_and_spanish_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"female_speak_ind_language_no_spanish_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_ind_language": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_ind_language_and_spanish": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_ind_language_no_spanish": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_speak_ind_language_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_speak_ind_language_and_spanish_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	},
+	"male_speak_ind_language_no_spanish_age_5_more": {
+		"exceptions": [
+			{
+				"resolution": "manzana",
+				"table": "indi"
+			}
+		]
+	}
+}

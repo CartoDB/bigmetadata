@@ -274,6 +274,7 @@ class Geography(TableTask):
                             output_cols=', '.join(output_cols),
                             input_cols=', '.join(input_cols)))
 
+
 class Census(TableTask):
 
     resolution = Parameter()
@@ -289,7 +290,7 @@ class Census(TableTask):
         return {
             'data': ImportDemographicData(resolution=self.resolution,
                                           table=self.table),
-            'meta': DemographicColumns(),
+            'meta': DemographicColumns(resolution=self.resolution, table=self.table),
             'geometa': GeographyColumns(resolution=self.resolution)
         }
 
