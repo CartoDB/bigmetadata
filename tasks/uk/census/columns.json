@@ -1021,7 +1021,7 @@
         "name": "Born in Ireland",
         "weight": 3,
         "denominators": [
-            "total_pop"
+            "born_europe"
         ],
         "units": "people",
         "subsection": "nationality",
@@ -1039,7 +1039,7 @@
         "name": "Born in Europe outside the UK and Ireland",
         "weight": 3,
         "denominators": [
-            "total_pop"
+            "born_europe"
         ],
         "units": "people",
         "subsection": "nationality",
