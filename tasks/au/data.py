@@ -1,5 +1,5 @@
 import os
-import urllib
+import urllib.request
 import csv
 import re
 
@@ -47,7 +47,7 @@ class DownloadData(DownloadUnzipTask):
     header = Parameter()
 
     def download(self):
-        urllib.urlretrieve(url=URL.format(
+        urllib.request.urlretrieve(url=URL.format(
                                year=self.year,
                                profile=self.profile,
                                resolution=self.resolution,
@@ -349,13 +349,13 @@ class BCP(TableTask):
         }
 
     def timespan(self):
-        return unicode(self.year)
+        return str(self.year)
 
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
         cols['region_id'] = input_['geometa']['geom_id']
-        for colname, coltarget in input_['meta'].iteritems():
+        for colname, coltarget in input_['meta'].items():
             # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
             cols[colname] = coltarget
         return cols
@@ -363,14 +363,14 @@ class BCP(TableTask):
     def populate(self):
         session = current_session()
         column_targets = self.columns()
-        out_colnames = [oc.lower() for oc in column_targets.keys()]
+        out_colnames = [oc.lower() for oc in list(column_targets.keys())]
 
         failstates = []
-        for state, input_ in self.input()['data'].iteritems():
+        for state, input_ in self.input()['data'].items():
             intable = input_.table
 
             in_colnames = []
-            for colname, target in column_targets.iteritems():
+            for colname, target in column_targets.items():
 
                 # weird trailing underscore for australia but no states
                 if colname.endswith('Median_rent_weekly_') and \

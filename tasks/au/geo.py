@@ -74,7 +74,7 @@ class SourceTags(TagsTask):
             OBSTag(id='au-census',
                    name='Australian Bureau of Statistics (ABS)',
                    type='source',
-                   description=u'The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
+                   description='The `Australian Bureau of Statistics <http://abs.gov.au/websitedbs/censushome.nsf/home/datapacks>`')
         ]
 
 
@@ -85,7 +85,7 @@ class LicenseTags(TagsTask):
             OBSTag(id='au-datapacks-license',
                    name='Creative Commons Attribution 2.5 Australia licence',
                    type='license',
-                   description=u'DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
+                   description='DataPacks is licenced under a `Creative Commons Attribution 2.5 Australia licence <https://creativecommons.org/licenses/by/2.5/au/>`_')
         ]
 
 
@@ -185,7 +185,7 @@ class GeographyColumns(ColumnsTask):
             ('the_geom', geom),
         ])
 
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             if col.id in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
             if col.id in cartographic_boundaries:

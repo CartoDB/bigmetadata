@@ -16,7 +16,7 @@ class SourceTags(TagsTask):
     def tags(self):
         return [
             OBSTag(id='inegi-source',
-                   name=u'Instituto Nacional de Estadística y Geografía (INEGI)',
+                   name='Instituto Nacional de Estadística y Geografía (INEGI)',
                    type='source',
                    description='INEGI data provided by `Diego Valle-Jones <https://www.diegovalle.net/>`_'
                   )]
@@ -29,7 +29,7 @@ class LicenseTags(TagsTask):
     def tags(self):
         return [
             OBSTag(id='inegi-license',
-                   name=u'Free use of information from INEGI',
+                   name='Free use of information from INEGI',
                    type='license',
                    description='Terms of free use can be read in detail `here <http://www.beta.inegi.org.mx/contenidos/inegi/doc/terminos_info.pdf>`_.'
                   )]
@@ -3325,7 +3325,11 @@ class DemographicColumns(ColumnsTask):
                         resolution=self.resolution, table=self.table)
         columns = columnsFilter.filter_columns(allColumns, parameters)
 
+<<<<<<< HEAD
         for _, col in columns.iteritems():
+=======
+        for _, col in columns.items():
+>>>>>>> 539e828f0f4f6d421716c8d37a168d78ed10dc65
             col.tags.append(source)
             col.tags.append(license)
 

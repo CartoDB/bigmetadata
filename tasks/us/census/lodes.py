@@ -562,7 +562,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 tags=[tags['employment'], tags['commerce_economy']]
             )),
         ])
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
         return cols
@@ -616,7 +616,7 @@ class WorkplaceAreaCharacteristics(TableTask):
         }
 
     def timespan(self):
-        return unicode(self.year)
+        return str(self.year)
 
     def columns(self):
         data_columns = self.input()['data_meta']
@@ -633,7 +633,7 @@ class WorkplaceAreaCharacteristics(TableTask):
             cmd = r"gunzip -c '{input}' | cut -d',' -f-52 | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path,
                                              tablename=self.output().table)
-            print cmd
+            print(cmd)
             shell(cmd)
 
 
@@ -679,7 +679,7 @@ CREATE TABLE {tablename} (
         #cursor.connection.commit()
 
         for infile in self.input():
-            print infile.path
+            print(infile.path)
             # gunzip each CSV into the table
             cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
                   r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)

@@ -25533,7 +25533,7 @@ class NHSColumns(ColumnsTask):
             ('t029c009_m', t029c009_m),
             ('t029c009_f', t029c009_f),
         ])
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             col.tags.append(license)
             col.tags.append(source)
         return cols

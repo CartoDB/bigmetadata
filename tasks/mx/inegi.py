@@ -261,7 +261,7 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         column_targets = self.columns()
-        output_cols = column_targets.keys()
+        output_cols = list(column_targets.keys())
         input_cols = ['ST_MakeValid(wkb_geometry)', 'cvegeo']
         if self.resolution in RESPROPNAMES:
             input_cols.append('nomgeo')
@@ -298,7 +298,7 @@ class Census(TableTask):
         input_ = self.input()
         cols = OrderedDict()
         cols['cvegeo'] = input_['geometa']['cvegeo']
-        for colname, coltarget in input_['meta'].iteritems():
+        for colname, coltarget in input_['meta'].items():
             if coltarget._id.split('.')[-1].lower().startswith(self.table.lower()):
                 cols[colname] = coltarget
         return cols
@@ -306,9 +306,9 @@ class Census(TableTask):
     def populate(self):
         session = current_session()
         columns = self.columns()
-        out_colnames = columns.keys()
+        out_colnames = list(columns.keys())
         in_table = self.input()['data']
-        in_colnames = [ct._id.split('.')[-1] for ct in columns.values()]
+        in_colnames = [ct._id.split('.')[-1] for ct in list(columns.values())]
         in_colnames[0] = 'cvegeo'
         for i, in_c in enumerate(in_colnames):
             cmd = "SELECT 'exists' FROM information_schema.columns " \
@@ -350,7 +350,7 @@ class AllCensus(WrapperTask):
         for resolution in RESOLUTIONS:
             if resolution == 'servicios_area':
                 continue
-            for key, _ in DEMOGRAPHIC_TABLES.iteritems():
+            for key, _ in DEMOGRAPHIC_TABLES.items():
                 yield Census(resolution=resolution, table=key)
 
 
@@ -361,7 +361,7 @@ class CensusWrapper(MetaWrapper):
 
     params = {
         'resolution': set(RESOLUTIONS) - set(['servicios_area']),
-        'table': DEMOGRAPHIC_TABLES.keys()
+        'table': list(DEMOGRAPHIC_TABLES.keys())
     }
 
     def tables(self):

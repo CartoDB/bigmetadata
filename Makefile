@@ -46,7 +46,7 @@ clean-catalog:
 
 catalog: clean-catalog
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog \
+	  --module tasks.sphinx tasks.sphinx.Catalog \
 	  $${SECTION/#/--section } \
 	  --local-scheduler
 	docker-compose up -d nginx
@@ -54,16 +54,16 @@ catalog: clean-catalog
 
 pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format pdf
+	  --module tasks.sphinx tasks.sphinx.Catalog --format pdf
 
 md-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx Catalog --format markdown \
+	  --module tasks.sphinx tasks.sphinx.Catalog --format markdown \
 	  --local-scheduler
 
 deploy-pdf-catalog:
 	docker-compose run --rm bigmetadata luigi \
-	    --module tasks.sphinx PDFCatalogToS3
+	    --module tasks.sphinx tasks.sphinx.PDFCatalogToS3
 
 deploy-html-catalog:
 	cd catalog/build/html && \
@@ -94,12 +94,12 @@ sync: sync-data sync-meta
 
 sync-data:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncAllData \
+	  --module tasks.carto tasks.carto.SyncAllData \
 	  --parallel-scheduling --workers=3
 
 sync-meta:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto SyncMetadata \
+	  --module tasks.carto tasks.carto.SyncMetadata \
 	  --parallel-scheduling --workers=3
 
 kill:
@@ -136,7 +136,7 @@ run-parallel:
 	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module tasks.$(RUN_ARGS)
 
 dump: test
-	docker-compose run --rm bigmetadata luigi --module tasks.carto DumpS3
+	docker-compose run --rm bigmetadata luigi --module tasks.carto tasks.carto.DumpS3
 
 # update the observatory-extension in our DB container
 # Depends on having an observatory-extension folder linked
@@ -225,9 +225,9 @@ travis-etl-unittest:
 
 travis-diff-catalog:
 	git fetch origin master
-	./run-travis.sh 'python -c "from tests.util import recreate_db; recreate_db()"'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util RunDiff --compare FETCH_HEAD'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx Catalog --force'
+	./run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util tasks.util.RunDiff --compare FETCH_HEAD'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
 
 travis-etl-metadatatest:
 	./run-travis.sh 'nosetests -v tests/test_metadata.py'
@@ -240,7 +240,7 @@ docs:
 
 tiles:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.util GenerateAllRasterTiles \
+	  --module tasks.util tasks.util.GenerateAllRasterTiles \
 	  --parallel-scheduling --workers=5
 
 ps:
@@ -254,7 +254,7 @@ up:
 
 meta:
 	docker-compose run --rm bigmetadata luigi\
-	  --module tasks.carto OBSMetaToLocal --force
+	  --module tasks.carto tasks.carto.OBSMetaToLocal --force
 
 releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 
@@ -267,9 +267,9 @@ test-catalog:
 diff-catalog: clean-catalog
 	git fetch origin master
 	docker-compose run -e PGDATABASE=test -e ENVIRONMENT=test --rm bigmetadata /bin/bash -c \
-	  'python -c "from tests.util import recreate_db; recreate_db()" && \
-	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util RunDiff --compare FETCH_HEAD && \
-	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx Catalog'
+	  'python3 -c "from tests.util import recreate_db; recreate_db()" && \
+	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util tasks.util.RunDiff --compare FETCH_HEAD && \
+	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx tasks.sphinx.Catalog'
 
 deps-tree:
 	docker-compose run --rm bigmetadata luigi-deps-tree --module tasks.$(RUN_ARGS)
@@ -279,12 +279,12 @@ deps-tree:
 ### au
 au-all:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.data BCPAllGeographiesAllTables --year 2011 \
+	  --module tasks.au.data tasks.au.data.BCPAllGeographiesAllTables --year 2011 \
 	  --parallel-scheduling --workers=8
 
 au-geo:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.au.geo AllGeographies --year 2011 \
+	  --module tasks.au.geo tasks.au.geo.AllGeographies --year 2011 \
 	  --parallel-scheduling --workers=8
 
 ### br
@@ -292,12 +292,12 @@ br-all: br-geo br-census
 
 br-census:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.br.data CensosAllGeographiesAllTables \
+		--module tasks.br.data tasks.br.data.CensosAllGeographiesAllTables \
 		--parallel-scheduling --workers=8
 
 br-geo:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.br.geo AllGeographies \
+		--module tasks.br.geo tasks.br.geo.AllGeographies \
 		--parallel-scheduling --workers=8
 
 ### ca
@@ -305,17 +305,17 @@ ca-all: ca-nhs-all ca-census-all
 
 ca-nhs-all:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.data AllNHSTopics \
+		--module tasks.ca.statcan.data tasks.ca.statcan.data.AllNHSTopics \
 		--parallel-scheduling --workers=8
 
 ca-census-all:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.data AllCensusTopics \
+		--module tasks.ca.statcan.data tasks.ca.statcan.data.AllCensusTopics \
 		--parallel-scheduling --workers=8
 
 ca-geo:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.ca.statcan.geo AllGeographies \
+		--module tasks.ca.statcan.geo tasks.ca.statcan.geo.AllGeographies \
 		--parallel-scheduling --workers=8
 
 ### es
@@ -323,19 +323,19 @@ es-all: es-cnig es-ine
 
 es-cnig:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.cnig AllGeometries \
+		--module tasks.es.cnig tasks.es.cnig.AllGeometries \
 		--parallel-scheduling --workers=8
 
 es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.ine PopulationHouseholdsHousingMeta \
+		--module tasks.es.ine tasks.es.ine.PopulationHouseholdsHousingMeta \
 		--parallel-scheduling --workers=8
 
 es-ine-fyp:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.es.ine FiveYearPopulationMeta \
+		--module tasks.es.ine tasks.es.ine.FiveYearPopulationMeta \
 		--parallel-scheduling --workers=8
 
 ### eurostat
@@ -343,12 +343,12 @@ eu-all: eu-geo eu-data
 
 eu-geo:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.geo AllNUTSGeometries \
+	  --module tasks.eu.geo tasks.eu.geo.AllNUTSGeometries \
 	  --parallel-scheduling --workers=8
 
 eu-data:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.eu.eurostat EURegionalTables \
+	  --module tasks.eu.eurostat tasks.eu.eurostat.EURegionalTables \
 	  --workers=1
 
 ### fr
@@ -356,17 +356,17 @@ fr-all: fr-geo fr-insee fr-income
 
 fr-geo:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.geo AllGeo \
+		--module tasks.fr.geo tasks.fr.geo.AllGeo \
 		--parallel-scheduling --workers=8
 
 fr-insee:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.insee InseeAll \
+		--module tasks.fr.insee tasks.fr.insee.InseeAll \
 		--parallel-scheduling --workers=8
 
 fr-income:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.fr.fr_income IRISIncomeTables \
+		--module tasks.fr.fr_income tasks.fr.fr_income.IRISIncomeTables \
 		--parallel-scheduling --workers=8
 
 ### mx
@@ -374,12 +374,12 @@ mx-all: mx-geo mx-census
 
 mx-geo:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.mx.inegi AllGeographies \
+		--module tasks.mx.inegi tasks.mx.inegi.AllGeographies \
 		--parallel-scheduling --workers=8
 
 mx-census:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.mx.inegi AllCensus \
+		--module tasks.mx.inegi tasks.mx.inegi.AllCensus \
 		--parallel-scheduling --workers=8
 
 ### uk
@@ -387,12 +387,12 @@ uk-all: uk-geo uk-census
 
 uk-geo:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.uk.cdrc CDRCMetaWrapper \
+		--module tasks.uk.cdrc tasks.uk.cdrc.CDRCMetaWrapper \
 		--parallel-scheduling --workers=8
 
 uk-census:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.uk.census CensusWrapper \
+		--module tasks.uk.census tasks.uk.census.wrapper.CensusWrapper \
 		--parallel-scheduling --workers=8
 
 ### us
@@ -400,17 +400,17 @@ us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp
 
 us-bls:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.bls AllQCEW \
+		--module tasks.us.bls tasks.us.bls.AllQCEW \
 		--parallel-scheduling --workers=8
 
 us-acs:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.census.acs ACSAll \
+		--module tasks.us.census.acs tasks.us.census.acs.ACSAll \
 		--parallel-scheduling --workers=8
 
 us-lodes:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.us.census.lodes LODESMetaWrapper --geography block --year 2013 \
+		--module tasks.us.census.lodes tasks.us.census.lodes.LODESMetaWrapper --geography block --year 2013 \
 		--parallel-scheduling --workers=8
 
 us-spielman:
@@ -420,36 +420,36 @@ us-spielman:
 
 us-tiger:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.census.tiger AllSumLevels --year 2015 \
+	  --module tasks.us.census.tiger tasks.us.census.tiger.AllSumLevels --year 2015 \
 	  --workers=8
 
 us-enviroatlas:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.epa.enviroatlas AllTables \
+	  --module tasks.us.epa.enviroatlas tasks.us.epa.enviroatlas.AllTables \
 	  --parallel-scheduling --workers=8
 
 us-huc:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.epa.huc HUC \
+	  --module tasks.us.epa.huc tasks.us.epa.huc.HUC \
 	  --parallel-scheduling --workers=8
 
 us-dcp:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.ny.nyc.dcp MapPLUTOAll \
+	  --module tasks.us.ny.nyc.dcp tasks.us.ny.nyc.dcp.MapPLUTOAll \
 	  --parallel-scheduling --workers=8
 
 us-dob:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.ny.nyc.dob PermitIssuance \
+	  --module tasks.us.ny.nyc.dob tasks.us.ny.nyc.dob.PermitIssuance \
 	  --parallel-scheduling --workers=8
 
 us-zillow:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.us.zillow AllZillow \
+	  --module tasks.us.zillow tasks.us.zillow.AllZillow \
 	  --parallel-scheduling --workers=8
 
 ### who's on first
 wof-all:
 	docker-compose run --rm bigmetadata luigi \
-		--module tasks.whosonfirst AllWOF \
+		--module tasks.whosonfirst tasks.whosonfirst.AllWOF \
 		--parallel-scheduling --workers=8

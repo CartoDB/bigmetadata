@@ -149,7 +149,7 @@ class EnviroAtlasColumns(ColumnsTask):
 
         cols = getattr(self, self.table)(usa, environmental,
                                          license_, source, units)
-        for colname, col in cols.iteritems():
+        for colname, col in cols.items():
             col.id = '{}_{}'.format(self.table, colname)
 
         return cols
@@ -181,7 +181,7 @@ class EnviroAtlas(TableTask):
         session = current_session()
         cols = self.columns()
         cols.pop('HUC_12')
-        colnames = cols.keys()
+        colnames = list(cols.keys())
         session.execute('''
             INSERT INTO {output} (huc_12, {colnames})
             SELECT "HUC_12", {typed_colnames}::Numeric
