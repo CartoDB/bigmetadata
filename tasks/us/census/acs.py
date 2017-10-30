@@ -17,7 +17,7 @@ from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, current_session)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from time import time
-from .columns import ColumnsDeclarations
+from lib.columns import ColumnsDeclarations
 
 LOGGER = get_logger(__name__)
 
