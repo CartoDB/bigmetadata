@@ -1,5 +1,5 @@
 import argparse
-from .meta import CurrentSession
+from tasks.meta import CurrentSession
 
 REMOVE_FROM_DO = "removefromdo"
 
