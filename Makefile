@@ -381,23 +381,23 @@ us-spielman:
 	make -- run-parallel us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper
 
 us-tiger:
-	make -- run-parallel us.census.tiger tasks.us.census.tiger.AllSumLevels --year 2015
+	make -- run-parallel us.census.tiger.AllSumLevels --year 2015
 
 us-enviroatlas:
-	make -- run-parallel us.epa.enviroatlas tasks.us.epa.enviroatlas.AllTables
+	make -- run-parallel us.epa.enviroatlas.AllTables
 
 us-huc:
-	make -- run-parallel us.epa.huc tasks.us.epa.huc.HUC
+	make -- run-parallel us.epa.huc.HUC
 
 us-dcp:
-	make -- run-parallel us.ny.nyc.dcp tasks.us.ny.nyc.dcp.MapPLUTOAll
+	make -- run-parallel us.ny.nyc.dcp.MapPLUTOAll
 
 us-dob:
-	make -- run-parallel us.ny.nyc.dob tasks.us.ny.nyc.dob.PermitIssuance
+	make -- run-parallel us.ny.nyc.dob.PermitIssuance
 
 us-zillow:
-	make -- run-parallel us.zillow tasks.us.zillow.AllZillow
+	make -- run-parallel us.zillow.AllZillow
 
 ### who's on first
 wof-all:
-	make -- run-parallel whosonfirst tasks.whosonfirst.AllWOF
+	make -- run-parallel whosonfirst.AllWOF
