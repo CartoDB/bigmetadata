@@ -209,21 +209,21 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"eu.geo.nuts_geometries_0_5af288f97f": {
+	"eu.geo.tasks_eu_geo_nuts_geometries_0_5af288f97f": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "9.7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"eu.geo.nuts_geometries_2_8fd682437e": {
+	"eu.geo.tasks_eu_geo_nuts_geometries_2_8fd682437e": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "9.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"eu.geo.nuts_geometries_3_6f2da1a549": {
+	"eu.geo.tasks_eu_geo_nuts_geometries_3_6f2da1a549": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "9.1",
@@ -244,42 +244,42 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_ageb_c2b831cb13": {
+	"mx.inegi.tasks_mx_inegi_geography_ageb_c2b831cb13": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_entidad_e0c18e465f": {
+	"mx.inegi.tasks_mx_inegi_geography_entidad_e0c18e465f": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_localidad_urbana_26b065cdbd": {
+	"mx.inegi.tasks_mx_inegi_geography_localidad_urbana_26b065cdbd": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "6.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_manzana_fc213a4a44": {
+	"mx.inegi.tasks_mx_inegi_geography_manzana_fc213a4a44": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_municipio_1f5cc946d5": {
+	"mx.inegi.tasks_mx_inegi_geography_municipio_1f5cc946d5": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"mx.inegi.geography_servicios_area_23d5143f6f": {
+	"mx.inegi.tasks_mx_inegi_geography_servicios_area_23d5143f6f": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "10",
