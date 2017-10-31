@@ -111,7 +111,7 @@ ifeq (run,$(firstword $(MAKECMDGOALS)))
   TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   # Remove the class name to get the module name
   # for example: echo es.cnig.AllGeometries | sed "s/^\(.*\)\..*$/\1/"
-  MOD_NAME := $(shell echo $(TASK) | sed "s/^\(.*\)\..*$$/\1/")
+  MOD_NAME := $(shell echo $(wordlist 1,1,$(TASK)) | sed "s/^\(.*\)\..*$$/\1/")
   # ...and turn them into do-nothing targets
   $(eval $(TASK):;@:)
   $(eval $(MOD_NAME):;@:)
@@ -122,7 +122,7 @@ ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
   TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   # Remove the class name to get the module name
   # for example: echo es.cnig.AllGeometries | sed "s/^\(.*\)\..*$/\1/"
-  MOD_NAME := $(shell echo $(TASK) | sed "s/^\(.*\)\..*$$/\1/")
+  MOD_NAME := $(shell echo $(wordlist 1,1,$(TASK)) | sed "s/^\(.*\)\..*$$/\1/")
   # ...and turn them into do-nothing targets
   $(eval $(TASK):;@:)
   $(eval $(MOD_NAME):;@:)
