@@ -1,7 +1,7 @@
-import sys
+import argparse
 from .meta import CurrentSession
 
-REMOVE_FROM_DO = "removeFromDO"
+REMOVE_FROM_DO = "removefromdo"
 
 
 def remove_from_do(id):
@@ -35,7 +35,7 @@ def remove_from_do(id):
 
     yn = input("Continue? (Y/N) ")
 
-    if yn != "Y":
+    if yn.lower() != "y":
         return
 
     for table in session.execute(
@@ -49,17 +49,12 @@ def remove_from_do(id):
 
     session.execute("COMMIT")
 
-
-def print_remove_from_do_help():
-    print("$python tools.py removeFromDO id_of_data_to_remove")
-
-
 if __name__ == "__main__":
-    if (len(sys.argv) == 1 or "?" in sys.argv[1]):
-        # print all helps here
-        print_remove_from_do_help()
-    elif REMOVE_FROM_DO == sys.argv[1]:
-        if len(sys.argv) == 3:
-            remove_from_do(sys.argv[2])
-        else:
-            print_remove_from_do_help()
+    parser = argparse.ArgumentParser('python tools.py')
+    parser.add_argument('task', help='Task to be executed')
+    parser.add_argument('task_parameters', nargs='+', help='Task parameters')
+    args = vars(parser.parse_args())
+    if args['task'].lower() == REMOVE_FROM_DO and len(args['task_parameters']) == 1:
+        remove_from_do(args['task_parameters'][0])
+    else:
+        parser.print_help()
