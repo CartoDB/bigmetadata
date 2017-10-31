@@ -108,9 +108,9 @@ def classpath(obj):
     return classpath_ if classpath_ else 'tmp'
 
 
-def proper_task_id(task_id):
+def proper_task_name(task_id):
     '''
-    Returns the name of the task without the package name.
+    Returns the name of the task from the task_id.
     '''
     return task_id.split('.')[-1]
 
@@ -1238,7 +1238,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), proper_task_id(self.task_id))
+        return PostgresTarget(classpath(self), proper_task_name(self.task_id))
 
 
 @TempTableTask.event_handler(Event.START)
@@ -1670,7 +1670,7 @@ class TableTask(Task):
             self._columns = self.columns()
 
         tt = TableTarget(classpath(self),
-                         underscore_slugify(proper_task_id(self.task_id)),
+                         underscore_slugify(proper_task_name(self.task_id)),
                          OBSTable(description=self.description(),
                                   version=self.version(),
                                   timespan=self.timespan()),
@@ -1679,7 +1679,7 @@ class TableTask(Task):
 
     def complete(self):
         return TableTarget(classpath(self),
-                           underscore_slugify(proper_task_id(self.task_id)),
+                           underscore_slugify(proper_task_name(self.task_id)),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     timespan=self.timespan()),
