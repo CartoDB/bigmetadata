@@ -888,13 +888,15 @@ class OBSMetaToLocal(OBSMeta):
             for i, q in enumerate(self.QUERIES):
                 before = time.time()
                 query = q.format(obs_meta='observatory.obs_meta_next')
+                LOGGER.info(query)
                 session.execute(query)
                 after = time.time()
                 LOGGER.info('time taken for obs_meta:%s: %s', i, round(after - before, 2))
                 if i == 1:
                     session.commit()
             session.commit()
-        except:
+        except Exception as e:
+            LOGGER.error(str(e))
             session.rollback()
             raise
 
@@ -908,6 +910,7 @@ class OBSMetaToLocal(OBSMeta):
                 for i, q in enumerate(queries):
                     before = time.time()
                     query = q.format(obs_meta='observatory.obs_meta_next_{}'.format(dimension))
+                    LOGGER.info(query)
                     session.execute(query)
                     session.flush()
                     after = time.time()
@@ -918,7 +921,8 @@ class OBSMetaToLocal(OBSMeta):
                                     '(the_geom)'.format(dimension=dimension))
                 after = time.time()
             session.commit()
-        except:
+        except Exception as e:
+            LOGGER.error(str(e))
             session.rollback()
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.commit()
@@ -937,7 +941,8 @@ class OBSMetaToLocal(OBSMeta):
                         dimension=dimension
                     ))
             session.commit()
-        except:
+        except Exception as e:
+            LOGGER.error(str(e))
             session.rollback()
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.commit()
