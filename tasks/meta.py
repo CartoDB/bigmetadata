@@ -24,6 +24,7 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.schema import ForeignKeyConstraint
 from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
+from tasks.util import LOGGER
 
 
 def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
@@ -924,8 +925,10 @@ class UpdatedMetaTarget(Target):
             meta.name = distinct_tags.name
         WHERE meta.id IS NULL OR distinct_tags.id IS NULL
         '''
+        LOGGER.info(changed_tags)
         resp = session.execute(changed_tags)
         if resp.fetchone():
+            LOGGER.info('False changed_tags')
             return False
 
         # identify columns that have appeared, changed, or disappeared
@@ -952,8 +955,10 @@ class UpdatedMetaTarget(Target):
         ON id = numer_id AND version = numer_version
         WHERE numer_id IS NULL OR id IS NULL;
         '''
+        LOGGER.info(changed_columns)
         resp = session.execute(changed_columns)
         if resp.fetchone():
+            LOGGER.info('False changed_columns')
             return False
 
         # identify tables that have appeared, changed, or disappeared
@@ -1018,7 +1023,9 @@ class UpdatedMetaTarget(Target):
         where rank = 1 and (geom_tid is null or id is null)
         ;
         '''
+        LOGGER.info(changed_tables)
         resp = session.execute(changed_tables)
         if resp.fetchone():
+            LOGGER.info('False changed_tables')
             return False
         return True
