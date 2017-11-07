@@ -1248,7 +1248,7 @@ def clear_temp_table(task):
     if task.force or target.empty():
         session = current_session()
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
-            schema=classpath(task), tablename=task.task_id))
+            schema=classpath(task), tablename=unqualified_task_id(task.task_id)))
         session.flush()
 
 
