@@ -333,6 +333,51 @@
 			}
 		]
 	},
+	"educ_renrlrg1_ed4_g_nr_m": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_nr_t": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_nr_f": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_nr_m": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_nr_t": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
 	"ilc_lvhl21_pc_lw95": {
 		"exceptions": [
 			{
