@@ -896,7 +896,7 @@ class OBSMetaToLocal(OBSMeta):
                     session.commit()
             session.commit()
         except Exception as e:
-            LOGGER.error(str(e))
+            LOGGER.error(' >>>---> ' + str(e))
             session.rollback()
             raise
 
@@ -917,32 +917,36 @@ class OBSMetaToLocal(OBSMeta):
                     LOGGER.info('time taken for %s:%s: %s', dimension, i, round(after - before, 2))
                 # geom_numer_timespan doesn't have geometries so no need to add geometry index for it
                 if dimension != 'geom_numer_timespan':
-                    session.execute('CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist '
-                                    '(the_geom)'.format(dimension=dimension))
+                    query = 'CREATE INDEX ON observatory.obs_meta_next_{dimension} USING gist(the_geom)'.format(dimension=dimension)
+                    LOGGER.info(query)
+                    session.execute(query)
                 after = time.time()
             session.commit()
         except Exception as e:
-            LOGGER.error(str(e))
+            LOGGER.error(' >>>---> ' + str(e))
             session.rollback()
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.commit()
             raise
 
         try:
-            session.execute('DROP TABLE IF EXISTS observatory.obs_meta')
-            session.execute('ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta')
+            query = 'DROP TABLE IF EXISTS observatory.obs_meta'
+            LOGGER.info(query)
+            session.execute(query)
+            query = 'ALTER TABLE observatory.obs_meta_next RENAME TO obs_meta'
+            LOGGER.info(query)
+            session.execute(query)
             for dimension, query in self.DIMENSIONS.items():
-                session.execute('DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(
-                    dimension=dimension
-                ))
-                session.execute('''
-                    ALTER TABLE IF EXISTS observatory.obs_meta_next_{dimension}
-                    RENAME TO obs_meta_{dimension}'''.format(
-                        dimension=dimension
-                    ))
+                query = 'DROP TABLE IF EXISTS observatory.obs_meta_{dimension}'.format(dimension=dimension)
+                LOGGER.info(query)
+                session.execute(query)
+                query = 'ALTER TABLE IF EXISTS observatory.obs_meta_next_{dimension} RENAME TO obs_meta_{dimension}'.format(
+                        dimension=dimension)
+                LOGGER.info(query)
+                session.execute(query)
             session.commit()
         except Exception as e:
-            LOGGER.error(str(e))
+            LOGGER.error(' >>>---> ' + str(e))
             session.rollback()
             session.execute('DROP TABLE IF EXISTS observatory.obs_meta_next')
             session.commit()
