@@ -388,7 +388,7 @@ class OBSMeta(Task):
           AND denom_data_ct.table_id = denom_t.id
           AND denom_c.id = denom_ctag.column_id
           AND denom_ctag.tag_id = denom_tag.id
-          AND denom_c2c.reltype = 'denominator'
+          AND denom_c2c.reltype IN ('denominator', 'universe')
           AND denom_geomref_ct.table_id = denom_t.id
           AND denom_geomref_ct.column_id = geomref_c.id
           AND geomref_c2c.reltype = 'geom_ref'
