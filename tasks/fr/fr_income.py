@@ -1,5 +1,5 @@
 from tasks.util import (TableTask, TagsTask, ColumnsTask, MetaWrapper, CSV2TempTableTask, shell, classpath)
-from tasks.meta import current_session, DENOMINATOR
+from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from collections import OrderedDict
 from luigi import Parameter, Task, LocalTarget
 import os
@@ -96,7 +96,7 @@ class IrisIncomeColumns(ColumnsTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def columns(self):
         cols = OrderedDict()
@@ -113,9 +113,9 @@ class IrisIncomeColumns(ColumnsTask):
             # Skip first row (header)
             next(tsvreader, None)
             for line in tsvreader:
-                var_code, short_name, long_name, _universes, var_unit, denominators, subsections = line
+                var_code, short_name, long_name, universes, var_unit, denominators, subsections = line
 
-                targets = self.get_targets(cols, denominators)
+                targets = self.get_targets(cols, denominators, universes)
 
                 aggregate = ''
                 if var_unit in SUM_UNITS:
@@ -143,11 +143,22 @@ class IrisIncomeColumns(ColumnsTask):
 
         return cols
 
-    def get_targets(self, cols, denominators):
+    def get_targets(self, cols, denominators, universes):
         targets_dict = {}
         if denominators:
-            for x in denominators.split(','):
-                targets_dict[cols.get(x.strip())] = DENOMINATOR
+            targets_dict = self.get_relation_targets(cols, denominators, DENOMINATOR)
+        elif universes:
+            targets_dict = self.get_relation_targets(cols, denominators, UNIVERSE)
+
+        return targets_dict
+
+    def get_relation_targets(self, cols, relations, relation):
+        targets_dict = {}
+        if relations:
+            relations = relations.split(',')
+            for x in relations:
+                x = x.strip()
+                targets_dict[cols.get(x)] = relation
             targets_dict.pop(None, None)
 
         return targets_dict
