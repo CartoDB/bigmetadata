@@ -139,20 +139,21 @@ def test_column_target_many_inits():
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget(OBSColumn(
-        id='tests.population',
-        type='Numeric',
-        name="Total Population",
-        description='The total number of all',
-        aggregate='sum',
-        weight=10), FakeTask())
+    total_pop = OBSColumn(
+                    id='tests.population',
+                    type='Numeric',
+                    name="Total Population",
+                    description='The total number of all',
+                    aggregate='sum',
+                    weight=10)
+    pop_col = ColumnTarget(total_pop, FakeTask())
     foo_col = ColumnTarget(OBSColumn(
         id='tests.foo',
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',
         aggregate='median',
-        targets={pop_col: UNIVERSE},
+        targets={total_pop: UNIVERSE},
         weight=8), FakeTask())
     pop_col.update_or_create()
     foo_col.update_or_create()
