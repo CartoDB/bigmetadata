@@ -9,7 +9,7 @@ from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask
                         TableTarget, TagTarget, TagsTask, PostgresTarget,
                         generate_tile_summary)
 from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
-                        OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
+                        OBSTable, OBSColumnTag, OBSColumnToColumn, metadata, DENOMINATOR, UNIVERSE)
 
 
 
@@ -152,6 +152,7 @@ def test_table_target_many_inits():
         name="Foo Bar",
         description='moo boo foo',
         aggregate='median',
+        targets={pop_col: UNIVERSE},
         weight=8), FakeTask())
     pop_col.update_or_create()
     foo_col.update_or_create()
@@ -347,10 +348,8 @@ class TestColumnsTask(ColumnsTask):
                                 aggregate='median',
                                 weight=8,
                                 tags=[tags['population']],
-                                targets={
-                                    pop_column: 'denominator'
-                                }
-                               ),
+                                targets={pop_column: UNIVERSE}
+                                ),
         })
 
 
