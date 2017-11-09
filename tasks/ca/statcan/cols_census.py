@@ -693,7 +693,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
-            targets={},)
+            targets={t001c001_t: UNIVERSE},)
 
         t001c025_m = OBSColumn(
             id='t001c025_m',
@@ -702,7 +702,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
-            targets={},)
+            targets={t001c001_m: UNIVERSE},)
 
         t001c025_f = OBSColumn(
             id='t001c025_f',
@@ -711,7 +711,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_years, subsections['age_gender']],
-            targets={},)
+            targets={t001c001_f: UNIVERSE},)
 
         t001c026_t = OBSColumn(
             id='t001c026_t',
@@ -10005,7 +10005,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['families']],
-            targets={},)
+            targets={t005c029_t: UNIVERSE},)
 
         t006c002_t = OBSColumn(
             id='t006c002_t',
@@ -10335,7 +10335,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['housing']],
-            targets={},)
+            targets={t007c001_t: UNIVERSE},)
 
         t007c008_t = OBSColumn(
             id='t007c008_t',
@@ -10803,7 +10803,7 @@ class CensusColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_households, subsections['housing']],
-            targets={},)
+            targets={t007c048_t: UNIVERSE},)
 
         t008c002_t = OBSColumn(
             id='t008c002_t',

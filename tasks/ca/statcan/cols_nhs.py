@@ -15867,7 +15867,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_minutes, subsections['transportation']],
-            targets={},)
+            targets={t017c001_t: UNIVERSE},)
 
         t017c002_m = OBSColumn(
             id='t017c002_m',
@@ -15876,7 +15876,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_minutes, subsections['transportation']],
-            targets={},)
+            targets={t017c001_m: UNIVERSE},)
 
         t017c002_f = OBSColumn(
             id='t017c002_f',
@@ -15885,7 +15885,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='median',
             tags=[ca, unit_minutes, subsections['transportation']],
-            targets={},)
+            targets={t017c001_f: UNIVERSE},)
 
         t018c001_t = OBSColumn(
             id='t018c001_t',
@@ -19854,7 +19854,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['housing'], public],
-            targets={},)
+            targets={t022c001_t: UNIVERSE},)
 
         t022c019_t = OBSColumn(
             id='t022c019_t',
@@ -22955,7 +22955,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={},)
+            targets={t004c001_t: UNIVERSE},)
 
         t029c009_m = OBSColumn(
             id='t029c009_m',
@@ -22964,7 +22964,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={},)
+            targets={t004c001_m: UNIVERSE},)
 
         t029c009_f = OBSColumn(
             id='t029c009_f',
@@ -22973,7 +22973,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={},)
+            targets={t004c001_f: UNIVERSE},)
 
         cols = OrderedDict([
             ('t001c001_t', t001c001_t),
