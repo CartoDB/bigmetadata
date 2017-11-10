@@ -11,10 +11,7 @@ try:
 except:
     pass
 
-from nose.tools import assert_equals, with_setup, assert_false, assert_true
-
-from tasks.meta import (OBSColumnTable, OBSColumn, OBSColumnToColumn, OBSTable,
-                        OBSTag, OBSColumnTag, Base)
+from nose.tools import with_setup
 
 from tasks.us.census.lodes import WorkplaceAreaCharacteristicsColumns
 

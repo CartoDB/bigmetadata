@@ -1,6 +1,7 @@
 import os
 from luigi import Task, Parameter, LocalTarget
-from .util import PostgresTarget, shell
+from .util import shell
+from .targets import PostgresTarget
 from .meta import CurrentSession
 
 OBSERVATORY_SCHEMA = 'observatory'

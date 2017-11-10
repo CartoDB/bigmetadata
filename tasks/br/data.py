@@ -4,18 +4,15 @@ import os
 import csv
 import pandas as pd
 
-from luigi import Task, Parameter, WrapperTask, LocalTarget
+from luigi import Parameter, WrapperTask
 
-from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask, TagsTask,
-                        ColumnsTask, TableTask, classpath, CSV2TempTableTask,
-                        MetaWrapper)
-from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
+from tasks.tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
+from tasks.util import shell
+from tasks.meta import OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from abc import ABCMeta
 from collections import OrderedDict
 from tasks.br.geo import (
     BaseParams,
-    GEOGRAPHIES,
     DATA_STATES,
     Geography,
     GeographyColumns,

@@ -1,5 +1,6 @@
 from tasks.meta import OBSTag
-from tasks.util import TagsTask
+from tasks.tasks import TagsTask
+
 
 class NYCTags(TagsTask):
 

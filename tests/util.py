@@ -6,6 +6,7 @@ import os
 from subprocess import check_output
 
 from time import time
+from contextlib import contextmanager
 
 
 EMPTY_RASTER = '0100000000000000000000F03F000000000000F0BF0000000000000000' \
@@ -30,10 +31,6 @@ def recreate_db(dbname='test'):
     check_output('psql -d {dbname} -c "CREATE EXTENSION IF NOT EXISTS postgis"'.format(
         dbname=dbname), shell=True)
     os.environ['PGDATABASE'] = dbname
-
-
-from contextlib import contextmanager
-from luigi.worker import Worker
 
 
 def setup():
@@ -67,7 +64,8 @@ def runtask(task, superclasses=None):
     pre-reqs, other pre-reqs will be ignored.  Can be useful when testing to
     only run metadata classes, for example.
     '''
-    from tasks.util import LOGGER
+    from lib.logger import get_logger
+    LOGGER = get_logger(__name__)
     if task.complete():
         return
     for dep in task.deps():

@@ -1,16 +1,14 @@
 from collections import OrderedDict
 from luigi import Parameter
 from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
-                        assert_is_none, assert_true, assert_false,
-                        assert_almost_equals)
+                        assert_true, assert_false, assert_almost_equals)
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
-from tasks.util import (underscore_slugify, ColumnTarget, ColumnsTask, TableTask,
-                        TableTarget, TagTarget, TagsTask, PostgresTarget,
-                        generate_tile_summary)
-from tasks.meta import (OBSColumn, Base, OBSColumnTable, OBSTag, current_session,
+from tasks.tasks import ColumnsTask, TableTask, TagsTask
+from tasks.util import underscore_slugify, generate_tile_summary
+from tasks.targets import PostgresTarget, ColumnTarget, TagTarget, TableTarget
+from tasks.meta import (OBSColumn, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
-
 
 
 def test_underscore_slugify():

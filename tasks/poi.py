@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from tasks.meta import OBSColumn
-from tasks.util import ColumnsTask
+from tasks.tasks import ColumnsTask
 
 
 class POIColumns(ColumnsTask):

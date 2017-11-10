@@ -1,6 +1,6 @@
-from tasks.meta import OBSColumn, GEOM_REF, current_session
-from tasks.util import (Shp2TempTableTask, DownloadUnzipTask, shell, TableTask,
-                        ColumnsTask,MetaWrapper)
+from tasks.meta import OBSColumn, current_session
+from tasks.tasks import ColumnsTask, Shp2TempTableTask, DownloadUnzipTask, TableTask
+from tasks.util import shell
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
 from tasks.us.ny.nyc.tags import NYCTags
@@ -891,13 +891,3 @@ class MapPLUTOAll(WrapperTask):
     def requires(self):
         for release in RELEASES:
             yield MapPLUTO(release=release)
-
-# class MapPLUTOMetaWrapper(MetaWrapper):
-#     release = Parameter()
-#
-#     params = {
-#         'release':['17','16','15']
-#     }
-#
-#     def tables(self):
-#         yield MapPLUTO(release=self.release)

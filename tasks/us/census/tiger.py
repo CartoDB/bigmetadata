@@ -8,10 +8,9 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
-from tasks.util import (LoadPostgresFromURL, classpath, TempTableTask, grouper,
-                        shell, TableTask, ColumnsTask, TagsTask,
-                        Carto2TempTableTask)
-from tasks.meta import (OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session)
+from tasks.tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL
+from tasks.util import classpath, grouper, shell
+from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)

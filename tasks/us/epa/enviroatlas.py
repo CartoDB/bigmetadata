@@ -2,9 +2,9 @@ from luigi import Parameter, WrapperTask
 
 from tasks.meta import OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
-from tasks.us.epa.huc import HUCColumns, SourceTags, HUC
-from tasks.util import (DownloadUnzipTask, shell, ColumnsTask, TableTask,
-                        CSV2TempTableTask, MetaWrapper)
+from tasks.us.epa.huc import HUCColumns, SourceTags
+from tasks.tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
+from tasks.util import shell
 from collections import OrderedDict
 
 import os
@@ -203,16 +203,3 @@ class AllTables(WrapperTask):
     def requires(self):
         for table, timespan in self.TABLES:
             yield EnviroAtlas(table=table, time=timespan)
-
-# class HUCMetaWrap(MetaWrapper):
-#     table = Parameter()
-#     time = Parameter()
-#
-#     params = {
-#         'table': ['AvgPrecip','landcover','solar_energy'],
-#         'time': ['2010','2006','2012']
-#     }
-#
-#     def tables(self):
-#         yield EnviroAtlas(table=self.table, time=self.time)
-#         yield HUC()

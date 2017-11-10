@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
-from tasks.util import (ColumnsTask, TableTask, TagsTask, shell, classpath,
-                        Shp2TempTableTask, current_session)
+
+from tasks.tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask
+from tasks.util import shell, classpath, current_session
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag

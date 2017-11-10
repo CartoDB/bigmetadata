@@ -1,9 +1,9 @@
-from luigi import IntParameter, WrapperTask
+from luigi import IntParameter
 from xlrd import open_workbook
 from xlrd.xldate import xldate_as_tuple
 
-from tasks.util import (TableTask, ColumnsTask, TempTableTask, DownloadUnzipTask,
-                        shell, LOGGER)
+from tasks.tasks import ColumnsTask, TableTask, TempTableTask, DownloadUnzipTask
+from tasks.util import shell
 from tasks.meta import current_session, OBSColumn
 from collections import OrderedDict
 
@@ -12,7 +12,11 @@ from tasks.us.ny.nyc.tags import NYCTags
 from tasks.poi import POIColumns
 from datetime import datetime
 
+from lib.logger import get_logger
+
 import os
+
+LOGGER = get_logger(__name__)
 
 
 class DownloadPermitIssuanceMonthly(DownloadUnzipTask):

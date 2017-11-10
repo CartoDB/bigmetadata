@@ -1,8 +1,9 @@
 from collections import OrderedDict
 
 from tasks.meta import OBSColumn, GEOM_REF
-from tasks.util import ColumnsTask
+from tasks.tasks import ColumnsTask
 from tasks.us.ny.nyc.tags import NYCTags
+
 
 class NYCColumns(ColumnsTask):
 

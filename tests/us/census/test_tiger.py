@@ -11,9 +11,8 @@ try:
 except:
     pass
 
-from nose.tools import assert_equals, with_setup, assert_false, assert_true
+from nose.tools import with_setup
 
-from tasks.meta import (Base)
 from tasks.us.census.tiger import GeoidColumns, GeomColumns
 
 from tests.util import runtask, setup, teardown

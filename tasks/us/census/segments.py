@@ -3,8 +3,8 @@ Define special segments for the census
 '''
 
 
-from tasks.meta import OBSTag, OBSColumn
-from tasks.util import TagsTask, ColumnsTask, TableTask
+from tasks.meta import OBSTag
+from tasks.tasks import TagsTask
 
 
 class SegmentTags(TagsTask):

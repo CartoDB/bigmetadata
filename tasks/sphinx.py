@@ -5,14 +5,19 @@ Sphinx functions for luigi bigmetadata tasks.
 from jinja2 import Environment, PackageLoader
 from luigi import (Task, LocalTarget, BoolParameter, Parameter, DateParameter)
 from luigi.contrib.s3 import S3Target
-from tasks.util import shell, PostgresTarget, LOGGER
+from tasks.util import shell
+from tasks.targets import PostgresTarget
 from tasks.meta import current_session, OBSTag, catalog_latlng
 from tasks.carto import OBSMetaToLocal
+
+from lib.logger import get_logger
 
 from datetime import date
 
 import json
 import os
+
+LOGGER = get_logger(__name__)
 
 ENV = Environment(loader=PackageLoader('catalog', 'templates'))
 
@@ -22,6 +27,7 @@ def strip_tag_id(tag_id):
     Strip leading `tags.` when it exists.
     '''
     return tag_id.replace('tags.', '')
+
 
 ENV.filters['strip_tag_id'] = strip_tag_id
 

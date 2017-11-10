@@ -234,7 +234,7 @@ travis-etl-unittest:
 travis-diff-catalog:
 	git fetch origin master
 	./run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.util tasks.util.RunDiff --compare FETCH_HEAD'
+	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.tasks tasks.tasks.RunDiff --compare FETCH_HEAD'
 	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
 
 travis-etl-metadatatest:
@@ -248,7 +248,7 @@ docs:
 
 tiles:
 	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.util tasks.util.GenerateAllRasterTiles \
+	  --module tasks.tasks tasks.tasks.GenerateAllRasterTiles \
 	  --parallel-scheduling --workers=5
 
 ps:
@@ -276,7 +276,7 @@ diff-catalog: clean-catalog
 	git fetch origin master
 	docker-compose run -e PGDATABASE=test -e ENVIRONMENT=test --rm bigmetadata /bin/bash -c \
 	  'python3 -c "from tests.util import recreate_db; recreate_db()" && \
-	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util tasks.util.RunDiff --compare FETCH_HEAD && \
+	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.tasks tasks.tasks.RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx tasks.sphinx.Catalog'
 
 deps-tree:

@@ -13,7 +13,7 @@ from luigi import Task, Parameter
 from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
-from tasks.util import DownloadUnzipTask, TempTableTask
+from tasks.tasks import DownloadUnzipTask, TempTableTask
 
 from .metadata import sanitize_identifier
 
