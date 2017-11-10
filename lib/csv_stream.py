@@ -27,6 +27,6 @@ class CSVNormalizerStream(io.IOBase):
             return out
 
     def getline(self):
-        line = self._csvreader.next()
+        line = next(self._csvreader)
         clean_line = self._func(line)
         self._buffer += (','.join(clean_line) + ' \n')

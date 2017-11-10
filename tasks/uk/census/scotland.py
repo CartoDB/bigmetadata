@@ -19,7 +19,7 @@ class DownloadScotlandLocal(DownloadUnzipTask):
     URL = 'http://www.scotlandscensus.gov.uk/ods-web/download/getDownloadFile.html?downloadFileIds=Output%20Area%20blk'
 
     def download(self):
-        urllib.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
+        urllib.request.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
 
 
 class ImportScotland(TempTableTask):
@@ -38,7 +38,7 @@ class ImportScotland(TempTableTask):
         cols = OrderedDict({'geographycode': 'TEXT PRIMARY KEY'})
         with open(infile) as csvfile:
             reader = csv.reader(csvfile)
-            header = reader.next()
+            header = next(reader)
 
             for c in header[1:]:
                 cols[self.id_to_column(c)] = 'NUMERIC'

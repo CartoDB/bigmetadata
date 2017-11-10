@@ -108,6 +108,13 @@ def classpath(obj):
     return classpath_ if classpath_ else 'tmp'
 
 
+def unqualified_task_id(task_id):
+    '''
+    Returns the name of the task from the task_id.
+    '''
+    return task_id.split('.')[-1]
+
+
 def query_cartodb(query, carto_url=None, api_key=None):
     '''
     Convenience function to query CARTO's SQL API with an arbitrary SQL string.
@@ -1231,7 +1238,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), self.task_id.split('.')[-1])
+        return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
 
 
 @TempTableTask.event_handler(Event.START)
@@ -1241,7 +1248,7 @@ def clear_temp_table(task):
     if task.force or target.empty():
         session = current_session()
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
-            schema=classpath(task), tablename=task.task_id))
+            schema=classpath(task), tablename=unqualified_task_id(task.task_id)))
         session.flush()
 
 
@@ -1659,22 +1666,20 @@ class TableTask(Task):
                 table=self.output().table, columns=', '.join([x[0] for x in result])))
 
     def output(self):
-        #if self.deps() and not all([d.complete() for d in self.deps()]):
-        #    raise Exception('Must run prerequisites first')
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
         tt = TableTarget(classpath(self),
-                           underscore_slugify(self.task_id),
-                           OBSTable(description=self.description(),
-                                    version=self.version(),
-                                    timespan=self.timespan()),
-                           self._columns, self)
+                         underscore_slugify(unqualified_task_id(self.task_id)),
+                         OBSTable(description=self.description(),
+                                  version=self.version(),
+                                  timespan=self.timespan()),
+                         self._columns, self)
         return tt
 
     def complete(self):
         return TableTarget(classpath(self),
-                           underscore_slugify(self.task_id),
+                           underscore_slugify(unqualified_task_id(self.task_id)),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     timespan=self.timespan()),

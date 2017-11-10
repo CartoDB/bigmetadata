@@ -5,7 +5,7 @@ Tasks to sync data locally to CartoDB
 from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
 from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
                         classpath, shell, PostgresTarget, LOGGER,
-                        CartoDBTarget, TableToCartoViaImportAPI)
+                        CartoDBTarget, TableToCartoViaImportAPI, unqualified_task_id)
 
 from luigi import (WrapperTask, BoolParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter)
@@ -19,7 +19,6 @@ import os
 
 META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
                'obs_column_tag', 'obs_tag', 'obs_dump_version', )
-
 
 
 class SyncColumn(WrapperTask):
@@ -279,7 +278,7 @@ class Dump(Task):
             self.output().makedirs()
             session.execute(
                 'INSERT INTO observatory.obs_dump_version (dump_id) '
-                "VALUES ('{task_id}')".format(task_id=self.task_id))
+                "VALUES ('{task_id}')".format(task_id=unqualified_task_id(self.task_id)))
             session.commit()
             shell('pg_dump -Fc -Z0 -x -n observatory -f {output}'.format(
                 output=self.output().path))
@@ -287,12 +286,12 @@ class Dump(Task):
             session.rollback()
             session.execute(
                 'DELETE FROM observatory.obs_dump_version '
-                "WHERE dump_id =  '{task_id}'".format(task_id=self.task_id))
+                "WHERE dump_id =  '{task_id}'".format(task_id=unqualified_task_id(self.task_id)))
             session.commit()
             raise err
 
     def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id + '.dump'))
+        return LocalTarget(os.path.join('tmp', classpath(self), unqualified_task_id(self.task_id) + '.dump'))
 
 
 class DumpS3(Task):
