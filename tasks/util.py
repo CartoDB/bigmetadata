@@ -1671,14 +1671,15 @@ class TableTask(Task):
 
     def check_universe_in_aggregations(self):
         session = current_session()
-        result = session.execute("SELECT c.id, c.aggregate, cc.reltype "
+        result = session.execute("SELECT c.id, c.aggregate, STRING_AGG(COALESCE(cc.reltype,''), ',') reltype "
                                  "FROM observatory.obs_table t "
                                  "INNER JOIN observatory.obs_column_table ct ON t.id = ct.table_id "
                                  "INNER JOIN observatory.obs_column c ON ct.column_id = c.id "
                                  "FULL JOIN observatory.obs_column_to_column cc ON c.id = cc.source_id "
                                  "WHERE t.tablename = '{table}' "
                                  "AND c.aggregate IN ('average', 'median') "
-                                 "AND (reltype IS NULL OR reltype <> 'universe')".format(
+                                 "GROUP BY 1, 2 "
+                                 "HAVING LOWER(STRING_AGG(COALESCE(cc.reltype,''), ',')) NOT LIKE '%universe%'".format(
                                      table=self.output()._tablename)).fetchall()
 
         if result:
