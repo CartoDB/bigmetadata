@@ -144,9 +144,13 @@ class Columns(ColumnsTask):
             'source': SourceTags(),
             'license': LicenseTags()
         }
-        # all tables except B01/B02 require B01
-        if self.tablename != 'B01' and self.tablename != 'B02':
+        # all tables except B01 require B01
+        if self.tablename != 'B01':
             requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
+        if self.tablename == 'B02':
+            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
+            requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
+            requirements['B31'] = Columns(tablename='B31', year=self.year, profile=self.profile)
         if self.tablename == 'B04A':
             requirements['B04B'] = Columns(tablename='B04B', year=self.year, profile=self.profile)
         if self.tablename == 'B08A':
@@ -233,6 +237,7 @@ class Columns(ColumnsTask):
         # column req's from other tables
         column_reqs = {}
         column_reqs.update(input_.get('B01', {}))
+        column_reqs.update(input_.get('B02', {}))
         column_reqs.update(input_.get('B04B', {}))
         column_reqs.update(input_.get('B08B', {}))
         column_reqs.update(input_.get('B10B', {}))
@@ -290,26 +295,30 @@ class Columns(ColumnsTask):
                     denom_id = denom_id.strip()
                     if not denom_id:
                         continue
-                    if denom_id in column_reqs:
-                        targets_dict[column_reqs[denom_id].get(session)] = 'denominator'
-                    else:
-                        targets_dict[cols[denom_id]] = 'denominator'
-                targets_dict.pop(None, None)
 
+                    reltype = 'denominator'
+                    if col_agg in ['median', 'average']:
+                        reltype = 'universe'
+
+                    if denom_id in column_reqs:
+                        targets_dict[column_reqs[denom_id].get(session)] = reltype
+                    else:
+                        targets_dict[cols[denom_id]] = reltype
+                targets_dict.pop(None, None)
 
                 cols[col_id] = OBSColumn(
                     id=col_id,
                     type='Numeric',
                     name=col_name,
-                    description =tabledesc,
+                    description=tabledesc,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
-                    aggregate= col_agg or 'sum',
+                    aggregate=col_agg or 'sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     tags=[source, license, country, unittags[col_unit]],
-                    targets= targets_dict
+                    targets=targets_dict
                 )
 
                 # append the rest of the subsection tags
