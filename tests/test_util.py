@@ -215,6 +215,13 @@ def test_columns_task_fails_no_columns():
 
 
 @with_setup(setup, teardown)
+def test_columns_task_fails_no_universe_target():
+    task = TestTableTaskWithoutUniverseTarget()
+    with assert_raises(ValueError):
+        runtask(task)
+
+
+@with_setup(setup, teardown)
 def test_columns_task_creates_columns_only_when_run():
 
     task = TestColumnsTask()
@@ -354,6 +361,38 @@ class TestColumnsTask(ColumnsTask):
         })
 
 
+class TestColumnsTaskWithoutUniverseTarget(ColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask()
+        }
+
+    def columns(self):
+        tags = self.input()['tags']
+        pop_column = OBSColumn(id='population',
+                               type='Numeric',
+                               name="Total Population",
+                               description='The total number of all',
+                               aggregate='sum',
+                               tags=[
+                                   tags['denominator'],
+                                   tags['population']
+                               ],
+                               weight=10)
+        return OrderedDict({
+            'pop': pop_column,
+            'foobar': OBSColumn(id='foobar',
+                                type='Numeric',
+                                name="Foo Bar",
+                                description='moo boo foo',
+                                aggregate='median',
+                                weight=8,
+                                tags=[tags['population']]
+                                ),
+        })
+
+
 class TestColumnsTaskWithTwoTags(TestColumnsTask):
 
     def requires(self):
@@ -387,6 +426,31 @@ class TestTableTask(TableTask):
     def requires(self):
         return {
             'meta': TestColumnsTask()
+        }
+
+    def columns(self):
+        return {
+            'population': self.input()['meta']['pop'],
+            'foobar': self.input()['meta']['foobar']
+        }
+
+    def timespan(self):
+        return ''
+
+    def populate(self):
+        session = current_session()
+        session.execute('INSERT INTO {output} VALUES (100, 100)'.format(
+            output=self.output().table))
+
+
+class TestTableTaskWithoutUniverseTarget(TableTask):
+
+    alpha = Parameter(default='1996')
+    beta = Parameter(default='5000')
+
+    def requires(self):
+        return {
+            'meta': TestColumnsTaskWithoutUniverseTarget()
         }
 
     def columns(self):
