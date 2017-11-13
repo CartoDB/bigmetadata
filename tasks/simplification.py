@@ -36,7 +36,7 @@ class ExportShapefile(Task):
             self.output().fs.mkdir(temp_path)
             cmd = 'ogr2ogr -f "ESRI Shapefile" {shapefile} ' \
                 '{skipfailures} ' \
-                '"PG:dbname=$PGDATABASE active_schema={schema}" {table} '.format(
+                '"PG:dbname=$PGDATABASE active_schema={schema}" {table} -nlt MultiPolygon'.format(
                     shapefile=os.path.join(temp_path, shp_filename(self.table)), schema=self.schema, table=self.table,
                     skipfailures='-skipfailures' if self.skipfailures.lower() == SKIPFAILURES_YES else '')
             shell(cmd)
@@ -119,8 +119,9 @@ class SimplifyGeometriesMapshaper(Task):
 
 def simplification_factor(schema, table, geomfield, divisor_power):
     session = CurrentSession().get()
-    return session.execute('SELECT AVG(ST_Perimeter({geomfield}) / ST_NPoints({geomfield})) / 10 ^ ({divisor} / 10) '
-                           'from "{schema}".{table}'.format(
+    return session.execute('SELECT '
+                           'AVG(ST_Perimeter({geomfield}) / ST_NPoints({geomfield})) / 10 ^ ({divisor}::Decimal / 10) '
+                           'FROM "{schema}".{table} WHERE ST_NPoints({geomfield}) > 0'.format(
                             schema=schema, table=table, geomfield=geomfield, divisor=divisor_power
                            )).fetchone()[0]
 
@@ -160,6 +161,9 @@ class SimplifyGeometriesPostGIS(Task):
                             fields=', '.join([x[0] if x[0] != self.geomfield else simplified_geomfield
                                              for x in columns])))
         session.commit()
+        session.execute('CREATE INDEX {table_out}_{geomfield}_geo ON '
+                        '"{schema}".{table_out} USING GIST ({geomfield})'.format(
+                            table_out=self.output().tablename, geomfield=self.geomfield, schema=self.output().schema))
 
     def output(self):
         return PostgresTarget(self.schema, self.table_out)
