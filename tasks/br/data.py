@@ -6,7 +6,7 @@ import pandas as pd
 
 from luigi import Parameter, WrapperTask
 
-from tasks.tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell
 from tasks.meta import OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags

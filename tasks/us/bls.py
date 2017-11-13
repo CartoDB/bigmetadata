@@ -1,4 +1,4 @@
-from tasks.tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
                          CSV2TempTableTask, MetaWrapper)
 from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR

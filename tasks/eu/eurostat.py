@@ -1,4 +1,4 @@
-from tasks.tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
 from tasks.eu.geo import NUTSColumns
 from tasks.meta import OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags

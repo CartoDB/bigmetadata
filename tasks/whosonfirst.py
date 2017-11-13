@@ -12,7 +12,7 @@ import requests
 from luigi import Parameter, WrapperTask
 
 from tasks.meta import current_session, OBSColumn
-from tasks.tasks import ColumnsTask, TempTableTask, TableTask
+from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask
 from tasks.util import shell
 from tasks.us.census.tiger import ShorelineClip, DownloadTiger
 from tasks.tags import SectionTags, SubsectionTags

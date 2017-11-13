@@ -1,12 +1,12 @@
 from tests.util import runtask, setup, teardown
 
-from tasks.tasks import TableTask
+from tasks.base_tasks import TableTask
 
 # Monkeypatch TableTask
 TableTask._test = True
 
 from tasks.carto import OBSMetaToLocal
-from tasks.tasks import ColumnsTask, TagsTask, collect_meta_wrappers
+from tasks.base_tasks import ColumnsTask, TagsTask, collect_meta_wrappers
 from tasks.sphinx import Catalog
 
 from nose.tools import with_setup

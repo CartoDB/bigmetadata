@@ -6,7 +6,7 @@ from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
 
 from lib.logger import get_logger
-from tasks.tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
+from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (

@@ -9,7 +9,7 @@ from luigi import Task, LocalTarget
 
 from lib.logger import get_logger
 
-from tasks.tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, MetaWrapper
 from tasks.meta import OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags

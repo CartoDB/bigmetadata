@@ -1,6 +1,6 @@
 from luigi import Parameter, WrapperTask
 
-from tasks.tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags

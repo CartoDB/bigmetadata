@@ -1,5 +1,5 @@
 from tasks.meta import OBSColumn, current_session
-from tasks.tasks import ColumnsTask, Shp2TempTableTask, DownloadUnzipTask, TableTask
+from tasks.base_tasks import ColumnsTask, Shp2TempTableTask, DownloadUnzipTask, TableTask
 from tasks.util import shell
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns

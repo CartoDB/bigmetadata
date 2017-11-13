@@ -2,7 +2,7 @@ from luigi import IntParameter
 from xlrd import open_workbook
 from xlrd.xldate import xldate_as_tuple
 
-from tasks.tasks import ColumnsTask, TableTask, TempTableTask, DownloadUnzipTask
+from tasks.base_tasks import ColumnsTask, TableTask, TempTableTask, DownloadUnzipTask
 from tasks.util import shell
 from tasks.meta import current_session, OBSColumn
 from collections import OrderedDict

@@ -1,13 +1,13 @@
 import os
 from tests.util import runtask, setup, teardown
-from tasks.tasks import TableTask
+from tasks.base_tasks import TableTask
 import imp
 # Monkeypatch TableTask
 TableTask._test = True
 
 import tasks.carto
 from tasks.meta import current_session
-from tasks.tasks import ColumnsTask, TagsTask, collect_meta_wrappers
+from tasks.base_tasks import ColumnsTask, TagsTask, collect_meta_wrappers
 from nose_parameterized import parameterized
 from nose.tools import assert_greater, with_setup
 

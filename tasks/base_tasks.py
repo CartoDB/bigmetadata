@@ -715,7 +715,7 @@ class TableTask(Task):
         determine the schema of the resulting :class:`~tasks.targets.TableTarget`.
 
         The return for this function should be constructed by selecting the
-        desired columns from :class:`~tasks.tasks.ColumnTask`s, specified as
+        desired columns from :class:`~tasks.base_tasks.ColumnTask`s, specified as
         inputs in :meth:`~.tasks.TableTask.requires()`
 
         Must return a :py:class:`~collections.OrderedDict` of

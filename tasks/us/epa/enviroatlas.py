@@ -3,7 +3,7 @@ from luigi import Parameter, WrapperTask
 from tasks.meta import OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUCColumns, SourceTags
-from tasks.tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
 from tasks.util import shell
 from collections import OrderedDict
 

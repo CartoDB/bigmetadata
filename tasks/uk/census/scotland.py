@@ -9,7 +9,7 @@ from luigi import Parameter
 
 from lib.csv_stream import CSVNormalizerStream
 from lib.copy import copy_from_csv
-from tasks.tasks import DownloadUnzipTask, TempTableTask
+from tasks.base_tasks import DownloadUnzipTask, TempTableTask
 from tasks.meta import current_session
 
 from .metadata import sanitize_identifier

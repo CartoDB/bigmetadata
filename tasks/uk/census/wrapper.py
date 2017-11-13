@@ -3,7 +3,7 @@ from collections import OrderedDict, defaultdict
 from luigi import WrapperTask, Parameter
 
 from tasks.meta import current_session
-from tasks.tasks import MetaWrapper, TableTask
+from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 

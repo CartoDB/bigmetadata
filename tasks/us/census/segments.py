@@ -4,7 +4,7 @@ Define special segments for the census
 
 
 from tasks.meta import OBSTag
-from tasks.tasks import TagsTask
+from tasks.base_tasks import TagsTask
 
 
 class SegmentTags(TagsTask):

@@ -1,5 +1,5 @@
 from tasks.meta import OBSTag
-from tasks.tasks import TagsTask
+from tasks.base_tasks import TagsTask
 
 
 class LicenseTags(TagsTask):

@@ -8,7 +8,7 @@ import subprocess
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag
-from tasks.tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, MetaWrapper
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel

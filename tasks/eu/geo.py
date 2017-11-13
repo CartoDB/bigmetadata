@@ -2,7 +2,7 @@
 
 from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
-from tasks.tasks import ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask
+from tasks.base_tasks import ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags

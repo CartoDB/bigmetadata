@@ -84,7 +84,7 @@ And navigate to it in your browser.
     # We'll need these basic utility classes and methods
     
     from tasks.util import underscore_slugify, shell, classpath
-    from tasks.tasks import (TempTableTask, TableTask, ColumnsTask,
+    from tasks.base_tasks import (TempTableTask, TableTask, ColumnsTask,
                              DownloadUnzipTask, CSV2TempTableTask)
     from tasks.meta import current_session, DENOMINATOR
     

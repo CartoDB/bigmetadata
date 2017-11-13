@@ -11,7 +11,7 @@ from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
 
 from tests.util import runtask, setup, teardown
 
-from tasks.tasks import (ColumnsTask, TableTask, Shp2TempTableTask, DownloadUnzipTask, CSV2TempTableTask,
+from tasks.base_tasks import (ColumnsTask, TableTask, Shp2TempTableTask, DownloadUnzipTask, CSV2TempTableTask,
                          Carto2TempTableTask)
 from tasks.meta import OBSColumn, OBSColumnTableTile, current_session
 from tasks.util import shell

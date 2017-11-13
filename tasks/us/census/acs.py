@@ -10,7 +10,7 @@ import os
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
-from tasks.tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromURL
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromURL
 from tasks.util import grouper
 from lib.logger import get_logger
 from tasks.us.census.tiger import SumLevel

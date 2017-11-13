@@ -7,7 +7,7 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.tasks import ColumnsTask, TableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper
 from tasks.meta import OBSColumn, current_session
 from tasks.util import shell, classpath
 from tasks.us.census.tiger import GeoidColumns, SumLevel

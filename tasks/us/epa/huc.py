@@ -1,6 +1,6 @@
 import os
 
-from tasks.tasks import ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask
 from tasks.meta import OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.util import shell
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags

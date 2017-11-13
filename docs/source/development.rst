@@ -30,15 +30,15 @@ Abstract classes
 These are the building blocks of the ETL, and should almost always be
 subclassed from when writing a new process.
 
-.. autoclass:: tasks.tasks.TableTask
+.. autoclass:: tasks.base_tasks.TableTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.ColumnsTask
+.. autoclass:: tasks.base_tasks.ColumnsTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.TagsTask
+.. autoclass:: tasks.base_tasks.TagsTask
    :members:
    :show-inheritance:
 
@@ -48,23 +48,23 @@ Batteries included
 Data comes in many flavors, but sometimes it comes in the same flavor over and
 over again.  These tasks are meant to take care of the most repetitive aspects.
 
-.. autoclass:: tasks.tasks.TempTableTask
+.. autoclass:: tasks.base_tasks.TempTableTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.DownloadUnzipTask
+.. autoclass:: tasks.base_tasks.DownloadUnzipTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.Shp2TempTableTask
+.. autoclass:: tasks.base_tasks.Shp2TempTableTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.CSV2TempTableTask
+.. autoclass:: tasks.base_tasks.CSV2TempTableTask
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.tasks.Carto2TempTableTask
+.. autoclass:: tasks.base_tasks.Carto2TempTableTask
    :members:
    :show-inheritance:
 
@@ -82,12 +82,12 @@ Using ``--force`` during development
 When developing with :ref:`abstract-classes` that offer a ``force`` parameter,
 you can use it to re-run a task that has already been run, ignoring and
 overwriting all output it has already created.  For example, if you have
-a :ref:`tasks.tasks.TempTableTask` that you've modified in the course of
+a :ref:`tasks.base_tasks.TempTableTask` that you've modified in the course of
 development and need to re-run:
 
 .. code:: python
 
-    from tasks.tasks import TempTableTask
+    from tasks.base_tasks import TempTableTask
     from tasks.meta import current_session
 
     class MyTempTable(TempTableTask):
@@ -119,5 +119,5 @@ Update the ETL & metadata through ``version``
 *********************************************
 
 When you make changes and improvements, you can increment the ``version``
-method of :ref:`tasks.tasks.TableTask`, :ref:`tasks.tasks.ColumnsTask` and
-:ref:`tasks.tasks.TagsTask` to force the task to run again.
+method of :ref:`tasks.base_tasks.TableTask`, :ref:`tasks.base_tasks.ColumnsTask` and
+:ref:`tasks.base_tasks.TagsTask` to force the task to run again.

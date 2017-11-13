@@ -4,7 +4,7 @@ from nose.tools import (assert_equals, with_setup, assert_raises, assert_in,
                         assert_true, assert_false, assert_almost_equals)
 from tests.util import runtask, session_scope, setup, teardown, FakeTask
 
-from tasks.tasks import ColumnsTask, TableTask, TagsTask
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask
 from tasks.util import underscore_slugify, generate_tile_summary
 from tasks.targets import PostgresTarget, ColumnTarget, TagTarget, TableTarget
 from tasks.meta import (OBSColumn, OBSColumnTable, OBSTag, current_session,

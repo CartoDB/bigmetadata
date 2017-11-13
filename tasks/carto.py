@@ -3,7 +3,7 @@ Tasks to sync data locally to CartoDB
 '''
 from lib.logger import get_logger
 
-from tasks.tasks import TableToCarto, TableToCartoViaImportAPI
+from tasks.base_tasks import TableToCarto, TableToCartoViaImportAPI
 from tasks.meta import current_session, OBSTable, OBSColumn, UpdatedMetaTarget
 from tasks.util import underscore_slugify, query_cartodb, classpath, shell, unqualified_task_id
 from tasks.targets import PostgresTarget, CartoDBTarget

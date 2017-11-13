@@ -54,7 +54,7 @@ Other tasks
 Tasks
 -----
 
-.. autoclass:: tasks.tasks.TableToCartoViaImportAPI
+.. autoclass:: tasks.base_tasks.TableToCartoViaImportAPI
    :members:
 
 .. autoclass:: tasks.carto.DumpS3

@@ -7,7 +7,7 @@ from luigi import Parameter, WrapperTask
 from collections import OrderedDict
 
 from tasks.util import shell
-from tasks.tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags

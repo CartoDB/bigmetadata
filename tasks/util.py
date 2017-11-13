@@ -69,7 +69,7 @@ def classpath(obj):
 
     >>> classpath(object)
     'tmp'
-    >>> from tasks.tasks import ColumnsTask
+    >>> from tasks.base_tasks import ColumnsTask
     >>> classpath(ColumnsTask())
     'util'
     >>> from tasks.es.ine import FiveYearPopulation

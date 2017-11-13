@@ -2,7 +2,7 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask
 from tasks.util import shell, classpath
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
