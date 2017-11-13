@@ -1,5 +1,5 @@
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
-                         CSV2TempTableTask, MetaWrapper)
+                              CSV2TempTableTask, MetaWrapper)
 from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
