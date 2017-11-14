@@ -43,15 +43,12 @@ See [QUICKSTART](docs/source/quickstart.rst).
 Most of the common tasks have already been wrapped up in the `Makefile`:
 
 * `make catalog`: Regenerate the catalog
-* `make pdf-catalog`: Regenerate the PDF version of the catalog
-* `make deploy-catalog`: Deploy the catalog to Github Pages. This will also
-  rebuild both the HTML and PDF catalogs
+* `make deploy-html-catalog`: Deploy the catalog to Github Pages
 * `make sh`: Drop into the bigmetadata container to run shell scripts
 * `make python`: Drop into an interactive Python shell in the bigmetadata
   container
 * `make psql`: Drop into an interactive psql session in the bigmetadata
   container's database
-* `make sync`: Sync local data and metadata to the Observatory account.
 
 The ETL tasks have also already been wrapped up in the Makefile:
 
