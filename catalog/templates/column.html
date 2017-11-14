@@ -356,7 +356,7 @@ Code example
             '[{"numer_id": "{{ col.id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
