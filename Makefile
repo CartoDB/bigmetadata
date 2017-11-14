@@ -1,151 +1,69 @@
 SHELL = /bin/bash
 
+###
+### Tasks runners
+###
+ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
+  # From word 2 to the end is the task
+  TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # Remove the class name to get the module name
+  # for example: echo es.cnig.AllGeometries | sed "s/^\(.*\)\..*$/\1/"
+  MOD_NAME := $(shell echo $(wordlist 1,1,$(TASK)) | sed "s/^\(.*\)\..*$$/\1/")
+  # ...and turn them into do-nothing targets
+  $(eval $(TASK):;@:)
+  $(eval $(MOD_NAME):;@:)
+endif
+
+.PHONY: run run-local run-parallel catalog docs carto restore dataservices-api
+
+ifdef VIRTUAL_ENV
+LUIGI := LUIGI_CONFIG_PATH=conf python3 -m luigi
+else
+LUIGI := docker-compose run --rm bigmetadata luigi
+endif
+
+run:
+	$(LUIGI) --module tasks.$(MOD_NAME) tasks.$(TASK)
+
+run-local:
+	$(LUIGI) --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
+
+run-parallel:
+	$(LUIGI) --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
+
+###
+### Utils
+###
 sh:
 	docker-compose run --rm bigmetadata /bin/bash
-
-extension-perftest: extension
-	docker-compose run --rm bigmetadata nosetests -s observatory-extension/src/python/test/perftest.py
-
-extension-perftest-record: extension
-	mkdir -p perftest
-	docker-compose run --rm \
-	  -e OBS_RECORD_TEST=true \
-	  -e OBS_PERFTEST_DIR=perftest \
-	  -e OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
-	  -e OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
-	  bigmetadata \
-	  nosetests observatory-extension/src/python/test/perftest.py
-
-extension-autotest: extension
-	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
-
-test: meta extension-perftest extension-autotest
-
-python:
-	docker-compose run --rm bigmetadata python
-
-build:
-	docker build -t carto/bigmetadata:latest .
-
-build-postgres:
-	docker build -t carto/bigmetadata_postgres:latest postgres
 
 psql:
 	docker-compose run --rm bigmetadata psql
 
-clean-catalog:
-	sudo rm -rf catalog/source/*/*
-	# Below code eliminates everything not removed by the command above.
-	# The trick here is that catalog/source is mostly ignored, but
-	# we don't want to delete catalog/source/conf.py and
-	# catalog/source/index.rst
-	sudo git status --porcelain --ignored -- catalog/source/* \
-	  | grep '^!!' \
-	  | cut -c 4-1000 \
-	  | xargs rm -f
+python:
+	docker-compose run --rm bigmetadata python
 
-catalog: clean-catalog
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx tasks.sphinx.Catalog \
-	  $${SECTION/#/--section } \
-	  --local-scheduler
-	docker-compose up -d nginx
-	echo Catalog accessible at http://$$(curl -s 'https://api.ipify.org')$$(docker-compose ps | grep nginx | grep -oE ':[0-9]+')/catalog/
+sh-sql:
+	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
 
-pdf-catalog:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx tasks.sphinx.Catalog --format pdf
+py-sql:
+	docker exec -it $$(docker-compose ps -q postgres) python
 
-md-catalog:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.sphinx tasks.sphinx.Catalog --format markdown \
-	  --local-scheduler
+ps:
+	docker-compose ps
 
-deploy-pdf-catalog:
-	docker-compose run --rm bigmetadata luigi \
-	    --module tasks.sphinx tasks.sphinx.PDFCatalogToS3
+stop:
+	docker-compose stop
 
-deploy-html-catalog:
-	cd catalog/build/html && \
-	sudo chown -R ubuntu:ubuntu . && \
-	touch .nojekyll && \
-	git init && \
-	git checkout -B gh-pages && \
-	git add . && \
-	git commit -m "updating catalog" && \
-	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
-	git push -f origin gh-pages
+up:
+	docker-compose up -d
 
-deploy-md-catalog:
-	cd catalog/build/markdown && \
-	sudo chown -R ubuntu:ubuntu . && \
-	touch .nojekyll && \
-	git init && \
-	git checkout -B markdown-catalog && \
-	git add . && \
-	git commit -m "updating catalog" && \
-	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
-	git push -f origin markdown-catalog
+restore:
+	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 
-deploy-catalog: deploy-pdf-catalog deploy-html-catalog deploy-md-catalog
-
-# do not exceed three slots available for import api
-sync: sync-data sync-meta
-
-sync-data:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto tasks.carto.SyncAllData \
-	  --parallel-scheduling --workers=3
-
-sync-meta:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.carto tasks.carto.SyncMetadata \
-	  --parallel-scheduling --workers=3
-
-kill:
-	docker-compose ps | grep _run_ | cut -c 1-34 | xargs docker stop
-
-# http://stackoverflow.com/questions/2214575/passing-arguments-to-make-run#2214593
-ifeq (run,$(firstword $(MAKECMDGOALS)))
-  # From word 2 to the end is the task
-  TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  # Remove the class name to get the module name
-  # for example: echo es.cnig.AllGeometries | sed "s/^\(.*\)\..*$/\1/"
-  MOD_NAME := $(shell echo $(wordlist 1,1,$(TASK)) | sed "s/^\(.*\)\..*$$/\1/")
-  # ...and turn them into do-nothing targets
-  $(eval $(TASK):;@:)
-  $(eval $(MOD_NAME):;@:)
-endif
-
-ifeq (run-parallel,$(firstword $(MAKECMDGOALS)))
-  # From word 2 to the end is the task
-  TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  # Remove the class name to get the module name
-  # for example: echo es.cnig.AllGeometries | sed "s/^\(.*\)\..*$/\1/"
-  MOD_NAME := $(shell echo $(wordlist 1,1,$(TASK)) | sed "s/^\(.*\)\..*$$/\1/")
-  # ...and turn them into do-nothing targets
-  $(eval $(TASK):;@:)
-  $(eval $(MOD_NAME):;@:)
-endif
-
-ifeq (deps-tree,$(firstword $(MAKECMDGOALS)))
-  # use the rest as arguments for "run"
-  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  # ...and turn them into do-nothing targets
-  $(eval $(RUN_ARGS):;@:)
-endif
-
-.PHONY: run run-parallel catalog docs carto restore dataservices-api
-
-run:
-	docker-compose run --rm bigmetadata luigi --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
-
-run-parallel:
-	docker-compose run --rm bigmetadata luigi --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
-
-dump: test
-	docker-compose run --rm bigmetadata luigi --module tasks.carto tasks.carto.DumpS3
-
+###
+### Extensions
+###
 # update the observatory-extension in our DB container
 # Depends on having an observatory-extension folder linked
 extension:
@@ -170,14 +88,26 @@ dataservices-api: extension
 	docker exec $$(docker-compose ps -q redis) sh -c \
 	  "$$(cat postgres/dataservices_config.redis)"
 
-## in redis:
+###
+### Tests
+###
+extension-perftest: extension
+	docker-compose run --rm bigmetadata nosetests -s observatory-extension/src/python/test/perftest.py
 
+extension-perftest-record: extension
+	mkdir -p perftest
+	docker-compose run --rm \
+	  -e OBS_RECORD_TEST=true \
+	  -e OBS_PERFTEST_DIR=perftest \
+	  -e OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
+	  -e OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
+	  bigmetadata \
+	  nosetests observatory-extension/src/python/test/perftest.py
 
-sh-sql:
-	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
+extension-autotest: extension
+	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
 
-py-sql:
-	docker exec -it $$(docker-compose ps -q postgres) python
+test: meta extension-perftest extension-autotest
 
 # Regenerate fixtures for the extension
 extension-fixtures:
@@ -240,30 +170,6 @@ travis-diff-catalog:
 travis-etl-metadatatest:
 	./run-travis.sh 'nosetests -v tests/test_metadata.py'
 
-restore:
-	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
-
-docs:
-	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
-
-tiles:
-	docker-compose run --rm bigmetadata luigi \
-	  --module tasks.util tasks.util.GenerateAllRasterTiles \
-	  --parallel-scheduling --workers=5
-
-ps:
-	docker-compose ps
-
-stop:
-	docker-compose stop
-
-up:
-	docker-compose up -d
-
-meta:
-	docker-compose run --rm bigmetadata luigi\
-	  --module tasks.carto tasks.carto.OBSMetaToLocal --force
-
 releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 
 test-catalog:
@@ -279,10 +185,73 @@ diff-catalog: clean-catalog
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.util tasks.util.RunDiff --compare FETCH_HEAD && \
 	   luigi --local-scheduler --retcode-task-failed 1 --module tasks.sphinx tasks.sphinx.Catalog'
 
+ifeq (deps-tree,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
 deps-tree:
 	docker-compose run --rm bigmetadata luigi-deps-tree --module tasks.$(RUN_ARGS)
 
-###### Import tasks
+###
+### Docker
+###
+build:
+	docker build -t carto/bigmetadata:latest .
+
+build-postgres:
+	docker build -t carto/bigmetadata_postgres:latest postgres
+
+###
+### Catalog
+###
+clean-catalog:
+	sudo rm -rf catalog/source/*/*
+	# Below code eliminates everything not removed by the command above.
+	# The trick here is that catalog/source is mostly ignored, but
+	# we don't want to delete catalog/source/conf.py and
+	# catalog/source/index.rst
+	sudo git status --porcelain --ignored -- catalog/source/* \
+	  | grep '^!!' \
+	  | cut -c 4-1000 \
+	  | xargs rm -f
+
+catalog: clean-catalog
+	make run sphinx.Catalog $${SECTION/#/--section }
+	docker-compose up -d nginx
+	echo Catalog accessible at http://$$(curl -s 'https://api.ipify.org')$$(docker-compose ps | grep nginx | grep -oE ':[0-9]+')/catalog/
+
+deploy-html-catalog:
+	cd catalog/build/html && \
+	sudo chown -R ubuntu:ubuntu . && \
+	touch .nojekyll && \
+	git init && \
+	git checkout -B gh-pages && \
+	git add . && \
+	git commit -m "updating catalog" && \
+	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
+	git push -f origin gh-pages
+
+###
+### Tasks
+###
+dump: test
+	make run carto.DumpS3
+
+docs:
+	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
+
+tiles:
+	make run-parallel util.GenerateAllRasterTiles
+
+meta:
+	make run -- carto.OBSMetaToLocal --force
+
+###
+### Import tasks
+###
 
 ### au
 au-all:
