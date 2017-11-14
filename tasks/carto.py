@@ -351,7 +351,17 @@ class OBSMeta(Task):
 
     QUERIES = ['''
       CREATE TABLE {obs_meta} AS
-      WITH denoms as (
+      WITH agg_wo_universe as (
+        SELECT c.id, c.aggregate
+        FROM observatory.obs_table t
+        INNER JOIN observatory.obs_column_table ct ON t.id = ct.table_id
+        INNER JOIN observatory.obs_column c ON ct.column_id = c.id
+        FULL JOIN observatory.obs_column_to_column cc ON c.id = cc.source_id
+        WHERE c.aggregate IN ('average', 'median')
+        GROUP BY 1, 2
+        HAVING LOWER(STRING_AGG(COALESCE(cc.reltype,''), ',')) NOT LIKE '%universe%'
+      ),
+      denoms as (
         SELECT
              numer_c.id numer_id,
              denom_c.id denom_id,
@@ -490,6 +500,10 @@ class OBSMeta(Task):
         AND numer_ctag.column_id = numer_c.id
         AND numer_ctag.tag_id = numer_tag.id
         AND numer_c.id = leftjoined_denoms.all_numer_id
+        AND NOT EXISTS (
+          SELECT 1 FROM agg_wo_universe u
+          WHERE u.id = numer_c.id
+        )
         AND (leftjoined_denoms.numer_id IS NULL OR (
           numer_t.timespan = leftjoined_denoms.denom_timespan
           AND geomref_c.id = leftjoined_denoms.geomref_id
