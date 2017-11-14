@@ -75,8 +75,8 @@ class GenerateRST(Task):
             REPLACE(MAX(section), 'section/', '') section,
             REPLACE(MAX(subsection), 'subsection/', '') subsection
             FROM subquery GROUP BY geom_id)
-          SELECT DISTINCT UNNEST(section_tags), UNNEST(subsection_tags)
-          FROM observatory.obs_meta
+          SELECT DISTINCT UNNEST(section_tags), unnested.subsection_tags
+          FROM observatory.obs_meta, LATERAL (SELECT UNNEST(subsection_tags) AS subsection_tags) unnested
           UNION ALL
           SELECT DISTINCT section, subsection
           FROM subquery2
