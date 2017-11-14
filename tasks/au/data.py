@@ -150,7 +150,6 @@ class Columns(ColumnsTask):
         if self.tablename == 'B02':
             requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
             requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
-            requirements['B31'] = Columns(tablename='B31', year=self.year, profile=self.profile)
         if self.tablename == 'B04A':
             requirements['B04B'] = Columns(tablename='B04B', year=self.year, profile=self.profile)
         if self.tablename == 'B08A':
