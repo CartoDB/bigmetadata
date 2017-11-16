@@ -324,7 +324,7 @@ Code example
    .. tab:: {"tab_name": "Point"}
 
       Update a field of a table with the value of "{{ col.name }}" for a point. The value will be from
-      the densest bounday with this measure.
+      the densest boundary with this measure.
 
       .. code-block:: postgresql
 
@@ -343,7 +343,7 @@ Code example
           WHERE <table_to_update>.cartodb_id = obs_data.id
 
       Obtain the value of "{{ col.name }}" for a point. The value will be from
-      the densest bounday with this measure.
+      the densest boundary with this measure.
 
       .. code-block:: postgresql
 
@@ -356,7 +356,7 @@ Code example
             '[{"numer_id": "{{ col.id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
