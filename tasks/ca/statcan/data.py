@@ -4,7 +4,10 @@ import urllib.request
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from tasks.util import DownloadUnzipTask, shell, TableTask, TempTableTask, classpath, MetaWrapper, LOGGER
+
+from lib.logger import get_logger
+from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
+from tasks.util import shell, classpath
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
@@ -12,6 +15,8 @@ from tasks.ca.statcan.geo import (
 from tasks.ca.statcan.util import StatCanParser
 from tasks.ca.statcan.cols_census import CensusColumns
 from tasks.ca.statcan.cols_nhs import NHSColumns
+
+LOGGER = get_logger(__name__)
 
 
 SURVEY_CEN = 'census'

@@ -40,11 +40,11 @@ The actual flow of ``Task`` dependencies could be charted like this:
       node_width = 240;
       node_height = 60;
 
-      download_data [ label = "Download data", description = ":class:`~.util.DownloadUnzipTask`, :class:`Task` " ];
-      import_data [ label = "Import data", description = ":class:`~.util.CSV2TempTableTask`, :class:`~.util.Shp2TempTableTask`, :class:`~.util.TempTableTask` "];
-      process_data [ label = "Preprocess data", description = ":class:`~.util.TempTableTask`", stacked ];
-      generate_metadata [ label = "Write metadata", description = ":class:`~.util.ColumnsTask`" ];
-      output_table [ label = "Output table", description = ":class:`~.util.TableTask`" ];
+      download_data [ label = "Download data", description = ":class:`~.tasks.DownloadUnzipTask`, :class:`Task` " ];
+      import_data [ label = "Import data", description = ":class:`~.tasks.CSV2TempTableTask`, :class:`~.tasks.Shp2TempTableTask`, :class:`~.tasks.TempTableTask` "];
+      process_data [ label = "Preprocess data", description = ":class:`~.tasks.TempTableTask`", stacked ];
+      generate_metadata [ label = "Write metadata", description = ":class:`~.tasks.ColumnsTask`" ];
+      output_table [ label = "Output table", description = ":class:`~.tasks.TableTask`" ];
 
       process_data -> process_data;
       download_data -> import_data -> process_data -> output_table;
@@ -83,9 +83,9 @@ And navigate to it in your browser.
 
     # We'll need these basic utility classes and methods
     
-    from tasks.util import (TempTableTask, TableTask, ColumnsTask,
-                            DownloadUnzipTask, CSV2TempTableTask,
-                            underscore_slugify, shell, classpath)
+    from tasks.util import underscore_slugify, shell, classpath
+    from tasks.base_tasks import (TempTableTask, TableTask, ColumnsTask,
+                             DownloadUnzipTask, CSV2TempTableTask)
     from tasks.meta import current_session, DENOMINATOR
     
     # We like OrderedDict because it makes it easy to pass dicts
@@ -511,13 +511,13 @@ without immediately committing them to the database.
 
 .. parsed-literal::
 
-    OrderedDict([('avg_wkly_wage', <tasks.util.ColumnTarget at 0x7f12a40eead0>),
-                 ('qtrly_estabs', <tasks.util.ColumnTarget at 0x7f12a5831c50>),
-                 ('month3_emplvl', <tasks.util.ColumnTarget at 0x7f12a5831090>),
-                 ('lq_avg_wkly_wage', <tasks.util.ColumnTarget at 0x7f12a4338b10>),
-                 ('lq_qtrly_estabs', <tasks.util.ColumnTarget at 0x7f12a4d1fb50>),
+    OrderedDict([('avg_wkly_wage', <tasks.targets.ColumnTarget at 0x7f12a40eead0>),
+                 ('qtrly_estabs', <tasks.targets.ColumnTarget at 0x7f12a5831c50>),
+                 ('month3_emplvl', <tasks.targets.ColumnTarget at 0x7f12a5831090>),
+                 ('lq_avg_wkly_wage', <tasks.targets.ColumnTarget at 0x7f12a4338b10>),
+                 ('lq_qtrly_estabs', <tasks.targets.ColumnTarget at 0x7f12a4d1fb50>),
                  ('lq_month3_emplvl',
-                  <tasks.util.ColumnTarget at 0x7f12a4525390>)])
+                  <tasks.targets.ColumnTarget at 0x7f12a4525390>)])
 
 
 

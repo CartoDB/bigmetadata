@@ -2,7 +2,7 @@
 
 import os
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
-from tasks.util import ColumnsTask, TagsTask
+from tasks.base_tasks import ColumnsTask, TagsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from lib.columns import ColumnsDeclarations
 from luigi import Parameter

@@ -6,15 +6,15 @@ import os
 
 from collections import OrderedDict
 from luigi import Task, LocalTarget
-from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSTag, current_session,
-                        DENOMINATOR, GEOM_REF)
-from tasks.util import (LoadPostgresFromURL, classpath, shell, LOGGER,
-                        CartoDBTarget, get_logger, underscore_slugify, TableTask,
-                        ColumnTarget, ColumnsTask, TagsTask, TempTableTask,
-                        classpath, PostgresTarget, MetaWrapper)
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
-from time import time
 
+from lib.logger import get_logger
+
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, MetaWrapper
+from tasks.meta import OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
+from tasks.util import shell, classpath
+from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
+
+LOGGER = get_logger(__name__)
 
 MALE = 'male'
 FEMALE = 'female'

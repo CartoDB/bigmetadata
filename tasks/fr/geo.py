@@ -1,8 +1,8 @@
-from tasks.util import (MetaWrapper, Shp2TempTableTask, TableTask, ColumnsTask, DownloadUnzipTask, shell)
-from tasks.meta import current_session, GEOM_REF, GEOM_NAME
+from tasks.base_tasks import ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask
+from tasks.util import shell
+from tasks.meta import OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from collections import OrderedDict
 import os
-from tasks.meta import OBSColumn
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 

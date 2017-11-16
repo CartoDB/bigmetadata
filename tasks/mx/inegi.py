@@ -1,8 +1,8 @@
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
-from tasks.util import (DownloadUnzipTask, shell, Shp2TempTableTask,
-                        ColumnsTask, TableTask, MetaWrapper)
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper
+from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags

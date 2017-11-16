@@ -7,14 +7,14 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.meta import OBSColumn, OBSColumnToColumn, OBSColumnTag, current_session
-from tasks.util import shell, classpath, ColumnsTask, TableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper
+from tasks.meta import OBSColumn, current_session
+from tasks.util import shell, classpath
 from tasks.us.census.tiger import GeoidColumns, SumLevel
 from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
-
-from luigi import Task, Parameter, LocalTarget, BoolParameter
+from luigi import Task, LocalTarget
 
 
 class DownloadSpielmanSingletonFile(Task):

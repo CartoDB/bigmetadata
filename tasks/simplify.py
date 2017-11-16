@@ -1,7 +1,7 @@
 from luigi import WrapperTask, Parameter
 import json
 import os
-from .util import get_logger
+from lib.logger import get_logger
 from .simplification import SimplifyGeometriesMapshaper, SimplifyGeometriesPostGIS
 from .meta import CurrentSession
 

@@ -1,11 +1,12 @@
 '''
 Tasks to sync data locally to CartoDB
 '''
+from lib.logger import get_logger
 
-from tasks.meta import (current_session, OBSTable, Base, OBSColumn, UpdatedMetaTarget)
-from tasks.util import (TableToCarto, underscore_slugify, query_cartodb,
-                        classpath, shell, PostgresTarget, LOGGER,
-                        CartoDBTarget, TableToCartoViaImportAPI, unqualified_task_id)
+from tasks.base_tasks import TableToCarto, TableToCartoViaImportAPI
+from tasks.meta import current_session, OBSTable, OBSColumn, UpdatedMetaTarget
+from tasks.util import underscore_slugify, query_cartodb, classpath, shell, unqualified_task_id
+from tasks.targets import PostgresTarget, CartoDBTarget
 
 from luigi import (WrapperTask, BoolParameter, Parameter, Task, LocalTarget,
                    DateParameter, IntParameter)
@@ -16,6 +17,7 @@ from datetime import date
 import time
 import os
 
+LOGGER = get_logger(__name__)
 
 META_TABLES = ('obs_table', 'obs_column_table', 'obs_column', 'obs_column_to_column',
                'obs_column_tag', 'obs_tag', 'obs_dump_version', )

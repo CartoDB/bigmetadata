@@ -16,8 +16,8 @@ Proper use of utility classes
 
 There are extensive :ref:`abstract-classes` available for development.  These
 can do things like download and unzip a file to disk
-(:ref:`tasks.util.DownloadUnzipTask`) and import a CSV on disk to a temporary
-table (:ref:`tasks.util.CSV2TempTableTask`).  These classes should be used when
+(:ref:`tasks.base_tasks.DownloadUnzipTask`) and import a CSV on disk to a temporary
+table (:ref:`tasks.base_tasks.CSV2TempTableTask`).  These classes should be used when
 possible to minimize specialized ETL code.  In particular, these tasks save
 output to well-known locations so as to avoid redundantly running the same
 tasks.
@@ -79,7 +79,7 @@ An example of this:
 
 .. code:: python
 
-    from tasks.util import DownloadUnzipTask
+    from tasks.base_tasks import DownloadUnzipTask
 
     class MyBadTask(DownloadUnzipTask):
 
@@ -89,7 +89,7 @@ An example of this:
         def url(self):
             return 'http://somesite/with/data/{}'.format(self.goodparam)
 
-:ref:`tasks.util.DownloadUnzipTask` will generate the location for a unique
+:ref:`tasks.base_tasks.DownloadUnzipTask` will generate the location for a unique
 output file automatically based off of all its params, but ``badparam`` above
 doesn't actually affect the file being downloaded.  That means if we change
 ``badparam`` we'll download the same file twice.
@@ -102,7 +102,7 @@ parameters.  For example:
 
 .. code:: python
 
-    from tasks.util import DownloadUnzipTask
+    from tasks.base_tasks import DownloadUnzipTask
 
     class MyBadTask(DownloadUnzipTask):
         '''
@@ -123,18 +123,18 @@ Keep fewer than 1000 columns per table
 **************************************
 
 Postgres has a hard limit on the number of columns.  If you create
-a :ref:`tasks.util.TableTask` whose ``columns`` method returns
+a :ref:`tasks.base_tasks.TableTask` whose ``columns`` method returns
 a :ref:`OrderedDict` with much more than 1000 columns, the task will fail.
 
-In such cases, you'll want to split your :ref:`tasks.util.TableTask` into
+In such cases, you'll want to split your :ref:`tasks.base_tasks.TableTask` into
 several pieces, likely pulling columns from the same
-:ref:`tasks.util.ColumnsTask`.  There is no limit on the number of columns in
-a :ref:`tasks.util.ColumnsTask`.
+:ref:`tasks.base_tasks.ColumnsTask`.  There is no limit on the number of columns in
+a :ref:`tasks.base_tasks.ColumnsTask`.
 
 Each geometry column should have a unique ``geom_ref`` column with it
 *********************************************************************
 
-When setting up a :ref:`tasks.util.ColumnsTask` for Geometries, make sure that
+When setting up a :ref:`tasks.base_tasks.ColumnsTask` for Geometries, make sure that
 you store a meaningful and unique ``geom_ref`` from the same table.
 
 * It is meaningful if it can be found as a way to refer to that geometry in
@@ -149,7 +149,7 @@ For example:
 
 .. code:: python
 
-    from tasks.util import ColumnsTask
+    from tasks.base_tasks import ColumnsTask
     from tasks.meta import OBSColumn, GEOM_REF
     from luigi import Parameter
 
@@ -182,8 +182,8 @@ Specify section, subsection, source tags and license tags for all columns
 ****************************************************
 
 When defining your :ref:`tasks.meta.OBSColumn` objects in
-a :ref:`tasks.util.ColumnsTask` class, make sure each column is assigned
-a :ref:`tasks.util.OBSTag` of ``type``, ``section``, ``subsection``, ``source``,
+a :ref:`tasks.base_tasks.ColumnsTask` class, make sure each column is assigned
+a :ref:`tasks.meta.OBSTag` of ``type``, ``section``, ``subsection``, ``source``,
 and ``license``.  Use shared tags from :ref:`tasks.tags` when possible, in
 particular for ``section`` and ``subsection``.
 
@@ -213,7 +213,7 @@ When you use :ref:`run-any-task` to run individual components:
 * Are tables and columns being added to the ``observatory.obs_table`` and
   ``observatory.obs_column`` metadata tables?
 
-Provided :ref:`tasks.util.TableTask` and :ref:`tasks.util.ColumnTask` classes were
+Provided :ref:`tasks.base_tasks.TableTask` and :ref:`tasks.base_tasks.ColumnTask` classes were
 executed, it's wise to jump into the database and check to make sure entries
 were made in those tables.
 
@@ -287,7 +287,7 @@ schema:
 If nothing is appearing in ``obs_meta``, chances are you are missing some
 metadata:
 
-Have you defined and executed a proper :ref:`tasks.util.TableTask`?
+Have you defined and executed a proper :ref:`tasks.base_tasks.TableTask`?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can check to see if these links exist by checking ``obs_column_table``:
@@ -306,7 +306,7 @@ If they don't exist, make sure that your Python code roughly corresponds to:
 
 .. code:: python
 
-    from tasks.util import ColumnsTask, TableTask
+    from tasks.base_tasks import ColumnsTask, TableTask
 
     class MyColumnsTask(ColumnsTask):
 
@@ -346,7 +346,7 @@ a ``geom_ref`` relationship.  Here's an example:
 
     from collections import OrderedDict
 
-    from tasks.util import ColumnsTask, TableTask
+    from tasks.base_tasks import ColumnsTask, TableTask
     from tasks.meta import OBSColumn, GEOM_REF
 
     class MyGeoColumnsTask(ColumnsTask):

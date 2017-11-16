@@ -7,16 +7,13 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.meta import (OBSColumn, OBSColumnToColumn, OBSColumnTag,
-                        current_session, OBSTag)
-from tasks.util import (shell, TempTableTask, classpath,
-                        ColumnsTask, TableTask, TagsTask, MetaWrapper)
+from tasks.meta import OBSColumn, current_session, OBSTag
+from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, MetaWrapper
+from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel
-from tasks.us.census.acs import ACSTags
 
-from luigi import (Task, Parameter, LocalTarget, BoolParameter, WrapperTask,
-                   IntParameter)
+from luigi import (Task, Parameter, LocalTarget, IntParameter)
 
 
 STATES = set(["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga",
