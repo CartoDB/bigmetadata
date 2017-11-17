@@ -107,14 +107,14 @@ B105,B01_Count_psns_occ_priv_dwgs_P,Count of Persons in occupied private dwellin
 B106,B01_Count_Persons_other_dwgs_M,Count of Persons in other dwellings (Males),B01_Tot_P_M,B01,people,housing|age_gender,Males,,106,Selected Person Characteristics
 B107,B01_Count_Persons_other_dwgs_F,Count of Persons in other dwellings (Females),B01_Tot_P_F,B01,people,housing|age_gender,Females,,107,Selected Person Characteristics
 B108,B01_Count_Persons_other_dwgs_P,Count of Persons in other dwellings (Persons),B01_Tot_P_P,B01,people,housing|age_gender,Persons,,108,Selected Person Characteristics
-B109,B02_Median_age_persons,Median age of (Persons),,B02,people,age_gender,Median age of persons,median,109,Selected Medians and Averages
-B110,B02_Median_mortgage_repay_monthly,Median mortgage repayment monthly,,B02,money,housing,Median mortgage repayment ($/monthly),median,110,Selected Medians and Averages
-B111,B02_Median_Tot_prsnl_inc_weekly,Median total personal income weekly,,B02,money,housing,Median total personal income ($/weekly),median,111,Selected Medians and Averages
-B112,B02_Median_rent_weekly_,Median rent weekly,,B02,money,housing,Median rent ($/weekly),median,112,Selected Medians and Averages
-B113,B02_Median_Tot_fam_inc_weekly,Median total family income weekly,,B02,money,housing,Median total family income ($/weekly),median,113,Selected Medians and Averages
-B114,B02_Average_num_psns_per_bedroom,Average number of Persons per bedroom,,B02,people,housing,Average number of persons per bedroom,average,114,Selected Medians and Averages
-B115,B02_Median_Tot_hhd_inc_weekly,Median total household income weekly,,B02,money,income,Median total household income ($/weekly),median,115,Selected Medians and Averages
-B116,B02_Average_household_size,Average household size,,B02,people,housing,Average household size,average,116,Selected Medians and Averages
+B109,B02_Median_age_persons,Median age of (Persons),B01_Tot_P_P,B02,people,age_gender,Median age of persons,median,109,Selected Medians and Averages
+B110,B02_Median_mortgage_repay_monthly,Median mortgage repayment monthly,B17B_P_Tot_Tot,B02,money,housing,Median mortgage repayment ($/monthly),median,110,Selected Medians and Averages
+B111,B02_Median_Tot_prsnl_inc_weekly,Median total personal income weekly,B17B_P_Tot_Tot,B02,money,housing,Median total personal income ($/weekly),median,111,Selected Medians and Averages
+B112,B02_Median_rent_weekly_,Median rent weekly,B17B_P_Tot_Tot,B02,money,housing,Median rent ($/weekly),median,112,Selected Medians and Averages
+B113,B02_Median_Tot_fam_inc_weekly,Median total family income weekly,B17B_P_Tot_Tot,B02,money,housing,Median total family income ($/weekly),median,113,Selected Medians and Averages
+B114,B02_Average_num_psns_per_bedroom,Average number of Persons per bedroom,B01_Tot_P_P,B02,people,housing,Average number of persons per bedroom,average,114,Selected Medians and Averages
+B115,B02_Median_Tot_hhd_inc_weekly,Median total household income weekly,B17B_P_Tot_Tot,B02,money,income,Median total household income ($/weekly),median,115,Selected Medians and Averages
+B116,B02_Average_household_size,Average household size,B01_Tot_P_P,B02,people,housing,Average household size,average,116,Selected Medians and Averages
 B256,B03_Total_Total,Visitors Total,B01_Tot_P_P,B03,people,age_gender,Total,,256,Place of Usual Residence on Census Night
 B255,B03_Total_85ov,Visitors Age 85 years and over,B03_Total_Total,B03,people,age_gender,85 years and over,,255,Place of Usual Residence on Census Night
 B254,B03_Total_75_84_yr,Visitors Age 75-84 years,B03_Total_Total,B03,people,age_gender,75-84 years,,254,Place of Usual Residence on Census Night

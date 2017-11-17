@@ -153,7 +153,7 @@ class StatCanParser(object):
     def _write_to_file(self, filename, string):
         if filename not in self._file_handlers:
             file_path = os.path.join(self._output_dir, filename)
-            file_handle = file(file_path, 'w')
+            file_handle = open(file_path, 'w')
             self._file_handlers[filename] = file_handle
 
         print(string, file=self._file_handlers[filename])
@@ -176,7 +176,7 @@ class StatCanParser(object):
             file_path = os.path.join(self._output_dir,
                                      't{:03d}.csv'.format(
                                         self._topic_idx))
-            file_handle = file(file_path, 'w')
+            file_handle = open(file_path, 'w')
             self._file_handlers[parse_col] = file_handle
             self._topic_idx += 1
             self._char_idx = 1
@@ -276,7 +276,7 @@ class StatCanParser(object):
 
             for csv_path in csv_paths:
                 self._header = None
-                with file(csv_path, 'rb') as csvfile:
+                with open(csv_path, 'r', encoding='cp1252') as csvfile:
                     # Need to handle csv files where header row isn't row #1
                     header_row_index, self._header = self.get_header_row(csvfile)
                     if header_row_index == -1:

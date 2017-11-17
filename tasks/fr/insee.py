@@ -159,7 +159,7 @@ class FrenchColumns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 11
+        return 12
 
     def columns(self):
         cols = OrderedDict()
@@ -174,15 +174,17 @@ class FrenchColumns(ColumnsTask):
 
         filepath = "frenchmetadata/French Variables - {}.tsv".format(self.table_theme.title())
         session = current_session()
-        with open(os.path.join(os.path.dirname(__file__),filepath)) as tsvfile:
+        with open(os.path.join(os.path.dirname(__file__), filepath)) as tsvfile:
             tsvreader = csv.reader(tsvfile, delimiter="\t")
             # Skip first row (header)
             next(tsvreader, None)
             for line in tsvreader:
-                # Ignoring "Universe" and "Description" columns for now...
-                var_code, short_name, long_name, var_unit, denominators, subsections, _universe = line
+                # Ignoring "Description" column for now...
+                var_code, short_name, long_name, var_unit, denominators, \
+                    subsections, universe = line
 
                 denominators = denominators.split(',')
+                universes = universe.split(',')
 
                 delete = ['en 2012', '(princ)', '(compl)']
 
@@ -194,13 +196,16 @@ class FrenchColumns(ColumnsTask):
                 for x in denominators:
                     x = x.strip()
                     targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
+                for x in universes:
+                    x = x.strip()
+                    targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'universe'
 
                 targets_dict.pop(None, None)
                 cols[var_code] = OBSColumn(
                     id=var_code,
                     type='Numeric',
                     name=short_name,
-                    description =long_name,
+                    description=long_name,
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
@@ -208,7 +213,7 @@ class FrenchColumns(ColumnsTask):
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     tags=[france, unittags[var_unit]],
-                    targets= targets_dict
+                    targets=targets_dict
                 )
                 subsections = subsections.split(',')
                 for s in subsections:
