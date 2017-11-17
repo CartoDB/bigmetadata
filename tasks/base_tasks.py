@@ -854,6 +854,10 @@ class TableTask(Task):
             LOGGER.info('checking for null columns on %s', self.output().table)
             self.check_null_columns()
 
+            LOGGER.info('checking for medians/averages without universe target on %s',
+                        self.output().table)
+            self.check_universe_in_aggregations()
+
             LOGGER.info('create_indexes')
             self.create_indexes(output)
             current_session().flush()
@@ -908,6 +912,24 @@ class TableTask(Task):
         if result:
             raise ValueError('The following columns of the table "{table}" contain only NULL values: {columns}'.format(
                 table=self.output().table, columns=', '.join([x[0] for x in result])))
+
+    def check_universe_in_aggregations(self):
+        session = current_session()
+        result = session.execute("SELECT c.id, c.aggregate, STRING_AGG(COALESCE(cc.reltype,''), ',') reltype "
+                                 "FROM observatory.obs_table t "
+                                 "INNER JOIN observatory.obs_column_table ct ON t.id = ct.table_id "
+                                 "INNER JOIN observatory.obs_column c ON ct.column_id = c.id "
+                                 "FULL JOIN observatory.obs_column_to_column cc ON c.id = cc.source_id "
+                                 "WHERE t.tablename = '{table}' "
+                                 "AND c.aggregate IN ('average', 'median') "
+                                 "GROUP BY 1, 2 "
+                                 "HAVING 'universe' <> ANY(ARRAY_AGG(COALESCE(LOWER(cc.reltype),'')))".format(
+                                     table=self.output()._tablename)).fetchall()
+
+        if result:
+            raise ValueError("The following columns of the table \"{table}\" are aggregated as 'median' or 'average' "
+                             "but lack of 'universe' target: {columns}".format(
+                                table=self.output().table, columns=', '.join([x[0] for x in result])))
 
     def output(self):
         if not hasattr(self, '_columns'):

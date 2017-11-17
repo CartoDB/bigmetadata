@@ -1,7 +1,7 @@
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
                               CSV2TempTableTask, MetaWrapper)
 from tasks.util import underscore_slugify, shell
-from tasks.meta import current_session, DENOMINATOR
+from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
 from tasks.meta import OBSColumn, OBSTag
@@ -103,6 +103,17 @@ class QCEWColumns(ColumnsTask):
         sections = input_['sections']
         subsections = input_['subsections']
         parent = input_.get('parent')
+        cols['qtrly_estabs'] = OBSColumn(
+            id=underscore_slugify('qtrly_estabs_{}'.format(code)),
+            type='Numeric',
+            name='Establishments in {}'.format(name),
+            description='Count of establishments in a given quarter in the {name} industry (NAICS {code}).'
+                        '{name} is {description}.'.format(name=name, code=code, description=description),
+            weight=5,
+            aggregate='sum',
+            tags=[units['businesses'], sections['united_states'], subsections['commerce_economy']],
+            targets={parent['qtrly_estabs']: DENOMINATOR} if parent else {},
+        )
         cols['avg_wkly_wage'] = OBSColumn(
             # Make sure the column ID is unique within this module
             # If left blank, will be taken from this column's key in the output OrderedDict
@@ -125,17 +136,7 @@ class QCEWColumns(ColumnsTask):
             # Tags are our way of noting aspects of this measure like its unit, the country
             # it's relevant to, and which section(s) of the catalog it should appear in.
             tags=[units['money'], sections['united_states'], subsections['income']],
-        )
-        cols['qtrly_estabs'] = OBSColumn(
-            id=underscore_slugify('qtrly_estabs_{}'.format(code)),
-            type='Numeric',
-            name='Establishments in {}'.format(name),
-            description='Count of establishments in a given quarter in the {name} industry (NAICS {code}).'
-                        '{name} is {description}.'.format(name=name, code=code, description=description),
-            weight=5,
-            aggregate='sum',
-            tags=[units['businesses'], sections['united_states'], subsections['commerce_economy']],
-            targets={parent['qtrly_estabs']: DENOMINATOR} if parent else {},
+            targets={cols['qtrly_estabs']: UNIVERSE},
         )
         cols['month3_emplvl'] = OBSColumn(
             id=underscore_slugify('month3_emplvl_{}'.format(code)),
