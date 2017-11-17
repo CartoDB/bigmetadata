@@ -5,7 +5,7 @@ Sphinx functions for luigi bigmetadata tasks.
 from jinja2 import Environment, PackageLoader
 from luigi import (Task, LocalTarget, BoolParameter, Parameter, DateParameter)
 from luigi.contrib.s3 import S3Target
-from tasks.util import shell
+from tasks.util import shell, underscore_slugify
 from tasks.targets import PostgresTarget
 from tasks.meta import current_session, OBSTag, catalog_latlng
 from tasks.carto import OBSMetaToLocal
@@ -204,7 +204,7 @@ class GenerateRST(Task):
                     FIRST(c.aggregate),
                     JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                     'name' suggested_name,
-                    ARRAY_AGG(DISTINCT tab.timespan) timespan,
+                    STRING_AGG(DISTINCT tab.timespan, ',') timespan,
                     ARRAY[]::Text[] denoms,
                     ARRAY[]::Text[],
                     ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
@@ -300,6 +300,7 @@ class GenerateRST(Task):
                 'tags': col[6],
                 'suggested_name': col[7],
                 'timespan': col[8],
+                'timespan_sluggified': underscore_slugify(col[8]),
                 'licenses': [tag_id.split('/')[1]
                              for tag_id, tag_name in col[6].items()
                              if tag_id.startswith('license/')],
@@ -330,6 +331,7 @@ class GenerateRST(Task):
                 intermediate_path='/'.join(path[:-1]),
                 numchildren=numchildren,
                 col=column, **self.template_globals()))
+
 
 class Catalog(Task):
 
