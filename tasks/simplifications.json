@@ -245,26 +245,26 @@
 
 	"EU": "-------------------------------------",
 
-	"eu.geo.nuts_geometries_0_5af288f97f": {
+	"eu.geo.importshngeoms_0": {
 		"schema": "observatory",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "9.7",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"eu.geo.nuts_geometries_2_8fd682437e": {
+	"eu.geo.importshngeoms_2": {
 		"schema": "observatory",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "9.5",
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"eu.geo.nuts_geometries_3_6f2da1a549": {
+	"eu.geo.importshngeoms_3": {
 		"schema": "observatory",
 		"simplification": "mapshaper",
-		"geomfield": "the_geom",
+		"geomfield": "wkb_geometry",
 		"factor": "9.1",
 		"maxmemory": "8192",
 		"skipfailures": "no"
@@ -336,6 +336,96 @@
 	},
 
 	"US": "-------------------------------------",
+
+	"tiger2015.block": {
+		"simplification": "postgis",
+		"geomfield": "geom",
+		"factor": "40"
+	},
+	"tiger2015.block_group": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.cbsa": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.census_tract": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.congressional_district": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.county": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.place": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.puma": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.school_district_elementary": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.school_district_secondary": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.school_district_unified": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.state": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+	"tiger2015.zcta5": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
 
 	"us.census.tiger.uniontigerwatergeoms_block_2015": {
 		"simplification": "postgis",

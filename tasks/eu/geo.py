@@ -66,6 +66,13 @@ class ImportSHNGeoms(Shp2TempTableTask):
 
 
 class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
+    level = IntParameter()
+
+    def get_table_id(self):
+        print (' >>>---> ')
+        print ('.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)]))
+        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)])
+
     def requires(self):
         return ImportSHNGeoms()
 
@@ -79,6 +86,11 @@ class ImportSHNNames(Shp2TempTableTask):
 
     def input_shp(self):
         return os.path.join(self.input().path, 'EGM_8-0SHP_20151028', 'DATA', 'FullEurope', 'EBM_NAM.dbf')
+
+
+class SimplifiedImportSHNNames(SimplifiedTempTableTask):
+    def requires(self):
+        return ImportSHNNames()
 
 
 class DownloadNUTSNames(Task):
@@ -116,7 +128,7 @@ class NUTSSHNCrosswalk(TempTableTask):
     def requires(self):
         return {
             'nuts_names': ImportNUTSNames(),
-            'shn_names': ImportSHNNames()
+            'shn_names': SimplifiedImportSHNNames()
         }
 
     def run(self):
@@ -256,7 +268,7 @@ class NUTSGeometries(TableTask):
         return {
             'nuts_columns': NUTSColumns(level=self.level),
             'nuts_shn_crosswalk': NUTSSHNCrosswalk(),
-            'shn_geoms': SimplifiedImportSHNGeoms()
+            'shn_geoms': SimplifiedImportSHNGeoms(level=self.level)
         }
 
     def columns(self):
