@@ -485,7 +485,7 @@ class SimplifiedTempTableTask(TempTableTask):
         '''
         Subclasses may override this method if an ETL task
         needs a custom table_id.
-        
+
         Returns schema.tablename_without_hash
         '''
         return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1])])

@@ -29,7 +29,7 @@ class SourceTags(TagsTask):
     def tags(self):
         return[
             OBSTag(id='cdrc-source',
-                   name= 'Consumer Data Research Centre',
+                   name='Consumer Data Research Centre',
                    type='source',
                    description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
                    ]
