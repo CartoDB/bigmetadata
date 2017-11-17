@@ -8,7 +8,8 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
-from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
+                              SimplifiedTempTableTask)
 from tasks.util import classpath, grouper, shell
 from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
@@ -527,6 +528,14 @@ class UnionTigerWaterGeoms(TempTableTask):
                             input=self.input().table))
 
 
+class SimplifiedUnionTigerWaterGeoms(SimplifiedTempTableTask):
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return UnionTigerWaterGeoms(year=self.year, geography=self.geography)
+
+
 class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
@@ -543,7 +552,7 @@ class ShorelineClip(TableTask):
 
     def requires(self):
         return {
-            'data': UnionTigerWaterGeoms(year=self.year, geography=self.geography),
+            'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),

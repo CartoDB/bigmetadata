@@ -1,6 +1,6 @@
 from luigi import Task, Parameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -157,18 +157,29 @@ class ImportGeography(BaseParams, Shp2TempTableTask):
             yield shp
 
 
+class SimplifiedImportGeography(BaseParams, SimplifiedTempTableTask):
+    def get_table_id(self):
+        # Removing the hash and the State
+        # For example the table_id for 'br.geo.importgeography_setores_censitar_ac_b5dd2616fb'
+        # will be 'br.geo.importgeography_setores_censitar'
+        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-2])])
+
+    def requires(self):
+        return ImportGeography(state=self.state, resolution=self.resolution)
+
+
 class ImportAllStates(BaseParams, WrapperTask):
 
     def requires(self):
         for state in STATES:
-            yield ImportGeography(state=state)
+            yield SimplifiedImportGeography(state=state)
 
 
 class ImportAllGeographies(BaseParams, WrapperTask):
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield ImportGeography(resolution=resolution)
+            yield SimplifiedImportGeography(resolution=resolution)
 
 
 class GeographyColumns(ColumnsTask):
@@ -239,6 +250,7 @@ class GeographyColumns(ColumnsTask):
 
         return cols
 
+
 class Geography(TableTask):
 
     resolution = Parameter()
@@ -249,7 +261,7 @@ class Geography(TableTask):
     def requires(self):
         import_data = {}
         for state in STATES:
-            import_data[state] = ImportGeography(state=state, resolution=self.resolution)
+            import_data[state] = SimplifiedImportGeography(state=state, resolution=self.resolution)
         return {
             'data': import_data,
             'columns': GeographyColumns(resolution=self.resolution)

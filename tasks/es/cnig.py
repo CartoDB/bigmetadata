@@ -2,7 +2,7 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask
 from tasks.util import shell, classpath
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -56,6 +56,15 @@ class ImportGeometry(Shp2TempTableTask):
             aux=self.id_aux,
             resolution=self.resolution
         )).strip()
+
+
+class SimplifiedImportGeometry(SimplifiedTempTableTask):
+    resolution = Parameter()
+    timestamp = Parameter()
+    id_aux = Parameter()  # X for Peninsula and Balearic Islands, Y for Canary Islands
+
+    def requires(self):
+        return ImportGeometry(resolution=self.resolution, timestamp=self.timestamp, id_aux=self.id_aux)
 
 
 class LicenseTags(TagsTask):
@@ -145,6 +154,7 @@ class GeometryColumns(ColumnsTask):
 
         return columns
 
+
 class GeomRefColumns(ColumnsTask):
 
     def version(self):
@@ -167,6 +177,7 @@ class GeomRefColumns(ColumnsTask):
                 targets={coltarget: GEOM_REF},
             )
         return cols
+
 
 class GeomNameColumns(ColumnsTask):
 
@@ -207,12 +218,12 @@ class Geometry(TableTask):
             'geom_columns': GeometryColumns(),
             'geomref_columns': GeomRefColumns(),
             'geomname_columns': GeomNameColumns(),
-            'peninsula_data': ImportGeometry(resolution=self.resolution,
-                                   timestamp=self.timestamp,
-                                   id_aux='x'),
-            'canary_data': ImportGeometry(resolution=self.resolution,
-                                   timestamp=self.timestamp,
-                                   id_aux='y')
+            'peninsula_data': SimplifiedImportGeometry(resolution=self.resolution,
+                                                       timestamp=self.timestamp,
+                                                       id_aux='x'),
+            'canary_data': SimplifiedImportGeometry(resolution=self.resolution,
+                                                    timestamp=self.timestamp,
+                                                    id_aux='y')
         }
 
     def timespan(self):
@@ -251,6 +262,7 @@ class Geometry(TableTask):
                     geom_ref_colname=self.geom_ref_colname())
         session.execute(peninsula_query)
         session.execute(canary_query)
+
 
 class AllGeometries(WrapperTask):
 

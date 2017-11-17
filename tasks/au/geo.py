@@ -1,6 +1,7 @@
 from luigi import Parameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, TagsTask
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
+                              TagsTask)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -121,6 +122,14 @@ class ImportGeography(Shp2TempTableTask):
             yield shp
 
 
+class SimplifiedRawGeometry(SimplifiedTempTableTask):
+    year = Parameter()
+    resolution = Parameter()
+
+    def requires(self):
+        return ImportGeography(year=self.year, resolution=self.resolution)
+
+
 class GeographyColumns(ColumnsTask):
 
     resolution = Parameter()
@@ -169,7 +178,6 @@ class GeographyColumns(ColumnsTask):
             tags=[source, license, sections['au'], subsections['names']],
         )
 
-
         cartographic_boundaries = [GEO_LGA, GEO_POA, GEO_CED, GEO_SED, GEO_SSC,
                                    GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
                                    GEO_STE, GEO_GCCSA, GEO_UCL,
@@ -177,7 +185,6 @@ class GeographyColumns(ColumnsTask):
         interpolated_boundaries = [GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4,
                                    GEO_STE, GEO_GCCSA, GEO_UCL,
                                    GEO_SOS, GEO_SOSR, GEO_SUA, GEO_RA]
-
 
         cols = OrderedDict([
             ('geom_name', geom_name),
@@ -192,6 +199,7 @@ class GeographyColumns(ColumnsTask):
                 col.tags.append(boundary_type['cartographic_boundary'])
         return cols
 
+
 class Geography(TableTask):
 
     year = Parameter()
@@ -202,7 +210,7 @@ class Geography(TableTask):
 
     def requires(self):
         return {
-            'data': ImportGeography(resolution=self.resolution, year=self.year),
+            'data': SimplifiedRawGeometry(resolution=self.resolution, year=self.year),
             'columns': GeographyColumns(resolution=self.resolution)
         }
 

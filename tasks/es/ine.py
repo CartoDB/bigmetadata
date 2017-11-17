@@ -9,7 +9,7 @@ from luigi import Task, LocalTarget
 
 from lib.logger import get_logger
 
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper
 from tasks.meta import OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
@@ -53,6 +53,11 @@ class RawGeometry(TempTableTask):
                     table=self.output().tablename,
                     input=self.input().path)
         shell(cmd)
+
+
+class SimplifiedRawGeometry(SimplifiedTempTableTask):
+    def requires(self):
+        return RawGeometry()
 
 
 class GeometryColumns(ColumnsTask):
@@ -104,7 +109,7 @@ class Geometry(TableTask):
     def requires(self):
         return {
             'meta': GeometryColumns(),
-            'data': RawGeometry()
+            'data': SimplifiedRawGeometry()
         }
 
     def columns(self):

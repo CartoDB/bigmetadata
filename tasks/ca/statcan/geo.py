@@ -1,6 +1,6 @@
 from luigi import Parameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -64,7 +64,6 @@ GEOGRAPHY_TAGS = {
 }
 
 
-
 # http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
 # 2011 Boundary Files
 class DownloadGeography(DownloadUnzipTask):
@@ -95,6 +94,13 @@ class ImportGeography(Shp2TempTableTask):
         )
         for shp in shell(cmd).strip().split('\n'):
             yield shp
+
+
+class SimplifiedImportGeography(SimplifiedTempTableTask):
+    resolution = Parameter(default=GEO_PR)
+
+    def requires(self):
+        return ImportGeography(resolution=self.resolution)
 
 
 class GeographyColumns(ColumnsTask):
@@ -164,7 +170,7 @@ class Geography(TableTask):
 
     def requires(self):
         return {
-            'data': ImportGeography(resolution=self.resolution),
+            'data': SimplifiedImportGeography(resolution=self.resolution),
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
@@ -192,6 +198,7 @@ class AllGeographies(WrapperTask):
     def requires(self):
         for resolution in GEOGRAPHIES:
             yield Geography(resolution=resolution)
+
 
 class AllGeographyColumns(WrapperTask):
 
