@@ -69,8 +69,6 @@ class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
     level = IntParameter()
 
     def get_table_id(self):
-        print (' >>>---> ')
-        print ('.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)]))
         return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)])
 
     def requires(self):
