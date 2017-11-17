@@ -1,9 +1,6 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
-
-from luigi import Task, Parameter, LocalTarget
-
-from tasks.util import (TableTask, TagsTask, ColumnsTask, classpath, shell,
-                        DownloadUnzipTask, Shp2TempTableTask, MetaWrapper)
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper
+from tasks.util import shell
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 
@@ -35,6 +32,7 @@ class SourceTags(TagsTask):
                     type='source',
                     description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
                     ]
+
 
 class DownloadOutputAreas(DownloadUnzipTask):
 

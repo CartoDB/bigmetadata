@@ -1,5 +1,5 @@
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
-from tasks.util import ColumnsTask
+from tasks.base_tasks import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, PublicTags
 from tasks.ca.statcan.license import LicenseTags, SourceTags
 

@@ -3,15 +3,13 @@ import urllib.request
 import csv
 import re
 
-from luigi import Task, Parameter, WrapperTask, LocalTarget
+from luigi import Parameter, WrapperTask
 from collections import OrderedDict
-from tasks.util import (DownloadUnzipTask, shell, TableTask, TempTableTask,
-                        classpath, CSV2TempTableTask, ColumnsTask, TagsTask,
-                        MetaWrapper)
-from tasks.meta import current_session, OBSColumn, OBSTag
-from tasks.au.geo import (
-    GEO_STE, SourceTags, LicenseTags,
-    GEOGRAPHIES, GeographyColumns, Geography)
+
+from tasks.util import shell
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
+from tasks.meta import current_session, OBSColumn
+from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 
@@ -55,7 +53,6 @@ class DownloadData(DownloadUnzipTask):
                                header=self.header
                            ),
                            filename=self.output().path + '.zip')
-
 
 
 class ImportData(CSV2TempTableTask):

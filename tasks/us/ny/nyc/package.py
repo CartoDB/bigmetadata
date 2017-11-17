@@ -1,5 +1,6 @@
 from tasks.meta import current_session
-from tasks.util import TempTableTask, WrapperTask, TableToCartoViaImportAPI, query_cartodb
+from tasks.base_tasks import TempTableTask, WrapperTask, TableToCartoViaImportAPI
+from tasks.util import query_cartodb
 
 from tasks.us.ny.nyc.dob import PermitIssuance, PermitColumns
 from tasks.us.ny.nyc.dcp import MapPLUTO, MapPLUTOColumns

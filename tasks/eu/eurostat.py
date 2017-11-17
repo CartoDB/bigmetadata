@@ -1,12 +1,13 @@
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
 from tasks.eu.geo import NUTSColumns
-from tasks.meta import (OBSColumn, OBSTag, current_session)
+from tasks.meta import OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.util import (TableTask, TagsTask, ColumnsTask, CSV2TempTableTask,
-                        underscore_slugify, shell, classpath, LOGGER)
+from tasks.util import underscore_slugify, classpath, shell
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
 from lib.columns import ColumnsDeclarations
+from lib.logger import get_logger
 
 import csv
 import os
@@ -17,6 +18,8 @@ import re
 # database = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?dir=data&sort=1&sort=2&start={}".format(first_letter)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=data%2F{}.tsv.gz".format(table_code)
 # dl_data = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fdemo_r_pjangrp3.tsv.gz
+
+LOGGER = get_logger(__name__)
 
 
 class DownloadEurostat(Task):
@@ -112,6 +115,7 @@ class DownloadMetabase(Task):
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
 
 class MetabaseTable(CSV2TempTableTask):
 

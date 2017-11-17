@@ -4,7 +4,7 @@ import os
 import re
 
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
-from tasks.util import ColumnsTask, TagsTask
+from tasks.base_tasks import ColumnsTask, TagsTask
 from tasks.tags import UnitTags, SectionTags, SubsectionTags, LicenseTags
 
 

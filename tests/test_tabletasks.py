@@ -6,14 +6,15 @@ import os
 from collections import OrderedDict
 from nose import with_setup
 from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
-                        assert_true, assert_false, with_setup, assert_greater)
+                        assert_true, assert_false, assert_greater)
+
 
 from tests.util import runtask, setup, teardown
 
-from tasks.meta import OBSColumn, OBSTable, OBSColumnTableTile, current_session
-from tasks.util import ColumnsTask, TableTask, Shp2TempTableTask, classpath, \
-                       shell, DownloadUnzipTask, CSV2TempTableTask, \
-                       Carto2TempTableTask
+from tasks.base_tasks import (ColumnsTask, TableTask, Shp2TempTableTask, DownloadUnzipTask, CSV2TempTableTask,
+                              Carto2TempTableTask)
+from tasks.meta import OBSColumn, OBSColumnTableTile, current_session
+from tasks.util import shell
 
 
 class TestColumnsTask(ColumnsTask):

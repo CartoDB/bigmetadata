@@ -9,8 +9,8 @@ import os
 from collections import OrderedDict
 from datetime import datetime
 from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
-from tasks.util import (shell, classpath, underscore_slugify, TableTask, ColumnsTask, TagsTask, CSV2TempTableTask,
-                        MetaWrapper)
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper
+from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.us.census.tiger import GeoidColumns, SumLevel

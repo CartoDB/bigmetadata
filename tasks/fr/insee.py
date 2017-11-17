@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from tasks.util import (TableTask, TagsTask, ColumnsTask, DownloadUnzipTask, CSV2TempTableTask, shell, classpath,
-                        MetaWrapper)
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper
+from tasks.util import shell, classpath
 from tasks.meta import current_session
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask, Task, LocalTarget
