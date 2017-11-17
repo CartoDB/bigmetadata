@@ -7,7 +7,7 @@ from tests.util import runtask, session_scope, setup, teardown, FakeTask
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask
 from tasks.util import underscore_slugify, generate_tile_summary
 from tasks.targets import PostgresTarget, ColumnTarget, TagTarget, TableTarget
-from tasks.meta import (OBSColumn, OBSColumnTable, OBSTag, current_session,
+from tasks.meta import (UNIVERSE, OBSColumn, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
 
 
@@ -137,19 +137,21 @@ def test_column_target_many_inits():
 
 @with_setup(setup, teardown)
 def test_table_target_many_inits():
-    pop_col = ColumnTarget(OBSColumn(
-        id='tests.population',
-        type='Numeric',
-        name="Total Population",
-        description='The total number of all',
-        aggregate='sum',
-        weight=10), FakeTask())
+    total_pop = OBSColumn(
+                    id='tests.population',
+                    type='Numeric',
+                    name="Total Population",
+                    description='The total number of all',
+                    aggregate='sum',
+                    weight=10)
+    pop_col = ColumnTarget(total_pop, FakeTask())
     foo_col = ColumnTarget(OBSColumn(
         id='tests.foo',
         type='Numeric',
         name="Foo Bar",
         description='moo boo foo',
         aggregate='median',
+        targets={total_pop: UNIVERSE},
         weight=8), FakeTask())
     pop_col.update_or_create()
     foo_col.update_or_create()
@@ -207,6 +209,13 @@ def test_columns_task_fails_no_columns():
 
     task = TestColumnsTask()
     with assert_raises(NotImplementedError):
+        runtask(task)
+
+
+@with_setup(setup, teardown)
+def test_columns_task_fails_no_universe_target():
+    task = TestTableTaskWithoutUniverseTarget()
+    with assert_raises(ValueError):
         runtask(task)
 
 
@@ -345,10 +354,40 @@ class TestColumnsTask(ColumnsTask):
                                 aggregate='median',
                                 weight=8,
                                 tags=[tags['population']],
-                                targets={
-                                    pop_column: 'denominator'
-                                }
-                               ),
+                                targets={pop_column: UNIVERSE}
+                                ),
+        })
+
+
+class TestColumnsTaskWithoutUniverseTarget(ColumnsTask):
+
+    def requires(self):
+        return {
+            'tags': TestTagsTask()
+        }
+
+    def columns(self):
+        tags = self.input()['tags']
+        pop_column = OBSColumn(id='population',
+                               type='Numeric',
+                               name="Total Population",
+                               description='The total number of all',
+                               aggregate='sum',
+                               tags=[
+                                   tags['denominator'],
+                                   tags['population']
+                               ],
+                               weight=10)
+        return OrderedDict({
+            'pop': pop_column,
+            'foobar': OBSColumn(id='foobar',
+                                type='Numeric',
+                                name="Foo Bar",
+                                description='moo boo foo',
+                                aggregate='median',
+                                weight=8,
+                                tags=[tags['population']]
+                                ),
         })
 
 
@@ -385,6 +424,31 @@ class TestTableTask(TableTask):
     def requires(self):
         return {
             'meta': TestColumnsTask()
+        }
+
+    def columns(self):
+        return {
+            'population': self.input()['meta']['pop'],
+            'foobar': self.input()['meta']['foobar']
+        }
+
+    def timespan(self):
+        return ''
+
+    def populate(self):
+        session = current_session()
+        session.execute('INSERT INTO {output} VALUES (100, 100)'.format(
+            output=self.output().table))
+
+
+class TestTableTaskWithoutUniverseTarget(TableTask):
+
+    alpha = Parameter(default='1996')
+    beta = Parameter(default='5000')
+
+    def requires(self):
+        return {
+            'meta': TestColumnsTaskWithoutUniverseTarget()
         }
 
     def columns(self):
