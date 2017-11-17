@@ -901,7 +901,7 @@ class TableTask(Task):
                                  "WHERE t.tablename = '{table}' "
                                  "AND c.aggregate IN ('average', 'median') "
                                  "GROUP BY 1, 2 "
-                                 "HAVING LOWER(STRING_AGG(COALESCE(cc.reltype,''), ',')) NOT LIKE '%universe%'".format(
+                                 "HAVING 'universe' <> ANY(ARRAY_AGG(COALESCE(LOWER(cc.reltype),'')))".format(
                                      table=self.output()._tablename)).fetchall()
 
         if result:
