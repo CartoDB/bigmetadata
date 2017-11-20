@@ -32,7 +32,6 @@ Code example
 .. tabs::
 
    .. tab:: {"tab_name": "Boundaries within polygon"}
-
       Insert all {% if col.extra['stats'] %}{{ col.extra['stats']['count'] }}{% endif %} "{{ col.name }}" geometries into another table:
 
       .. code-block:: postgresql
@@ -135,7 +134,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_rate_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_rate_{{col.timespan_sluggified}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -178,7 +177,7 @@ Code example
                "denom_id": "{{ denom_id }}"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_estimate_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_estimate_{{col.timespan_sluggified}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -226,7 +225,7 @@ Code example
                "normalization": "denominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan_sluggified}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -273,7 +272,7 @@ Code example
                "normalization": "areaNormalized"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_per_sq_km_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_per_sq_km_{{col.timespan_sluggified}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
@@ -315,7 +314,7 @@ Code example
                "normalization": "predenominated"}]'
             , 1, 1) meta
           FROM data)
-          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan}}
+          SELECT id, (data->0->>'value')::{{ col.type }} AS {{col.suggested_name}}_{{col.timespan_sluggified}}
           FROM OBS_GetData(
                  (SELECT ARRAY_AGG((the_geom, id)::geomval) FROM data),
                  (SELECT meta FROM meta))
