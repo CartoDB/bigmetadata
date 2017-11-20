@@ -204,7 +204,7 @@ class GenerateRST(Task):
                     FIRST(c.aggregate),
                     JSONB_Object_Agg(t.type || '/' || t.id, t.name),
                     'name' suggested_name,
-                    STRING_AGG(DISTINCT tab.timespan, ',') timespan,
+                    ARRAY_AGG(DISTINCT tab.timespan) timespan,
                     ARRAY[]::Text[] denoms,
                     ARRAY[]::Text[],
                     ST_AsText(ST_Envelope(FIRST(tab.the_geom))) envelope
@@ -258,7 +258,7 @@ class GenerateRST(Task):
                     numer_aggregate,
                     numer_tags,
                     numer_colname suggested_name,
-                    numer_timespan timespan,
+                    ARRAY_AGG(numer_timespan) timespan,
                     ARRAY_AGG(DISTINCT ARRAY[
                     denom_reltype,
                     denom_id,
@@ -271,7 +271,7 @@ class GenerateRST(Task):
                     FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
             FROM observatory.obs_meta
             WHERE numer_id = ANY (ARRAY['{}'])
-            GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+            GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
         '''.format("', '".join(numerator_ids)))
         return numerator_tree, self._parse_columns(numerator_details_result)
 
@@ -300,7 +300,7 @@ class GenerateRST(Task):
                 'tags': col[6],
                 'suggested_name': col[7],
                 'timespan': col[8],
-                'timespan_sluggified': underscore_slugify(col[8]),
+                'timespan_sluggified': underscore_slugify('_'.join(col[8])),
                 'licenses': [tag_id.split('/')[1]
                              for tag_id, tag_name in col[6].items()
                              if tag_id.startswith('license/')],
