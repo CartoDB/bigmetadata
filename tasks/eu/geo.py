@@ -86,11 +86,6 @@ class ImportSHNNames(Shp2TempTableTask):
         return os.path.join(self.input().path, 'EGM_8-0SHP_20151028', 'DATA', 'FullEurope', 'EBM_NAM.dbf')
 
 
-class SimplifiedImportSHNNames(SimplifiedTempTableTask):
-    def requires(self):
-        return ImportSHNNames()
-
-
 class DownloadNUTSNames(Task):
 
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fen%2Fgeo.dic'
@@ -126,7 +121,7 @@ class NUTSSHNCrosswalk(TempTableTask):
     def requires(self):
         return {
             'nuts_names': ImportNUTSNames(),
-            'shn_names': SimplifiedImportSHNNames()
+            'shn_names': ImportSHNNames()
         }
 
     def run(self):
