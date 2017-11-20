@@ -258,7 +258,7 @@ class GenerateRST(Task):
                     numer_aggregate,
                     numer_tags,
                     numer_colname suggested_name,
-                    ARRAY_AGG(numer_timespan) timespan,
+                    ARRAY[numer_timespan] timespan,
                     ARRAY_AGG(DISTINCT ARRAY[
                     denom_reltype,
                     denom_id,
@@ -271,7 +271,7 @@ class GenerateRST(Task):
                     FIRST(ST_AsText(ST_Envelope(the_geom))) envelope
             FROM observatory.obs_meta
             WHERE numer_id = ANY (ARRAY['{}'])
-            GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+            GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
         '''.format("', '".join(numerator_ids)))
         return numerator_tree, self._parse_columns(numerator_details_result)
 
