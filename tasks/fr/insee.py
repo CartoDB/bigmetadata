@@ -236,7 +236,7 @@ class FranceCensus(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 8
+        return 9
 
     def timespan(self):
         return '2012'

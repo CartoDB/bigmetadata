@@ -104,7 +104,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 6
+        return 7
 
     def requires(self):
         return {
@@ -1752,7 +1752,7 @@ class PopulationHouseholdsHousing(TableTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
     def timespan(self):
         return '2011'
@@ -1998,7 +1998,7 @@ class FiveYearPopulation(TableTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
     def columns(self):
         '''

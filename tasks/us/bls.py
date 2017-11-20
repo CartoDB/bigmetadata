@@ -199,7 +199,7 @@ class QCEW(TableTask):
     qtr = IntParameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         requirements = {

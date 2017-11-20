@@ -337,7 +337,7 @@ class BCP(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         import_data = {}

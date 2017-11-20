@@ -256,7 +256,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         import_data = {}
