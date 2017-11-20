@@ -170,7 +170,7 @@ class FranceIncome(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return '2012'

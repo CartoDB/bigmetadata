@@ -8,10 +8,14 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
-from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
+                              SimplifiedTempTableTask)
 from tasks.util import classpath, grouper, shell
 from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
+from tasks.targets import PostgresTarget
+from tasks.simplification import SIMPLIFIED_SUFFIX
+from tasks.simplify import Simplify
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
@@ -344,6 +348,23 @@ class DownloadTiger(LoadPostgresFromURL):
         self.load_from_url(url)
 
 
+class SimplifiedDownloadTiger(Task):
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return DownloadTiger(year=self.year)
+
+    def run(self):
+        yield Simplify(schema='tiger{year}'.format(year=self.year),
+                       table=SUMLEVELS[self.geography]['table'],
+                       table_id='.'.join(['tiger{year}'.format(year=self.year), SUMLEVELS[self.geography]['table']]))
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
+
+
 class SimpleShoreline(TempTableTask):
 
     year = Parameter()
@@ -527,6 +548,14 @@ class UnionTigerWaterGeoms(TempTableTask):
                             input=self.input().table))
 
 
+class SimplifiedUnionTigerWaterGeoms(SimplifiedTempTableTask):
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        return UnionTigerWaterGeoms(year=self.year, geography=self.geography)
+
+
 class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
@@ -539,11 +568,11 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 8
+        return 9
 
     def requires(self):
         return {
-            'data': UnionTigerWaterGeoms(year=self.year, geography=self.geography),
+            'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),
@@ -597,13 +626,13 @@ class SumLevel(TableTask):
 
     @property
     def input_tablename(self):
-        return SUMLEVELS[self.geography]['table']
+        return SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
-        tiger = DownloadTiger(year=self.year)
+        tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'data': tiger,
             'attributes': Attributes(),
@@ -651,10 +680,10 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 1
+        return 2
 
     def requires(self):
-        tiger = DownloadTiger(year=self.year)
+        tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'data': tiger,
             'geoids': GeoidColumns(),
@@ -677,7 +706,7 @@ class GeoNamesTable(TableTask):
         session = current_session()
         from_clause = '{inputschema}.{input_tablename}'.format(
             inputschema='tiger' + str(self.year),
-            input_tablename=SUMLEVELS[self.geography]['table'],
+            input_tablename=SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX,
         )
 
         field_names = SUMLEVELS[self.geography]['fields']
@@ -795,7 +824,7 @@ class PointLandmark(TableTask):
     year = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -884,7 +913,7 @@ class PriSecRoads(TableTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def timespan(self):
         return self.year

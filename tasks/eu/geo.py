@@ -2,7 +2,8 @@
 
 from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask
+from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
+                              SimplifiedTempTableTask)
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -62,6 +63,16 @@ class ImportSHNGeoms(Shp2TempTableTask):
     def input_shp(self):
         #~/bigmetadata/tmp/eurostat.geo/DownloadGeographies__99914b932b/EGM_8-0SHP_20151028/DATA/FullEurope | grep PolbndA
         return os.path.join(self.input().path, 'EGM_8-0SHP_20151028', 'DATA', 'FullEurope', 'PolbndA.shp')
+
+
+class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
+    level = IntParameter()
+
+    def get_table_id(self):
+        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)])
+
+    def requires(self):
+        return ImportSHNGeoms()
 
 
 class ImportSHNNames(Shp2TempTableTask):
@@ -241,7 +252,7 @@ class NUTSGeometries(TableTask):
     level = IntParameter(default=3)
 
     def version(self):
-        return 4
+        return 5
 
     def timespan(self):
         return 2015
@@ -250,7 +261,7 @@ class NUTSGeometries(TableTask):
         return {
             'nuts_columns': NUTSColumns(level=self.level),
             'nuts_shn_crosswalk': NUTSSHNCrosswalk(),
-            'shn_geoms': ImportSHNGeoms()
+            'shn_geoms': SimplifiedImportSHNGeoms(level=self.level)
         }
 
     def columns(self):

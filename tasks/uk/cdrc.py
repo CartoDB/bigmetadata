@@ -1,5 +1,6 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
+                              SimplifiedTempTableTask)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
@@ -17,7 +18,7 @@ class OpenDemographicsLicenseTags(TagsTask):
                        description='Free to download and reuse, even for '
                                    'commercial sector applications.  More '
                                    'information `here <http://www.opengeodemographics.com/index.php#why-section>`_'
-                      )]
+                       )]
 
 
 class SourceTags(TagsTask):
@@ -28,10 +29,10 @@ class SourceTags(TagsTask):
     def tags(self):
         return[
             OBSTag(id='cdrc-source',
-                    name= 'Consumer Data Research Centre',
-                    type='source',
-                    description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
-                    ]
+                   name='Consumer Data Research Centre',
+                   type='source',
+                   description='The 2011 Area Classification for Output Areas (2011 OAC) is a UK geodemographic classification produced as a collaboration between the Office for National Statistics and University College London. For further information regarding the 2011 OAC please visit: http://www.ons.gov.uk/ons/guide-method/geography/products/area-classifications/ns-area-classifications/ns-2011-area-classifications/index.html or http://www.opengeodemographics.com. CDRC 2011 OAC Geodata Pack by the ESRC Consumer Data Research Centre; Contains National Statistics data Crown copyright and database right 2015; Contains Ordnance Survey data Crown copyright and database right 2015')
+                   ]
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
@@ -56,6 +57,11 @@ class ImportOutputAreas(Shp2TempTableTask):
     def input_shp(self):
         return os.path.join(self.input().path, 'Output Area Classification',
                             'Shapefiles', '2011_OAC.shp')
+
+
+class SimplifiedImportOutputAreas(SimplifiedTempTableTask):
+    def requires(self):
+        return ImportOutputAreas()
 
 
 class OutputAreaColumns(ColumnsTask):
@@ -108,16 +114,17 @@ class OutputAreaColumns(ColumnsTask):
             ('oa_sa', geomref)
         ])
 
+
 class OutputAreas(TableTask):
 
     def requires(self):
         return {
             'geom_columns': OutputAreaColumns(),
-            'data': ImportOutputAreas(),
+            'data': SimplifiedImportOutputAreas(),
         }
 
     def version(self):
-        return 7
+        return 8
 
     def timespan(self):
         return 2011
@@ -342,7 +349,7 @@ class OutputAreaClassifications(TableTask):
         return {
             'geom_columns': OutputAreaColumns(),
             'segment_columns': OutputAreaClassificationColumns(),
-            'data': ImportOutputAreas(),
+            'data': SimplifiedImportOutputAreas(),
         }
 
     def columns(self):
@@ -376,6 +383,7 @@ class OutputAreaClassifications(TableTask):
                             grp_case=grp_case,
                             subgrp_case=subgrp_case,
                         ))
+
 
 class CDRCMetaWrapper(MetaWrapper):
     def tables(self):

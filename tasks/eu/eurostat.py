@@ -451,7 +451,7 @@ class TableEU(TableTask):
     year = Parameter()
 
     def version(self):
-        return 8
+        return 9
 
     def timespan(self):
         return str(self.year).replace('_',' - ')

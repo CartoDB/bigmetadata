@@ -122,7 +122,7 @@ class WOF(TableTask):
         return '2016'
 
     def version(self):
-        return 11
+        return 12
 
     def requires(self):
         requirements = {

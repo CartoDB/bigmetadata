@@ -1,6 +1,7 @@
 import os
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
+                              SimplifiedTempTableTask)
 from tasks.meta import OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.util import shell
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
@@ -28,6 +29,11 @@ class ImportHUC(GdbFeatureClass2TempTableTask):
 
     def input_gdb(self):
         return os.path.join(self.input().path, 'NHDPlusV2_WBDSnapshot_EnviroAtlas_CONUS.gdb')
+
+
+class SimplifiedImportHUC(SimplifiedTempTableTask):
+    def requires(self):
+        return ImportHUC()
 
 
 class SourceTags(TagsTask):
@@ -89,12 +95,12 @@ class HUCColumns(ColumnsTask):
 class HUC(TableTask):
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
             'columns': HUCColumns(),
-            'data': ImportHUC(),
+            'data': SimplifiedImportHUC(),
         }
 
     def columns(self):

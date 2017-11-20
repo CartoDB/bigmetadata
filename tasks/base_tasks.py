@@ -24,6 +24,8 @@ from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
 from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
                         create_temp_schema, unqualified_task_id, generate_tile_summary)
+from tasks.simplification import SIMPLIFIED_SUFFIX
+from tasks.simplify import Simplify
 
 LOGGER = get_logger(__name__)
 
@@ -476,6 +478,26 @@ def clear_temp_table(task):
         session.execute('DROP TABLE IF EXISTS "{schema}".{tablename}'.format(
             schema=classpath(task), tablename=unqualified_task_id(task.task_id)))
         session.flush()
+
+
+class SimplifiedTempTableTask(TempTableTask):
+    def get_table_id(self):
+        '''
+        Subclasses may override this method if an ETL task
+        needs a custom table_id.
+
+        Returns schema.tablename_without_hash
+        '''
+        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1])])
+
+    def run(self):
+        yield Simplify(schema=self.input().schema,
+                       table=self.input().tablename,
+                       table_id=self.get_table_id())
+
+    def output(self):
+        return PostgresTarget(self.input().schema,
+                              self.input().tablename + SIMPLIFIED_SUFFIX)
 
 
 class GdbFeatureClass2TempTableTask(TempTableTask):

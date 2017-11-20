@@ -1,7 +1,8 @@
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
+                              SimplifiedTempTableTask)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
@@ -132,6 +133,13 @@ class ImportGeography(Shp2TempTableTask):
                 yield shp
 
 
+class SimplifiedImportGeography(SimplifiedTempTableTask):
+    resolution = Parameter()
+
+    def requires(self):
+        return ImportGeography(resolution=self.resolution)
+
+
 class ImportDemographicData(Shp2TempTableTask):
 
     resolution = Parameter()
@@ -244,11 +252,11 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
-            'data': ImportGeography(resolution=self.resolution),
+            'data': SimplifiedImportGeography(resolution=self.resolution),
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
@@ -281,7 +289,7 @@ class Census(TableTask):
     table = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def timespan(self):
         return 2010

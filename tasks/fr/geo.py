@@ -1,4 +1,5 @@
-from tasks.base_tasks import ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask
+from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask,
+                              SimplifiedTempTableTask)
 from tasks.util import shell
 from tasks.meta import OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from collections import OrderedDict
@@ -23,6 +24,11 @@ class ImportOutputAreas(Shp2TempTableTask):
     def input_shp(self):
         # may need to point to directory iris-2013-01-01?
         return os.path.join(self.input().path, 'iris-2013-01-01.shp')
+
+
+class SimplifiedImportOutputAreas(SimplifiedTempTableTask):
+    def requires(self):
+        return ImportOutputAreas()
 
 
 class OutputAreaColumns(ColumnsTask):
@@ -89,11 +95,11 @@ class OutputAreas(TableTask):
     def requires(self):
         return {
             'geom_columns': OutputAreaColumns(),
-            'data': ImportOutputAreas(),
+            'data': SimplifiedImportOutputAreas(),
         }
 
     def version(self):
-        return 4
+        return 5
 
     def timespan(self):
         return 2013
