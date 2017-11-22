@@ -183,7 +183,7 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"ca.statcan.geo.importgeography_pr_0": {
+	"ca.statcan.geo.importgeography_pr_": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
 		"factor": "12",
