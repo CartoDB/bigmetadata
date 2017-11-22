@@ -347,7 +347,7 @@ us-lodes:
 	make -- run-parallel us.census.lodes.LODESMetaWrapper --geography block --year 2013
 
 us-spielman:
-	make -- run-parallel us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper
+	make -- run-parallel us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
 us-tiger:
 	make -- run-parallel us.census.tiger.AllSumLevels --year 2015
