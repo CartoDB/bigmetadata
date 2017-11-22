@@ -299,7 +299,7 @@ es-ine-fyp:
 eu-all: eu-geo eu-data
 
 eu-geo:
-	make -- run eu.geo.AllNUTSGeometries
+	make -- run-parallel eu.geo.AllNUTSGeometries
 
 eu-data:
 	make -- run eu.eurostat.EURegionalTables

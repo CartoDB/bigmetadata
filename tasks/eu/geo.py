@@ -56,6 +56,7 @@ class DownloadGeographies(Task):
 
 
 class ImportSHNGeoms(Shp2TempTableTask):
+    level = IntParameter()
 
     def requires(self):
         return DownloadGeographies()
@@ -69,10 +70,10 @@ class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
     level = IntParameter()
 
     def get_table_id(self):
-        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1]) + str(self.level)])
+        return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1])])
 
     def requires(self):
-        return ImportSHNGeoms()
+        return ImportSHNGeoms(level=self.level)
 
 
 class ImportSHNNames(Shp2TempTableTask):
