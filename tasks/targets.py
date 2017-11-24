@@ -219,10 +219,10 @@ class TableTarget(Target):
         obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
             underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
+        self.obs_table = obs_table
         self._tablename = obs_table.tablename
         self._schema = schema
         self._name = name
-        self._obs_table = obs_table
         self._obs_dict = obs_table.__dict__.copy()
         self._columns = columns
         self._task = task
@@ -244,7 +244,7 @@ class TableTarget(Target):
         '''
         session = current_session()
         existing = self.get(session)
-        new_version = float(self._obs_table.version or 0.0)
+        new_version = float(self.obs_table.version or 0.0)
         if existing:
             existing_version = float(existing.version or 0.0)
             if existing in session:
@@ -308,7 +308,7 @@ class TableTarget(Target):
                 coltype = getattr(types, col.type.capitalize())
             columns.append(Column(colname, coltype))
 
-        obs_table = self.get(session) or self._obs_table
+        obs_table = self.get(session) or self.obs_table
         # replace local data table
         if obs_table.id in metadata.tables:
             metadata.tables[obs_table.id].drop()
@@ -322,8 +322,8 @@ class TableTarget(Target):
         session = current_session()
 
         # replace metadata table
-        self._obs_table = session.merge(self._obs_table)
-        obs_table = self._obs_table
+        self.obs_table = session.merge(self.obs_table)
+        obs_table = self.obs_table
 
         for i, colname_coltarget in enumerate(self._columns.items()):
             colname, coltarget = colname_coltarget

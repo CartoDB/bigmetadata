@@ -6,23 +6,17 @@ functions for persisting metadata about tables loaded via ETL
 
 import os
 import re
-import weakref
 
-import luigi
-from luigi import Task, BoolParameter, Target, Event
+from luigi import Target
 
-from sqlalchemy import (Column, Integer, Text, Boolean, MetaData, Numeric, cast,
-                        create_engine, event, ForeignKey, PrimaryKeyConstraint,
-                        ForeignKeyConstraint, Table, exc, func, UniqueConstraint,
-                        Index)
+from sqlalchemy import (Column, Integer, Text, MetaData, Numeric, cast,
+                        create_engine, event, ForeignKey, ForeignKeyConstraint,
+                        exc, func, UniqueConstraint, Index)
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker, composite, backref
-from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm import relationship, sessionmaker, backref
 from sqlalchemy.orm.collections import attribute_mapped_collection
-from sqlalchemy.schema import ForeignKeyConstraint
-from sqlalchemy.sql import expression
 from sqlalchemy.types import UserDefinedType
 
 
@@ -254,7 +248,7 @@ def tag_creator(tagtarget):
     return coltag
 
 
-def targets_creator(coltarget_or_col, reltype):
+def columntargets_creator(coltarget_or_col, reltype):
     # we should never see these committed, they are a side effect of output()
     # being run before parent tasks can generate requirements
     # they would violate constraints
@@ -269,9 +263,8 @@ def targets_creator(coltarget_or_col, reltype):
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
-table_to_table = Table("obs_table_to_table", Base.metadata,
-                       Column("source_id", Text, ForeignKey("obs_table.id"), primary_key=True),
-                       Column("target_id", Text, ForeignKey("obs_table.id"), primary_key=True))
+def tabletargets_creator(target, reltype):
+    return OBSTableToTable(target=target, reltype=reltype)
 
 
 class OBSColumnToColumn(Base):
@@ -324,6 +317,52 @@ class OBSColumnToColumn(Base):
                               cascade="all, delete-orphan",
                           ))
     target = relationship('OBSColumn', foreign_keys=[target_id])
+
+
+class OBSTableToTable(Base):
+    '''
+    Relates one table to another.
+
+    These should *never* be created manually.  Their creation should
+    be handled automatically from specifying :attr:`.OBSTable.targets`.
+
+    These are unique on ``(source_id, target_id)``.
+
+    .. py:attribute:: source_id
+
+       ID of the linked source :class:`~.meta.OBSTable`.
+
+    .. py:attribute:: target_id
+
+       ID of the linked target :class:`~.meta.OBSTable`.
+
+    .. py:attribute:: reltype
+
+       required text specifying the relation type.
+
+    .. py:attribute:: source
+
+       The linked source :class:`~.meta.OBSTable`.
+
+    .. py:attribute:: target
+
+       The linked target :class:`~.meta.OBSTable`.
+    '''
+    __tablename__ = 'obs_table_to_table'
+
+    source_id = Column(Text, ForeignKey('obs_table.id', ondelete='cascade'), primary_key=True)
+    target_id = Column(Text, ForeignKey('obs_table.id', ondelete='cascade'), primary_key=True)
+
+    reltype = Column(Text, primary_key=True)
+
+    source = relationship('OBSTable',
+                          foreign_keys=[source_id],
+                          backref=backref(
+                              "tgts",
+                              collection_class=attribute_mapped_collection("target"),
+                              cascade="all, delete-orphan",
+                          ))
+    target = relationship('OBSTable', foreign_keys=[target_id])
 
 
 # For example, a single census identifier like b01001001
@@ -413,7 +452,7 @@ class OBSColumn(Base):
     tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
     tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
-    targets = association_proxy('tgts', 'reltype', creator=targets_creator)
+    targets = association_proxy('tgts', 'reltype', creator=columntargets_creator)
 
     version = Column(Numeric, default=0, nullable=False)
     extra = Column(JSON)
@@ -589,7 +628,7 @@ class OBSTable(Base):
     '''
     __tablename__ = 'obs_table'
 
-    id = Column(Text, primary_key=True) # fully-qualified id like 'us.census.acs.extract_2013_5yr_state_18357fba'
+    id = Column(Text, primary_key=True)  # fully-qualified id like 'us.census.acs.extract_2013_5yr_state_18357fba'
 
     columns = relationship("OBSColumnTable", back_populates="table",
                            cascade="all,delete")
@@ -599,11 +638,7 @@ class OBSTable(Base):
     the_geom = Column(Geometry)
     description = Column(Text)
 
-    targets = relationship("OBSTable",
-                           secondary=table_to_table,
-                           primaryjoin=id==table_to_table.c.source_id,
-                           secondaryjoin=id==table_to_table.c.target_id,
-                           backref="sources")
+    targets = association_proxy('tgts', 'reltype', creator=tabletargets_creator)
 
     version = Column(Numeric, default=0, nullable=False)
 

@@ -774,7 +774,7 @@ class TableTask(Task):
         return None
 
     def targets(self):
-        return []
+        return {}
 
     def timespan(self):
         '''
