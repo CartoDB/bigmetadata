@@ -269,6 +269,11 @@ def targets_creator(coltarget_or_col, reltype):
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
+table_to_table = Table("obs_table_to_table", Base.metadata,
+                       Column("source_id", Text, ForeignKey("obs_table.id"), primary_key=True),
+                       Column("target_id", Text, ForeignKey("obs_table.id"), primary_key=True))
+
+
 class OBSColumnToColumn(Base):
     '''
     Relates one column to another.  For example, a ``Text`` column may contain
@@ -319,7 +324,6 @@ class OBSColumnToColumn(Base):
                               cascade="all, delete-orphan",
                           ))
     target = relationship('OBSColumn', foreign_keys=[target_id])
-
 
 
 # For example, a single census identifier like b01001001
@@ -594,6 +598,12 @@ class OBSTable(Base):
     timespan = Column(Text)
     the_geom = Column(Geometry)
     description = Column(Text)
+
+    targets = relationship("OBSTable",
+                           secondary=table_to_table,
+                           primaryjoin=id==table_to_table.c.source_id,
+                           secondaryjoin=id==table_to_table.c.target_id,
+                           backref="sources")
 
     version = Column(Numeric, default=0, nullable=False)
 
