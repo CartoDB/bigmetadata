@@ -22955,7 +22955,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={t004c001_t: UNIVERSE},)
+            targets={t029c003_t: UNIVERSE},)
 
         t029c009_m = OBSColumn(
             id='t029c009_m',
@@ -22964,7 +22964,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={t004c001_m: UNIVERSE},)
+            targets={t029c003_m: UNIVERSE},)
 
         t029c009_f = OBSColumn(
             id='t029c009_f',
@@ -22973,7 +22973,7 @@ class NHSColumns(ColumnsTask):
             weight=3,
             aggregate='average',
             tags=[ca, unit_people, subsections['employment']],
-            targets={t004c001_f: UNIVERSE},)
+            targets={t029c003_f: UNIVERSE},)
 
         cols = OrderedDict([
             ('t001c001_t', t001c001_t),
