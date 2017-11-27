@@ -1,33 +1,33 @@
-NOME DA VARIçVEL,DESCRI‚ÌO DA VARIçVEL,DESCRIPTION OF THE VARIABLE,unit,denominators,subsection,agg
-Cod_setor,C—digo do setor,Industry code,,,,
-Cod das Grandes Regi›es,C—digo das Grandes Regi›es (Regi›es Geogr‡ficas),Code of Major Regions (Geographical Regions),,,,
-Nome das Grandes Regi›es,Nome das Grandes Regi›es (Regi›es Geogr‡ficas),Name of Major Regions (Geographical Regions),,,,
-Cod_UF,C—digo da Unidade da Federa‹o,Federation Unit Code,,,,
-Nome_da_UF,Nome da Unidade da Federa‹o,Name of the Federation Unit,,,,
-Cod_meso,C—digo da mesorregi‹o,Meso-region code,,,,
-Nome_da_meso,Nome da mesorregi‹o,Name of mesoregion,,,,
-Cod_micro,C—digo da microrregi‹o,Microregion code,,,,
-Nome_da_micro,Nome da microrregi‹o,Name of microregion,,,,
-Cod_RM,C—digo da regi‹o metropolitana ou RIDE,Code of the metropolitan region or RIDE,,,,
-Nome_da_RM,Nome da regi‹o metropolitana ou RIDE,Name of the metropolitan region or RIDE,,,,
-Cod_municipio,C—digo do munic’pio,Town code,,,,
-Nome_do_municipio,Nome do munic’pio,Name of municipality,,,,
-Cod_distrito,C—digo do distrito,District code,,,,
+NOME DA VARIï¿½VEL,DESCRIï¿½ï¿½O DA VARIï¿½VEL,DESCRIPTION OF THE VARIABLE,unit,denominators,subsection,agg
+Cod_setor,Cï¿½digo do setor,Industry code,,,,
+Cod das Grandes Regiï¿½es,Cï¿½digo das Grandes Regiï¿½es (Regiï¿½es Geogrï¿½ficas),Code of Major Regions (Geographical Regions),,,,
+Nome das Grandes Regiï¿½es,Nome das Grandes Regiï¿½es (Regiï¿½es Geogrï¿½ficas),Name of Major Regions (Geographical Regions),,,,
+Cod_UF,Cï¿½digo da Unidade da Federaï¿½ï¿½o,Federation Unit Code,,,,
+Nome_da_UF,Nome da Unidade da Federaï¿½ï¿½o,Name of the Federation Unit,,,,
+Cod_meso,Cï¿½digo da mesorregiï¿½o,Meso-region code,,,,
+Nome_da_meso,Nome da mesorregiï¿½o,Name of mesoregion,,,,
+Cod_micro,Cï¿½digo da microrregiï¿½o,Microregion code,,,,
+Nome_da_micro,Nome da microrregiï¿½o,Name of microregion,,,,
+Cod_RM,Cï¿½digo da regiï¿½o metropolitana ou RIDE,Code of the metropolitan region or RIDE,,,,
+Nome_da_RM,Nome da regiï¿½o metropolitana ou RIDE,Name of the metropolitan region or RIDE,,,,
+Cod_municipio,Cï¿½digo do municï¿½pio,Town code,,,,
+Nome_do_municipio,Nome do municï¿½pio,Name of municipality,,,,
+Cod_distrito,Cï¿½digo do distrito,District code,,,,
 Nome_do_distrito,Nome do distrito,District Name,,,,
-Cod_subdistrito,C—digo do subdistrito,Subdistrict code,,,,
+Cod_subdistrito,Cï¿½digo do subdistrito,Subdistrict code,,,,
 Nome_do_subdistrito,Nome do subdistrito,Subdistrict name,,,,
-Cod_bairro,C—digo de bairro,Neighborhood code,,,,
+Cod_bairro,Cï¿½digo de bairro,Neighborhood code,,,,
 Nome_do_bairro,Nome do bairro,Neighborhood Name,,,,
-Situa‹o_setor,C—digo de situa‹o do setor,Sector status code,,,,
-V001,Domic’lios particulares permanentes ou pessoas respons‡veis por domic’lios particulares permanentes,Permanent private households or persons responsible for permanent private households,people,Pessoa13_V003,housing,sum
-V002,Moradores em domic’lios particulares permanentes ou popula‹o residente em domic’lios particulares permanentes,Residents in permanent private households or population residing in permanent private households,people,Pessoa13_V002,housing,sum
-V003,Mdia do nœmero de moradores em domic’lios particulares permanentes (obtida pela divis‹o de Var2 por Var1),Average number of residents in permanent private households (obtained by dividing Var2 by Var1),people,Basico_V001,housing,average
-V004,Vari‰ncia do nœmero de moradores em domic’lios particulares permanentes,Variance of the number of residents in permanent private households,people,Basico_V002,housing,variance
-V005,Valor do rendimento nominal mdio mensal das pessoas respons‡veis por domic’lios particulares permanentes (com e sem rendimento),Nominal average monthly income of persons responsible for permanent private households (with and without income),money,ResponsavelRenda_V022,income|housing,average
-V006,Vari‰ncia do rendimento nominal mensal das pessoas respons‡veis por domic’lios particulares permanentes (com e sem rendimento),Variance of monthly nominal income of persons responsible for permanent private households (with and without income),money,Basico_V005,income|housing,variance
-V007,Valor do rendimento nominal mdio mensal das pessoas respons‡veis por domic’lios particulares permanentes (com rendimento),Nominal average monthly income of persons responsible for permanent private households (with income),money,ResponsavelRenda_V022,income|housing,average
-V008,Vari‰ncia do rendimento nominal mensal das pessoas respons‡veis por domic’lios particulares permanentes (com rendimento),Variance of monthly nominal income of persons responsible for permanent private households (with income),money,Basico_V007,income|housing,variance
-V009,Valor do rendimento nominal mdio mensal das pessoas de 10 anos ou mais de idade (com e sem rendimento),Value of the average monthly nominal income of persons 10 years of age or over (income and income),money,ResponsavelRenda_V088,income|age_gender,average
-V010,Vari‰ncia do rendimento nominal mensal das pessoas de 10 anos ou mais de idade (com e sem rendimento),Variance of the monthly nominal income of persons 10 years of age or over (with and without income),money,Basico_V009,income|age_gender,variance
-V011,Valor do rendimento nominal mdio mensal das pessoas de 10 anos ou mais de idade (com rendimento),Value of the average monthly nominal income of persons 10 years of age or over (with income),money,ResponsavelRenda_V088,income|age_gender,average
-V012,Vari‰ncia do rendimento nominal mensal das pessoas de 10 anos ou mais de idade (com rendimento),Nominal monthly income variance of persons 10 years of age or over (with income),money,ResponsavelRenda_V088,income|age_gender,variance
+Situaï¿½ï¿½o_setor,Cï¿½digo de situaï¿½ï¿½o do setor,Sector status code,,,,
+V001,Domicï¿½lios particulares permanentes ou pessoas responsï¿½veis por domicï¿½lios particulares permanentes,Permanent private households or persons responsible for permanent private households,people,Pessoa13_V003,housing,sum
+V002,Moradores em domicï¿½lios particulares permanentes ou populaï¿½ï¿½o residente em domicï¿½lios particulares permanentes,Residents in permanent private households or population residing in permanent private households,people,Pessoa13_V002,housing,sum
+V003,Mï¿½dia do nï¿½mero de moradores em domicï¿½lios particulares permanentes (obtida pela divisï¿½o de Var2 por Var1),Average number of residents in permanent private households (obtained by dividing Var2 by Var1),people,Basico_V001,housing,average
+V004,Variï¿½ncia do nï¿½mero de moradores em domicï¿½lios particulares permanentes,Variance of the number of residents in permanent private households,people,Basico_V002,housing,variance
+V005,Valor do rendimento nominal mï¿½dio mensal das pessoas responsï¿½veis por domicï¿½lios particulares permanentes (com e sem rendimento),Nominal average monthly income of persons responsible for permanent private households (with and without income),money,Basico_V001,income|housing,average
+V006,Variï¿½ncia do rendimento nominal mensal das pessoas responsï¿½veis por domicï¿½lios particulares permanentes (com e sem rendimento),Variance of monthly nominal income of persons responsible for permanent private households (with and without income),money,Basico_V005,income|housing,variance
+V007,Valor do rendimento nominal mï¿½dio mensal das pessoas responsï¿½veis por domicï¿½lios particulares permanentes (com rendimento),Nominal average monthly income of persons responsible for permanent private households (with income),money,Basico_V001,income|housing,average
+V008,Variï¿½ncia do rendimento nominal mensal das pessoas responsï¿½veis por domicï¿½lios particulares permanentes (com rendimento),Variance of monthly nominal income of persons responsible for permanent private households (with income),money,Basico_V007,income|housing,variance
+V009,Valor do rendimento nominal mï¿½dio mensal das pessoas de 10 anos ou mais de idade (com e sem rendimento),Value of the average monthly nominal income of persons 10 years of age or over (income and income),money,Basico_V001,income|age_gender,average
+V010,Variï¿½ncia do rendimento nominal mensal das pessoas de 10 anos ou mais de idade (com e sem rendimento),Variance of the monthly nominal income of persons 10 years of age or over (with and without income),money,Basico_V009,income|age_gender,variance
+V011,Valor do rendimento nominal mï¿½dio mensal das pessoas de 10 anos ou mais de idade (com rendimento),Value of the average monthly nominal income of persons 10 years of age or over (with income),money,Basico_V001,income|age_gender,average
+V012,Variï¿½ncia do rendimento nominal mensal das pessoas de 10 anos ou mais de idade (com rendimento),Nominal monthly income variance of persons 10 years of age or over (with income),money,Basico_V001,income|age_gender,variance
