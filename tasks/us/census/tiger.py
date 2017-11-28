@@ -358,7 +358,7 @@ class SimplifiedDownloadTiger(Task):
     def run(self):
         yield Simplify(schema='tiger{year}'.format(year=self.year),
                        table=SUMLEVELS[self.geography]['table'],
-                       table_id='.'.join(['tiger{year}'.format(year=self.year), SUMLEVELS[self.geography]['table']]))
+                       table_id='.'.join(['tiger{year}'.format(year=self.year), self.geography]))
 
     def output(self):
         return PostgresTarget('tiger{year}'.format(year=self.year),
