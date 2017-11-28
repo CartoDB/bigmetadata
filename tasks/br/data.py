@@ -254,11 +254,11 @@ class Columns(ColumnsTask):
                 denominators = denominators.split('|')
 
                 targets_dict = {}
-                for x in denominators:
-                    x = x.strip()
+                for denom in denominators:
+                    denom = denom.strip()
                     target_type = 'universe' if col_agg in ['median', 'average'] else 'denominator'
-                    targets_dict[cols.get(x, column_reqs[x].get(session)
-                                 if x in column_reqs else None)] = target_type
+                    targets_dict[cols.get(denom, column_reqs[denom].get(session)
+                                 if denom in column_reqs else None)] = target_type
 
                 targets_dict.pop(None, None)
 
