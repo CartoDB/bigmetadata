@@ -1,4 +1,4 @@
-#http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px
+# http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px
 
 import csv
 import os
@@ -44,11 +44,11 @@ class RawGeometry(TempTableTask):
             input=self.input().path)
         shell(cmd)
         cmd = 'PG_USE_COPY=yes PGCLIENTENCODING=latin1 ' \
-                'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
-                '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
-                '-lco OVERWRITE=yes ' \
-                '-lco SCHEMA={schema} -lco PRECISION=no ' \
-                '$(dirname {input})/$(basename {input} .zip)/*.shp '.format(
+              'ogr2ogr -f PostgreSQL PG:dbname=$PGDATABASE ' \
+              '-t_srs "EPSG:4326" -nlt MultiPolygon -nln {table} ' \
+              '-lco OVERWRITE=yes ' \
+              '-lco SCHEMA={schema} -lco PRECISION=no ' \
+              '$(dirname {input})/$(basename {input} .zip)/*.shp '.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
                     input=self.input().path)
@@ -1730,9 +1730,9 @@ class SeccionDataDownload(Task):
     def run(self):
         self.output().makedirs()
         cmd = 'wget "{url}" -O {output_dir}.zip && ' \
-                'mkdir -p {output_dir} && ' \
-                'unzip -o {output_dir}.zip -d {output_dir} && ' \
-                'tail -n +2 -q {output_dir}/*.csv > {output_csv}'.format(
+              'mkdir -p {output_dir} && ' \
+              'unzip -o {output_dir}.zip -d {output_dir} && ' \
+              'tail -n +2 -q {output_dir}/*.csv > {output_csv}'.format(
                     url=self.URL,
                     output_dir=self.output().path.replace('.csv', ''),
                     output_csv=self.output().path)
@@ -1742,8 +1742,7 @@ class SeccionDataDownload(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) + '.csv')
 
 
-class PopulationHouseholdsHousing(TableTask):
-
+class RawPopulationHouseholdsHousing(TempTableTask):
     def requires(self):
         return {
             'meta': SeccionColumns(),
@@ -1751,8 +1750,54 @@ class PopulationHouseholdsHousing(TableTask):
             'data': SeccionDataDownload(),
         }
 
+    def columns(self):
+        '''
+        Add the geoid (cusec_id) column into first position as expected
+        '''
+        session = current_session()
+
+        metacols = self.input()['meta']
+        cols = OrderedDict()
+        cols['cusec_id'] = self.input()['geometa']['cusec_id'].get(session).type
+        for key, col in metacols.items():
+            cols[key] = col.get(session).type
+        return cols
+
+    def run(self):
+        session = current_session()
+        cols = ['{colname} {coltype}'.format(colname=colname,
+                                             coltype=coltarget)
+                for colname, coltarget in self.columns().items()]
+        create_table = 'CREATE TABLE {output} ({cols})'.format(
+            cols=', '.join(cols),
+            output=self.output().table
+        )
+        session.execute(create_table)
+        session.commit()
+
+        with self.input()['data'].open() as infile:
+            for fields in csv.reader(infile):
+                cusec = "'" + ''.join(fields[1:5]) + "'"
+                fields = [f.replace('"', '') for f in fields[5:]]
+                fields = [f or 'NULL' for f in fields]
+                fields.insert(0, cusec)
+                stmt = 'INSERT INTO {output} VALUES ({values})'.format(
+                    output=self.output().table,
+                    values=', '.join(fields))
+                session.execute(stmt)
+
+
+class PopulationHouseholdsHousing(TableTask):
+
+    def requires(self):
+        return {
+            'meta': SeccionColumns(),
+            'geometa': GeometryColumns(),
+            'data': RawPopulationHouseholdsHousing(),
+        }
+
     def version(self):
-        return 4
+        return 5
 
     def timespan(self):
         return '2011'
@@ -1770,16 +1815,13 @@ class PopulationHouseholdsHousing(TableTask):
 
     def populate(self):
         session = current_session()
-        with self.input()['data'].open() as infile:
-            for fields in csv.reader(infile):
-                cusec = "'" + ''.join(fields[1:5]) + "'"
-                fields = [f.replace('"', '') for f in fields[5:]]
-                fields = [f or 'NULL' for f in fields]
-                fields.insert(0, cusec)
-                stmt = 'INSERT INTO {output} VALUES ({values})'.format(
+
+        query = ("INSERT INTO {output} ({cols}) "
+                 "SELECT {cols} from {input}".format(
                     output=self.output().table,
-                    values=', '.join(fields))
-                session.execute(stmt)
+                    cols=', '.join([x for x in self.columns().keys()]),
+                    input=self.input()['data'].table))
+        session.execute(query)
 
 
 class FiveYearPopulationDownload(Task):
@@ -1805,7 +1847,6 @@ class FiveYearPopulationParse(Task):
         return FiveYearPopulationDownload()
 
     def run(self):
-        output = self.output()
         dimensions = []
         self.output().makedirs()
         with self.output().open('w') as outfile:
@@ -2048,24 +2089,24 @@ class FiveYearPopulation(TableTask):
         cols_male = list(self.columns_by_gender(MALE).keys())
         cols_female = list(self.columns_by_gender(FEMALE).keys())
 
-        query = 'INSERT INTO {output} ({insert_cols}, {select_cols_male}, {select_cols_female})' + \
-                'SELECT {select_cols}, {select_cols_male}, {select_cols_female} from ' + \
-                '(SELECT {cols_all} from {input} WHERE gender = \'Ambos Sexos\') allgenders, ' + \
-                '(SELECT {cols_male} from {input} WHERE gender = \'Hombres\') male, ' + \
-                '(SELECT {cols_female} from {input} WHERE gender = \'Mujeres\') female ' + \
-                'WHERE allgenders.cusec_id = male.cusec_id ' + \
-                'AND allgenders.cusec_id = female.cusec_id'
+        query = ("INSERT INTO {output} ({insert_cols}, {select_cols_male}, {select_cols_female}) "
+                 "SELECT {select_cols}, {select_cols_male}, {select_cols_female} from "
+                 "(SELECT {cols_all} from {input} WHERE gender = 'Ambos Sexos') allgenders, "
+                 "(SELECT {cols_male} from {input} WHERE gender = 'Hombres') male, "
+                 "(SELECT {cols_female} from {input} WHERE gender = 'Mujeres') female "
+                 "WHERE allgenders.cusec_id = male.cusec_id "
+                 "AND allgenders.cusec_id = female.cusec_id ".format(
+                    output=self.output().table,
+                    input=self.input()['data'].table,
+                    insert_cols=', '.join(cols_all),
+                    select_cols=', '.join([x if x != 'cusec_id' else 'allgenders.cusec_id' for x in cols_all]),
+                    select_cols_male=', '.join([x for x in cols_male if x != 'cusec_id']),
+                    select_cols_female=', '.join([x for x in cols_female if x != 'cusec_id']),
+                    cols_all=', '.join(cols_all),
+                    cols_male=', '.join([cols_all[x] + ' ' + cols_male[x] for x in range(len(cols_male))]),
+                    cols_female=', '.join([cols_all[x] + ' ' + cols_female[x] for x in range(len(cols_female))])))
 
-        session.execute(query.format(
-            output=self.output().table,
-            input=self.input()['data'].table,
-            insert_cols=', '.join(cols_all),
-            select_cols=', '.join([x if x != 'cusec_id' else 'allgenders.cusec_id' for x in cols_all]),
-            select_cols_male=', '.join([x for x in cols_male if x != 'cusec_id']),
-            select_cols_female=', '.join([x for x in cols_female if x != 'cusec_id']),
-            cols_all=', '.join(cols_all),
-            cols_male=', '.join([cols_all[x] + ' ' + cols_male[x] for x in range(len(cols_male))]),
-            cols_female=', '.join([cols_all[x] + ' ' + cols_female[x] for x in range(len(cols_female))])))
+        session.execute(query)
 
 
 class FiveYearPopulationMeta(MetaWrapper):
