@@ -248,7 +248,7 @@ def tag_creator(tagtarget):
     return coltag
 
 
-def columntargets_creator(coltarget_or_col, reltype):
+def coltocoltargets_creator(coltarget_or_col, reltype):
     # we should never see these committed, they are a side effect of output()
     # being run before parent tasks can generate requirements
     # they would violate constraints
@@ -263,7 +263,7 @@ def columntargets_creator(coltarget_or_col, reltype):
     return OBSColumnToColumn(target=col, reltype=reltype)
 
 
-def tabletargets_creator(target, reltype):
+def tabletotabletargets_creator(target, reltype):
     return OBSTableToTable(target=target, reltype=reltype)
 
 
@@ -452,7 +452,7 @@ class OBSColumn(Base):
     tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
     tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
 
-    targets = association_proxy('tgts', 'reltype', creator=columntargets_creator)
+    targets = association_proxy('tgts', 'reltype', creator=coltocoltargets_creator)
 
     version = Column(Numeric, default=0, nullable=False)
     extra = Column(JSON)
@@ -638,7 +638,7 @@ class OBSTable(Base):
     the_geom = Column(Geometry)
     description = Column(Text)
 
-    targets = association_proxy('tgts', 'reltype', creator=tabletargets_creator)
+    targets = association_proxy('tgts', 'reltype', creator=tabletotabletargets_creator)
 
     version = Column(Numeric, default=0, nullable=False)
 
