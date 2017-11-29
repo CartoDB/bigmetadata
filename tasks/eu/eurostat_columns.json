@@ -378,6 +378,222 @@
 			}
 		]
 	},
+	"educ_renrlrg1_f_nr_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_m_nr_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_t_nr_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_f_nr_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_m_nr_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_t_nr_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_f_nr_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_m_nr_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_t_nr_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_f_nr_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_m_nr_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_t_nr_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_f_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_m_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_t_ed3_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_f_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_m_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_t_ed3_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_f_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_m_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_t_ed4_g": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_f_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_m_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_nr_t_ed4_vpv": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people"
+			}
+		]
+	},
 	"ilc_lvhl21_pc_lw95": {
 		"exceptions": [
 			{
