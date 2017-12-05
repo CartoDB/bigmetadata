@@ -202,7 +202,6 @@ class Columns(ColumnsTask):
 
         return True
 
-
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
@@ -255,9 +254,11 @@ class Columns(ColumnsTask):
                 denominators = denominators.split('|')
 
                 targets_dict = {}
-                for x in denominators:
-                    x = x.strip()
-                    targets_dict[cols.get(x, column_reqs[x].get(session) if x in column_reqs else None)] = 'denominator'
+                for denom in denominators:
+                    denom = denom.strip()
+                    target_type = 'universe' if col_agg in ['median', 'average'] else 'denominator'
+                    targets_dict[cols.get(denom, column_reqs[denom].get(session)
+                                 if denom in column_reqs else None)] = target_type
 
                 targets_dict.pop(None, None)
 
@@ -267,15 +268,15 @@ class Columns(ColumnsTask):
                     id=col_id,
                     type='Numeric',
                     name=col_name_pt,
-                    description ='',
+                    description='',
                     # Ranking of importance, sometimes used to favor certain measures in auto-selection
                     # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
                     weight=5,
-                    aggregate= col_agg or 'sum',
+                    aggregate=col_agg or 'sum',
                     # Tags are our way of noting aspects of this measure like its unit, the country
                     # it's relevant to, and which section(s) of the catalog it should appear in
                     tags=[source, license, brasil, unittags[col_unit]],
-                    targets= targets_dict
+                    targets=targets_dict
                 )
 
                 # append the rest of the subsection tags

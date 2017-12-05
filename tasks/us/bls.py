@@ -1,17 +1,18 @@
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
-                              CSV2TempTableTask, MetaWrapper)
+                              CSV2TempTableTask)
 from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, SumLevel
+from tasks.us.census.tiger import GeoidColumns
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
 
 import os
+import glob
 
 
 class DownloadQCEW(DownloadUnzipTask):
@@ -35,7 +36,11 @@ class RawQCEW(CSV2TempTableTask):
         return DownloadQCEW(year=self.year)
 
     def input_csv(self):
-        return os.path.join(self.input().path, '{}.q1-q4.singlefile.csv'.format(self.year))
+        qtrs = reversed(range(1, 5))
+        for qtr in qtrs:
+            file = os.path.join(self.input().path, '{year}.q1-q{qtr}.singlefile.csv'.format(year=self.year, qtr=qtr))
+            if glob.glob(file):
+                return file
 
 
 class SimpleQCEW(TempTableTask):
@@ -264,24 +269,11 @@ class QCEW(TableTask):
 
 class AllQCEW(WrapperTask):
 
+    maxtimespan = Parameter()
+
     def requires(self):
-        for year in range(2012, 2016):
+        maxyear, maxqtr = [int(n) for n in self.maxtimespan.split('Q')]
+        for year in range(2012, maxyear + 1):
             for qtr in range(1, 5):
-                yield QCEW(year=year, qtr=qtr)
-
-
-class QCEWMetaWrapper(MetaWrapper):
-
-    year = IntParameter()
-    qtr = IntParameter()
-    geography = Parameter()
-
-    params = {
-        'year': list(range(2012, 2016)),
-        'qtr': list(range(1, 5)),
-        'geography': ['county']
-    }
-
-    def tables(self):
-        yield QCEW(year=self.year, qtr=self.qtr)
-        yield SumLevel(year='2015', geography=self.geography)
+                if year < maxyear or qtr <= maxqtr:
+                    yield QCEW(year=year, qtr=qtr)

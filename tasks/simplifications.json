@@ -183,7 +183,7 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"ca.statcan.geo.importgeography_pr_0": {
+	"ca.statcan.geo.importgeography_pr_": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
 		"factor": "12",
@@ -437,70 +437,70 @@
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_cbsa_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_census_tract_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_congressional_di_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_county_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_place_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_puma_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_school_district__2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_state_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_zcta5_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
 		"maxmemory": "8192",
-		"skipfailures": "no"
+		"skipfailures": "yes"
 	},
 
 	"us.epa.huc.importhuc_": {

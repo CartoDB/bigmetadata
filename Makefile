@@ -338,7 +338,7 @@ uk-census:
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
 us-bls:
-	make -- run-parallel us.bls.AllQCEW
+	make -- run-parallel us.bls.AllQCEW --maxtimespan 2017Q1
 
 us-acs:
 	make -- run-parallel us.census.acs.ACSAll
@@ -347,7 +347,7 @@ us-lodes:
 	make -- run-parallel us.census.lodes.LODESMetaWrapper --geography block --year 2013
 
 us-spielman:
-	make -- run-parallel us.census.spielman_singleton_segments SpielmanSingletonMetaWrapper
+	make -- run-parallel us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
 us-tiger:
 	make -- run-parallel us.census.tiger.AllSumLevels --year 2015
