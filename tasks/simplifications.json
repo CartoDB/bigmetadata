@@ -191,6 +191,14 @@
 		"skipfailures": "no"
 	},
 
+	"ca.statcan.geo.importgeography_da": {
+		"simplification": "mapshaper",
+		"geomfield": "wkb_geometry",
+		"factor": "7",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
+
 	"ES": "-------------------------------------",
 
 	"es.cnig.importgeometry_x_ccaa_20150101": {
