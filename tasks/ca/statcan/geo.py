@@ -26,7 +26,7 @@ GEOGRAPHIES = (
 
 
 GEOGRAPHY_NAMES = {
-    GEO_CT: 'Census Tracts',
+    GEO_CT: 'Census tracts',
     GEO_PR: 'Canada, provinces and territories',
     GEO_CD: 'Census divisions',
     GEO_CSD: 'Census subdivisions',
