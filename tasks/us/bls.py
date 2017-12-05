@@ -15,9 +15,6 @@ import os
 import glob
 
 
-MAX_TIMESPAN = '2017Q1'  # Example '2017Q1'
-
-
 class DownloadQCEW(DownloadUnzipTask):
 
     year = IntParameter()
@@ -272,10 +269,11 @@ class QCEW(TableTask):
 
 class AllQCEW(WrapperTask):
 
+    maxtimespan = Parameter()
+
     def requires(self):
-        maxyear, maxqtr = [int(n) for n in MAX_TIMESPAN.split('Q')]
+        maxyear, maxqtr = [int(n) for n in self.maxtimespan.split('Q')]
         for year in range(2012, maxyear + 1):
             for qtr in range(1, 5):
-                if year == maxyear and qtr > maxqtr:
-                    continue
-                yield QCEW(year=year, qtr=qtr)
+                if year < maxyear or qtr <= maxqtr:
+                    yield QCEW(year=year, qtr=qtr)
