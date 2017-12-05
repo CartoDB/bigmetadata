@@ -338,7 +338,7 @@ uk-census:
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
 us-bls:
-	make -- run-parallel us.bls.AllQCEW
+	make -- run-parallel us.bls.AllQCEW --maxtimespan 2017Q1
 
 us-acs:
 	make -- run-parallel us.census.acs.ACSAll
