@@ -62,7 +62,8 @@ class SplitAndTransposeData(BaseParams, Task):
             GEO_PR: None,
             GEO_CD: None,
             GEO_CSD: None,
-            GEO_CMA: ('cmaca_name', (r'part\)$',))
+            GEO_CMA: ('cmaca_name', (r'part\)$',)),
+            GEO_DA: None,
         },
         SURVEY_NHS: {
             GEO_CT: None,
@@ -253,7 +254,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 11))   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
@@ -289,7 +290,7 @@ class CensusMetaWrapper(MetaWrapper):
 
     params = {
         'topic': ['t{:03d}'.format(i) for i in range(1,11)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA)
     }
 
     def tables(self):
