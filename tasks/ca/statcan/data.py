@@ -253,7 +253,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 11))   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
@@ -289,7 +289,7 @@ class CensusMetaWrapper(MetaWrapper):
 
     params = {
         'topic': ['t{:03d}'.format(i) for i in range(1,11)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA)
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
     }
 
     def tables(self):
