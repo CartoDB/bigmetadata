@@ -1794,10 +1794,14 @@ class PopulationHouseholdsHousing(TableTask):
             'meta': SeccionColumns(),
             'geometa': GeometryColumns(),
             'data': RawPopulationHouseholdsHousing(),
+            'geo': Geometry(),
         }
 
     def version(self):
-        return 5
+        return 6
+
+    def targets(self):
+        return {self.input()['geo'].obs_table: GEOM_REF}
 
     def timespan(self):
         return '2011'
@@ -2036,10 +2040,16 @@ class FiveYearPopulation(TableTask):
             'meta': FiveYearPopulationColumns(),
             'seccion_columns': SeccionColumns(),
             'geometa': GeometryColumns(),
+            'geo': Geometry(),
         }
 
     def version(self):
-        return 4
+        return 5
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         '''

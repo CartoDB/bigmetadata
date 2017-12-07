@@ -350,6 +350,15 @@ class OutputAreaClassifications(TableTask):
             'geom_columns': OutputAreaColumns(),
             'segment_columns': OutputAreaClassificationColumns(),
             'data': SimplifiedImportOutputAreas(),
+            'geo': OutputAreas(),
+        }
+
+    def version(self):
+        return 2
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
         }
 
     def columns(self):

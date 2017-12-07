@@ -1,6 +1,6 @@
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
-from tasks.eu.geo import NUTSColumns
-from tasks.meta import OBSColumn, OBSTag, current_session
+from tasks.eu.geo import NUTSColumns, NUTSGeometries
+from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.util import underscore_slugify, classpath, shell
 
@@ -451,7 +451,12 @@ class TableEU(TableTask):
     year = Parameter()
 
     def version(self):
-        return 9
+        return 10
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def timespan(self):
         return str(self.year).replace('_',' - ')
@@ -465,6 +470,7 @@ class TableEU(TableTask):
                                         units=self.unit,
                                         nuts_level=self.nuts_level),
             'geometa': NUTSColumns(level=self.nuts_level),
+            'geo': NUTSGeometries(level=self.nuts_level),
         }
         return requirements
 

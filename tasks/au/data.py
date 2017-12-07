@@ -8,7 +8,7 @@ from collections import OrderedDict
 
 from tasks.util import shell
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
-from tasks.meta import current_session, OBSColumn
+from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -337,7 +337,12 @@ class BCP(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def requires(self):
         import_data = {}

@@ -8,7 +8,7 @@ from luigi import Parameter, WrapperTask
 
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell
-from tasks.meta import OBSColumn, OBSTag, current_session
+from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from collections import OrderedDict
 from tasks.br.geo import (
@@ -305,7 +305,12 @@ class Censos(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 6
+        return 7
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def states(self):
         '''

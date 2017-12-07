@@ -289,7 +289,12 @@ class Census(TableTask):
     table = Parameter()
 
     def version(self):
-        return 5
+        return 6
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def timespan(self):
         return 2010
@@ -299,7 +304,8 @@ class Census(TableTask):
             'data': ImportDemographicData(resolution=self.resolution,
                                           table=self.table),
             'meta': DemographicColumns(resolution=self.resolution, table=self.table),
-            'geometa': GeographyColumns(resolution=self.resolution)
+            'geometa': GeographyColumns(resolution=self.resolution),
+            'geo': Geography(resolution=self.resolution),
         }
 
     def columns(self):

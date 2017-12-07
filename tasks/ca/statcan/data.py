@@ -8,7 +8,7 @@ from collections import OrderedDict
 from lib.logger import get_logger
 from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
-from tasks.meta import current_session
+from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
     GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
@@ -180,7 +180,7 @@ class Survey(BaseParams, TableTask):
     topic = Parameter(default='t001')
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         '''
@@ -246,6 +246,11 @@ class Census(Survey):
             'meta': CensusColumns(),
         }
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def timespan(self):
         return 2011
 
@@ -268,6 +273,11 @@ class NHS(Survey):
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
+        }
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
         }
 
     def timespan(self):
@@ -296,6 +306,7 @@ class CensusMetaWrapper(MetaWrapper):
     def tables(self):
         yield Geography(resolution=self.resolution)
         yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
+
 
 class NHSMetaWrapper(MetaWrapper):
     resolution = Parameter()
