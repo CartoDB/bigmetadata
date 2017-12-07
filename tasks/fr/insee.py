@@ -2,7 +2,7 @@
 
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
-from tasks.meta import current_session
+from tasks.meta import current_session, GEOM_REF
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask, Task, LocalTarget
 import os
@@ -239,6 +239,11 @@ class FranceCensus(TableTask):
     def version(self):
         return 10
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def table_timespan(self):
         return get_timespan('2012')
 
@@ -248,6 +253,7 @@ class FranceCensus(TableTask):
             'overseas_data': RawFRData(table_theme=self.table_theme, resolution='iris_overseas'),
             'meta': FrenchColumns(table_theme=self.table_theme),
             'geometa': OutputAreaColumns(),
+            'geo': OutputAreas(),
         }
         return requirements
 

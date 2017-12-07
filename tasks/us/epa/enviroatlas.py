@@ -1,9 +1,9 @@
 from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
-from tasks.meta import OBSColumn, current_session, UNIVERSE
+from tasks.meta import OBSColumn, current_session, GEOM_REF, UNIVERSE
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
-from tasks.us.epa.huc import HUCColumns, SourceTags
+from tasks.us.epa.huc import HUC, HUCColumns, SourceTags
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
 from tasks.util import shell
 from collections import OrderedDict
@@ -172,6 +172,15 @@ class EnviroAtlas(TableTask):
             'geom_cols': HUCColumns(),
             'data_cols': EnviroAtlasColumns(table=self.table.lower()),
             'data': EnviroAtlasTempTable(csv_name=self.table + '.csv'),
+            'geo': HUC(),
+        }
+
+    def version(self):
+        return 2
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
         }
 
     def table_timespan(self):

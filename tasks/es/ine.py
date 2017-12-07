@@ -1,4 +1,4 @@
-# http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px
+# http://www.ine.es/pcaxisdl/t21/e245/p07/a2015/l0/0001.px
 
 import csv
 import os
@@ -1795,10 +1795,14 @@ class PopulationHouseholdsHousing(TableTask):
             'meta': SeccionColumns(),
             'geometa': GeometryColumns(),
             'data': RawPopulationHouseholdsHousing(),
+            'geo': Geometry(),
         }
 
     def version(self):
         return 6
+
+    def targets(self):
+        return {self.input()['geo'].obs_table: GEOM_REF}
 
     def table_timespan(self):
         return get_timespan('2011')
@@ -2037,10 +2041,16 @@ class FiveYearPopulation(TableTask):
             'meta': FiveYearPopulationColumns(),
             'seccion_columns': SeccionColumns(),
             'geometa': GeometryColumns(),
+            'geo': Geometry(),
         }
 
     def version(self):
         return 5
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         '''
