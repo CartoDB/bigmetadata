@@ -632,15 +632,10 @@ class SumLevel(TableTask):
         return 13
 
     def requires(self):
-        tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
-            'data': tiger,
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
-            'sections': SectionTags(),
-            'subsections': SubsectionTags(),
-            'geonames': GeonameColumns(),
         }
 
     def columns(self):
