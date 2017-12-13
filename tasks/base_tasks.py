@@ -773,6 +773,9 @@ class TableTask(Task):
         '''
         return None
 
+    def targets(self):
+        return {}
+
     def timespan(self):
         '''
         Must return an arbitrary string timespan (for example, ``2014``, or
@@ -939,7 +942,8 @@ class TableTask(Task):
                          underscore_slugify(unqualified_task_id(self.task_id)),
                          OBSTable(description=self.description(),
                                   version=self.version(),
-                                  timespan=self.timespan()),
+                                  timespan=self.timespan(),
+                                  targets=self.targets()),
                          self._columns, self)
         return tt
 
