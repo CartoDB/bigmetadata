@@ -13,7 +13,7 @@ GEO_PR = 'pr_'
 GEO_CD = 'cd_'
 GEO_CSD = 'csd'
 GEO_CMA = 'cma'
-GEO_DA = 'da'
+GEO_DA = 'da_'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -79,7 +79,7 @@ class DownloadGeography(DownloadUnzipTask):
     resolution = Parameter(default=GEO_PR)
     year = Parameter(default=2011)
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}_000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
     def download(self):
         shell('wget -O {output}.zip {url}'.format(
