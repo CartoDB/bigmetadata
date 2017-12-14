@@ -761,13 +761,6 @@ class GeoNamesTable(TableTask):
                         ))
 
 
-class OneSumLevel(WrapperTask):  # DELETE THIS!!!
-    def requires(self):
-        yield SumLevel(year='2015', geography='county')
-        yield ShorelineClip(year='2015', geography='county')
-        yield GeoNamesTable(year='2015', geography='county')
-
-
 class AllSumLevels(WrapperTask):
     '''
     Compute all sumlevels
