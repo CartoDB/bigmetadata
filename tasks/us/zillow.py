@@ -365,7 +365,7 @@ class Zillow(TableTask):
         insert = True
         input_ = self.input()
         output = self.output()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
         for key, value in input_['metadata'].items():
@@ -373,7 +373,7 @@ class Zillow(TableTask):
             stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
                       SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC
                       FROM {input_table}
-                      ON CONFLICT (region_name)
+                      ON CONFLICT (region_name_sl, region_name_sc)
                          DO UPDATE SET {col_id} = EXCLUDED.{col_id}'''
             session.execute(stmt.format(
                 output=output.table,
