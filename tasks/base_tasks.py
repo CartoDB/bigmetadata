@@ -6,6 +6,7 @@ import requests
 import subprocess
 import importlib
 import inspect
+import gzip
 
 from urllib.parse import quote_plus
 from collections import OrderedDict
@@ -392,7 +393,45 @@ class TableToCarto(Task):
         return target
 
 
-class DownloadUnzipTask(Task):
+class DownloadUncompressTask(Task):
+    '''
+    Download a compressed file to location {output} and uncompresses it to the folder
+    {output}.  Subclasses only need to define the following methods:
+    :meth:`~.tasks.DownloadUncompressTask.download`
+    :meth:`~.tasks.DownloadUncompressTask.uncompress`
+    '''
+
+    def download(self):
+        '''
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('DownloadUncompressTask must define download()')
+
+    def run(self):
+        os.makedirs(self.output().path)
+        try:
+            self.download()
+            self.uncompress()
+        except:
+            os.rmdir(self.output().path)
+            raise
+
+    def uncompress(self):
+        '''
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('DownloadUncompressTask must define uncompress()')
+
+    def output(self):
+        '''
+        The default output location is in the ``tmp`` folder, in a subfolder
+        derived from the subclass's :meth:`~.util.classpath` and its
+        :attr:`~.task_id`.
+        '''
+        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+class DownloadUnzipTask(DownloadUncompressTask):
     '''
     Download a zip file to location {output}.zip and unzip it to the folder
     {output}.  Subclasses only need to define a
@@ -412,22 +451,37 @@ class DownloadUnzipTask(Task):
         '''
         raise NotImplementedError('DownloadUnzipTask must define download()')
 
-    def run(self):
-        os.makedirs(self.output().path)
-        try:
-            self.download()
-            shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
-        except:
-            os.rmdir(self.output().path)
-            raise
+    def uncompress(self):
+        shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
-    def output(self):
+
+class DownloadGUnzipTask(DownloadUncompressTask):
+    '''
+    Download a gz file to location {output}.gz and unzip it to the file
+    {output}/{file_name}.{file_extension} . Subclasses only need to define a
+    :meth:`~.tasks.DownloadGUnzipTask.download` method.
+    '''
+
+    file_extension = Parameter(default='csv')
+
+    def download(self):
         '''
-        The default output location is in the ``tmp`` folder, in a subfolder
-        derived from the subclass's :meth:`~.util.classpath` and its
-        :attr:`~.task_id`.
+        Subclasses must override this.  A good starting point is:
+
+        .. code:: python
+
+            shell('wget -O {output}.gz {url}'.format(
+              output=self.output().path,
+              url=<URL>
+            ))
         '''
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+        raise NotImplementedError('DownloadGUnzipTask must define download()')
+
+    def uncompress(self):
+        gunzip = gzip.GzipFile('{output}.gz'.format(output=self.output().path), 'rb')
+        with open(os.path.join(self.output().path, '{filename}.{extension}'.format(
+                filename=self.task_id, extension=self.file_extension)), 'wb') as outfile:
+            outfile.write(gunzip.read())
 
 
 class TempTableTask(Task):
