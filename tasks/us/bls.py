@@ -4,9 +4,10 @@ from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSColumn, OBSTag
+from tasks.meta import OBSColumn, OBSTag, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import (GeoidColumns, ShorelineClip, SumLevel, 
+                                   GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
@@ -202,15 +203,16 @@ class QCEW(TableTask):
 
     year = IntParameter()
     qtr = IntParameter()
+    tigeryear = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         requirements = {
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
             'geoid_cols': GeoidColumns(),
-            'naics': OrderedDict()
+            'naics': OrderedDict(),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -230,7 +232,8 @@ class QCEW(TableTask):
         # The column name
         input_ = self.input()
         cols = OrderedDict([
-            ('area_fips', input_['geoid_cols']['county_geoid'])
+            ('area_fipssl', input_['geoid_cols']['county' + GEOID_SUMLEVEL_COLUMN]),
+            ('area_fipssc', input_['geoid_cols']['county' + GEOID_SHORELINECLIPPED_COLUMN])
         ])
         for naics_code, naics_cols in input_['naics'].items():
             for key, coltarget in naics_cols.items():
@@ -256,7 +259,7 @@ class QCEW(TableTask):
                 END)::Numeric'''.format(naics_code=naics_code,
                                         colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
-                    SELECT area_fips, {select_colnames}
+                    SELECT area_fips, area_fips, {select_colnames}
                     FROM {input}
                     GROUP BY area_fips '''.format(
                         output=self.output().table,
@@ -270,10 +273,11 @@ class QCEW(TableTask):
 class AllQCEW(WrapperTask):
 
     maxtimespan = Parameter()
+    tigeryear = Parameter()
 
     def requires(self):
         maxyear, maxqtr = [int(n) for n in self.maxtimespan.split('Q')]
         for year in range(2012, maxyear + 1):
             for qtr in range(1, 5):
                 if year < maxyear or qtr <= maxqtr:
-                    yield QCEW(year=year, qtr=qtr)
+                    yield QCEW(year=year, qtr=qtr, tigeryear=self.tigeryear)

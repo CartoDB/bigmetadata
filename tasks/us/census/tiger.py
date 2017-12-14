@@ -21,6 +21,10 @@ from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
 
+GEOID_SUMLEVEL_COLUMN = "_geoidsl"
+GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
+
+
 class TigerSourceTags(TagsTask):
     def version(self):
         return 1
@@ -149,10 +153,42 @@ class Attributes(ColumnsTask):
         ])
 
 
-class GeoidColumns(ColumnsTask):
+class GeoidColumnsTiger(ColumnsTask):
+    geoid_column = Parameter()
 
     def version(self):
-        return 6
+        return 7
+
+    def requires(self):
+        return {
+            'raw': GeomColumns(),
+        }
+
+    def columns(self):
+        cols = OrderedDict()
+        for colname, coltarget in self.input()['raw'].items():
+            col = coltarget._column
+            cols[colname + self.geoid_column] = OBSColumn(
+                type='Text',
+                name=col.name + ' Geoids',
+                weight=0
+            )
+
+        return cols
+
+
+class GeoidColumns(ColumnsTask):
+    '''
+    Used for external dependencies on Tiger.
+
+    This creates two different geoid columns
+    (GEOID_SUMLEVEL_COLUMN for the SumLevels geometries and
+    GEOID_SHORELINECLIPPED_COLUMN for the ShorelineClipped geometries).
+
+    This allows external tables to depend on both shoreline clipped and non-shoreline clipped geometries.
+    '''
+    def version(self):
+        return 7
 
     def requires(self):
         return {
@@ -165,13 +201,20 @@ class GeoidColumns(ColumnsTask):
         clipped = self.input()['clipped']
         for colname, coltarget in self.input()['raw'].items():
             col = coltarget._column
-            cols[colname + '_geoid'] = OBSColumn(
+            cols[colname + GEOID_SHORELINECLIPPED_COLUMN] = OBSColumn(
+                type='Text',
+                name=col.name + ' Geoids',
+                weight=0,
+                targets={
+                    clipped[colname + '_clipped']._column: GEOM_REF
+                }
+            )
+            cols[colname + GEOID_SUMLEVEL_COLUMN] = OBSColumn(
                 type='Text',
                 name=col.name + ' Geoids',
                 weight=0,
                 targets={
                     col: GEOM_REF,
-                    clipped[colname + '_clipped']._column: GEOM_REF
                 }
             )
 
@@ -574,14 +617,14 @@ class ShorelineClip(TableTask):
         return {
             'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
-            'geoids': GeoidColumns(),
+            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SHORELINECLIPPED_COLUMN),
             'attributes': Attributes(),
             'geonames': GeonameColumns()
         }
 
     def columns(self):
         return OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('geoid', self.input()['geoids'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
             ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
             ('aland', self.input()['attributes']['aland'])
         ])
@@ -634,14 +677,14 @@ class SumLevel(TableTask):
     def requires(self):
         return {
             'attributes': Attributes(),
-            'geoids': GeoidColumns(),
+            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SUMLEVEL_COLUMN),
             'geoms': GeomColumns(),
         }
 
     def columns(self):
         input_ = self.input()
         return OrderedDict([
-            ('geoid', input_['geoids'][self.geography + '_geoid']),
+            ('geoid', input_['geoids'][self.geography + GEOID_SUMLEVEL_COLUMN]),
             ('the_geom', input_['geoms'][self.geography]),
             ('aland', input_['attributes']['aland']),
             ('awater', input_['attributes']['awater']),
@@ -689,7 +732,8 @@ class GeoNamesTable(TableTask):
 
     def columns(self):
         return OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + '_geoid']),
+            ('geoidsl', self.input()['geoids'][self.geography + GEOID_SUMLEVEL_COLUMN]),
+            ('geoidsc', self.input()['geoids'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
             ('geoname', self.input()['geonames'][self.geography + '_geoname'])
         ])
 
@@ -706,15 +750,22 @@ class GeoNamesTable(TableTask):
 
         field_names = SUMLEVELS[self.geography]['fields']
         assert field_names['name'], "Geonames are not available for {geog} geographies".format(geog=self.geography)
-        in_colnames = [field_names['geoid'], field_names['name']]
+        in_colnames = [field_names['geoid'], field_names['geoid'], field_names['name']]
 
-        session.execute('INSERT INTO {output} (geoid, geoname) '
+        session.execute('INSERT INTO {output} (geoidsl, geoidsc, geoname) '
                         'SELECT {in_colnames} '
                         'FROM {from_clause} '.format(
                             output=self.output().table,
                             in_colnames=', '.join(in_colnames),
                             from_clause=from_clause
                         ))
+
+
+class OneSumLevel(WrapperTask):  # DELETE THIS!!!
+    def requires(self):
+        yield SumLevel(year='2015', geography='county')
+        yield ShorelineClip(year='2015', geography='county')
+        yield GeoNamesTable(year='2015', geography='county')
 
 
 class AllSumLevels(WrapperTask):

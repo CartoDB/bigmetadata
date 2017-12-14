@@ -7,10 +7,10 @@ import os
 import subprocess
 
 from collections import OrderedDict
-from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask
 from tasks.meta import OBSColumn, current_session
 from tasks.util import shell, classpath
-from tasks.us.census.tiger import GeoidColumns, SumLevel
+from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -106,46 +106,62 @@ class ProcessSpielmanSingletonFile(Task):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
 
 
+class SpielmanSingletonTempTable(CSV2TempTableTask):
+    def requires(self):
+        return ProcessSpielmanSingletonFile()
+
+    def input_csv(self):
+        return self.input().path
+
+    def after_copy(self):
+        for name, segment_id in SpielmanSingletonColumns.x10_mapping.items():
+            query = ('''UPDATE {table} SET "X10"='{name}'
+                        WHERE "X10"='{segment_id}';'''.format(
+                          table=self.output().table,
+                          name=name,
+                          segment_id=segment_id))
+            current_session().execute(query)
+
+        for name, segment_id in SpielmanSingletonColumns.x55_mapping.items():
+            query = ('''UPDATE {table} SET "X55"='{name}'
+                        WHERE "X55"='{segment_id}';'''.format(
+                          table=self.output().table,
+                          name=name,
+                          segment_id=segment_id))
+            current_session().execute(query)
+
+
 class SpielmanSingletonTable(TableTask):
 
     def requires(self):
         return {
-            'columns'   : SpielmanSingletonColumns(),
-            'data_file' : ProcessSpielmanSingletonFile(),
-            'tiger'     : GeoidColumns()
+            'columns': SpielmanSingletonColumns(),
+            'data': SpielmanSingletonTempTable(),
+            'tiger': GeoidColumns()
         }
 
     def version(self):
-        return 9
+        return 10
 
     def timespan(self):
         return '2010 - 2014'
 
     def populate(self):
-        table_name = self.output().table
-        shell(r"psql -c '\copy {table} FROM {file_path} WITH CSV HEADER'".format(
-            table=table_name,
-            file_path=self.input()['data_file'].path
-        ))
-        for name, segment_id in SpielmanSingletonColumns.x10_mapping.items():
-            current_session().execute("update {table} set X10 = '{name}' "
-                                      "where X10 ='{segment_id}'; ".format(
-                                          table=table_name,
-                                          name=name,
-                                          segment_id=segment_id
-                                      ))
-
-        for name, segment_id in SpielmanSingletonColumns.x55_mapping.items():
-            current_session().execute("update {table} set X55 = '{name}' "
-                                      "where X55 ='{segment_id}'; ".format(
-                                          table=table_name,
-                                          name=name,
-                                          segment_id=segment_id
-                                      ))
+        input_ = self.input()
+        insert = '''INSERT INTO {output} ({colnames})
+                    SELECT "GEOID10", "GEOID10", {select_colnames}
+                    FROM {input}'''.format(
+                        output=self.output().table,
+                        input=input_['data'].table,
+                        colnames=', '.join(self.columns().keys()),
+                        select_colnames=', '.join('"{column}"'.format(
+                            column=column) for column in input_['columns'].keys()))
+        current_session().execute(insert)
 
     def columns(self):
         columns = OrderedDict({
-            'geoid': self.input()['tiger']['census_tract_geoid']
+            'geoidsl': self.input()['tiger']['census_tract' + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': self.input()['tiger']['census_tract' + GEOID_SHORELINECLIPPED_COLUMN],
         })
         columns.update(self.input()['columns'])
         return columns

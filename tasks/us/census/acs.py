@@ -14,7 +14,7 @@ from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, Load
 from tasks.util import grouper
 from lib.logger import get_logger
 from tasks.us.census.tiger import SumLevel
-from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns)
+from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, current_session, DENOMINATOR, UNIVERSE)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
@@ -3364,12 +3364,13 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 12
+        return 13
 
     def columns(self):
         input_ = self.input()
         columns = OrderedDict({
-            'geoid': input_['tiger'][self.geography + '_geoid']
+            'geoidsl': input_['tiger'][self.geography + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': input_['tiger'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]
         })
         columns.update(input_['columns'])
         return columns
@@ -3398,8 +3399,8 @@ class Quantiles(TableTask):
             if insert:
                 stmt = '''
                     INSERT INTO {table}
-                    (geoid, {insert_statment})
-                    SELECT geoid, {select_statment}
+                    (geoidsl, geoidsc, {insert_statment})
+                    SELECT geoid, geoid, {select_statment}
                     FROM {source_table}
                 '''.format(
                     table        = self.output().table,
@@ -3416,7 +3417,8 @@ class Quantiles(TableTask):
                     )
                     UPDATE {table} SET ({insert_statment}) = ({old_cols_statment})
                     FROM data
-                    WHERE data.geoid = {table}.geoid
+                    WHERE data.geoid = {table}.geoidsc
+                     AND data.geoid = {table}.geoidsl
                 '''.format(
                     table        = self.output().table,
                     insert_statment = insert_statment,
@@ -3439,7 +3441,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         return {
@@ -3457,7 +3459,8 @@ class Extract(TableTask):
     def columns(self):
         input_ = self.input()
         cols = OrderedDict([
-            ('geoid', input_['tiger'][self.geography + '_geoid']),
+            ('geoidsl', input_['tiger'][self.geography + GEOID_SUMLEVEL_COLUMN]),
+            ('geoidsc', input_['tiger'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         for colkey, col in input_['acs'].items():
             cols[colkey] = col
@@ -3476,7 +3479,7 @@ class Extract(TableTask):
         for colname, coltarget in self.columns().items():
             colid = coltarget.get(session).id
             tableid = colid.split('.')[-1][0:-3]
-            if colid.endswith('geoid'):
+            if 'geoid' in colid:
                 colids.append('SUBSTR(geoid, 8)')
             else:
                 colid = coltarget._id.split('.')[-1]
