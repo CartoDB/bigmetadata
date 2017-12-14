@@ -4,10 +4,9 @@ from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSColumn, OBSTag, GEOM_REF
+from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import (GeoidColumns, ShorelineClip, SumLevel, 
-                                   GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
+from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask

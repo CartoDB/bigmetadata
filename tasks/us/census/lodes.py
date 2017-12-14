@@ -559,7 +559,7 @@ class WorkplaceAreaCharacteristics(TableTask):
                         output=self.output().table,
                         input=input_['data'].table,
                         colnames=', '.join(COLUMN_MAPPING.keys()),
-                        select_colnames=', '.join(['"{column}"::integer'.format(column=column) 
+                        select_colnames=', '.join(['"{column}"::integer'.format(column=column)
                                                   for column in COLUMN_MAPPING.values()]))
         current_session().execute(insert)
 
