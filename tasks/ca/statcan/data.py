@@ -10,7 +10,7 @@ from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWr
 from tasks.util import shell, classpath
 from tasks.meta import current_session
 from tasks.ca.statcan.geo import (
-    GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA,
+    GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA,
     GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.ca.statcan.util import StatCanParser
 from tasks.ca.statcan.cols_census import CensusColumns
@@ -39,7 +39,6 @@ SURVEY_URLS = {
 
 URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-telecharger/comprehensive/comp_download.cfm?CTLG={survey_code}&FMT=CSV{geo_code}'
 
-
 class BaseParams(metaclass=ABCMeta):
     resolution = Parameter(default=GEO_PR)
     survey = Parameter(default=SURVEY_CEN)
@@ -63,7 +62,8 @@ class SplitAndTransposeData(BaseParams, Task):
             GEO_PR: None,
             GEO_CD: None,
             GEO_CSD: None,
-            GEO_CMA: ('cmaca_name', (r'part\)$',))
+            GEO_CMA: ('cmaca_name', (r'part\)$',)),
+            GEO_DA: None,
         },
         SURVEY_NHS: {
             GEO_CT: None,
@@ -243,7 +243,7 @@ class Census(Survey):
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
-            'meta': CensusColumns(),
+            'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
     def timespan(self):
@@ -254,7 +254,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 11))   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
@@ -290,7 +290,7 @@ class CensusMetaWrapper(MetaWrapper):
 
     params = {
         'topic': ['t{:03d}'.format(i) for i in range(1,11)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA)
     }
 
     def tables(self):
@@ -303,7 +303,7 @@ class NHSMetaWrapper(MetaWrapper):
 
     params = {
         'topic': ['t{:03d}'.format(i) for i in range(1,30)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA) # NHS not available at Dissemination Area level
     }
 
     def tables(self):
