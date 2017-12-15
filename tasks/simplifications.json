@@ -155,7 +155,7 @@
 
 	"CA": "-------------------------------------",
 
-	".importgeography_cd_": {
+	"ca.statcan.geo.importgeography_cd_": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
 		"factor": "13.5",
@@ -190,7 +190,6 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-
 	"ca.statcan.geo.importgeography_da_": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
