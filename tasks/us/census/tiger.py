@@ -611,7 +611,7 @@ class ShorelineClip(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 9
+        return 10
 
     def requires(self):
         return {
@@ -672,7 +672,7 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
@@ -718,7 +718,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
