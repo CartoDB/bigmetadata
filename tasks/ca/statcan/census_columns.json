@@ -1,0 +1,29 @@
+{
+	"t010c002_t": {
+		"exceptions": [
+			{
+				"resolution": "da_",
+				"survey": "census",
+				"topic": "t010"
+			}
+		]
+    },
+    "t010c003_t": {
+		"exceptions": [
+			{
+				"resolution": "da_",
+				"survey": "census",
+				"topic": "t010"
+			}
+		]
+    },
+    "t010c006_t": {
+		"exceptions": [
+			{
+				"resolution": "da_",
+				"survey": "census",
+				"topic": "t010"
+			}
+		]
+    }
+}

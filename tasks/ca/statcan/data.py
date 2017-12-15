@@ -243,7 +243,7 @@ class Census(Survey):
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
-            'meta': CensusColumns(),
+            'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
     def timespan(self):
