@@ -157,7 +157,7 @@ class GeoidColumnsTiger(ColumnsTask):
     geoid_column = Parameter()
 
     def version(self):
-        return 7
+        return 1
 
     def requires(self):
         return {

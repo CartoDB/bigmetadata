@@ -403,7 +403,14 @@ class DownloadUncompressTask(Task):
 
     def download(self):
         '''
-        Subclasses must override this.
+        Subclasses must override this.  A good starting point is:
+
+        .. code:: python
+
+            shell('wget -O {output}.zip {url}'.format(
+              output=self.output().path,
+              url=<URL>
+            ))
         '''
         raise NotImplementedError('DownloadUncompressTask must define download()')
 
@@ -438,19 +445,6 @@ class DownloadUnzipTask(DownloadUncompressTask):
     :meth:`~.tasks.DownloadUnzipTask.download` method.
     '''
 
-    def download(self):
-        '''
-        Subclasses must override this.  A good starting point is:
-
-        .. code:: python
-
-            shell('wget -O {output}.zip {url}'.format(
-              output=self.output().path,
-              url=<URL>
-            ))
-        '''
-        raise NotImplementedError('DownloadUnzipTask must define download()')
-
     def uncompress(self):
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
@@ -458,24 +452,11 @@ class DownloadUnzipTask(DownloadUncompressTask):
 class DownloadGUnzipTask(DownloadUncompressTask):
     '''
     Download a gz file to location {output}.gz and unzip it to the file
-    {output}/{file_name}.{file_extension} . Subclasses only need to define a
+    {output}/task_id.{file_extension} . Subclasses only need to define a
     :meth:`~.tasks.DownloadGUnzipTask.download` method.
     '''
 
     file_extension = Parameter(default='csv')
-
-    def download(self):
-        '''
-        Subclasses must override this.  A good starting point is:
-
-        .. code:: python
-
-            shell('wget -O {output}.gz {url}'.format(
-              output=self.output().path,
-              url=<URL>
-            ))
-        '''
-        raise NotImplementedError('DownloadGUnzipTask must define download()')
 
     def uncompress(self):
         gunzip = gzip.GzipFile('{output}.gz'.format(output=self.output().path), 'rb')

@@ -202,7 +202,6 @@ class QCEW(TableTask):
 
     year = IntParameter()
     qtr = IntParameter()
-    tigeryear = Parameter()
 
     def version(self):
         return 4
@@ -272,11 +271,10 @@ class QCEW(TableTask):
 class AllQCEW(WrapperTask):
 
     maxtimespan = Parameter()
-    tigeryear = Parameter()
 
     def requires(self):
         maxyear, maxqtr = [int(n) for n in self.maxtimespan.split('Q')]
         for year in range(2012, maxyear + 1):
             for qtr in range(1, 5):
                 if year < maxyear or qtr <= maxqtr:
-                    yield QCEW(year=year, qtr=qtr, tigeryear=self.tigeryear)
+                    yield QCEW(year=year, qtr=qtr)
