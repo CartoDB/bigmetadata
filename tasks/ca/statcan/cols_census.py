@@ -13,7 +13,7 @@ from lib.columns import ColumnsDeclarations
 class CensusColumns(ColumnsTask):
     resolution = Parameter()
     survey = Parameter()
-    topic=Parameter()
+    topic = Parameter()
 
     def requires(self):
         return {
