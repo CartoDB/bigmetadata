@@ -7,6 +7,7 @@ import os
 import subprocess
 
 from collections import OrderedDict
+from lib.timespan import get_timespan
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, MetaWrapper
 from tasks.util import shell, classpath
@@ -603,7 +604,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -612,8 +613,8 @@ class WorkplaceAreaCharacteristics(TableTask):
             'data': DownloadWorkplaceAreaCharacteristics(year=self.year),
         }
 
-    def timespan(self):
-        return str(self.year)
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         data_columns = self.input()['data_meta']
