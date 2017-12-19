@@ -4,17 +4,17 @@ characteristics files
 '''
 
 import os
-import subprocess
+import csv
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
                               TagsTask, MetaWrapper)
-from tasks.util import shell, classpath
+from tasks.util import shell
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
-from luigi import (Task, Parameter, LocalTarget, IntParameter)
+from luigi import (Parameter, IntParameter)
 
 
 STATES = set(["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga",
@@ -112,7 +112,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             tags=[tags['employment']]
         )
         cols = OrderedDict([
-            #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
+            # work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
             ('total_jobs', total_jobs),
             ('jobs_age_29_or_younger', OBSColumn(
                 type='Integer',
@@ -519,9 +519,10 @@ class WorkplaceAreaCharacteristicsTemp(CSV2TempTableTask):
         We are receiving a list of files so we need to implement the coldef method
         We are assuming that all the files have the same format (columns).
         '''
-        csv = self.input_csv()[0]
-        header_row = shell('head -n 1 "{csv}"'.format(csv=csv), encoding=self.encoding).strip()
-        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
+        csvfile = self.input_csv()[0]
+        with open('{csv}'.format(csv=csvfile), 'r') as f:
+            header_row = next(csv.reader(f))
+        return [(h, 'Text') for h in header_row]
 
 
 class WorkplaceAreaCharacteristics(TableTask):
