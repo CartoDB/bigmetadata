@@ -6,6 +6,7 @@ import requests
 import subprocess
 import importlib
 import inspect
+import zipfile
 import gzip
 
 from urllib.parse import quote_plus
@@ -446,7 +447,8 @@ class DownloadUnzipTask(DownloadUncompressTask):
     '''
 
     def uncompress(self):
-        shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
+        with zipfile.ZipFile('{output}.zip'.format(output=self.output().path), 'r') as z:
+            z.extractall(path='{output}'.format(output=self.output().path))
 
 
 class DownloadGUnzipTask(DownloadUncompressTask):
