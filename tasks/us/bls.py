@@ -257,7 +257,7 @@ class QCEW(TableTask):
                 END)::Numeric'''.format(naics_code=naics_code,
                                         colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
-                    SELECT area_fips, area_fips, {select_colnames}
+                    SELECT area_fips AS area_fipssl, area_fips AS area_fipssc, {select_colnames}
                     FROM {input}
                     GROUP BY area_fips '''.format(
                         output=self.output().table,

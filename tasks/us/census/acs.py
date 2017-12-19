@@ -3400,7 +3400,7 @@ class Quantiles(TableTask):
                 stmt = '''
                     INSERT INTO {table}
                     (geoidsl, geoidsc, {insert_statment})
-                    SELECT geoid, geoid, {select_statment}
+                    SELECT geoid AS geoidsl, geoid AS geoidsc, {select_statment}
                     FROM {source_table}
                 '''.format(
                     table        = self.output().table,

@@ -149,7 +149,7 @@ class SpielmanSingletonTable(TableTask):
     def populate(self):
         input_ = self.input()
         insert = '''INSERT INTO {output} ({colnames})
-                    SELECT "GEOID10", "GEOID10", {select_colnames}
+                    SELECT "GEOID10" AS geoidsl, "GEOID10" AS geoidsc, {select_colnames}
                     FROM {input}'''.format(
                         output=self.output().table,
                         input=input_['data'].table,

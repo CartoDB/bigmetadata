@@ -554,7 +554,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     def populate(self):
         input_ = self.input()
         insert = '''INSERT INTO {output} (w_geocode_sl, w_geocode_sc, {colnames})
-                    SELECT h_geocode, h_geocode, {select_colnames}
+                    SELECT h_geocode AS w_geocode_sl, h_geocode AS w_geocode_sc, {select_colnames}
                     FROM {input}'''.format(
                         output=self.output().table,
                         input=input_['data'].table,
