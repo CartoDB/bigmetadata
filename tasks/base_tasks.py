@@ -8,6 +8,7 @@ import importlib
 import inspect
 import zipfile
 import gzip
+import csv
 
 from urllib.parse import quote_plus
 from collections import OrderedDict
@@ -665,12 +666,14 @@ class CSV2TempTableTask(TempTableTask):
           column names will be the postgres defaults.
         '''
         if isinstance(self.input_csv(), str):
-            csv = self.input_csv()
+            csvfile = self.input_csv()
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 "{csv}"'.format(csv=csv), encoding=self.encoding).strip()
-        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
+
+        with open('{csv}'.format(csv=csvfile), 'r') as f:
+            header_row = next(csv.reader(f))
+        return [(h, 'Text') for h in header_row]
 
     def read_method(self, fname):
         return 'cat "{input}"'.format(input=fname)
@@ -694,9 +697,9 @@ class CSV2TempTableTask(TempTableTask):
         if self.has_header:
             options.append('CSV HEADER')
         try:
-            for csv in csvs:
+            for csvfile in csvs:
                 shell(r'''{read_method} | psql -c '\copy {table} FROM STDIN {options}' '''.format(
-                    read_method=self.read_method(csv),
+                    read_method=self.read_method(csvfile),
                     table=self.output().table,
                     options=' '.join(options)
                 ))
