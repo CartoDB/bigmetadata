@@ -455,7 +455,7 @@ class TableEU(TableTask):
         return 10
 
     def table_timespan(self):
-        return get_timespan(str(self.year).replace('_',' - '))
+        return get_timespan(str(self.year).replace('_', ' - '))
 
     def requires(self):
         requirements = {
