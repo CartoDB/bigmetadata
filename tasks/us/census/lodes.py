@@ -8,6 +8,7 @@ import csv
 import urllib.request
 
 from collections import OrderedDict
+from lib.timespan import get_timespan
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
                               TagsTask, MetaWrapper)
@@ -541,8 +542,8 @@ class WorkplaceAreaCharacteristics(TableTask):
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
         }
 
-    def timespan(self):
-        return str(self.year)
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         data_columns = self.input()['data_meta']

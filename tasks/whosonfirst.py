@@ -11,6 +11,7 @@ from collections import OrderedDict
 import requests
 from luigi import Parameter, WrapperTask
 
+from lib.timespan import get_timespan
 from tasks.meta import current_session, OBSColumn
 from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask
 from tasks.util import shell
@@ -118,11 +119,11 @@ class WOF(TableTask):
 
     resolution = Parameter()
 
-    def timespan(self):
-        return '2016'
+    def table_timespan(self):
+        return get_timespan('2016')
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         requirements = {

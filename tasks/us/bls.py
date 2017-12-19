@@ -7,6 +7,7 @@ from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_ad
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from lib.timespan import get_timespan
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
@@ -221,8 +222,8 @@ class QCEW(TableTask):
                     )
         return requirements
 
-    def timespan(self):
-        return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)
+    def table_timespan(self):
+        return get_timespan('{year}Q{qtr}'.format(year=self.year, qtr=self.qtr))
 
     def columns(self):
         # Here we assemble an OrderedDict using our requirements to specify the

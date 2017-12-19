@@ -1,5 +1,7 @@
 from luigi import Parameter, WrapperTask
 
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
                               TagsTask)
 from tasks.util import shell
@@ -206,7 +208,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -214,8 +216,8 @@ class Geography(TableTask):
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         return self.input()['columns']
