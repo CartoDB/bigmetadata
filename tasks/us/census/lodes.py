@@ -5,12 +5,12 @@ characteristics files
 
 import os
 import csv
+import urllib.request
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
                               TagsTask, MetaWrapper)
-from tasks.util import shell
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
@@ -491,7 +491,9 @@ class DownloadUnzipLodes(DownloadGUnzipTask):
             self.state, self.filetype, self.filename_lodes())
 
     def download(self):
-        shell('wget -O {output}.gz {url}'.format(output=self.output().path, url=self.url()))
+        with urllib.request.urlopen(self.url()) as response, open('{output}.gz'.format(
+                output=self.output().path), 'wb') as output:
+            output.write(response.read())
 
 
 class WorkplaceAreaCharacteristicsTemp(CSV2TempTableTask):
