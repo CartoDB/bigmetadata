@@ -9,6 +9,7 @@ from tasks.util import underscore_slugify, generate_tile_summary
 from tasks.targets import PostgresTarget, ColumnTarget, TagTarget, TableTarget
 from tasks.meta import (UNIVERSE, OBSColumn, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
+from lib.timespan import get_timespan
 
 
 def test_underscore_slugify():
@@ -432,8 +433,8 @@ class TestTableTask(TableTask):
             'foobar': self.input()['meta']['foobar']
         }
 
-    def timespan(self):
-        return ''
+    def table_timespan(self):
+        return get_timespan('2000')
 
     def populate(self):
         session = current_session()
@@ -457,8 +458,8 @@ class TestTableTaskWithoutUniverseTarget(TableTask):
             'foobar': self.input()['meta']['foobar']
         }
 
-    def timespan(self):
-        return ''
+    def table_timespan(self):
+        return get_timespan('2000')
 
     def populate(self):
         session = current_session()

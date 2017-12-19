@@ -315,7 +315,7 @@ If they don't exist, make sure that your Python code roughly corresponds to:
 
     class MyTableTask(TableTask):
 
-        def timespan(self):
+        def table_timespan(self):
             # Return timespan here
 
         def requires(self):
@@ -371,7 +371,7 @@ a ``geom_ref`` relationship.  Here's an example:
 
     class MyTableTask(TableTask):
 
-        def timespan(self):
+        def table_timespan(self):
             # Return timespan here
 
         def requires(self):
@@ -424,7 +424,7 @@ following structure:
 
    class Geometry(TableTask):
 
-        def timespan(self):
+        def table_timespan(self):
             # Return timespan here
 
         def requires(self):

@@ -1,5 +1,7 @@
 from luigi import Task, Parameter, WrapperTask
 
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
@@ -256,7 +258,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         import_data = {}
@@ -267,8 +269,8 @@ class Geography(TableTask):
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
-    def timespan(self):
-        return 2010
+    def table_timespan(self):
+        return get_timespan('2010')
 
     def columns(self):
         return self.input()['columns']

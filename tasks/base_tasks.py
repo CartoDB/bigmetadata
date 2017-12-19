@@ -816,7 +816,7 @@ class TableTask(Task):
     def targets(self):
         return {}
 
-    def timespan(self):
+    def table_timespan(self):
         '''
         Must return an arbitrary string timespan (for example, ``2014``, or
         ``2012Q4``) that identifies the date range or point-in-time for this
@@ -982,7 +982,7 @@ class TableTask(Task):
                          underscore_slugify(unqualified_task_id(self.task_id)),
                          OBSTable(description=self.description(),
                                   version=self.version(),
-                                  timespan=self.timespan(),
+                                  table_timespan=self.table_timespan(),
                                   targets=self.targets()),
                          self._columns, self)
         return tt
@@ -992,7 +992,7 @@ class TableTask(Task):
                            underscore_slugify(unqualified_task_id(self.task_id)),
                            OBSTable(description=self.description(),
                                     version=self.version(),
-                                    timespan=self.timespan()),
+                                    table_timespan=self.table_timespan()),
                            [], self).exists()
 
 
