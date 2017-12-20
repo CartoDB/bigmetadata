@@ -12,7 +12,7 @@ TIMESPAN_TIMESPAN = 'timespan'
 def get_timespan(timespan_id):
     JSONFile = os.path.join(os.path.dirname(__file__), TIMESPANS_FILE)
     with open(JSONFile) as infile:
-        timespan_json = json.load(infile).get(timespan_id)
+        timespan_json = json.load(infile).get(str(timespan_id))
 
         return OBSTimespan(id=timespan_json.get(TIMESPAN_ID),
                            name=timespan_json.get(TIMESPAN_NAME),
