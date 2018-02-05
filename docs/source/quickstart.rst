@@ -73,7 +73,7 @@ You now should be able to run a task.
 
 .. code:: shell
 
-  make -- run es.ine FiveYearPopulation
+  make -- run es.ine.FiveYearPopulation
 
 .. note:: The first time you run it, that command will download a few Docker images.
           Depending on the speed of your connection, it could take ten or fifteen
