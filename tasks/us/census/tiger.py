@@ -623,7 +623,7 @@ class ShorelineClip(TableTask):
             'geonames': GeonameColumns()
         }
         if self.hasgeonames:
-            req['geonames'] = GeoNamesTable(year=self.year, geography=self.geography)
+            req['geonamestable'] = GeoNamesTable(year=self.year, geography=self.geography)
 
         return req
 
@@ -687,7 +687,7 @@ class SumLevel(TableTask):
             'geoms': GeomColumns(),
         }
         if self.hasgeonames:
-            req['geonames'] = GeoNamesTable(year=self.year, geography=self.geography)
+            req['geonamestable'] = GeoNamesTable(year=self.year, geography=self.geography)
 
         return req
 
@@ -781,7 +781,7 @@ class AllSumLevels(WrapperTask):
     def requires(self):
         for geo, config in list(SUMLEVELS.items()):
             hasgeonames = True if config['fields']['name'] else False
-            if hasgeonames:
+            if hasgeonames:  # Ensure that GeoNamesTable is executed before SumLevel and ShorelineClip if needed
                 yield GeoNamesTable(year=self.year, geography=geo)
             yield SumLevel(year=self.year, geography=geo, hasgeonames=hasgeonames)
             yield ShorelineClip(year=self.year, geography=geo, hasgeonames=hasgeonames)
