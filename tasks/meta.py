@@ -311,6 +311,7 @@ class OBSColumnToColumn(Base):
 
     source = relationship('OBSColumn',
                           foreign_keys=[source_id],
+                          lazy='subquery',
                           backref=backref(
                               "tgts",
                               collection_class=attribute_mapped_collection("target"),
