@@ -13,6 +13,7 @@ GEO_PR = 'pr_'
 GEO_CD = 'cd_'
 GEO_CSD = 'csd'
 GEO_CMA = 'cma'
+GEO_DA = 'da_'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -20,15 +21,17 @@ GEOGRAPHIES = (
     GEO_CD,
     GEO_CSD,
     GEO_CMA,
+    GEO_DA,
 )
 
 
 GEOGRAPHY_NAMES = {
-    GEO_CT: 'Census Tracts',
+    GEO_CT: 'Census tracts',
     GEO_PR: 'Canada, provinces and territories',
     GEO_CD: 'Census divisions',
     GEO_CSD: 'Census subdivisions',
     GEO_CMA: 'Census metropolitan areas and census agglomerations',
+    GEO_DA: 'Census dissemination areas',
 }
 
 GEOGRAPHY_DESCS = {
@@ -37,6 +40,7 @@ GEOGRAPHY_DESCS = {
     GEO_CD: '',
     GEO_CSD: '',
     GEO_CMA: '',
+    GEO_DA: '',
 }
 
 GEOGRAPHY_PROPERNAMES = {
@@ -45,6 +49,7 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CD: 'CDNAME',
     GEO_CSD: 'CSDNAME',
     GEO_CMA: 'CMANAME',
+    GEO_DA: 'DAUID' # DA has no proper name
 }
 
 GEOGRAPHY_CODES = {
@@ -53,14 +58,17 @@ GEOGRAPHY_CODES = {
     GEO_CD: 701,
     GEO_CSD: 301,
     GEO_CMA: 201,
+    GEO_DA: 1501,
 }
 
 GEOGRAPHY_TAGS = {
-    GEO_CT: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_CT: ['cartographic_boundary'],
     GEO_PR: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
-    GEO_CMA: ['cartographic_boundary', 'interpolation_boundary']
+    GEO_CMA: ['cartographic_boundary'],
+    GEO_DA: ['cartographic_boundary', 'interpolation_boundary']
+
 }
 
 
@@ -69,12 +77,13 @@ GEOGRAPHY_TAGS = {
 class DownloadGeography(DownloadUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
+    year = Parameter(default=2011)
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
     def download(self):
         shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(resolution=self.resolution)
+            output=self.output().path, url=self.URL.format(year=self.year, resolution=self.resolution)
         ))
 
 
@@ -113,6 +122,7 @@ class GeographyColumns(ColumnsTask):
         GEO_CMA: 3,
         GEO_CSD: 4,
         GEO_CT: 5,
+        GEO_DA: 6,
     }
 
     def version(self):

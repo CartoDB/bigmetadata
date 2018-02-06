@@ -1,12 +1,19 @@
+import os
+from luigi import Parameter
+
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 from tasks.base_tasks import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, PublicTags
 from tasks.ca.statcan.license import LicenseTags, SourceTags
 
 from collections import OrderedDict
+from lib.columns import ColumnsDeclarations
 
 
 class CensusColumns(ColumnsTask):
+    resolution = Parameter()
+    survey = Parameter()
+    topic = Parameter()
 
     def requires(self):
         return {
@@ -11209,7 +11216,7 @@ class CensusColumns(ColumnsTask):
             tags=[ca, subsections['segments']],
             targets={},)
 
-        cols = OrderedDict([
+        allcols = OrderedDict([
             ('t001c001_t', t001c001_t),
             ('t001c001_m', t001c001_m),
             ('t001c001_f', t001c001_f),
@@ -12453,6 +12460,12 @@ class CensusColumns(ColumnsTask):
             ('t010c006_t', t010c006_t),
             ('t010c007_t', t010c007_t),
         ])
+
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
+        parameters = '{{"resolution":"{resolution}","survey":"{survey}", "topic":"{topic}"}}'.format(
+                        resolution=self.resolution, survey=self.survey, topic=self.topic)
+        cols = columnsFilter.filter_columns(allcols, parameters)
+
         for colname, col in cols.items():
             col.tags.append(license)
             col.tags.append(source)
