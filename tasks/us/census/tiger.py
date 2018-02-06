@@ -17,7 +17,7 @@ from tasks.targets import PostgresTarget
 from tasks.simplification import SIMPLIFIED_SUFFIX
 from tasks.simplify import Simplify
 
-from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
+from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter, BoolParameter)
 from decimal import Decimal
 
 
@@ -609,18 +609,23 @@ class ShorelineClip(TableTask):
 
     year = Parameter()
     geography = Parameter()
+    hasgeonames = BoolParameter(default=False)
 
     def version(self):
         return 10
 
     def requires(self):
-        return {
+        req = {
             'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumnsTiger(geoid_column=GEOID_SHORELINECLIPPED_COLUMN),
             'attributes': Attributes(),
             'geonames': GeonameColumns()
         }
+        if self.hasgeonames:
+            req['geonames'] = GeoNamesTable(year=self.year, geography=self.geography)
+
+        return req
 
     def columns(self):
         return OrderedDict([
@@ -654,6 +659,7 @@ class SumLevel(TableTask):
 
     geography = Parameter()
     year = Parameter()
+    hasgeonames = BoolParameter(default=False)
 
     @property
     def geoid(self):
@@ -675,11 +681,15 @@ class SumLevel(TableTask):
         return 14
 
     def requires(self):
-        return {
+        req = {
             'attributes': Attributes(),
             'geoids': GeoidColumnsTiger(geoid_column=GEOID_SUMLEVEL_COLUMN),
             'geoms': GeomColumns(),
         }
+        if self.hasgeonames:
+            req['geonames'] = GeoNamesTable(year=self.year, geography=self.geography)
+
+        return req
 
     def columns(self):
         input_ = self.input()
@@ -770,10 +780,11 @@ class AllSumLevels(WrapperTask):
 
     def requires(self):
         for geo, config in list(SUMLEVELS.items()):
-            yield SumLevel(year=self.year, geography=geo)
-            yield ShorelineClip(year=self.year, geography=geo)
-            if config['fields']['name']:
+            hasgeonames = True if config['fields']['name'] else False
+            if hasgeonames:
                 yield GeoNamesTable(year=self.year, geography=geo)
+            yield SumLevel(year=self.year, geography=geo, hasgeonames=hasgeonames)
+            yield ShorelineClip(year=self.year, geography=geo, hasgeonames=hasgeonames)
 
 
 class SharedTigerColumns(ColumnsTask):
