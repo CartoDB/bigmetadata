@@ -8,7 +8,7 @@ You'll need:
 
 * `git <https://git-scm.com/>`_
 * `docker <https://www.docker.com>`_ 1.13.1+
-* `docker-compose <https://docs.docker.com/compose/>`_ 1.17.0+
+* `docker-compose <https://docs.docker.com/compose/>`_ 1.18.0+
 
 You should also install `make <https://www.gnu.org/software/make/>`_ to
 get access to convenience commands, if you don't have it already.
