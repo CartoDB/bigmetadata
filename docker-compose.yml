@@ -3,12 +3,12 @@ services:
   postgres:
     image: carto/bigmetadata_postgres
     volumes:
-      - ${LOCAL_POSTGRESQL_LIB_DIR:-./postgres/data}:/var/lib/postgresql
+      - ${DO_LOCAL_POSTGRESQL_LIB_DIR:-./postgres/data}:/var/lib/postgresql
       - ./observatory-extension:/observatory-extension
       - ./dataservices-api:/dataservices-api
       - ./data-services:/data-services
       - ./cartodb-postgresql:/cartodb-postgresql
-      - ${LOCAL_POSTGRESQL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_LOCAL_POSTGRESQL_TMP_DIR:-./tmp}:/bigmetadata/tmp
     environment:
       PGUSER: docker
       PGPASSWORD: docker

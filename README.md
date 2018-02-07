@@ -75,6 +75,14 @@ For example, to run QCEW numbers for one quarter:
 
     make -- run us.bls QCEW --year 2014 --qtr 4
 
+### Setting up local directories
+
+`docker-compose.yml` allows configuring two environment variables:
+- `DO_LOCAL_POSTGRESQL_LIB_DIR` (default: `./postgres/data`).
+- `DO_LOCAL_POSTGRESQL_TMP_DIR` (default: `./tmp`).
+
+That's useful if you have an external HD for storing DO.
+
 ### Naming conventions
 
 #### Tables
