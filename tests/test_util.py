@@ -650,5 +650,5 @@ def test_tabletask_with_invalid_timespan():
                 output=self.output().table))
 
     task = TestTableTaskWithoutTimespan()
-    with assert_raises(AttributeError):
+    with assert_raises(ValueError):
         runtask(task)
