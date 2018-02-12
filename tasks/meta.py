@@ -821,6 +821,7 @@ class OBSTimespan(Base):
     name = Column(Text)  # human-readable name
     description = Column(Text)  # human-readable description
     timespan = Column(DATERANGE)
+    weight = Column(Integer, default=0)
 
 
 class CurrentSession(object):
