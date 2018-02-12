@@ -609,8 +609,9 @@ class OBSTable(Base):
 
     .. py:attribute:: timespan
 
-       A string containing information about the timespan this table applies
-       to.  Obtained from :meth:`~.tasks.TableTask.timespan`.
+       An OBSTimespan instance containing information about the timespan
+       this table applies to.
+       Obtained from :meth:`~.tasks.TableTask.timespan`.
 
     .. py:attribute:: the_geom
 
@@ -819,6 +820,7 @@ class OBSTimespan(Base):
     __tablename__ = 'obs_timespan'
 
     id = Column(Text, primary_key=True)  # fully-qualified id
+    alias = Column(Text)  # alias for backwards compatibility
     name = Column(Text)  # human-readable name
     description = Column(Text)  # human-readable description
     timespan = Column(DATERANGE)
