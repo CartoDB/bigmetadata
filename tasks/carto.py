@@ -438,11 +438,26 @@ class OBSMeta(Task):
              null::varchar denom_tablename,
              null::varchar geom_tablename,
              numer_t.timespan numer_timespan,
+             null::varchar numer_timespan_alias,
+             null::varchar numer_timespan_name,
+             null::varchar numer_timespan_description,
+             null::varchar numer_timespan_range,
+             null::varchar numer_timespan_weight,
              null::varchar denom_timespan,
+             null::varchar denom_timespan_alias,
+             null::varchar denom_timespan_name,
+             null::varchar denom_timespan_description,
+             null::daterange denom_timespan_range,
+             null::numeric denom_timespan_weight,
              null::numeric numer_weight,
              null::numeric denom_weight,
              null::numeric geom_weight,
              null::varchar geom_timespan,
+             null::varchar geom_timespan_alias,
+             null::varchar geom_timespan_name,
+             null::varchar geom_timespan_description,
+             null::varchar geom_timespan_range,
+             null::varchar geom_timespan_weight,
              null::geometry the_geom,
              null::jsonb numer_tags,
              null::jsonb denom_tags,
@@ -505,7 +520,7 @@ class OBSMeta(Task):
 
       '''-- update numer coltable info
       UPDATE {obs_meta} SET
-        numer_name = name,
+        numer_name = c.name,
         numer_description = c.description,
         numer_t_description = t.description,
         numer_version = c.version,
@@ -514,19 +529,26 @@ class OBSMeta(Task):
         numer_type = type,
         numer_colname = colname,
         numer_tablename = tablename,
-        numer_timespan = timespan,
-        numer_weight = weight,
+        numer_timespan = ts.id,
+        numer_timespan_alias = ts.alias,
+        numer_timespan_name = ts.name,
+        numer_timespan_description = ts.description,
+        numer_timespan_range = ts.timespan,
+        numer_timespan_weight = ts.weight,
+        numer_weight = c.weight,
         numer_extra = c.extra,
         numer_ct_extra = ct.extra
-      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      FROM observatory.obs_column c, observatory.obs_column_table ct,
+           observatory.obs_table t, observatory.obs_timespan ts
       WHERE c.id = numer_id
         AND t.id = numer_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;''',
+        AND t.id = ct.table_id
+        AND t.timespan = ts.id;''',
 
       '''-- update denom coltable info
       UPDATE {obs_meta} SET
-        denom_name = name,
+        denom_name = c.name,
         denom_description = c.description,
         denom_t_description = t.description,
         denom_version = c.version,
@@ -535,19 +557,26 @@ class OBSMeta(Task):
         denom_type = type,
         denom_colname = colname,
         denom_tablename = tablename,
-        denom_timespan = timespan,
-        denom_weight = weight,
+        denom_timespan = ts.id,
+        denom_timespan_alias = ts.alias,
+        denom_timespan_name = ts.name,
+        denom_timespan_description = ts.description,
+        denom_timespan_range = ts.timespan,
+        denom_timespan_weight = ts.weight,
+        denom_weight = c.weight,
         denom_extra = c.extra,
         denom_ct_extra = ct.extra
-      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      FROM observatory.obs_column c, observatory.obs_column_table ct,
+           observatory.obs_table t, observatory.obs_timespan ts
       WHERE c.id = denom_id
         AND t.id = denom_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;''',
+        AND t.id = ct.table_id
+        AND t.timespan = ts.id;''',
 
      '''-- update geom coltable info
      UPDATE {obs_meta} SET
-       geom_name = name,
+       geom_name = c.name,
        geom_description = c.description,
        geom_t_description = t.description,
        geom_version = c.version,
@@ -556,16 +585,23 @@ class OBSMeta(Task):
        geom_type = type,
        geom_colname = colname,
        geom_tablename = tablename,
-       geom_timespan = timespan,
+       geom_timespan = ts.id,
+       geom_timespan_alias = ts.alias,
+       geom_timespan_name = ts.name,
+       geom_timespan_description = ts.description,
+       geom_timespan_range = ts.timespan,
+       geom_timespan_weight = ts.weight,
        the_geom = t.the_geom,
-       geom_weight = weight,
+       geom_weight = c.weight,
        geom_extra = c.extra,
        geom_ct_extra = ct.extra
-     FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+     FROM observatory.obs_column c, observatory.obs_column_table ct,
+          observatory.obs_table t, observatory.obs_timespan ts
      WHERE c.id = geom_id
        AND t.id = geom_tid
        AND c.id = ct.column_id
-       AND t.id = ct.table_id;''',
+       AND t.id = ct.table_id
+       AND t.timespan = ts.id;''',
 
      '''-- update coltag info
      DROP TABLE IF EXISTS _obs_coltags;
@@ -799,10 +835,12 @@ SELECT geom_id::TEXT,
         'timespan': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_timespan::TEXT timespan_id,
-       numer_timespan::TEXT timespan_name,
-       NULL::TEXT timespan_description,
+       numer_timespan_alias::TEXT timespan_alias,
+       numer_timespan_name::TEXT timespan_name,
+       numer_timespan_description::TEXT timespan_description,
+       numer_timespan_range::DATERANGE timespan_range,
+       numer_timespan_weight::NUMERIC timespan_weight,
        NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
-       NULL::NUMERIC timespan_weight,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
@@ -812,7 +850,8 @@ SELECT numer_timespan::TEXT timespan_id,
        NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
-GROUP BY numer_timespan;
+GROUP BY numer_timespan, numer_timespan_alias, numer_timespan_name,
+         numer_timespan_description, numer_timespan_range, numer_timespan_weight;
         ''',
         '''
 ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id);
