@@ -835,7 +835,6 @@ SELECT geom_id::TEXT,
         'timespan': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_timespan::TEXT timespan_id,
-       'numer'::TEXT timespan_type,
        numer_timespan_alias::TEXT timespan_alias,
        numer_timespan_name::TEXT timespan_name,
        numer_timespan_description::TEXT timespan_description,
@@ -843,20 +842,26 @@ SELECT numer_timespan::TEXT timespan_id,
        numer_timespan_weight::NUMERIC timespan_weight,
        NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
        NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
        NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
-WHERE numer_timespan is NOT NULL
+WHERE numer_timespan IS NOT NULL
 GROUP BY numer_timespan, numer_timespan_alias, numer_timespan_name,
          numer_timespan_description, numer_timespan_range, numer_timespan_weight;
         ''',
         '''
+ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id);
+        ''',
+        '''
 INSERT INTO {obs_meta}
-    (timespan_id, timespan_type, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
-    timespan_tags, timespan_extra, timespan_aggregate, the_geom, timespan_version)
+(timespan_id, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
+timespan_tags, timespan_extra, timespan_type, timespan_aggregate, numers, denoms, geoms, the_geom, timespan_version)
 SELECT denom_timespan::TEXT timespan_id,
-       'denom'::TEXT timespan_type,
        denom_timespan_alias::TEXT timespan_alias,
        denom_timespan_name::TEXT timespan_name,
        denom_timespan_description::TEXT timespan_description,
@@ -864,20 +869,24 @@ SELECT denom_timespan::TEXT timespan_id,
        denom_timespan_weight::NUMERIC timespan_weight,
        NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
        NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
        NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
-WHERE denom_timespan is NOT NULL
+WHERE denom_timespan IS NOT NULL
 GROUP BY denom_timespan, denom_timespan_alias, denom_timespan_name,
-         denom_timespan_description, denom_timespan_range, denom_timespan_weight;
+         denom_timespan_description, denom_timespan_range, denom_timespan_weight
+ON CONFLICT (timespan_id) DO NOTHING;
         ''',
         '''
 INSERT INTO {obs_meta}
-    (timespan_id, timespan_type, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
-    timespan_tags, timespan_extra, timespan_aggregate, the_geom, timespan_version)
+(timespan_id, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
+timespan_tags, timespan_extra, timespan_type, timespan_aggregate, numers, denoms, geoms, the_geom, timespan_version)
 SELECT geom_timespan::TEXT timespan_id,
-       'geom'::TEXT timespan_type,
        geom_timespan_alias::TEXT timespan_alias,
        geom_timespan_name::TEXT timespan_name,
        geom_timespan_description::TEXT timespan_description,
@@ -885,16 +894,36 @@ SELECT geom_timespan::TEXT timespan_id,
        geom_timespan_weight::NUMERIC timespan_weight,
        NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
        NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
        NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
-WHERE geom_timespan is NOT NULL
+WHERE geom_timespan IS NOT NULL
 GROUP BY geom_timespan, geom_timespan_alias, geom_timespan_name,
-         geom_timespan_description, geom_timespan_range, geom_timespan_weight;
+         geom_timespan_description, geom_timespan_range, geom_timespan_weight
+ON CONFLICT (timespan_id) DO NOTHING;
         ''',
         '''
-ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id, timespan_type);
+UPDATE {obs_meta} AS t SET numers =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers
+FROM observatory.obs_meta_next as m
+WHERE m.numer_timespan = t.timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} AS t SET denoms =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms
+FROM observatory.obs_meta_next as m
+WHERE m.denom_timespan = t.timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} AS t SET geoms =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms
+FROM observatory.obs_meta_next as m
+WHERE m.geom_timespan = t.timespan_id);
         ''',
         '''
 UPDATE {obs_meta} SET
