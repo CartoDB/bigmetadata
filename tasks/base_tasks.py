@@ -6,6 +6,9 @@ import requests
 import subprocess
 import importlib
 import inspect
+import zipfile
+import gzip
+import csv
 
 from urllib.parse import quote_plus
 from collections import OrderedDict
@@ -392,11 +395,12 @@ class TableToCarto(Task):
         return target
 
 
-class DownloadUnzipTask(Task):
+class DownloadUncompressTask(Task):
     '''
-    Download a zip file to location {output}.zip and unzip it to the folder
-    {output}.  Subclasses only need to define a
-    :meth:`~.tasks.DownloadUnzipTask.download` method.
+    Download a compressed file to location {output} and uncompresses it to the folder
+    {output}.  Subclasses only need to define the following methods:
+    :meth:`~.tasks.DownloadUncompressTask.download`
+    :meth:`~.tasks.DownloadUncompressTask.uncompress`
     '''
 
     def download(self):
@@ -410,16 +414,22 @@ class DownloadUnzipTask(Task):
               url=<URL>
             ))
         '''
-        raise NotImplementedError('DownloadUnzipTask must define download()')
+        raise NotImplementedError('DownloadUncompressTask must define download()')
 
     def run(self):
         os.makedirs(self.output().path)
         try:
             self.download()
-            shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
+            self.uncompress()
         except:
             os.rmdir(self.output().path)
             raise
+
+    def uncompress(self):
+        '''
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('DownloadUncompressTask must define uncompress()')
 
     def output(self):
         '''
@@ -428,6 +438,34 @@ class DownloadUnzipTask(Task):
         :attr:`~.task_id`.
         '''
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+
+
+class DownloadUnzipTask(DownloadUncompressTask):
+    '''
+    Download a zip file to location {output}.zip and unzip it to the folder
+    {output}.  Subclasses only need to define a
+    :meth:`~.tasks.DownloadUnzipTask.download` method.
+    '''
+
+    def uncompress(self):
+        with zipfile.ZipFile('{output}.zip'.format(output=self.output().path), 'r') as z:
+            z.extractall(path='{output}'.format(output=self.output().path))
+
+
+class DownloadGUnzipTask(DownloadUncompressTask):
+    '''
+    Download a gz file to location {output}.gz and unzip it to the file
+    {output}/task_id.{file_extension} . Subclasses only need to define a
+    :meth:`~.tasks.DownloadGUnzipTask.download` method.
+    '''
+
+    file_extension = Parameter(default='csv')
+
+    def uncompress(self):
+        gunzip = gzip.GzipFile('{output}.gz'.format(output=self.output().path), 'rb')
+        with open(os.path.join(self.output().path, '{filename}.{extension}'.format(
+                filename=self.task_id, extension=self.file_extension)), 'wb') as outfile:
+            outfile.write(gunzip.read())
 
 
 class TempTableTask(Task):
@@ -628,12 +666,14 @@ class CSV2TempTableTask(TempTableTask):
           column names will be the postgres defaults.
         '''
         if isinstance(self.input_csv(), str):
-            csv = self.input_csv()
+            csvfile = self.input_csv()
         else:
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
-        header_row = shell('head -n 1 "{csv}"'.format(csv=csv), encoding=self.encoding).strip()
-        return [(h.replace('"', ''), 'Text') for h in header_row.split(self.delimiter)]
+
+        with open('{csv}'.format(csv=csvfile), 'r') as f:
+            header_row = next(csv.reader(f))
+        return [(h, 'Text') for h in header_row]
 
     def read_method(self, fname):
         return 'cat "{input}"'.format(input=fname)
@@ -657,9 +697,9 @@ class CSV2TempTableTask(TempTableTask):
         if self.has_header:
             options.append('CSV HEADER')
         try:
-            for csv in csvs:
+            for csvfile in csvs:
                 shell(r'''{read_method} | psql -c '\copy {table} FROM STDIN {options}' '''.format(
-                    read_method=self.read_method(csv),
+                    read_method=self.read_method(csvfile),
                     table=self.output().table,
                     options=' '.join(options)
                 ))
@@ -772,6 +812,9 @@ class TableTask(Task):
         currently used anywhere.
         '''
         return None
+
+    def targets(self):
+        return {}
 
     def timespan(self):
         '''
@@ -1012,7 +1055,8 @@ class TableTask(Task):
                          underscore_slugify(unqualified_task_id(self.task_id)),
                          OBSTable(description=self.description(),
                                   version=self.version(),
-                                  timespan=self.timespan()),
+                                  timespan=self.timespan(),
+                                  targets=self.targets()),
                          self._columns, self)
         return tt
 

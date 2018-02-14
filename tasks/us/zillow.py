@@ -12,8 +12,8 @@ from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.meta import OBSColumn, current_session, OBSTag
-from tasks.us.census.tiger import GeoidColumns, SumLevel
+from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
+from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
 
 # cherry-picked datasets
@@ -81,35 +81,36 @@ MEASURES_DESCRIPTION = {
                                 'home\'s square footage.'
 }
 
-def measures_for_hometype(hometype):
-    homes = ('AllHomes', 'SingleFamilyResidence', )
-    rentals = ('AllHomesPlusMultifamily', 'SingleFamilyResidenceRental',
-               'AllHomes', 'Sfr', )
+HOMES = ('AllHomes', 'SingleFamilyResidence', )
+RENTALS = ('AllHomesPlusMultifamily', 'SingleFamilyResidenceRental',
+           'AllHomes', 'Sfr', )
+MEDIAN_VALUE_HOMETYPES = ('AllHomes',)
+MEDIAN_RENTAL_HOMETYPES = ('AllHomes', 'Sfr', 'CondoCoop',)
 
-    if hometype in homes:
-        measures = ['Zhvi']
+
+def measure_name(hometype):
+    if hometype in HOMES:
+        measure_name = 'Zhvi'
     elif hometype == 'Sfr':
-        measures = []
-    elif hometype in rentals:
-        measures = ['Zri']
+        measure_name = None
+    elif hometype in RENTALS:
+        measure_name = 'Zri'
     else:
         raise Exception('Unknown hometype "{hometype}"'.format(hometype=hometype))
 
-    if hometype in ('AllHomes',):
-        measures.append('MedianValuePerSqft')
-
-    if hometype in ('AllHomes', 'Sfr', 'CondoCoop',):
-        measures.append('MedianRentalPricePerSqft')
-
-    return measures
+    return measure_name
 
 
-def hometype_measures():
-    for hometype, hometype_human in HOMETYPES.items():
-        for measure in measures_for_hometype(hometype):
-            measure_human = MEASURES_HUMAN[measure]
-            measure_unit = MEASURES_UNITS[measure]
-            yield hometype, hometype_human, measure, measure_human, measure_unit
+def measure_aggregation(hometype):
+    aggregation = []
+
+    if hometype in MEDIAN_VALUE_HOMETYPES:
+        aggregation.append('MedianValuePerSqft')
+
+    if hometype in MEDIAN_RENTAL_HOMETYPES:
+        aggregation.append('MedianRentalPricePerSqft')
+
+    return aggregation
 
 
 class ZillowSourceTags(TagsTask):
@@ -193,8 +194,7 @@ class ZillowValueColumns(ColumnsTask):
     def version(self):
         return 7
 
-    def columns(self):
-        input_ = self.input()
+    def build_column(self, input_, hometype, measure, hometype_human, aggregate, targets={}):
         tag = input_['tags']['indexes']
         united_states = input_['sections']['united_states']
         housing = input_['subsections']['housing']
@@ -202,24 +202,46 @@ class ZillowValueColumns(ColumnsTask):
         source = input_['source']['zillow-source']
         license = input_['license']['zillow-license']
 
+        measure_human = MEASURES_HUMAN[measure]
+        measure_unit = MEASURES_UNITS[measure]
+
+        col = OBSColumn(type='Numeric',
+                        name='{measure} for {hometype}'.format(
+                            measure=measure_human,
+                            hometype=hometype_human),
+                        aggregate=aggregate,
+                        weight=1,
+                        description='{measure_description} {hometype_description}'.format(
+                            measure_description=MEASURES_DESCRIPTION[measure],
+                            hometype_description=HOMETYPES_DESCRIPTION[hometype],
+                            ),
+                        targets=targets,
+                        tags=[tag, united_states, housing, units[measure_unit], license, source])
+
+        return col
+
+    def columns(self):
+        input_ = self.input()
+
         columns = OrderedDict()
 
-        for hometype, hometype_human, measure, measure_human, measure_unit in hometype_measures():
-            aggregate = 'median' if 'median' in measure.lower() else 'index'
-            col_id = '{hometype}_{measure}'.format(hometype=hometype,
-                                                   measure=measure)
-            col = OBSColumn(type='Numeric',
-                            name='{measure} for {hometype}'.format(
-                                measure=measure_human,
-                                hometype=hometype_human),
-                            aggregate=aggregate,
-                            weight=1,
-                            description='{measure_description} {hometype_description}'.format(
-                                measure_description=MEASURES_DESCRIPTION[measure],
-                                hometype_description=HOMETYPES_DESCRIPTION[hometype],
-                                ),
-                            tags=[tag, united_states, housing, units[measure_unit], license, source])
-            columns[col_id] = col
+        for hometype, hometype_human in HOMETYPES.items():
+            measure = measure_name(hometype)
+
+            if measure:
+                col_id = '{hometype}_{measure}'.format(hometype=hometype,
+                                                       measure=measure)
+                columns[col_id] = self.build_column(input_, hometype, measure, hometype_human, 'index')
+
+                aggregations = measure_aggregation(hometype)
+                for aggregation in aggregations:
+                    targets = {columns[col_id]: UNIVERSE}
+
+                    col_id = '{hometype}_{aggregation}'.format(hometype=hometype,
+                                                               aggregation=aggregation)
+                    columns[col_id] = self.build_column(input_, hometype, aggregation, hometype_human,
+                                                        'median', targets)
+
         return columns
 
 
@@ -268,16 +290,16 @@ class ZillowGeoColumns(ColumnsTask):
 
 class WideZillow(CSV2TempTableTask):
 
-    geography = Parameter() # example: Zip
-    hometype = Parameter() # example: SingleFamilyResidence
+    geography = Parameter()  # example: Zip
+    hometype = Parameter()  # example: SingleFamilyResidence
     measure = Parameter()
     last_year = IntParameter()
     last_month = IntParameter()
 
     def requires(self):
         return DownloadZillow(geography=self.geography, hometype=self.hometype,
-                               measure=self.measure, last_year=self.last_year,
-                               last_month = self.last_month)
+                              measure=self.measure, last_year=self.last_year,
+                              last_month=self.last_month)
 
     def input_csv(self):
         return self.input().path
@@ -287,22 +309,33 @@ class Zillow(TableTask):
 
     year = IntParameter()
     month = IntParameter()
-    geography = Parameter() # example: Zip
+    geography = Parameter()  # example: Zip
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns()
         }
-        for hometype, _, measure, _, _ in hometype_measures():
-            table_id = '{hometype}_{measure}'.format(hometype=hometype,
-                                                     measure=measure)
-            requirements[table_id] = WideZillow(
-                geography=self.geography, hometype=hometype, measure=measure,
-                last_month=datetime.now().month, last_year=datetime.now().year)
+        for hometype, hometype_human in HOMETYPES.items():
+            measure = measure_name(hometype)
+
+            if measure:
+                table_id = '{hometype}_{measure}'.format(hometype=hometype,
+                                                         measure=measure)
+                requirements[table_id] = WideZillow(
+                    geography=self.geography, hometype=hometype, measure=measure,
+                    last_month=datetime.now().month, last_year=datetime.now().year)
+
+                aggregations = measure_aggregation(hometype)
+                for aggregation in aggregations:
+                    table_id = '{hometype}_{measure}'.format(hometype=hometype,
+                                                             measure=aggregation)
+                    requirements[table_id] = WideZillow(
+                        geography=self.geography, hometype=hometype, measure=aggregation,
+                        last_month=datetime.now().month, last_year=datetime.now().year)
 
         return requirements
 
@@ -315,15 +348,15 @@ class Zillow(TableTask):
         if self.geography == 'Zip':
             tiger_geo = 'zcta5'
         else:
-            ## will happen for metro areas, cities, neighborhoods, state, county
+            # will happen for metro areas, cities, neighborhoods, state, county
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name', input_['geoids'][tiger_geo + '_geoid']),
+            ('region_name_sl', input_['geoids'][tiger_geo + GEOID_SUMLEVEL_COLUMN]),
+            ('region_name_sc', input_['geoids'][tiger_geo + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
-        for hometype, _, measure, _, _ in hometype_measures():
-            col_id = hometype + '_' + measure
-            columns[col_id] = input_['metadata'][col_id]
+        columns.update(input_['metadata'])
+
         return columns
 
     def populate(self):
@@ -332,22 +365,21 @@ class Zillow(TableTask):
         insert = True
         input_ = self.input()
         output = self.output()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
-        for hometype, _, measure, _, _ in hometype_measures():
-            col_id = hometype + '_' + measure
-            input_table = input_[col_id].table
-            stmt = '''INSERT INTO {output} (region_name, {col_id})
-                      SELECT "RegionName", "{year}-{month}"::NUMERIC
+        for key, value in input_['metadata'].items():
+            input_table = input_[key].table
+            stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
+                      SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC
                       FROM {input_table}
-                      ON CONFLICT (region_name)
+                      ON CONFLICT (region_name_sl, region_name_sc)
                          DO UPDATE SET {col_id} = EXCLUDED.{col_id}'''
             session.execute(stmt.format(
                 output=output.table,
                 year=str(self.year).zfill(2),
                 month=str(self.month).zfill(2),
-                col_id=col_id,
+                col_id=key,
                 input_table=input_table))
             if insert:
                 insert = False

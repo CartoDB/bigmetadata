@@ -4,16 +4,17 @@ characteristics files
 '''
 
 import os
-import subprocess
+import csv
+import urllib.request
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag
-from tasks.base_tasks import ColumnsTask, TempTableTask, TableTask, TagsTask, MetaWrapper
-from tasks.util import shell, classpath
+from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
+                              TagsTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, SumLevel
+from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
-from luigi import (Task, Parameter, LocalTarget, IntParameter)
+from luigi import (Parameter, IntParameter)
 
 
 STATES = set(["al", "ak", "az", "ar", "ca", "co", "ct", "de", "dc", "fl", "ga",
@@ -26,52 +27,49 @@ MISSING_STATES = {
     2013: set(['ks', 'ma', 'pr'])
 }
 
-
-class DownloadLODESFile(Task):
-
-    # od, wac, or rac
-    filetype = Parameter()
-
-    # [YEAR] = Year of job data. Can have the value of 2002-2013 for most states.
-    year = IntParameter()
-
-    # [ST] =   lowercase, 2-letter postal code for a chosen state
-    state = Parameter()
-
-    # [SEG] = (RAC/WAC only) Segment of the workforce, can have th e values of
-    # "S000", "SA01", "SA02", "SA03", "SE01", "SE02", "SE03", "SI01", "SI02",
-    # or "SI03". These correspond to the same segments of the workforce as are
-    # listed in the OD file structure above.
-    # [PART] = (OD only) Part of the state file, can have a value of either "main" or "aux".
-    #          Complimentary parts of the state file, the main part includes jobs with both
-    #          workplace and residence in the state and the aux part includes jobs with the
-    #          workplace in the state and the residence outside of the state.
-    part_or_segment = Parameter()
-
-    # [TYPE] = Job Type, can have a value of "JT00" for All Jobs, "JT01" for Primary
-    #          Jobs, "JT02" for All Private Jobs, "JT03" for Private Primary Jobs,
-    #          "JT04" for All Federal Jobs, or "JT05" for Federal Primary Jobs.
-    job_type = Parameter(default="JT00")
-
-    def filename(self):
-        #   [STATE]_[FILETYPE]_[PART/SEG]_[TYPE]_[YEAR].csv.gz   where
-        return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype,
-                                              self.part_or_segment,
-                                              self.job_type, self.year)
-
-    def url(self):
-        return 'http://lehd.ces.census.gov/data/lodes/LODES7/{}/{}/{}'.format(
-            self.state, self.filetype, self.filename())
-
-    def run(self):
-        self.output().makedirs()
-        try:
-            shell('wget {url} -O {target}'.format(url=self.url(), target=self.output().path))
-        except subprocess.CalledProcessError:
-            shell('rm -f {target}'.format(target=self.output().path))
-
-    def output(self):
-        return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
+COLUMN_MAPPING = OrderedDict([
+    ('total_jobs', 'C000'),
+    ('jobs_age_29_or_younger', 'CA01'),
+    ('jobs_age_30_to_54', 'CA02'),
+    ('jobs_age_55_or_older', 'CA03'),
+    ('jobs_earning_15000_or_less', 'CE01'),
+    ('jobs_earning_15001_to_40000', 'CE02'),
+    ('jobs_earning_40001_or_more', 'CE03'),
+    ('jobs_11_agriculture_forestry_fishing', 'CNS01'),
+    ('jobs_21_mining_quarrying_oil_gas', 'CNS02'),
+    ('jobs_22_utilities', 'CNS03'),
+    ('jobs_23_construction', 'CNS04'),
+    ('jobs_31_33_manufacturing', 'CNS05'),
+    ('jobs_42_wholesale_trade', 'CNS06'),
+    ('jobs_44_45_retail_trade', 'CNS07'),
+    ('jobs_48_49_transport_warehousing', 'CNS08'),
+    ('jobs_51_information', 'CNS09'),
+    ('jobs_52_finance_and_insurance', 'CNS10'),
+    ('jobs_53_real_estate_rental_leasing', 'CNS11'),
+    ('jobs_54_professional_scientific_tech_services', 'CNS12'),
+    ('jobs_55_management_of_companies_enterprises', 'CNS13'),
+    ('jobs_56_admin_support_waste_management', 'CNS14'),
+    ('jobs_61_educational_services', 'CNS15'),
+    ('jobs_62_healthcare_social_assistance', 'CNS16'),
+    ('jobs_71_arts_entertainment_recreation', 'CNS17'),
+    ('jobs_72_accommodation_and_food', 'CNS18'),
+    ('jobs_81_other_services_except_public_admin', 'CNS19'),
+    ('jobs_92_public_administration', 'CNS20'),
+    ('jobs_white', 'CR01'),
+    ('jobs_black', 'CR02'),
+    ('jobs_amerindian', 'CR03'),
+    ('jobs_asian', 'CR04'),
+    ('jobs_hawaiian', 'CR05'),
+    ('jobs_two_or_more_races', 'CR07'),
+    ('jobs_not_hispanic', 'CT01'),
+    ('jobs_hispanic', 'CT02'),
+    ('jobs_less_than_high_school', 'CD01'),
+    ('jobs_high_school', 'CD02'),
+    ('jobs_some_college', 'CD03'),
+    ('jobs_bachelors_or_advanced', 'CD04'),
+    ('jobs_male', 'CS01'),
+    ('jobs_female', 'CS02'),
+])
 
 
 class SourceTags(TagsTask):
@@ -114,7 +112,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
             tags=[tags['employment']]
         )
         cols = OrderedDict([
-            #work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
+            # work_census_block TEXT, --w_geocode Char15 Workplace Census Block Code
             ('total_jobs', total_jobs),
             ('jobs_age_29_or_younger', OBSColumn(
                 type='Integer',
@@ -468,96 +466,6 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 targets={total_jobs: 'denominator'},
                 tags=[tags['age_gender'], tags['employment']]
             )),
-            ('jobs_firm_age_0_1_years', OBSColumn(
-                type='Integer',
-                name='Jobs at firms aged 0-1 Years',
-                description='Number of jobs for workers at firms with Firm Age: 0-1 Years',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_age_2_3_years', OBSColumn(
-                type='Integer',
-                name='Jobs at firms aged 2-3 Years',
-                description='Number of jobs for workers at firms with Firm Age: 2-3 Years',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_age_4_5_years', OBSColumn(
-                type='Integer',
-                name='Jobs at firms aged 4-5 Years',
-                description='Number of jobs for workers at firms with Firm Age: 4-5 Years',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_age_6_10_years', OBSColumn(
-                type='Integer',
-                name='Jobs at firms aged 6-10 years',
-                description='Number of jobs for workers at firms with Firm Age: 6-10 Years',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_age_11_more_years', OBSColumn(
-                type='Integer',
-                name='Jobs at firms aged 11 or more Years',
-                description='Number of jobs for workers at firms with Firm Age: 11 or more Years',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_0_19_employees', OBSColumn(
-                type='Integer',
-                name='Jobs at firms with 0-19 Employees',
-                description='Number of jobs for workers at firms with Firm Size: 0-19 Employees',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_20_49_employees', OBSColumn(
-                type='Integer',
-                name='Jobs at firms with 20-49 Employees',
-                description='Number of jobs for workers at firms with Firm Size: 20-49 Employees',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_50_249_employees', OBSColumn(
-                type='Integer',
-                name='Jobs at firms with 0-249 Employees',
-                description='Number of jobs for workers at firms with Firm Size: 50-249 Employees',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_250_499_employees', OBSColumn(
-                type='Integer',
-                name='Jobs at firms with 250-499 Employees',
-                description='Number of jobs for workers at firms with Firm Size: 250-499 Employees',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
-            ('jobs_firm_500_more_employees', OBSColumn(
-                type='Integer',
-                name='Jobs at firms with 500 or more Employees',
-                description='Number of jobs for workers at firms with Firm Size: 500 or more Employees',
-                weight=1,
-                aggregate='sum',
-                targets={total_jobs: 'denominator'},
-                tags=[tags['employment'], tags['commerce_economy']]
-            )),
         ])
         for colname, col in cols.items():
             col.tags.append(source)
@@ -565,37 +473,58 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         return cols
 
 
-class DownloadWorkplaceAreaCharacteristics(Task):
-    '''
-    Download all WAC files available
-    '''
+class DownloadUnzipLodes(DownloadGUnzipTask):
+    year = IntParameter(default=2013)
+    filetype = Parameter(default='rac')
+    state = Parameter()
+    partorsegment = Parameter(default='S000')
+    jobtype = Parameter(default='JT00')
+
+    def filename_lodes(self):
+        #   [STATE]_[FILETYPE]_[PART/SEG]_[TYPE]_[YEAR].csv.gz   where
+        return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype,
+                                              self.partorsegment,
+                                              self.jobtype, self.year)
+
+    def url(self):
+        return 'http://lehd.ces.census.gov/data/lodes/LODES7/{}/{}/{}'.format(
+            self.state, self.filetype, self.filename_lodes())
+
+    def download(self):
+        with urllib.request.urlopen(self.url()) as response, open('{output}.gz'.format(
+                output=self.output().path), 'wb') as output:
+            output.write(response.read())
+
+
+class WorkplaceAreaCharacteristicsTemp(CSV2TempTableTask):
 
     year = IntParameter(default=2013)
 
-    def requires(self):
-        for state in STATES - MISSING_STATES.get(self.year, set()):
-            yield DownloadLODESFile(filetype='wac',
-                                    part_or_segment='S000', # all jobs
-                                    year=self.year,
-                                    state=state)
-
-    def output(self):
-        for outfile in self.input():
-            yield outfile
-
-
-class DownloadResidenceAreaCharacteristics(Task):
-
-    year = IntParameter(default=2013)
+    FILE_EXTENSION = 'csv'
 
     def requires(self):
-        for state in STATES - MISSING_STATES.get(self.year, set()):
-            yield DownloadLODESFile(filetype='rac', year=self.year,
-                                    state=state, part_or_segment='S000') # all jobs
+        return [DownloadUnzipLodes(file_extension=self.FILE_EXTENSION,
+                                   filetype='rac', year=self.year,
+                                   state=state, partorsegment='S000',
+                                   jobtype='JT00') for state in STATES - MISSING_STATES.get(self.year, set())]
 
-    def output(self):
-        for outfile in self.input():
-            yield outfile
+    def input_csv(self):
+        csvs = []
+        for folder in self.input():
+            for file in os.listdir(folder.path):
+                if file.endswith('.{}'.format(self.FILE_EXTENSION)):
+                    csvs.append(os.path.join(folder.path, file))
+        return csvs
+
+    def coldef(self):
+        '''
+        We are receiving a list of files so we need to implement the coldef method
+        We are assuming that all the files have the same format (columns).
+        '''
+        csvfile = self.input_csv()[0]
+        with open('{csv}'.format(csv=csvfile), 'r') as f:
+            header_row = next(csv.reader(f))
+        return [(h, 'Text') for h in header_row]
 
 
 class WorkplaceAreaCharacteristics(TableTask):
@@ -603,13 +532,13 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
             'tiger_meta': GeoidColumns(),
-            'data': DownloadWorkplaceAreaCharacteristics(year=self.year),
+            'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
         }
 
     def timespan(self):
@@ -619,68 +548,23 @@ class WorkplaceAreaCharacteristics(TableTask):
         data_columns = self.input()['data_meta']
         tiger_columns = self.input()['tiger_meta']
         cols = OrderedDict([
-            ('w_geocode', tiger_columns['block_geoid'])
+            ('w_geocode_sl', tiger_columns['block' + GEOID_SUMLEVEL_COLUMN]),
+            ('w_geocode_sc', tiger_columns['block' + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         cols.update(data_columns)
         return cols
 
     def populate(self):
-        for infile in self.input()['data']:
-            # gunzip each CSV into the table
-            cmd = r"gunzip -c '{input}' | cut -d',' -f-52 | psql -c '\copy {tablename} FROM STDIN " \
-                  r"WITH CSV HEADER'".format(input=infile.path,
-                                             tablename=self.output().table)
-            print(cmd)
-            shell(cmd)
-
-
-class OriginDestination(TempTableTask):
-
-    year = IntParameter(default=2013)
-
-    def columns(self):
-        return '''
-work_census_block Text, -- Workplace Census Block Code
-home_census_block Text, --   Residence Census Block Code
-total_jobs INTEGER, -- Total number of jobs
-jobs_age_29_or_younger INTEGER, -- Number of jobs of workers age 29 or younger 11
-jobs_age_30_to_54 INTEGER, -- Number of jobs for workers age 30 to 54 11
-jobs_age_55_or_older INTEGER, -- Number of jobs for workers age 55 or older 11
-jobs_earning_15000_or_less INTEGER, --  Number of jobs with earnings $1250/month or less
-jobs_earning_15001_to_40000 INTEGER, --  Number of jobs with earnings $1251/month to $3333/month
-jobs_earning_40001_or_more INTEGER, --  Number of jobs with earnings greater than $3333/month
-jobs_in_goods_production INTEGER, --   Number of jobs in Goods Producing industry sectors
-jobs_in_trade_transport_and_util INTEGER, --   Number of jobs in Trade, Tr sportation, and Utilities industry sectors
-jobs_in_all_other_service INTEGER, --   Number of jobs in All Other Services industry sectors
-createdate DATE -- Date on which da ta was created, formatted as YYYYMMDD
-'''
-
-    def requires(self):
-        for state in STATES - MISSING_STATES.get(self.year, set()):
-            for part in ('main', 'aux',):
-                yield DownloadLODESFile(filetype='od', year=self.year,
-                                        state=state, part_or_segment=part)
-
-    def run(self):
-        # make the table
-        session = current_session()
-        session.execute('''
-DROP TABLE IF EXISTS {tablename};
-CREATE TABLE {tablename} (
-    {columns}
-);
-                       '''.format(tablename=self.output().table,
-                                  columns=self.columns()))
-        session.commit()
-
-        #cursor.connection.commit()
-
-        for infile in self.input():
-            print(infile.path)
-            # gunzip each CSV into the table
-            cmd = r"gunzip -c '{input}' | psql -c '\copy {tablename} FROM STDIN " \
-                  r"WITH CSV HEADER'".format(input=infile.path, tablename=self.output().table)
-            shell(cmd)
+        input_ = self.input()
+        insert = '''INSERT INTO {output} (w_geocode_sl, w_geocode_sc, {colnames})
+                    SELECT h_geocode AS w_geocode_sl, h_geocode AS w_geocode_sc, {select_colnames}
+                    FROM {input}'''.format(
+                        output=self.output().table,
+                        input=input_['data'].table,
+                        colnames=', '.join(COLUMN_MAPPING.keys()),
+                        select_colnames=', '.join(['"{column}"::integer'.format(column=column)
+                                                  for column in COLUMN_MAPPING.values()]))
+        current_session().execute(insert)
 
 
 class LODESMetaWrapper(MetaWrapper):
@@ -694,4 +578,4 @@ class LODESMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield WorkplaceAreaCharacteristics()
-        yield SumLevel(geography = self.geography, year=str(2015))
+        yield SumLevel(geography=self.geography, year=str(2015))
