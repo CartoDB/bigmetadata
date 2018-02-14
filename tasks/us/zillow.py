@@ -13,7 +13,7 @@ from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
-from tasks.us.census.tiger import GeoidColumns, SumLevel
+from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 
 
 # cherry-picked datasets
@@ -312,7 +312,7 @@ class Zillow(TableTask):
     geography = Parameter()  # example: Zip
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         requirements = {
@@ -352,7 +352,8 @@ class Zillow(TableTask):
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name', input_['geoids'][tiger_geo + '_geoid']),
+            ('region_name_sl', input_['geoids'][tiger_geo + GEOID_SUMLEVEL_COLUMN]),
+            ('region_name_sc', input_['geoids'][tiger_geo + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         columns.update(input_['metadata'])
 
@@ -364,15 +365,15 @@ class Zillow(TableTask):
         insert = True
         input_ = self.input()
         output = self.output()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name)'.format(
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
         for key, value in input_['metadata'].items():
             input_table = input_[key].table
-            stmt = '''INSERT INTO {output} (region_name, {col_id})
-                      SELECT "RegionName", "{year}-{month}"::NUMERIC
+            stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
+                      SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC
                       FROM {input_table}
-                      ON CONFLICT (region_name)
+                      ON CONFLICT (region_name_sl, region_name_sc)
                          DO UPDATE SET {col_id} = EXCLUDED.{col_id}'''
             session.execute(stmt.format(
                 output=output.table,
