@@ -763,19 +763,20 @@ class GeoNamesTable(TableTask):
                         ))
 
 
-class AllSumLevels(WrapperTask):
+class SumLevel4Geo(WrapperTask):
     '''
-    Compute all sumlevels
+    Compute the sumlevel for a given geography
     '''
 
     year = Parameter()
+    geography = Parameter()
 
     def requires(self):
-        for geo, config in list(SUMLEVELS.items()):
-            if config['fields']['name']:
-                yield GeoNamesTable(year=self.year, geography=geo)
-            yield SumLevel(year=self.year, geography=geo)
-            yield ShorelineClip(year=self.year, geography=geo)
+        config = dict(SUMLEVELS.items()).get(self.geography)
+        if config['fields']['name']:
+            yield GeoNamesTable(year=self.year, geography=self.geography)
+        yield SumLevel(year=self.year, geography=self.geography)
+        yield ShorelineClip(year=self.year, geography=self.geography)
 
 
 class SharedTigerColumns(ColumnsTask):
