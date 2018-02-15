@@ -826,7 +826,8 @@ WHERE {obs_meta}.geom_id = ANY(union_geoms.geom_ids);
 CREATE TABLE {obs_meta} AS
 SELECT geom_id::TEXT,
        numer_id::TEXT,
-       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
+       ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] geom_timespans,
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] numer_timespans
   FROM observatory.obs_meta_next
   GROUP BY geom_id, numer_id;
         ''',
