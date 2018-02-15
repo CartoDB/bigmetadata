@@ -137,11 +137,7 @@ class SpielmanSingletonTable(TableTask):
     def requires(self):
         return {
             'columns': SpielmanSingletonColumns(),
-<<<<<<< HEAD
             'data': SpielmanSingletonTempTable(),
-=======
-            'data_file': ProcessSpielmanSingletonFile(),
->>>>>>> Added OBSTimespan entity
             'tiger': GeoidColumns()
         }
 
