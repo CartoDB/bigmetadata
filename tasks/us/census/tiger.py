@@ -679,7 +679,7 @@ class SumLevel(TableTask):
             'attributes': Attributes(),
             'geoids': GeoidColumnsTiger(geoid_column=GEOID_SUMLEVEL_COLUMN),
             'geoms': GeomColumns(),
-            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year)
+            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year),
         }
 
     def columns(self):
@@ -729,7 +729,13 @@ class GeoNamesTable(TableTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'geonames': GeonameColumns(),
+            'shoreline': ShorelineClip(year=self.year, geography=self.geography),
+            'sumlevel': SumLevel(year=self.year, geography=self.geography),
         }
+
+    def targets(self):
+        return {self.input()['shoreline'].obs_table: GEOM_REF,
+                self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def columns(self):
         return OrderedDict([
