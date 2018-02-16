@@ -533,7 +533,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
