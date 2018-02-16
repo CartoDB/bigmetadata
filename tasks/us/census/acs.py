@@ -3366,7 +3366,7 @@ class Quantiles(TableTask):
         }
 
     def version(self):
-        return 13
+        return 14
 
     def targets(self):
         return {self.input()['tigerdata'].obs_table: GEOM_REF}
@@ -3446,7 +3446,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {

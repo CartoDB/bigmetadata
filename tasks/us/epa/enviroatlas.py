@@ -176,7 +176,7 @@ class EnviroAtlas(TableTask):
         }
 
     def version(self):
-        return 2
+        return 3
 
     def targets(self):
         return {

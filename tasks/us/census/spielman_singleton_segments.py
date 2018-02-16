@@ -146,7 +146,7 @@ class SpielmanSingletonTable(TableTask):
         }
 
     def version(self):
-        return 10
+        return 11
 
     def table_timespan(self):
         return get_timespan('2010 - 2014')

@@ -720,7 +720,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
