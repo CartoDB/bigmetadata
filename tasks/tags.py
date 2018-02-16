@@ -320,6 +320,11 @@ class SubsectionTags(TagsTask):
         ]
 
 class BoundaryTags(TagsTask):
+    '''
+    Boundary tags ids:
+    - `cartographic_boundary`: shoreline clipped (and looks good on a map, hence "cartographic").
+    - `interpolation_boundary`: clipped boundaries that are full coverage of the country/region.
+    '''
     def version(self):
         return 1
 
