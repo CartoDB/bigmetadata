@@ -350,7 +350,7 @@ us-spielman:
 	make -- run-parallel us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
 us-tiger:
-	make -- run-parallel us.census.tiger.AllSumLevels --year 2015
+	make -- run us.census.tiger.AllSumLevels --year 2015
 
 us-enviroatlas:
 	make -- run-parallel us.epa.enviroatlas.AllTables

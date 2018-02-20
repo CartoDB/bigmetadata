@@ -7,8 +7,8 @@ Requirements
 You'll need:
 
 * `git <https://git-scm.com/>`_
-* `docker <https://www.docker.com>`_
-* `docker-compose <https://docs.docker.com/compose/>`_
+* `docker <https://www.docker.com>`_ 1.13.1+
+* `docker-compose <https://docs.docker.com/compose/>`_ 1.18.0+
 
 You should also install `make <https://www.gnu.org/software/make/>`_ to
 get access to convenience commands, if you don't have it already.
@@ -73,7 +73,7 @@ You now should be able to run a task.
 
 .. code:: shell
 
-  make -- run es.ine FiveYearPopulation
+  make -- run es.ine.FiveYearPopulation
 
 .. note:: The first time you run it, that command will download a few Docker images.
           Depending on the speed of your connection, it could take ten or fifteen

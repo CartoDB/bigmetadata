@@ -6,7 +6,7 @@ from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_ad
                             get_parent_code)
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns
+from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
 
 from collections import OrderedDict
@@ -211,7 +211,7 @@ class QCEW(TableTask):
         requirements = {
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
             'geoid_cols': GeoidColumns(),
-            'naics': OrderedDict()
+            'naics': OrderedDict(),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -231,7 +231,8 @@ class QCEW(TableTask):
         # The column name
         input_ = self.input()
         cols = OrderedDict([
-            ('area_fips', input_['geoid_cols']['county_geoid'])
+            ('area_fipssl', input_['geoid_cols']['county' + GEOID_SUMLEVEL_COLUMN]),
+            ('area_fipssc', input_['geoid_cols']['county' + GEOID_SHORELINECLIPPED_COLUMN])
         ])
         for naics_code, naics_cols in input_['naics'].items():
             for key, coltarget in naics_cols.items():
@@ -257,7 +258,7 @@ class QCEW(TableTask):
                 END)::Numeric'''.format(naics_code=naics_code,
                                         colname=colname))
         insert = '''INSERT INTO {output} ({colnames})
-                    SELECT area_fips, {select_colnames}
+                    SELECT area_fips AS area_fipssl, area_fips AS area_fipssc, {select_colnames}
                     FROM {input}
                     GROUP BY area_fips '''.format(
                         output=self.output().table,
