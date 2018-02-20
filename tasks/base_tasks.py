@@ -1072,12 +1072,18 @@ class TableTask(Task):
             raise ValueError('The following relations for table "{table}" need to be removed: {relations}'.format(
                 table=self.output().table, relations=', '.join([x[0] for x in result])))
 
+    def schema(self):
+        return classpath(self)
+
+    def name(self):
+        return underscore_slugify(unqualified_task_id(self.task_id))
+
     def output(self):
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
-        tt = TableTarget(classpath(self),
-                         underscore_slugify(unqualified_task_id(self.task_id)),
+        tt = TableTarget(self.schema(),
+                         self.name(),
                          OBSTable(description=self.description(),
                                   version=self.version(),
                                   table_timespan=self.table_timespan(),
@@ -1086,8 +1092,8 @@ class TableTask(Task):
         return tt
 
     def complete(self):
-        return TableTarget(classpath(self),
-                           underscore_slugify(unqualified_task_id(self.task_id)),
+        return TableTarget(self.schema(),
+                           self.name(),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     table_timespan=self.table_timespan()),
