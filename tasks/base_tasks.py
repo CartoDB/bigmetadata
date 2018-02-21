@@ -458,7 +458,7 @@ class DownloadUnzipTask(DownloadUncompressTask):
             LOGGER.warn("%s.zip error: %s. Fallback to command line...", output, s_err)
             if s_err == 'compression type 9 (deflate64)':
                 # Support for unsupported file types, such as PKWare deflate64 format
-                subprocess.check_call(['unzip', '{output}.zip'.format(output=output)])
+                subprocess.check_call(['unzip', '{output}.zip'.format(output=output), '-d', output])
             else:
                 raise
 
