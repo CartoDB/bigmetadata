@@ -2,7 +2,7 @@
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
                               SimplifiedTempTableTask)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
+from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 
 from collections import OrderedDict
@@ -128,6 +128,11 @@ class OutputAreas(TableTask):
 
     def timespan(self):
         return 2011
+
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def columns(self):
         input_ = self.input()

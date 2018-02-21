@@ -2,7 +2,7 @@ import os
 
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
                               SimplifiedTempTableTask)
-from tasks.meta import OBSColumn, OBSTag, GEOM_REF, current_session
+from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.util import shell
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
 
@@ -108,6 +108,11 @@ class HUC(TableTask):
 
     def timespan(self):
         return '2015'
+
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()

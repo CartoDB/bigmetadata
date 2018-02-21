@@ -11,7 +11,7 @@ from collections import OrderedDict
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
                               SimplifiedTempTableTask)
 from tasks.util import classpath, grouper, shell
-from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
+from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.targets import PostgresTarget
 from tasks.simplification import SIMPLIFIED_SUFFIX
@@ -632,6 +632,11 @@ class ShorelineClip(TableTask):
     def timespan(self):
         return self.year
 
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
+
     def populate(self):
         session = current_session()
 
@@ -693,6 +698,11 @@ class SumLevel(TableTask):
 
     def timespan(self):
         return self.year
+
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()

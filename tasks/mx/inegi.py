@@ -4,7 +4,7 @@ from luigi import Parameter, WrapperTask
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
@@ -263,6 +263,11 @@ class Geography(TableTask):
     def timespan(self):
         return 2015
 
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
+
     def columns(self):
         return self.input()['columns']
 
@@ -342,7 +347,7 @@ class Census(TableTask):
         out_colnames = [oc for oc in out_colnames if oc is not None]
 
         cmd = 'INSERT INTO {output} ({out_colnames}) ' \
-                'SELECT {in_colnames} FROM {input} '.format(
+              'SELECT {in_colnames} FROM {input} '.format(
                     output=self.output().table,
                     input=in_table.table,
                     in_colnames=', '.join(in_colnames),
