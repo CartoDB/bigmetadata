@@ -448,8 +448,20 @@ class DownloadUnzipTask(DownloadUncompressTask):
     '''
 
     def uncompress(self):
-        with zipfile.ZipFile('{output}.zip'.format(output=self.output().path), 'r') as z:
-            z.extractall(path='{output}'.format(output=self.output().path))
+        output = self.output().path
+        LOGGER.debug("Uncompressing {output}".format(output=output))
+        try:
+            with zipfile.ZipFile('{output}.zip'.format(output=output), 'r') as z:
+                z.extractall(path='{output}'.format(output=output))
+        except NotImplementedError as err:
+            s_err = str(err)
+            LOGGER.warn("%s.zip error: %s. Fallback to command line...", output, s_err)
+            if s_err == 'compression type 9 (deflate64)':
+                # Support for unsupported file types, such as PKWare deflate64 format
+                subprocess.check_call(['unzip', '{output}.zip'.format(output=output), '-d', output])
+            else:
+                raise
+
 
 
 class DownloadGUnzipTask(DownloadUncompressTask):

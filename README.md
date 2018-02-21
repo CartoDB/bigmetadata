@@ -69,11 +69,11 @@ Any other task can be run using `docker-compose`:
 
 Or, more conveniently, `make -- run` (which will use the local scheduler):
 
-    make -- run path.to.task TaskName --param1 val1 --param2 val2
+    make -- run path.to.task.TaskName --param1 val1 --param2 val2
 
 For example, to run QCEW numbers for one quarter:
 
-    make -- run us.bls QCEW --year 2014 --qtr 4
+    make -- run us.bls.QCEW --year 2014 --qtr 4
 
 ### Setting up local directories
 
