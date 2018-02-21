@@ -6,7 +6,7 @@ from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
                               SimplifiedTempTableTask)
-from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag
+from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag, OBSTable
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
@@ -265,6 +265,11 @@ class NUTSGeometries(TableTask):
             'nuts_columns': NUTSColumns(level=self.level),
             'nuts_shn_crosswalk': NUTSSHNCrosswalk(),
             'shn_geoms': SimplifiedImportSHNGeoms(level=self.level)
+        }
+
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
         }
 
     def columns(self):
