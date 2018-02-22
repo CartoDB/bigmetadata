@@ -1006,7 +1006,7 @@ class TableTask(Task):
         # Relations between tables defined as follows:
         # TABLE(SOURCE) -- COLUMN_TABLE(source) -- COLUMN_TO_COLUMN -- COLUMN_TABLE(target) -- TABLE(target)
         # that are not in OBS_TABLE_TO_TABLE
-        query = ('''
+        check_missing_relations_query = ('''
                  SELECT DISTINCT ts.id || '.' || cs.id ||
                  ' / ' || tt.id || '.' || ct.id || ' (' || cc.reltype || ')' relation
                  FROM observatory.obs_table ts, observatory.obs_column_table cts, observatory.obs_column cs,
@@ -1026,7 +1026,7 @@ class TableTask(Task):
                  WHERE ttt.source_id = ts.id
                  AND ttt.target_id = tt.id)
                  ''').format(table=self.output()._tablename)
-        result = session.execute(query).fetchall()
+        result = session.execute(check_missing_relations_query).fetchall()
 
         if result:
             raise ValueError('The table "{table}" lacks some table_to_table relations: {relations}'.format(
@@ -1035,7 +1035,7 @@ class TableTask(Task):
         # Relations in OBS_TABLE_TO_TABLE
         # that are not in the relations between tables defined as follows:
         # TABLE(SOURCE) -- COLUMN_TABLE(source) -- COLUMN_TO_COLUMN -- COLUMN_TABLE(target) -- TABLE(target)
-        query = ('''
+        check_excess_relation_query = ('''
                  SELECT DISTINCT ttt.source_id || ' / '
                  || ttt.target_id || ' (' || ttt.reltype || ')' relation
                  FROM observatory.obs_table_to_table ttt, observatory.obs_table t
@@ -1065,7 +1065,7 @@ class TableTask(Task):
                  AND ttt.reltype = cc.reltype
                  AND ttt.target_id = tt.id)
                  ''').format(table=self.output()._tablename)
-        result = session.execute(query).fetchall()
+        result = session.execute(check_excess_relation_query).fetchall()
 
         if result:
             raise ValueError('The following relations for table "{table}" need to be removed: {relations}'.format(

@@ -219,6 +219,7 @@ class Geography(TableTask):
     def table_timespan(self):
         return get_timespan(str(self.year))
 
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
         return {
             OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
