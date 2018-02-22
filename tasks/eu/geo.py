@@ -265,6 +265,7 @@ class NUTSGeometries(TableTask):
             'shn_geoms': SimplifiedImportSHNGeoms(level=self.level)
         }
 
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
         return {
             OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
