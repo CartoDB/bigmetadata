@@ -156,19 +156,19 @@ etl-metadatatest:
 	    tests/test_metadata.py'
 
 travis-etl-unittest:
-	./run-travis.sh \
+	./scripts/run-travis.sh \
 	  'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_tabletasks.py'
 
 travis-diff-catalog:
 	git fetch origin master
-	./run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.base_tasks tasks.base_tasks.RunDiff --compare FETCH_HEAD'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
+	./scripts/run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
+	./scripts/run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.base_tasks tasks.base_tasks.RunDiff --compare FETCH_HEAD'
+	./scripts/run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
 
 travis-etl-metadatatest:
-	./run-travis.sh 'nosetests -v tests/test_metadata.py'
+	./scripts/run-travis.sh 'nosetests -v tests/test_metadata.py'
 
 releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 
