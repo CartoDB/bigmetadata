@@ -3,6 +3,13 @@ SHELL = /bin/bash
 ###
 ### Tasks runners
 ###
+ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
+  MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
+endif
+
+###
+### Tasks runners
+###
 ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
   # From word 2 to the end is the task
   TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
@@ -14,22 +21,20 @@ ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
   $(eval $(MOD_NAME):;@:)
 endif
 
-.PHONY: run run-local run-parallel catalog docs carto restore dataservices-api
-
-ifdef VIRTUAL_ENV
-LUIGI := LUIGI_CONFIG_PATH=conf python3 -m luigi
-else
-LUIGI := docker-compose run --rm bigmetadata luigi
-endif
+.PHONY: run run-local run-parallel catalog docs carto restore dataservices-api rebuild-all
 
 run:
-	$(LUIGI) --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-local:
-	$(LUIGI) --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
-	$(LUIGI) --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
+
+# Run a task using docker. For example make docker es-all
+docker-%:
+	docker-compose run -d --entrypoint 'make $(MAKE_TASK)' bigmetadata
 
 ###
 ### Utils
@@ -62,6 +67,13 @@ restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
 
 ###
+### Rebuild task
+###
+
+rebuild-all:
+	./scripts/rebuild-all.sh
+
+###
 ### Extensions
 ###
 # update the observatory-extension in our DB container
@@ -86,7 +98,7 @@ dataservices-api: extension
 	  pip install -r requirements.txt && pip install --upgrade .'
 	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
 	docker exec $$(docker-compose ps -q redis) sh -c \
-	  "$$(cat postgres/dataservices_config.redis)"
+	  "$$(cat postgres/dataservices_con_runfig.redis)"
 
 ###
 ### Tests
@@ -102,7 +114,7 @@ extension-perftest-record: extension
 	  -e OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
 	  -e OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
 	  bigmetadata \
-	  nosetests observatory-extension/src/python/test/perftest.py
+	  nosetests observatory-extension/s_runrc/python/test/perftest.py
 
 extension-autotest: extension
 	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
@@ -285,15 +297,15 @@ ca-geo:
 es-all: es-cnig es-ine
 
 es-cnig:
-	make -- run-parallel es.cnig.AllGeometries
+	make -- run es.cnig.AllGeometries >> /tmp/lala.log
 
 es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
-	make -- run-parallel es.ine.PopulationHouseholdsHousingMeta
+	make -- run es.ine.PopulationHouseholdsHousingMeta >> /tmp/lala.log
 
 es-ine-fyp:
-	make -- run-parallel es.ine.FiveYearPopulationMeta
+	make -- run-parallel es.ine.FiveYearPopulationMeta >> /tmp/lala.log
 
 ### eurostat
 eu-all: eu-geo eu-data
