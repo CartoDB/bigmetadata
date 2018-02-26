@@ -30,7 +30,7 @@ def parse_timespan(timespan_id):
     # Range of years, for example '2017-2018'
     elif re.match('\d{4}-\d{4}$', timespan_str):
         year1, year2 = list(map(int, timespan_str.split('-')))
-        if year1 >= year2:
+        if year1 > year2:
             raise ValueError("Invalid timespan '{timespan}' (invalid range of years)".format(timespan=timespan_id))
 
         ts_id = '{year1} - {year2}'.format(year1=year1, year2=year2)
