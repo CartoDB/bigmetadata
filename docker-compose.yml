@@ -19,7 +19,6 @@ services:
     ports:
       - 5554:5432
     env_file: .env
-    network_mode: bridge
 
   nginx:
     image: nginx:latest
@@ -30,16 +29,15 @@ services:
       - ./perftest:/usr/share/nginx/html/perftest/:ro
     ports:
       - 80
-    network_mode: bridge
 
   bigmetadata_daemon:
     image: carto/bigmetadata
-    links:
-      - postgres
     volumes:
       - .:/bigmetadata
     ports:
       - 8082
+    depends_on:
+      - postgres
     environment:
       PYTHONPATH: /bigmetadata
       PGHOST: postgres
@@ -51,17 +49,16 @@ services:
       LUIGI_CONFIG_PATH: /bigmetadata/conf/luigi_daemon.cfg
     env_file: .env
     command: "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && luigid'"
-    network_mode: bridge
 
   bigmetadata:
     image: carto/bigmetadata
-    links:
-      - postgres
-      - bigmetadata_daemon
     volumes:
       - .:/bigmetadata
+    depends_on:
+      - postgres
+      - bigmetadata_daemon
     environment:
-      PYTHONPATH: /bigmetadata
+      PYTHONPATH: '/bigmetadata'
       PGHOST: postgres
       PGUSER: docker
       PGPASSWORD: docker
@@ -72,4 +69,3 @@ services:
     env_file: .env
     stdin_open: true
     tty: true
-    network_mode: bridge
