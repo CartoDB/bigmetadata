@@ -3401,7 +3401,7 @@ class Quantiles(TableTask):
                 stmt = '''
                     INSERT INTO {table}
                     (geoidsl, geoidsc, {insert_statment})
-                    SELECT geoid AS geoidsl, geoid AS geoidsc, {select_statment}
+                    SELECT geoidsl, geoidsc, {select_statment}
                     FROM {source_table}
                 '''.format(
                     table        = self.output().table,
@@ -3413,13 +3413,13 @@ class Quantiles(TableTask):
             else:
                 stmt = '''
                     WITH data as (
-                        SELECT geoid, {select_statment}
+                        SELECT geoidsl, geoidsc, {select_statment}
                         FROM {source_table}
                     )
                     UPDATE {table} SET ({insert_statment}) = ({old_cols_statment})
                     FROM data
-                    WHERE data.geoid = {table}.geoidsc
-                     AND data.geoid = {table}.geoidsl
+                    WHERE data.geoidsc = {table}.geoidsc
+                     AND data.geoidsl = {table}.geoidsl
                 '''.format(
                     table        = self.output().table,
                     insert_statment = insert_statment,
