@@ -137,11 +137,8 @@ class SpielmanSingletonTable(TableTask):
     def requires(self):
         return {
             'columns': SpielmanSingletonColumns(),
-<<<<<<< HEAD
             'data_file': ProcessSpielmanSingletonFile(),
-=======
             'data': SpielmanSingletonTempTable(),
->>>>>>> master
             'tiger': GeoidColumns()
         }
 
