@@ -34,7 +34,7 @@ run-parallel:
 
 # Run a task using docker. For example make docker es-all
 docker-%:
-	docker-compose run -d --entrypoint 'make $(MAKE_TASK)' bigmetadata
+	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK)
 
 ###
 ### Utils
