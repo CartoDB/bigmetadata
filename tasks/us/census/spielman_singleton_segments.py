@@ -7,6 +7,7 @@ import os
 import subprocess
 
 from collections import OrderedDict
+from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask
 from tasks.meta import OBSColumn, current_session
 from tasks.util import shell, classpath
@@ -136,15 +137,19 @@ class SpielmanSingletonTable(TableTask):
     def requires(self):
         return {
             'columns': SpielmanSingletonColumns(),
+<<<<<<< HEAD
+            'data_file': ProcessSpielmanSingletonFile(),
+=======
             'data': SpielmanSingletonTempTable(),
+>>>>>>> master
             'tiger': GeoidColumns()
         }
 
     def version(self):
         return 10
 
-    def timespan(self):
-        return '2010 - 2014'
+    def table_timespan(self):
+        return get_timespan('2010 - 2014')
 
     def populate(self):
         input_ = self.input()

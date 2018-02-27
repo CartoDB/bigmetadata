@@ -8,7 +8,7 @@ from nose import with_setup
 from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
                         assert_true, assert_false, assert_greater)
 
-
+from lib.timespan import get_timespan
 from tests.util import runtask, setup, teardown
 
 from tasks.base_tasks import (ColumnsTask, TableTask, Shp2TempTableTask, DownloadUnzipTask, CSV2TempTableTask,
@@ -31,8 +31,8 @@ class BaseTestTableTask(TableTask):
 
     _test = False
 
-    def timespan(self):
-        return '2000'
+    def table_timespan(self):
+        return get_timespan('2000')
 
     def requires(self):
         return TestColumnsTask()
