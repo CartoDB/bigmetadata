@@ -1,17 +1,44 @@
-#!/usr/bin/python
 import docker
 import time
-client = docker.from_env()
-while(True):
-    active_containers = client.containers.list(filters = {'status': 'running', 'name': 'bigmetadata_bigmetadata_run'})
-    if not active_containers:
-        print("No more active containers. Exiting...")
-        break
-    else:
-        print("Still running containers. Sleeping...")
-        time.sleep(60)
+import argparse
+from datetime import datetime
 
-success_finished_containers = client.containers.list(filters = {'status': 'exited', 'exited': '0', 'name': 'bigmetadata_bigmetadata_run'})
-finished_containers = client.containers.list(filters = {'status': 'exited', 'name': 'bigmetadata_bigmetadata_run'})
-failed_containers = [container for container in finished_containers if container not in set(success_finished_containers)]
-print("Finished. Total {} -- Successful {} -- Failed {}".format(len(finished_containers), len(success_finished_containers), len(failed_containers)))
+def watch_containers(name, since=datetime.now(), pooling_time=60):
+    api_client = docker.APIClient(base_url='unix://var/run/docker.sock')
+    client = docker.from_env()
+    containers = get_active_containers(client, api_client, name, since)
+    while(True):
+        active_containers = get_active_containers(client, api_client, name, since)
+        if not active_containers:
+            print("No more active containers. Exiting...")
+            break
+        else:
+            print("Still running containers. Sleeping...")
+            time.sleep(pooling_time)
+
+    for container in containers:
+        successful_containers = []
+        failed_containers = []
+        exit_code = api_client.inspect_container(container.id)['State']['ExitCode']
+        if exit_code > 0:
+            failed_containers.append(container)
+        else:
+            successful_containers.append(container)
+        print("Finished. Total {} -- Successful {} -- Failed {}".format(len(active_containers), len(successful_containers), len(failed_containers)))
+
+def get_active_containers(client, api_client, name, since):
+    active_containers = []
+    for container in client.containers.list(filters = {'status': 'running', 'name': name}):
+        container_started_at = api_client.inspect_container(container.id)['State']['StartedAt'].split('.')[0]
+        starting_date = datetime.strptime(container_started_at, '%Y-%m-%dT%H:%M:%S')
+        if starting_date >= since:
+            active_containers.append(container)
+    return active_containers
+
+if __name__ == "__main__":
+    type_f =     parser = argparse.ArgumentParser('python3 watch_containers.py')
+    parser.add_argument('name', help='Name, complete or just a part, of the container to check')
+    parser.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S'), help='Date where the containers where started. Supported format YYYY-mm-dd HH:MM:SS')
+    parser.add_argument('--pooling-time', default=60, type=int, help='Time, in seconds, to check for the state of the active containers')
+    parsed_args = vars(parser.parse_args())
+    watch_containers(**parsed_args)
