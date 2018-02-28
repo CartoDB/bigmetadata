@@ -95,7 +95,7 @@ dataservices-api: extension
 	  pip install -r requirements.txt && pip install --upgrade .'
 	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
 	docker exec $$(docker-compose ps -q redis) sh -c \
-	  "$$(cat postgres/dataservices_con_runfig.redis)"
+	  "$$(cat postgres/dataservices_config.redis)"
 
 ###
 ### Tests
@@ -111,7 +111,7 @@ extension-perftest-record: extension
 	  -e OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
 	  -e OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
 	  bigmetadata \
-	  nosetests observatory-extension/s_runrc/python/test/perftest.py
+	  nosetests observatory-extension/src/python/test/perftest.py
 
 extension-autotest: extension
 	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
