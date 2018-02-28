@@ -7,6 +7,8 @@ def watch_containers(name, since=datetime.now(), pooling_time=60):
     api_client = docker.APIClient(base_url='unix://var/run/docker.sock')
     client = docker.from_env()
     containers = get_active_containers(client, api_client, name, since)
+    successful_containers = []
+    failed_containers = []
     while(True):
         active_containers = get_active_containers(client, api_client, name, since)
         if not active_containers:
@@ -17,14 +19,12 @@ def watch_containers(name, since=datetime.now(), pooling_time=60):
             time.sleep(pooling_time)
 
     for container in containers:
-        successful_containers = []
-        failed_containers = []
         exit_code = api_client.inspect_container(container.id)['State']['ExitCode']
         if exit_code > 0:
             failed_containers.append(container)
         else:
             successful_containers.append(container)
-        print("Finished. Total {} -- Successful {} -- Failed {}".format(len(active_containers), len(successful_containers), len(failed_containers)))
+    send_notification("Finished. Total {} -- Successful {} -- Failed {}".format(len(containers), len(successful_containers), len(failed_containers)))
 
 def get_active_containers(client, api_client, name, since):
     active_containers = []
@@ -35,8 +35,11 @@ def get_active_containers(client, api_client, name, since):
             active_containers.append(container)
     return active_containers
 
+def send_notification(message):
+    print(message)
+
 if __name__ == "__main__":
-    type_f =     parser = argparse.ArgumentParser('python3 watch_containers.py')
+    parser = argparse.ArgumentParser('python3 watch_containers.py')
     parser.add_argument('name', help='Name, complete or just a part, of the container to check')
     parser.add_argument('--since', type=lambda s: datetime.strptime(s, '%Y-%m-%d %H:%M:%S'), help='Date where the containers where started. Supported format YYYY-mm-dd HH:MM:SS')
     parser.add_argument('--pooling-time', default=60, type=int, help='Time, in seconds, to check for the state of the active containers')

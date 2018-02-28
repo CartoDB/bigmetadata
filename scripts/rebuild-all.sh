@@ -1,7 +1,9 @@
 #!/bin/bash
-countries=(au br ca es eu fr mx uk us)
+tasks=(au br ca es eu fr mx uk)
+heavy_tasks=(us)
 folders_regexp="^tmp\/\(au\.\|br\.\|ca\.\|es\.\|eu\.\|fr\.\|mx\.\|uk\.\|us\.\).*"
 schema_regexp="^(au\.|br\.|ca\.|es\.|eu\.|fr\.|mx\.|uk\.|us\.|tiger\d{4}|acs\d{4}_\dyr|whosonfirst)"
+if [ -z ${VIRTUAL_ENV+x} ]; then python_binary=python3; else python_binary=$VIRTUAL_ENV/bin/python3; fi
 
 set -e
 set -x
@@ -9,26 +11,36 @@ set -x
 cleanup()
 {
     # Remove schemas and directories for every country in the defined array
-    find tmp/ -maxdepth 1 -regex $folders_regexp -type d | xargs rm -rf
+    find tmp/ -maxdepth 1 -regex $folders_regexp -type d | xargs sudo rm -rf
     docker-compose run -d --rm bigmetadata psql -c "do \$\$ declare schema_rec record; begin for schema_rec in (select schema_name from information_schema.schemata where schema_name ~* '$schema_regexp') loop execute 'drop schema \"'|| schema_rec.schema_name ||'\" cascade'; end loop; end; \$\$"
     # Drop observatory schema
     docker-compose run -d --rm bigmetadata psql -c "drop schema observatory cascade"
-
 }
 
-run_build_tasks()
+run_tasks()
 {
-    # for country in "${countries[@]}"; do
-    make docker-es-all
-    sleep 1
-    # done
+    start_time=$(date +'%Y-%m-%d %H:%M:%S' --utc)
+    for task in "${tasks[@]}"; do
+        make docker-$task-all SCHEDULER=--local-scheduler
+        sleep 3
+    done
+}
+
+run_heavy_tasks()
+{
+    heavy_task_start_time=$(date +'%Y-%m-%d %H:%M:%S' --utc)
+    for task in "${heavy_tasks[@]}"; do
+        make docker-$task-all SCHEDULER=--local-scheduler
+    done
 }
 
 rebuild()
 {
     cleanup
-    run_build_tasks
-    /home/ethervoid/.virtualenvs/bigmetadata/bin/python3 scripts/watch_containers.py
+    run_tasks
+    $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$start_time"
+    run_heavy_tasks
+    $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$heavy_task_start_time"
 }
 
 read -p "You are going to delete EVERYTHING and rebuild all the data. Continue (y/n)?" choice
