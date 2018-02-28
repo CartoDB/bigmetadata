@@ -1542,7 +1542,6 @@ class RepoFile(Task):
     version = IntParameter()
 
     _repo_dir = 'repo'
-    _session = current_session()
     _path = None
 
     def requires(self):
@@ -1581,7 +1580,7 @@ class RepoFile(Task):
                            table=self.input().tablename,
                            resource_id=resource_id,
                            version=version)
-        result = self._session.execute(query).fetchone()
+        result = current_session().execute(query).fetchone()
         if result:
             checksum, url, path = result
 
@@ -1599,8 +1598,8 @@ class RepoFile(Task):
                            url=url,
                            checksum=checksum,
                            path=path)
-        self._session.execute(query)
-        self._session.commit()
+        current_session().execute(query)
+        current_session().commit()
 
     def _get_filepath(self):
         path = self._from_db(self.resource_id, self.version)[2]
