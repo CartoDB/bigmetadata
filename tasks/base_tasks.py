@@ -9,6 +9,8 @@ import inspect
 import zipfile
 import gzip
 import csv
+import hashlib
+import uuid
 
 import urllib.request
 from urllib.parse import quote_plus
@@ -1504,14 +1506,117 @@ def collect_meta_wrappers(test_module=None, test_all=True):
                 break
 
 
+class CreateRepoTable(Task):
+    schema = 'repo'
+    table = 'filerepo'
+
+    def run(self):
+        session = current_session()
+
+        create_schema = '''
+                        CREATE SCHEMA IF NOT EXISTS "{schema}"
+                        '''.format(schema=self.output().schema)
+        session.execute(create_schema)
+
+        create_table = '''
+                        CREATE TABLE IF NOT EXISTS "{schema}".{table} (
+                            id TEXT,
+                            version NUMERIC,
+                            checksum TEXT,
+                            url TEXT,
+                            path TEXT,
+                            PRIMARY KEY(id, version)
+                        );
+                        '''.format(schema=self.output().schema,
+                                   table=self.output().tablename)
+        session.execute(create_table)
+        session.commit()
+
+    def output(self):
+        return PostgresTarget(schema=self.schema, tablename=self.table, non_empty=False)
+
+
 class RepoFile(Task):
     resource_id = Parameter()
     url = Parameter()
     version = IntParameter()
 
+    _repo_dir = 'repo'
+    _session = current_session()
+    _path = None
+
+    def requires(self):
+        return CreateRepoTable()
+
     def run(self):
         self.output().makedirs()
+        digest = self._retrieve_remote_file()
+        self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
+
+    def _create_filepath(self):
+        return self._build_path(str(uuid.uuid4()))
+
+    def _build_path(self, filename):
+        return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
+
+    def _retrieve_remote_file(self):
         urllib.request.urlretrieve(self.url, self.output().path)
+        return self._digest(self.output().path)
+
+    # https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file
+    def _digest(self, file):
+        hash_md5 = hashlib.md5()
+        with open(file, "rb") as f:
+            for chunk in iter(lambda: f.read(4096), b''):
+                hash_md5.update(chunk)
+        return hash_md5.hexdigest()
+
+    def _from_db(self, resource_id, version):
+        checksum, url, path = None, None, None
+        query = '''
+                SELECT checksum, url, path FROM "{schema}".{table}
+                WHERE id = '{resource_id}'
+                  AND version = {version}
+                '''.format(schema=self.input().schema,
+                           table=self.input().tablename,
+                           resource_id=resource_id,
+                           version=version)
+        result = self._session.execute(query).fetchone()
+        if result:
+            checksum, url, path = result
+
+        return checksum, url, path
+
+    def _to_db(self, resource_id, version, checksum, url, path):
+        query = '''
+                INSERT INTO "{schema}".{table}
+                    (id, version, url, checksum, path)
+                VALUES ('{resource_id}', {version}, '{url}', '{checksum}', '{path}');
+                '''.format(schema=self.input().schema,
+                           table=self.input().tablename,
+                           resource_id=resource_id,
+                           version=version,
+                           url=url,
+                           checksum=checksum,
+                           path=path)
+        self._session.execute(query)
+        self._session.commit()
+
+    def _get_filepath(self):
+        path = self._from_db(self.resource_id, self.version)[2]
+        if not path:
+            if not self._path:
+                self._path = self._create_filepath()
+            path = self._path
+
+        return path
+
+    def complete(self):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
+            return False
+
+        return self._from_db(self.resource_id, self.version)[2] is not None
 
     def output(self):
-        return LocalTarget(os.path.join('repo', self.resource_id, str(self.version), self.resource_id))
+        return LocalTarget(self._get_filepath())
