@@ -21,20 +21,17 @@ ifneq (, $(findstring run, $$(firstword $(MAKECMDGOALS))))
   $(eval $(MOD_NAME):;@:)
 endif
 
-.PHONY: run run-local run-parallel catalog docs carto restore dataservices-api rebuild-all
+.PHONY: run run-parallel catalog docs carto restore dataservices-api rebuild-all
 
 run:
-	python3 -m luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
-
-run-local:
-	python3 -m luigi --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
-	python3 -m luigi --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
-# Run a task using docker. For example make docker es-all
+# Run a task using docker. For example make docker-es-all
 docker-%:
-	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK)
+	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
 
 ###
 ### Utils
