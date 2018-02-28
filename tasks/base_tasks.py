@@ -10,11 +10,12 @@ import zipfile
 import gzip
 import csv
 
+import urllib.request
 from urllib.parse import quote_plus
 from collections import OrderedDict
 from datetime import date
 
-from luigi import (Task, Parameter, LocalTarget, BoolParameter,
+from luigi import (Task, Parameter, LocalTarget, BoolParameter, IntParameter,
                    ListParameter, DateParameter, WrapperTask, Event)
 from luigi.contrib.s3 import S3Target
 
@@ -1501,3 +1502,16 @@ def collect_meta_wrappers(test_module=None, test_all=True):
             yield t, params
             if not test_all:
                 break
+
+
+class RepoFile(Task):
+    resource_id = Parameter()
+    url = Parameter()
+    version = IntParameter()
+
+    def run(self):
+        self.output().makedirs()
+        urllib.request.urlretrieve(self.url, self.output().path)
+
+    def output(self):
+        return LocalTarget(os.path.join('repo', self.resource_id, str(self.version), self.resource_id))
