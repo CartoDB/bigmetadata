@@ -294,15 +294,15 @@ ca-geo:
 es-all: es-cnig es-ine
 
 es-cnig:
-	make -- run es.cnig.AllGeometries >> /tmp/lala.log
+	make -- run es.cnig.AllGeometries
 
 es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
-	make -- run es.ine.PopulationHouseholdsHousingMeta >> /tmp/lala.log
+	make -- run es.ine.PopulationHouseholdsHousingMeta
 
 es-ine-fyp:
-	make -- run-parallel es.ine.FiveYearPopulationMeta >> /tmp/lala.log
+	make -- run es.ine.FiveYearPopulationMeta
 
 ### eurostat
 eu-all: eu-geo eu-data
@@ -317,13 +317,13 @@ eu-data:
 fr-all: fr-geo fr-insee fr-income
 
 fr-geo:
-	make -- run-parallel fr.geo.AllGeo
+	make -- run fr.geo.AllGeo
 
 fr-insee:
-	make -- run-parallel fr.insee.InseeAll
+	make -- run fr.insee.InseeAll
 
 fr-income:
-	make -- run-parallel fr.fr_income.IRISIncomeTables
+	make -- run fr.fr_income.IRISIncomeTables
 
 ### mx
 mx-all: mx-geo mx-census
