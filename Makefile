@@ -10,7 +10,7 @@ endif
 ###
 ### Tasks runners
 ###
-ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
+ifneq (, $(findstring run, $$(firstword $(MAKECMDGOALS))))
   # From word 2 to the end is the task
   TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   # Remove the class name to get the module name
