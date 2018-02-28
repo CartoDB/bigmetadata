@@ -6,7 +6,6 @@ schema_regexp="^(au\.|br\.|ca\.|es\.|eu\.|fr\.|mx\.|uk\.|us\.|tiger\d{4}|acs\d{4
 if [ -z ${VIRTUAL_ENV+x} ]; then python_binary=python3; else python_binary=$VIRTUAL_ENV/bin/python3; fi
 
 set -e
-set -x
 
 cleanup()
 {
