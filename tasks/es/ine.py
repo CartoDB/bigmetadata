@@ -3,13 +3,14 @@
 import csv
 import os
 
-
+from shutil import copyfile
 from collections import OrderedDict
 from luigi import Task, LocalTarget
 
 from lib.logger import get_logger
 
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper,
+                              RepoFile)
 from tasks.meta import OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
@@ -24,10 +25,15 @@ class DownloadGeometry(Task):
 
     URL = 'http://www.ine.es/censos2011_datos/cartografia_censo2011_nacional.zip'
 
+    def requires(self):
+        return RepoFile(resource_id=self.task_id, version=self.version(), url=self.URL)
+
+    def version(self):
+        return 1
+
     def run(self):
         self.output().makedirs()
-        shell('wget {url} -O {output}'.format(url=self.URL,
-                                              output=self.output().path))
+        copyfile(self.input().path, self.output().path)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self),
@@ -1727,10 +1733,18 @@ class SeccionDataDownload(Task):
     URL = 'http://www.ine.es/en/censos2011_datos/indicadores_seccion_censal_csv_en.zip'
     # inside that URL, concatenate all CSVs together to get all seccions
 
+    def requires(self):
+        return RepoFile(resource_id=self.task_id, version=self.version(), url=self.URL)
+
+    def version(self):
+        return 1
+
     def run(self):
         self.output().makedirs()
-        cmd = 'wget "{url}" -O {output_dir}.zip && ' \
-              'mkdir -p {output_dir} && ' \
+        copyfile(self.input().path, '{output_dir}.zip'.format(
+            output_dir=self.output().path.replace('.csv', '')
+        ))
+        cmd = 'mkdir -p {output_dir} && ' \
               'unzip -o {output_dir}.zip -d {output_dir} && ' \
               'tail -n +2 -q {output_dir}/*.csv > {output_csv}'.format(
                     url=self.URL,
@@ -1828,11 +1842,15 @@ class FiveYearPopulationDownload(Task):
 
     URL = 'http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px'
 
+    def requires(self):
+        return RepoFile(resource_id=self.task_id, version=self.version(), url=self.URL)
+
+    def version(self):
+        return 1
+
     def run(self):
         self.output().makedirs()
-        cmd = 'wget "{url}" -O "{output}"'.format(url=self.URL,
-                                                  output=self.output().path)
-        shell(cmd)
+        copyfile(self.input().path, self.output().path)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), '0001.px'))
