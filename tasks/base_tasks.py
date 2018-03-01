@@ -11,6 +11,7 @@ import gzip
 import csv
 
 from urllib.parse import quote_plus
+from urllib.parse import urlparse
 from collections import OrderedDict
 from datetime import date
 
@@ -735,8 +736,30 @@ class LoadPostgresFromURL(TempTableTask):
 
         Ignores tablespaces assigned in the SQL.
         '''
-        shell('curl {url} | gunzip -c | grep -v default_tablespace | psql'.format(
-            url=url))
+        filename = os.path.basename(urlparse(url).path)
+        uncompressed_filename = os.path.splitext(filename)[0]
+        path = os.path.join('tmp', classpath(self))
+        full_path = os.path.join(path, filename)
+        final_path = os.path.join(path, uncompressed_filename)
+        if not os.path.exists(path):
+            os.makedirs(path)
+        LOGGER.info('start downloading file {}'.format(url))
+        response = requests.get(url, stream=True)
+        with open(full_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk: # filter out keep-alive new chunks
+                    f.write(chunk)
+        LOGGER.info('downloaded file {}'.format(url))
+        gunzip = gzip.GzipFile(full_path, 'rb')
+        LOGGER.info('start uncompressing file {}'.format(uncompressed_filename))
+        with open(final_path, 'wb') as outfile:
+            outfile.write(gunzip.read())
+        LOGGER.info('uncompressed file {}'.format(uncompressed_filename))
+        shell("sed -i '/default_tablespace/d' {}".format(final_path))
+        LOGGER.info('removed default_template from file {}'.format(uncompressed_filename))
+        LOGGER.info('Loading data from file {} to Postgres'.format(uncompressed_filename))
+        output=shell("psql -f {sqlfile}".format(sqlfile=final_path))
+        LOGGER.info('Loaded file {} into Postgresql'.format(uncompressed_filename))
         self.mark_done()
 
     def mark_done(self):
