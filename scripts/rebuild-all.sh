@@ -4,6 +4,7 @@ heavy_tasks=(us)
 folders_regexp="^tmp\/\(au\.\|br\.\|ca\.\|es\.\|eu\.\|fr\.\|mx\.\|uk\.\|us\.\).*"
 schema_regexp="^(au\.|br\.|ca\.|es\.|eu\.|fr\.|mx\.|uk\.|us\.|tiger\d{4}|acs\d{4}_\dyr|whosonfirst)"
 if [ -z ${VIRTUAL_ENV+x} ]; then python_binary=python3; else python_binary=$VIRTUAL_ENV/bin/python3; fi
+run_heavy_tasks=${RUN_HEAVY_TASKS:-true}
 
 set -e
 
@@ -16,7 +17,7 @@ cleanup()
     docker-compose run -d --rm bigmetadata psql -c "drop schema observatory cascade"
 }
 
-run_tasks()
+execute_tasks()
 {
     start_time=$(date +'%Y-%m-%d %H:%M:%S' --utc)
     for task in "${tasks[@]}"; do
@@ -25,7 +26,7 @@ run_tasks()
     done
 }
 
-run_heavy_tasks()
+execute_heavy_tasks()
 {
     heavy_task_start_time=$(date +'%Y-%m-%d %H:%M:%S' --utc)
     for task in "${heavy_tasks[@]}"; do
@@ -36,10 +37,14 @@ run_heavy_tasks()
 rebuild()
 {
     cleanup
-    run_tasks
+    execute_tasks
     $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$start_time"
-    run_heavy_tasks
-    $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$heavy_task_start_time"
+    if [ "$run_heavy_tasks" = true ]; then
+        execute_heavy_task
+        $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$heavy_task_start_time"
+    else
+        echo "Skipping heavy tasks..."
+    fi
 }
 
 read -p "You are going to delete EVERYTHING and rebuild all the data. Continue (y/n)?" choice
