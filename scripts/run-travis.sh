@@ -1,7 +1,4 @@
 #!/bin/bash -e
-if [ ! -d "/bigmetadata/tmp/logs" ]; then
-  mkdir /bigmetadata/tmp/logs
-fi
 docker run \
   -v $PWD:/bigmetadata \
   --net=host --env-file=.env.sample \
