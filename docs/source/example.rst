@@ -559,7 +559,7 @@ Several methods must be overriden for ``TableTask`` to work:
    a re-run/overwrite without having to track down and delete output
    artifacts.
 
--  ``timespan()``: the timespan (for example, '2014', or '2012Q4') that
+-  ``table_timespan()``: the timespan (for example, '2014', or '2012Q4') that
    identifies the date range or point-in-time for this table.
 
 -  ``columns()``: an OrderedDict of (colname, ColumnTarget) pairs. This
@@ -595,8 +595,8 @@ Several methods must be overriden for ``TableTask`` to work:
                     requirements['naics'][naics_code] = QCEWColumns(naics_code=naics_code)
             return requirements
         
-        def timespan(self):
-            return '{year}Q{qtr}'.format(year=self.year, qtr=self.qtr)
+        def table_timespan(self):
+            return get_timespan('{year}Q{qtr}'.format(year=self.year, qtr=self.qtr))
         
         def columns(self):
             # Here we assemble an OrderedDict using our requirements to specify the

@@ -9,6 +9,7 @@ import urllib.request
 
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag, GEOM_REF
+from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
                               TagsTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
@@ -544,8 +545,8 @@ class WorkplaceAreaCharacteristics(TableTask):
             'sumlevel': SumLevel(year='2015', geography='census_tract'),
         }
 
-    def timespan(self):
-        return str(self.year)
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def targets(self):
         return {self.input()['shoreline'].obs_table: GEOM_REF,

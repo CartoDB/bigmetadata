@@ -8,6 +8,7 @@ from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
 from lib.columns import ColumnsDeclarations
 from lib.logger import get_logger
+from lib.timespan import get_timespan
 
 import csv
 import os
@@ -458,8 +459,8 @@ class TableEU(TableTask):
             self.input()['geo'].obs_table: GEOM_REF,
         }
 
-    def timespan(self):
-        return str(self.year).replace('_',' - ')
+    def table_timespan(self):
+        return get_timespan(str(self.year).replace('_', ' - '))
 
     def requires(self):
         requirements = {

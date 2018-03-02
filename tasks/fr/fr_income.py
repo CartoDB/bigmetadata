@@ -8,6 +8,7 @@ import glob
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.geo import OutputAreaColumns, OutputAreas
+from lib.timespan import get_timespan
 import csv
 import pandas as pd
 
@@ -177,8 +178,8 @@ class FranceIncome(TableTask):
             self.input()['geo'].obs_table: GEOM_REF,
         }
 
-    def timespan(self):
-        return '2012'
+    def table_timespan(self):
+        return get_timespan('2012')
 
     def requires(self):
         requirements = {

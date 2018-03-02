@@ -6,6 +6,8 @@ import re
 from luigi import Parameter, WrapperTask
 from collections import OrderedDict
 
+from lib.timespan import get_timespan
+
 from tasks.util import shell
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn, GEOM_REF
@@ -358,8 +360,8 @@ class BCP(TableTask):
             'meta': Columns(year=self.year, profile='BCP', tablename=self.tablename),
         }
 
-    def timespan(self):
-        return str(self.year)
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         cols = OrderedDict()

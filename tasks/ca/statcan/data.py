@@ -6,6 +6,8 @@ from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
 
 from lib.logger import get_logger
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
 from tasks.meta import current_session, GEOM_REF
@@ -251,8 +253,8 @@ class Census(Survey):
             self.input()['geo'].obs_table: GEOM_REF,
         }
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
 
 class AllCensusTopics(BaseParams, WrapperTask):
@@ -280,8 +282,8 @@ class NHS(Survey):
             self.input()['geo'].obs_table: GEOM_REF,
         }
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
 
 class AllNHSTopics(BaseParams, WrapperTask):

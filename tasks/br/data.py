@@ -6,6 +6,8 @@ import pandas as pd
 
 from luigi import Parameter, WrapperTask
 
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
@@ -329,8 +331,8 @@ class Censos(TableTask):
             'meta': Columns(tablename=self.tablename),
         }
 
-    def timespan(self):
-        return '2010'
+    def table_timespan(self):
+        return get_timespan('2010')
 
     def columns(self):
         cols = OrderedDict()

@@ -14,7 +14,7 @@ from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
-
+from lib.timespan import get_timespan
 
 # cherry-picked datasets
 HOMETYPES = {
@@ -339,9 +339,9 @@ class Zillow(TableTask):
 
         return requirements
 
-    def timespan(self):
-        return '{year}-{month}'.format(year=str(self.year).zfill(2),
-                                       month=str(self.month).zfill(2))
+    def table_timespan(self):
+        return get_timespan('{year}-{month}'.format(year=str(self.year).zfill(2),
+                                                    month=str(self.month).zfill(2)))
 
     def columns(self):
         input_ = self.input()

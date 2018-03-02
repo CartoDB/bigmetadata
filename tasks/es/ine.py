@@ -8,6 +8,7 @@ from collections import OrderedDict
 from luigi import Task, LocalTarget
 
 from lib.logger import get_logger
+from lib.timespan import get_timespan
 
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper
 from tasks.meta import OBSTable, OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
@@ -104,7 +105,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -115,8 +116,8 @@ class Geometry(TableTask):
     def columns(self):
         return self.input()['meta']
 
-    def timespan(self):
-        return '2011'
+    def table_timespan(self):
+        return get_timespan('2011')
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -1809,8 +1810,8 @@ class PopulationHouseholdsHousing(TableTask):
     def targets(self):
         return {self.input()['geo'].obs_table: GEOM_REF}
 
-    def timespan(self):
-        return '2011'
+    def table_timespan(self):
+        return get_timespan('2011')
 
     def columns(self):
         '''
@@ -2096,8 +2097,8 @@ class FiveYearPopulation(TableTask):
 
         return cols
 
-    def timespan(self):
-        return '2015'
+    def table_timespan(self):
+        return get_timespan('2015')
 
     def populate(self):
         session = current_session()

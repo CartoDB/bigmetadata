@@ -3,6 +3,7 @@ from collections import OrderedDict, defaultdict
 from luigi import WrapperTask, Parameter
 
 from tasks.meta import current_session, GEOM_REF
+from lib.timespan import get_timespan
 from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
@@ -34,6 +35,9 @@ class CensusTableTask(WrapperTask):
 
 
 class Census(TableTask):
+    def version(self):
+        return 2
+
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
@@ -53,8 +57,8 @@ class Census(TableTask):
             self.input()['geo'].obs_table: GEOM_REF,
         }
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
     def columns(self):
         cols = OrderedDict()

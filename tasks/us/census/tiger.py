@@ -8,6 +8,7 @@ import json
 import os
 import subprocess
 from collections import OrderedDict
+from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
                               SimplifiedTempTableTask)
 from tasks.util import classpath, grouper, shell
@@ -629,8 +630,8 @@ class ShorelineClip(TableTask):
             ('aland', self.input()['attributes']['aland'])
         ])
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -697,8 +698,8 @@ class SumLevel(TableTask):
             ('awater', input_['attributes']['awater']),
         ])
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -756,8 +757,8 @@ class GeoNamesTable(TableTask):
             ('geoname', self.input()['geonames'][self.geography + '_geoname'])
         ])
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def populate(self):
 
@@ -883,7 +884,7 @@ class PointLandmark(TableTask):
     year = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -893,8 +894,8 @@ class PointLandmark(TableTask):
             'shared': SharedTigerColumns()
         }
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         shared = self.input()['shared']
@@ -972,10 +973,10 @@ class PriSecRoads(TableTask):
         }
 
     def version(self):
-        return 3
+        return 4
 
-    def timespan(self):
-        return self.year
+    def table_timespan(self):
+        return get_timespan(str(self.year))
 
     def columns(self):
         shared = self.input()['shared']

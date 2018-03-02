@@ -4,6 +4,7 @@ from tasks.util import shell
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
 from tasks.us.ny.nyc.tags import NYCTags
+from lib.timespan import get_timespan
 
 from luigi import Parameter, WrapperTask
 
@@ -754,7 +755,7 @@ class MapPLUTO(TableTask):
     release = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -870,8 +871,8 @@ class MapPLUTO(TableTask):
             ("wkb_geometry", nyc["parcel"]),
         ])
 
-    def timespan(self):
-        return '20' + self.release
+    def table_timespan(self):
+        return get_timespan('20' + self.release)
 
     def populate(self):
         input_ = self.input()

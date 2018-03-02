@@ -2,6 +2,8 @@
 
 from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
                               SimplifiedTempTableTask)
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag, OBSTable
@@ -253,10 +255,10 @@ class NUTSGeometries(TableTask):
     level = IntParameter(default=3)
 
     def version(self):
-        return 5
+        return 6
 
-    def timespan(self):
-        return 2015
+    def table_timespan(self):
+        return get_timespan('2015')
 
     def requires(self):
         return {

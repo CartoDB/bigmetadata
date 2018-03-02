@@ -12,7 +12,7 @@ from luigi import Target
 from sqlalchemy import (Column, Integer, Text, MetaData, Numeric, cast,
                         create_engine, event, ForeignKey, ForeignKeyConstraint,
                         exc, func, UniqueConstraint, Index)
-from sqlalchemy.dialects.postgresql import JSON
+from sqlalchemy.dialects.postgresql import JSON, DATERANGE
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker, backref
@@ -609,8 +609,9 @@ class OBSTable(Base):
 
     .. py:attribute:: timespan
 
-       A string containing information about the timespan this table applies
-       to.  Obtained from :meth:`~.tasks.TableTask.timespan`.
+       An OBSTimespan instance containing information about the timespan
+       this table applies to.
+       Obtained from :meth:`~.tasks.TableTask.timespan`.
 
     .. py:attribute:: the_geom
 
@@ -635,7 +636,9 @@ class OBSTable(Base):
                            cascade="all,delete")
 
     tablename = Column(Text, nullable=False)
-    timespan = Column(Text)
+    timespan = Column(Text, ForeignKey('obs_timespan.id'))
+    table_timespan = relationship("OBSTimespan")
+
     the_geom = Column(Geometry)
     description = Column(Text)
 
@@ -808,6 +811,20 @@ class OBSColumnTableTileSimple(Base):
     cvxhull_restraint = Index('obs_column_table_simple_chtile',
                               func.ST_ConvexHull(tile),
                               postgresql_using='gist')
+
+
+class OBSTimespan(Base):
+    '''
+    Describes a timespan table in our database.
+    '''
+    __tablename__ = 'obs_timespan'
+
+    id = Column(Text, primary_key=True)  # fully-qualified id
+    alias = Column(Text)  # alias for backwards compatibility
+    name = Column(Text)  # human-readable name
+    description = Column(Text)  # human-readable description
+    timespan = Column(DATERANGE)
+    weight = Column(Integer, default=0)
 
 
 class CurrentSession(object):

@@ -146,7 +146,7 @@ etl-unittest:
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_tabletasks.py'
+	    tests/test_tabletasks.py tests/test_lib.py'
 
 etl-metadatatest:
 	docker-compose run --rm bigmetadata /bin/bash -c \
@@ -159,7 +159,7 @@ travis-etl-unittest:
 	./run-travis.sh \
 	  'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
-	    tests/test_tabletasks.py'
+	    tests/test_tabletasks.py tests/test_lib.py'
 
 travis-diff-catalog:
 	git fetch origin master

@@ -1,5 +1,6 @@
 import os
 
+from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
                               SimplifiedTempTableTask)
 from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
@@ -95,7 +96,7 @@ class HUCColumns(ColumnsTask):
 class HUC(TableTask):
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -106,8 +107,8 @@ class HUC(TableTask):
     def columns(self):
         return self.input()['columns']
 
-    def timespan(self):
-        return '2015'
+    def table_timespan(self):
+        return get_timespan('2015')
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):

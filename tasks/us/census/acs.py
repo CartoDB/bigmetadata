@@ -10,6 +10,7 @@ import os
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
+from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromURL
 from tasks.util import grouper
 from lib.logger import get_logger
@@ -3379,10 +3380,10 @@ class Quantiles(TableTask):
         columns.update(input_['columns'])
         return columns
 
-    def timespan(self):
+    def table_timespan(self):
         sample = int(self.sample[0])
-        return '{start} - {end}'.format(start=int(self.year) - sample + 1,
-                                        end=int(self.year))
+        return get_timespan('{start} - {end}'.format(start=int(self.year) - sample + 1,
+                                                     end=int(self.year)))
 
     def populate(self):
         connection = current_session()
@@ -3455,10 +3456,10 @@ class Extract(TableTask):
             'tigerdata': SumLevel(geography=self.geography, year='2015')
         }
 
-    def timespan(self):
+    def table_timespan(self):
         sample = int(self.sample[0])
-        return '{start} - {end}'.format(start=int(self.year) - sample + 1,
-                                        end=int(self.year))
+        return get_timespan('{start} - {end}'.format(start=int(self.year) - sample + 1,
+                                                     end=int(self.year)))
 
     def targets(self):
         return {self.input()['tigerdata'].obs_table: GEOM_REF}

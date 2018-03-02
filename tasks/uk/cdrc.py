@@ -4,6 +4,7 @@ from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTas
 from tasks.util import shell
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
+from lib.timespan import get_timespan
 
 from collections import OrderedDict
 import os
@@ -124,10 +125,10 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -347,9 +348,11 @@ class OutputAreaClassificationColumns(ColumnsTask):
 
 
 class OutputAreaClassifications(TableTask):
+    def version(self):
+        return 2
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
     def requires(self):
         return {
