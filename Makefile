@@ -3,7 +3,14 @@ SHELL = /bin/bash
 ###
 ### Tasks runners
 ###
-ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
+ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
+  MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
+endif
+
+###
+### Tasks runners
+###
+ifneq (, $(findstring run, $$(firstword $(MAKECMDGOALS))))
   # From word 2 to the end is the task
   TASK := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
   # Remove the class name to get the module name
@@ -14,22 +21,17 @@ ifneq (, $(filter $(firstword $(MAKECMDGOALS)), run run-local run-parallel))
   $(eval $(MOD_NAME):;@:)
 endif
 
-.PHONY: run run-local run-parallel catalog docs carto restore dataservices-api
-
-ifdef VIRTUAL_ENV
-LUIGI := LUIGI_CONFIG_PATH=conf python3 -m luigi
-else
-LUIGI := docker-compose run --rm bigmetadata luigi
-endif
+.PHONY: run run-parallel catalog docs carto restore dataservices-api rebuild-all
 
 run:
-	$(LUIGI) --module tasks.$(MOD_NAME) tasks.$(TASK)
-
-run-local:
-	$(LUIGI) --local-scheduler --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
-	$(LUIGI) --parallel-scheduling --workers=8 --module tasks.$(MOD_NAME) tasks.$(TASK)
+	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
+
+# Run a task using docker. For example make docker-es-all
+docker-%:
+	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
 
 ###
 ### Utils
@@ -60,6 +62,13 @@ up:
 
 restore:
 	docker-compose run --rm -d bigmetadata pg_restore -U docker -j4 -O -x -e -d gis $(RUN_ARGS)
+
+###
+### Rebuild task
+###
+
+rebuild-all:
+	./scripts/rebuild-all.sh
 
 ###
 ### Extensions
@@ -156,19 +165,19 @@ etl-metadatatest:
 	    tests/test_metadata.py'
 
 travis-etl-unittest:
-	./run-travis.sh \
+	./scripts/run-travis.sh \
 	  'nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_tabletasks.py tests/test_lib.py'
 
 travis-diff-catalog:
 	git fetch origin master
-	./run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.base_tasks tasks.base_tasks.RunDiff --compare FETCH_HEAD'
-	./run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
+	./scripts/run-travis.sh 'python3 -c "from tests.util import recreate_db; recreate_db()"'
+	./scripts/run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.base_tasks tasks.base_tasks.RunDiff --compare FETCH_HEAD'
+	./scripts/run-travis.sh 'ENVIRONMENT=test luigi --local-scheduler --module tasks.sphinx tasks.sphinx.Catalog --force'
 
 travis-etl-metadatatest:
-	./run-travis.sh 'nosetests -v tests/test_metadata.py'
+	./scripts/run-travis.sh 'nosetests -v tests/test_metadata.py'
 
 releasetest: extension-fixtures extension-perftest-record extension-unittest extension-autotest
 
@@ -285,15 +294,15 @@ ca-geo:
 es-all: es-cnig es-ine
 
 es-cnig:
-	make -- run-parallel es.cnig.AllGeometries
+	make -- run es.cnig.AllGeometries
 
 es-ine: es-ine-phh es-ine-fyp
 
 es-ine-phh:
-	make -- run-parallel es.ine.PopulationHouseholdsHousingMeta
+	make -- run es.ine.PopulationHouseholdsHousingMeta
 
 es-ine-fyp:
-	make -- run-parallel es.ine.FiveYearPopulationMeta
+	make -- run es.ine.FiveYearPopulationMeta
 
 ### eurostat
 eu-all: eu-geo eu-data
@@ -308,13 +317,13 @@ eu-data:
 fr-all: fr-geo fr-insee fr-income
 
 fr-geo:
-	make -- run-parallel fr.geo.AllGeo
+	make -- run fr.geo.AllGeo
 
 fr-insee:
-	make -- run-parallel fr.insee.InseeAll
+	make -- run fr.insee.InseeAll
 
 fr-income:
-	make -- run-parallel fr.fr_income.IRISIncomeTables
+	make -- run fr.fr_income.IRISIncomeTables
 
 ### mx
 mx-all: mx-geo mx-census

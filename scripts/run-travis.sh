@@ -1,5 +1,4 @@
 #!/bin/bash -e
-
 docker run \
   -v $PWD:/bigmetadata \
   --net=host --env-file=.env.sample \

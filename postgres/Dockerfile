@@ -23,7 +23,7 @@ RUN wget http://download.osgeo.org/postgis/source/postgis-2.2.5.tar.gz && \
     make install && \
     rm -rf ../postgis-2.2.5*
 
-COPY conf/postgresql.conf /etc/postgresql/9.5/main/
+COPY --chown=postgres:postgres conf/postgresql.conf /etc/postgresql/9.5/main/
 COPY conf/rsyslog/10-postgresql.conf /etc/rsyslog.d/
 
 COPY scripts/start.sh /
