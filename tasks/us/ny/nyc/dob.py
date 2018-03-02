@@ -2,6 +2,7 @@ from luigi import IntParameter
 from xlrd import open_workbook
 from xlrd.xldate import xldate_as_tuple
 
+from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, TempTableTask, DownloadUnzipTask
 from tasks.util import shell
 from tasks.meta import current_session, OBSColumn
@@ -427,7 +428,7 @@ class PermitColumns(ColumnsTask):
 class PermitIssuance(TableTask):
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         data_tables = {}
@@ -512,8 +513,8 @@ class PermitIssuance(TableTask):
             ('owner_phone_number', permit['owner_phone_number']),
         ])
 
-    def timespan(self):
-        return 'current'
+    def table_timespan(self):
+        return get_timespan('current')
 
     def populate(self):
         input_ = self.input()

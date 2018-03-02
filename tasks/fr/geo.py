@@ -2,6 +2,8 @@ from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, Table
                               SimplifiedTempTableTask)
 from tasks.util import shell
 from tasks.meta import OBSColumn, current_session, GEOM_REF, GEOM_NAME
+from lib.timespan import get_timespan
+
 from collections import OrderedDict
 import os
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -99,10 +101,10 @@ class OutputAreas(TableTask):
         }
 
     def version(self):
-        return 5
+        return 6
 
-    def timespan(self):
-        return 2013
+    def table_timespan(self):
+        return get_timespan('2013')
 
     def columns(self):
         input_ = self.input()

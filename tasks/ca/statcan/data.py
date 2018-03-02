@@ -6,6 +6,8 @@ from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
 
 from lib.logger import get_logger
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
 from tasks.meta import current_session
@@ -180,7 +182,7 @@ class Survey(BaseParams, TableTask):
     topic = Parameter(default='t001')
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         '''
@@ -246,8 +248,8 @@ class Census(Survey):
             'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
 
 class AllCensusTopics(BaseParams, WrapperTask):
@@ -270,8 +272,8 @@ class NHS(Survey):
             'meta': NHSColumns(),
         }
 
-    def timespan(self):
-        return 2011
+    def table_timespan(self):
+        return get_timespan('2011')
 
 
 class AllNHSTopics(BaseParams, WrapperTask):

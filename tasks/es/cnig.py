@@ -2,6 +2,8 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
+from lib.timespan import get_timespan
+
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask
 from tasks.util import shell, classpath
 
@@ -211,7 +213,7 @@ class Geometry(TableTask):
     timestamp = Parameter(default='20150101')
 
     def version(self):
-        return 12
+        return 13
 
     def requires(self):
         return {
@@ -226,8 +228,8 @@ class Geometry(TableTask):
                                                     id_aux='y')
         }
 
-    def timespan(self):
-        return self.timestamp
+    def table_timespan(self):
+        return get_timespan(str(self.timestamp))
 
     def columns(self):
         return OrderedDict([
