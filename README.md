@@ -92,7 +92,7 @@ usage: python3 watch_containers.py [-h] [--since SINCE]
 Let me explain the options:
 
 * **name**: Name, complete or a part of it, of the container to watch
-* **since**: [optional] Date in the `YYYY-mm-dd HH:MM:SS` format since the script starts looking for docker containers to watch. Default value is the now()
+* **since**: [optional] Date in the `YYYY-mm-dd HH:MM:SS` UTC format since the script starts looking for docker containers to watch. Default value is [utcnow()](https://docs.python.org/2/library/datetime.html#datetime.datetime.utcnow) value
 * **pooling-time**: [optional] How many seconds we check for containers completion. Default value is 60 seconds
 * **notification-channel**: [optional] Where to send the notifications: stdout, slack or logfile. Default value is `stdout`
 *
