@@ -165,7 +165,7 @@ class EnviroAtlas(TableTask):
     time = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -174,9 +174,6 @@ class EnviroAtlas(TableTask):
             'data': EnviroAtlasTempTable(csv_name=self.table + '.csv'),
             'geo': HUC(),
         }
-
-    def version(self):
-        return 3
 
     def targets(self):
         return {

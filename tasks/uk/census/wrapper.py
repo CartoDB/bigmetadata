@@ -49,9 +49,6 @@ class Census(TableTask):
 
         return deps
 
-    def version(self):
-        return 2
-
     def targets(self):
         return {
             self.input()['geo'].obs_table: GEOM_REF,
