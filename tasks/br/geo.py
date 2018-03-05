@@ -2,12 +2,14 @@ from luigi import Task, Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
+                              RepoFile)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from abc import ABCMeta
 from collections import OrderedDict
+from shutil import copyfile
 
 
 GEO_M = 'municipios'
@@ -130,20 +132,27 @@ class DownloadGeography(BaseParams, DownloadUnzipTask):
 
     FILENAME = '{state}_{resolution}.zip'
 
-    def download(self):
+    def version(self):
+        return 1
 
+    def requires(self):
         path = self.PATH.format(state=self.state)
 
         res = self.resolution
-        if self.state == 'go': #exception here for go
+        if self.state == 'go':  # exception here for go
             res = res.replace('_', '%20_')
 
         filename = self.FILENAME.format(state=self.state, resolution=res)
 
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path,
-            url=path + filename
-        ))
+        url = path + filename
+
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=url)
+
+    def download(self):
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportGeography(BaseParams, Shp2TempTableTask):
