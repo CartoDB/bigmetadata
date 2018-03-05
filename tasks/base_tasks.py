@@ -846,13 +846,13 @@ class TableTask(Task):
     def targets(self):
         return {}
 
-    def timespan(self):
+    def table_timespan(self):
         '''
-        Must return an arbitrary string timespan (for example, ``2014``, or
-        ``2012Q4``) that identifies the date range or point-in-time for this
-        table.  Must be implemented by subclass.
+        Must return an OBSTimespan instance that identifies the date range
+        or point-in-time for this table.
+        Must be implemented by subclass.
         '''
-        raise NotImplementedError('Must define timespan for table')
+        raise NotImplementedError('Must return an OBSTimespan for table')
 
     def the_geom(self, output, colname):
         session = current_session()
@@ -1012,7 +1012,7 @@ class TableTask(Task):
                          underscore_slugify(unqualified_task_id(self.task_id)),
                          OBSTable(description=self.description(),
                                   version=self.version(),
-                                  timespan=self.timespan(),
+                                  table_timespan=self.table_timespan(),
                                   targets=self.targets()),
                          self._columns, self)
         return tt
@@ -1022,7 +1022,7 @@ class TableTask(Task):
                            underscore_slugify(unqualified_task_id(self.task_id)),
                            OBSTable(description=self.description(),
                                     version=self.version(),
-                                    timespan=self.timespan()),
+                                    table_timespan=self.table_timespan()),
                            [], self).exists()
 
 

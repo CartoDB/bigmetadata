@@ -15,11 +15,11 @@ services:
       PGDATABASE: gis
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
+      ALLOW_IP_RANGE: '172.0.0.0/8'
     privileged: true
     ports:
       - 5554:5432
     env_file: .env
-    network_mode: bridge
 
   nginx:
     image: nginx:latest
@@ -30,16 +30,15 @@ services:
       - ./perftest:/usr/share/nginx/html/perftest/:ro
     ports:
       - 80
-    network_mode: bridge
 
   bigmetadata_daemon:
     image: carto/bigmetadata
-    links:
-      - postgres
     volumes:
       - .:/bigmetadata
     ports:
       - 8082
+    depends_on:
+      - postgres
     environment:
       PYTHONPATH: /bigmetadata
       PGHOST: postgres
@@ -49,27 +48,29 @@ services:
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
       LUIGI_CONFIG_PATH: /bigmetadata/conf/luigi_daemon.cfg
+      LOGGING_CONFIG_PATH: /bigmetadata/conf/logging_daemon.cfg
+      LOGGING_FILE: etl_daemon.log
     env_file: .env
     command: "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && luigid'"
-    network_mode: bridge
 
   bigmetadata:
     image: carto/bigmetadata
-    links:
-      - postgres
-      - bigmetadata_daemon
     volumes:
       - .:/bigmetadata
+    depends_on:
+      - postgres
+      - bigmetadata_daemon
+    entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
-      PYTHONPATH: /bigmetadata
+      PYTHONPATH: '/bigmetadata'
       PGHOST: postgres
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
-      LUIGI_CONFIG_PATH: /bigmetadata/conf/luigi_client.cfg
+      LUIGI_CONFIG_PATH: /opt/bigmetadata/etc/luigi_client.cfg
+      LOGGING_CONFIG_PATH: /opt/bigmetadata/etc/logging_client.cfg
     env_file: .env
     stdin_open: true
     tty: true
-    network_mode: bridge

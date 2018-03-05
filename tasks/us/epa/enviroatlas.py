@@ -1,6 +1,7 @@
 from luigi import Parameter, WrapperTask
 
-from tasks.meta import OBSColumn, current_session
+from lib.timespan import get_timespan
+from tasks.meta import OBSColumn, current_session, UNIVERSE
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUCColumns, SourceTags
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
@@ -49,20 +50,22 @@ class EnviroAtlasColumns(ColumnsTask):
         }
 
     def solar_energy(self, usa, environmental, license_, source, units):
+        sol_e_area = OBSColumn(
+                        name='Area with solar energy potential',
+                        tags=[usa, environmental, license_, source, units['km2']],
+                        weight=5,
+                        type='Numeric',
+                        aggregate='sum',
+                     )
         return OrderedDict([
-            ('SolE_Area', OBSColumn(
-                name='Area with solar energy potential',
-                tags=[usa, environmental, license_, source, units['km2']],
-                weight=5,
-                type='Numeric',
-                aggregate='sum',
-            )),
+            ('SolE_Area', sol_e_area),
             ('SolE_Mean', OBSColumn(
                 name='Annual Average direct normal solar resources kWh/m2/day',
                 tags=[usa, environmental, license_, source, units['ratio']],
                 weight=5,
                 type='Numeric',
                 aggregate='average',
+                targets={sol_e_area: UNIVERSE},
             ))
         ])
 
@@ -72,7 +75,8 @@ class EnviroAtlasColumns(ColumnsTask):
             ('MeanPrecip', OBSColumn(
                 name='Average annual precipitation',
                 description='Average annual precipitation in inches.',
-                aggregate='average',
+                aggregate='sum',  # This is an average, but there is no column
+                                  # that can be used as a UNIVERSE target for it
                 type='Numeric',
                 weight=5,
                 tags=[usa, environmental, license_, source, inches],))
@@ -160,6 +164,9 @@ class EnviroAtlas(TableTask):
     table = Parameter()
     time = Parameter()
 
+    def version(self):
+        return 2
+
     def requires(self):
         return {
             'geom_cols': HUCColumns(),
@@ -167,8 +174,8 @@ class EnviroAtlas(TableTask):
             'data': EnviroAtlasTempTable(csv_name=self.table + '.csv'),
         }
 
-    def timespan(self):
-        return self.time
+    def table_timespan(self):
+        return get_timespan(str(self.time))
 
     def columns(self):
         cols = OrderedDict()

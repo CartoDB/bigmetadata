@@ -9,6 +9,7 @@ import os
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.geo import OutputAreaColumns, OutputAreas
+from lib.timespan import get_timespan
 import csv
 import pandas as pd
 
@@ -236,10 +237,10 @@ class FranceCensus(TableTask):
     table_theme = Parameter()
 
     def version(self):
-        return 9
+        return 10
 
-    def timespan(self):
-        return '2012'
+    def table_timespan(self):
+        return get_timespan('2012')
 
     def requires(self):
         requirements = {

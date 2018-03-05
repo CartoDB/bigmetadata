@@ -1,6 +1,7 @@
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
+from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask)
 from tasks.util import shell
@@ -252,7 +253,7 @@ class Geography(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {
@@ -260,8 +261,8 @@ class Geography(TableTask):
             'columns': GeographyColumns(resolution=self.resolution)
         }
 
-    def timespan(self):
-        return 2015
+    def table_timespan(self):
+        return get_timespan('2015')
 
     def columns(self):
         return self.input()['columns']
@@ -289,10 +290,10 @@ class Census(TableTask):
     table = Parameter()
 
     def version(self):
-        return 5
+        return 6
 
-    def timespan(self):
-        return 2010
+    def table_timespan(self):
+        return get_timespan('2010')
 
     def requires(self):
         return {

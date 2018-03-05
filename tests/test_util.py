@@ -9,12 +9,13 @@ from tasks.util import underscore_slugify, generate_tile_summary
 from tasks.targets import PostgresTarget, ColumnTarget, TagTarget, TableTarget
 from tasks.meta import (UNIVERSE, OBSColumn, OBSColumnTable, OBSTag, current_session,
                         OBSTable, OBSColumnTag, OBSColumnToColumn, metadata)
+from lib.timespan import get_timespan
 
 
 def test_underscore_slugify():
     assert_equals(underscore_slugify('"path.to.schema"."ClassName(param1=100, param2=foobar)"'),
-                  'path_to_schema_class_name_param1_100_param2_foobar'
-                 )
+                  'path_to_schema_class_name_param1_100_param2_foobar')
+
 
 @with_setup(setup, teardown)
 def test_column_target_create_update():
@@ -432,8 +433,8 @@ class TestTableTask(TableTask):
             'foobar': self.input()['meta']['foobar']
         }
 
-    def timespan(self):
-        return ''
+    def table_timespan(self):
+        return get_timespan('2000')
 
     def populate(self):
         session = current_session()
@@ -457,8 +458,8 @@ class TestTableTaskWithoutUniverseTarget(TableTask):
             'foobar': self.input()['meta']['foobar']
         }
 
-    def timespan(self):
-        return ''
+    def table_timespan(self):
+        return get_timespan('2000')
 
     def populate(self):
         session = current_session()
@@ -556,7 +557,7 @@ def fake_table_for_rasters(geometries):
         INSERT INTO {tablename} ({colname}) VALUES {geometries}
     '''.format(tablename=tablename, colname=colname,
                geometries=', '.join(["(ST_SetSRID('{}'::geometry, 4326))".format(g) for g in geometries])
-              ))
+               ))
     session.execute('''
         INSERT INTO observatory.obs_table (id, tablename, version, the_geom)
         SELECT '{table_id}', '{tablename}', 1,
@@ -602,3 +603,52 @@ def test_generate_tile_summary_thousandgeom():
         SELECT (ST_SummaryStatsAgg(tile, 1, false)).sum
         FROM observatory.obs_column_table_tile_simple
     ''').fetchone()[0], 100, 1)
+
+
+@with_setup(setup, teardown)
+def test_tabletask_without_timespan():
+    class TestTableTaskWithoutTimespan(TableTask):
+        def requires(self):
+            return {
+                'meta': TestColumnsTask()
+            }
+
+        def columns(self):
+            return {
+                'foobar': self.input()['meta']['foobar']
+            }
+
+        def populate(self):
+            session = current_session()
+            session.execute('INSERT INTO {output} VALUES (100)'.format(
+                output=self.output().table))
+
+    task = TestTableTaskWithoutTimespan()
+    with assert_raises(NotImplementedError):
+        runtask(task)
+
+
+@with_setup(setup, teardown)
+def test_tabletask_with_invalid_timespan():
+    class TestTableTaskWithoutTimespan(TableTask):
+        def requires(self):
+            return {
+                'meta': TestColumnsTask()
+            }
+
+        def columns(self):
+            return {
+                'foobar': self.input()['meta']['foobar']
+            }
+
+        def table_timespan(self):
+            return get_timespan('SomeInvalidTimespan')
+
+        def populate(self):
+            session = current_session()
+            session.execute('INSERT INTO {output} VALUES (100)'.format(
+                output=self.output().table))
+
+    task = TestTableTaskWithoutTimespan()
+    with assert_raises(ValueError):
+        runtask(task)

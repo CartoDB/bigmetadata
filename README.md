@@ -49,18 +49,19 @@ Most of the common tasks have already been wrapped up in the `Makefile`:
   container
 * `make psql`: Drop into an interactive psql session in the bigmetadata
   container's database
+* `make rebuild-all`: Task to clean and rebuild all the `*-all` tasks. You can disable the heavy tasks, which by now is `us-all` adding `RUN_HEAVY_TASKS=false`
 
 The ETL tasks have also already been wrapped up in the Makefile:
 
-* `make au-all`: ETL the entirety of the Australian data
-* `make br-all`: ETL the entirety of the Brazilian data
-* `make ca-all`: ETL the entirety of the Canadian data
-* `make es-all`: ETL the entirety of the Spanish data
-* `make eu-all`: ETL the entirety of the Eurostat data
-* `make fr-all`: ETL the entirety of the French data
-* `make mx-all`: ETL the entirety of the Mexican data
-* `make uk-all`: ETL the entirety of the United Kingdom data
-* `make us-all`: ETL the entirety of the United States data
+* `make [docker-]au-all`: ETL the entirety of the Australian data
+* `make [docker-]br-all`: ETL the entirety of the Brazilian data
+* `make [docker-]ca-all`: ETL the entirety of the Canadian data
+* `make [docker-]es-all`: ETL the entirety of the Spanish data
+* `make [docker-]eu-all`: ETL the entirety of the Eurostat data
+* `make [docker-]fr-all`: ETL the entirety of the French data
+* `make [docker-]mx-all`: ETL the entirety of the Mexican data
+* `make [docker-]uk-all`: ETL the entirety of the United Kingdom data
+* `make [docker-]us-all`: ETL the entirety of the United States data
 
 Any other task can be run using `docker-compose`:
 
@@ -74,6 +75,27 @@ Or, more conveniently, `make -- run` (which will use the local scheduler):
 For example, to run QCEW numbers for one quarter:
 
     make -- run us.bls.QCEW --year 2014 --qtr 4
+
+If you want to use the local scheduler, you can add `SCHEDULER=--local-scheduler` to the `make` task
+
+### Execution watcher
+
+We've added a new script to watch for containers execution and notify when it ends. Is located in `scripts/watch_containers.py`
+
+```
+usage: python3 watch_containers.py [-h] [--since SINCE]
+                                   [--pooling-time POOLING_TIME]
+                                   [--notification-channel {stdout,slack,logfile}]
+                                   name
+```
+
+Let me explain the options:
+
+* **name**: Name, complete or a part of it, of the container to watch
+* **since**: [optional] Date in the `YYYY-mm-dd HH:MM:SS` UTC format since the script starts looking for docker containers to watch. Default value is [utcnow()](https://docs.python.org/2/library/datetime.html#datetime.datetime.utcnow) value
+* **pooling-time**: [optional] How many seconds we check for containers completion. Default value is 60 seconds
+* **notification-channel**: [optional] Where to send the notifications: stdout, slack or logfile. Default value is `stdout`
+*
 
 ### Setting up local directories
 

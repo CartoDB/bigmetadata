@@ -8,6 +8,7 @@ from collections import OrderedDict
 from luigi import Task, LocalTarget
 
 from lib.logger import get_logger
+from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper,
                               RepoFile)
@@ -110,7 +111,7 @@ class GeometryColumns(ColumnsTask):
 class Geometry(TableTask):
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -121,8 +122,8 @@ class Geometry(TableTask):
     def columns(self):
         return self.input()['meta']
 
-    def timespan(self):
-        return '2011'
+    def table_timespan(self):
+        return get_timespan('2011')
 
     def populate(self):
         session = current_session()
@@ -1811,10 +1812,10 @@ class PopulationHouseholdsHousing(TableTask):
         }
 
     def version(self):
-        return 5
+        return 6
 
-    def timespan(self):
-        return '2011'
+    def table_timespan(self):
+        return get_timespan('2011')
 
     def columns(self):
         '''
@@ -2057,7 +2058,7 @@ class FiveYearPopulation(TableTask):
         }
 
     def version(self):
-        return 4
+        return 5
 
     def columns(self):
         '''
@@ -2098,8 +2099,8 @@ class FiveYearPopulation(TableTask):
 
         return cols
 
-    def timespan(self):
-        return '2015'
+    def table_timespan(self):
+        return get_timespan('2015')
 
     def populate(self):
         session = current_session()
