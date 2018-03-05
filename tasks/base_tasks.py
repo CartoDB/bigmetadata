@@ -750,6 +750,21 @@ class LoadPostgresFromURL(TempTableTask):
             table=self.output().table))
 
 
+class LoadPostgresFromZipFile(TempTableTask):
+
+    def load_from_zipfile(self, zipfile):
+        shell('gunzip {zipfile} -c | grep -v default_tablespace | psql'.format(
+            zipfile=zipfile))
+        self.mark_done()
+
+    def mark_done(self):
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS {table}'.format(
+            table=self.output().table))
+        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
+            table=self.output().table))
+
+
 class TableTask(Task):
     '''
     This task creates a single output table defined by its name, path, and

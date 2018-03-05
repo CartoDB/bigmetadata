@@ -10,7 +10,7 @@ import os
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromURL
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromZipFile, RepoFile
 from tasks.util import grouper
 from lib.logger import get_logger
 from tasks.us.census.tiger import SumLevel
@@ -3286,14 +3286,22 @@ class Columns(ColumnsTask):
         return columns
 
 
-class DownloadACS(LoadPostgresFromURL):
+class DownloadACS(LoadPostgresFromZipFile):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
-    url_template = 'https://s3.amazonaws.com/census-backup/acs/{year}/' \
+    URL = 'https://s3.amazonaws.com/census-backup/acs/{year}/' \
             'acs{year}_{sample}/acs{year}_{sample}_backup.sql.gz'
 
     year = Parameter()
     sample = Parameter()
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL.format(year=self.year, sample=self.sample))
 
     @property
     def schema(self):
@@ -3302,7 +3310,7 @@ class DownloadACS(LoadPostgresFromURL):
     def run(self):
         cursor = current_session()
         cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
-        self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
+        self.load_from_zipfile(self.input().path)
 
 
 class QuantileColumns(ColumnsTask):
