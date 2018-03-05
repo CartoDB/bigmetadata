@@ -76,6 +76,10 @@ For example, to run QCEW numbers for one quarter:
 
     make -- run us.bls.QCEW --year 2014 --qtr 4
 
+Or using Docker:
+
+    make -- docker-run us.bls.QCEW --year 2014 --qtr 4
+
 If you want to use the local scheduler, you can add `SCHEDULER=--local-scheduler` to the `make` task
 
 ### Execution watcher
