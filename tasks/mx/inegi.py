@@ -3,12 +3,13 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
+from shutil import copyfile
 
 RESOLUTIONS = (
     'ageb', 'entidad', 'localidad_urbana_y_rural_amanzanada', 'manzana',
@@ -71,43 +72,42 @@ DEMOGRAPHIC_TABLES = {
 }
 
 
-class DownloadGeographies(DownloadUnzipTask):
+class DownloadData(DownloadUnzipTask):
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
+    def download(self):
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+
+
+class DownloadGeographies(DownloadData):
     """
         https://blog.diegovalle.net/2016/01/encuesta-intercensal-2015-shapefiles.html
         2015 Encuesta Intercensal AGEBs, Manzanas, Municipios, States, etc
     """
     URL = 'http://data.diegovalle.net/mapsmapas/encuesta_intercensal_2015.zip'
 
-    def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL
-        ))
 
-
-class DownloadDemographicData(DownloadUnzipTask):
+class DownloadDemographicData(DownloadData):
     """
         https://blog.diegovalle.net/2013/06/shapefiles-of-mexico-agebs-manzanas-etc.html
         2010 Census AGEBs, Manzanas, Municipios, States, etc
     """
     URL = 'http://data.diegovalle.net/mapsmapas/agebsymas.zip'
 
-    def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL
-        ))
 
-
-class DownloadElectoralDistricts(DownloadUnzipTask):
+class DownloadElectoralDistricts(DownloadData):
     """
         http://blog.diegovalle.net/2013/02/download-shapefiles-of-mexico.html
         Electoral shapefiles of Mexico (secciones and distritos)
     """
     URL = 'http://data.diegovalle.net/mapsmapas/eleccion_2010.zip'
-
-    def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL
-        ))
 
 
 class ImportGeography(Shp2TempTableTask):
