@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
+                              RepoFile)
 from tasks.util import shell, classpath
 from tasks.meta import current_session
 from collections import OrderedDict
@@ -12,6 +13,7 @@ from tasks.fr.geo import OutputAreaColumns, OutputAreas
 from lib.timespan import get_timespan
 import csv
 import pandas as pd
+from shutil import copyfile
 
 TOPICS = ['population', 'housing', 'education', 'household', 'employment']
 
@@ -22,8 +24,10 @@ class DownloadUnzipFR(DownloadUnzipTask):
 
     URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
-    def download(self):
+    def version(self):
+        return 1
 
+    def requires(self):
         themes = {
             'population': '2028582/',
             'housing': '2028267/',
@@ -42,10 +46,12 @@ class DownloadUnzipFR(DownloadUnzipTask):
 
         URL = self.URL_base + themes.get(self.table_theme) + iris.get(self.table_theme)
 
-        shell('wget -O {output}.zip {url}'.format(
-           output=self.output().path,
-           url=URL
-        ))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL)
+
+    def download(self):
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class DownloadFR(Task):
@@ -54,8 +60,18 @@ class DownloadFR(Task):
 
     URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
-    def download(self):
+    iris_overseas = {
+        'population': 'base-ic-evol-struct-pop-2012-com.xls',
+        'housing': 'base-ic-logement-2012-com.xls',
+        'education': 'base-ic-diplomes-formation-2012-com.xls',
+        'household': 'base-ic-couples-familles-menages-2012-com.xls',
+        'employment': 'base-ic-activite-residents-2012-com.xls'
+    }
 
+    def version(self):
+        return 1
+
+    def requires(self):
         themes = {
             'population': '2028582/',
             'housing': '2028267/',
@@ -64,24 +80,16 @@ class DownloadFR(Task):
             'employment': '2028654/'
         }
 
-        iris_overseas = {
-            'population': 'base-ic-evol-struct-pop-2012-com.xls',
-            'housing': 'base-ic-logement-2012-com.xls',
-            'education': 'base-ic-diplomes-formation-2012-com.xls',
-            'household': 'base-ic-couples-familles-menages-2012-com.xls',
-            'employment': 'base-ic-activite-residents-2012-com.xls'
-        }
+        URL = self.URL_base + themes.get(self.table_theme) + self.iris_overseas.get(self.table_theme)
 
-        URL = self.URL_base + themes.get(self.table_theme) + iris_overseas.get(self.table_theme)
-
-        shell('wget -P {output} {url}'.format(
-           output=self.output().path,
-           url=URL
-        ))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL)
 
     def run(self):
-        self.output().makedirs()
-        self.download()
+        if not os.path.exists(self.output().path):
+            os.makedirs(self.output().path)
+        copyfile(self.input().path, os.path.join(self.output().path, self.iris_overseas.get(self.table_theme)))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
