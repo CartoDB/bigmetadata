@@ -50,13 +50,13 @@ class DownloadData(DownloadUnzipTask):
         return 1
 
     def requires(self):
-            return RepoFile(resource_id=self.task_id,
-                            version=self.version(),
-                            url=URL.format(year=self.year,
-                                           profile=self.profile,
-                                           resolution=self.resolution,
-                                           state=self.state,
-                                           header=self.header))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL.format(year=self.year,
+                                       profile=self.profile,
+                                       resolution=self.resolution,
+                                       state=self.state,
+                                       header=self.header))
 
     def download(self):
         self.output().makedirs()

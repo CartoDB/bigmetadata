@@ -105,9 +105,9 @@ class DownloadGeography(DownloadUnzipTask):
         return 1
 
     def requires(self):
-            return RepoFile(resource_id=self.task_id,
-                            version=self.version(),
-                            url=self.URL.format(resolution=self.resolution, year=self.year))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL.format(resolution=self.resolution, year=self.year))
 
     def download(self):
         self.output().makedirs()
