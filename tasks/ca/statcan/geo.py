@@ -2,12 +2,14 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask,
+                              RepoFile)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
+from shutil import copyfile
 
 
 GEO_CT = 'ct_'
@@ -83,10 +85,17 @@ class DownloadGeography(DownloadUnzipTask):
 
     URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL.format(year=self.year, resolution=self.resolution))
+
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(year=self.year, resolution=self.resolution)
-        ))
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportGeography(Shp2TempTableTask):
