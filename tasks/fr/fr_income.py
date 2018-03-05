@@ -5,12 +5,14 @@ from collections import OrderedDict
 from luigi import Parameter, Task, LocalTarget
 import os
 import glob
+from tasks.base_tasks import RepoFile
 from tasks.meta import OBSColumn, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.fr.geo import OutputAreaColumns, OutputAreas
 from lib.timespan import get_timespan
 import csv
 import pandas as pd
+from shutil import copyfile
 
 SUM_UNITS = ('households', 'people', 'tax_consumption_units')
 
@@ -25,8 +27,10 @@ class DownloadFRIncomeIris(Task):
 
     URL_base = 'https://www.insee.fr/fr/statistiques/fichier/2507751/'
 
-    def download(self):
+    def version(self):
+        return 1
 
+    def requires(self):
         themes = {
             THEME_DEC_IRIS_2012: 'BASE_TD_FILO_DEC_IRIS_2012.xls',
             THEME_DISP_IRIS_2012: 'BASE_TD_FILO_DISP_IRIS_2012.xls',
@@ -34,14 +38,14 @@ class DownloadFRIncomeIris(Task):
 
         URL = self.URL_base + themes.get(self.table_theme)
 
-        shell('wget -P {output} {url}'.format(
-           output=self.output().path,
-           url=URL
-        ))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL)
 
     def run(self):
-        self.output().makedirs()
-        self.download()
+        if not os.path.exists(self.output().path):
+            os.makedirs(self.output().path)
+        copyfile(self.input().path, os.path.join(self.output().path, self.table_theme + '.xls'))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
