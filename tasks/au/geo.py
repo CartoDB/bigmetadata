@@ -3,12 +3,13 @@ from luigi import Parameter, WrapperTask
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
-                              TagsTask)
+                              TagsTask, RepoFile)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
+from shutil import copyfile
 
 
 GEO_STE = 'STE'
@@ -70,6 +71,7 @@ GEOGRAPHY = {
     GEO_RA: {'name': 'Remoteness Areas', 'weight': 1, 'region_col': 'RA_CODE', 'proper_name': 'RA_NAME'},
 }
 
+
 class SourceTags(TagsTask):
 
     def tags(self):
@@ -99,10 +101,17 @@ class DownloadGeography(DownloadUnzipTask):
 
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+            return RepoFile(resource_id=self.task_id,
+                            version=self.version(),
+                            url=self.URL.format(resolution=self.resolution, year=self.year))
+
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(resolution=self.resolution, year=self.year)
-        ))
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportGeography(Shp2TempTableTask):
