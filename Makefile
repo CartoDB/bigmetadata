@@ -26,6 +26,9 @@ endif
 run:
 	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
+docker-run:
+	docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
+
 run-parallel:
 	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
