@@ -41,7 +41,7 @@ rebuild()
     $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$start_time"
     if [ "$run_heavy_tasks" = true ]; then
         execute_heavy_task
-        $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$heavy_task_start_time"
+        $python_binary scripts/watch_containers.py bigmetadata_bigmetadata_run --since "$heavy_task_start_time" --notification-channel slack
     else
         echo "Skipping heavy tasks..."
     fi
