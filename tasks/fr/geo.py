@@ -1,5 +1,5 @@
 from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell
 from tasks.meta import OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from lib.timespan import get_timespan
@@ -7,6 +7,7 @@ from lib.timespan import get_timespan
 from collections import OrderedDict
 import os
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+from shutil import copyfile
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
@@ -14,8 +15,17 @@ class DownloadOutputAreas(DownloadUnzipTask):
 
     URL = 'https://www.data.gouv.fr/s/resources/contour-des-iris-insee-tout-en-un/20150428-161348/iris-2013-01-01.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(output=self.output().path, url=self.URL))
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportOutputAreas(Shp2TempTableTask):
