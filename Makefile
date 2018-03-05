@@ -256,7 +256,7 @@ docs:
 	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
 
 tiles:
-	make run-parallel util.GenerateAllRasterTiles
+	make run util.GenerateAllRasterTiles
 
 meta:
 	make run -- carto.OBSMetaToLocal --force
@@ -267,31 +267,31 @@ meta:
 
 ### au
 au-all:
-	make -- run-parallel au.data.BCPAllGeographiesAllTables --year 2011
+	make -- run au.data.BCPAllGeographiesAllTables --year 2011
 
 au-geo:
-	make -- run-parallel au.geo.AllGeographies --year 2011
+	make -- run au.geo.AllGeographies --year 2011
 
 ### br
 br-all: br-geo br-census
 
 br-census:
-	make -- run-parallel br.data.CensosAllGeographiesAllTables
+	make -- run br.data.CensosAllGeographiesAllTables
 
 br-geo:
-	make -- run-parallel br.geo.AllGeographies
+	make -- run br.geo.AllGeographies
 
 ### ca
 ca-all: ca-nhs-all ca-census-all
 
 ca-nhs-all:
-	make -- run-parallel ca.statcan.data.AllNHSTopics
+	make -- run ca.statcan.data.AllNHSTopics
 
 ca-census-all:
-	make -- run-parallel ca.statcan.data.AllCensusTopics
+	make -- run ca.statcan.data.AllCensusTopics
 
 ca-geo:
-	make -- run-parallel ca.statcan.geo.AllGeographies
+	make -- run ca.statcan.geo.AllGeographies
 
 ### es
 es-all: es-cnig es-ine
@@ -311,7 +311,7 @@ es-ine-fyp:
 eu-all: eu-geo eu-data
 
 eu-geo:
-	make -- run-parallel eu.geo.AllNUTSGeometries
+	make -- run eu.geo.AllNUTSGeometries
 
 eu-data:
 	make -- run eu.eurostat.EURegionalTables
@@ -332,53 +332,53 @@ fr-income:
 mx-all: mx-geo mx-census
 
 mx-geo:
-	make -- run-parallel mx.inegi.AllGeographies
+	make -- run mx.inegi.AllGeographies
 
 mx-census:
-	make -- run-parallel mx.inegi.AllCensus
+	make -- run mx.inegi.AllCensus
 
 ### uk
 uk-all: uk-geo uk-census
 
 uk-geo:
-	make -- run-parallel uk.cdrc.CDRCMetaWrapper
+	make -- run uk.cdrc.CDRCMetaWrapper
 
 uk-census:
-	make -- run-parallel uk.census.wrapper.CensusWrapper
+	make -- run uk.census.wrapper.CensusWrapper
 
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
 
 us-bls:
-	make -- run-parallel us.bls.AllQCEW --maxtimespan 2017Q1
+	make -- run us.bls.AllQCEW --maxtimespan 2017Q1
 
 us-acs:
-	make -- run-parallel us.census.acs.ACSAll
+	make -- run us.census.acs.ACSAll
 
 us-lodes:
-	make -- run-parallel us.census.lodes.LODESMetaWrapper --geography block --year 2013
+	make -- run us.census.lodes.LODESMetaWrapper --geography block --year 2013
 
 us-spielman:
-	make -- run-parallel us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
+	make -- run us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
 us-tiger:
 	make -- run us.census.tiger.AllSumLevels --year 2015
 
 us-enviroatlas:
-	make -- run-parallel us.epa.enviroatlas.AllTables
+	make -- run us.epa.enviroatlas.AllTables
 
 us-huc:
-	make -- run-parallel us.epa.huc.HUC
+	make -- run us.epa.huc.HUC
 
 us-dcp:
-	make -- run-parallel us.ny.nyc.dcp.MapPLUTOAll
+	make -- run us.ny.nyc.dcp.MapPLUTOAll
 
 us-dob:
-	make -- run-parallel us.ny.nyc.dob.PermitIssuance
+	make -- run us.ny.nyc.dob.PermitIssuance
 
 us-zillow:
-	make -- run-parallel us.zillow.AllZillow
+	make -- run us.zillow.AllZillow
 
 ### who's on first
 wof-all:
-	make -- run-parallel whosonfirst.AllWOF
+	make -- run whosonfirst.AllWOF
