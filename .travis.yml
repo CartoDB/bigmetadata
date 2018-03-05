@@ -5,8 +5,9 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_d303290e7d32_key -iv $encrypted_d303290e7d32_iv
   -in keys/id_rsa_observatory_extension.key.enc -out keys/id_rsa_observatory_extension.key
   -d
-- "if [ -f ${CACHE_FILE_BIGMETADATA} ]; then gunzip -c ${CACHE_FILE_BIGMETADATA} | docker load; fi"
-- "if [ ! -d "/bigmetadata/tmp/logs" ]; then mkdir tmp/logs; fi"
+- if [ -f ${CACHE_FILE_BIGMETADATA} ]; then gunzip -c ${CACHE_FILE_BIGMETADATA} | docker load; fi
+- if [ ! -d  tmp ]; then mkdir tmp; fi
+- if [ ! -d  tmp/logs ]; then mkdir tmp/logs; fi
 install:
 - "mkdir -p $CACHE_DIR"
 - "if [ ! -f ${CACHE_FILE_BIGMETADATA} ]; then docker pull carto/bigmetadata && docker save carto/bigmetadata | gzip > ${CACHE_FILE_BIGMETADATA}; fi"
