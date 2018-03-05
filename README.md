@@ -94,8 +94,9 @@ Let me explain the options:
 * **name**: Name, complete or a part of it, of the container to watch
 * **since**: [optional] Date in the `YYYY-mm-dd HH:MM:SS` UTC format since the script starts looking for docker containers to watch. Default value is [utcnow()](https://docs.python.org/2/library/datetime.html#datetime.datetime.utcnow) value
 * **pooling-time**: [optional] How many seconds we check for containers completion. Default value is 60 seconds
-* **notification-channel**: [optional] Where to send the notifications: stdout, slack or logfile. Default value is `stdout`
-*
+* **notification-channel**: [optional] Where to send the notifications: stdout or slack. Default value is `stdout`
+
+For the slack notification you need to have an environment variable called `SLACK_WEBHOOK` that contains the URL for the [incoming webhook](https://api.slack.com/incoming-webhooks) you've created to send the messages.
 
 ### Setting up local directories
 
