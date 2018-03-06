@@ -9,12 +9,13 @@ import os
 from collections import OrderedDict
 from datetime import datetime
 from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper, RepoFile
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
+from shutil import copyfile
 
 # cherry-picked datasets
 HOMETYPES = {
@@ -158,6 +159,14 @@ class DownloadZillow(Task):
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.url())
+
     def url(self):
         return self.URL.format(geography=self.geography, hometype=self.hometype,
                                measure=self.measure)
@@ -171,8 +180,7 @@ class DownloadZillow(Task):
 
     def run(self):
         self.output().makedirs()
-        shell('wget \'{url}\' -O {output}'.format(url=self.url(),
-                                                  output=self.output().path))
+        copyfile(self.input().path, self.output().path)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) +
