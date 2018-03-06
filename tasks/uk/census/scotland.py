@@ -6,10 +6,11 @@ import os
 import urllib
 
 from luigi import Parameter
+from shutil import copyfile
 
 from lib.csv_stream import CSVNormalizerStream
 from lib.copy import copy_from_csv
-from tasks.base_tasks import DownloadUnzipTask, TempTableTask
+from tasks.base_tasks import DownloadUnzipTask, TempTableTask, RepoFile
 from tasks.meta import current_session
 
 from .metadata import sanitize_identifier
@@ -18,8 +19,17 @@ from .metadata import sanitize_identifier
 class DownloadScotlandLocal(DownloadUnzipTask):
     URL = 'http://www.scotlandscensus.gov.uk/ods-web/download/getDownloadFile.html?downloadFileIds=Output%20Area%20blk'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        urllib.request.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportScotland(TempTableTask):

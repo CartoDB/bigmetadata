@@ -1,11 +1,12 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RemoteDownloader, RepoFile)
 from tasks.util import shell
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 from lib.timespan import get_timespan
 
+from shutil import copyfile
 from collections import OrderedDict
 import os
 
@@ -36,18 +37,33 @@ class SourceTags(TagsTask):
                    ]
 
 
-class DownloadOutputAreas(DownloadUnzipTask):
+class CRDCDownloader(RemoteDownloader):
 
-    URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
-
-    def download(self):
+    def download(self, url, output_path):
         if 'CDRC_COOKIE' not in os.environ:
             raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
                              'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
-        shell('wget --header=\'Cookie: {cookie}\' -O {output}.zip {url}'.format(
-            output=self.output().path,
-            url=self.URL,
+        shell('wget --header=\'Cookie: {cookie}\' -O {output} {url}'.format(
+            output=output_path,
+            url=url,
             cookie=os.environ['CDRC_COOKIE']))
+
+
+class DownloadOutputAreas(DownloadUnzipTask):
+    URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL,
+                        downloader=CRDCDownloader())
+
+    def download(self):
+        self.output().makedirs()
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportOutputAreas(Shp2TempTableTask):
