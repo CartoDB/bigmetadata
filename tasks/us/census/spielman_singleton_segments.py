@@ -5,10 +5,10 @@ Define special segments for the census
 
 import os
 import subprocess
-
+from shutil import copyfile
 from collections import OrderedDict
 from lib.timespan import get_timespan
-from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask
+from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask, RepoFile
 from tasks.meta import OBSColumn, current_session
 from tasks.util import shell, classpath
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
@@ -20,28 +20,23 @@ from luigi import Task, LocalTarget
 
 class DownloadSpielmanSingletonFile(Task):
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.url())
+
     def filename(self):
         return 'understanding-americas-neighborhoods-using-uncertain-data-from-the-american-community-survey-output-data.zip'
 
     def url(self):
         return 'https://www.openicpsr.org/openicpsr/project/100235/version/V5/download/project?dirPath=/openicpsr/100235/fcr:versions/V5/Output-Data'
 
-    def curl_request(self):
-        return 'curl -L {url}'.format(url=self.url())
-
     def run(self):
         self.output().makedirs()
-        try:
-            self.download()
-        except subprocess.CalledProcessError:
-            shell('rm -f {target}'.format(target=self.output().path))
-            raise
-
-    def download(self):
-        print('running ')
-        cmd = 'curl -L {url} -o {target}'.format(url=self.url(), target=self.output().path)
-        print(cmd)
-        shell(cmd)
+        copyfile(self.input().path, self.output().path)
 
     def output(self):
         return LocalTarget(path=os.path.join('tmp', classpath(self), self.filename()))
