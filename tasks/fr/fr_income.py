@@ -1,5 +1,5 @@
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, CSV2TempTableTask
-from tasks.util import (shell, classpath)
+from tasks.util import classpath
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from collections import OrderedDict
 from luigi import Parameter, Task, LocalTarget

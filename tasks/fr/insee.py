@@ -2,7 +2,7 @@
 
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
                               RepoFile)
-from tasks.util import shell, classpath
+from tasks.util import classpath
 from tasks.meta import current_session
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask, Task, LocalTarget

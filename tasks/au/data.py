@@ -1,5 +1,4 @@
 import os
-import urllib.request
 import csv
 import re
 

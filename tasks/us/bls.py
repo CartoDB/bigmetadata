@@ -1,6 +1,6 @@
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
                               CSV2TempTableTask, RepoFile)
-from tasks.util import underscore_slugify, shell
+from tasks.util import underscore_slugify
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)

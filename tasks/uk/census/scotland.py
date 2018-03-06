@@ -3,7 +3,6 @@
 from collections import OrderedDict
 import csv
 import os
-import urllib
 
 from luigi import Parameter
 from shutil import copyfile

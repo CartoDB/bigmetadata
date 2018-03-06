@@ -4,7 +4,6 @@ from collections import OrderedDict
 import csv
 import os
 import requests
-import urllib
 import shutil
 from zipfile import ZipFile
 

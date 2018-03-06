@@ -12,7 +12,6 @@ from lib.logger import get_logger
 from lib.timespan import get_timespan
 from shutil import copyfile
 
-import urllib.request
 import glob
 import csv
 import os

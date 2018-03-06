@@ -4,7 +4,6 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSColumn, OBSTag, GEOM_REF, current_session
-from tasks.util import shell
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
 
 from collections import OrderedDict

@@ -1,6 +1,5 @@
 from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask,
                               SimplifiedTempTableTask, RepoFile)
-from tasks.util import shell
 from tasks.meta import OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from lib.timespan import get_timespan
 
