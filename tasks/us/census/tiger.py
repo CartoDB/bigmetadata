@@ -10,7 +10,7 @@ import subprocess
 from collections import OrderedDict
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RepoFile, LoadPostgresFromZipFile)
 from tasks.util import classpath, grouper, shell
 from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
@@ -380,16 +380,23 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             qualified_table=self.output().table))
 
 
-class DownloadTiger(LoadPostgresFromURL):
+class DownloadTiger(LoadPostgresFromZipFile):
     url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
     year = Parameter()
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.url_template.format(year=self.year))
 
     def run(self):
         schema = 'tiger{year}'.format(year=self.year)
         shell("psql -c 'DROP SCHEMA IF EXISTS \"{schema}\" CASCADE'".format(schema=schema))
         shell("psql -c 'CREATE SCHEMA \"{schema}\"'".format(schema=schema))
-        url = self.url_template.format(year=self.year)
-        self.load_from_url(url)
+        self.load_from_zipfile(self.input().path)
 
 
 class SimplifiedDownloadTiger(Task):
