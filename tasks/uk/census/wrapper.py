@@ -35,9 +35,6 @@ class CensusTableTask(WrapperTask):
 
 
 class Census(TableTask):
-    def version(self):
-        return 2
-
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),

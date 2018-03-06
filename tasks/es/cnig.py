@@ -8,7 +8,7 @@ from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask
 from tasks.util import shell, classpath
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
-from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
+from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 
 from collections import OrderedDict
 import os
@@ -214,6 +214,12 @@ class Geometry(TableTask):
 
     def version(self):
         return 13
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def requires(self):
         return {

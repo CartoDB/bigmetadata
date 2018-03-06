@@ -1,4 +1,4 @@
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
+from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, DownloadUnzipTask, DownloadGUnzipTask
 from tasks.eu.geo import NUTSColumns, NUTSGeometries
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -10,6 +10,8 @@ from lib.columns import ColumnsDeclarations
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
+import urllib.request
+import glob
 import csv
 import os
 import re
@@ -81,41 +83,41 @@ class EUTempTable(CSV2TempTableTask):
         return self.input().path
 
 
+class DownloadUnzipDICTTables(DownloadUnzipTask):
+    URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fall_dic.zip'
+
+    def download(self):
+        urllib.request.urlretrieve(self.URL, self.output().path + '.zip')
+
+
 class DICTablesCache(object):
+    LANGUAGE = 'en'
 
     def __init__(self):
         self._cache = {}
 
-    def get(self, fname):
-        if fname not in self._cache:
+    def get(self, dname, fname):
+        filepath = os.path.join(dname, self.LANGUAGE, fname)
+        if filepath not in self._cache:
             LOGGER.info('Caching %s', fname)
-            with open(os.path.join(os.path.dirname(__file__), fname), 'r') as fhandle:
+            with open(filepath, 'r') as fhandle:
                 reader = csv.reader(fhandle, delimiter='\t')
-                self._cache[fname] = {}
+                self._cache[filepath] = {}
                 for key, val in reader:
-                    self._cache[fname][key] = val
+                    self._cache[filepath][key] = val
 
-            LOGGER.info('Cached %s, with %s lines', fname, len(self._cache[fname]))
+            LOGGER.info('Cached %s, with %s lines', filepath, len(self._cache[filepath]))
         else:
-            LOGGER.debug('Cache hit for %s', fname)
+            LOGGER.debug('Cache hit for %s', filepath)
 
-        return self._cache[fname]
+        return self._cache[filepath]
 
-class DownloadMetabase(Task):
-    URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&downfile=metabase.txt.gz'
+
+class DownloadGUnzipMetabase(DownloadGUnzipTask):
+    URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=metabase.txt.gz'
 
     def download(self):
-        shell('wget -O {output}.gz "{url}"'.format(
-            output=self.output().path,
-            url=self.URL))
-
-    def run(self):
-        self.output().makedirs()
-        self.download()
-        shell('gunzip {output}.gz'.format(output=self.output().path))
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
+        urllib.request.urlretrieve(self.URL, self.output().path + '.gz')
 
 
 class MetabaseTable(CSV2TempTableTask):
@@ -131,10 +133,10 @@ class MetabaseTable(CSV2TempTableTask):
         ]
 
     def requires(self):
-        return DownloadMetabase()
+        return DownloadGUnzipMetabase()
 
     def input_csv(self):
-        return DownloadMetabase().output().path
+        return [file for file in glob.glob(os.path.join(DownloadGUnzipMetabase().output().path, '*.csv'))]
 
     def after_copy(self):
         session = current_session()
@@ -307,6 +309,7 @@ class FlexEurostatColumns(ColumnsTask):
 
     def requires(self):
         return {
+            'DICTTables': DownloadUnzipDICTTables(),
             'units': UnitTags(),
             'subsection': SubsectionTags(),
             'section': SectionTags(),
@@ -316,7 +319,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 16
+        return 17
 
     def columns(self):
         columns = OrderedDict()
@@ -330,6 +333,7 @@ class FlexEurostatColumns(ColumnsTask):
         source = input_['source']['eurostat-source']
 
         cache = CACHE
+        dicttables_path = input_['DICTTables'].path
 
         session = current_session()
         resp = session.execute('''
@@ -355,7 +359,7 @@ class FlexEurostatColumns(ColumnsTask):
         ))
         cross_prod = resp.fetchone()[0]
 
-        tables = cache.get('table_dic.dic')
+        tables = cache.get(dicttables_path, 'table_dic.dic')
 
         table_desc = tables[self.table_name]
         variable_name = table_desc.split('by')[0].strip()
@@ -366,24 +370,24 @@ class FlexEurostatColumns(ColumnsTask):
                 var_code = underscore_slugify(self.table_name+"_".join(list(i.values())))
                 if len(i) == 1: # Only one dimension, usually "unit"
                     for unit_dic, unit_value in i.items():
-                        units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
+                        units = cache.get(dicttables_path, '{dimension}.dic'.format(dimension=unit_dic))
                         dimdefs.append(units[unit_value])
                     description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
                 else: # multiple dimensions, ignore "unit" when building name
                     for dimname, dimvalue in i.items():
                         if dimname != 'unit':
-                            dim_dic = cache.get('dic_lists/{dimension}.dic'.format(dimension=dimname))
+                            dim_dic = cache.get(dicttables_path, '{dimension}.dic'.format(dimension=dimname))
                             dimdefs.append(dim_dic[dimvalue])
                         description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
             else: # Only one variable
                 var_code = underscore_slugify(self.table_name)
                 for unit_dic, unit_value in i.items():
-                    units = cache.get('dic_lists/{dimension}.dic'.format(dimension=unit_dic))
+                    units = cache.get(dicttables_path, '{dimension}.dic'.format(dimension=unit_dic))
                     dimdefs.append(units[unit_value])
                 description = "{} ".format(variable_name) + "- " + ", ".join([str(x) for x in dimdefs])
 
             try:
-                units = cache.get('dic_lists/unit.dic')
+                units = cache.get(dicttables_path, 'unit.dic')
                 unitdef = units[i['unit']]
                 if "percentage" in unitdef.lower() or "per" in unitdef.lower() or "rate" in unitdef.lower():
                     final_unit_tag = "ratio"
