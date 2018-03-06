@@ -1555,10 +1555,21 @@ class CreateRepoTable(Task):
         return PostgresTarget(schema=self.schema, tablename=self.table, non_empty=False)
 
 
+class RemoteDownloader:
+    def download(self, url, output_path):
+        raise NotImplementedError
+
+
+class BaseDownloader(RemoteDownloader):
+    def download(self, url, output_path):
+        urllib.request.urlretrieve(url, output_path)
+
+
 class RepoFile(Task):
     resource_id = Parameter()
     url = Parameter()
     version = IntParameter()
+    downloader = Parameter(default=BaseDownloader())
 
     _repo_dir = 'repo'
     _path = None
@@ -1578,7 +1589,10 @@ class RepoFile(Task):
         return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
 
     def _retrieve_remote_file(self):
-        urllib.request.urlretrieve(self.url, self.output().path)
+        if not issubclass(self.downloader.__class__, RemoteDownloader):
+            raise ValueError('downloader must be a subclass of RemoteDownloader')
+
+        self.downloader.download(self.url, self.output().path)
         return self._digest(self.output().path)
 
     # https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file
