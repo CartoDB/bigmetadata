@@ -1544,6 +1544,7 @@ class CreateRepoTable(Task):
                             checksum TEXT,
                             url TEXT,
                             path TEXT,
+                            added TIMESTAMP,
                             PRIMARY KEY(id, version)
                         );
                         '''.format(schema=self.output().schema,
@@ -1622,8 +1623,8 @@ class RepoFile(Task):
     def _to_db(self, resource_id, version, checksum, url, path):
         query = '''
                 INSERT INTO "{schema}".{table}
-                    (id, version, url, checksum, path)
-                VALUES ('{resource_id}', {version}, '{url}', '{checksum}', '{path}');
+                    (id, version, url, checksum, path, added)
+                SELECT '{resource_id}', {version}, '{url}', '{checksum}', '{path}', now();
                 '''.format(schema=self.input().schema,
                            table=self.input().tablename,
                            resource_id=resource_id,
