@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import glob
 import csv
 import pandas as pd
 
@@ -101,27 +102,24 @@ class ImportData(CSV2TempTableTask):
         else:
             state_code = self.state.upper()
 
+        # The provided CSV files are not well-formed, so we convert the provided XLS files into CSV
         # All files are {tablename}_{state}.xls, except Basico-MG.xls
-        filename = '{tablename}[-_]{state_code}.xls'.format(
-            tablename=self.tablename,
-            state_code=state_code
-        )
+        filename = '{tablename}[-_]{state_code}.xls'.format(tablename=self.tablename,
+                                                            state_code=state_code)
 
-        path = shell('find {downloadpath} -iname "{filename}"'.format(downloadpath=self.input().path, filename=filename))
+        path = glob.glob(os.path.join(self.input().path, '**', filename), recursive=True)[0]
 
-        df = pd.read_excel(path.split('\n')[0])
+        df = pd.read_excel(path)
         if self.tablename != 'Basico':
             df = df.apply(pd.to_numeric, errors="coerce")
-        df.to_csv(
-            os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
-            state_code=state_code)),
-            index=False,
-            sep=';',
-            encoding='utf8'
-        )
+        df.to_csv(os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+                                                                                        state_code=state_code)),
+                  index=False,
+                  sep=';',
+                  encoding=self.encoding)
 
-        return os.path.join(self.input().path,'{tablename}_{state_code}.csv'.format(tablename=self.tablename,
-            state_code=state_code))
+        return os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+                                                                                     state_code=state_code))
 
 
 class ImportAllTables(BaseParams, WrapperTask):
