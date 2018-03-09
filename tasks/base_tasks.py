@@ -683,8 +683,8 @@ class CSV2TempTableTask(TempTableTask):
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
 
-        with open('{csv}'.format(csv=csvfile), 'r') as f:
-            header_row = next(csv.reader(f))
+        with open('{csv}'.format(csv=csvfile), 'r', encoding=self.encoding) as f:
+            header_row = next(csv.reader(f, delimiter=self.delimiter))
         return [(h, 'Text') for h in header_row]
 
     def read_method(self, fname):
