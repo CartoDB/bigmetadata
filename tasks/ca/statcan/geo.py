@@ -79,7 +79,7 @@ GEOGRAPHY_TAGS = {
 class DownloadGeography(DownloadUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter(default=2011)
+    year = Parameter(default="2011")
 
     URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 

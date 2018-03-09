@@ -144,8 +144,7 @@ class ColumnTarget(Target):
 
     def update_or_create(self):
         session = current_session()
-        with session.no_autoflush:
-            self._column = session.merge(self._column)
+        self._column = session.merge(self._column)
 
     def exists(self):
         existing = self.get(current_session())
