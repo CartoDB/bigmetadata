@@ -15,6 +15,7 @@ from sqlalchemy import (Column, Integer, Text, MetaData, Numeric, cast,
 from sqlalchemy.dialects.postgresql import JSON, DATERANGE
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import relationship, sessionmaker, backref
 from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.types import UserDefinedType
@@ -903,6 +904,12 @@ def session_commit(task):
     print('commit {}'.format(task.task_id if task else ''))
     try:
         _current_session.commit()
+    except IntegrityError as iex:
+        if re.search(r'obs_timespan_pkey', iex.orig.args[0]):
+            print("Avoided integrity for timespan entity: {}".format(iex.orig.args[0]))
+            return
+        print(iex)
+        raise
     except Exception as err:
         print(err)
         raise
