@@ -143,7 +143,9 @@ class ColumnTarget(Target):
             return session.query(OBSColumn).get(self._id)
 
     def update_or_create(self):
-        self._column = current_session().merge(self._column)
+        session = current_session()
+        with session.no_autoflush:
+            self._column = session.merge(self._column)
 
     def exists(self):
         existing = self.get(current_session())
