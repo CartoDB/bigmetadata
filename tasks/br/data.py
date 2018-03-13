@@ -103,9 +103,9 @@ class ImportData(CSV2TempTableTask):
             state_code = self.state.upper()
 
         # The provided CSV files are not well-formed, so we convert the provided XLS files into CSV
-        # All files are {tablename}_{state}.xls, except Basico-MG.xls
-        filename = '{tablename}[-_]{state_code}.xls'.format(tablename=self.tablename,
-                                                            state_code=state_code)
+        # All files are {tablename}_{state}.xls (or XLS), except Basico-MG.xls
+        filename = '{tablename}[-_]{state_code}.[xX][lL][sS]'.format(tablename=self.tablename,
+                                                                     state_code=state_code)
 
         path = glob.glob(os.path.join(self.input().path, '**', filename), recursive=True)[0]
 
