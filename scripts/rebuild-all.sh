@@ -12,9 +12,11 @@ cleanup()
 {
     # Remove schemas and directories for every country in the defined array
     find tmp/ -maxdepth 1 -regex $folders_regexp -type d | xargs sudo rm -rf
-    docker-compose run -d --rm bigmetadata psql -c "do \$\$ declare schema_rec record; begin for schema_rec in (select schema_name from information_schema.schemata where schema_name ~* '$schema_regexp') loop execute 'drop schema \"'|| schema_rec.schema_name ||'\" cascade'; end loop; end; \$\$"
+    docker-compose run -d --name bigmetadata_clean_schemas --rm bigmetadata psql -c "do \$\$ declare schema_rec record; begin for schema_rec in (select schema_name from information_schema.schemata where schema_name ~* '$schema_regexp') loop execute 'drop schema \"'|| schema_rec.schema_name ||'\" cascade'; end loop; end; \$\$"
     # Drop observatory schema
-    docker-compose run -d --rm bigmetadata psql -c "drop schema observatory cascade"
+    docker wait bigmetadata_clean_schemas
+    docker-compose run -d --name bigmetadata_clean_observatory --rm bigmetadata psql -c "drop schema observatory cascade"
+    docker wait bigmetadata_clean_observatory
 }
 
 execute_tasks()
