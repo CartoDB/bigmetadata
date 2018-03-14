@@ -124,9 +124,12 @@ class ImportData(CSV2TempTableTask):
 
 class ImportAllTables(BaseParams, WrapperTask):
 
+    no_data = {'al': ['Pessoa05', ], }
+
     def requires(self):
         for table in TABLES:
-            yield ImportData(state=self.state, tablename=table)
+            if table not in self.no_data.get(self.state, []):
+                yield ImportData(state=self.state, tablename=table)
 
 
 class ImportAllStates(BaseParams, WrapperTask):
