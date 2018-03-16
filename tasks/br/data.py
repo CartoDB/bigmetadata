@@ -36,6 +36,9 @@ TABLES = ['Basico',
           # Responsible
           'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
 
+NO_DATA = {'al': ['Pessoa05', ],
+           'pa': ['Pessoa05', ], }
+
 
 class SourceTags(TagsTask):
 
@@ -124,11 +127,9 @@ class ImportData(CSV2TempTableTask):
 
 class ImportAllTables(BaseParams, WrapperTask):
 
-    no_data = {'al': ['Pessoa05', ], }
-
     def requires(self):
         for table in TABLES:
-            if table not in self.no_data.get(self.state, []):
+            if table not in NO_DATA.get(self.state, []):
                 yield ImportData(state=self.state, tablename=table)
 
 
@@ -324,7 +325,8 @@ class Censos(TableTask):
     def requires(self):
         import_data = {}
         for state in self.states():
-            import_data[state] = ImportData(state=state, tablename=self.tablename)
+            if self.tablename not in NO_DATA.get(state, []):
+                import_data[state] = ImportData(state=state, tablename=self.tablename)
         return {
             'data': import_data,
             'geo': Geography(resolution=self.resolution),
