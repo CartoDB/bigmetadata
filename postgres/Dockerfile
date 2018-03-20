@@ -18,6 +18,7 @@ RUN wget http://download.osgeo.org/geos/geos-3.5.1.tar.bz2 && \
 RUN wget http://download.osgeo.org/postgis/source/postgis-2.2.5.tar.gz && \
     tar xzf postgis-2.2.5.tar.gz && \
     cd postgis-2.2.5 && \
+    sed -i "s=echo '\\\echo Use=\\/bin\\/echo '\\\echo Use=" extensions/postgis/Makefile.in && \
     ./configure && \
     make && \
     make install && \
