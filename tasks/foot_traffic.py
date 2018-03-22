@@ -137,6 +137,24 @@ class FTPoints(Task):
                     table=self.output().tablename,
                 )
         self._session.execute(query)
+
+        query = '''
+                CLUSTER "{schema}".{table}
+                USING {schema}_{table}_idx
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
+        query = '''
+                VACUUM ANALYZE "{schema}".{table}
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
         self._session.commit()
 
     def run(self):
