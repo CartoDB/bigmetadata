@@ -130,7 +130,7 @@ class FTPoints(Task):
 
     def _create_spatial_index(self):
         query = '''
-                CREATE INDEX INTO {schema}_{table}_idx (quadkey, val, the_geom)
+                CREATE INDEX {schema}_{table}_idx
                 ON "{schema}".{table} USING GIST (the_geom)
                 '''.format(
                     schema=self.output().schema,
@@ -212,7 +212,7 @@ class FTPolygons(Task):
 
     def _create_spatial_index(self):
         query = '''
-                CREATE INDEX INTO {schema}_{table}_idx (quadkey, val, the_geom)
+                CREATE INDEX {schema}_{table}_idx
                 ON "{schema}".{table} USING GIST (the_geom)
                 '''.format(
                     schema=self.output().schema,
