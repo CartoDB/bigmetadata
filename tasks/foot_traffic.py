@@ -116,7 +116,7 @@ class FTPoints(Task):
     def _insert(self, quadkey, value, lon, lat):
         query = '''
                 INSERT INTO "{schema}".{table} (quadkey, val, the_geom)
-                SELECT {quadkey}, {value}, ST_SnapToGrid(ST_SetSRID(ST_Point({lon}, {lat}), 4326), 0.000001)
+                SELECT '{quadkey}', {value}, ST_SnapToGrid(ST_SetSRID(ST_Point({lon}, {lat}), 4326), 0.000001)
                 ON CONFLICT DO NOTHING
                 '''.format(
                     schema=self.output().schema,
@@ -206,7 +206,7 @@ class FTPolygons(Task):
     def _insert(self, quadkey, value, envelope):
         query = '''
                 INSERT INTO "{schema}".{table} (quadkey, val, the_geom)
-                SELECT {quadkey}, {value}, ST_SnapToGrid(ST_SetSRID(ST_Envelope('LINESTRING({x1} {y1}, {x2} {y2})'::geometry), 4326), 0.000001)
+                SELECT '{quadkey}', {value}, ST_SnapToGrid(ST_SetSRID(ST_Envelope('LINESTRING({x1} {y1}, {x2} {y2})'::geometry), 4326), 0.000001)
                 ON CONFLICT DO NOTHING
                 '''.format(
                     schema=self.output().schema,
