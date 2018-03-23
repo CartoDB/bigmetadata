@@ -21,6 +21,27 @@ services:
       - 5554:5432
     env_file: .env
 
+  postgres10:
+    image: carto/bigmetadata_postgres_10
+    volumes:
+      - ${DO_LOCAL_POSTGRESQL_10_LIB_DIR:-./postgres/data}:/var/lib/postgresql
+      - ./observatory-extension:/observatory-extension
+      - ./dataservices-api:/dataservices-api
+      - ./data-services:/data-services
+      - ./cartodb-postgresql:/cartodb-postgresql
+      - ${DO_LOCAL_POSTGRESQL_10_TMP_DIR:-./tmp}:/bigmetadata/tmp
+    environment:
+      PGDATA: /var/lib/postgresql/pg_data
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: gis
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+    privileged: true
+    ports:
+      - 5554:5432
+    env_file: .env
+
   nginx:
     image: nginx:latest
     volumes:
