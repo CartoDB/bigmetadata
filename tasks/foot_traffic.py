@@ -116,7 +116,7 @@ class FTPoints(Task):
     def _insert(self, quadkey, value, lon, lat):
         query = '''
                 INSERT INTO "{schema}".{table} (quadkey, val, the_geom)
-                SELECT {quadkey}, {value}, ST_SetSRID(ST_Point({lon}, {lat}), 4326)
+                SELECT {quadkey}, {value}, ST_SnapToGrid(ST_SetSRID(ST_Point({lon}, {lat}), 4326), 0.000001)
                 ON CONFLICT DO NOTHING
                 '''.format(
                     schema=self.output().schema,
@@ -141,14 +141,6 @@ class FTPoints(Task):
         query = '''
                 CLUSTER "{schema}".{table}
                 USING {schema}_{table}_idx
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-
-        query = '''
-                VACUUM ANALYZE "{schema}".{table}
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
@@ -214,7 +206,7 @@ class FTPolygons(Task):
     def _insert(self, quadkey, value, envelope):
         query = '''
                 INSERT INTO "{schema}".{table} (quadkey, val, the_geom)
-                SELECT {quadkey}, {value}, ST_SetSRID(ST_Envelope('LINESTRING({x1} {y1}, {x2} {y2})'::geometry), 4326)
+                SELECT {quadkey}, {value}, ST_SnapToGrid(ST_SetSRID(ST_Envelope('LINESTRING({x1} {y1}, {x2} {y2})'::geometry), 4326), 0.000001)
                 ON CONFLICT DO NOTHING
                 '''.format(
                     schema=self.output().schema,
@@ -237,6 +229,16 @@ class FTPolygons(Task):
                     table=self.output().tablename,
                 )
         self._session.execute(query)
+
+        query = '''
+                CLUSTER "{schema}".{table}
+                USING {schema}_{table}_idx
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
         self._session.commit()
 
     def run(self):
@@ -398,6 +400,27 @@ class FTRaster(Task):
         self._session.execute(query)
         self._session.commit()
 
+    def _create_spatial_index(self):
+        query = '''
+                CREATE INDEX {schema}_{table}_idx
+                ON "{schema}".{table} USING GIST (ST_Envelope(rast))
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
+        query = '''
+                CLUSTER "{schema}".{table}
+                USING {schema}_{table}_idx
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
+        self._session.commit()
+
     def run(self):
         self._session = current_session()
         self._create_table()
@@ -431,6 +454,8 @@ class FTRaster(Task):
             r_lon0, r_lat1, r_lon1, r_lat0 = tile2bounds(r_z, r_x, r_y)
 
         self._clean_raster()
+        self._session.commit()
+        self._create_spatial_index()
 
     def output(self):
         return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
