@@ -39,7 +39,7 @@ services:
       LANG: en_US.UTF-8
     privileged: true
     ports:
-      - 5554:5432
+      - 5555:5432
     env_file: .env
 
   nginx:
@@ -60,7 +60,7 @@ services:
       - 8082
     environment:
       PYTHONPATH: /bigmetadata
-      PGHOST: postgres
+      PGHOST: ${PGHOST:-postgres}
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
@@ -81,7 +81,7 @@ services:
     entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
       PYTHONPATH: '/bigmetadata'
-      PGHOST: postgres
+      PGHOST: ${PGHOST:-postgres}
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
