@@ -58,6 +58,8 @@ services:
       - .:/bigmetadata
     ports:
       - 8082
+    depends_on:
+      - ${PGHOST:-postgres}
     environment:
       PYTHONPATH: /bigmetadata
       PGHOST: ${PGHOST:-postgres}
@@ -77,6 +79,7 @@ services:
     volumes:
       - .:/bigmetadata
     depends_on:
+      - ${PGHOST:-postgres}
       - bigmetadata_daemon
     entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
