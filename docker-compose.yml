@@ -58,9 +58,11 @@ services:
       - .:/bigmetadata
     ports:
       - 8082
+    depends_on:
+      - ${PGSERVICE:-postgres}
     environment:
+      PGHOST: ${PGSERVICE:-postgres}
       PYTHONPATH: /bigmetadata
-      PGHOST: ${PGHOST:-postgres}
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
@@ -77,11 +79,12 @@ services:
     volumes:
       - .:/bigmetadata
     depends_on:
+      - ${PGSERVICE:-postgres}
       - bigmetadata_daemon
     entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
       PYTHONPATH: '/bigmetadata'
-      PGHOST: ${PGHOST:-postgres}
+      PGHOST: ${PGSERVICE:-postgres}
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
