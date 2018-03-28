@@ -1,28 +1,26 @@
 FROM ubuntu:xenial
 
 COPY ./requirements.txt /bigmetadata/requirements.txt
-
 RUN apt-get update
+RUN apt-get -y install make build-essential wget curl unzip git p7zip-full software-properties-common
+RUN add-apt-repository -y ppa:cartodb/postgresql-10
+RUN add-apt-repository -y ppa:cartodb/nodejs
+RUN apt-get update --fix-missing
 
-# PostgreSQL (client + dev headers for psycopg2 compilation)
-RUN apt-get -y install postgresql-client libpq-dev
+RUN apt-get -y install nodejs postgresql-client-10 gdal-bin python3-pip
 
-# ogr2ogr
-RUN apt-get -y install gdal-bin
-
-# mapshaper
-RUN apt-get -y install npm nodejs-legacy
+# Mapshaper
 RUN npm install -g mapshaper
 
-# Shell utils used in ETL tasks (TODO: remove them)
-RUN apt-get -y install wget curl unzip git p7zip-full
-
 # Luigi
-RUN apt-get -y install python3-pip
 RUN pip3 install --upgrade -r /bigmetadata/requirements.txt
 
 # Luigi Web UI
 EXPOSE 8082
+
+COPY ./scripts/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod 0755 /usr/local/bin/wait-for-it.sh
+ENV PATH /usr/local/bin:$PATH
 
 WORKDIR /bigmetadata
 CMD ["true"]

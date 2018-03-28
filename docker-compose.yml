@@ -62,6 +62,7 @@ services:
       - ${PGSERVICE:-postgres}
     environment:
       PGHOST: ${PGSERVICE:-postgres}
+      PGPORT: ${PGPORT:-5432}
       PYTHONPATH: /bigmetadata
       PGUSER: docker
       PGPASSWORD: docker
@@ -72,7 +73,7 @@ services:
       LOGGING_CONFIG_PATH: /bigmetadata/conf/logging_daemon.cfg
       LOGGING_FILE: etl_daemon.log
     env_file: .env
-    command: "/bin/bash -c 'while : ; do pg_isready -t 1 && break; done && luigid'"
+    command: "wait-for-it.sh --strict ${PGHOST:-postgres}:${PGPORT:-5432} -- luigid"
 
   bigmetadata:
     image: carto/bigmetadata
@@ -85,6 +86,7 @@ services:
     environment:
       PYTHONPATH: '/bigmetadata'
       PGHOST: ${PGSERVICE:-postgres}
+      PGPORT: ${PGPORT:-5432}
       PGUSER: docker
       PGPASSWORD: docker
       PGDATABASE: gis
