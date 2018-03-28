@@ -345,8 +345,19 @@ class FTRaster(Task):
 
     def _insert_raster(self, quadkey, pixels, envelope):
         query = '''
+                WITH env AS (
+                    SELECT ST_SnapToGrid(ST_SetSRID(ST_Point({x1}, {y1}), 4326), 0.000001) as point1,
+                           ST_SnapToGrid(ST_SetSRID(ST_Point({x2}, {y2}), 4326), 0.000001) as point2
+                )
                 INSERT INTO "{schema_o}".{table_o} (rid, rast)
-                SELECT '{quadkey}', ST_AddBand(ST_MakeEmptyRaster({pixels}, {pixels}, {x1}, {y1}, ABS(({x1})-({x2}))/{pixels}, -ABS(({y1})-({y2}))/{pixels}, 0, 0, 4326), 1, '16BUI'::text, 0, 0) rast
+                SELECT '{quadkey}',
+                       ST_AddBand(ST_MakeEmptyRaster({pixels}, {pixels},
+                                                     ST_X(e.point1), ST_Y(e.point1),
+                                                     ABS((ST_X(e.point1))-(ST_X(e.point2)))/{pixels},
+                                                     -ABS((ST_Y(e.point1))-(ST_Y(e.point2)))/{pixels},
+                                                     0, 0, 4326),
+                                  1, '16BUI'::text, 0, 0) rast
+                FROM env e
                 '''.format(
                     quadkey=quadkey,
                     pixels=pixels,
