@@ -154,14 +154,14 @@ dataservices-api-server-unittest:
 dataservices-api-unittest: dataservices-api-server-unittest dataservices-api-client-unittest
 
 etl-unittest:
-	docker-compose run --rm bigmetadata /bin/bash -c \
+	docker-compose run -e LOGGING_FILE=test.log --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  PGDATABASE=test nosetests -v \
 	    tests/test_meta.py tests/test_util.py tests/test_carto.py \
 	    tests/test_tabletasks.py tests/test_lib.py'
 
 etl-metadatatest:
-	docker-compose run --rm bigmetadata /bin/bash -c \
+	docker-compose run -e LOGGING_FILE=test.log --rm bigmetadata /bin/bash -c \
 	  'while : ; do pg_isready -t 1 && break; done && \
 	  TEST_ALL=$(ALL) TEST_MODULE=tasks.$(MODULE) \
 	  PGDATABASE=test nosetests -v --with-timer \

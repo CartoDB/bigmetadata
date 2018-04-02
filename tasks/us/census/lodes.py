@@ -469,7 +469,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 tags=[tags['age_gender'], tags['employment']]
             )),
         ])
-        for colname, col in cols.items():
+        for _, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
         return cols
