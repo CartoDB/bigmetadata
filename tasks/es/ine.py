@@ -1,4 +1,4 @@
-# http://www.ine.es/pcaxisdl/t20/e245/p07/a2015/l0/0001.px
+# http://www.ine.es/pcaxisdl/t21/e245/p07/a2015/l0/0001.px
 
 import csv
 import os
@@ -11,7 +11,7 @@ from lib.logger import get_logger
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper
-from tasks.meta import OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
+from tasks.meta import OBSTable, OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
 from tasks.util import shell, classpath
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 
@@ -118,6 +118,12 @@ class Geometry(TableTask):
 
     def table_timespan(self):
         return get_timespan('2011')
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()
@@ -1795,10 +1801,14 @@ class PopulationHouseholdsHousing(TableTask):
             'meta': SeccionColumns(),
             'geometa': GeometryColumns(),
             'data': RawPopulationHouseholdsHousing(),
+            'geo': Geometry(),
         }
 
     def version(self):
         return 6
+
+    def targets(self):
+        return {self.input()['geo'].obs_table: GEOM_REF}
 
     def table_timespan(self):
         return get_timespan('2011')
@@ -2037,10 +2047,16 @@ class FiveYearPopulation(TableTask):
             'meta': FiveYearPopulationColumns(),
             'seccion_columns': SeccionColumns(),
             'geometa': GeometryColumns(),
+            'geo': Geometry(),
         }
 
     def version(self):
         return 5
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         '''

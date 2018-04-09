@@ -683,8 +683,8 @@ class CSV2TempTableTask(TempTableTask):
             raise NotImplementedError("Cannot automatically determine colnames "
                                       "if several input CSVs.")
 
-        with open('{csv}'.format(csv=csvfile), 'r') as f:
-            header_row = next(csv.reader(f))
+        with open('{csv}'.format(csv=csvfile), 'r', encoding=self.encoding) as f:
+            header_row = next(csv.reader(f, delimiter=self.delimiter))
         return [(h, 'Text') for h in header_row]
 
     def read_method(self, fname):
@@ -906,6 +906,17 @@ class TableTask(Task):
         session.execute('ANALYZE {table}'.format(table=self.output().table))
 
         if not self._testmode:
+            LOGGER.info('checking for null columns on %s', self.output().table)
+            self.check_null_columns()
+
+            LOGGER.info('checking for medians/averages without universe target on %s',
+                        self.output().table)
+            self.check_universe_in_aggregations()
+
+            LOGGER.info('checking for table_to_table relations on %s',
+                        self.output().table)
+            self.check_table_to_table_relations()
+
             LOGGER.info('create_indexes')
             self.create_indexes(output)
             current_session().flush()
@@ -990,12 +1001,88 @@ class TableTask(Task):
                              "but lack of 'universe' target: {columns}".format(
                                 table=self.output().table, columns=', '.join([x[0] for x in result])))
 
+    def check_table_to_table_relations(self):
+        session = current_session()
+        # Relations between tables defined as follows:
+        # TABLE(SOURCE) -- COLUMN_TABLE(source) -- COLUMN_TO_COLUMN -- COLUMN_TABLE(target) -- TABLE(target)
+        # that are not in OBS_TABLE_TO_TABLE
+        check_missing_relations_query = ('''
+                 SELECT DISTINCT ts.id || '.' || cs.id ||
+                 ' / ' || tt.id || '.' || ct.id || ' (' || cc.reltype || ')' relation
+                 FROM observatory.obs_table ts, observatory.obs_column_table cts, observatory.obs_column cs,
+                 observatory.obs_column_to_column cc,
+                 observatory.obs_table tt, observatory.obs_column_table ctt, observatory.obs_column ct
+                 WHERE cc.reltype = 'geom_ref'  -- WARNING! only geom_ref reltype ATM
+                 AND ts.tablename = '{table}'
+                 AND ts.id = cts.table_id
+                 AND cts.column_id = cs.id
+                 AND cs.id = cc.source_id
+                 AND cc.target_id = ct.id
+                 AND ct.id = ctt.column_id
+                 AND ctt.table_id = tt.id
+                 AND NOT EXISTS (
+                 SELECT 1
+                 FROM observatory.obs_table_to_table ttt
+                 WHERE ttt.source_id = ts.id
+                 AND ttt.target_id = tt.id)
+                 ''').format(table=self.output()._tablename)
+        result = session.execute(check_missing_relations_query).fetchall()
+
+        if result:
+            raise ValueError('The table "{table}" lacks some table_to_table relations: {relations}'.format(
+                table=self.output().table, relations=', '.join([x[0] for x in result])))
+
+        # Relations in OBS_TABLE_TO_TABLE
+        # that are not in the relations between tables defined as follows:
+        # TABLE(SOURCE) -- COLUMN_TABLE(source) -- COLUMN_TO_COLUMN -- COLUMN_TABLE(target) -- TABLE(target)
+        check_excess_relation_query = ('''
+                 SELECT DISTINCT ttt.source_id || ' / '
+                 || ttt.target_id || ' (' || ttt.reltype || ')' relation
+                 FROM observatory.obs_table_to_table ttt, observatory.obs_table t
+                 WHERE ttt.source_id = t.id
+                 AND t.tablename = '{table}'
+                 AND ttt.source_id <> ttt.target_id
+                 AND NOT EXISTS (
+                 SELECT 1
+                 FROM observatory.obs_table ts, observatory.obs_column_table cts, observatory.obs_column cs,
+                 observatory.obs_column_to_column cc,
+                 observatory.obs_table tt, observatory.obs_column_table ctt, observatory.obs_column ct
+                 WHERE cc.reltype = 'geom_ref'  -- WARNING! only geom_ref reltype ATM
+                 AND ts.tablename = t.tablename
+                 AND ts.id = cts.table_id
+                 AND cts.column_id = cs.id
+                 AND cs.id = cc.source_id
+                 AND cc.target_id = ct.id
+                 AND ct.id = ctt.column_id
+                 AND ctt.table_id = tt.id
+                 AND ts.id <> tt.id  -- avoid relationships between columns of the same table
+                 AND NOT EXISTS (  -- avoid columns with the same id as columns in the target table
+                 SELECT 1
+                 FROM observatory.obs_column_table oct
+                 WHERE oct.table_id = ts.id
+                 AND oct.column_id = ct.id)
+                 AND ttt.source_id = ts.id
+                 AND ttt.reltype = cc.reltype
+                 AND ttt.target_id = tt.id)
+                 ''').format(table=self.output()._tablename)
+        result = session.execute(check_excess_relation_query).fetchall()
+
+        if result:
+            raise ValueError('The following relations for table "{table}" need to be removed: {relations}'.format(
+                table=self.output().table, relations=', '.join([x[0] for x in result])))
+
+    def schema(self):
+        return classpath(self)
+
+    def name(self):
+        return underscore_slugify(unqualified_task_id(self.task_id))
+
     def output(self):
         if not hasattr(self, '_columns'):
             self._columns = self.columns()
 
-        tt = TableTarget(classpath(self),
-                         underscore_slugify(unqualified_task_id(self.task_id)),
+        tt = TableTarget(self.schema(),
+                         self.name(),
                          OBSTable(description=self.description(),
                                   version=self.version(),
                                   table_timespan=self.table_timespan(),
@@ -1004,8 +1091,8 @@ class TableTask(Task):
         return tt
 
     def complete(self):
-        return TableTarget(classpath(self),
-                           underscore_slugify(unqualified_task_id(self.task_id)),
+        return TableTarget(self.schema(),
+                           self.name(),
                            OBSTable(description=self.description(),
                                     version=self.version(),
                                     table_timespan=self.table_timespan()),

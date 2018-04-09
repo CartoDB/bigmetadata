@@ -1,4 +1,4 @@
-from tasks.meta import OBSColumn, current_session
+from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF
 from tasks.base_tasks import ColumnsTask, Shp2TempTableTask, DownloadUnzipTask, TableTask
 from tasks.util import shell
 from tasks.poi import POIColumns
@@ -756,6 +756,12 @@ class MapPLUTO(TableTask):
 
     def version(self):
         return 3
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def requires(self):
         data = {}

@@ -10,7 +10,7 @@ from lib.timespan import get_timespan
 
 from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath
-from tasks.meta import current_session
+from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA,
     GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
@@ -248,6 +248,11 @@ class Census(Survey):
             'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def table_timespan(self):
         return get_timespan('2011')
 
@@ -270,6 +275,11 @@ class NHS(Survey):
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
+        }
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
         }
 
     def table_timespan(self):
@@ -298,6 +308,7 @@ class CensusMetaWrapper(MetaWrapper):
     def tables(self):
         yield Geography(resolution=self.resolution)
         yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
+
 
 class NHSMetaWrapper(MetaWrapper):
     resolution = Parameter()

@@ -15,6 +15,7 @@ from sqlalchemy import (Column, Integer, Text, MetaData, Numeric, cast,
 from sqlalchemy.dialects.postgresql import JSON, DATERANGE
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import relationship, sessionmaker, backref
 from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.types import UserDefinedType
@@ -123,6 +124,45 @@ def catalog_latlng(column_id):
         return (-33.880, 151.213)
     else:
         raise Exception('No catalog point set for {}'.format(column_id))
+
+def _unique(session, cls, hashfunc, queryfunc, constructor, arg, kw):
+    cache = getattr(session, '_unique_cache', None)
+    if cache is None:
+        session._unique_cache = cache = {}
+
+    key = (cls, hashfunc(*arg))
+    if key in cache:
+        return cache[key]
+    else:
+        with session.no_autoflush:
+            q = session.query(cls)
+            q = queryfunc(q, *arg)
+            obj = q.first()
+            if not obj:
+                obj = constructor(**kw)
+                session.add(obj)
+        cache[key] = obj
+        return obj
+
+class UniqueMixin(object):
+    @classmethod
+    def unique_hash(cls, *arg, **kw):
+        raise NotImplementedError()
+
+    @classmethod
+    def unique_filter(cls, query, *arg, **kw):
+        raise NotImplementedError()
+
+    @classmethod
+    def as_unique(cls, session, *arg, **kw):
+        return _unique(
+                    session,
+                    cls,
+                    cls.unique_hash,
+                    cls.unique_filter,
+                    cls,
+                    arg, kw
+               )
 
 
 class Raster(UserDefinedType):
@@ -813,7 +853,7 @@ class OBSColumnTableTileSimple(Base):
                               postgresql_using='gist')
 
 
-class OBSTimespan(Base):
+class OBSTimespan(UniqueMixin, Base):
     '''
     Describes a timespan table in our database.
     '''
@@ -826,6 +866,13 @@ class OBSTimespan(Base):
     timespan = Column(DATERANGE)
     weight = Column(Integer, default=0)
 
+    @classmethod
+    def unique_hash(cls, id):
+        return id
+
+    @classmethod
+    def unique_filter(cls, query, id):
+        return query.filter(OBSTimespan.id == id)
 
 class CurrentSession(object):
 
@@ -903,6 +950,13 @@ def session_commit(task):
     print('commit {}'.format(task.task_id if task else ''))
     try:
         _current_session.commit()
+    except IntegrityError as iex:
+        # if re.search(r'obs_timespan_pkey', iex.orig.args[0]):
+        #     import ipdb; ipdb.set_trace()
+        #     print("Avoided integrity for timespan entity: {}".format(iex.orig.args[0]))
+        #     return
+        print(iex)
+        raise
     except Exception as err:
         print(err)
         raise

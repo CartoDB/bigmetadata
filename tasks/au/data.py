@@ -10,7 +10,7 @@ from lib.timespan import get_timespan
 
 from tasks.util import shell
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
-from tasks.meta import current_session, OBSColumn
+from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -84,6 +84,29 @@ class ImportData(CSV2TempTableTask):
         path = path.strip()
 
         return path
+
+    def after_copy(self):
+        session = current_session()
+        query_columns = '''
+                        SELECT column_name
+                        FROM information_schema.columns
+                        WHERE table_schema = '{schema}'
+                        AND table_name   = lower('{table}');
+                        '''.format(schema=self.output().schema,
+                                   table=self.output().tablename)
+        columns = session.execute(query_columns).fetchall()
+        for column in columns:
+            column_name = column[0]
+            if column_name != column_name.strip():
+                alter_column = '''
+                               ALTER TABLE "{schema}".{table}
+                               RENAME COLUMN "{old_column}" TO "{new_column}";
+                               '''.format(schema=self.output().schema,
+                                          table=self.output().tablename,
+                                          old_column=column_name,
+                                          new_column=column_name.strip())
+                session.execute(alter_column)
+                session.commit()
 
 
 class ImportAllTables(WrapperTask):
@@ -340,6 +363,11 @@ class BCP(TableTask):
 
     def version(self):
         return 4
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
 
     def requires(self):
         import_data = {}
