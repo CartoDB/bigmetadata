@@ -154,30 +154,6 @@ class Attributes(ColumnsTask):
         ])
 
 
-class GeoidColumnsTiger(ColumnsTask):
-    geoid_column = Parameter()
-
-    def version(self):
-        return 1
-
-    def requires(self):
-        return {
-            'raw': GeomColumns(),
-        }
-
-    def columns(self):
-        cols = OrderedDict()
-        for colname, coltarget in self.input()['raw'].items():
-            col = coltarget._column
-            cols[colname + self.geoid_column] = OBSColumn(
-                type='Text',
-                name=col.name + ' Geoids',
-                weight=0
-            )
-
-        return cols
-
-
 class GeoidColumns(ColumnsTask):
     '''
     Used for external dependencies on Tiger.
@@ -618,7 +594,7 @@ class ShorelineClip(TableTask):
         return {
             'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
-            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SHORELINECLIPPED_COLUMN),
+            'geoids': GeoidColumns(),
             'attributes': Attributes(),
             'geonames': GeonameColumns(),
         }
@@ -684,7 +660,7 @@ class SumLevel(TableTask):
     def requires(self):
         return {
             'attributes': Attributes(),
-            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SUMLEVEL_COLUMN),
+            'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
             'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year),
         }

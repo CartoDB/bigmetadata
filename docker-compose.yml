@@ -71,7 +71,7 @@ services:
       LANG: C.UTF-8
       LUIGI_CONFIG_PATH: /bigmetadata/conf/luigi_daemon.cfg
       LOGGING_CONFIG_PATH: /bigmetadata/conf/logging_daemon.cfg
-      LOGGING_FILE: etl_daemon.log
+      LOGGING_FILE: ${LOGGING_FILE:-etl_daemon.log}
     env_file: .env
     command: "wait-for-it.sh --strict ${PGHOST:-postgres}:${PGPORT:-5432} -- luigid"
 
@@ -92,6 +92,7 @@ services:
       PGDATABASE: gis
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
+      LOGGING_FILE: ${LOGGING_FILE:-etl_client.log}
       LUIGI_CONFIG_PATH: /opt/bigmetadata/etc/luigi_client.cfg
       LOGGING_CONFIG_PATH: /opt/bigmetadata/etc/logging_client.cfg
     env_file: .env

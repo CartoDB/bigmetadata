@@ -469,7 +469,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 tags=[tags['age_gender'], tags['employment']]
             )),
         ])
-        for colname, col in cols.items():
+        for _, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
         return cols
@@ -541,16 +541,14 @@ class WorkplaceAreaCharacteristics(TableTask):
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
             'tiger_meta': GeoidColumns(),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
-            'shoreline': ShorelineClip(year='2015', geography='census_tract'),
-            'sumlevel': SumLevel(year='2015', geography='census_tract'),
+            'sumlevel': SumLevel(year='2015', geography='block'),
         }
 
     def table_timespan(self):
         return get_timespan(str(self.year))
 
     def targets(self):
-        return {self.input()['shoreline'].obs_table: GEOM_REF,
-                self.input()['sumlevel'].obs_table: GEOM_REF}
+        return {self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def columns(self):
         data_columns = self.input()['data_meta']
