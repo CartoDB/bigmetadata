@@ -361,8 +361,7 @@ us-lodes:
 us-spielman:
 	make -- run us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
-us-tiger:
-	us-tiger-census_tract us-tiger-county us-tiger-block_group us-tiger-congressional_district us-tiger-puma us-tiger-school_district_secondary us-tiger-state us-tiger-school_district_unified us-tiger-cbsa us-tiger-school_district_elementary us-tiger-place us-tiger-block us-tiger-zcta5
+us-tiger: us-tiger-census_tract us-tiger-county us-tiger-block_group us-tiger-congressional_district us-tiger-puma us-tiger-school_district_secondary us-tiger-state us-tiger-school_district_unified us-tiger-cbsa us-tiger-school_district_elementary us-tiger-place us-tiger-zcta5 us-tiger-block
 
 us-tiger-census_tract:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography census_tract
