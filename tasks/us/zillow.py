@@ -12,7 +12,7 @@ from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
+from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE, GEOM_REF
 from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
 
@@ -317,7 +317,8 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns()
+            'geoids': GeoidColumns(),
+            'sumlevel': SumLevel(year='2015', geography='zcta5'),
         }
         for hometype, hometype_human in HOMETYPES.items():
             measure = measure_name(hometype)
@@ -338,6 +339,9 @@ class Zillow(TableTask):
                         last_month=datetime.now().month, last_year=datetime.now().year)
 
         return requirements
+
+    def targets(self):
+        return {self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def table_timespan(self):
         return get_timespan('{year}-{month}'.format(year=str(self.year).zfill(2),
