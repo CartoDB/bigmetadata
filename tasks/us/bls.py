@@ -6,7 +6,7 @@ from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_ad
                             get_parent_code)
 from tasks.meta import OBSColumn, OBSTag, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
 
 from collections import OrderedDict
