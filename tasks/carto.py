@@ -380,9 +380,10 @@ class OBSMeta(Task):
              , observatory.obs_table denom_t
              , observatory.obs_column_tag denom_ctag
              , observatory.obs_tag denom_tag
+             , observatory.obs_table_to_table t2t
+             , observatory.obs_table denom_geomref_t
              , observatory.obs_column_table denom_geomref_ct
              , observatory.obs_column geomref_c
-             , observatory.obs_column_to_column geomref_c2c
         WHERE denom_c.weight > 0
           AND denom_c2c.source_id = numer_c.id
           AND denom_c2c.target_id = denom_c.id
@@ -391,10 +392,12 @@ class OBSMeta(Task):
           AND denom_c.id = denom_ctag.column_id
           AND denom_ctag.tag_id = denom_tag.id
           AND denom_c2c.reltype IN ('denominator', 'universe')
-          AND denom_geomref_ct.table_id = denom_t.id
+          AND t2t.source_id = denom_t.id
+          AND t2t.reltype = 'geom_ref'
+          AND t2t.target_id = denom_geomref_t.id
+          AND denom_geomref_ct.table_id = denom_geomref_t.id
           AND denom_geomref_ct.column_id = geomref_c.id
-          AND geomref_c2c.reltype = 'geom_ref'
-          AND geomref_c2c.source_id = geomref_c.id
+          AND geomref_c.type ILIKE 'geometry%'
         GROUP BY numer_c.id, denom_c.id, denom_t.id, geomref_c.id
       ), leftjoined_denoms AS (
         SELECT numer_c.id all_numer_id, denoms.*
@@ -438,11 +441,26 @@ class OBSMeta(Task):
              null::varchar denom_tablename,
              null::varchar geom_tablename,
              numer_t.timespan numer_timespan,
+             null::varchar numer_timespan_alias,
+             null::varchar numer_timespan_name,
+             null::varchar numer_timespan_description,
+             null::varchar numer_timespan_range,
+             null::varchar numer_timespan_weight,
              null::varchar denom_timespan,
+             null::varchar denom_timespan_alias,
+             null::varchar denom_timespan_name,
+             null::varchar denom_timespan_description,
+             null::daterange denom_timespan_range,
+             null::numeric denom_timespan_weight,
              null::numeric numer_weight,
              null::numeric denom_weight,
              null::numeric geom_weight,
              null::varchar geom_timespan,
+             null::varchar geom_timespan_alias,
+             null::varchar geom_timespan_name,
+             null::varchar geom_timespan_description,
+             null::varchar geom_timespan_range,
+             null::varchar geom_timespan_weight,
              null::geometry the_geom,
              null::jsonb numer_tags,
              null::jsonb denom_tags,
@@ -457,46 +475,39 @@ class OBSMeta(Task):
              null::jsonb denom_ct_extra,
              null::jsonb geom_extra,
              null::jsonb geom_ct_extra
-      FROM observatory.obs_column_table numer_data_ct,
-           observatory.obs_table numer_t,
-           observatory.obs_column_table numer_geomref_ct,
-           observatory.obs_column geomref_c,
-           observatory.obs_column_to_column geomref_c2c,
-           observatory.obs_column_table geom_geom_ct,
-           observatory.obs_column_table geom_geomref_ct,
-           observatory.obs_table geom_t,
-           observatory.obs_column_tag numer_ctag,
-           observatory.obs_tag numer_tag,
-           observatory.obs_column numer_c,
-           leftjoined_denoms,
-           observatory.obs_column geom_c
-           LEFT JOIN (
-              observatory.obs_column_tag geom_ctag JOIN
-              observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
-           ) ON geom_c.id = geom_ctag.column_id
-      WHERE numer_c.weight > 0
-        AND numer_c.id = numer_data_ct.column_id
-        AND numer_data_ct.table_id = numer_t.id
-        AND numer_t.id = numer_geomref_ct.table_id
-        AND numer_geomref_ct.column_id = geomref_c.id
-        AND geomref_c2c.reltype = 'geom_ref'
-        AND geomref_c.id = geomref_c2c.source_id
-        AND geom_c.id = geomref_c2c.target_id
-        AND geom_geomref_ct.column_id = geomref_c.id
+      FROM observatory.obs_column numer_c,
+        observatory.obs_column_table numer_geomref_ct,
+        observatory.obs_table numer_t,
+        observatory.obs_table_to_table t2t,
+        observatory.obs_table geom_t,
+        observatory.obs_column_table geom_geomref_ct,
+        observatory.obs_column_tag numer_ctag,
+        observatory.obs_tag numer_tag,
+        leftjoined_denoms,
+        observatory.obs_column geom_c
+        LEFT JOIN (
+            observatory.obs_column_tag geom_ctag JOIN
+            observatory.obs_tag geom_tag ON geom_tag.id = geom_ctag.tag_id
+        ) ON geom_c.id = geom_ctag.column_id
+      WHERE numer_c.type NOT ILIKE 'geometry%'
+        AND numer_c.weight > 0
+        AND numer_c.id = numer_geomref_ct.column_id
+        AND numer_geomref_ct.table_id = numer_t.id
+        AND numer_t.id = t2t.source_id
+        AND t2t.reltype = 'geom_ref'
+        AND geom_t.id = t2t.target_id
         AND geom_geomref_ct.table_id = geom_t.id
-        AND geom_geom_ct.column_id = geom_c.id
-        AND geom_geom_ct.table_id = geom_t.id
+        AND geom_c.id = geom_geomref_ct.column_id
         AND geom_c.type ILIKE 'geometry%'
-        AND numer_c.type NOT ILIKE 'geometry%'
-        AND numer_c.id != geomref_c.id
+        AND numer_c.id != geom_c.id
         AND numer_ctag.column_id = numer_c.id
         AND numer_ctag.tag_id = numer_tag.id
         AND numer_c.id = leftjoined_denoms.all_numer_id
         AND (leftjoined_denoms.numer_id IS NULL OR (
           numer_t.timespan = leftjoined_denoms.denom_timespan
-          AND geomref_c.id = leftjoined_denoms.geomref_id
+          AND geom_c.id = leftjoined_denoms.geomref_id
         ))
-      GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan;
+      GROUP BY numer_c.id, denom_id, geom_c.id, numer_t.timespan, geom_t.id;
       ''',
 
       '''CREATE UNIQUE INDEX ON {obs_meta} (numer_id, geom_id, numer_timespan, denom_id);''',
@@ -505,7 +516,7 @@ class OBSMeta(Task):
 
       '''-- update numer coltable info
       UPDATE {obs_meta} SET
-        numer_name = name,
+        numer_name = c.name,
         numer_description = c.description,
         numer_t_description = t.description,
         numer_version = c.version,
@@ -514,19 +525,26 @@ class OBSMeta(Task):
         numer_type = type,
         numer_colname = colname,
         numer_tablename = tablename,
-        numer_timespan = timespan,
-        numer_weight = weight,
+        numer_timespan = ts.id,
+        numer_timespan_alias = ts.alias,
+        numer_timespan_name = ts.name,
+        numer_timespan_description = ts.description,
+        numer_timespan_range = ts.timespan,
+        numer_timespan_weight = ts.weight,
+        numer_weight = c.weight,
         numer_extra = c.extra,
         numer_ct_extra = ct.extra
-      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      FROM observatory.obs_column c, observatory.obs_column_table ct,
+           observatory.obs_table t, observatory.obs_timespan ts
       WHERE c.id = numer_id
         AND t.id = numer_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;''',
+        AND t.id = ct.table_id
+        AND t.timespan = ts.id;''',
 
       '''-- update denom coltable info
       UPDATE {obs_meta} SET
-        denom_name = name,
+        denom_name = c.name,
         denom_description = c.description,
         denom_t_description = t.description,
         denom_version = c.version,
@@ -535,19 +553,26 @@ class OBSMeta(Task):
         denom_type = type,
         denom_colname = colname,
         denom_tablename = tablename,
-        denom_timespan = timespan,
-        denom_weight = weight,
+        denom_timespan = ts.id,
+        denom_timespan_alias = ts.alias,
+        denom_timespan_name = ts.name,
+        denom_timespan_description = ts.description,
+        denom_timespan_range = ts.timespan,
+        denom_timespan_weight = ts.weight,
+        denom_weight = c.weight,
         denom_extra = c.extra,
         denom_ct_extra = ct.extra
-      FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+      FROM observatory.obs_column c, observatory.obs_column_table ct,
+           observatory.obs_table t, observatory.obs_timespan ts
       WHERE c.id = denom_id
         AND t.id = denom_tid
         AND c.id = ct.column_id
-        AND t.id = ct.table_id;''',
+        AND t.id = ct.table_id
+        AND t.timespan = ts.id;''',
 
      '''-- update geom coltable info
      UPDATE {obs_meta} SET
-       geom_name = name,
+       geom_name = c.name,
        geom_description = c.description,
        geom_t_description = t.description,
        geom_version = c.version,
@@ -556,16 +581,23 @@ class OBSMeta(Task):
        geom_type = type,
        geom_colname = colname,
        geom_tablename = tablename,
-       geom_timespan = timespan,
+       geom_timespan = ts.id,
+       geom_timespan_alias = ts.alias,
+       geom_timespan_name = ts.name,
+       geom_timespan_description = ts.description,
+       geom_timespan_range = ts.timespan,
+       geom_timespan_weight = ts.weight,
        the_geom = t.the_geom,
-       geom_weight = weight,
+       geom_weight = c.weight,
        geom_extra = c.extra,
        geom_ct_extra = ct.extra
-     FROM observatory.obs_column c, observatory.obs_column_table ct, observatory.obs_table t
+     FROM observatory.obs_column c, observatory.obs_column_table ct,
+          observatory.obs_table t, observatory.obs_timespan ts
      WHERE c.id = geom_id
        AND t.id = geom_tid
        AND c.id = ct.column_id
-       AND t.id = ct.table_id;''',
+       AND t.id = ct.table_id
+       AND t.timespan = ts.id;''',
 
      '''-- update coltag info
      DROP TABLE IF EXISTS _obs_coltags;
@@ -790,7 +822,8 @@ WHERE {obs_meta}.geom_id = ANY(union_geoms.geom_ids);
 CREATE TABLE {obs_meta} AS
 SELECT geom_id::TEXT,
        numer_id::TEXT,
-       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans
+       ARRAY_AGG(DISTINCT numer_timespan)::TEXT[] timespans,
+       ARRAY_AGG(DISTINCT geom_timespan)::TEXT[] geom_timespans
   FROM observatory.obs_meta_next
   GROUP BY geom_id, numer_id;
         ''',
@@ -799,23 +832,95 @@ SELECT geom_id::TEXT,
         'timespan': ['''
 CREATE TABLE {obs_meta} AS
 SELECT numer_timespan::TEXT timespan_id,
-       numer_timespan::TEXT timespan_name,
-       NULL::TEXT timespan_description,
+       numer_timespan_alias::TEXT timespan_alias,
+       numer_timespan_name::TEXT timespan_name,
+       numer_timespan_description::TEXT timespan_description,
+       numer_timespan_range::DATERANGE timespan_range,
+       numer_timespan_weight::NUMERIC timespan_weight,
        NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
-       NULL::NUMERIC timespan_weight,
        NULL::JSONB timespan_extra,
        NULL::TEXT timespan_type,
        NULL::TEXT timespan_aggregate,
-       ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers,
-       ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms,
-       ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
        NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
        NULL::Integer timespan_version
 FROM observatory.obs_meta_next
-GROUP BY numer_timespan;
+WHERE numer_timespan IS NOT NULL
+GROUP BY numer_timespan, numer_timespan_alias, numer_timespan_name,
+         numer_timespan_description, numer_timespan_range, numer_timespan_weight;
         ''',
         '''
 ALTER TABLE {obs_meta} ADD PRIMARY KEY (timespan_id);
+        ''',
+        '''
+INSERT INTO {obs_meta}
+(timespan_id, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
+timespan_tags, timespan_extra, timespan_type, timespan_aggregate, numers, denoms, geoms, the_geom, timespan_version)
+SELECT denom_timespan::TEXT timespan_id,
+       denom_timespan_alias::TEXT timespan_alias,
+       denom_timespan_name::TEXT timespan_name,
+       denom_timespan_description::TEXT timespan_description,
+       denom_timespan_range::DATERANGE timespan_range,
+       denom_timespan_weight::NUMERIC timespan_weight,
+       NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
+       NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
+       NULL::TEXT timespan_aggregate,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
+       NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Integer timespan_version
+FROM observatory.obs_meta_next
+WHERE denom_timespan IS NOT NULL
+GROUP BY denom_timespan, denom_timespan_alias, denom_timespan_name,
+         denom_timespan_description, denom_timespan_range, denom_timespan_weight
+ON CONFLICT (timespan_id) DO NOTHING;
+        ''',
+        '''
+INSERT INTO {obs_meta}
+(timespan_id, timespan_alias, timespan_name, timespan_description, timespan_range, timespan_weight,
+timespan_tags, timespan_extra, timespan_type, timespan_aggregate, numers, denoms, geoms, the_geom, timespan_version)
+SELECT geom_timespan::TEXT timespan_id,
+       geom_timespan_alias::TEXT timespan_alias,
+       geom_timespan_name::TEXT timespan_name,
+       geom_timespan_description::TEXT timespan_description,
+       geom_timespan_range::DATERANGE timespan_range,
+       geom_timespan_weight::NUMERIC timespan_weight,
+       NULL::JSONB timespan_tags, --FIRST(timespan_tags)::JSONB timespan_tags,
+       NULL::JSONB timespan_extra,
+       NULL::TEXT timespan_type,
+       NULL::TEXT timespan_aggregate,
+       NULL::TEXT[] numers,
+       NULL::TEXT[] denoms,
+       NULL::TEXT[] geoms,
+       NULL::Geometry(Geometry, 4326) the_geom, -- ST_Union(DISTINCT ST_SetSRID(the_geom, 4326)) the_geom
+       NULL::Integer timespan_version
+FROM observatory.obs_meta_next
+WHERE geom_timespan IS NOT NULL
+GROUP BY geom_timespan, geom_timespan_alias, geom_timespan_name,
+         geom_timespan_description, geom_timespan_range, geom_timespan_weight
+ON CONFLICT (timespan_id) DO NOTHING;
+        ''',
+        '''
+UPDATE {obs_meta} AS t SET numers =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT numer_id)::TEXT[], NULL) numers
+FROM observatory.obs_meta_next as m
+WHERE m.numer_timespan = t.timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} AS t SET denoms =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT denom_id)::TEXT[], NULL) denoms
+FROM observatory.obs_meta_next as m
+WHERE m.denom_timespan = t.timespan_id);
+        ''',
+        '''
+UPDATE {obs_meta} AS t SET geoms =
+(SELECT ARRAY_REMOVE(ARRAY_AGG(DISTINCT geom_id)::TEXT[], NULL) geoms
+FROM observatory.obs_meta_next as m
+WHERE m.geom_timespan = t.timespan_id);
         ''',
         '''
 UPDATE {obs_meta} SET
