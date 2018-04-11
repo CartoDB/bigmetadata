@@ -4,7 +4,7 @@ from tasks.util import underscore_slugify, shell
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF
+from tasks.meta import OBSColumn, OBSTag, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
@@ -212,6 +212,7 @@ class QCEW(TableTask):
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
             'geoid_cols': GeoidColumns(),
             'naics': OrderedDict(),
+            'sumlevel': SumLevel(year='2015', geography='county'),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -222,11 +223,8 @@ class QCEW(TableTask):
                     )
         return requirements
 
-    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
-        return {
-            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
-        }
+        return {self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def table_timespan(self):
         return get_timespan('{year}Q{qtr}'.format(year=self.year, qtr=self.qtr))
