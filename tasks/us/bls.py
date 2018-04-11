@@ -6,7 +6,8 @@ from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_ad
                             get_parent_code)
 from tasks.meta import OBSColumn, OBSTag, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
+                                   GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from lib.timespan import get_timespan
 
 from collections import OrderedDict
@@ -213,6 +214,7 @@ class QCEW(TableTask):
             'geoid_cols': GeoidColumns(),
             'naics': OrderedDict(),
             'sumlevel': SumLevel(year='2015', geography='county'),
+            'shorelineclip': ShorelineClip(year='2015', geography='county'),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -224,7 +226,10 @@ class QCEW(TableTask):
         return requirements
 
     def targets(self):
-        return {self.input()['sumlevel'].obs_table: GEOM_REF}
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def table_timespan(self):
         return get_timespan('{year}Q{qtr}'.format(year=self.year, qtr=self.qtr))
