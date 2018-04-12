@@ -13,7 +13,7 @@ from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE, GEOM_REF
-from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
 
 # cherry-picked datasets
@@ -319,8 +319,9 @@ class Zillow(TableTask):
             'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns(),
             'sumlevel': SumLevel(year='2015', geography='zcta5'),
+            'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
         }
-        for hometype, hometype_human in HOMETYPES.items():
+        for hometype, _ in HOMETYPES.items():
             measure = measure_name(hometype)
 
             if measure:
@@ -341,7 +342,10 @@ class Zillow(TableTask):
         return requirements
 
     def targets(self):
-        return {self.input()['sumlevel'].obs_table: GEOM_REF}
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def table_timespan(self):
         return get_timespan('{year}-{month}'.format(year=str(self.year).zfill(2),
@@ -372,7 +376,7 @@ class Zillow(TableTask):
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
-        for key, value in input_['metadata'].items():
+        for key, _ in input_['metadata'].items():
             input_table = input_[key].table
             stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
                       SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC
