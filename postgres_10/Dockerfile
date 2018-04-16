@@ -34,5 +34,7 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh
 
+RUN apt-get install postgresql-plpython-10
+
 EXPOSE 5432
 ENTRYPOINT ["docker-entrypoint.sh"]
