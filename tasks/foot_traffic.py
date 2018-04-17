@@ -425,5 +425,24 @@ class AggregateData(Task):
         self._session.execute(view + select)
         self._session.commit()
 
+        query = '''
+                CREATE INDEX {schema}_{table}_view_idx
+                ON "{schema}".{table}_view USING GIST (the_geom)
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+
+        query = '''
+                CLUSTER "{schema}".{table}_view
+                USING {schema}_{table}_view_idx
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                )
+        self._session.execute(query)
+        self._session.commit()
+
     def output(self):
         return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
