@@ -153,8 +153,6 @@ class DownloadZillow(Task):
     geography = Parameter()
     hometype = Parameter()
     measure = Parameter()
-    last_year = IntParameter()
-    last_month = IntParameter()
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
@@ -293,13 +291,10 @@ class WideZillow(CSV2TempTableTask):
     geography = Parameter()  # example: Zip
     hometype = Parameter()  # example: SingleFamilyResidence
     measure = Parameter()
-    last_year = IntParameter()
-    last_month = IntParameter()
 
     def requires(self):
         return DownloadZillow(geography=self.geography, hometype=self.hometype,
-                              measure=self.measure, last_year=self.last_year,
-                              last_month=self.last_month)
+                              measure=self.measure)
 
     def input_csv(self):
         return self.input().path
@@ -328,16 +323,14 @@ class Zillow(TableTask):
                 table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                          measure=measure)
                 requirements[table_id] = WideZillow(
-                    geography=self.geography, hometype=hometype, measure=measure,
-                    last_month=datetime.now().month, last_year=datetime.now().year)
+                    geography=self.geography, hometype=hometype, measure=measure)
 
                 aggregations = measure_aggregation(hometype)
                 for aggregation in aggregations:
                     table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                              measure=aggregation)
                     requirements[table_id] = WideZillow(
-                        geography=self.geography, hometype=hometype, measure=aggregation,
-                        last_month=datetime.now().month, last_year=datetime.now().year)
+                        geography=self.geography, hometype=hometype, measure=aggregation)
 
         return requirements
 
