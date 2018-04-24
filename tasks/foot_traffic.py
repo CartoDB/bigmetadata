@@ -9,6 +9,9 @@ from tasks.util import (classpath, unqualified_task_id)
 from tasks.targets import PostgresTarget
 
 LOGGER = get_logger(__name__)
+MAX_ZOOM_LEVEL = 22
+IDX_SUFFIX = '_idx'
+VIEW_IDX_SUFFIX = '_view_idx'
 DATA_COLUMN_PREFIX = 'ft_'
 HOURS_IN_A_DAY = 24
 DAYS_IN_A_WEEK = 7
@@ -19,6 +22,7 @@ THURSDAY = 3
 FRIDAY = 4
 SATURDAY = 5
 SUNDAY = 6
+
 
 def quadkey2tile(quadkey):
     z = len(quadkey)
@@ -79,6 +83,44 @@ def tile2quadkey(z, x, y):
     return quadkey
 
 
+def find_columns_with_prefix(session, schema, tablename, column_prefix):
+    query = '''
+            SELECT column_name
+                FROM information_schema.columns
+                WHERE table_schema = '{schema}'
+                AND table_name = lower('{table}')
+                AND column_name like '{column_prefix}%';
+            '''.format(
+                schema=schema,
+                table=tablename,
+                column_prefix=column_prefix,
+            )
+    return [c[0] for c in session.execute(query).fetchall()]
+
+
+def create_spatial_index(session, schema, tablename, suffix):
+    query = '''
+            CREATE INDEX {schema}_{table}{suffix}
+            ON "{schema}".{table} USING GIST (the_geom)
+            '''.format(
+                schema=schema,
+                table=tablename,
+                suffix=suffix
+            )
+    session.execute(query)
+
+    query = '''
+            CLUSTER "{schema}".{table}
+            USING {schema}_{table}{suffix}
+            '''.format(
+                schema=schema,
+                table=tablename,
+                suffix=suffix
+            )
+    session.execute(query)
+    session.commit()
+
+
 class DownloadData(Task):
 
     URL = 'YOUR_URL_HERE'
@@ -116,26 +158,6 @@ class ImportData(Task):
                 )
         self._session.execute(query)
 
-        self._session.commit()
-
-    def _create_spatial_index(self):
-        query = '''
-                CREATE INDEX {schema}_{table}_idx
-                ON "{schema}".{table} USING GIST (the_geom)
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-
-        query = '''
-                CLUSTER "{schema}".{table}
-                USING {schema}_{table}_idx
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
         self._session.commit()
 
     def _insert(self, quadkey, lon, lat):
@@ -230,15 +252,76 @@ class ImportData(Task):
                     LOGGER.info('Inserted {i} rows'.format(i=i))
 
         self._session.commit()
-        self._create_spatial_index()
+        create_spatial_index(self._session, self.output().schema, self.output().tablename, IDX_SUFFIX)
+
+    def output(self):
+        return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
+
+
+class ZoomLevel(Task):
+    zoom = IntParameter()
+
+    def requires(self):
+        return ImportData()
+
+    def _create_table(self):
+        query = '''
+                CREATE TABLE "{schema}".{table} AS
+                SELECT * FROM "{input_schema}".{input_table}
+                WHERE 1=0
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                    input_schema=self.input().schema,
+                    input_table=self.input().tablename,
+                )
+        self._session.execute(query)
+
+        self._session.commit()
+
+    def run(self):
+        if self.zoom > MAX_ZOOM_LEVEL:
+            raise ValueError('Zoom level {zoom} cannot be greater than the maximum available zoom level ({maxzoom})'.format(zoom=self.zoom, maxzoom=MAX_ZOOM_LEVEL))
+
+        self._session = current_session()
+        self._create_table()
+
+        data_columns = find_columns_with_prefix(self._session, self.input().schema, self.input().tablename,
+                                                DATA_COLUMN_PREFIX)
+
+        field_column = 'NULLIF(ARRAY[{sumfield}]::INTEGER[] , ARRAY_FILL(0, ARRAY[{size}])) {field}'
+        sumfield = 'SUM((COALESCE({field}, array_fill(0, ARRAY[{size}])))[{i}])'
+        query = '''
+                INSERT INTO "{schema}".{table}
+                SELECT SUBSTRING(quadkey FROM 1 FOR {zoom}) quadkey, ST_Centroid(ST_Union(the_geom)) the_geom,
+                {fields}
+                FROM "{input_schema}".{input_table}
+                GROUP BY SUBSTRING(quadkey from 1 for {zoom});
+                '''.format(
+                    fields=','.join([field_column.format(sumfield=','.join([sumfield.format(field=c,
+                                                                                            size=HOURS_IN_A_DAY,
+                                                                                            i=i) for i in range(1, HOURS_IN_A_DAY + 1)]), size=HOURS_IN_A_DAY,
+                                                                                                                                          field=c) for c in data_columns]),
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                    input_schema=self.input().schema,
+                    input_table=self.input().tablename,
+                    zoom=self.zoom
+                )
+
+        self._session.execute(query)
+        self._session.commit()
+        create_spatial_index(self._session, self.output().schema, self.output().tablename, IDX_SUFFIX)
 
     def output(self):
         return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
 
 
 class AggregateData(Task):
+    zoom = IntParameter(default=MAX_ZOOM_LEVEL)
+
     def requires(self):
-        return ImportData()
+        return ZoomLevel(zoom=self.zoom)
 
     def _create_table(self):
         query = '''
@@ -289,40 +372,6 @@ class AggregateData(Task):
 
         self._session.commit()
 
-    def _create_spatial_index(self):
-        query = '''
-                CREATE INDEX {schema}_{table}_idx
-                ON "{schema}".{table} USING GIST (the_geom)
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-
-        query = '''
-                CLUSTER "{schema}".{table}
-                USING {schema}_{table}_idx
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-        self._session.commit()
-
-    def _find_date_columns(self):
-        query = '''
-                SELECT column_name
-                  FROM information_schema.columns
-                 WHERE table_schema = '{schema}'
-                   AND table_name = lower('{table}')
-                   AND column_name like '{column_prefix}%';
-                '''.format(
-                    schema=self.input().schema,
-                    table=self.input().tablename,
-                    column_prefix=DATA_COLUMN_PREFIX,
-                )
-        return [c[0] for c in self._session.execute(query).fetchall()]
-
     def _find_day_of_week(self, columns, day):
         return [d for d in columns
                 if datetime.strptime(d, '{column_prefix}%Y%m%d'.format(column_prefix=DATA_COLUMN_PREFIX)).weekday() == day]
@@ -331,7 +380,8 @@ class AggregateData(Task):
         self._session = current_session()
         self._create_table()
 
-        columns = self._find_date_columns()
+        columns = find_columns_with_prefix(self._session, self.input().schema, self.input().tablename,
+                                           DATA_COLUMN_PREFIX)
         mondays = self._find_day_of_week(columns, MONDAY)
         tuesdays = self._find_day_of_week(columns, TUESDAY)
         wednesdays = self._find_day_of_week(columns, WEDNESDAY)
@@ -380,7 +430,6 @@ class AggregateData(Task):
                            {monday} monday, {tuesday} tuesday, {wednesday} wednesday, {thursday} thursday, {friday} friday, {saturday} saturday, {sunday} sunday,
                            the_geom
                       FROM "{input_schema}".{input_table}
-                     --WHERE quadkey = '0320101101202210321302'
                     ) a
                  GROUP BY quadkey, the_geom;
                  '''.format(
@@ -418,31 +467,14 @@ class AggregateData(Task):
                     hour_aggregations=','.join([hour_aggregation.format(hour=i, size=7,
                                                                         hour_name='{num:02d}'.format(num=(i - 1))) for i in range(1, 25)])
                  )
+
         self._session.execute(insert + select)
         self._session.commit()
-        self._create_spatial_index()
+        create_spatial_index(self._session, self.output().schema, self.output().tablename, IDX_SUFFIX)
 
-        self._session.execute(view + select)
-        self._session.commit()
-
-        query = '''
-                CREATE INDEX {schema}_{table}_view_idx
-                ON "{schema}".{table}_view USING GIST (the_geom)
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-
-        query = '''
-                CLUSTER "{schema}".{table}_view
-                USING {schema}_{table}_view_idx
-                '''.format(
-                    schema=self.output().schema,
-                    table=self.output().tablename,
-                )
-        self._session.execute(query)
-        self._session.commit()
+        # self._session.execute(view + select)
+        # self._session.commit()
+        # create_spatial_index(self._session, self.output().schema, self.output().tablename + '_view', VIEW_IDX_SUFFIX)
 
     def output(self):
         return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
