@@ -9,9 +9,12 @@ from tasks.util import (classpath, unqualified_task_id)
 from tasks.targets import PostgresTarget
 
 LOGGER = get_logger(__name__)
+QUADKEY_FIELD = 'quadkey'
+GEOM_FIELD = 'the_geom'
 MAX_ZOOM_LEVEL = 22
 IDX_SUFFIX = '_idx'
 VIEW_IDX_SUFFIX = '_view_idx'
+META_TABLE = 'ft_table'
 DATA_COLUMN_PREFIX = 'ft_'
 HOURS_IN_A_DAY = 24
 DAYS_IN_A_WEEK = 7
@@ -121,6 +124,104 @@ def create_spatial_index(session, schema, tablename, suffix):
     session.commit()
 
 
+class BaseFTTable(Task):
+    def _populate(self):
+        raise NotImplementedError
+
+    @property
+    def _id(self):
+        return '{schema}.{table}'.format(schema=self.output().schema,
+                                         table=self.output().tablename)
+
+    @property
+    def _schemaname(self):
+        return self.output().schema
+
+    @property
+    def _tablename(self):
+        return self.output().tablename
+
+    @property
+    def _zoom(self):
+        return self.zoom
+
+    @property
+    def _timerange(self):
+        columns = find_columns_with_prefix(self._session, self.input().schema, self.input().tablename,
+                                           DATA_COLUMN_PREFIX)
+        mindate, maxdate, first = None, None, True
+
+        for column in columns:
+            current = datetime.strptime(column, '{column_prefix}%Y%m%d'.format(column_prefix=DATA_COLUMN_PREFIX))
+            if first:
+                mindate, maxdate, first = current, current, False
+
+            mindate = current if current < mindate else mindate
+            maxdate = current if current > maxdate else maxdate
+
+        return '[{mindate}, {maxdate}]'.format(mindate=mindate.strftime('%Y-%m-%d'),
+                                               maxdate=maxdate.strftime('%Y-%m-%d'))
+
+    @property
+    def _bbox(self):
+        query = '''
+                SELECT ST_Envelope(ST_Union(the_geom)) FROM "{schema}".{table}
+                '''.format(
+                    schema=self.input().schema,
+                    table=self.input().tablename,
+                )
+
+        return self._session.execute(query).fetchone()[0]
+
+    def _create_metadata_table(self):
+        query = '''
+                CREATE TABLE IF NOT EXISTS "{schema}".{table} (
+                    id TEXT,
+                    schema TEXT,
+                    tablename TEXT,
+                    zoom INTEGER,
+                    timerange DATERANGE,
+                    bbox GEOMETRY(GEOMETRY, 4326),
+                    PRIMARY KEY (id)
+                )
+                '''.format(
+                    schema=self.output().schema,
+                    table=META_TABLE,
+                )
+        self._session.execute(query)
+
+        self._session.commit()
+
+    def _populate_metadata_table(self):
+        query = '''
+                INSERT INTO "{schema}".{table} (id, schema, tablename, zoom, bbox, timerange)
+                VALUES ('{id}', '{schemaname}', '{tablename}', {zoom}, '{bbox}', '{timerange}')
+                ON CONFLICT (id)
+                DO UPDATE SET tablename = EXCLUDED.tablename,
+                              zoom = EXCLUDED.zoom,
+                              bbox = EXCLUDED.bbox,
+                              timerange = EXCLUDED.timerange
+                '''.format(
+                    schema=self.output().schema,
+                    table=META_TABLE,
+                    id=self._id,
+                    schemaname=self._schemaname,
+                    tablename=self._tablename,
+                    zoom=self._zoom,
+                    bbox=self._bbox,
+                    timerange=self._timerange,
+                )
+        self._session.execute(query)
+
+        self._session.commit()
+
+    def run(self):
+        self._session = current_session()
+        self._populate()
+        self._create_metadata_table()
+        self._populate_metadata_table()
+
+
 class DownloadData(Task):
 
     URL = 'YOUR_URL_HERE'
@@ -148,13 +249,15 @@ class ImportData(Task):
 
         query = '''
                 CREATE TABLE "{schema}".{table} (
-                    quadkey TEXT,
-                    the_geom GEOMETRY(GEOMETRY, 4326),
+                    {quadkey_field} TEXT,
+                    {geom_field} GEOMETRY(GEOMETRY, 4326),
                     PRIMARY KEY (quadkey)
                 )
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
+                    quadkey_field=QUADKEY_FIELD,
+                    geom_field=GEOM_FIELD,
                 )
         self._session.execute(query)
 
@@ -162,12 +265,14 @@ class ImportData(Task):
 
     def _insert(self, quadkey, lon, lat):
         query = '''
-                INSERT INTO "{schema}".{table} (quadkey, the_geom)
+                INSERT INTO "{schema}".{table} ({quadkey_field}, {geom_field})
                 SELECT '{quadkey}', ST_SnapToGrid(ST_SetSRID(ST_Point({lon}, {lat}), 4326), 0.000001)
                 ON CONFLICT DO NOTHING
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
+                    quadkey_field=QUADKEY_FIELD,
+                    geom_field=GEOM_FIELD,
                     quadkey=quadkey,
                     lon=lon,
                     lat=lat
@@ -190,19 +295,20 @@ class ImportData(Task):
     def _update_hour_value(self, quadkey, date, hour, value):
         query = '''
                 UPDATE "{schema}".{table} SET {column_prefix}{datecolumn} = array_fill(0, ARRAY[24])
-                WHERE quadkey = '{quadkey}'
+                WHERE {quadkey_field} = '{quadkey}'
                   AND {column_prefix}{datecolumn} IS NULL
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
                     column_prefix=DATA_COLUMN_PREFIX,
                     datecolumn=date,
+                    quadkey_field=QUADKEY_FIELD,
                     quadkey=quadkey
                 )
         self._session.execute(query)
         query = '''
                 UPDATE "{schema}".{table} SET {column_prefix}{datecolumn}[{hour}] = {value}
-                WHERE quadkey = '{quadkey}'
+                WHERE {quadkey_field} = '{quadkey}'
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
@@ -210,6 +316,7 @@ class ImportData(Task):
                     datecolumn=date,
                     hour=int(hour) + 1,  # Postgres arrays are 1-based
                     value=value,
+                    quadkey_field=QUADKEY_FIELD,
                     quadkey=quadkey
                 )
         self._session.execute(query)
@@ -293,10 +400,10 @@ class ZoomLevel(Task):
         sumfield = 'SUM((COALESCE({field}, array_fill(0, ARRAY[{size}])))[{i}])'
         query = '''
                 INSERT INTO "{schema}".{table}
-                SELECT SUBSTRING(quadkey FROM 1 FOR {zoom}) quadkey, ST_Centroid(ST_Union(the_geom)) the_geom,
+                SELECT SUBSTRING({quadkey_field} FROM 1 FOR {zoom}) {quadkey_field}, ST_Centroid(ST_Union({geom_field})) {geom_field},
                 {fields}
                 FROM "{input_schema}".{input_table}
-                GROUP BY SUBSTRING(quadkey from 1 for {zoom});
+                GROUP BY SUBSTRING({quadkey_field} from 1 for {zoom});
                 '''.format(
                     fields=','.join([field_column.format(sumfield=','.join([sumfield.format(field=c,
                                                                                             size=HOURS_IN_A_DAY,
@@ -304,6 +411,8 @@ class ZoomLevel(Task):
                                                                                                                                           field=c) for c in data_columns]),
                     schema=self.output().schema,
                     table=self.output().tablename,
+                    quadkey_field=QUADKEY_FIELD,
+                    geom_field=GEOM_FIELD,
                     input_schema=self.input().schema,
                     input_table=self.input().tablename,
                     zoom=self.zoom
@@ -317,7 +426,7 @@ class ZoomLevel(Task):
         return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
 
 
-class AggregateData(Task):
+class AggregateData(BaseFTTable):
     zoom = IntParameter(default=MAX_ZOOM_LEVEL)
 
     def requires(self):
@@ -326,7 +435,7 @@ class AggregateData(Task):
     def _create_table(self):
         query = '''
                 CREATE TABLE "{schema}".{table} (
-                    quadkey TEXT,
+                    {quadkey_field} TEXT,
                     monday INTEGER[24] DEFAULT array_fill(0, ARRAY[24]),
                     tuesday INTEGER[24] DEFAULT array_fill(0, ARRAY[24]),
                     wednesday INTEGER[24] DEFAULT array_fill(0, ARRAY[24]),
@@ -361,12 +470,48 @@ class AggregateData(Task):
                     h21 INTEGER[7] DEFAULT array_fill(0, ARRAY[7]),
                     h22 INTEGER[7] DEFAULT array_fill(0, ARRAY[7]),
                     h23 INTEGER[7] DEFAULT array_fill(0, ARRAY[7]),
-                    the_geom GEOMETRY(GEOMETRY, 4326),
+                    {geom_field} GEOMETRY(GEOMETRY, 4326),
                     PRIMARY KEY (quadkey)
-                )
+                );
+                COMMENT ON COLUMN "{schema}".{table}.monday IS 'Aggregated 0 to 24 hour data for a typical monday';
+                COMMENT ON COLUMN "{schema}".{table}.tuesday IS 'Aggregated 0 to 24 hour data for a typical tuesday';
+                COMMENT ON COLUMN "{schema}".{table}.wednesday IS 'Aggregated 0 to 24 hour data for a typical wednesday';
+                COMMENT ON COLUMN "{schema}".{table}.thursday IS 'Aggregated 0 to 24 hour data for a typical thursday';
+                COMMENT ON COLUMN "{schema}".{table}.friday IS 'Aggregated 0 to 24 hour data for a typical friday';
+                COMMENT ON COLUMN "{schema}".{table}.saturday IS 'Aggregated 0 to 24 hour data for a typical saturday';
+                COMMENT ON COLUMN "{schema}".{table}.sunday IS 'Aggregated 0 to 24 hour data for a typical sunday';
+                COMMENT ON COLUMN "{schema}".{table}.oneday IS 'Aggregated 0 to 24 hour data for a typical day';
+                COMMENT ON COLUMN "{schema}".{table}.workday IS 'Aggregated 0 to 24 hour data for a typical workday';
+                COMMENT ON COLUMN "{schema}".{table}.weekend IS 'Aggregated 0 to 24 hour data for a typical weekend day';
+                COMMENT ON COLUMN "{schema}".{table}.h00 IS 'Aggregated week data for a typical 00:00 to 01:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h01 IS 'Aggregated week data for a typical 01:00 to 02:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h02 IS 'Aggregated week data for a typical 02:00 to 03:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h03 IS 'Aggregated week data for a typical 03:00 to 04:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h04 IS 'Aggregated week data for a typical 04:00 to 05:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h05 IS 'Aggregated week data for a typical 05:00 to 06:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h06 IS 'Aggregated week data for a typical 06:00 to 07:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h07 IS 'Aggregated week data for a typical 07:00 to 08:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h08 IS 'Aggregated week data for a typical 08:00 to 09:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h09 IS 'Aggregated week data for a typical 09:00 to 10:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h10 IS 'Aggregated week data for a typical 10:00 to 11:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h11 IS 'Aggregated week data for a typical 11:00 to 12:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h12 IS 'Aggregated week data for a typical 12:00 to 13:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h13 IS 'Aggregated week data for a typical 13:00 to 14:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h14 IS 'Aggregated week data for a typical 14:00 to 15:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h15 IS 'Aggregated week data for a typical 15:00 to 16:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h16 IS 'Aggregated week data for a typical 16:00 to 17:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h17 IS 'Aggregated week data for a typical 17:00 to 18:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h18 IS 'Aggregated week data for a typical 18:00 to 19:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h19 IS 'Aggregated week data for a typical 19:00 to 20:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h20 IS 'Aggregated week data for a typical 20:00 to 21:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h21 IS 'Aggregated week data for a typical 21:00 to 22:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h22 IS 'Aggregated week data for a typical 22:00 to 23:00 hour';
+                COMMENT ON COLUMN "{schema}".{table}.h23 IS 'Aggregated week data for a typical 23:00 to 00:00 hour';
                 '''.format(
                     schema=self.output().schema,
                     table=self.output().tablename,
+                    quadkey_field=QUADKEY_FIELD,
+                    geom_field=GEOM_FIELD
                 )
         self._session.execute(query)
 
@@ -376,8 +521,7 @@ class AggregateData(Task):
         return [d for d in columns
                 if datetime.strptime(d, '{column_prefix}%Y%m%d'.format(column_prefix=DATA_COLUMN_PREFIX)).weekday() == day]
 
-    def run(self):
-        self._session = current_session()
+    def _populate(self):
         self._create_table()
 
         columns = find_columns_with_prefix(self._session, self.input().schema, self.input().tablename,
@@ -403,15 +547,16 @@ class AggregateData(Task):
                )
         insert = '''
                  INSERT INTO "{output_schema}".{output_table}
-                 (quadkey,
+                 ({quadkey_field},
                   oneday, workday, weekend, monday, tuesday, wednesday, thursday, friday, saturday, sunday,
                   h00, h01, h02, h03, h04, h05, h06, h07, h08, h09, h10, h11, h12, h13, h14, h15, h16, h17, h18, h19, h20, h21, h22, h23,
-                  the_geom)
+                  {geom_field})
                  '''.format(
                     output_schema=self.output().schema, output_table=self.output().tablename,
+                    quadkey_field=QUADKEY_FIELD, geom_field=GEOM_FIELD,
                  )
         select = '''
-                 SELECT quadkey,
+                 SELECT {quadkey_field},
                        NULLIF(ARRAY_AGG(oneday)::integer[], array_fill(0, ARRAY[24])) oneday,
                        NULLIF(ARRAY_AGG(workday)::integer[], array_fill(0, ARRAY[24])) workday,
                        NULLIF(ARRAY_AGG(weekend)::integer[], array_fill(0, ARRAY[24])) weekend,
@@ -423,17 +568,18 @@ class AggregateData(Task):
                        NULLIF(ARRAY_AGG(saturday)::integer[], array_fill(0, ARRAY[24])) saturday,
                        NULLIF(ARRAY_AGG(sunday)::integer[], array_fill(0, ARRAY[24])) sunday,
                        {hour_aggregations},
-                       the_geom
+                       {geom_field}
                  FROM (
-                    SELECT quadkey,
+                    SELECT {quadkey_field},
                            {oneday} oneday, {workday} workday, {weekend} weekend,
                            {monday} monday, {tuesday} tuesday, {wednesday} wednesday, {thursday} thursday, {friday} friday, {saturday} saturday, {sunday} sunday,
-                           the_geom
+                           {geom_field}
                       FROM "{input_schema}".{input_table}
                     ) a
-                 GROUP BY quadkey, the_geom;
+                 GROUP BY {quadkey_field}, {geom_field};
                  '''.format(
                     input_schema=self.input().schema, input_table=self.input().tablename,
+                    quadkey_field=QUADKEY_FIELD, geom_field=GEOM_FIELD,
                     oneday=aggregations.format(
                         unnesting='+'.join([sum_unnest.format(date=d, size=HOURS_IN_A_DAY) for d in columns]),
                         numdates=len(columns)),
