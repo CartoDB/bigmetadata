@@ -190,6 +190,26 @@ class BaseFTTable(Task):
                 )
         self._session.execute(query)
 
+        query = '''
+            CREATE INDEX {schema}_{table}_{suffix}
+            ON "{schema}".{table} (zoom, timerange)
+            '''.format(
+                schema=self.output().schema,
+                table=META_TABLE,
+                suffix=IDX_SUFFIX
+            )
+        self._session.execute(query)
+
+        query = '''
+            CREATE INDEX {schema}_{table}_bbox_{suffix}
+            ON "{schema}".{table} USING GIST (bbox)
+            '''.format(
+                schema=self.output().schema,
+                table=META_TABLE,
+                suffix=IDX_SUFFIX
+            )
+        self._session.execute(query)
+
         self._session.commit()
 
     def _populate_metadata_table(self):
