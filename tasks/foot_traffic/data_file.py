@@ -43,7 +43,7 @@ class AddLatLngData(Task):
                 outfile.write(','.join([str(c) for c in outline]))
 
                 i = i + 1
-                if i % 10000 == 0:
+                if i % 1000000 == 0:
                     LOGGER.info('Written {i} lines'.format(i=i))
 
     def output(self):
