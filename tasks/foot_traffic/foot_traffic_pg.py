@@ -1,12 +1,11 @@
-import os
-import urllib.request
-import math
 from datetime import datetime
 from luigi import Task, IntParameter, LocalTarget
 from lib.logger import get_logger
 from tasks.meta import current_session
 from tasks.util import (classpath, unqualified_task_id)
 from tasks.targets import PostgresTarget
+from tasks.foot_traffic.quadkey import tile2bounds, quadkey2tile
+from tasks.foot_traffic.data_file import DownloadData
 
 LOGGER = get_logger(__name__)
 QUADKEY_FIELD = 'quadkey'
@@ -25,65 +24,6 @@ THURSDAY = 3
 FRIDAY = 4
 SATURDAY = 5
 SUNDAY = 6
-
-
-def quadkey2tile(quadkey):
-    z = len(quadkey)
-
-    x = 0
-    y = 0
-    for i in range(len(quadkey)):
-        x = x * 2
-        if quadkey[i] in ['1', '3']:
-            x = x + 1
-
-        y = y * 2
-        if quadkey[i] in ['2', '3']:
-            y = y + 1
-
-    y = (1 << z) - y - 1
-
-    return z, x, y
-
-
-def tile2lnglat(z, x, y):
-    n = 2.0 ** z
-
-    lon = x / n * 360.0 - 180.0
-    lat_rad = math.atan(math.sinh(math.pi * (1 - 2 * y / n)))
-    lat = - math.degrees(lat_rad)
-
-    return lon, lat
-
-
-def latlng2tile(lng, lat, z):
-    x = math.floor((lng + 180) / 360 * math.pow(2, z))
-    y = math.floor((1 - math.log(math.tan(lat * math.pi / 180) + 1 / math.cos(lat * math.pi / 180)) / math.pi) / 2 * math.pow(2, z))
-    y = (1 << z) - y - 1
-
-    return z, x, y
-
-
-def tile2bounds(z, x, y):
-    lon0, lat0 = tile2lnglat(z, x, y)
-    lon1, lat1 = tile2lnglat(z, x+1, y+1)
-
-    return lon0, lat0, lon1, lat1
-
-
-def tile2quadkey(z, x, y):
-    quadkey = ''
-    y = (2**z - 1) - y
-    for i in range(z, 0, -1):
-        digit = 0
-        mask = 1 << (i-1)
-        if (x & mask) != 0:
-            digit += 1
-        if (y & mask) != 0:
-            digit += 2
-        quadkey += str(digit)
-
-    return quadkey
 
 
 def find_columns_with_prefix(session, schema, tablename, column_prefix):
@@ -240,19 +180,6 @@ class BaseFTTable(Task):
         self._populate()
         self._create_metadata_table()
         self._populate_metadata_table()
-
-
-class DownloadData(Task):
-
-    URL = 'YOUR_URL_HERE'
-
-    def run(self):
-        self.output().makedirs()
-        urllib.request.urlretrieve(self.URL, self.output().path)
-
-    def output(self):
-        return LocalTarget(os.path.join('tmp', classpath(self),
-                                        unqualified_task_id(self.task_id) + '.csv'))
 
 
 class ImportData(Task):
