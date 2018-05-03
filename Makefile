@@ -7,6 +7,8 @@ ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
   MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
 endif
 
+PGSERVICE ?= postgres
+
 ###
 ### Tasks runners
 ###
@@ -27,14 +29,14 @@ run:
 	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 docker-run:
-	docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
+	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
 	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 # Run a task using docker. For example make docker-es-all
 docker-%:
-	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
+	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
 
 ###
 ### Utils
