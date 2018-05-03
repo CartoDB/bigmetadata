@@ -69,11 +69,12 @@ services:
       PGDATABASE: gis
       LC_ALL: C.UTF-8
       LANG: C.UTF-8
-      LUIGI_CONFIG_PATH: /bigmetadata/conf/luigi_daemon.cfg
-      LOGGING_CONFIG_PATH: /bigmetadata/conf/logging_daemon.cfg
       LOGGING_FILE: ${LOGGING_FILE:-etl_daemon.log}
+      LUIGI_CONFIG_PATH: /opt/bigmetadata/etc/luigi_daemon.cfg
+      LOGGING_CONFIG_PATH: /opt/bigmetadata/etc/logging_daemon.cfg
     env_file: .env
-    command: "wait-for-it.sh --strict ${PGHOST:-postgres}:${PGPORT:-5432} -- luigid"
+    entrypoint: /bigmetadata/conf/daemon_entrypoint.sh
+    command: "luigid"
 
   bigmetadata:
     image: carto/bigmetadata
