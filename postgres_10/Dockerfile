@@ -18,7 +18,7 @@ RUN add-apt-repository -y ppa:cartodb/postgresql-10
 RUN add-apt-repository -y ppa:cartodb/gis
 RUN apt-get update --fix-missing
 
-RUN apt-get install -yq libgdal20 libgeos-3.5.1 postgresql-10 postgresql-common postgis rsyslog
+RUN apt-get install -yq libgdal20 libgeos-3.5.1 postgresql-10 postgresql-common postgis rsyslog postgresql-server-dev-10
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres:postgres /var/run/postgresql && chmod 2777 /var/run/postgresql
 RUN mkdir -p /var/run/postgresql/10-pg_stat_mem_tmp
