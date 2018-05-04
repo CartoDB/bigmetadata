@@ -11,8 +11,9 @@ QUARTERS = {1: 'first',
 
 def get_timespan(timespan_id):
     ts_id, ts_alias, ts_name, ts_description, ts_timespan = parse_timespan(timespan_id)
-    timespan = OBSTimespan(id=ts_id, alias=ts_alias, name=ts_name, description=ts_description, timespan=ts_timespan)
-    return current_session().merge(timespan)
+    session = current_session()
+    return OBSTimespan.as_unique(session, ts_id, id=ts_id, alias=ts_alias, name=ts_name,
+                                 description=ts_description, timespan=ts_timespan)
 
 
 def parse_timespan(timespan_id):

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import glob
 import csv
 import pandas as pd
 from shutil import copyfile
@@ -12,7 +13,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper,
                               RepoFile)
 from tasks.util import shell
-from tasks.meta import OBSColumn, OBSTag, current_session
+from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from collections import OrderedDict
 from tasks.br.geo import (
@@ -36,6 +37,9 @@ TABLES = ['Basico',
           'Pessoa11', 'Pessoa12', 'Pessoa13', 'PessoaRenda',
           # Responsible
           'Responsavel01', 'Responsavel02', 'ResponsavelRenda',]
+
+NO_DATA = {'al': ['Pessoa05', ],
+           'pa': ['Pessoa05', ], }
 
 
 class SourceTags(TagsTask):
@@ -108,34 +112,32 @@ class ImportData(CSV2TempTableTask):
         else:
             state_code = self.state.upper()
 
-        # All files are {tablename}_{state}.xls, except Basico-MG.xls
-        filename = '{tablename}[-_]{state_code}.xls'.format(
-            tablename=self.tablename,
-            state_code=state_code
-        )
+        # The provided CSV files are not well-formed, so we convert the provided XLS files into CSV
+        # All files are {tablename}_{state}.xls (or XLS), except Basico-MG.xls
+        filename = '{tablename}[-_]{state_code}.[xX][lL][sS]'.format(tablename=self.tablename,
+                                                                     state_code=state_code)
 
-        path = shell('find {downloadpath} -iname "{filename}"'.format(downloadpath=self.input().path, filename=filename))
+        path = glob.glob(os.path.join(self.input().path, '**', filename), recursive=True)[0]
 
-        df = pd.read_excel(path.split('\n')[0])
+        df = pd.read_excel(path)
         if self.tablename != 'Basico':
             df = df.apply(pd.to_numeric, errors="coerce")
-        df.to_csv(
-            os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
-            state_code=state_code)),
-            index=False,
-            sep=';',
-            encoding='utf8'
-        )
+        df.to_csv(os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+                                                                                        state_code=state_code)),
+                  index=False,
+                  sep=';',
+                  encoding=self.encoding)
 
-        return os.path.join(self.input().path,'{tablename}_{state_code}.csv'.format(tablename=self.tablename,
-            state_code=state_code))
+        return os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
+                                                                                     state_code=state_code))
 
 
 class ImportAllTables(BaseParams, WrapperTask):
 
     def requires(self):
         for table in TABLES:
-            yield ImportData(state=self.state, tablename=table)
+            if table not in NO_DATA.get(self.state, []):
+                yield ImportData(state=self.state, tablename=table)
 
 
 class ImportAllStates(BaseParams, WrapperTask):
@@ -316,6 +318,11 @@ class Censos(TableTask):
     def version(self):
         return 7
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def states(self):
         '''
         Exclude Basico/mg, which seems to be missing
@@ -325,7 +332,8 @@ class Censos(TableTask):
     def requires(self):
         import_data = {}
         for state in self.states():
-            import_data[state] = ImportData(state=state, tablename=self.tablename)
+            if self.tablename not in NO_DATA.get(state, []):
+                import_data[state] = ImportData(state=state, tablename=self.tablename)
         return {
             'data': import_data,
             'geo': Geography(resolution=self.resolution),

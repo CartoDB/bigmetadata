@@ -5,7 +5,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
@@ -264,6 +264,12 @@ class Geography(TableTask):
     def table_timespan(self):
         return get_timespan('2015')
 
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
+
     def columns(self):
         return self.input()['columns']
 
@@ -292,6 +298,11 @@ class Census(TableTask):
     def version(self):
         return 6
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def table_timespan(self):
         return get_timespan('2010')
 
@@ -300,7 +311,8 @@ class Census(TableTask):
             'data': ImportDemographicData(resolution=self.resolution,
                                           table=self.table),
             'meta': DemographicColumns(resolution=self.resolution, table=self.table),
-            'geometa': GeographyColumns(resolution=self.resolution)
+            'geometa': GeographyColumns(resolution=self.resolution),
+            'geo': Geography(resolution=self.resolution),
         }
 
     def columns(self):
@@ -337,7 +349,7 @@ class Census(TableTask):
         out_colnames = [oc for oc in out_colnames if oc is not None]
 
         cmd = 'INSERT INTO {output} ({out_colnames}) ' \
-                'SELECT {in_colnames} FROM {input} '.format(
+              'SELECT {in_colnames} FROM {input} '.format(
                     output=self.output().table,
                     input=in_table.table,
                     in_colnames=', '.join(in_colnames),

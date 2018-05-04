@@ -7,12 +7,13 @@ import os
 import csv
 from shutil import copyfile
 from collections import OrderedDict
+from tasks.meta import OBSColumn, current_session, OBSTag, GEOM_REF
 from lib.timespan import get_timespan
-from tasks.meta import OBSColumn, current_session, OBSTag
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
                               TagsTask, MetaWrapper, RepoFile)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
+                                   GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 
 from luigi import (Parameter, IntParameter)
 
@@ -467,7 +468,7 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
                 tags=[tags['age_gender'], tags['employment']]
             )),
         ])
-        for colname, col in cols.items():
+        for _, col in cols.items():
             col.tags.append(source)
             col.tags.append(license)
         return cols
@@ -539,17 +540,21 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
             'tiger_meta': GeoidColumns(),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
+            'sumlevel': SumLevel(year='2015', geography='block'),
         }
 
     def table_timespan(self):
         return get_timespan(str(self.year))
+
+    def targets(self):
+        return {self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def columns(self):
         data_columns = self.input()['data_meta']

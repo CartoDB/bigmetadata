@@ -9,9 +9,10 @@ from shutil import copyfile
 from collections import OrderedDict
 from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask, RepoFile
-from tasks.meta import OBSColumn, current_session
+from tasks.meta import OBSColumn, current_session, GEOM_REF
 from tasks.util import shell, classpath
-from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN,
+                                   GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.us.census.acs import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
@@ -134,14 +135,20 @@ class SpielmanSingletonTable(TableTask):
             'columns': SpielmanSingletonColumns(),
             'data_file': ProcessSpielmanSingletonFile(),
             'data': SpielmanSingletonTempTable(),
-            'tiger': GeoidColumns()
+            'tiger': GeoidColumns(),
+            'shoreline': ShorelineClip(year='2015', geography='census_tract'),
+            'sumlevel': SumLevel(year='2015', geography='census_tract'),
         }
 
     def version(self):
-        return 10
+        return 11
 
     def table_timespan(self):
         return get_timespan('2010 - 2014')
+
+    def targets(self):
+        return {self.input()['shoreline'].obs_table: GEOM_REF,
+                self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def populate(self):
         input_ = self.input()

@@ -12,7 +12,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
                               SimplifiedTempTableTask, RepoFile, LoadPostgresFromZipFile)
 from tasks.util import classpath, grouper, shell
-from tasks.meta import OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
+from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.targets import PostgresTarget
 from tasks.simplification import SIMPLIFIED_SUFFIX
@@ -152,30 +152,6 @@ class Attributes(ColumnsTask):
                 weight=0,
             )),
         ])
-
-
-class GeoidColumnsTiger(ColumnsTask):
-    geoid_column = Parameter()
-
-    def version(self):
-        return 1
-
-    def requires(self):
-        return {
-            'raw': GeomColumns(),
-        }
-
-    def columns(self):
-        cols = OrderedDict()
-        for colname, coltarget in self.input()['raw'].items():
-            col = coltarget._column
-            cols[colname + self.geoid_column] = OBSColumn(
-                type='Text',
-                name=col.name + ' Geoids',
-                weight=0
-            )
-
-        return cols
 
 
 class GeoidColumns(ColumnsTask):
@@ -625,7 +601,7 @@ class ShorelineClip(TableTask):
         return {
             'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
             'geoms': ClippedGeomColumns(),
-            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SHORELINECLIPPED_COLUMN),
+            'geoids': GeoidColumns(),
             'attributes': Attributes(),
             'geonames': GeonameColumns(),
         }
@@ -639,6 +615,12 @@ class ShorelineClip(TableTask):
 
     def table_timespan(self):
         return get_timespan(str(self.year))
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()
@@ -685,9 +667,9 @@ class SumLevel(TableTask):
     def requires(self):
         return {
             'attributes': Attributes(),
-            'geoids': GeoidColumnsTiger(geoid_column=GEOID_SUMLEVEL_COLUMN),
+            'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
-            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year)
+            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year),
         }
 
     def columns(self):
@@ -701,6 +683,12 @@ class SumLevel(TableTask):
 
     def table_timespan(self):
         return get_timespan(str(self.year))
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()
@@ -727,7 +715,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
@@ -737,7 +725,13 @@ class GeoNamesTable(TableTask):
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'geonames': GeonameColumns(),
+            'shoreline': ShorelineClip(year=self.year, geography=self.geography),
+            'sumlevel': SumLevel(year=self.year, geography=self.geography),
         }
+
+    def targets(self):
+        return {self.input()['shoreline'].obs_table: GEOM_REF,
+                self.input()['sumlevel'].obs_table: GEOM_REF}
 
     def columns(self):
         return OrderedDict([
@@ -770,19 +764,20 @@ class GeoNamesTable(TableTask):
                         ))
 
 
-class AllSumLevels(WrapperTask):
+class SumLevel4Geo(WrapperTask):
     '''
-    Compute all sumlevels
+    Compute the sumlevel for a given geography
     '''
 
     year = Parameter()
+    geography = Parameter()
 
     def requires(self):
-        for geo, config in list(SUMLEVELS.items()):
-            if config['fields']['name']:
-                yield GeoNamesTable(year=self.year, geography=geo)
-            yield SumLevel(year=self.year, geography=geo)
-            yield ShorelineClip(year=self.year, geography=geo)
+        config = dict(SUMLEVELS.items()).get(self.geography)
+        if config['fields']['name']:
+            yield GeoNamesTable(year=self.year, geography=self.geography)
+        yield SumLevel(year=self.year, geography=self.geography)
+        yield ShorelineClip(year=self.year, geography=self.geography)
 
 
 class SharedTigerColumns(ColumnsTask):

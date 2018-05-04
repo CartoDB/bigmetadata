@@ -5,7 +5,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask,
                               RepoFile)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
@@ -81,7 +81,7 @@ GEOGRAPHY_TAGS = {
 class DownloadGeography(DownloadUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter(default=2011)
+    year = Parameter(default="2011")
 
     URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
@@ -197,6 +197,12 @@ class Geography(TableTask):
 
     def table_timespan(self):
         return get_timespan('2011')
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def columns(self):
         return self.input()['columns']

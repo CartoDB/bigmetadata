@@ -5,7 +5,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
                               TagsTask, RepoFile)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag
+from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag, OBSTable
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
@@ -227,6 +227,12 @@ class Geography(TableTask):
 
     def table_timespan(self):
         return get_timespan(str(self.year))
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def columns(self):
         return self.input()['columns']

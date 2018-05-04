@@ -4,9 +4,10 @@ from tasks.util import underscore_slugify
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
-from tasks.meta import OBSColumn, OBSTag
+from tasks.meta import OBSColumn, OBSTag, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.us.census.tiger import GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
+                                   GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from lib.timespan import get_timespan
 
 from collections import OrderedDict
@@ -219,6 +220,8 @@ class QCEW(TableTask):
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
             'geoid_cols': GeoidColumns(),
             'naics': OrderedDict(),
+            'sumlevel': SumLevel(year='2015', geography='county'),
+            'shorelineclip': ShorelineClip(year='2015', geography='county'),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -228,6 +231,12 @@ class QCEW(TableTask):
                         naics_code=naics_code
                     )
         return requirements
+
+    def targets(self):
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def table_timespan(self):
         return get_timespan('{year}Q{qtr}'.format(year=self.year, qtr=self.qtr))

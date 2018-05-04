@@ -183,7 +183,8 @@ class TagTarget(Target):
             return session.query(OBSTag).get(self._id)
 
     def update_or_create(self):
-        self._tag = current_session().merge(self._tag)
+        with current_session().no_autoflush:
+            self._tag = current_session().merge(self._tag)
 
     def exists(self):
         session = current_session()

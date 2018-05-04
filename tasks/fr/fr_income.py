@@ -1,6 +1,6 @@
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, CSV2TempTableTask
 from tasks.util import classpath
-from tasks.meta import current_session, DENOMINATOR, UNIVERSE
+from tasks.meta import current_session, DENOMINATOR, UNIVERSE, GEOM_REF
 from collections import OrderedDict
 from luigi import Parameter, Task, LocalTarget
 import os
@@ -177,6 +177,11 @@ class FranceIncome(TableTask):
     def version(self):
         return 4
 
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
+        }
+
     def table_timespan(self):
         return get_timespan('2012')
 
@@ -185,6 +190,7 @@ class FranceIncome(TableTask):
             'data': RawIncomeIrisData(table_theme=self.table_theme),
             'meta': IrisIncomeColumns(table_theme=self.table_theme),
             'geometa': OutputAreaColumns(),
+            'geo': OutputAreas(),
         }
         return requirements
 

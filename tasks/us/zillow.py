@@ -12,8 +12,8 @@ from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper, RepoFile
 from tasks.util import shell, classpath, underscore_slugify
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE
-from tasks.us.census.tiger import GeoidColumns, SumLevel, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
+from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE, GEOM_REF
+from tasks.us.census.tiger import GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
 from shutil import copyfile
 
@@ -154,8 +154,6 @@ class DownloadZillow(Task):
     geography = Parameter()
     hometype = Parameter()
     measure = Parameter()
-    last_year = IntParameter()
-    last_month = IntParameter()
 
     URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
 
@@ -301,13 +299,10 @@ class WideZillow(CSV2TempTableTask):
     geography = Parameter()  # example: Zip
     hometype = Parameter()  # example: SingleFamilyResidence
     measure = Parameter()
-    last_year = IntParameter()
-    last_month = IntParameter()
 
     def requires(self):
         return DownloadZillow(geography=self.geography, hometype=self.hometype,
-                              measure=self.measure, last_year=self.last_year,
-                              last_month=self.last_month)
+                              measure=self.measure)
 
     def input_csv(self):
         return self.input().path
@@ -325,27 +320,33 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns()
+            'geoids': GeoidColumns(),
+            'sumlevel': SumLevel(year='2015', geography='zcta5'),
+            'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
         }
-        for hometype, hometype_human in HOMETYPES.items():
+        for hometype, _ in HOMETYPES.items():
             measure = measure_name(hometype)
 
             if measure:
                 table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                          measure=measure)
                 requirements[table_id] = WideZillow(
-                    geography=self.geography, hometype=hometype, measure=measure,
-                    last_month=datetime.now().month, last_year=datetime.now().year)
+                    geography=self.geography, hometype=hometype, measure=measure)
 
                 aggregations = measure_aggregation(hometype)
                 for aggregation in aggregations:
                     table_id = '{hometype}_{measure}'.format(hometype=hometype,
                                                              measure=aggregation)
                     requirements[table_id] = WideZillow(
-                        geography=self.geography, hometype=hometype, measure=aggregation,
-                        last_month=datetime.now().month, last_year=datetime.now().year)
+                        geography=self.geography, hometype=hometype, measure=aggregation)
 
         return requirements
+
+    def targets(self):
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def table_timespan(self):
         return get_timespan('{year}-{month}'.format(year=str(self.year).zfill(2),
@@ -376,7 +377,7 @@ class Zillow(TableTask):
         session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
-        for key, value in input_['metadata'].items():
+        for key, _ in input_['metadata'].items():
             input_table = input_[key].table
             stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
                       SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC

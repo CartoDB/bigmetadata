@@ -2,7 +2,7 @@
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
                               SimplifiedTempTableTask, RemoteDownloader, RepoFile)
 from tasks.util import shell
-from tasks.meta import GEOM_REF, OBSColumn, OBSTag, current_session
+from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 from lib.timespan import get_timespan
 
@@ -145,6 +145,12 @@ class OutputAreas(TableTask):
 
     def table_timespan(self):
         return get_timespan('2011')
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def columns(self):
         input_ = self.input()
@@ -369,6 +375,12 @@ class OutputAreaClassifications(TableTask):
             'geom_columns': OutputAreaColumns(),
             'segment_columns': OutputAreaClassificationColumns(),
             'data': SimplifiedImportOutputAreas(),
+            'geo': OutputAreas(),
+        }
+
+    def targets(self):
+        return {
+            self.input()['geo'].obs_table: GEOM_REF,
         }
 
     def columns(self):

@@ -17,7 +17,7 @@ from lib.logger import get_logger
 from tasks.us.census.tiger import SumLevel
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.us.census.segments import SegmentTags
-from tasks.meta import (OBSColumn, OBSTag, current_session, DENOMINATOR, UNIVERSE)
+from tasks.meta import (OBSColumn, OBSTag, current_session, DENOMINATOR, UNIVERSE, GEOM_REF)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
 from time import time
 from lib.columns import ColumnsDeclarations
@@ -3369,11 +3369,15 @@ class Quantiles(TableTask):
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
-            'tiger': GeoidColumns()
+            'tiger': GeoidColumns(),
+            'tigerdata': SumLevel(geography=self.geography, year='2015')
         }
 
     def version(self):
-        return 13
+        return 14
+
+    def targets(self):
+        return {self.input()['tigerdata'].obs_table: GEOM_REF}
 
     def columns(self):
         input_ = self.input()
@@ -3450,7 +3454,7 @@ class Extract(TableTask):
     geography = Parameter()
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
@@ -3464,6 +3468,9 @@ class Extract(TableTask):
         sample = int(self.sample[0])
         return get_timespan('{start} - {end}'.format(start=int(self.year) - sample + 1,
                                                      end=int(self.year)))
+
+    def targets(self):
+        return {self.input()['tigerdata'].obs_table: GEOM_REF}
 
     def columns(self):
         input_ = self.input()

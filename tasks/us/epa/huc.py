@@ -3,7 +3,7 @@ import os
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
                               SimplifiedTempTableTask, RepoFile)
-from tasks.meta import OBSColumn, OBSTag, GEOM_REF, current_session
+from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
 
 from collections import OrderedDict
@@ -115,6 +115,12 @@ class HUC(TableTask):
 
     def table_timespan(self):
         return get_timespan('2015')
+
+    # TODO: https://github.com/CartoDB/bigmetadata/issues/435
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
 
     def populate(self):
         session = current_session()
