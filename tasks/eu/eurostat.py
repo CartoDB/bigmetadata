@@ -319,7 +319,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 17
+        return 18
 
     def columns(self):
         columns = OrderedDict()
