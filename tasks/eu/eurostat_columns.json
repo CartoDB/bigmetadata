@@ -599,7 +599,74 @@
 			{
 				"subsection": "employment",
 				"nuts_level": "2",
-				"unit": "people"
+				"unit": "people",
+				"year": "2017"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2013"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2012"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2011"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2010"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2009"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2008"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2007"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2006"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2005"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2004"
+			},
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
 			}
 		]
 	},
