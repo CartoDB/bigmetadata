@@ -1646,7 +1646,8 @@ class RepoFile(Task):
 
     def run(self):
         self.output().makedirs()
-        digest = self._retrieve_remote_file()
+        self._retrieve_remote_file()
+        digest = self._digest(self.output().path)
         self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
 
     def _create_filepath(self):
@@ -1657,7 +1658,6 @@ class RepoFile(Task):
 
     def _retrieve_remote_file(self):
         self.downloader(self.url, self.output().path)
-        return self._digest(self.output().path)
 
     # https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file
     def _digest(self, file):
