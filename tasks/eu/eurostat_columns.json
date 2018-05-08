@@ -621,5 +621,125 @@
 				"unit": "people"
 			}
 		]
+	},
+	"educ_renrlrg1_ed3_g_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_g_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_g_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
 	}
 }
