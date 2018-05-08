@@ -4,12 +4,11 @@ from luigi import Parameter, WrapperTask
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
-from tasks.util import shell
+from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.mx.inegi_columns import DemographicColumns
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.mx.inegi_columns import SourceTags, LicenseTags
-from shutil import copyfile
 
 RESOLUTIONS = (
     'ageb', 'entidad', 'localidad_urbana_y_rural_amanzanada', 'manzana',
@@ -82,7 +81,6 @@ class DownloadData(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

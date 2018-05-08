@@ -5,12 +5,12 @@ import csv
 import os
 
 from luigi import Parameter
-from shutil import copyfile
 
 from lib.csv_stream import CSVNormalizerStream
 from lib.copy import copy_from_csv
 from tasks.base_tasks import DownloadUnzipTask, TempTableTask, RepoFile
 from tasks.meta import current_session
+from tasks.util import copyfile
 
 from .metadata import sanitize_identifier
 
@@ -27,7 +27,6 @@ class DownloadScotlandLocal(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

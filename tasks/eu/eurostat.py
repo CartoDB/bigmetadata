@@ -3,14 +3,13 @@ from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, CSV2TempTableTas
 from tasks.eu.geo import NUTSColumns, NUTSGeometries
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.util import underscore_slugify, classpath, shell
+from tasks.util import underscore_slugify, classpath, shell, copyfile
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
 from lib.columns import ColumnsDeclarations
 from lib.logger import get_logger
 from lib.timespan import get_timespan
-from shutil import copyfile
 
 import glob
 import csv
@@ -40,7 +39,6 @@ class DownloadEurostat(Task):
                         url=url)
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
         shell('gunzip {output}.gz'.format(output=self.output().path))
 
@@ -99,7 +97,6 @@ class DownloadUnzipDICTTables(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
@@ -138,7 +135,6 @@ class DownloadGUnzipMetabase(DownloadGUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
 
 

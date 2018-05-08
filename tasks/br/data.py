@@ -4,7 +4,6 @@ import os
 import glob
 import csv
 import pandas as pd
-from shutil import copyfile
 
 from luigi import Parameter, WrapperTask
 
@@ -12,7 +11,7 @@ from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper,
                               RepoFile)
-from tasks.util import shell
+from tasks.util import shell, copyfile
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from collections import OrderedDict
@@ -87,7 +86,6 @@ class DownloadData(DownloadUnzipTask):
         return shell(cmd)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

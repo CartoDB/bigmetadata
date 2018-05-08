@@ -1619,45 +1619,42 @@ class CreateRepoTable(Task):
     def run(self):
         session = current_session()
 
-        create_schema = '''
-                        CREATE SCHEMA IF NOT EXISTS "{schema}"
-                        '''.format(schema=self.output().schema)
-        session.execute(create_schema)
+        try:
+            create_schema = '''
+                            CREATE SCHEMA IF NOT EXISTS "{schema}"
+                            '''.format(schema=self.output().schema)
+            session.execute(create_schema)
 
-        create_table = '''
-                        CREATE TABLE IF NOT EXISTS "{schema}".{table} (
-                            id TEXT,
-                            version NUMERIC,
-                            checksum TEXT,
-                            url TEXT,
-                            path TEXT,
-                            added TIMESTAMP,
-                            PRIMARY KEY(id, version)
-                        );
-                        '''.format(schema=self.output().schema,
-                                   table=self.output().tablename)
-        session.execute(create_table)
-        session.commit()
+            create_table = '''
+                            CREATE TABLE IF NOT EXISTS "{schema}".{table} (
+                                id TEXT,
+                                version NUMERIC,
+                                checksum TEXT,
+                                url TEXT,
+                                path TEXT,
+                                added TIMESTAMP,
+                                PRIMARY KEY(id, version)
+                            );
+                            '''.format(schema=self.output().schema,
+                                    table=self.output().tablename)
+            session.execute(create_table)
+            session.commit()
+        except:
+            session.rollback()
 
     def output(self):
         return PostgresTarget(schema=self.schema, tablename=self.table, non_empty=False)
 
 
-class RemoteDownloader:
-    def download(self, url, output_path):
-        raise NotImplementedError
-
-
-class BaseDownloader(RemoteDownloader):
-    def download(self, url, output_path):
-        urllib.request.urlretrieve(url, output_path)
+def base_downloader(url, output_path):
+    urllib.request.urlretrieve(url, output_path)
 
 
 class RepoFile(Task):
     resource_id = Parameter()
     url = Parameter()
     version = IntParameter()
-    downloader = Parameter(default=BaseDownloader())
+    downloader = Parameter(default=base_downloader)
 
     _repo_dir = 'repo'
     _path = None
@@ -1677,10 +1674,7 @@ class RepoFile(Task):
         return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
 
     def _retrieve_remote_file(self):
-        if not issubclass(self.downloader.__class__, RemoteDownloader):
-            raise ValueError('downloader must be a subclass of RemoteDownloader')
-
-        self.downloader.download(self.url, self.output().path)
+        self.downloader(self.url, self.output().path)
         return self._digest(self.output().path)
 
     # https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file

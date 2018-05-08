@@ -5,6 +5,7 @@ import os
 import time
 import re
 import subprocess
+import shutil
 
 from lib.logger import get_logger
 
@@ -421,3 +422,16 @@ def grouper(iterable, n, fillvalue=None):
 
 def create_temp_schema(task):
     shell("psql -c 'CREATE SCHEMA IF NOT EXISTS \"{schema}\"'".format(schema=classpath(task)))
+
+
+def copyfile(src, dst):
+    # From http://luigi.readthedocs.io/en/stable/_modules/luigi/local_target.html#LocalTarget.makedirs
+    normpath = os.path.normpath(dst)
+    parentfolder = os.path.dirname(normpath)
+    if parentfolder:
+        try:
+            os.makedirs(parentfolder)
+        except OSError:
+            pass
+
+    shutil.copyfile(src, dst)

@@ -6,8 +6,7 @@ from luigi import Parameter, WrapperTask
 from collections import OrderedDict
 
 from lib.timespan import get_timespan
-from shutil import copyfile
-from tasks.util import shell
+from tasks.util import shell, copyfile
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper, RepoFile
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
@@ -58,7 +57,6 @@ class DownloadData(DownloadUnzipTask):
                                        header=self.header))
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

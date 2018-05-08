@@ -4,12 +4,11 @@ from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
                               TagsTask, RepoFile)
-from tasks.util import shell
+from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag, OBSTable
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
-from shutil import copyfile
 
 
 GEO_STE = 'STE'
@@ -110,7 +109,6 @@ class DownloadGeography(DownloadUnzipTask):
                         url=self.URL.format(resolution=self.resolution, year=self.year))
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

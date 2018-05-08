@@ -1,6 +1,6 @@
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
                               CSV2TempTableTask, RepoFile)
-from tasks.util import underscore_slugify
+from tasks.util import underscore_slugify, copyfile
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
 from tasks.us.naics import (NAICS_CODES, is_supersector, is_sector, is_public_administration,
                             get_parent_code)
@@ -12,7 +12,6 @@ from lib.timespan import get_timespan
 
 from collections import OrderedDict
 from luigi import IntParameter, Parameter, WrapperTask
-from shutil import copyfile
 
 import os
 import glob
@@ -33,7 +32,6 @@ class DownloadQCEW(DownloadUnzipTask):
                         url=self.URL.format(year=self.year))
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

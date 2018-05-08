@@ -1,11 +1,11 @@
 from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME
+from tasks.util import copyfile
 from lib.timespan import get_timespan
 from collections import OrderedDict
 import os
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
-from shutil import copyfile
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
@@ -22,7 +22,6 @@ class DownloadOutputAreas(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

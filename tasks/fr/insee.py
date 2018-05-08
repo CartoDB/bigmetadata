@@ -2,7 +2,7 @@
 
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
                               RepoFile)
-from tasks.util import classpath
+from tasks.util import classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask, Task, LocalTarget
@@ -13,7 +13,6 @@ from tasks.fr.geo import OutputAreaColumns, OutputAreas
 from lib.timespan import get_timespan
 import csv
 import pandas as pd
-from shutil import copyfile
 
 TOPICS = ['population', 'housing', 'education', 'household', 'employment']
 
@@ -87,8 +86,6 @@ class DownloadFR(Task):
                         url=URL)
 
     def run(self):
-        if not os.path.exists(self.output().path):
-            os.makedirs(self.output().path)
         copyfile(self.input().path, os.path.join(self.output().path, self.iris_overseas.get(self.table_theme)))
 
     def output(self):

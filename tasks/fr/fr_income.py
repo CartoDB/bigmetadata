@@ -1,5 +1,5 @@
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, CSV2TempTableTask
-from tasks.util import classpath
+from tasks.util import classpath, copyfile
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE, GEOM_REF
 from collections import OrderedDict
 from luigi import Parameter, Task, LocalTarget
@@ -12,7 +12,6 @@ from tasks.fr.geo import OutputAreaColumns, OutputAreas
 from lib.timespan import get_timespan
 import csv
 import pandas as pd
-from shutil import copyfile
 
 SUM_UNITS = ('households', 'people', 'tax_consumption_units')
 
@@ -43,8 +42,6 @@ class DownloadFRIncomeIris(Task):
                         url=URL)
 
     def run(self):
-        if not os.path.exists(self.output().path):
-            os.makedirs(self.output().path)
         copyfile(self.input().path, os.path.join(self.output().path, self.table_theme + '.xls'))
 
     def output(self):

@@ -5,12 +5,11 @@ from luigi import LocalTarget, Task, IntParameter, WrapperTask
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
-                              SimplifiedTempTableTask, RepoFile, RemoteDownloader)
+                              SimplifiedTempTableTask, RepoFile)
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag, OBSTable
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
-from shutil import copyfile
 
 import os
 
@@ -32,15 +31,13 @@ class SourceLicenseTags(TagsTask):
         ]
 
 
-class GeographiesDownloader(RemoteDownloader):
-
-    def download(self, url, output_path):
-        referer = 'http://www.eurogeographics.org/content/euroglobalmap-opendata?sid=10868'
-        shell("wget -O {output} --referer='{referer}' '{url}'".format(
-            output=output_path,
-            referer=referer,
-            url=url,
-        ))
+def geographies_downloader(url, output_path):
+    referer = 'http://www.eurogeographics.org/content/euroglobalmap-opendata?sid=10868'
+    shell("wget -O {output} --referer='{referer}' '{url}'".format(
+        output=output_path,
+        referer=referer,
+        url=url,
+    ))
 
 
 class DownloadGeographies(Task):
@@ -53,10 +50,9 @@ class DownloadGeographies(Task):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
                         url=self.URL,
-                        downloader=GeographiesDownloader())
+                        downloader=geographies_downloader)
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.7z'.format(output=self.output().path))
         shell('7z x "{file}" -o{output}'.format(
             file=self.output().path + '.7z',
@@ -111,7 +107,6 @@ class DownloadNUTSNames(Task):
                         url=self.URL)
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, self.output().path)
 
     def output(self):

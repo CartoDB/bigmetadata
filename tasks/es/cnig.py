@@ -5,12 +5,11 @@ from luigi import Task, Parameter, LocalTarget, WrapperTask
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask,
                               RepoFile)
 from lib.timespan import get_timespan
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 
-from shutil import copyfile
 from collections import OrderedDict
 import os
 
@@ -33,7 +32,6 @@ class DownloadGeometry(Task):
         return 1
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 

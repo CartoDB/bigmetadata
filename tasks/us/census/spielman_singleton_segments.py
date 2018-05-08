@@ -5,12 +5,11 @@ Define special segments for the census
 
 import os
 import subprocess
-from shutil import copyfile
 from collections import OrderedDict
 from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, MetaWrapper, CSV2TempTableTask, RepoFile
 from tasks.meta import OBSColumn, current_session, GEOM_REF
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN,
                                    GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.us.census.acs import ACSTags
@@ -36,7 +35,6 @@ class DownloadSpielmanSingletonFile(Task):
         return 'https://www.openicpsr.org/openicpsr/project/100235/version/V5/download/project?dirPath=/openicpsr/100235/fcr:versions/V5/Output-Data'
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, self.output().path)
 
     def output(self):

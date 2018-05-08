@@ -10,12 +10,11 @@ from collections import OrderedDict
 from datetime import datetime
 from luigi import (Task, IntParameter, LocalTarget, Parameter, WrapperTask)
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, MetaWrapper, RepoFile
-from tasks.util import shell, classpath, underscore_slugify
+from tasks.util import shell, classpath, underscore_slugify, copyfile
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from tasks.meta import OBSColumn, current_session, OBSTag, UNIVERSE, GEOM_REF
 from tasks.us.census.tiger import GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN
 from lib.timespan import get_timespan
-from shutil import copyfile
 
 # cherry-picked datasets
 HOMETYPES = {
@@ -177,7 +176,6 @@ class DownloadZillow(Task):
         return self._last_time
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, self.output().path)
 
     def output(self):

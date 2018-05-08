@@ -3,7 +3,6 @@
 import csv
 import os
 
-from shutil import copyfile
 from collections import OrderedDict
 from luigi import Task, LocalTarget
 
@@ -13,7 +12,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, TempTableTask, SimplifiedTempTableTask, MetaWrapper,
                               RepoFile)
 from tasks.meta import OBSTable, OBSColumn, OBSTag, current_session, DENOMINATOR, GEOM_REF
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, BoundaryTags
 
 LOGGER = get_logger(__name__)
@@ -33,7 +32,6 @@ class DownloadGeometry(Task):
         return 1
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, self.output().path)
 
     def output(self):
@@ -1747,7 +1745,6 @@ class SeccionDataDownload(Task):
         return 1
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output_dir}.zip'.format(
             output_dir=self.output().path.replace('.csv', '')
         ))
@@ -1860,7 +1857,6 @@ class FiveYearPopulationDownload(Task):
         return 1
 
     def run(self):
-        self.output().makedirs()
         copyfile(self.input().path, self.output().path)
 
     def output(self):

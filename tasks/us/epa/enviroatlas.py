@@ -1,12 +1,12 @@
 from luigi import Parameter, WrapperTask
 
 from tasks.meta import OBSColumn, current_session, GEOM_REF, UNIVERSE
+from tasks.util import copyfile
 from lib.timespan import get_timespan
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUCColumns, SourceTags
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, RepoFile
 from collections import OrderedDict
-from shutil import copyfile
 
 import os
 
@@ -24,7 +24,6 @@ class DownloadMetrics(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

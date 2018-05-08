@@ -4,13 +4,12 @@ import urllib.request
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
 from collections import OrderedDict
-from shutil import copyfile
 
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper, RepoFile
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA,
@@ -60,7 +59,6 @@ class DownloadData(BaseParams, DownloadUnzipTask):
                                        geo_code=GEOGRAPHY_CODES[self.resolution]))
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

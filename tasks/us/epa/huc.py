@@ -5,9 +5,9 @@ from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2Te
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
+from tasks.util import copyfile
 
 from collections import OrderedDict
-from shutil import copyfile
 
 
 class DownloadHUC(DownloadUnzipTask):
@@ -23,7 +23,6 @@ class DownloadHUC(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

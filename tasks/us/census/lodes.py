@@ -5,7 +5,6 @@ characteristics files
 
 import os
 import csv
-from shutil import copyfile
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag, GEOM_REF
 from lib.timespan import get_timespan
@@ -14,6 +13,7 @@ from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, Downloa
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
                                    GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
+from tasks.util import copyfile
 
 from luigi import (Parameter, IntParameter)
 
@@ -500,7 +500,6 @@ class DownloadUnzipLodes(DownloadGUnzipTask):
             self.state, self.filetype, self.filename_lodes())
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
 
 

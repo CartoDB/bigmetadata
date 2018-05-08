@@ -1,12 +1,11 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
-                              SimplifiedTempTableTask, RemoteDownloader, RepoFile)
-from tasks.util import shell
+                              SimplifiedTempTableTask, RepoFile)
+from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
 from lib.timespan import get_timespan
 
-from shutil import copyfile
 from collections import OrderedDict
 import os
 
@@ -37,16 +36,14 @@ class SourceTags(TagsTask):
                    ]
 
 
-class CRDCDownloader(RemoteDownloader):
-
-    def download(self, url, output_path):
-        if 'CDRC_COOKIE' not in os.environ:
-            raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
-                             'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
-        shell('wget --header=\'Cookie: {cookie}\' -O {output} {url}'.format(
-            output=output_path,
-            url=url,
-            cookie=os.environ['CDRC_COOKIE']))
+def cdrc_downloader(url, output_path):
+    if 'CDRC_COOKIE' not in os.environ:
+        raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
+                            'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
+    shell('wget --header=\'Cookie: {cookie}\' -O {output} {url}'.format(
+        output=output_path,
+        url=url,
+        cookie=os.environ['CDRC_COOKIE']))
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
@@ -59,10 +56,9 @@ class DownloadOutputAreas(DownloadUnzipTask):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
                         url=self.URL,
-                        downloader=CRDCDownloader())
+                        downloader=cdrc_downloader)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 

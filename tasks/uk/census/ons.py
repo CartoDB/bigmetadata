@@ -8,12 +8,12 @@ import shutil
 from zipfile import ZipFile
 
 from luigi import Task, Parameter
-from shutil import copyfile
 
 from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
 from tasks.base_tasks import DownloadUnzipTask, TempTableTask, RepoFile
+from tasks.util import copyfile
 
 from .metadata import sanitize_identifier
 
@@ -102,7 +102,6 @@ class DownloadEnglandWalesLocal(DownloadUnzipTask):
                         url=self.URL)
 
     def download(self):
-        self.output().makedirs()
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
     def run(self):
