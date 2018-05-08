@@ -9,7 +9,7 @@ import os
 import subprocess
 from collections import OrderedDict
 from lib.timespan import get_timespan
-from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask,
                               SimplifiedTempTableTask, RepoFile, LoadPostgresFromZipFile)
 from tasks.util import classpath, grouper, shell
 from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session

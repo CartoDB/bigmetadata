@@ -730,26 +730,6 @@ class CSV2TempTableTask(TempTableTask):
         pass
 
 
-class LoadPostgresFromURL(TempTableTask):
-
-    def load_from_url(self, url):
-        '''
-        Load psql at a URL into the database.
-
-        Ignores tablespaces assigned in the SQL.
-        '''
-        shell('curl {url} | gunzip -c | grep -v default_tablespace | psql'.format(
-            url=url))
-        self.mark_done()
-
-    def mark_done(self):
-        session = current_session()
-        session.execute('DROP TABLE IF EXISTS {table}'.format(
-            table=self.output().table))
-        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
-            table=self.output().table))
-
-
 class LoadPostgresFromZipFile(TempTableTask):
 
     def load_from_zipfile(self, zipfile):
@@ -757,6 +737,8 @@ class LoadPostgresFromZipFile(TempTableTask):
             zipfile=zipfile))
         self.mark_done()
 
+    # Used for Luigi to mark the Task as DONE
+    # Create a small table for the output with the creation time
     def mark_done(self):
         session = current_session()
         session.execute('DROP TABLE IF EXISTS {table}'.format(
