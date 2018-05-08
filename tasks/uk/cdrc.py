@@ -39,7 +39,7 @@ class SourceTags(TagsTask):
 def cdrc_downloader(url, output_path):
     if 'CDRC_COOKIE' not in os.environ:
         raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
-                            'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
+                         'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
     shell('wget --header=\'Cookie: {cookie}\' -O {output} {url}'.format(
         output=output_path,
         url=url,

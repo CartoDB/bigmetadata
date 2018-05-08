@@ -1618,7 +1618,7 @@ class CreateRepoTable(Task):
                                 PRIMARY KEY(id, version)
                             );
                             '''.format(schema=self.output().schema,
-                                    table=self.output().tablename)
+                                       table=self.output().tablename)
             session.execute(create_table)
             session.commit()
         except:
