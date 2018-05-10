@@ -9,7 +9,6 @@ import inspect
 import zipfile
 import gzip
 import csv
-import hashlib
 import uuid
 
 import urllib.request
@@ -23,6 +22,7 @@ from luigi.contrib.s3 import S3Target
 
 from sqlalchemy.dialects.postgresql import JSON
 
+from lib.util import digest_file
 from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
@@ -728,6 +728,26 @@ class CSV2TempTableTask(TempTableTask):
 
     def after_copy(self):
         pass
+
+
+class LoadPostgresFromURL(TempTableTask):
+
+    def load_from_url(self, url):
+        '''
+        Load psql at a URL into the database.
+
+        Ignores tablespaces assigned in the SQL.
+        '''
+        shell('curl {url} | gunzip -c | grep -v default_tablespace | psql'.format(
+            url=url))
+        self.mark_done()
+
+    def mark_done(self):
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS {table}'.format(
+            table=self.output().table))
+        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
+            table=self.output().table))
 
 
 class LoadPostgresFromZipFile(TempTableTask):
@@ -1595,8 +1615,8 @@ def collect_meta_wrappers(test_module=None, test_all=True):
 
 
 class CreateRepoTable(Task):
-    schema = 'repo'
-    table = 'filerepo'
+    schema = 'repository'
+    table = 'source_repository'
 
     def run(self):
         session = current_session()
@@ -1621,7 +1641,8 @@ class CreateRepoTable(Task):
                                        table=self.output().tablename)
             session.execute(create_table)
             session.commit()
-        except:
+        except Exception as e:
+            LOGGER.error('Error creating schema/table: %s', e)
             session.rollback()
 
     def output(self):
@@ -1636,9 +1657,9 @@ class RepoFile(Task):
     resource_id = Parameter()
     url = Parameter()
     version = IntParameter()
-    downloader = Parameter(default=base_downloader)
+    downloader = Parameter(default=base_downloader, significant=False)
 
-    _repo_dir = 'repo'
+    _repo_dir = 'repository'
     _path = None
 
     def requires(self):
@@ -1647,7 +1668,7 @@ class RepoFile(Task):
     def run(self):
         self.output().makedirs()
         self._retrieve_remote_file()
-        digest = self._digest(self.output().path)
+        digest = digest_file(self.output().path)
         self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
 
     def _create_filepath(self):
@@ -1658,14 +1679,6 @@ class RepoFile(Task):
 
     def _retrieve_remote_file(self):
         self.downloader(self.url, self.output().path)
-
-    # https://stackoverflow.com/questions/3431825/generating-an-md5-checksum-of-a-file
-    def _digest(self, file):
-        hash_md5 = hashlib.md5()
-        with open(file, "rb") as f:
-            for chunk in iter(lambda: f.read(4096), b''):
-                hash_md5.update(chunk)
-        return hash_md5.hexdigest()
 
     def _from_db(self, resource_id, version):
         checksum, url, path = None, None, None

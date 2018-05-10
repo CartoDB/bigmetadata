@@ -431,7 +431,8 @@ def copyfile(src, dst):
     if parentfolder:
         try:
             os.makedirs(parentfolder)
-        except OSError:
+        except OSError as e:
+            LOGGER.error('Error making dirs for copyfile: %s', e)
             pass
 
     shutil.copyfile(src, dst)
