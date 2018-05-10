@@ -3424,7 +3424,7 @@ class Quantiles(TableTask):
                         SELECT geoidsl, geoidsc, {select_statment}
                         FROM {source_table}
                     )
-                    UPDATE {table} SET ({insert_statment}) = ({old_cols_statment})
+                    UPDATE {table} SET ({insert_statment}) = ROW({old_cols_statment})
                     FROM data
                     WHERE data.geoidsc = {table}.geoidsc
                      AND data.geoidsl = {table}.geoidsl
