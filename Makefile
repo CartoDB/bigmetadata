@@ -416,6 +416,9 @@ us-dob:
 us-zillow:
 	make -- run us.zillow.AllZillow
 
+us-mastercard:
+	make -- run us.mastercard.AllMasterCardData
+
 ### who's on first
 wof-all:
 	make -- run whosonfirst.AllWOF
