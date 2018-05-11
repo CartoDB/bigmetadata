@@ -1,5 +1,4 @@
 import os
-import glob
 import urllib.request
 from luigi import Parameter, WrapperTask
 from tasks.base_tasks import (DownloadUnzipTask, CSV2TempTableTask, TempTableTask)
