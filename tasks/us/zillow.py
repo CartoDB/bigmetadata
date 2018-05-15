@@ -399,7 +399,7 @@ class AllZillow(WrapperTask):
         for geography in ('Zip', ):
             for year in range(2010, now.year + 1):
                 for month in range(1, 13):
-                    if now.year == year and now.month <= month:
+                    if year == now.year and month >= (now.month - 1):
                         continue
                     if year == 2010 and month <= 10:
                         continue

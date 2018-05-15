@@ -594,6 +594,16 @@
 			}
 		]
 	},
+	"ilc_lvhl21_pc": {
+		"exceptions": [
+			{
+				"subsection": "employment",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": ["2017", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003"]
+			}
+		]
+	},
 	"ilc_lvhl21_pc_lw95": {
 		"exceptions": [
 			{
@@ -609,6 +619,126 @@
 				"subsection": "employment",
 				"nuts_level": "2",
 				"unit": "people"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_g_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_g_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_g_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed3_vpv_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_g_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_t_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_m_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
+			}
+		]
+	},
+	"educ_renrlrg1_ed4_vpv_f_nr": {
+		"exceptions": [
+			{
+				"subsection": "education",
+				"nuts_level": "2",
+				"unit": "people",
+				"year": "2003"
 			}
 		]
 	}

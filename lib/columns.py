@@ -32,8 +32,14 @@ class ColumnsDeclarations:
     def _check_requirements(self, parameters, requirements):
         for requirement in requirements:
             for param_id, value in parameters.items():
-                if param_id in requirement and requirement[param_id] != value:
-                    break
+                if param_id in requirement:
+                    param_value = requirement[param_id]
+                    if isinstance(param_value, (list,)):
+                        if value not in param_value:
+                            break
+                    else:
+                        if param_value != value:
+                            break
             else:
                 return True
 

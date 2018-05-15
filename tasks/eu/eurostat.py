@@ -319,6 +319,7 @@ class FlexEurostatColumns(ColumnsTask):
     units = Parameter()  # Ex. 'people'
     nuts_level = Parameter()
     table_name = Parameter()  # Ex. "DEMO_R_PJANAGGR3"
+    year = Parameter()
 
     # From tablename, determine basis of name for columns from table_dic.dic
     # Then, look at metabase.txt to find relevant dimensions (exclude "geo" and "time", utilize "unit")
@@ -337,7 +338,7 @@ class FlexEurostatColumns(ColumnsTask):
         }
 
     def version(self):
-        return 17
+        return 18
 
     def columns(self):
         columns = OrderedDict()
@@ -436,8 +437,8 @@ class FlexEurostatColumns(ColumnsTask):
                 )
 
         columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'eurostat_columns.json'))
-        parameters = '{{"subsection":"{subsection}","units":"{units}","nuts_level":"{nuts_level}"}}'.format(
-                         subsection=self.subsection, units=self.units, nuts_level=self.nuts_level)
+        parameters = '{{"subsection":"{subsection}","units":"{units}","nuts_level":"{nuts_level}","year":"{year}"}}'.format(
+                         subsection=self.subsection, units=self.units, nuts_level=self.nuts_level, year=self.year)
         columns = columnsFilter.filter_columns(columns, parameters)
 
         for _, col in columns.items():
@@ -491,7 +492,8 @@ class TableEU(TableTask):
             'meta': FlexEurostatColumns(table_name=self.table_name,
                                         subsection=self.subsection,
                                         units=self.unit,
-                                        nuts_level=self.nuts_level),
+                                        nuts_level=self.nuts_level,
+                                        year=self.year),
             'geometa': NUTSColumns(level=self.nuts_level),
             'geo': NUTSGeometries(level=self.nuts_level),
         }
@@ -584,17 +586,6 @@ class AllEUTableYears(Task):
 
     def complete(self):
         return getattr(self, '_complete', False)
-
-
-class EUColumns(WrapperTask):
-    def requires(self):
-        with open(os.path.join(os.path.dirname(__file__), 'wrappertables.csv')) as wrappertables:
-            reader = csv.reader(wrappertables)
-            for subsection, table_code, nuts, units in reader:
-                yield FlexEurostatColumns(subsection=subsection,
-                                          table_name=table_code,
-                                          units=units,
-                                          nuts_level=nuts)
 
 
 class EURegionalTables(WrapperTask):

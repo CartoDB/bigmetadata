@@ -7,7 +7,7 @@ ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
   MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
 endif
 
-PGSERVICE ?= postgres10
+PGSERVICE ?= postgres
 
 ###
 ### Tasks runners
@@ -82,12 +82,11 @@ rebuild-all:
 # Depends on having an observatory-extension folder linked
 extension:
 	PGSERVICE=$(PGSERVICE) docker exec $$(docker-compose ps -q $(PGSERVICE)) sh -c 'cd observatory-extension && make install'
-	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory;"
-	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata psql -c "CREATE EXTENSION observatory WITH VERSION 'dev';"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
 
 # update dataservices-api in our DB container
 # Depends on having a dataservices-api folder linked
-dataservices-api: extension
+dataservices-api:
 	docker exec $$(docker-compose ps -q postgres) sh -c ' \
 	  cd /cartodb-postgresql && make install && \
 	  cd /data-services/geocoder/extension && make install && \
@@ -102,21 +101,19 @@ dataservices-api: extension
 ###
 ### Tests
 ###
-extension-perftest: extension
-	docker-compose run --rm bigmetadata nosetests -s observatory-extension/src/python/test/perftest.py
+extension-perftest:
+	nosetests -s observatory-extension/src/python/test/perftest.py
 
-extension-perftest-record: extension
+extension-perftest-record:
 	mkdir -p perftest
-	docker-compose run --rm \
-	  -e OBS_RECORD_TEST=true \
-	  -e OBS_PERFTEST_DIR=perftest \
-	  -e OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
-	  -e OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
-	  bigmetadata \
-	  nosetests observatory-extension/src/python/test/perftest.py
+	OBS_RECORD_TEST=true \
+	OBS_PERFTEST_DIR=perftest \
+	OBS_EXTENSION_SHA=$$(cd observatory-extension && git rev-list -n 1 HEAD) \
+	OBS_EXTENSION_MSG="$$(cd observatory-extension && git rev-list --pretty=oneline -n 1 HEAD)" \
+	nosetests observatory-extension/src/python/test/perftest.py
 
-extension-autotest: extension
-	docker-compose run --rm bigmetadata nosetests observatory-extension/src/python/test/autotest.py
+extension-autotest:
+	nosetests observatory-extension/src/python/test/autotest.py
 
 test: meta extension-perftest extension-autotest
 
@@ -248,14 +245,18 @@ deploy-html-catalog:
 ###
 ### Tasks
 ###
-dump: test
-	make run carto.DumpS3
+
+dump: extension
+	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_dump.log bigmetadata make dump-task
+
+dump-task: test
+	make run -- carto.DumpS3
 
 docs:
 	docker-compose run --rm bigmetadata /bin/bash -c 'cd docs && make html'
 
 tiles:
-	make run util.GenerateAllRasterTiles
+	make run -- util.GenerateAllRasterTiles
 
 meta:
 	make run -- carto.OBSMetaToLocal --force
@@ -346,7 +347,7 @@ uk-census:
 	make -- run uk.census.wrapper.CensusWrapper
 
 ### us
-us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-dcp us-dob us-zillow
+us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-zillow
 
 us-bls:
 	make -- run us.bls.AllQCEW --maxtimespan 2017Q1
