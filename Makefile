@@ -7,7 +7,7 @@ ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
   MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
 endif
 
-PGSERVICE ?= postgres10
+PGSERVICE ?= postgres
 
 ###
 ### Tasks runners
