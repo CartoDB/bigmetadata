@@ -430,7 +430,7 @@ def copyfile(src, dst):
     parentfolder = os.path.dirname(normpath)
     if parentfolder:
         try:
-            os.makedirs(parentfolder)
+            os.makedirs(parentfolder, exist_ok=True)
         except OSError as e:
             LOGGER.error('Error making dirs for copyfile: %s', e)
             pass
