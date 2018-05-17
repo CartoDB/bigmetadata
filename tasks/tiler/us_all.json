@@ -1,0 +1,36 @@
+[
+    {
+        "table": "xyz_us_all",
+        "schema": "tiler",
+        "columns": {
+            "do": [
+                {
+                    "id": "us.census.acs.B01003001",
+                    "column_name": "total_pop",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "us.census.acs.B01001035",
+                    "column_name": "female_25_to_29",
+                    "type": "numeric",
+                    "nullable": true
+                }
+            ],
+            "mastercard": [
+                {
+                    "id": "ticket_size_score",
+                    "column_name": "ticket_size_score",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "growth_score",
+                    "column_name": "growth_score",
+                    "type": "numeric",
+                    "nullable": true
+                }
+            ]
+        }
+    }
+]

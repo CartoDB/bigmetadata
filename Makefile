@@ -420,3 +420,8 @@ us-zillow:
 ### who's on first
 wof-all:
 	make -- run whosonfirst.AllWOF
+
+### Tiler tables
+
+tiler-us-all:
+	make -- run tiler.do.XYZUSTables --zoom-level 14 --geography county
