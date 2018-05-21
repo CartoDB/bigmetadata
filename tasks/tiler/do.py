@@ -73,8 +73,8 @@ class XYZUSTables(Task):
                 geography = self._get_geography_level(zoom)
                 sql_tile = '''
                     INSERT INTO {table}
-                    (SELECT {x}, {y}, {z}, {quadint}, mvtgeom, {recordset}
-                    FROM cdb_observatory.OBS_GetMCDOMVT({x},{y},{z},'{geography}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));'''.format(table=table_name, x=x, y=y, z=zoom, quadint=quadint, geography=geography, recordset=", ".join(recordset), docols="', '".join(do_columns), mccols="', '".join(mc_columns))
+                    (SELECT {x}, {y}, {z}, mvtgeom, {recordset}
+                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));'''.format(table=table_name, x=x, y=y, z=zoom, geography=geography, recordset=", ".join(recordset), docols="', '".join(do_columns), mccols="', '".join(mc_columns))
                 session.execute(sql_tile)
             session.commit()
 
