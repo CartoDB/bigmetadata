@@ -1,8 +1,8 @@
 from tasks.us.census.tiger import ShorelineClip
+from tasks.targets import PostgresTarget
 from luigi import IntParameter, Parameter, WrapperTask, Task
 from tasks.meta import current_session
 from lib.logger import get_logger
-import quadkey
 import json
 import os
 
@@ -14,6 +14,10 @@ class XYZUSTables(Task):
     zoom_level = IntParameter()
     geography = Parameter()
 
+    def __init__(self, *args, **kwargs):
+        super(XYZUSTables, self).__init__(*args, **kwargs)
+        self.config_data = self._get_config_data()
+
     def requires(self):
         return {
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
@@ -24,12 +28,13 @@ class XYZUSTables(Task):
         for table_config in config_data:
             table_schema = self._get_table_schema(table_config)
             self._create_schema_and_table(table_schema)
-            self._generate_tiles(self.zoom_level, table_schema['table_name'], table_config['columns'])
+            self._generate_tiles(self.zoom_level, table_schema, table_config['columns'])
 
     def _create_schema_and_table(self, table_schema):
             session = current_session()
             session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
             cols_schema = []
+            table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
             for _, cols in table_schema['columns'].items():
                 cols_schema += cols
             sql_table = '''CREATE TABLE IF NOT EXISTS {}(
@@ -41,7 +46,7 @@ class XYZUSTables(Task):
                     area_ratio NUMERIC,
                     {},
                     CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
-                )'''.format(table_schema['table_name'], ", ".join(cols_schema))
+                )'''.format(table_name, ", ".join(cols_schema))
             session.execute(sql_table)
             session.commit()
 
@@ -51,25 +56,25 @@ class XYZUSTables(Task):
             return json.load(f)
 
     def _get_table_schema(self, table_config):
-        table_name = "{}.{}".format(table_config['schema'], table_config['table'])
         columns = {}
         for dataset, col_data in table_config['columns'].items():
             columns[dataset] = []
             for column in col_data:
                 nullable = '' if column['nullable'] else 'NOT NULL'
                 columns[dataset].append("{} {} {}".format(column['column_name'], column['type'], nullable))
-        return {"table_name": table_name, "columns": columns}
+        return {"schema": table_config['schema'], "table_name": table_config['table'], "columns": columns}
 
-    def _generate_tiles(self, zoom, table_name, columns_config):
+    def _generate_tiles(self, zoom, table_schema, columns_config):
         session = current_session()
+        table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
         do_columns = [column['id'] for column in columns_config['do']]
         mc_columns = [column['id'] for column in columns_config['mastercard']]
         recordset = ["mvtdata->>'id' as id"]
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for dataset, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
-        for x in range(0, (pow(2,zoom) + 1)):
-            for y in range(0, (pow(2,zoom) + 1)):
+        for x in range(0, (pow(2, zoom) + 1)):
+            for y in range(0, (pow(2, zoom) + 1)):
                 geography = self._get_geography_level(zoom)
                 sql_tile = '''
                     INSERT INTO {table}
@@ -89,6 +94,13 @@ class XYZUSTables(Task):
             return 'us.census.tiger.block_group'
         elif zoom == 14:
             return 'us.census.tiger.block'
+
+    def output(self):
+        targets = []
+        for table_config in self.config_data:
+            table_schema = self._get_table_schema(table_config)
+            targets.append(PostgresTarget(table_schema['schema'], table_schema['table_name'], where='z = {}'.format(self.zoom_level)))
+        return targets
 
 
 class AllXYZTables(WrapperTask):

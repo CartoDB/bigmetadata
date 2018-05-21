@@ -15,10 +15,11 @@ class PostgresTarget(Target):
     PostgresTarget which by default uses command-line specified login.
     '''
 
-    def __init__(self, schema, tablename, non_empty=True):
+    def __init__(self, schema, tablename, non_empty=True, where="1 = 1"):
         self._schema = schema
         self._tablename = tablename
         self._non_empty = non_empty
+        self._where = where
 
     @property
     def table(self):
@@ -47,8 +48,8 @@ class PostgresTarget(Target):
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
-            'SELECT row_number() over () FROM "{schema}".{tablename} LIMIT 1'.format(
-                schema=self._schema, tablename=self._tablename))
+            'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
+                schema=self._schema, tablename=self._tablename, where=self._where))
         if resp.fetchone() is None:
             return 1
         else:
