@@ -21,3 +21,4 @@ six
 sphinxcontrib-blockdiag
 pandas
 ipdb==0.9.0
+-e git+https://github.com/CartoDB/python-quadkey.git#egg=quadkey
