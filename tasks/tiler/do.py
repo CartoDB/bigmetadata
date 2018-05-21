@@ -36,12 +36,11 @@ class XYZUSTables(Task):
                     x INTEGER NOT NULL,
                     y INTEGER NOT NULL,
                     z INTEGER NOT NULL,
-                    quadint NUMERIC NOT NULL,
                     mvt_geometry Geometry NOT NULL,
                     geoid VARCHAR NOT NULL,
                     area_ratio NUMERIC,
                     {},
-                    CONSTRAINT xyzusall_pk PRIMARY KEY (quadint,geoid)
+                    CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
                 )'''.format(table_schema['table_name'], ", ".join(cols_schema))
             session.execute(sql_table)
             session.commit()
@@ -71,7 +70,6 @@ class XYZUSTables(Task):
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
         for x in range(0, (pow(zoom, 2) + 1)):
             for y in range(0, (pow(zoom, 2) + 1)):
-                quadint = quadkey.xyz2quadint(x, y, zoom)
                 geography = self._get_geography_level(zoom)
                 sql_tile = '''
                     INSERT INTO {table}
