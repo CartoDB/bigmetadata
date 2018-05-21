@@ -69,9 +69,9 @@ class XYZUSTables(Task):
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for dataset, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
-        for x in range(0,(pow(zoom, 2) + 1)):
-            for y in range(0,(pow(zoom, 2) + 1)):
-                quadint = quadkey.xyz2quadint(x,y,zoom)
+        for x in range(0, (pow(zoom, 2) + 1)):
+            for y in range(0, (pow(zoom, 2) + 1)):
+                quadint = quadkey.xyz2quadint(x, y, zoom)
                 geography = self._get_geography_level(zoom)
                 sql_tile = '''
                     INSERT INTO {table}
@@ -96,5 +96,17 @@ class XYZUSTables(Task):
 class AllXYZTables(WrapperTask):
 
     def requires(self):
-        for zoom in range(1,15):
-            yield XYZUSTables(zoom_level=zoom, geography='state')
+        for zoom in range(1, 15):
+            yield XYZUSTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
+
+    def _get_geography_level(self, zoom):
+        if zoom >= 0 and zoom <= 4:
+            return 'state'
+        elif zoom >= 5 and zoom <= 8:
+            return 'county'
+        elif zoom >= 9 and zoom <= 11:
+            return 'census_tract'
+        elif zoom >= 12 and zoom <= 13:
+            return 'block_group'
+        elif zoom == 14:
+            return 'block'

@@ -424,4 +424,4 @@ wof-all:
 ### Tiler tables
 
 tiler-us-all:
-	make -- run tiler.do.XYZUSTables --zoom-level 14 --geography county
+	make -- run tiler.do.AllXYZTables
