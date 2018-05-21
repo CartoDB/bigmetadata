@@ -68,8 +68,8 @@ class XYZUSTables(Task):
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for dataset, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
-        for x in range(0, (pow(zoom, 2) + 1)):
-            for y in range(0, (pow(zoom, 2) + 1)):
+        for x in range(0, (pow(2,zoom) + 1)):
+            for y in range(0, (pow(2,zoom) + 1)):
                 geography = self._get_geography_level(zoom)
                 sql_tile = '''
                     INSERT INTO {table}
