@@ -8,6 +8,7 @@ import os
 
 LOGGER = get_logger(__name__)
 
+
 class XYZUSTables(Task):
 
     zoom_level = IntParameter()
@@ -28,8 +29,9 @@ class XYZUSTables(Task):
     def _create_schema_and_table(self, table_schema):
             session = current_session()
             session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
-            # TODO Do this dynamically
-            columns = table_schema['columns']['do'] + table_schema['columns']['mastercard']
+            cols_schema = []
+            for _, cols in table_schema['columns'].items():
+                cols_schema += cols
             sql_table = '''CREATE TABLE IF NOT EXISTS {}(
                     x INTEGER NOT NULL,
                     y INTEGER NOT NULL,
@@ -40,7 +42,7 @@ class XYZUSTables(Task):
                     area_ratio NUMERIC,
                     {},
                     CONSTRAINT xyzusall_pk PRIMARY KEY (quadint,geoid)
-                )'''.format(table_schema['table_name'], ", ".join(columns))
+                )'''.format(table_schema['table_name'], ", ".join(cols_schema))
             session.execute(sql_table)
             session.commit()
 
@@ -67,19 +69,16 @@ class XYZUSTables(Task):
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for dataset, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
-        for x in range(0,(pow(zoom,2) + 1)):
-            for y in range(0,(pow(zoom,2) + 1)):
+        for x in range(0,(pow(zoom, 2) + 1)):
+            for y in range(0,(pow(zoom, 2) + 1)):
                 quadint = quadkey.xyz2quadint(x,y,zoom)
                 geography = self._get_geography_level(zoom)
-                # TODO store it and make a COPY which is faster
                 sql_tile = '''
                     INSERT INTO {table}
                     (SELECT {x}, {y}, {z}, {quadint}, mvtgeom, {recordset}
-                    FROM cdb_observatory.OBS_GetMCDOMVT({x},{y},{z},'{geography}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));'''.format(table = table_name, x = x, y = y, z = zoom, quadint = quadint, geography = geography, recordset = ", ".join(recordset), docols = "', '".join(do_columns), mccols = "', '".join(mc_columns))
-                LOGGER.info(sql_tile)
+                    FROM cdb_observatory.OBS_GetMCDOMVT({x},{y},{z},'{geography}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));'''.format(table=table_name, x=x, y=y, z=zoom, quadint=quadint, geography=geography, recordset=", ".join(recordset), docols="', '".join(do_columns), mccols="', '".join(mc_columns))
                 session.execute(sql_tile)
             session.commit()
-
 
     def _get_geography_level(self, zoom):
         if zoom >= 0 and zoom <= 4:
@@ -97,5 +96,5 @@ class XYZUSTables(Task):
 class AllXYZTables(WrapperTask):
 
     def requires(self):
-        for zoom in rage(1,2):
+        for zoom in range(1,15):
             yield XYZUSTables(zoom_level=zoom, geography='state')
