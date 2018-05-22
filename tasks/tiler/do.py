@@ -8,6 +8,14 @@ import os
 
 LOGGER = get_logger(__name__)
 
+GEOGRAPHY_LEVELS = {
+    'state': 'us.census.tiger.state',
+    'county': 'us.census.tiger.county',
+    'census_tract': 'us.census.tiger.census_tract',
+    'block_group': 'us.census.tiger.block_group',
+    'block': 'us.census.tiger.block'
+}
+
 
 class XYZUSTables(Task):
 
@@ -31,24 +39,24 @@ class XYZUSTables(Task):
             self._generate_tiles(self.zoom_level, table_schema, table_config['columns'])
 
     def _create_schema_and_table(self, table_schema):
-            session = current_session()
-            session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
-            cols_schema = []
-            table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
-            for _, cols in table_schema['columns'].items():
-                cols_schema += cols
-            sql_table = '''CREATE TABLE IF NOT EXISTS {}(
-                    x INTEGER NOT NULL,
-                    y INTEGER NOT NULL,
-                    z INTEGER NOT NULL,
-                    mvt_geometry Geometry NOT NULL,
-                    geoid VARCHAR NOT NULL,
-                    area_ratio NUMERIC,
-                    {},
-                    CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
-                )'''.format(table_name, ", ".join(cols_schema))
-            session.execute(sql_table)
-            session.commit()
+        session = current_session()
+        session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
+        cols_schema = []
+        table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
+        for _, cols in table_schema['columns'].items():
+            cols_schema += cols
+        sql_table = '''CREATE TABLE IF NOT EXISTS {}(
+                x INTEGER NOT NULL,
+                y INTEGER NOT NULL,
+                z INTEGER NOT NULL,
+                mvt_geometry Geometry NOT NULL,
+                geoid VARCHAR NOT NULL,
+                area_ratio NUMERIC,
+                {},
+                CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
+            )'''.format(table_name, ", ".join(cols_schema))
+        session.execute(sql_table)
+        session.commit()
 
     def _get_config_data(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -71,29 +79,20 @@ class XYZUSTables(Task):
         mc_columns = [column['id'] for column in columns_config['mastercard']]
         recordset = ["mvtdata->>'id' as id"]
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
-        for dataset, columns in columns_config.items():
+        for _, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
         for x in range(0, (pow(2, zoom) + 1)):
             for y in range(0, (pow(2, zoom) + 1)):
-                geography = self._get_geography_level(zoom)
+                geography_level = GEOGRAPHY_LEVELS[self.geography]
                 sql_tile = '''
                     INSERT INTO {table}
                     (SELECT {x}, {y}, {z}, mvtgeom, {recordset}
-                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));'''.format(table=table_name, x=x, y=y, z=zoom, geography=geography, recordset=", ".join(recordset), docols="', '".join(do_columns), mccols="', '".join(mc_columns))
+                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));
+                    '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
+                               recordset=", ".join(recordset), docols="', '".join(do_columns),
+                               mccols="', '".join(mc_columns))
                 session.execute(sql_tile)
             session.commit()
-
-    def _get_geography_level(self, zoom):
-        if zoom >= 0 and zoom <= 4:
-            return 'us.census.tiger.state'
-        elif zoom >= 5 and zoom <= 8:
-            return 'us.census.tiger.county'
-        elif zoom >= 9 and zoom <= 11:
-            return 'us.census.tiger.census_tract'
-        elif zoom >= 12 and zoom <= 13:
-            return 'us.census.tiger.block_group'
-        elif zoom == 14:
-            return 'us.census.tiger.block'
 
     def output(self):
         targets = []
