@@ -87,7 +87,8 @@ class XYZUSTables(Task):
                 sql_tile = '''
                     INSERT INTO {table}
                     (SELECT {x}, {y}, {z}, mvtgeom, {recordset}
-                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[]));
+                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
+                    WHERE mvtgeom IS NOT NULL);
                     '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
                                recordset=", ".join(recordset), docols="', '".join(do_columns),
                                mccols="', '".join(mc_columns))
