@@ -3,6 +3,7 @@ from tasks.targets import PostgresTarget
 from luigi import IntParameter, Parameter, WrapperTask, Task
 from tasks.meta import current_session
 from lib.logger import get_logger
+from lib.tileutils import tile2bounds
 import json
 import os
 
@@ -15,6 +16,15 @@ GEOGRAPHY_LEVELS = {
     'block_group': 'us.census.tiger.block_group',
     'block': 'us.census.tiger.block'
 }
+
+
+# Check if two bounding boxes intersect
+# rects are assumed to be [xmin, ymin, xmax, ymax]
+def bboxes_intersect(rect1, rect2):
+    return not (rect2[0] > rect1[2]
+                or rect2[2] < rect1[0]
+                or rect2[3] < rect1[1]
+                or rect2[1] > rect1[3])
 
 
 class XYZUSTables(Task):
@@ -35,8 +45,9 @@ class XYZUSTables(Task):
         config_data = self._get_config_data()
         for table_config in config_data:
             table_schema = self._get_table_schema(table_config)
+            table_bboxes = table_config['bboxes']
             self._create_schema_and_table(table_schema)
-            self._generate_tiles(self.zoom_level, table_schema, table_config['columns'])
+            self._generate_tiles(self.zoom_level, table_schema, table_config['columns'], table_bboxes)
 
     def _create_schema_and_table(self, table_schema):
         session = current_session()
@@ -72,7 +83,16 @@ class XYZUSTables(Task):
                 columns[dataset].append("{} {} {}".format(column['column_name'], column['type'], nullable))
         return {"schema": table_config['schema'], "table_name": table_config['table'], "columns": columns}
 
-    def _generate_tiles(self, zoom, table_schema, columns_config):
+    def _tile_in_bboxes(self, zoom, x, y, bboxes):
+        rect1 = tile2bounds(zoom, x, y)
+        for bbox in bboxes:
+            rect2 = [bbox['xmin'], bbox['ymin'], bbox['xmax'], bbox['ymax']]
+            if bboxes_intersect(rect1, rect2):
+                return True
+
+        return False
+
+    def _generate_tiles(self, zoom, table_schema, columns_config, bboxes_config):
         session = current_session()
         table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
         do_columns = [column['id'] for column in columns_config['do']]
@@ -83,16 +103,17 @@ class XYZUSTables(Task):
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
         for x in range(0, (pow(2, zoom) + 1)):
             for y in range(0, (pow(2, zoom) + 1)):
-                geography_level = GEOGRAPHY_LEVELS[self.geography]
-                sql_tile = '''
-                    INSERT INTO {table}
-                    (SELECT {x}, {y}, {z}, mvtgeom, {recordset}
-                    FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
-                    WHERE mvtgeom IS NOT NULL);
-                    '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
-                               recordset=", ".join(recordset), docols="', '".join(do_columns),
-                               mccols="', '".join(mc_columns))
-                session.execute(sql_tile)
+                if self._tile_in_bboxes(zoom, x, y, bboxes_config):
+                    geography_level = GEOGRAPHY_LEVELS[self.geography]
+                    sql_tile = '''
+                        INSERT INTO {table}
+                        (SELECT {x}, {y}, {z}, mvtgeom, {recordset}
+                        FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
+                        WHERE mvtgeom IS NOT NULL);
+                        '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
+                                   recordset=", ".join(recordset), docols="', '".join(do_columns),
+                                   mccols="', '".join(mc_columns))
+                    session.execute(sql_tile)
             session.commit()
 
     def output(self):
