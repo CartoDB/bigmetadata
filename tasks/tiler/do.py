@@ -127,7 +127,7 @@ class XYZUSTables(Task):
 class AllXYZTables(WrapperTask):
 
     def requires(self):
-        for zoom in range(1, 15):
+        for zoom in range(0, 15):
             yield XYZUSTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
 
     def _get_geography_level(self, zoom):
