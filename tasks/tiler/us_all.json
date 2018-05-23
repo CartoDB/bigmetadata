@@ -39,12 +39,6 @@
                     "column_name": "total_pop",
                     "type": "numeric",
                     "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001035",
-                    "column_name": "female_25_to_29",
-                    "type": "numeric",
-                    "nullable": true
                 }
             ],
             "mastercard": [
@@ -57,6 +51,30 @@
                 {
                     "id": "growth_score",
                     "column_name": "growth_score",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "stability_score",
+                    "column_name": "stability_score",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "transactions_score",
+                    "column_name": "transactions_score",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "sales_score",
+                    "column_name": "sales_score",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "upfront_composite_score",
+                    "column_name": "upfront_composite_score",
                     "type": "numeric",
                     "nullable": true
                 }
