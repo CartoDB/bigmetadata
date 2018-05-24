@@ -96,7 +96,7 @@ class XYZUSTables(Task):
         session = current_session()
         table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
         do_columns = [column['id'] for column in columns_config['do']]
-        mc_columns = [column['id'] for column in columns_config['mastercard']]
+        mc_columns = [column['id'] for column in columns_config['mc']]
         recordset = ["mvtdata->>'id' as id"]
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for _, columns in columns_config.items():
