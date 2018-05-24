@@ -1,11 +1,14 @@
 from tasks.us.census.tiger import ShorelineClip
 from tasks.targets import PostgresTarget
 from luigi import IntParameter, Parameter, WrapperTask, Task
-from tasks.meta import current_session
+from tasks.meta import current_session, async_pool
 from lib.logger import get_logger
 from lib.tileutils import tile2bounds
 import json
 import os
+import time
+import asyncio
+import csv
 
 LOGGER = get_logger(__name__)
 
@@ -35,6 +38,9 @@ class XYZUSTables(Task):
     def __init__(self, *args, **kwargs):
         super(XYZUSTables, self).__init__(*args, **kwargs)
         self.config_data = self._get_config_data()
+        if not os.path.exists('tmp/tiler'):
+            os.makedirs('tmp/tiler')
+        self._csv_filename = 'tmp/tiler/tile_{}.csv'.format(self.task_id)
 
     def requires(self):
         return {
@@ -47,7 +53,7 @@ class XYZUSTables(Task):
             table_schema = self._get_table_schema(table_config)
             table_bboxes = table_config['bboxes']
             self._create_schema_and_table(table_schema)
-            self._generate_tiles(self.zoom_level, table_schema, table_config['columns'], table_bboxes)
+            self._generate_and_insert_tiles(self.zoom_level, table_schema, table_config['columns'], table_bboxes)
 
     def _create_schema_and_table(self, table_schema):
         session = current_session()
@@ -92,8 +98,7 @@ class XYZUSTables(Task):
 
         return False
 
-    def _generate_tiles(self, zoom, table_schema, columns_config, bboxes_config):
-        session = current_session()
+    def _generate_and_insert_tiles(self, zoom, table_schema, columns_config, bboxes_config):
         table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
         do_columns = [column['id'] for column in columns_config['do']]
         mc_columns = [column['id'] for column in columns_config['mc']]
@@ -101,20 +106,64 @@ class XYZUSTables(Task):
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         for _, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
+        tiles = []
+        tile_start = time.time()
         for x in range(0, (pow(2, zoom) + 1)):
             for y in range(0, (pow(2, zoom) + 1)):
                 if self._tile_in_bboxes(zoom, x, y, bboxes_config):
-                    geography_level = GEOGRAPHY_LEVELS[self.geography]
-                    sql_tile = '''
-                        INSERT INTO {table}
-                        (SELECT {x}, {y}, {z}, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
-                        FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
-                        WHERE mvtgeom IS NOT NULL);
-                        '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
-                                   recordset=", ".join(recordset), docols="', '".join(do_columns),
-                                   mccols="', '".join(mc_columns))
-                    session.execute(sql_tile)
+                    tiles.append([x, y, zoom])
+        tile_end = time.time()
+        LOGGER.info("Tiles to be processed: {} tiles. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
+        sql_start = time.time()
+        try:
+            loop = asyncio.get_event_loop()
+            done, pending = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
+            LOGGER.info("Done tasks {} | Pending tasks {}".format(len(done), len(pending)))
+        finally:
+            loop.close()
+        sql_end = time.time()
+        LOGGER.info("Generation tiles time was {} seconds".format(sql_end - sql_start))
+        self._insert_tiles(table_name)
+
+    async def _generate_tiles(self, tiles, recordset, do_columns, mc_columns):
+        with open(self._csv_filename, 'w+') as csvfile:
+            db_pool = await async_pool()
+            csvwriter = csv.writer(csvfile)
+            geography_level = GEOGRAPHY_LEVELS[self.geography]
+            executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, recordset, do_columns, mc_columns) for tile in tiles]
+            done, pending = await asyncio.wait(executed_tiles)
+            return done, pending
+
+    async def _generate_tile(self, db_pool, csvwriter, tile, geography, recordset, do_columns, mc_columns):
+        sql_tile = '''
+            SELECT {x}, {y}, {z}, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
+            FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
+            WHERE mvtgeom IS NOT NULL;
+            '''.format(x=tile[0], y=tile[1], z=tile[2], geography_level=geography,
+                       recordset=", ".join(recordset), docols="', '".join(do_columns),
+                       mccols="', '".join(mc_columns))
+        conn = await db_pool.acquire()
+        try:
+            tile_start = time.time()
+            records = await conn.fetch(sql_tile)
+            tile_end = time.time()
+            LOGGER.debug('Generated tile {},{},{} in {} seconds'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+            for record in records:
+                csvwriter.writerow(tuple(record))
+            else:
+                LOGGER.debug('Tile {},{},{} without data'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+        finally:
+            await db_pool.release(conn)
+
+    def _insert_tiles(self, table_name):
+        copy_start = time.time()
+        session = current_session()
+        with open(self._csv_filename,'rb') as f:
+            cursor = session.connection().connection.cursor()
+            cursor.copy_from(f, table_name, sep=',', null='')
             session.commit()
+        copy_end = time.time()
+        LOGGER.info("Copy tiles time was {} seconds".format(copy_end - copy_start))
 
     def output(self):
         targets = []
