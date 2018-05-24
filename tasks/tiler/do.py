@@ -107,7 +107,7 @@ class XYZUSTables(Task):
                     geography_level = GEOGRAPHY_LEVELS[self.geography]
                     sql_tile = '''
                         INSERT INTO {table}
-                        (SELECT {x}, {y}, {z}, ST_MakeValid(mvtgeom) mvtgeom, {recordset}
+                        (SELECT {x}, {y}, {z}, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
                         FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',ARRAY['{docols}']::TEXT[],ARRAY['{mccols}']::TEXT[])
                         WHERE mvtgeom IS NOT NULL);
                         '''.format(table=table_name, x=x, y=y, z=zoom, geography_level=geography_level,
