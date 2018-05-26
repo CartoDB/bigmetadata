@@ -115,8 +115,9 @@ class XYZUSTables(Task):
         tile_end = time.time()
         LOGGER.info("Tiles to be processed: {} tiles. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
         sql_start = time.time()
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         try:
-            loop = asyncio.get_event_loop()
             done, pending = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
             LOGGER.info("Done tasks {} | Pending tasks {}".format(len(done), len(pending)))
         finally:
