@@ -121,7 +121,8 @@ class XYZUSTables(Task):
         asyncio.set_event_loop(loop)
         try:
             exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
-            LOGGER.info("Exception/s found processing tiles: {}".format(exceptions))
+            if exceptions:
+                LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([e for e in exceptions if e is not None])))
         finally:
             loop.close()
         sql_end = time.time()
@@ -130,7 +131,7 @@ class XYZUSTables(Task):
 
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
-                          concurrent.futures._base.TimeoutError),
+                           concurrent.futures._base.TimeoutError),
                           max_time=600)
     async def _generate_tiles(self, tiles, recordset, do_columns, mc_columns):
         with open(self._csv_filename, 'w+') as csvfile:
@@ -143,7 +144,7 @@ class XYZUSTables(Task):
 
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
-                          concurrent.futures._base.TimeoutError),
+                           concurrent.futures._base.TimeoutError),
                           max_time=600)
     async def _generate_tile(self, db_pool, csvwriter, tile, geography, recordset, do_columns, mc_columns):
         sql_tile = '''
@@ -159,13 +160,13 @@ class XYZUSTables(Task):
             tile_start = time.time()
             records = await conn.fetch(sql_tile)
             tile_end = time.time()
-            LOGGER.debug('Generated tile {},{},{} in {} seconds'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+            LOGGER.debug('Generated tile [{}/{}/{}] in {} seconds'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
             for record in records:
                 csvwriter.writerow(tuple(record))
             else:
-                LOGGER.debug('Tile {},{},{} without data'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+                LOGGER.debug('Tile [{}/{}/{}] without data'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
         except BaseException as e:
-            LOGGER.error('Tile {},{},{} returned exception {}'.format(tile[0],tile[1],tile[2],e))
+            LOGGER.error('Tile [{}/{}/{}] returned exception {}'.format(tile[0], tile[1], tile[2], e))
             raise e
         finally:
             await db_pool.release(conn)
