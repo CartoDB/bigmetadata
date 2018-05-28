@@ -138,7 +138,7 @@ class XYZUSTables(Task):
             csvwriter = csv.writer(csvfile)
             geography_level = GEOGRAPHY_LEVELS[self.geography]
             executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, recordset, do_columns, mc_columns) for tile in tiles]
-            exceptions = await asyncio.gather(executed_tiles, return_exceptions=True)
+            exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
             return exceptions
 
     @backoff.on_exception(backoff.expo,
