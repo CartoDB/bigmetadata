@@ -8,6 +8,8 @@ import json
 import os
 import time
 import asyncio
+import concurrent.futures
+import backoff
 import csv
 
 LOGGER = get_logger(__name__)
@@ -118,23 +120,31 @@ class XYZUSTables(Task):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            done, pending = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
-            LOGGER.info("Done tasks {} | Pending tasks {}".format(len(done), len(pending)))
+            exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
+            LOGGER.info("Exception/s found processing tiles: {}".format(exceptions))
         finally:
             loop.close()
         sql_end = time.time()
         LOGGER.info("Generation tiles time was {} seconds".format(sql_end - sql_start))
         self._insert_tiles(table_name)
 
+    @backoff.on_exception(backoff.expo,
+                          (asyncio.TimeoutError,
+                          concurrent.futures._base.TimeoutError),
+                          max_time=600)
     async def _generate_tiles(self, tiles, recordset, do_columns, mc_columns):
         with open(self._csv_filename, 'w+') as csvfile:
             db_pool = await async_pool()
             csvwriter = csv.writer(csvfile)
             geography_level = GEOGRAPHY_LEVELS[self.geography]
             executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, recordset, do_columns, mc_columns) for tile in tiles]
-            done, pending = await asyncio.wait(executed_tiles)
-            return done, pending
+            exceptions = await asyncio.gather(executed_tiles, return_exceptions=True)
+            return exceptions
 
+    @backoff.on_exception(backoff.expo,
+                          (asyncio.TimeoutError,
+                          concurrent.futures._base.TimeoutError),
+                          max_time=600)
     async def _generate_tile(self, db_pool, csvwriter, tile, geography, recordset, do_columns, mc_columns):
         sql_tile = '''
             SELECT {x}, {y}, {z}, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
@@ -143,8 +153,9 @@ class XYZUSTables(Task):
             '''.format(x=tile[0], y=tile[1], z=tile[2], geography_level=geography,
                        recordset=", ".join(recordset), docols="', '".join(do_columns),
                        mccols="', '".join(mc_columns))
-        conn = await db_pool.acquire()
+        conn = None
         try:
+            conn = await db_pool.acquire()
             tile_start = time.time()
             records = await conn.fetch(sql_tile)
             tile_end = time.time()
@@ -153,6 +164,9 @@ class XYZUSTables(Task):
                 csvwriter.writerow(tuple(record))
             else:
                 LOGGER.debug('Tile {},{},{} without data'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+        except BaseException as e:
+            LOGGER.error('Tile {},{},{} returned exception {}'.format(tile[0],tile[1],tile[2],e))
+            raise e
         finally:
             await db_pool.release(conn)
 

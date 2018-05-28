@@ -2,7 +2,7 @@ FROM ubuntu:xenial
 
 COPY ./requirements.txt /bigmetadata/requirements.txt
 RUN apt-get update
-RUN apt-get -y install make build-essential wget curl unzip git p7zip-full software-properties-common
+RUN apt-get -y install make build-essential wget curl unzip git p7zip-full software-properties-common vim inetutils-ping htop
 RUN add-apt-repository -y ppa:cartodb/postgresql-10
 RUN add-apt-repository -y ppa:cartodb/nodejs
 RUN apt-get update --fix-missing
