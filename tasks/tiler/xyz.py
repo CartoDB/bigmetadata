@@ -4,6 +4,7 @@ from luigi import IntParameter, Parameter, WrapperTask, Task
 from tasks.meta import current_session, async_pool
 from lib.logger import get_logger
 from lib.tileutils import tile2bounds
+from lib.geo import bboxes_intersect
 import json
 import os
 import time
@@ -14,35 +15,24 @@ import csv
 
 LOGGER = get_logger(__name__)
 
-GEOGRAPHY_LEVELS = {
-    'state': 'us.census.tiger.state',
-    'county': 'us.census.tiger.county',
-    'census_tract': 'us.census.tiger.census_tract',
-    'block_group': 'us.census.tiger.block_group',
-    'block': 'us.census.tiger.block'
-}
 
-
-# Check if two bounding boxes intersect
-# rects are assumed to be [xmin, ymin, xmax, ymax]
-def bboxes_intersect(rect1, rect2):
-    return not (rect2[0] > rect1[2]
-                or rect2[2] < rect1[0]
-                or rect2[3] < rect1[1]
-                or rect2[1] > rect1[3])
-
-
-class XYZUSTables(Task):
+class TilerXYZTableTask(Task):
 
     zoom_level = IntParameter()
     geography = Parameter()
 
     def __init__(self, *args, **kwargs):
-        super(XYZUSTables, self).__init__(*args, **kwargs)
+        super(TilerXYZTableTask, self).__init__(*args, **kwargs)
         self.config_data = self._get_config_data()
         if not os.path.exists('tmp/tiler'):
             os.makedirs('tmp/tiler')
         self._csv_filename = 'tmp/tiler/tile_{}.csv'.format(self.task_id)
+
+    def get_config_file(self):
+        raise NotImplementedError('Config file must be implemented by the child class')
+
+    def get_geography_level(self, level):
+        raise NotImplementedError('Geography levels file must be implemented by the child class')
 
     def requires(self):
         return {
@@ -79,7 +69,7 @@ class XYZUSTables(Task):
 
     def _get_config_data(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/us_all.json'.format(dir_path))) as f:
+        with (open('{}/conf/{}'.format(dir_path, self.get_config_file()))) as f:
             return json.load(f)
 
     def _get_table_schema(self, table_config):
@@ -137,7 +127,7 @@ class XYZUSTables(Task):
         with open(self._csv_filename, 'w+') as csvfile:
             db_pool = await async_pool()
             csvwriter = csv.writer(csvfile)
-            geography_level = GEOGRAPHY_LEVELS[self.geography]
+            geography_level = self.get_geography_level(self.geography)
             executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, recordset, do_columns, mc_columns) for tile in tiles]
             exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
             return exceptions
@@ -187,22 +177,3 @@ class XYZUSTables(Task):
             table_schema = self._get_table_schema(table_config)
             targets.append(PostgresTarget(table_schema['schema'], table_schema['table_name'], where='z = {}'.format(self.zoom_level)))
         return targets
-
-
-class AllXYZTables(WrapperTask):
-
-    def requires(self):
-        for zoom in range(0, 15):
-            yield XYZUSTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
-
-    def _get_geography_level(self, zoom):
-        if zoom >= 0 and zoom <= 4:
-            return 'state'
-        elif zoom >= 5 and zoom <= 8:
-            return 'county'
-        elif zoom >= 9 and zoom <= 11:
-            return 'census_tract'
-        elif zoom >= 12 and zoom <= 13:
-            return 'block_group'
-        elif zoom == 14:
-            return 'block'
