@@ -424,4 +424,4 @@ wof-all:
 ### Tiler tables
 
 tiler-us-all:
-	make -- run tiler.do.AllXYZTables
+	make -- run tiler.us.AllUSXYZTables
