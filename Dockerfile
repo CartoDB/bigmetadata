@@ -7,7 +7,7 @@ RUN add-apt-repository -y ppa:cartodb/postgresql-10
 RUN add-apt-repository -y ppa:cartodb/nodejs
 RUN apt-get update --fix-missing
 
-RUN apt-get -y install nodejs postgresql-client-10 gdal-bin python3-pip
+RUN apt-get -y install nodejs postgresql-client-10 postgresql-server-dev-10 postgresql-server-dev-9.5 gdal-bin python3-pip
 
 # Mapshaper
 RUN npm install -g mapshaper

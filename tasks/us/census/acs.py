@@ -14,7 +14,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, MetaWrapper, LoadPostgresFromURL
 from tasks.util import grouper
 from lib.logger import get_logger
-from tasks.us.census.tiger import SumLevel
+from tasks.us.census.tiger import SumLevel, ShorelineClip
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.us.census.segments import SegmentTags
 from tasks.meta import (OBSColumn, OBSTag, current_session, DENOMINATOR, UNIVERSE, GEOM_REF)
@@ -3362,14 +3362,18 @@ class Quantiles(TableTask):
                              sample=self.sample,
                              geography=self.geography),
             'tiger': GeoidColumns(),
-            'tigerdata': SumLevel(geography=self.geography, year='2015')
+            'sumlevel': SumLevel(geography=self.geography, year='2015'),
+            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
 
     def version(self):
         return 14
 
     def targets(self):
-        return {self.input()['tigerdata'].obs_table: GEOM_REF}
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         input_ = self.input()
@@ -3420,7 +3424,7 @@ class Quantiles(TableTask):
                         SELECT geoidsl, geoidsc, {select_statment}
                         FROM {source_table}
                     )
-                    UPDATE {table} SET ({insert_statment}) = ({old_cols_statment})
+                    UPDATE {table} SET ({insert_statment}) = ROW({old_cols_statment})
                     FROM data
                     WHERE data.geoidsc = {table}.geoidsc
                      AND data.geoidsl = {table}.geoidsl
@@ -3453,7 +3457,8 @@ class Extract(TableTask):
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'tigerdata': SumLevel(geography=self.geography, year='2015')
+            'sumlevel': SumLevel(geography=self.geography, year='2015'),
+            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
 
     def table_timespan(self):
@@ -3462,7 +3467,10 @@ class Extract(TableTask):
                                                      end=int(self.year)))
 
     def targets(self):
-        return {self.input()['tigerdata'].obs_table: GEOM_REF}
+        return {
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         input_ = self.input()
