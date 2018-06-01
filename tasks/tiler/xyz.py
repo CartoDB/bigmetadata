@@ -112,7 +112,7 @@ class TilerXYZTableTask(Task):
         try:
             exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns))
             if exceptions:
-                LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([e for e in exceptions if e is not None])))
+                LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([str(e) for e in exceptions if e is not None])))
         finally:
             loop.close()
         sql_end = time.time()
