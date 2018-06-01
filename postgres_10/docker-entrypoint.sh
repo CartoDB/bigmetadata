@@ -36,26 +36,27 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
         echo "User $POSTGRES_USER created!"
     fi
 
-    su - postgres -c "PGUSER=${PGUSER:-postgres} /usr/lib/postgresql/10/bin/pg_ctl -D $PGDATA -m fast -w stop"
-
     echo
     echo 'Creating extension postgis'
     echo
-    su - psql -c '"CREATE EXTENSION postgis'
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE EXTENSION postgis'"
 
     echo
     echo 'Creating extension postgis_topology'
     echo
-    su - psql -c '"CREATE EXTENSION postgis_topology'
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE EXTENSION postgis_topology'"
 
     echo
     echo 'Creating extension plpythonu'
     echo
-    su - psql -c 'CREATE EXTENSION plpythonu'
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE LANGUAGE plpythonu'"
 
     echo
     echo 'PostgreSQL init process complete; ready for start up.'
     echo
+
+    su - postgres -c "PGUSER=${PGUSER:-postgres} /usr/lib/postgresql/10/bin/pg_ctl -D $PGDATA -m fast -w stop"
+
 fi
 
 exec su - postgres -c "/usr/lib/postgresql/10/bin/postgres -D $PGDATA --config-file=/etc/postgresql/10/main/postgresql.conf"
