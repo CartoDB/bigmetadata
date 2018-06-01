@@ -39,17 +39,17 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
     echo
     echo 'Creating extension postgis'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE EXTENSION postgis'"
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE EXTENSION postgis'"
 
     echo
     echo 'Creating extension postgis_topology'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE EXTENSION postgis_topology'"
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE EXTENSION postgis_topology'"
 
     echo
     echo 'Creating extension plpythonu'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -c 'CREATE LANGUAGE plpythonu'"
+    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE LANGUAGE plpythonu'"
 
     echo
     echo 'PostgreSQL init process complete; ready for start up.'
