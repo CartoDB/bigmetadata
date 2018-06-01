@@ -539,7 +539,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -547,13 +547,17 @@ class WorkplaceAreaCharacteristics(TableTask):
             'tiger_meta': GeoidColumns(),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
             'sumlevel': SumLevel(year='2015', geography='block'),
+            'shorelineclip': ShorelineClip(year='2015', geography='block'),
         }
 
     def table_timespan(self):
         return get_timespan(str(self.year))
 
     def targets(self):
-        return {self.input()['sumlevel'].obs_table: GEOM_REF}
+        return {
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         data_columns = self.input()['data_meta']

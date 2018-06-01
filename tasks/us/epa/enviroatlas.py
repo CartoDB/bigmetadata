@@ -4,7 +4,7 @@ from tasks.meta import OBSColumn, current_session, GEOM_REF, UNIVERSE
 from tasks.util import copyfile
 from lib.timespan import get_timespan
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
-from tasks.us.epa.huc import HUCColumns, SourceTags
+from tasks.us.epa.huc import HUC, HUCColumns, SourceTags
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, RepoFile
 from collections import OrderedDict
 
