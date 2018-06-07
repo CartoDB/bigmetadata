@@ -13,11 +13,12 @@ from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
+# TODO Add block level when we have ACS for block
 GEOGRAPHY_LEVELS = { 'state': 'us.census.tiger.state',
     'county': 'us.census.tiger.county',
     'census_tract': 'us.census.tiger.census_tract',
-    'block_group': 'us.census.tiger.block_group',
-    'block': 'us.census.tiger.block'
+    'block_group': 'us.census.tiger.block_group'
+    #'block': 'us.census.tiger.block'
 }
 
 class Measurements2CSV(Task):
@@ -100,10 +101,10 @@ class Measurements2CSV(Task):
             self.output().remove
 
     def output(self):
-        csv_filename = 'tmp/geographica/{}_{}.csv'.format(self.file_name, self.task_id)
+        csv_filename = 'tmp/geographica/{}'.format(self.file_name)
         return LocalTarget(path=csv_filename, format='csv')
 
 class AllMeasurements(WrapperTask):
     def requires(self):
         for geography in GEOGRAPHY_LEVELS.keys():
-            yield Measurements2CSV(geography=geography, file_name='csv_geographica')
+            yield Measurements2CSV(geography=geography, file_name='do_{}.csv'.format(geography))
