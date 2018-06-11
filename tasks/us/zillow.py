@@ -154,7 +154,7 @@ class DownloadZillow(Task):
     hometype = Parameter()
     measure = Parameter()
 
-    URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
+    URL = 'http://files.zillowstatic.com/research/preview/{geography}/{geography}_{measure}_{hometype}.csv'
 
     def url(self):
         return self.URL.format(geography=self.geography, hometype=self.hometype,
