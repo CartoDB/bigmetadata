@@ -747,7 +747,7 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
         if self.geography == BLOCK:
@@ -804,7 +804,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         if self.geography == BLOCK:
