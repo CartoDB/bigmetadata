@@ -353,7 +353,7 @@ us-bls:
 	make -- run us.bls.AllQCEW --maxtimespan 2017Q1
 
 us-acs:
-	make -- run us.census.acs.ACSAll
+	make -- run us.census.acs.acs.ACSAll
 
 us-lodes:
 	make -- run us.census.lodes.LODESMetaWrapper --geography block --year 2013
