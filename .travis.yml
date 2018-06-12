@@ -45,3 +45,5 @@ deploy:
     repo: CartoDB/bigmetadata
     all_branches: true
     condition: "$TEST_SUITE = travis-diff-catalog"
+after_failure:
+  - df -h
