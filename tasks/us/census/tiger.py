@@ -7,8 +7,11 @@ Tiger
 import json
 import os
 import subprocess
+import time
+import re
 from collections import OrderedDict
 from lib.timespan import get_timespan
+from lib.logger import get_logger
 from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
                               SimplifiedTempTableTask)
 from tasks.util import classpath, grouper, shell
@@ -21,6 +24,7 @@ from tasks.simplify import Simplify
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
+LOGGER = get_logger(__name__)
 
 GEOID_SUMLEVEL_COLUMN = "_geoidsl"
 GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
@@ -973,6 +977,83 @@ class PriSecRoads(TableTask):
             FROM {input}'''.format(output=self.output().table,
                                    input=self.input()['data'].table))
 
+class TigerBlocksInterpolation(Task):
+    '''
+    Task used to create a table with the block and blockgroups geoid and the
+    percentage of the block in the block group
+    '''
+    year = Parameter()
+
+    def requires(self):
+        return {
+            'shoreline_block': ShorelineClip(year=self.year, geography='block'),
+            'shoreline_blockgroup': ShorelineClip(year=self.year, geography='block_group'),
+        }
+
+    def run(self):
+        session = current_session()
+        with session.no_autoflush:
+            tiger_tables = {}
+            tiger_tables_query = '''SELECT id,tablename
+                                    FROM observatory.obs_table
+                                    WHERE id ilike 'us.census.tiger.shoreline_clip_block%'
+                                 '''
+
+            tiger_tables_result = session.execute(tiger_tables_query)
+            if tiger_tables_result:
+                for tiger_table in tiger_tables_result.fetchall():
+                    if re.search('block_group_{}'.format(self.year), tiger_table['id']):
+                        tiger_tables['block_group'] = tiger_table['tablename']
+                    elif re.search('block_{}'.format(self.year), tiger_table['id']):
+                        tiger_tables['block'] = tiger_table['tablename']
+
+                # Create the table with block/blockgroups and percentage field empty
+                start_time = time.time()
+                LOGGER.info("Start creating the interpolation table...")
+                query = '''
+                        CREATE TABLE {table_output} AS
+                        SELECT geoid blockid, left(geoid,12) blockgroupid, 0 percentage, the_geom block_geom
+                        FROM "{schema_input}".{block_table} b
+                        '''.format(schema_input='observatory',
+                                block_group_table=tiger_tables['block_group'],
+                                block_table=tiger_tables['block'],
+                                table_output=self.output().table)
+                session.execute(query)
+                end_time = time.time()
+                LOGGER.info("Time creating the table {}".format((end_time - start_time)))
+                # Creating indexes
+                LOGGER.info("Start creating the indexes for the interpolation table...")
+                start_time = time.time()
+                indexes_query = '''
+                    CREATE INDEX blocks_idx ON {table_output} (blockid);
+                    CREATE INDEX block_groups_idx ON {table_output} (blockgroupid);
+                '''.format(table_output=self.output().table)
+                session.execute(indexes_query)
+                end_time = time.time()
+                LOGGER.info("Indexes created in {}".format((end_time - start_time)))
+                # Set the interpolation percentages in the table
+                LOGGER.info("Start updating the table...")
+                start_time = time.time()
+                update_percentage_query = '''
+                        UPDATE {table_output} b
+                        SET percentage = (
+                            SELECT (ST_Area(b.block_geom)/ST_Area(bg.the_geom))*100
+                            FROM "{schema_input}".{bg_table} bg
+                            WHERE b.blockgroupid = bg.geoid
+                        )
+                        '''.format(schema_input='observatory',
+                                bg_table=tiger_tables['block_group'],
+                                table_output=self.output().table)
+                session.execute(update_percentage_query)
+                session.commit()
+                end_time = time.time()
+                LOGGER.info("Time creating the table {}".format((end_time - start_time)))
+            else:
+                LOGGER.error('Cant retrieve tiger tables for block and block group')
+
+    def output(self):
+        schema = 'tiger{year}'.format(year=self.year)
+        return PostgresTarget(schema,'blocks_interpolation')
 
 def load_sumlevels():
     '''

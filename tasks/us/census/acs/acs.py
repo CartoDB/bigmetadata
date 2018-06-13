@@ -1,13 +1,15 @@
 from time import time
+import re
 from collections import OrderedDict
-from luigi import Parameter, WrapperTask
+from luigi import Parameter, WrapperTask, Task
 
 from lib.timespan import get_timespan
 from lib.logger import get_logger
 from tasks.base_tasks import TableTask, MetaWrapper, LoadPostgresFromURL
 from tasks.util import grouper
-from tasks.us.census.tiger import SumLevel, ShorelineClip
+from tasks.us.census.tiger import SumLevel, ShorelineClip, TigerBlocksInterpolation
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
+from tasks.base_tasks import PostgresTarget
 from tasks.meta import (current_session, GEOM_REF)
 from .columns import QuantileColumns, Columns
 
@@ -54,6 +56,11 @@ class DownloadACS(LoadPostgresFromURL):
         cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
         self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
 
+
+class GenerateBlockACSTable(Task):
+
+    def requires(self):
+        return TigerBlocksInterpolation(year=2015)
 
 class Quantiles(TableTask):
     '''
