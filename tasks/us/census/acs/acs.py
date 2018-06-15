@@ -19,6 +19,7 @@ STATE = 'state'
 COUNTY = 'county'
 CENSUS_TRACT = 'census_tract'
 BLOCK_GROUP = 'block_group'
+BLOCK = 'block'
 PUMA = 'puma'
 ZCTA5 = 'zcta5'
 CONGRESSIONAL_DISTRICT = 'congressional_district'
@@ -31,7 +32,7 @@ PLACE = 'place'
 SAMPLE_1YR = '1yr'
 SAMPLE_5YR = '5yr'
 
-GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
+GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
 YEARS = ['2015', '2014', '2010']
@@ -57,10 +58,47 @@ class DownloadACS(LoadPostgresFromURL):
         self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
 
 
-class GenerateBlockACSTable(Task):
+class AddBlockDataToACSTables(Task):
+    year = Parameter()
+    sample = Parameter()
 
     def requires(self):
-        return TigerBlocksInterpolation(year=2015)
+        return {
+            'interpolation': TigerBlocksInterpolation(year=2015),
+            'acs_data': DownloadACS(year=self.year, sample=self.sample),
+            'acs_column': Columns(year=self.year, sample=self.sample, geography='block_group')
+        }
+    def run(self):
+        session = current_session()
+        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+        table_ids = {}
+        for _, coltarget in self.input()['acs_column'].items():
+            colid = coltarget._id.split('.')[-1]
+            tableid = colid.split('.')[-1][0:-3]
+            table_ids[tableid.lower()] = {"schema": inputschema, "table": tableid.lower()}
+        for table_data in table_ids.values():
+            cols_clause_query = '''
+                SELECT string_agg('(' || column_name || ' * percentage) ' || column_name, ', ')
+                FROM information_schema.columns
+                WHERE table_schema = '{schema}'
+                AND table_name = '{table}' and column_name <> 'geoid'
+            '''.format(schema=table_data['schema'], table=table_data['table'])
+            cols_clause = session.execute(cols_clause_query).fetchone()[0]
+            if not cols_clause:
+                LOGGER.error('Error geting column names for the table {}'.format(table_data['table']))
+                LOGGER.error('SQL {}'.format(cols_clause_query))
+                continue
+            add_blocks_query = '''
+                SELECT bi.blockid, {cols}
+                FROM "{schema}"."{table}" acs
+                INNER JOIN {blockint} bi ON bi.blockgroupid = acs.geoid
+                WHERE char_length(geoid) = 12
+            '''.format(cols=cols_clause, schema=table_data['schema'], table=table_data['table'],
+                       blockint=self.input()['interpolation'].table)
+            resp = session.execute(add_blocks_query).fetchall()
+            LOGGER.info('SQL: {}'.format(add_blocks_query))
+            LOGGER.info('Results: {}'.format(len(resp)))
+        LOGGER.info('fin')
 
 class Quantiles(TableTask):
     '''
@@ -272,7 +310,7 @@ class ACSMetaWrapper(MetaWrapper):
         if self.year == '2010' and self.geography == ZCTA5:
             pass
         # 1yr sample doesn't have block group or census_tract
-        elif self.sample == SAMPLE_1YR and self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
+        elif self.sample == SAMPLE_1YR and self.geography in (CENSUS_TRACT, BLOCK_GROUP, BLOCK, ZCTA5):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
@@ -288,11 +326,15 @@ class ExtractAll(WrapperTask):
         if self.sample == SAMPLE_1YR:
             geographies.remove(ZCTA5)
             geographies.remove(BLOCK_GROUP)
+            geographies.remove(BLOCK)
             geographies.remove(CENSUS_TRACT)
         elif self.year == '2010':
             geographies.remove(ZCTA5)
         for geo in geographies:
-            yield Quantiles(geography=geo, year=self.year, sample=self.sample)
+            if geo == BLOCK:
+                yield QuantilesBlock(geography=geo, year=self.year, sample=self.sample)
+            else:
+                yield Quantiles(geography=geo, year=self.year, sample=self.sample)
 
 
 class ACSAll(WrapperTask):
