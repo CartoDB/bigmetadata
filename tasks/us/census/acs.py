@@ -11,7 +11,7 @@ from tasks.us.census.tiger import SumLevel, ShorelineClip, TigerBlocksInterpolat
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.base_tasks import PostgresTarget
 from tasks.meta import (current_session, GEOM_REF)
-from .columns import QuantileColumns, Columns
+from .acs_columns.columns import QuantileColumns, Columns
 
 LOGGER = get_logger(__name__)
 
@@ -91,8 +91,8 @@ class AddBlockDataToACSTables(Task):
             add_blocks_query = '''
                 SELECT bi.blockid, {cols}
                 FROM "{schema}"."{table}" acs
-                INNER JOIN {blockint} bi ON bi.blockgroupid = acs.geoid
-                WHERE char_length(geoid) = 12
+                INNER JOIN {blockint} bi ON bi.blockgroupid = substr(acs.geoid,8)
+                WHERE char_length(substr(geoid, 8)) = 12
             '''.format(cols=cols_clause, schema=table_data['schema'], table=table_data['table'],
                        blockint=self.input()['interpolation'].table)
             resp = session.execute(add_blocks_query).fetchall()
@@ -332,7 +332,8 @@ class ExtractAll(WrapperTask):
             geographies.remove(ZCTA5)
         for geo in geographies:
             if geo == BLOCK:
-                yield QuantilesBlock(geography=geo, year=self.year, sample=self.sample)
+                pass
+                # yield QuantilesBlock(geography=geo, year=self.year, sample=self.sample)
             else:
                 yield Quantiles(geography=geo, year=self.year, sample=self.sample)
 
