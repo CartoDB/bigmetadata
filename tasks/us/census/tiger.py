@@ -1012,7 +1012,7 @@ class TigerBlocksInterpolation(Task):
                 LOGGER.info("Start creating the interpolation table...")
                 query = '''
                         CREATE TABLE {table_output} AS
-                        SELECT geoid blockid, left(geoid,12) blockgroupid, 0 percentage, the_geom block_geom
+                        SELECT geoid blockid, left(geoid,12) blockgroupid, 0::float percentage, the_geom block_geom
                         FROM "{schema_input}".{block_table} b
                         '''.format(schema_input='observatory',
                                 block_group_table=tiger_tables['block_group'],
@@ -1037,7 +1037,7 @@ class TigerBlocksInterpolation(Task):
                 update_percentage_query = '''
                         UPDATE {table_output} b
                         SET percentage = (
-                            SELECT (ST_Area(b.block_geom)/ST_Area(bg.the_geom))*100
+                            SELECT (ST_Area(b.block_geom)/ST_Area(bg.the_geom))::float*100.00
                             FROM "{schema_input}".{bg_table} bg
                             WHERE b.blockgroupid = bg.geoid
                         )
