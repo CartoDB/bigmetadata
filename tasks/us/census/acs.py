@@ -86,7 +86,7 @@ class AddIndexesToACSTables(Task):
         for table in tables:
             indexes_query = '''
                 create index if not exists {table}_partial_geoid_idx on "{schema}"."{table}" (substr(geoid, 8));
-                create index if not exists {table}_geoid_length_idx on "{schema}"."{table}" (char_length(substr(geoid, 8)));
+                create index if not exists {table}_length_geoid_idx on "{schema}"."{table}" char_length(geoid);
             '''.format(schema=schema, table=table[0])
             LOGGER.info('Creating indexes for table {}...'.format(table[0]))
             start_time = time()
@@ -105,11 +105,12 @@ class AddIndexesToACSTables(Task):
             SELECT indexname
             FROM pg_indexes
             WHERE schemaname = '{schema}'
-            AND tablename = 'seq0001';
+            AND tablename = 'seq0001'
+            AND indexname IN ['seq0001_partial_geoid_idx', 'seq0001_length_geoid_idx']
         '''.format(schema=schema)
         indexes = session.execute(complete_query).fetchall()
         # Primary key index and the two new added indexes
-        return len(indexes) == 3
+        return len(indexes) == 2
 
 class AddBlockDataToACSTables(Task):
     year = IntParameter()
@@ -117,7 +118,6 @@ class AddBlockDataToACSTables(Task):
 
     def requires(self):
         return {
-            'indexes': AddIndexesToACSTables(year=self.year, sample=self.sample),
             'interpolation': TigerBlocksInterpolation(year=2015),
             'acs_data': DownloadACS(year=self.year, sample=self.sample),
             'acs_column': Columns(year=self.year, sample=self.sample, geography='block_group')
@@ -134,7 +134,7 @@ class AddBlockDataToACSTables(Task):
             cols_clause_query = '''
                 SELECT string_agg( column_name, ', ') cols,
                        string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
-                       string_agg('(blockgroup.' || column_name || ' * (bi.percentage/100.0))::float ' || column_name, ', ') cols_percentage
+                       string_agg('(block.' || column_name || ' * (bi.percentage/100.0))::float ' || column_name, ', ') cols_percentage
                 FROM information_schema.columns
                 WHERE table_schema = '{schema}'
                 AND table_name = '{table}' and column_name <> 'geoid'
@@ -144,12 +144,13 @@ class AddBlockDataToACSTables(Task):
                 LOGGER.error('Error geting column names for the table {}'.format(table_data['table']))
                 LOGGER.error('SQL {}'.format(cols_clause_query))
                 continue
+            total_time = time()
             insert_blocks_geoid_query = '''
-                INSERT INTO "{schema}"."{table}" (geoid)
-                SELECT (left(acs.geoid, 7) || bi.blockid) geoid
-                FROM {blockint} bi
-                INNER JOIN "{schema}"."{table}" acs ON bi.blockgroupid = substr(acs.geoid,8)
-                WHERE char_length(substr(acs.geoid, 8)) = 12
+                INSERT INTO "{schema}"."{table}" (geoid, {cols})
+                SELECT (left(block.geoid, 7) || bi.blockid) geoid, {cols}
+                FROM "{schema}"."{table}" block
+                INNER JOIN {blockint} bi ON (bi.blockgroupid = substr(block.geoid, 8))
+                WHERE char_length(block.geoid) = 19
                 ON CONFLICT (geoid) DO NOTHING
             '''.format(cols=cols_clause['cols'], schema=table_data['schema'], table=table_data['table'],
                        blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
@@ -162,11 +163,12 @@ class AddBlockDataToACSTables(Task):
             LOGGER.info('Inserted all the blocks from table {}. It tooks {} seconds'.format(table_data['table'], (end_time-start_time)))
             update_block_values_query = '''
                 UPDATE "{schema}"."{table}" block
-                SET ({cols}) = (SELECT {cols_percentage}
-                                FROM {blockint} bi
-                                INNER JOIN "{schema}"."{table}" blockgroup ON (bi.blockgroupid = substr(blockgroup.geoid, 8) and char_length(substr(blockgroup.geoid,8)) = 12)
-                                WHERE bi.blockid = substr(block.geoid,8))
-                WHERE char_length(substr(block.geoid, 8)) = 15
+                SET ({cols}) = (
+                        SELECT {cols_percentage}
+                        FROM {blockint} bi
+                        WHERE bi.blockid = substr(block.geoid, 8)
+                    )
+                WHERE char_length(block.geoid) = 22
             '''.format(cols=cols_clause['cols'], schema=table_data['schema'], table=table_data['table'],
                        blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
             LOGGER.info('UPDATE SQL: {}'.format(update_block_values_query))
@@ -176,6 +178,7 @@ class AddBlockDataToACSTables(Task):
             session.commit()
             end_time = time()
             LOGGER.info('Updated all the blocks for table {}. It tooks {} seconds'.format(table_data['table'], (end_time-start_time)))
+            LOGGER.info('Total time to insert and update was {} seconds'.format((end_time-total_time)))
         self.mark_done()
 
     def mark_done(self):
