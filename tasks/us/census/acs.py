@@ -99,7 +99,7 @@ class AddBlockDataToACSTables(Task):
                 drop index if exists {table}_geoid_length_idx;
             '''.format(schema=inputschema, table=table[0])
             session.execute(delete_indexes_query)
-            LOGGER.info('Deleted all old indexes...'.format(
+            LOGGER.info('Deleted all old indexes...')
             cols_clause_query = '''
                 SELECT string_agg( column_name, ', ') cols,
                        string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
