@@ -141,24 +141,6 @@ class AddBlockDataToACSTables(Task):
             session.commit()
             end_time = time()
             LOGGER.info('Inserted all the blocks from table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
-            # update_block_values_query = '''
-            #     UPDATE "{schema}"."{table}" block
-            #     SET ({cols}) = (
-            #             SELECT {cols_percentage}
-            #             FROM {blockint} bi
-            #             WHERE bi.blockid = substr(block.geoid, 8)
-            #         )
-            #     WHERE char_length(block.geoid) = 22
-            # '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
-            #            blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
-            # LOGGER.debug('UPDATE SQL: {}'.format(update_block_values_query))
-            # LOGGER.info('Updating all the blocks values for table {}...'.format(table[0]))
-            # start_time = time()
-            # session.execute(update_block_values_query)
-            # session.commit()
-            # end_time = time()
-            # LOGGER.info('Updated all the blocks for table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
-            # LOGGER.info('Total time to insert and update was {} seconds'.format((end_time-total_time)))
         self.mark_done()
 
     def mark_done(self):
