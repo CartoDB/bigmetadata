@@ -138,6 +138,14 @@ class AddBlockDataToACSTables(Task):
         '''.format(schema=inputschema, views='\',\''.join(views))
         tables = session.execute(table_views_query).fetchall()
         for table in tables:
+            # Remove old indexes
+            delete_indexes_query = '''
+                drop index if exists {table}_partial_geoid_idx;
+                drop index if exists {table}_length_geoid_idx;
+                drop index if exists {table}_geoid_length_idx;
+            '''.format(schema=inputschema, table=table[0])
+            session.execute(delete_indexes_query)
+            LOGGER.info('Deleted all old indexes...'.format(
             cols_clause_query = '''
                 SELECT string_agg( column_name, ', ') cols,
                        string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
