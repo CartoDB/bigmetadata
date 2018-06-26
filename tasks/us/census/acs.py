@@ -141,7 +141,7 @@ class AddBlockDataToACSTables(Task):
             cols_clause_query = '''
                 SELECT string_agg( column_name, ', ') cols,
                        string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
-                       string_agg('(block.' || column_name || ' * (bi.percentage/100.0))::float ' || column_name, ', ') cols_percentage
+                       string_agg('(blockgroup.' || column_name || ' * (bi.percentage/100.0))::float ' || column_name, ', ') cols_percentage
                 FROM information_schema.columns
                 WHERE table_schema = '{schema}'
                 AND table_name = '{table}' and column_name not in ('fileid','filetype','stusab', 'chariter','seq','logrecno','geoid')
@@ -164,38 +164,39 @@ class AddBlockDataToACSTables(Task):
             ))
             insert_blocks_geoid_query = '''
                 INSERT INTO "{schema}"."{table}" (geoid, {cols})
-                SELECT (left(blockgroup.geoid, 7) || bi.blockid) geoid, {cols}
+                SELECT (left(blockgroup.geoid, 7) || bi.blockid) geoid, {cols_percentage}
                 FROM "{schema}"."{table}" blockgroup
                 INNER JOIN {blockint} bi ON (bi.blockgroupid = substr(blockgroup.geoid, 8))
                 WHERE char_length(blockgroup.geoid) = 19
                 ON CONFLICT (geoid) DO NOTHING
             '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
-                       blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
-            LOGGER.debug('INSERT SQL: {}'.format(insert_blocks_geoid_query))
+                       blockint=self.input()['interpolation'].table,
+                       cols_percentage=cols_clause['cols_percentage'])
+            LOGGER.info('INSERT SQL: {}'.format(insert_blocks_geoid_query))
             LOGGER.info('Inserting all the blocks for table {}...'.format(table[0]))
             start_time = time()
             session.execute(insert_blocks_geoid_query)
             session.commit()
             end_time = time()
             LOGGER.info('Inserted all the blocks from table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
-            update_block_values_query = '''
-                UPDATE "{schema}"."{table}" block
-                SET ({cols}) = (
-                        SELECT {cols_percentage}
-                        FROM {blockint} bi
-                        WHERE bi.blockid = substr(block.geoid, 8)
-                    )
-                WHERE char_length(block.geoid) = 22
-            '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
-                       blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
-            LOGGER.debug('UPDATE SQL: {}'.format(update_block_values_query))
-            LOGGER.info('Updating all the blocks values for table {}...'.format(table[0]))
-            start_time = time()
-            session.execute(update_block_values_query)
-            session.commit()
-            end_time = time()
-            LOGGER.info('Updated all the blocks for table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
-            LOGGER.info('Total time to insert and update was {} seconds'.format((end_time-total_time)))
+            # update_block_values_query = '''
+            #     UPDATE "{schema}"."{table}" block
+            #     SET ({cols}) = (
+            #             SELECT {cols_percentage}
+            #             FROM {blockint} bi
+            #             WHERE bi.blockid = substr(block.geoid, 8)
+            #         )
+            #     WHERE char_length(block.geoid) = 22
+            # '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
+            #            blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
+            # LOGGER.debug('UPDATE SQL: {}'.format(update_block_values_query))
+            # LOGGER.info('Updating all the blocks values for table {}...'.format(table[0]))
+            # start_time = time()
+            # session.execute(update_block_values_query)
+            # session.commit()
+            # end_time = time()
+            # LOGGER.info('Updated all the blocks for table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
+            # LOGGER.info('Total time to insert and update was {} seconds'.format((end_time-total_time)))
         self.mark_done()
 
     def mark_done(self):
