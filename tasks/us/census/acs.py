@@ -145,6 +145,16 @@ class AddBlockDataToACSTables(Task):
                 LOGGER.error('SQL {}'.format(cols_clause_query))
                 continue
             total_time = time()
+            delete_blocks_query = '''
+                DELETE FROM "{schema}"."{table}"
+                WHERE char_length(geoid) = 22;
+            '''.format(schema=table_data['schema'], table=table_data['table'])
+            session.execute(delete_blocks_query)
+            end_time = time()
+            LOGGER.info('Deleted all blocks for table {table} in {time} seconds'.format(
+                table=table_data['table'],
+                time=end_time-total_time
+            ))
             insert_blocks_geoid_query = '''
                 INSERT INTO "{schema}"."{table}" (geoid, {cols})
                 SELECT (left(block.geoid, 7) || bi.blockid) geoid, {cols}
@@ -154,7 +164,7 @@ class AddBlockDataToACSTables(Task):
                 ON CONFLICT (geoid) DO NOTHING
             '''.format(cols=cols_clause['cols'], schema=table_data['schema'], table=table_data['table'],
                        blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
-            LOGGER.info('INSERT SQL: {}'.format(insert_blocks_geoid_query))
+            LOGGER.debug('INSERT SQL: {}'.format(insert_blocks_geoid_query))
             LOGGER.info('Inserting all the blocks for table {}...'.format(table_data['table']))
             start_time = time()
             session.execute(insert_blocks_geoid_query)
@@ -171,7 +181,7 @@ class AddBlockDataToACSTables(Task):
                 WHERE char_length(block.geoid) = 22
             '''.format(cols=cols_clause['cols'], schema=table_data['schema'], table=table_data['table'],
                        blockint=self.input()['interpolation'].table, cols_percentage=cols_clause['cols_percentage'])
-            LOGGER.info('UPDATE SQL: {}'.format(update_block_values_query))
+            LOGGER.debug('UPDATE SQL: {}'.format(update_block_values_query))
             LOGGER.info('Updating all the blocks values for table {}...'.format(table_data['table']))
             start_time = time()
             session.execute(update_block_values_query)
