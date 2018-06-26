@@ -66,52 +66,6 @@ class DownloadACS(LoadPostgresFromURL):
             time=(end_time - start_time)
         )
 
-class AddIndexesToACSTables(Task):
-    year = IntParameter()
-    sample = Parameter()
-
-    def requires(self):
-        return DownloadACS(year=self.year, sample=self.sample)
-
-    def run(self):
-        session = current_session()
-        schema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-        tables_query = '''
-            SELECT table_name
-            FROM information_schema.tables
-            WHERE table_schema = '{schema}'
-            AND table_name like 'seq%';
-        '''.format(schema=schema)
-        tables = session.execute(tables_query).fetchall()
-        for table in tables:
-            indexes_query = '''
-                create index if not exists {table}_partial_geoid_idx on "{schema}"."{table}" (substr(geoid, 8));
-                create index if not exists {table}_length_geoid_idx on "{schema}"."{table}" char_length(geoid);
-            '''.format(schema=schema, table=table[0])
-            LOGGER.info('Creating indexes for table {}...'.format(table[0]))
-            start_time = time()
-            session.execute(indexes_query)
-            end_time = time()
-            LOGGER.info('Indexes created for table {table}, it took {time}'.format(
-                table=table[0], time=(end_time-start_time))
-            )
-        session.commit()
-
-    def complete(self):
-        session = current_session()
-        schema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-        # We just check one table
-        complete_query = '''
-            SELECT indexname
-            FROM pg_indexes
-            WHERE schemaname = '{schema}'
-            AND tablename = 'seq0001'
-            AND indexname IN ['seq0001_partial_geoid_idx', 'seq0001_length_geoid_idx']
-        '''.format(schema=schema)
-        indexes = session.execute(complete_query).fetchall()
-        # Primary key index and the two new added indexes
-        return len(indexes) == 2
-
 class AddBlockDataToACSTables(Task):
     year = IntParameter()
     sample = Parameter()
