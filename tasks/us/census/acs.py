@@ -74,7 +74,7 @@ class AddBlockDataToACSTables(Task):
         return {
             'interpolation': TigerBlocksInterpolation(year=2015),
             'acs_data': DownloadACS(year=self.year, sample=self.sample),
-            'acs_column': Columns(year=self.year, sample=self.sample, geography='block_group')
+            'acs_column': Columns(year=self.year, sample=self.sample, geography='block')
         }
     def run(self):
         session = current_session()
