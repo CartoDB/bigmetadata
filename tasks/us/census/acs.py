@@ -79,6 +79,8 @@ class AddBlockDataToACSTables(Task):
     def run(self):
         session = current_session()
         inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+        block_sumlevel = SUMLEVELS['block']['summary_level']
+        bg_sumlevel = SUMLEVELS['block_group']['summary_level']
         views = set()
         for _, coltarget in self.input()['acs_column'].items():
             colid = coltarget._id.split('.')[-1]
@@ -92,14 +94,6 @@ class AddBlockDataToACSTables(Task):
         '''.format(schema=inputschema, views='\',\''.join(views))
         tables = session.execute(table_views_query).fetchall()
         for table in tables:
-            # Remove old indexes
-            delete_indexes_query = '''
-                drop index if exists {table}_partial_geoid_idx;
-                drop index if exists {table}_length_geoid_idx;
-                drop index if exists {table}_geoid_length_idx;
-            '''.format(schema=inputschema, table=table[0])
-            session.execute(delete_indexes_query)
-            LOGGER.info('Deleted all old indexes...')
             cols_clause_query = '''
                 SELECT string_agg( column_name, ', ') cols,
                        string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
@@ -116,7 +110,7 @@ class AddBlockDataToACSTables(Task):
             total_time = time()
             delete_blocks_query = '''
                 DELETE FROM "{schema}"."{table}"
-                WHERE char_length(geoid) = 22;
+                WHERE geoid like '{block_sumlevel}00US%';
             '''.format(schema=inputschema, table=table[0])
             session.execute(delete_blocks_query)
             end_time = time()
@@ -126,14 +120,15 @@ class AddBlockDataToACSTables(Task):
             ))
             insert_blocks_geoid_query = '''
                 INSERT INTO "{schema}"."{table}" (geoid, {cols})
-                SELECT (left(blockgroup.geoid, 7) || bi.blockid) geoid, {cols_percentage}
+                SELECT {block_sumlevel} || '00US' || bi.blockid) geoid, {cols_percentage}
                 FROM "{schema}"."{table}" blockgroup
                 INNER JOIN {blockint} bi ON (bi.blockgroupid = substr(blockgroup.geoid, 8))
-                WHERE char_length(blockgroup.geoid) = 19
+                WHERE geoid like '{bg_sumlevel}00US%'
                 ON CONFLICT (geoid) DO NOTHING
             '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
                        blockint=self.input()['interpolation'].table,
-                       cols_percentage=cols_clause['cols_percentage'])
+                       cols_percentage=cols_clause['cols_percentage'],
+                       block_sumlevel=block_sumlevel, bg_sumlevel=bg_sumlevel)
             LOGGER.info('INSERT SQL: {}'.format(insert_blocks_geoid_query))
             LOGGER.info('Inserting all the blocks for table {}...'.format(table[0]))
             start_time = time()
