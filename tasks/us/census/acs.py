@@ -57,13 +57,10 @@ class DownloadACS(LoadPostgresFromURL):
         cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
         cursor.commit()
         LOGGER.info("Starting to import ACS {year}_{sample}".format(year=self.year, sample=self.sample))
-        start_time = time()
         self.load_from_url(self.url_template.format(year=self.year, sample=self.sample))
-        end_time = time()
-        LOGGER.info("Finished to import ACS {year}_{sample} in {time} seconds".format(
+        LOGGER.info("Finished to import ACS {year}_{sample}".format(
             year=self.year,
             sample=self.sample),
-            time=(end_time - start_time)
         )
 
 class Quantiles(TableTask):
