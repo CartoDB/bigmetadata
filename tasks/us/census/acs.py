@@ -35,8 +35,8 @@ SAMPLE_5YR = '5yr'
 GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
-YEARS = ['2015', '2014', '2010']
-SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
+YEARS = ['2015']
+SAMPLES = [SAMPLE_5YR]
 
 
 class DownloadACS(LoadPostgresFromURL):
@@ -65,90 +65,6 @@ class DownloadACS(LoadPostgresFromURL):
             sample=self.sample),
             time=(end_time - start_time)
         )
-
-class AddBlockDataToACSTables(Task):
-    year = IntParameter()
-    sample = Parameter()
-
-    def requires(self):
-        return {
-            'interpolation': TigerBlocksInterpolation(year=2015),
-            'acs_data': DownloadACS(year=self.year, sample=self.sample),
-            'acs_column': Columns(year=self.year, sample=self.sample, geography='block')
-        }
-    def run(self):
-        session = current_session()
-        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
-        block_sumlevel = SUMLEVELS['block']['summary_level']
-        bg_sumlevel = SUMLEVELS['block_group']['summary_level']
-        views = set()
-        for _, coltarget in self.input()['acs_column'].items():
-            colid = coltarget._id.split('.')[-1]
-            viewid = colid.split('.')[-1][0:-3]
-            views.add(viewid.lower())
-        table_views_query = '''
-            SELECT distinct(table_name)
-            FROM information_schema.view_table_usage
-            WHERE table_schema = '{schema}'
-            AND view_name in ('{views}')
-        '''.format(schema=inputschema, views='\',\''.join(views))
-        tables = session.execute(table_views_query).fetchall()
-        for table in tables:
-            cols_clause_query = '''
-                SELECT string_agg( column_name, ', ') cols,
-                       string_agg( 'EXCLUDED.' || column_name, ', ') cols_upsert,
-                       string_agg('(blockgroup.' || column_name || ' * (bi.percentage/100.0))::float ' || column_name, ', ') cols_percentage
-                FROM information_schema.columns
-                WHERE table_schema = '{schema}'
-                AND table_name = '{table}' and column_name not in ('fileid','filetype','stusab', 'chariter','seq','logrecno','geoid')
-            '''.format(schema=inputschema, table=table[0])
-            cols_clause = session.execute(cols_clause_query).fetchone()
-            if not cols_clause['cols']:
-                LOGGER.error('Error geting column names for the table {}'.format(table))
-                LOGGER.error('SQL {}'.format(cols_clause_query))
-                continue
-            total_time = time()
-            delete_blocks_query = '''
-                DELETE FROM "{schema}"."{table}"
-                WHERE geoid like '{block_sumlevel}00US%';
-            '''.format(schema=inputschema, table=table[0])
-            session.execute(delete_blocks_query)
-            end_time = time()
-            LOGGER.info('Deleted all blocks for table {table} in {time} seconds'.format(
-                table=table[0],
-                time=end_time-total_time
-            ))
-            insert_blocks_geoid_query = '''
-                INSERT INTO "{schema}"."{table}" (geoid, {cols})
-                SELECT {block_sumlevel} || '00US' || bi.blockid) geoid, {cols_percentage}
-                FROM "{schema}"."{table}" blockgroup
-                INNER JOIN {blockint} bi ON (bi.blockgroupid = substr(blockgroup.geoid, 8))
-                WHERE geoid like '{bg_sumlevel}00US%'
-                ON CONFLICT (geoid) DO NOTHING
-            '''.format(cols=cols_clause['cols'], schema=inputschema, table=table[0],
-                       blockint=self.input()['interpolation'].table,
-                       cols_percentage=cols_clause['cols_percentage'],
-                       block_sumlevel=block_sumlevel, bg_sumlevel=bg_sumlevel)
-            LOGGER.info('INSERT SQL: {}'.format(insert_blocks_geoid_query))
-            LOGGER.info('Inserting all the blocks for table {}...'.format(table[0]))
-            start_time = time()
-            session.execute(insert_blocks_geoid_query)
-            session.commit()
-            end_time = time()
-            LOGGER.info('Inserted all the blocks from table {}. It tooks {} seconds'.format(table[0], (end_time-start_time)))
-        self.mark_done()
-
-    def mark_done(self):
-        session = current_session()
-        session.execute('DROP TABLE IF EXISTS {table}'.format(
-            table=self.output().table))
-        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
-            table=self.output().table))
-        session.commit()
-
-    def output(self):
-        schema = 'us.census.acs'
-        return PostgresTarget(schema,unqualified_task_id(self.task_id))
 
 class Quantiles(TableTask):
     '''
@@ -264,8 +180,6 @@ class Extract(TableTask):
             'sumlevel': SumLevel(geography=self.geography, year='2015'),
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
-        if self.geography == BLOCK:
-            dependencies['block_data'] = AddBlockDataToACSTables(year=self.year, sample=self.sample)
 
         return dependencies
 
@@ -291,6 +205,71 @@ class Extract(TableTask):
         return cols
 
     def populate(self):
+        if self.geography == BLOCK:
+            self.populate_block()
+        else:
+            self.populate_general()
+
+    def populate_block(self):
+        '''
+        load relevant columns from underlying census tables
+        '''
+        session = current_session()
+        block_sumlevel = SUMLEVELS['block']['summary_level']
+        bg_sumlevel = SUMLEVELS['block_group']['summary_level']
+        colids = []
+        colnames = []
+        tableids = set()
+        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
+        for colname, coltarget in self.columns().items():
+            colid = coltarget.get(session).id
+            tableid = colid.split('.')[-1][0:-3]
+            if 'geoid' in colid:
+                colids.append('({sumlevel} || \'00US\' || bi.blockid) geoid'.format(sumlevel=block_sumlevel))
+            else:
+                colid = coltarget._id.split('.')[-1]
+                resp = session.execute('SELECT COUNT(*) FROM information_schema.columns '
+                                       "WHERE table_schema = '{inputschema}'  "
+                                       "  AND table_name ILIKE '{inputtable}' "
+                                       "  AND column_name ILIKE '{colid}' ".format(
+                                           inputschema=inputschema,
+                                           inputtable=tableid,
+                                           colid=colid))
+                if int(resp.fetchone()[0]) == 0:
+                    continue
+                colids.append('({colid} * (bi.percentage/100.0))'.format(colid=colid))
+                tableids.add(tableid)
+            colnames.append(colname)
+
+        tableclause = 'tiger2015.blocks_interpolation bi'
+        for tableid in tableids:
+            resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
+                                   "WHERE table_schema = '{inputschema}'  "
+                                   "  AND table_name ILIKE '{inputtable}' ".format(
+                                       inputschema=inputschema,
+                                       inputtable=tableid))
+            if int(resp.fetchone()[0]) > 0:
+                tableclause += ' INNER JOIN {inputschema}.{inputtable} {inputtable}' \
+                               ' ON (bi.blockgroupid = substr({inputtable}.geoid,8)) '.format(inputschema=inputschema,
+                                                        inputtable=tableid)
+        table_id = self.output().table
+        whereclause = 'WHERE geoid LIKE :sumlevelprefix'
+        insert_query = '''
+            INSERT INTO {output} ({colnames})
+            SELECT {colids}
+            FROM {tableclause}
+            {whereclause}
+        '''.format(
+            output=table_id,
+            colnames=', '.join(colnames),
+            colids=', '.join(colids),
+            tableclause=tableclause,
+            whereclause=whereclause
+        )
+        LOGGER.debug(insert_query)
+        session.execute(insert_query, {'sumlevelprefix': bg_sumlevel + '00US%'})
+
+    def populate_general(self):
         '''
         load relevant columns from underlying census tables
         '''
