@@ -178,6 +178,9 @@ class Extract(TableTask):
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
 
+        if self.geography == BLOCK:
+            dependencies['interpolation'] = TigerBlocksInterpolation(year=2015)
+
         return dependencies
 
     def table_timespan(self):
