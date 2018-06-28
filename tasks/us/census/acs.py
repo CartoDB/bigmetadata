@@ -221,7 +221,7 @@ class Extract(TableTask):
         for colname, coltarget in self.columns().items():
             colid = coltarget.get(session).id
             if 'geoid' in colid:
-                colids.append(colname)
+                colids.append('bi.blockid {colname}'.format(colname=colname))
             else:
                 colids.append('({colname} * (bi.percentage/100.0))'.format(colname=colname))
             colnames.append(colname)
