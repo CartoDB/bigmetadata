@@ -179,7 +179,8 @@ class Extract(TableTask):
         }
 
         if self.geography == BLOCK:
-            dependencies['interpolation'] = TigerBlocksInterpolation(year=2015)
+            dependencies['interpolation'] = TigerBlocksInterpolation(year='2015')
+            dependencies['bg_extract'] = Extract(geography=BLOCK_GROUP, sample=self.sample, year=self.year)
 
         return dependencies
 
@@ -215,59 +216,30 @@ class Extract(TableTask):
         load relevant columns from underlying census tables
         '''
         session = current_session()
-        block_sumlevel = SUMLEVELS['block']['summary_level']
-        bg_sumlevel = SUMLEVELS['block_group']['summary_level']
         colids = []
         colnames = []
-        tableids = set()
-        inputschema = 'acs{year}_{sample}'.format(year=self.year, sample=self.sample)
         for colname, coltarget in self.columns().items():
             colid = coltarget.get(session).id
-            tableid = colid.split('.')[-1][0:-3]
             if 'geoid' in colid:
-                colids.append('({sumlevel} || \'00US\' || bi.blockid) geoid'.format(sumlevel=block_sumlevel))
+                colids.append(colname)
             else:
-                colid = coltarget._id.split('.')[-1]
-                resp = session.execute('SELECT COUNT(*) FROM information_schema.columns '
-                                       "WHERE table_schema = '{inputschema}'  "
-                                       "  AND table_name ILIKE '{inputtable}' "
-                                       "  AND column_name ILIKE '{colid}' ".format(
-                                           inputschema=inputschema,
-                                           inputtable=tableid,
-                                           colid=colid))
-                if int(resp.fetchone()[0]) == 0:
-                    continue
-                colids.append('({colid} * (bi.percentage/100.0))'.format(colid=colid))
-                tableids.add(tableid)
+                colids.append('({colname} * (bi.percentage/100.0))'.format(colname=colname))
             colnames.append(colname)
 
-        tableclause = 'tiger2015.blocks_interpolation bi'
-        for tableid in tableids:
-            resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
-                                   "WHERE table_schema = '{inputschema}'  "
-                                   "  AND table_name ILIKE '{inputtable}' ".format(
-                                       inputschema=inputschema,
-                                       inputtable=tableid))
-            if int(resp.fetchone()[0]) > 0:
-                tableclause += ' INNER JOIN {inputschema}.{inputtable} {inputtable}' \
-                               ' ON (bi.blockgroupid = substr({inputtable}.geoid,8)) '.format(inputschema=inputschema,
-                                                        inputtable=tableid)
+        tableclause = 'tiger2015.blocks_interpolation bi INNER JOIN {bg_table} obs ON (bi.blockgroupid = obs.geoidsl)'.format(bg_table=self.input()['bg_extract'].table)
         table_id = self.output().table
-        whereclause = 'WHERE geoid LIKE :sumlevelprefix'
         insert_query = '''
             INSERT INTO {output} ({colnames})
             SELECT {colids}
             FROM {tableclause}
-            {whereclause}
         '''.format(
             output=table_id,
             colnames=', '.join(colnames),
             colids=', '.join(colids),
             tableclause=tableclause,
-            whereclause=whereclause
         )
         LOGGER.debug(insert_query)
-        session.execute(insert_query, {'sumlevelprefix': bg_sumlevel + '00US%'})
+        session.execute(insert_query)
 
     def populate_general(self):
         '''
