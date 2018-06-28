@@ -34,11 +34,6 @@ class TilerXYZTableTask(Task):
     def get_geography_level(self, level):
         raise NotImplementedError('Geography levels file must be implemented by the child class')
 
-    def requires(self):
-        return {
-            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
-        }
-
     def run(self):
         config_data = self._get_config_data()
         for table_config in config_data:
@@ -61,6 +56,7 @@ class TilerXYZTableTask(Task):
                 mvt_geometry Geometry NOT NULL,
                 geoid VARCHAR NOT NULL,
                 area_ratio NUMERIC,
+                area NUMERIC,
                 {},
                 CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
             )'''.format(table_name, ", ".join(cols_schema))
@@ -94,8 +90,10 @@ class TilerXYZTableTask(Task):
         table_name = "{}.{}".format(table_schema['schema'], table_schema['table_name'])
         do_columns = [column['id'] for column in columns_config['do']]
         mc_columns = [column['id'] for column in columns_config['mc']]
+
         recordset = ["mvtdata->>'id' as id"]
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
+        recordset.append("(mvtdata->>'area')::numeric as area")
         for _, columns in columns_config.items():
             recordset += ["(mvtdata->>'{}')::{} as {}".format(column['column_name'], column['type'], column['column_name']) for column in columns]
         tiles = []
