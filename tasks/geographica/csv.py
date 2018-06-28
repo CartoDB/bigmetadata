@@ -17,8 +17,8 @@ LOGGER = get_logger(__name__)
 GEOGRAPHY_LEVELS = { 'state': 'us.census.tiger.state',
     'county': 'us.census.tiger.county',
     'census_tract': 'us.census.tiger.census_tract',
-    'block_group': 'us.census.tiger.block_group'
-    #'block': 'us.census.tiger.block'
+    'block_group': 'us.census.tiger.block_group',
+    'block': 'us.census.tiger.block'
 }
 
 class Measurements2CSV(Task):
