@@ -17,6 +17,7 @@ LOGGER = get_logger(__name__)
 GEOGRAPHY_LEVELS = { 'state': 'us.census.tiger.state',
     'county': 'us.census.tiger.county',
     'census_tract': 'us.census.tiger.census_tract',
+    'zcta5': 'us.census.tiger.zcta5',
     'block_group': 'us.census.tiger.block_group',
     'block': 'us.census.tiger.block'
 }
