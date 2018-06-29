@@ -284,21 +284,18 @@ class Extract(TableTask):
                                ' USING (geoid) '.format(inputschema=inputschema,
                                                         inputtable=tableid)
         table_id = self.output().table
-        whereclause = 'WHERE geoid LIKE :sumlevelprefix'
-        if self.geography == 'block':
-            whereclause = 'WHERE char_length(geoid) = 22'
         insert_query = '''
             INSERT INTO {output} ({colnames})
             SELECT {colids}
             FROM {tableclause}
-            {whereclause}
+            WHERE geoid LIKE :sumlevelprefix
         '''.format(
             output=table_id,
             colnames=', '.join(colnames),
             colids=', '.join(colids),
-            tableclause=tableclause,
-            whereclause=whereclause
+            tableclause=tableclause
         )
+        LOGGER.debug(insert_query)
         session.execute(insert_query, {'sumlevelprefix': sumlevel + '00US%'})
 
 
