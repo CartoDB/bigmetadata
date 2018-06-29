@@ -6,21 +6,19 @@ from luigi import Task, WrapperTask, Parameter
 from luigi.local_target import LocalTarget
 from tasks.us.census.tiger import ShorelineClip
 from tasks.us.census.acs import ACSMetaWrapper
-from tasks.us.zillow import Zillow
-from tasks.us.census.spielman_singleton_segments import SpielmanSingletonTable
 from tasks.meta import current_session
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
 # TODO Add block level when we have ACS for block
-GEOGRAPHY_LEVELS = { 'state': 'us.census.tiger.state',
-    'county': 'us.census.tiger.county',
-    'census_tract': 'us.census.tiger.census_tract',
-    'zcta5': 'us.census.tiger.zcta5',
-    'block_group': 'us.census.tiger.block_group',
-    'block': 'us.census.tiger.block'
-}
+GEOGRAPHY_LEVELS = {'state': 'us.census.tiger.state',
+                    'county': 'us.census.tiger.county',
+                    'census_tract': 'us.census.tiger.census_tract',
+                    'zcta5': 'us.census.tiger.zcta5',
+                    'block_group': 'us.census.tiger.block_group',
+                    'block': 'us.census.tiger.block'}
+
 
 class Measurements2CSV(Task):
     geography = Parameter()
@@ -54,7 +52,7 @@ class Measurements2CSV(Task):
             colnames = ['geoid']
             for data in result.fetchall():
                 join_data['numer'][data['numer_table']] = {'table': 'observatory.{}'.format(data['numer_table']),
-                    'join_column': data['numer_join_col']}
+                                                           'join_column': data['numer_join_col']}
                 # All come from the same geometry tables so we use, by now, just one geometry
                 # TODO Make it possible to have multiple geometry tables
                 join_data['geom'] = {'table': 'observatory.{}'.format(data['geom_table']), 'join_column': data['geom_join_col']}
@@ -69,8 +67,7 @@ class Measurements2CSV(Task):
         else:
             LOGGER.error('No results for the defined measurements in the JSON file')
 
-
-    def _get_meta_query(self,metadata):
+    def _get_meta_query(self, metadata):
         return '''SELECT meta->>'numer_tablename' numer_table, meta->>'numer_geomref_colname' numer_join_col,
                          meta->>'numer_colname' numer_col, meta->>'geom_tablename' geom_table,
                          meta->>'geom_geomref_colname' geom_join_col, meta->>'geom_colname' geom_col
@@ -88,8 +85,8 @@ class Measurements2CSV(Task):
             ))
         return '''SELECT {cols}
                   FROM {geom} geom {joins}
-            '''.format(cols=' ,'.join(colnames), geom=join_data['geom']['table'],
-            joins=' '.join(joins))
+               '''.format(cols=' ,'.join(colnames), geom=join_data['geom']['table'],
+                          joins=' '.join(joins))
 
     def _generate_csv_file(self, headers, measurements):
         try:
@@ -98,12 +95,13 @@ class Measurements2CSV(Task):
                 writer.writeheader()
                 for measurement in measurements:
                     writer.writerow(dict(measurement))
-        except:
+        except BaseException:
             self.output().remove
 
     def output(self):
         csv_filename = 'tmp/geographica/{}'.format(self.file_name)
         return LocalTarget(path=csv_filename, format='csv')
+
 
 class AllMeasurements(WrapperTask):
     def requires(self):
