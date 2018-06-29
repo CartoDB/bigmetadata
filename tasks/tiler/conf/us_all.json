@@ -637,6 +637,28 @@
                     "nullable": true
                 }
             ]
-        }
+        },
+        "mc_categories": [
+            {
+                "id": "NEP",
+                "name": "non eating places"
+            },
+            {
+                "id": "EP",
+                "name": "eating places"
+            },
+            {
+                "id": "APP",
+                "name": "apparel"
+            },
+            {
+                "id": "SB",
+                "name": "small business"
+            },
+            {
+                "id": "TR",
+                "name": "total retail"
+            }
+        ]
     }
 ]
