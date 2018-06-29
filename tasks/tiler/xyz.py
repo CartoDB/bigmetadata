@@ -142,7 +142,8 @@ class TilerXYZTableTask(Task):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset, do_columns, mc_columns, mc_categories))
+            exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset,
+                                                                      do_columns, mc_columns, mc_categories))
             if exceptions:
                 LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([str(e) for e in exceptions if e is not None])))
         finally:
