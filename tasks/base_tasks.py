@@ -84,7 +84,17 @@ class ColumnsTask(Task):
         return 0
 
     def prefix(self):
-        return classpath(self)
+        if self.task_namespace and self.task_namespace != '__not_user_specified':
+            splitted_namespace = self.task_namespace.split('.')
+            # Backward compatibility to avoid rerun all the tasks
+            # to me removed for the next rebuild
+            if splitted_namespace[0] == 'tasks':
+                splitted_namespace.pop(0)
+                return '.'.join(splitted_namespace)
+            else:
+                return self.task_namespace
+        else:
+            return classpath(self)
 
     def output(self):
         session = current_session()
