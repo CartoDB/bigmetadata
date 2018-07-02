@@ -9,17 +9,20 @@ import inspect
 import zipfile
 import gzip
 import csv
+import uuid
 
+import urllib.request
 from urllib.parse import quote_plus
 from collections import OrderedDict
 from datetime import date
 
-from luigi import (Task, Parameter, LocalTarget, BoolParameter,
+from luigi import (Task, Parameter, LocalTarget, BoolParameter, IntParameter,
                    ListParameter, DateParameter, WrapperTask, Event)
 from luigi.contrib.s3 import S3Target
 
 from sqlalchemy.dialects.postgresql import JSON
 
+from lib.util import digest_file
 from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
@@ -749,6 +752,23 @@ class LoadPostgresFromURL(TempTableTask):
             url=url))
         self.mark_done()
 
+    def mark_done(self):
+        session = current_session()
+        session.execute('DROP TABLE IF EXISTS {table}'.format(
+            table=self.output().table))
+        session.execute('CREATE TABLE {table} AS SELECT now() creation_time'.format(
+            table=self.output().table))
+
+
+class LoadPostgresFromZipFile(TempTableTask):
+
+    def load_from_zipfile(self, zipfile):
+        shell('gunzip {zipfile} -c | grep -v default_tablespace | psql'.format(
+            zipfile=zipfile))
+        self.mark_done()
+
+    # Used for Luigi to mark the Task as DONE
+    # Create a small table for the output with the creation time
     def mark_done(self):
         session = current_session()
         session.execute('DROP TABLE IF EXISTS {table}'.format(
@@ -1602,3 +1622,120 @@ def collect_meta_wrappers(test_module=None, test_all=True):
             yield t, params
             if not test_all:
                 break
+
+
+class CreateRepoTable(Task):
+    schema = 'repository'
+    table = 'source_repository'
+
+    def run(self):
+        session = current_session()
+
+        try:
+            create_schema = '''
+                            CREATE SCHEMA IF NOT EXISTS "{schema}"
+                            '''.format(schema=self.output().schema)
+            session.execute(create_schema)
+
+            create_table = '''
+                            CREATE TABLE IF NOT EXISTS "{schema}".{table} (
+                                id TEXT,
+                                version NUMERIC,
+                                checksum TEXT,
+                                url TEXT,
+                                path TEXT,
+                                added TIMESTAMP,
+                                PRIMARY KEY(id, version)
+                            );
+                            '''.format(schema=self.output().schema,
+                                       table=self.output().tablename)
+            session.execute(create_table)
+            session.commit()
+        except Exception as e:
+            LOGGER.error('Error creating schema/table: %s', e)
+            session.rollback()
+
+    def output(self):
+        return PostgresTarget(schema=self.schema, tablename=self.table, non_empty=False)
+
+
+def base_downloader(url, output_path):
+    urllib.request.urlretrieve(url, output_path)
+
+
+class RepoFile(Task):
+    resource_id = Parameter()
+    url = Parameter()
+    version = IntParameter()
+    downloader = Parameter(default=base_downloader, significant=False)
+
+    _repo_dir = 'repository'
+    _path = None
+
+    def requires(self):
+        return CreateRepoTable()
+
+    def run(self):
+        self.output().makedirs()
+        self._retrieve_remote_file()
+        digest = digest_file(self.output().path)
+        self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
+
+    def _create_filepath(self):
+        return self._build_path(str(uuid.uuid4()))
+
+    def _build_path(self, filename):
+        return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
+
+    def _retrieve_remote_file(self):
+        self.downloader(self.url, self.output().path)
+
+    def _from_db(self, resource_id, version):
+        checksum, url, path = None, None, None
+        query = '''
+                SELECT checksum, url, path FROM "{schema}".{table}
+                WHERE id = '{resource_id}'
+                  AND version = {version}
+                '''.format(schema=self.input().schema,
+                           table=self.input().tablename,
+                           resource_id=resource_id,
+                           version=version)
+        result = current_session().execute(query).fetchone()
+        if result:
+            checksum, url, path = result
+
+        return checksum, url, path
+
+    def _to_db(self, resource_id, version, checksum, url, path):
+        query = '''
+                INSERT INTO "{schema}".{table}
+                    (id, version, url, checksum, path, added)
+                SELECT '{resource_id}', {version}, '{url}', '{checksum}', '{path}', now();
+                '''.format(schema=self.input().schema,
+                           table=self.input().tablename,
+                           resource_id=resource_id,
+                           version=version,
+                           url=url,
+                           checksum=checksum,
+                           path=path)
+        current_session().execute(query)
+        current_session().commit()
+
+    def _get_filepath(self):
+        path = self._from_db(self.resource_id, self.version)[2]
+        if not path:
+            if not self._path:
+                self._path = self._create_filepath()
+            path = self._path
+
+        return path
+
+    def complete(self):
+        deps = self.deps()
+        if deps and not all([d.complete() for d in deps]):
+            return False
+
+        return self._from_db(self.resource_id, self.version)[2] is not None
+
+    def output(self):
+        return LocalTarget(self._get_filepath())

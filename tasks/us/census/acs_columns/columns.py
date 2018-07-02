@@ -1,8 +1,8 @@
 import os
 from luigi import Parameter
-from tasks.base_tasks import ColumnsTask, OBSColumn, TagsTask
+from tasks.base_tasks import ColumnsTask, TagsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags
-from tasks.meta import DENOMINATOR, UNIVERSE, OBSTag, current_session
+from tasks.meta import DENOMINATOR, UNIVERSE, OBSColumn, OBSTag, current_session
 from tasks.us.census.segments import SegmentTags
 from collections import OrderedDict
 from lib.columns import ColumnsDeclarations
@@ -27,6 +27,7 @@ class ACSTags(TagsTask):
                    type='subsection',
                    description='Segmentation of the United States population'),
         ]
+
 
 class Columns(ColumnsTask):
     year = Parameter()
@@ -3246,6 +3247,7 @@ class Columns(ColumnsTask):
             col.tags.append(acs_source)
             col.tags.append(no_restrictions)
         return columns
+
 
 class QuantileColumns(ColumnsTask):
     year = Parameter()

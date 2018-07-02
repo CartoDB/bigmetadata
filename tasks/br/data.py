@@ -9,8 +9,9 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper
-from tasks.util import shell
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper,
+                              RepoFile)
+from tasks.util import shell, copyfile
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 from collections import OrderedDict
@@ -67,6 +68,14 @@ class DownloadData(DownloadUnzipTask):
     state = Parameter()
     URL = 'ftp://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_do_Universo/Agregados_por_Setores_Censitarios/'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url='{url}{filename}'.format(url=self.URL, filename=self._get_filename()))
+
     def _get_filename(self):
         cmd = 'curl -s {url}'.format(url=self.URL)
         cmd += ' | '
@@ -77,11 +86,7 @@ class DownloadData(DownloadUnzipTask):
         return shell(cmd)
 
     def download(self):
-        filename = self._get_filename()
-
-        shell('wget -O {output}.zip {url}{filename}'.format(
-            output=self.output().path, url=self.URL, filename=filename
-        ))
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportData(CSV2TempTableTask):
@@ -395,6 +400,7 @@ class CensosAllGeographiesAllTables(WrapperTask):
     def requires(self):
         for resolution in (GEO_I, ):
             yield CensosAllTables(resolution=resolution)
+
 
 class CensosMetaWrapper(MetaWrapper):
 

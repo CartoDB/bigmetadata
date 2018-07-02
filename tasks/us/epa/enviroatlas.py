@@ -1,11 +1,11 @@
 from luigi import Parameter, WrapperTask
 
 from tasks.meta import OBSColumn, current_session, GEOM_REF, UNIVERSE
+from tasks.util import copyfile
 from lib.timespan import get_timespan
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUC, HUCColumns, SourceTags
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask
-from tasks.util import shell
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, RepoFile
 from collections import OrderedDict
 
 import os
@@ -15,11 +15,16 @@ class DownloadMetrics(DownloadUnzipTask):
 
     URL = 'http://edg.epa.gov/data/Public/ORD/EnviroAtlas/National/ARCHIVE/National_metrics_July2015_CSV.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        shell('wget -O "{output}".zip "{url}"'.format(
-            output=self.output().path,
-            url=self.URL
-        ))
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class EnviroAtlasTempTable(CSV2TempTableTask):
