@@ -17,13 +17,16 @@ from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.targets import PostgresTarget
 from tasks.simplification import SIMPLIFIED_SUFFIX
 from tasks.simplify import Simplify
+from lib.logger import get_logger
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
+LOGGER = get_logger(__name__)
 
 GEOID_SUMLEVEL_COLUMN = "_geoidsl"
 GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
+BLOCK = 'block'
 
 
 class TigerSourceTags(TagsTask):
@@ -385,6 +388,95 @@ class SimplifiedDownloadTiger(Task):
                               SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
 
 
+class SplitByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return DownloadTiger(year=self.year)
+
+    def run(self):
+        session = current_session()
+        query = '''
+                CREATE TABLE {table_output} AS
+                SELECT *
+                FROM "{schema_input}".{table_input}
+                WHERE statefp10 = '{state}'
+                '''.format(schema_input='tiger{year}'.format(year=self.year),
+                           table_input=SUMLEVELS[self.geography]['table'],
+                           table_output=self.output().table,
+                           state=self.state)
+        session.execute(query)
+        session.commit()
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              '{name}_state{state}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                           state=self.state))
+
+
+class SimplifyGeoChunkByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return SplitByState(year=self.year, geography=self.geography, state=self.state)
+
+    def run(self):
+        yield Simplify(schema=self.input().schema,
+                       table=self.input().tablename,
+                       table_id='.'.join(['tiger{year}'.format(year=self.year),
+                                          '{geo}_by_state'.format(geo=self.geography)]))
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              '{name}_state{state}{suffix}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                                   state=self.state,
+                                                                   suffix=SIMPLIFIED_SUFFIX))
+
+
+class SimplifyGeoByState(Task):
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        simplifications = {}
+        for state_code, _ in STATES.items():
+            simplifications[state_code] = SimplifyGeoChunkByState(year=self.year,
+                                                                  geography=self.geography,
+                                                                  state=state_code)
+        return simplifications
+
+    def run(self):
+        session = current_session()
+        for _, table in self.input().items():
+            query = '''
+                    CREATE TABLE IF NOT EXISTS {output} AS
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    WHERE 1=0
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+
+            query = '''
+                    INSERT INTO {output}
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+            session.commit()
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
+
+
 class SimpleShoreline(TempTableTask):
 
     year = Parameter()
@@ -655,14 +747,18 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
+        if self.geography == BLOCK:
+            tiger = SimplifyGeoByState(geography=self.geography, year=self.year)
+        else:
+            tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
-            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year),
+            'data': tiger,
         }
 
     def columns(self):
@@ -708,10 +804,13 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
-        tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
+        if self.geography == BLOCK:
+            tiger = SimplifyGeoByState(geography=self.geography, year=self.year)
+        else:
+            tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'data': tiger,
             'geoids': GeoidColumns(),
@@ -982,4 +1081,13 @@ def load_sumlevels():
         return json.load(fhandle)
 
 
+def load_states():
+    '''
+    Load states from JSON. Returns a dict by state number.
+    '''
+    with open(os.path.join(os.path.dirname(__file__), 'states.json')) as fhandle:
+        return json.load(fhandle)
+
+
 SUMLEVELS = load_sumlevels()
+STATES = load_states()
