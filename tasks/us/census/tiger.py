@@ -1015,7 +1015,6 @@ class TigerBlocksInterpolation(Task):
                         SELECT geoid blockid, left(geoid,12) blockgroupid, 0::float percentage, the_geom block_geom
                         FROM "{schema_input}".{block_table} b
                         '''.format(schema_input='observatory',
-                                block_group_table=tiger_tables['block_group'],
                                 block_table=tiger_tables['block'],
                                 table_output=self.output().table)
                 session.execute(query)
