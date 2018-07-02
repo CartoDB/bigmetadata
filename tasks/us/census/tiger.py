@@ -1082,6 +1082,7 @@ class PriSecRoads(TableTask):
             FROM {input}'''.format(output=self.output().table,
                                    input=self.input()['data'].table))
 
+
 class TigerBlocksInterpolation(Task):
     '''
     Task used to create a table with the block and blockgroups geoid and the
@@ -1146,8 +1147,8 @@ class TigerBlocksInterpolation(Task):
                             WHERE b.blockgroupid = bg.geoid
                         )
                         '''.format(schema_input='observatory',
-                                bg_table=tiger_tables['block_group'],
-                                table_output=self.output().table)
+                                   bg_table=tiger_tables['block_group'],
+                                   table_output=self.output().table)
                 session.execute(update_percentage_query)
                 session.commit()
                 end_time = time.time()
@@ -1157,7 +1158,7 @@ class TigerBlocksInterpolation(Task):
 
     def output(self):
         schema = 'tiger{year}'.format(year=self.year)
-        return PostgresTarget(schema,'blocks_interpolation')
+        return PostgresTarget(schema, 'blocks_interpolation')
 
 def load_sumlevels():
     '''

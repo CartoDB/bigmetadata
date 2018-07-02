@@ -1,15 +1,13 @@
 from time import time
-import re
 from collections import OrderedDict
-from luigi import Parameter, WrapperTask, Task, IntParameter
+from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 from lib.logger import get_logger
 from tasks.base_tasks import TableTask, MetaWrapper, LoadPostgresFromZipFile, RepoFile
-from tasks.util import grouper, unqualified_task_id
+from tasks.util import grouper
 from tasks.us.census.tiger import SumLevel, ShorelineClip, TigerBlocksInterpolation
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
-from tasks.base_tasks import PostgresTarget
 from tasks.meta import (current_session, GEOM_REF)
 from .acs_columns.columns import QuantileColumns, Columns
 
