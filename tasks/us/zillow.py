@@ -87,6 +87,12 @@ RENTALS = ('AllHomesPlusMultifamily', 'SingleFamilyResidenceRental',
 MEDIAN_VALUE_HOMETYPES = ('AllHomes',)
 MEDIAN_RENTAL_HOMETYPES = ('AllHomes', 'Sfr', 'CondoCoop',)
 
+GEOGRAPHY_LEVELS = {
+    'Zip': {'geoid': 'zcta5', 'geolevel': '"City"'},
+    'State': {'geoid': 'state', 'geolevel': '\'State\''},
+    'County': {'geoid': 'county', 'geolevel': '"State"'}
+}
+
 
 def measure_name(hometype):
     if hometype in HOMES:
@@ -154,7 +160,7 @@ class DownloadZillow(Task):
     hometype = Parameter()
     measure = Parameter()
 
-    URL = 'http://files.zillowstatic.com/research/public/{geography}/{geography}_{measure}_{hometype}.csv'
+    URL = 'http://files.zillowstatic.com/research/preview/{geography}/{geography}_{measure}_{hometype}.csv'
 
     def url(self):
         return self.URL.format(geography=self.geography, hometype=self.hometype,
@@ -249,6 +255,10 @@ class ZillowGeoColumns(ColumnsTask):
         # TODO manually generate columns before value columns
 
         columns = OrderedDict([
+            ('GeoLevel', OBSColumn(type='Text',
+                                   name='Type of geometry level',
+                                   description="",
+                                   weight=0)),
             ('RegionID', OBSColumn(type='Text',
                                    name='Zillow geography identifier',
                                    description="",
@@ -276,11 +286,7 @@ class ZillowGeoColumns(ColumnsTask):
             ('SizeRank', OBSColumn(type='Text',
                                    name='Size Rank',
                                    description="",
-                                   weight=0)),
-            ('State', OBSColumn(type='Text',
-                                name='State Name',
-                                description="",
-                                weight=0))
+                                   weight=0))
         ])
 
         return columns
@@ -311,10 +317,11 @@ class Zillow(TableTask):
 
     def requires(self):
         requirements = {
+            'geocolumns': ZillowGeoColumns(),
             'metadata': ZillowValueColumns(),
             'geoids': GeoidColumns(),
-            'sumlevel': SumLevel(year='2015', geography='zcta5'),
-            'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
+            'sumlevel': SumLevel(year='2015', geography=GEOGRAPHY_LEVELS[self.geography]['geoid']),
+            'shorelineclip': ShorelineClip(year='2015', geography=GEOGRAPHY_LEVELS[self.geography]['geoid'])
         }
         for hometype, _ in HOMETYPES.items():
             measure = measure_name(hometype)
@@ -346,15 +353,14 @@ class Zillow(TableTask):
 
     def columns(self):
         input_ = self.input()
-        if self.geography == 'Zip':
-            tiger_geo = 'zcta5'
-        else:
-            # will happen for metro areas, cities, neighborhoods, state, county
+        if self.geography not in GEOGRAPHY_LEVELS.keys():
+            # will happen for metro areas, cities, neighborhoods
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name_sl', input_['geoids'][tiger_geo + GEOID_SUMLEVEL_COLUMN]),
-            ('region_name_sc', input_['geoids'][tiger_geo + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('geolevel', input_['geocolumns']['GeoLevel']),
+            ('region_name_sl', input_['geoids'][GEOGRAPHY_LEVELS[self.geography]['geoid'] + GEOID_SUMLEVEL_COLUMN]),
+            ('region_name_sc', input_['geoids'][GEOGRAPHY_LEVELS[self.geography]['geoid'] + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         columns.update(input_['metadata'])
 
@@ -366,21 +372,22 @@ class Zillow(TableTask):
         insert = True
         input_ = self.input()
         output = self.output()
-        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (region_name_sl, region_name_sc)'.format(
+        session.execute('ALTER TABLE {output} ADD PRIMARY KEY (geolevel, region_name_sl, region_name_sc)'.format(
             output=output.table))
         session.flush()
         for key, _ in input_['metadata'].items():
             input_table = input_[key].table
-            stmt = '''INSERT INTO {output} (region_name_sl, region_name_sc, {col_id})
-                      SELECT "RegionName", "RegionName", "{year}-{month}"::NUMERIC
+            stmt = '''INSERT INTO {output} (geolevel, region_name_sl, region_name_sc, {col_id})
+                      SELECT {geolevel}, "RegionName", "RegionName", "{year}-{month}"::NUMERIC
                       FROM {input_table}
-                      ON CONFLICT (region_name_sl, region_name_sc)
+                      ON CONFLICT (geolevel, region_name_sl, region_name_sc)
                          DO UPDATE SET {col_id} = EXCLUDED.{col_id}'''
             session.execute(stmt.format(
                 output=output.table,
                 year=str(self.year).zfill(2),
                 month=str(self.month).zfill(2),
                 col_id=key,
+                geolevel=GEOGRAPHY_LEVELS[self.geography]['geolevel'],
                 input_table=input_table))
             if insert:
                 insert = False
@@ -390,7 +397,7 @@ class AllZillow(WrapperTask):
 
     def requires(self):
         now = datetime.now()
-        for geography in ('Zip', ):
+        for geography in GEOGRAPHY_LEVELS.keys():
             for year in range(2010, now.year + 1):
                 for month in range(1, 13):
                     if year == now.year and month >= (now.month - 1):
@@ -408,7 +415,7 @@ class ZillowMetaWrapper(MetaWrapper):
     now = datetime.now()
 
     params = {
-        'geography': ['Zip'],
+        'geography': GEOGRAPHY_LEVELS.keys(),
         'year': list(range(2010, now.year + 1)),
         'month': list(range(1, 13))
     }
