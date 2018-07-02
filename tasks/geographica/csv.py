@@ -90,6 +90,7 @@ class Measurements2CSV(Task):
 
     def _generate_csv_file(self, headers, measurements):
         try:
+            self.output().makedirs()
             with(open(self.output().path, 'w+')) as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=headers)
                 writer.writeheader()
