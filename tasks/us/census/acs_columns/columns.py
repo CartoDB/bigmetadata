@@ -7,8 +7,11 @@ from tasks.us.census.segments import SegmentTags
 from collections import OrderedDict
 from lib.columns import ColumnsDeclarations
 
+NAMESPACE = 'tasks.us.census.acs'
 
 class ACSTags(TagsTask):
+
+    task_namespace = NAMESPACE
 
     def version(self):
         return 4
@@ -32,6 +35,7 @@ class Columns(ColumnsTask):
     geography = Parameter()
 
     resources = {"obs_column": 1}
+    task_namespace = NAMESPACE
 
     def requires(self):
         return {
@@ -3251,6 +3255,7 @@ class QuantileColumns(ColumnsTask):
     geography = Parameter()
 
     resources = {"obs_column": 1}
+    task_namespace = NAMESPACE
 
     def requires(self):
         return {

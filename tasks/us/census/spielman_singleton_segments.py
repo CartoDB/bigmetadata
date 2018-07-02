@@ -12,7 +12,7 @@ from tasks.meta import OBSColumn, current_session, GEOM_REF
 from tasks.util import shell, classpath, copyfile
 from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip, GEOID_SUMLEVEL_COLUMN,
                                    GEOID_SHORELINECLIPPED_COLUMN)
-from tasks.us.census.acs import ACSTags
+from tasks.us.census.acs_columns import ACSTags
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 from luigi import Task, LocalTarget

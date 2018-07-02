@@ -6,10 +6,10 @@ from lib.timespan import get_timespan
 from lib.logger import get_logger
 from tasks.base_tasks import TableTask, MetaWrapper, LoadPostgresFromZipFile, RepoFile
 from tasks.util import grouper
-from tasks.us.census.tiger import SumLevel, ShorelineClip
+from tasks.us.census.tiger import SumLevel, ShorelineClip, TigerBlocksInterpolation
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
 from tasks.meta import (current_session, GEOM_REF)
-from .columns import QuantileColumns, Columns
+from .acs_columns.columns import QuantileColumns, Columns
 
 LOGGER = get_logger(__name__)
 
@@ -17,6 +17,7 @@ STATE = 'state'
 COUNTY = 'county'
 CENSUS_TRACT = 'census_tract'
 BLOCK_GROUP = 'block_group'
+BLOCK = 'block'
 PUMA = 'puma'
 ZCTA5 = 'zcta5'
 CONGRESSIONAL_DISTRICT = 'congressional_district'
@@ -29,11 +30,11 @@ PLACE = 'place'
 SAMPLE_1YR = '1yr'
 SAMPLE_5YR = '5yr'
 
-GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
+GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
-YEARS = ['2015', '2014', '2010']
-SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
+YEARS = ['2015']
+SAMPLES = [SAMPLE_5YR]
 
 
 class DownloadACS(LoadPostgresFromZipFile):
@@ -60,7 +61,10 @@ class DownloadACS(LoadPostgresFromZipFile):
     def run(self):
         cursor = current_session()
         cursor.execute('DROP SCHEMA IF EXISTS {schema} CASCADE'.format(schema=self.schema))
+        cursor.commit()
+        LOGGER.info("Starting to import ACS {year}_{sample}".format(year=self.year, sample=self.sample))
         self.load_from_zipfile(self.input().path)
+        LOGGER.info("Finished to import ACS {year}_{sample}".format(year=self.year, sample=self.sample))
 
 
 class Quantiles(TableTask):
@@ -170,13 +174,19 @@ class Extract(TableTask):
         return 14
 
     def requires(self):
-        return {
+        dependencies = {
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
             'tiger': GeoidColumns(),
             'data': DownloadACS(year=self.year, sample=self.sample),
             'sumlevel': SumLevel(geography=self.geography, year='2015'),
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
+
+        if self.geography == BLOCK:
+            dependencies['interpolation'] = TigerBlocksInterpolation(year='2015')
+            dependencies['bg_extract'] = Extract(geography=BLOCK_GROUP, sample=self.sample, year=self.year)
+
+        return dependencies
 
     def table_timespan(self):
         sample = int(self.sample[0])
@@ -200,6 +210,42 @@ class Extract(TableTask):
         return cols
 
     def populate(self):
+        if self.geography == BLOCK:
+            self.populate_block()
+        else:
+            self.populate_general()
+
+    def populate_block(self):
+        '''
+        load relevant columns from underlying census tables
+        '''
+        session = current_session()
+        colids = []
+        colnames = []
+        for colname, coltarget in self.columns().items():
+            colid = coltarget.get(session).id
+            if 'geoid' in colid:
+                colids.append('bi.blockid {colname}'.format(colname=colname))
+            else:
+                colids.append('({colname} * (bi.percentage/100.0))'.format(colname=colname))
+            colnames.append(colname)
+
+        tableclause = 'tiger2015.blocks_interpolation bi INNER JOIN {bg_table} obs ON (bi.blockgroupid = obs.geoidsl)'.format(bg_table=self.input()['bg_extract'].table)
+        table_id = self.output().table
+        insert_query = '''
+            INSERT INTO {output} ({colnames})
+            SELECT {colids}
+            FROM {tableclause}
+        '''.format(
+            output=table_id,
+            colnames=', '.join(colnames),
+            colids=', '.join(colids),
+            tableclause=tableclause,
+        )
+        LOGGER.debug(insert_query)
+        session.execute(insert_query)
+
+    def populate_general(self):
         '''
         load relevant columns from underlying census tables
         '''
@@ -242,18 +288,19 @@ class Extract(TableTask):
                                ' USING (geoid) '.format(inputschema=inputschema,
                                                         inputtable=tableid)
         table_id = self.output().table
-        session.execute('INSERT INTO {output} ({colnames}) '
-                        '  SELECT {colids} '
-                        '  FROM {tableclause} '
-                        '  WHERE geoid LIKE :sumlevelprefix '
-                        ''.format(
-                            output=table_id,
-                            colnames=', '.join(colnames),
-                            colids=', '.join(colids),
-                            tableclause=tableclause
-                        ), {
-                            'sumlevelprefix': sumlevel + '00US%'
-                        })
+        insert_query = '''
+            INSERT INTO {output} ({colnames})
+            SELECT {colids}
+            FROM {tableclause}
+            WHERE geoid LIKE :sumlevelprefix
+        '''.format(
+            output=table_id,
+            colnames=', '.join(colnames),
+            colids=', '.join(colids),
+            tableclause=tableclause
+        )
+        LOGGER.debug(insert_query)
+        session.execute(insert_query, {'sumlevelprefix': sumlevel + '00US%'})
 
 
 class ACSMetaWrapper(MetaWrapper):
@@ -273,7 +320,7 @@ class ACSMetaWrapper(MetaWrapper):
         if self.year == '2010' and self.geography == ZCTA5:
             pass
         # 1yr sample doesn't have block group or census_tract
-        elif self.sample == SAMPLE_1YR and self.geography in (CENSUS_TRACT, BLOCK_GROUP, ZCTA5):
+        elif self.sample == SAMPLE_1YR and self.geography in (CENSUS_TRACT, BLOCK_GROUP, BLOCK, ZCTA5):
             pass
         else:
             yield Quantiles(geography=self.geography, year=self.year, sample=self.sample)
@@ -289,6 +336,7 @@ class ExtractAll(WrapperTask):
         if self.sample == SAMPLE_1YR:
             geographies.remove(ZCTA5)
             geographies.remove(BLOCK_GROUP)
+            geographies.remove(BLOCK)
             geographies.remove(CENSUS_TRACT)
         elif self.year == '2010':
             geographies.remove(ZCTA5)
