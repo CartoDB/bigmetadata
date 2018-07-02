@@ -328,6 +328,11 @@ fr-insee:
 fr-income:
 	make -- run fr.fr_income.IRISIncomeTables
 
+### Geographica
+
+geographica-all:
+	make -- run geographica.csv.AllMeasurements
+
 ### mx
 mx-all: mx-geo mx-census
 
