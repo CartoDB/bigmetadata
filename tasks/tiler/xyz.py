@@ -57,7 +57,7 @@ class TilerXYZTableTask(Task):
         session = current_session()
         session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
         cols_schema = []
-        table_name = "{}.{}".format(table_schema['schema'], self._get_table_name(table_schema))
+        table_name = '"{}"."{}"'.format(table_schema['schema'], self._get_table_name(table_schema))
         for _, cols in table_schema['columns'].items():
             cols_schema += cols
         sql_table = '''CREATE TABLE IF NOT EXISTS {}(
