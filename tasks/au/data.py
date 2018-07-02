@@ -1,5 +1,4 @@
 import os
-import urllib.request
 import csv
 import re
 
@@ -7,9 +6,8 @@ from luigi import Parameter, WrapperTask
 from collections import OrderedDict
 
 from lib.timespan import get_timespan
-
-from tasks.util import shell
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
+from tasks.util import shell, copyfile
+from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper, RepoFile
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -46,15 +44,20 @@ class DownloadData(DownloadUnzipTask):
     state = Parameter()
     header = Parameter()
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL.format(year=self.year,
+                                       profile=self.profile,
+                                       resolution=self.resolution,
+                                       state=self.state,
+                                       header=self.header))
+
     def download(self):
-        urllib.request.urlretrieve(url=URL.format(
-                               year=self.year,
-                               profile=self.profile,
-                               resolution=self.resolution,
-                               state=self.state,
-                               header=self.header
-                           ),
-                           filename=self.output().path + '.zip')
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportData(CSV2TempTableTask):

@@ -2,10 +2,10 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask,
+                              RepoFile)
 from lib.timespan import get_timespan
-
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
@@ -23,15 +23,16 @@ class DownloadGeometry(Task):
     # pagActual:1
     # numTotReg:5
     # codSerieSel:CAANE
-    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/descargaDir'
+    URL = 'http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?secDescDirLA={seq}&pagActual=1&numTotReg=5&codSerieSel=CAANE'
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id, version=self.version(), url=self.URL.format(seq=self.seq))
+
+    def version(self):
+        return 1
 
     def run(self):
-        self.output().makedirs()
-        shell('wget --post-data "secDescDirLA={seq}&pagActual=1&numTotReg=5&codSerieSel=CAANE" -O {output}.zip "{url}"'.format(
-            output=self.output().path,
-            url=self.URL,
-            seq=self.seq))
-        os.makedirs(self.output().path)
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
         shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
     def output(self):
@@ -42,7 +43,7 @@ class ImportGeometry(Shp2TempTableTask):
 
     resolution = Parameter()
     timestamp = Parameter()
-    id_aux = Parameter() #X for Peninsula and Balearic Islands, Y for Canary Islands
+    id_aux = Parameter()  # X for Peninsula and Balearic Islands, Y for Canary Islands
 
     def requires(self):
         return DownloadGeometry(seq='114023')

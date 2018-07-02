@@ -2,10 +2,10 @@ import os
 
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
-from tasks.util import shell
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
+from tasks.util import copyfile
 
 from collections import OrderedDict
 
@@ -14,11 +14,16 @@ class DownloadHUC(DownloadUnzipTask):
 
     URL = 'ftp://newftp.epa.gov/epadatacommons/ORD/EnviroAtlas/NHDPlusV2_WBDSnapshot_EnviroAtlas_CONUS.gdb.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        shell('curl -o "{output}".zip "{url}"'.format(
-            url=self.URL,
-            output=self.output().path
-        ))
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportHUC(GdbFeatureClass2TempTableTask):

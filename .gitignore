@@ -28,3 +28,5 @@ carto/
 postgres/data
 docs/build
 perftest/*.json
+/repository
+/venv
