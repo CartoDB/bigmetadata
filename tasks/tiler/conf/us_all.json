@@ -545,8 +545,120 @@
                     "column_name": "upfront_composite_score",
                     "type": "numeric",
                     "nullable": true
+                },
+                {
+                    "id": "ticket_size_country_pctile",
+                    "column_name": "ticket_size_country_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "ticket_size_metro_pctile",
+                    "column_name": "ticket_size_metro_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "ticket_size_state_pctile",
+                    "column_name": "ticket_size_state_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "growth_country_pctile",
+                    "column_name": "growth_country_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "growth_metro_pctile",
+                    "column_name": "growth_metro_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "growth_state_pctile",
+                    "column_name": "growth_state_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "stability_country_pctile",
+                    "column_name": "stability_country_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "stability_metro_pctile",
+                    "column_name": "stability_metro_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "stability_state_pctile",
+                    "column_name": "stability_state_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "transactions_country_pctile",
+                    "column_name": "transactions_country_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "transactions_metro_pctile",
+                    "column_name": "transactions_metro_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "transactions_state_pctile",
+                    "column_name": "transactions_state_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "sales_country_pctile",
+                    "column_name": "sales_country_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "sales_metro_pctile",
+                    "column_name": "sales_metro_pctile",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "sales_state_pctile",
+                    "column_name": "sales_state_pctile",
+                    "type": "numeric",
+                    "nullable": true
                 }
             ]
-        }
+        },
+        "mc_categories": [
+            {
+                "id": "NEP",
+                "name": "non eating places"
+            },
+            {
+                "id": "EP",
+                "name": "eating places"
+            },
+            {
+                "id": "APP",
+                "name": "apparel"
+            },
+            {
+                "id": "SB",
+                "name": "small business"
+            },
+            {
+                "id": "TR",
+                "name": "total retail"
+            }
+        ]
     }
 ]
