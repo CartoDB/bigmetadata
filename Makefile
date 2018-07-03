@@ -428,3 +428,8 @@ us-mastercard:
 ### who's on first
 wof-all:
 	make -- run whosonfirst.AllWOF
+
+### Tiler tables
+
+tiler-us-all:
+	make -- run tiler.us.AllUSXYZTables

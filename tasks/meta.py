@@ -20,10 +20,30 @@ from sqlalchemy.orm import relationship, sessionmaker, backref
 from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.types import UserDefinedType
 
+from lib.logger import get_logger
+import asyncpg
+
+LOGGER = get_logger(__name__)
+
 
 def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
     return [int(text) if text.isdigit() else text.lower()
             for text in re.split(_nsre, s)]
+
+
+async def async_pool(user=None, password=None, host=None, port=None,
+                     db=None, max_connections=100, timeout=60):
+    user = user or os.environ.get('PGUSER', 'postgres')
+    password = password or os.environ.get('PGPASSWORD', '')
+    host = host or os.environ.get('PGHOST', 'localhost')
+    port = port or os.environ.get('PGPORT', '5432')
+    db = db or os.environ.get('PGDATABASE', 'postgres')
+    db_pool = await asyncpg.create_pool(user=user, password=password,
+                                        database=db, host=host,
+                                        port=port,
+                                        command_timeout=timeout,
+                                        max_size=max_connections)
+    return db_pool
 
 
 def get_engine(user=None, password=None, host=None, port=None,
@@ -876,9 +896,10 @@ class OBSTimespan(UniqueMixin, Base):
 
 class CurrentSession(object):
 
-    def __init__(self):
+    def __init__(self, async_conn=False):
         self._session = None
         self._pid = None
+        self._async_conn = False
 
     def begin(self):
         if not self._session:
@@ -890,7 +911,7 @@ class CurrentSession(object):
         # connection
         if self._pid != os.getpid():
             self._session = None
-            print('FORKED: {} not {}'.format(self._pid, os.getpid()))
+            LOGGER.debug('FORKED: {} not {}'.format(self._pid, os.getpid()))
         if not self._session:
             self.begin()
         try:
@@ -947,7 +968,7 @@ def session_commit(task):
     '''
     commit the global session
     '''
-    print('commit {}'.format(task.task_id if task else ''))
+    LOGGER.info('commit {}'.format(task.task_id if task else ''))
     try:
         _current_session.commit()
     except IntegrityError as iex:
@@ -955,10 +976,10 @@ def session_commit(task):
         #     import ipdb; ipdb.set_trace()
         #     print("Avoided integrity for timespan entity: {}".format(iex.orig.args[0]))
         #     return
-        print(iex)
+        LOGGER.warning(iex)
         raise
     except Exception as err:
-        print(err)
+        LOGGER.error(err)
         raise
 
 
@@ -967,7 +988,7 @@ def session_rollback(task, exception):
     '''
     rollback the global session
     '''
-    print('rollback {}: {}'.format(task.task_id if task else '', exception))
+    LOGGER.info('rollback {}: {}'.format(task.task_id if task else '', exception))
     _current_session.rollback()
 
 
