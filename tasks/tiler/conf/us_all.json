@@ -3,7 +3,7 @@
         "table": "xyz_us_do_geoms",
         "schema": "tiler",
         "geoms": true,
-        "sharded": true,
+        "sharded": false,
         "bboxes": [
             {
                 "description": "Contiguous US",
@@ -34,483 +34,482 @@
                 "xmin": 144.563426, "ymin": 13.182335, "xmax": 146.154418, "ymax": 20.616556
             }
         ],
-        "columns": {
-            "do": [
-                {
-                    "id": "us.census.acs.B01003001",
-                    "column_name": "total_pop",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001002",
-                    "column_name": "male_pop",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001003",
-                    "column_name": "male_under_5",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001004",
-                    "column_name": "male_5_to_9",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001005",
-                    "column_name": "male_10_to_14",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001006",
-                    "column_name": "male_15_to_17",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001007",
-                    "column_name": "male_18_to_19",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001008",
-                    "column_name": "male_20",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001009",
-                    "column_name": "male_21",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001010",
-                    "column_name": "male_22_to_24",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001011",
-                    "column_name": "male_25_to_29",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001012",
-                    "column_name": "male_30_to_34",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001013",
-                    "column_name": "male_35_to_39",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001014",
-                    "column_name": "male_40_to_44",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001015",
-                    "column_name": "male_45_to_49",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001016",
-                    "column_name": "male_50_to_54",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001017",
-                    "column_name": "male_55_to_59",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001018",
-                    "column_name": "male_60_61",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001019",
-                    "column_name": "male_62_64",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001020",
-                    "column_name": "male_65_to_66",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001021",
-                    "column_name": "male_67_to_69",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001022",
-                    "column_name": "male_70_to_74",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001023",
-                    "column_name": "male_75_to_79",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001024",
-                    "column_name": "male_80_to_84",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001025",
-                    "column_name": "male_85_and_over",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001026",
-                    "column_name": "female_pop",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001027",
-                    "column_name": "female_under_5",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001028",
-                    "column_name": "female_5_to_9",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001029",
-                    "column_name": "female_10_to_14",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001030",
-                    "column_name": "female_15_to_17",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001031",
-                    "column_name": "female_18_to_19",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001032",
-                    "column_name": "female_20",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001033",
-                    "column_name": "female_21",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001034",
-                    "column_name": "female_22_to_24",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001035",
-                    "column_name": "female_25_to_29",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001036",
-                    "column_name": "female_30_to_34",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001037",
-                    "column_name": "female_35_to_39",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001038",
-                    "column_name": "female_40_to_44",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001039",
-                    "column_name": "female_45_to_49",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001040",
-                    "column_name": "female_50_to_54",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001041",
-                    "column_name": "female_55_to_59",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001042",
-                    "column_name": "female_60_to_61",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001043",
-                    "column_name": "female_62_to_64",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001044",
-                    "column_name": "female_65_to_66",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001045",
-                    "column_name": "female_67_to_69",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001046",
-                    "column_name": "female_70_to_74",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001047",
-                    "column_name": "female_75_to_79",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001048",
-                    "column_name": "female_80_to_84",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01001049",
-                    "column_name": "female_85_and_over",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B01002001",
-                    "column_name": "median_age",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B23006001",
-                    "column_name": "pop_25_64",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B07009002",
-                    "column_name": "less_than_high_school_graduate",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B07009003",
-                    "column_name": "high_school_including_ged",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B07009004",
-                    "column_name": "some_college_and_associates_degree",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003001",
-                    "column_name": "pop_25_years_over",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003017",
-                    "column_name": "high_school_diploma",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003019",
-                    "column_name": "less_one_year_college",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003020",
-                    "column_name": "one_year_more_college",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003021",
-                    "column_name": "associates_degree",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003022",
-                    "column_name": "bachelors_degree",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B15003023",
-                    "column_name": "masters_degree",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B11001001",
-                    "column_name": "households",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001002",
-                    "column_name": "income_less_10000",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001003",
-                    "column_name": "income_10000_14999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001004",
-                    "column_name": "income_15000_19999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001005",
-                    "column_name": "income_20000_24999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001006",
-                    "column_name": "income_25000_29999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001007",
-                    "column_name": "income_30000_34999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001008",
-                    "column_name": "income_35000_39999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001009",
-                    "column_name": "income_40000_44999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001010",
-                    "column_name": "income_45000_49999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001011",
-                    "column_name": "income_50000_59999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001012",
-                    "column_name": "income_60000_74999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001013",
-                    "column_name": "income_75000_99999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001014",
-                    "column_name": "income_100000_124999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001015",
-                    "column_name": "income_125000_149999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001016",
-                    "column_name": "income_150000_199999",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.census.acs.B19001017",
-                    "column_name": "income_200000_or_more",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "us.zillow.AllHomesPlusMultifamily_Zri",
-                    "column_name": "allhomesplusmultifamily_zri",
-                    "type": "numeric",
-                    "nullable": true
-                }
-            ]
-        }
+        "columns": [
+            {
+                "id": "us.census.acs.B01003001",
+                "column_name": "total_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001002",
+                "column_name": "male_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001003",
+                "column_name": "male_under_5",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001004",
+                "column_name": "male_5_to_9",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001005",
+                "column_name": "male_10_to_14",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001006",
+                "column_name": "male_15_to_17",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001007",
+                "column_name": "male_18_to_19",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001008",
+                "column_name": "male_20",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001009",
+                "column_name": "male_21",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001010",
+                "column_name": "male_22_to_24",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001011",
+                "column_name": "male_25_to_29",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001012",
+                "column_name": "male_30_to_34",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001013",
+                "column_name": "male_35_to_39",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001014",
+                "column_name": "male_40_to_44",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001015",
+                "column_name": "male_45_to_49",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001016",
+                "column_name": "male_50_to_54",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001017",
+                "column_name": "male_55_to_59",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001018",
+                "column_name": "male_60_61",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001019",
+                "column_name": "male_62_64",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001020",
+                "column_name": "male_65_to_66",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001021",
+                "column_name": "male_67_to_69",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001022",
+                "column_name": "male_70_to_74",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001023",
+                "column_name": "male_75_to_79",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001024",
+                "column_name": "male_80_to_84",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001025",
+                "column_name": "male_85_and_over",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001026",
+                "column_name": "female_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001027",
+                "column_name": "female_under_5",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001028",
+                "column_name": "female_5_to_9",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001029",
+                "column_name": "female_10_to_14",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001030",
+                "column_name": "female_15_to_17",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001031",
+                "column_name": "female_18_to_19",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001032",
+                "column_name": "female_20",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001033",
+                "column_name": "female_21",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001034",
+                "column_name": "female_22_to_24",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001035",
+                "column_name": "female_25_to_29",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001036",
+                "column_name": "female_30_to_34",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001037",
+                "column_name": "female_35_to_39",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001038",
+                "column_name": "female_40_to_44",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001039",
+                "column_name": "female_45_to_49",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001040",
+                "column_name": "female_50_to_54",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001041",
+                "column_name": "female_55_to_59",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001042",
+                "column_name": "female_60_to_61",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001043",
+                "column_name": "female_62_to_64",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001044",
+                "column_name": "female_65_to_66",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001045",
+                "column_name": "female_67_to_69",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001046",
+                "column_name": "female_70_to_74",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001047",
+                "column_name": "female_75_to_79",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001048",
+                "column_name": "female_80_to_84",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01001049",
+                "column_name": "female_85_and_over",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B01002001",
+                "column_name": "median_age",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B23006001",
+                "column_name": "pop_25_64",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B07009002",
+                "column_name": "less_than_high_school_graduate",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B07009003",
+                "column_name": "high_school_including_ged",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B07009004",
+                "column_name": "some_college_and_associates_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003001",
+                "column_name": "pop_25_years_over",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003017",
+                "column_name": "high_school_diploma",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003019",
+                "column_name": "less_one_year_college",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003020",
+                "column_name": "one_year_more_college",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003021",
+                "column_name": "associates_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003022",
+                "column_name": "bachelors_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B15003023",
+                "column_name": "masters_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B11001001",
+                "column_name": "households",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001002",
+                "column_name": "income_less_10000",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001003",
+                "column_name": "income_10000_14999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001004",
+                "column_name": "income_15000_19999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001005",
+                "column_name": "income_20000_24999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001006",
+                "column_name": "income_25000_29999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001007",
+                "column_name": "income_30000_34999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001008",
+                "column_name": "income_35000_39999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001009",
+                "column_name": "income_40000_44999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001010",
+                "column_name": "income_45000_49999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001011",
+                "column_name": "income_50000_59999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001012",
+                "column_name": "income_60000_74999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001013",
+                "column_name": "income_75000_99999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001014",
+                "column_name": "income_100000_124999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001015",
+                "column_name": "income_125000_149999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001016",
+                "column_name": "income_150000_199999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.census.acs.B19001017",
+                "column_name": "income_200000_or_more",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "us.zillow.AllHomesPlusMultifamily_Zri",
+                "column_name": "allhomesplusmultifamily_zri",
+                "type": "numeric",
+                "nullable": true
+            }
+        ]
     },
     {
         "table": "xyz_us_mc",
@@ -519,139 +518,157 @@
         "bboxes": [],
         "sharded": true,
         "sharding": {
-            "field": "month",
             "values": [1,2,3,4,5,6,7,8,9,10,11,12]
         },
-        "columns": {
-            "mc": [
-                {
-                    "id": "ticket_size_score",
-                    "column_name": "ticket_size_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "growth_score",
-                    "column_name": "growth_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "stability_score",
-                    "column_name": "stability_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "transactions_score",
-                    "column_name": "transactions_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "sales_score",
-                    "column_name": "sales_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "upfront_composite_score",
-                    "column_name": "upfront_composite_score",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "ticket_size_country_pctile",
-                    "column_name": "ticket_size_country_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "ticket_size_metro_pctile",
-                    "column_name": "ticket_size_metro_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "ticket_size_state_pctile",
-                    "column_name": "ticket_size_state_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "growth_country_pctile",
-                    "column_name": "growth_country_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "growth_metro_pctile",
-                    "column_name": "growth_metro_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "growth_state_pctile",
-                    "column_name": "growth_state_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "stability_country_pctile",
-                    "column_name": "stability_country_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "stability_metro_pctile",
-                    "column_name": "stability_metro_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "stability_state_pctile",
-                    "column_name": "stability_state_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "transactions_country_pctile",
-                    "column_name": "transactions_country_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "transactions_metro_pctile",
-                    "column_name": "transactions_metro_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "transactions_state_pctile",
-                    "column_name": "transactions_state_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "sales_country_pctile",
-                    "column_name": "sales_country_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "sales_metro_pctile",
-                    "column_name": "sales_metro_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                },
-                {
-                    "id": "sales_state_pctile",
-                    "column_name": "sales_state_pctile",
-                    "type": "numeric",
-                    "nullable": true
-                }
-            ]
-        },
+        "columns": [
+            {
+                "id": "ticket_size_score",
+                "column_name": "ticket_size_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_score",
+                "column_name": "growth_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_score",
+                "column_name": "stability_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_score",
+                "column_name": "transactions_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_score",
+                "column_name": "sales_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "upfront_composite_score",
+                "column_name": "upfront_composite_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_country_pctile",
+                "column_name": "ticket_size_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_metro_pctile",
+                "column_name": "ticket_size_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_state_pctile",
+                "column_name": "ticket_size_state_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_country_pctile",
+                "column_name": "growth_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_metro_pctile",
+                "column_name": "growth_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_state_pctile",
+                "column_name": "growth_state_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_country_pctile",
+                "column_name": "stability_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_metro_pctile",
+                "column_name": "stability_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_state_pctile",
+                "column_name": "stability_state_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_country_pctile",
+                "column_name": "transactions_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_metro_pctile",
+                "column_name": "transactions_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_state_pctile",
+                "column_name": "transactions_state_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_country_pctile",
+                "column_name": "sales_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_metro_pctile",
+                "column_name": "sales_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_state_pctile",
+                "column_name": "sales_state_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            }
+        ],
         "mc_categories": [
             {
                 "id": "NEP",
