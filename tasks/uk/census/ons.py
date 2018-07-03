@@ -4,7 +4,6 @@ from collections import OrderedDict
 import csv
 import os
 import requests
-import urllib
 import shutil
 from zipfile import ZipFile
 
@@ -13,7 +12,8 @@ from luigi import Task, Parameter
 from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
-from tasks.base_tasks import DownloadUnzipTask, TempTableTask
+from tasks.base_tasks import DownloadUnzipTask, TempTableTask, RepoFile
+from tasks.util import copyfile
 
 from .metadata import sanitize_identifier
 
@@ -28,22 +28,33 @@ class DownloadUK(Task):
 
     table = Parameter()
 
-    def run(self):
+    def version(self):
+        return 1
+
+    def requires(self):
+        requirements = {}
         # Query API, extract table ID from name
         meta = requests.get(self.API_URL.format(self.table)).json()
         api_id = (meta['structure']['keyfamilies']['keyfamily'][0]['id']).lower()
+        for geo in self.GEO_TYPES:
+            requirements[geo] = RepoFile(resource_id='{task_id}_{geo}'.format(task_id=self.task_id, geo=geo),
+                                         version=self.version(),
+                                         url=self.DOWNLOAD_URL.format(id=api_id, geo=geo))
 
+        return requirements
+
+    def run(self):
         # Download for SA (EW,S) and OA (NI) in a single file
         with self.output().temporary_path() as tmp, open(os.path.join(tmp, '{}.csv'.format(self.table)), 'wb') as outcsv:
             skip_header = False
             for geo in self.GEO_TYPES:
-                remote_file = urllib.request.urlopen(self.DOWNLOAD_URL.format(id=api_id, geo=geo))
-                if skip_header:
-                    next(remote_file)
-                else:
-                    skip_header = True
-                for l in remote_file:
-                    outcsv.write(l)
+                with open(self.input()[geo].path, 'rb') as remote_file:
+                    if skip_header:
+                        next(remote_file)
+                    else:
+                        skip_header = True
+                    for l in remote_file:
+                        outcsv.write(l)
 
     def output(self):
         return DirectoryTarget(self)
@@ -82,8 +93,16 @@ class ImportUK(TempTableTask):
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
     URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        urllib.request.urlretrieve(self.URL, '{}.zip'.format(self.output().path))
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
     def run(self):
         super(DownloadEnglandWalesLocal, self).run()

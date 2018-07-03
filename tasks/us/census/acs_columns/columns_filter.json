@@ -8,6 +8,11 @@
 			},
 			{
 				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
 				"geography": "cbsa"
 			},
 			{
@@ -54,6 +59,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -62,6 +71,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -70,6 +83,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -78,6 +95,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -86,6 +107,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -94,6 +119,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -102,6 +131,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -110,6 +143,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -118,6 +155,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -126,7 +167,12 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
+
 		]
 	},
 	"commuters_by_carpool": {
@@ -134,6 +180,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -142,6 +192,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -150,6 +204,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -158,6 +216,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -166,6 +228,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -174,6 +240,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -182,6 +252,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -190,6 +264,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -198,6 +276,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -206,6 +288,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -214,6 +300,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -222,6 +312,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -230,6 +324,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -238,6 +336,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -246,6 +348,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -254,6 +360,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -262,6 +372,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -270,6 +384,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -278,6 +396,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -286,6 +408,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -294,6 +420,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -302,6 +432,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -310,6 +444,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -318,6 +456,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -326,6 +468,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -334,6 +480,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -342,6 +492,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -350,6 +504,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -358,6 +516,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -366,6 +528,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -374,6 +540,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -382,6 +552,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -390,6 +564,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -398,6 +576,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -406,6 +588,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -414,6 +600,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -422,6 +612,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -430,6 +624,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -438,6 +636,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -446,6 +648,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -454,6 +660,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -462,6 +672,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -470,6 +684,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -478,6 +696,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -486,6 +708,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -494,6 +720,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -502,6 +732,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -510,6 +744,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -518,6 +756,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -526,6 +768,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -534,6 +780,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -542,6 +792,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -550,6 +804,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -558,6 +816,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -566,6 +828,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -574,6 +840,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -582,6 +852,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -590,6 +864,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -598,6 +876,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -606,6 +888,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -614,6 +900,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -622,6 +912,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -630,6 +924,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -638,6 +936,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -646,6 +948,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -654,6 +960,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			}
 		]
 	},
@@ -663,6 +973,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -726,6 +1041,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -781,6 +1101,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -844,6 +1169,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -899,6 +1229,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -962,6 +1297,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -1021,6 +1361,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -1076,6 +1421,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -1169,6 +1519,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -1254,6 +1609,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -1347,6 +1707,11 @@
 			{
 				"year": "2010",
 				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
 				"geography": "cbsa"
 			},
 			{
@@ -1435,6 +1800,11 @@
 			},
 			{
 				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
 				"geography": "cbsa"
 			},
 			{
@@ -1482,6 +1852,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -1535,6 +1910,11 @@
 			},
 			{
 				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
 				"geography": "cbsa"
 			},
 			{
@@ -1582,6 +1962,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -1635,6 +2020,11 @@
 			},
 			{
 				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
+				"year": "2010",
 				"geography": "cbsa"
 			},
 			{
@@ -1682,6 +2072,11 @@
 				"year": "2010",
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"year": "2010",
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2010",
@@ -1733,6 +2128,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"sample": "1yr",
 				"geography": "school_district_elementary"
 			},
@@ -1751,6 +2150,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"sample": "1yr",
@@ -1773,6 +2176,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"sample": "1yr",
 				"geography": "school_district_elementary"
 			},
@@ -1791,6 +2198,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"sample": "1yr",
@@ -1813,6 +2224,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"sample": "1yr",
 				"geography": "school_district_elementary"
 			},
@@ -1831,6 +2246,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2015",
@@ -1887,6 +2306,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"year": "2015",
 				"geography": "cbsa"
 			},
@@ -1939,6 +2362,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2015",
@@ -1995,6 +2422,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"year": "2015",
 				"geography": "cbsa"
 			},
@@ -2049,6 +2480,10 @@
 				"geography": "block_group"
 			},
 			{
+				"sample": "5yr",
+				"geography": "block"
+			},
+			{
 				"year": "2015",
 				"geography": "cbsa"
 			},
@@ -2101,6 +2536,10 @@
 			{
 				"sample": "5yr",
 				"geography": "block_group"
+			},
+			{
+				"sample": "5yr",
+				"geography": "block"
 			},
 			{
 				"year": "2015",

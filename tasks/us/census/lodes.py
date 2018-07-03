@@ -5,16 +5,15 @@ characteristics files
 
 import os
 import csv
-import urllib.request
-
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag, GEOM_REF
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
-                              TagsTask, MetaWrapper)
+                              TagsTask, MetaWrapper, RepoFile)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
                                    GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
+from tasks.util import copyfile
 
 from luigi import (Parameter, IntParameter)
 
@@ -482,6 +481,14 @@ class DownloadUnzipLodes(DownloadGUnzipTask):
     partorsegment = Parameter(default='S000')
     jobtype = Parameter(default='JT00')
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.url())
+
     def filename_lodes(self):
         #   [STATE]_[FILETYPE]_[PART/SEG]_[TYPE]_[YEAR].csv.gz   where
         return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype,
@@ -493,9 +500,7 @@ class DownloadUnzipLodes(DownloadGUnzipTask):
             self.state, self.filetype, self.filename_lodes())
 
     def download(self):
-        with urllib.request.urlopen(self.url()) as response, open('{output}.gz'.format(
-                output=self.output().path), 'wb') as output:
-            output.write(response.read())
+        copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
 
 
 class WorkplaceAreaCharacteristicsTemp(CSV2TempTableTask):
@@ -534,7 +539,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     year = IntParameter(default=2013)
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
         return {
@@ -542,13 +547,17 @@ class WorkplaceAreaCharacteristics(TableTask):
             'tiger_meta': GeoidColumns(),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
             'sumlevel': SumLevel(year='2015', geography='block'),
+            'shorelineclip': ShorelineClip(year='2015', geography='block'),
         }
 
     def table_timespan(self):
         return get_timespan(str(self.year))
 
     def targets(self):
-        return {self.input()['sumlevel'].obs_table: GEOM_REF}
+        return {
+            self.input()['sumlevel'].obs_table: GEOM_REF,
+            self.input()['shorelineclip'].obs_table: GEOM_REF,
+        }
 
     def columns(self):
         data_columns = self.input()['data_meta']

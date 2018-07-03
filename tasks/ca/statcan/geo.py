@@ -2,10 +2,12 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask
-from tasks.util import shell
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, SimplifiedTempTableTask,
+                              RepoFile)
+from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
+from tasks.ca.statcan.license import LicenseTags, SourceTags
 
 from collections import OrderedDict
 
@@ -83,10 +85,16 @@ class DownloadGeography(DownloadUnzipTask):
 
     URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL.format(year=self.year, resolution=self.resolution))
+
     def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path, url=self.URL.format(year=self.year, resolution=self.resolution)
-        ))
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportGeography(Shp2TempTableTask):
@@ -128,26 +136,31 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 13
+        return 14
 
     def requires(self):
         return {
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'boundary': BoundaryTags()
+            'boundary': BoundaryTags(),
+            'license': LicenseTags(),
+            'source': SourceTags(),
         }
 
     def columns(self):
-        sections = self.input()['sections']
-        subsections = self.input()['subsections']
-        boundary_type = self.input()['boundary']
+        input_ = self.input()
+        sections = input_['sections']
+        subsections = input_['subsections']
+        boundary_type = input_['boundary']
+        data_license = input_['license']['statcan-license']
+        data_source = input_['source']['statcan-census-2011']
         geom = OBSColumn(
             id=self.resolution,
             type='Geometry',
             name=GEOGRAPHY_NAMES[self.resolution],
             description=GEOGRAPHY_DESCS[self.resolution],
             weight=self.weights[self.resolution],
-            tags=[sections['ca'], subsections['boundary']],
+            tags=[sections['ca'], subsections['boundary'], data_license, data_source],
         )
         geom_id = OBSColumn(
             id=self.resolution + '_id',
@@ -160,7 +173,7 @@ class GeographyColumns(ColumnsTask):
             weight=1,
             name='Name of ' + GEOGRAPHY_NAMES[self.resolution],
             targets={geom: GEOM_NAME},
-            tags=[sections['ca'], subsections['names']]
+            tags=[sections['ca'], subsections['names'], data_license, data_source]
         )
         geom.tags.extend(boundary_type[i] for i in GEOGRAPHY_TAGS[self.resolution])
 

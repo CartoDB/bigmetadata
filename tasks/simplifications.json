@@ -349,6 +349,13 @@
 		"geomfield": "geom",
 		"factor": "40"
 	},
+	"tiger2015.block_by_state": {
+		"simplification": "mapshaper",
+		"geomfield": "geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
 	"tiger2015.block_group": {
 		"simplification": "mapshaper",
 		"geomfield": "geom",

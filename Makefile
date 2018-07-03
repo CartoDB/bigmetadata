@@ -328,6 +328,11 @@ fr-insee:
 fr-income:
 	make -- run fr.fr_income.IRISIncomeTables
 
+### Geographica
+
+geographica-all:
+	make -- run geographica.csv.AllMeasurements
+
 ### mx
 mx-all: mx-geo mx-census
 
@@ -416,6 +421,9 @@ us-dob:
 
 us-zillow:
 	make -- run us.zillow.AllZillow
+
+us-mastercard:
+	make -- run us.mastercard.AllMasterCardData
 
 ### who's on first
 wof-all:

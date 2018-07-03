@@ -1,8 +1,9 @@
-from tasks.base_tasks import ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, DownloadUnzipTask, DownloadGUnzipTask
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, DownloadUnzipTask,
+                              DownloadGUnzipTask, RepoFile)
 from tasks.eu.geo import NUTSColumns, NUTSGeometries
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
-from tasks.util import underscore_slugify, classpath, shell
+from tasks.util import underscore_slugify, classpath, shell, copyfile
 
 from luigi import IntParameter, Parameter, WrapperTask, Task, LocalTarget
 from collections import OrderedDict
@@ -10,7 +11,6 @@ from lib.columns import ColumnsDeclarations
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
-import urllib.request
 import glob
 import csv
 import os
@@ -29,15 +29,17 @@ class DownloadEurostat(Task):
     table_code = Parameter()
     URL = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F{code}.tsv.gz"
 
-    def download(self):
+    def version(self):
+        return 1
+
+    def requires(self):
         url = self.URL.format(code=self.table_code.lower())
-        shell('wget -O {output}.gz "{url}"'.format(
-            output=self.output().path,
-            url=url))
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=url)
 
     def run(self):
-        self.output().makedirs()
-        self.download()
+        copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
         shell('gunzip {output}.gz'.format(output=self.output().path))
 
     def output(self):
@@ -86,8 +88,16 @@ class EUTempTable(CSV2TempTableTask):
 class DownloadUnzipDICTTables(DownloadUnzipTask):
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fall_dic.zip'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        urllib.request.urlretrieve(self.URL, self.output().path + '.zip')
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class DICTablesCache(object):
@@ -116,8 +126,16 @@ class DICTablesCache(object):
 class DownloadGUnzipMetabase(DownloadGUnzipTask):
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=metabase.txt.gz'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def download(self):
-        urllib.request.urlretrieve(self.URL, self.output().path + '.gz')
+        copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
 
 
 class MetabaseTable(CSV2TempTableTask):

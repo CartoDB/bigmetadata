@@ -5,9 +5,9 @@ from luigi import LocalTarget, Task, IntParameter, WrapperTask
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
-                              SimplifiedTempTableTask)
+                              SimplifiedTempTableTask, RepoFile)
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag, OBSTable
-from tasks.util import shell, classpath
+from tasks.util import shell, classpath, copyfile
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
 
@@ -31,27 +31,32 @@ class SourceLicenseTags(TagsTask):
         ]
 
 
-class DownloadGeographies(Task):
+def geographies_downloader(url, output_path):
+    referer = 'http://www.eurogeographics.org/content/euroglobalmap-opendata?sid=10868'
+    shell("wget -O {output} --referer='{referer}' '{url}'".format(
+        output=output_path,
+        referer=referer,
+        url=url,
+    ))
 
+
+class DownloadGeographies(Task):
     URL = 'http://wxs-telechargement.ign.fr/aoar2g7319l0hi4l42nkzlc5/telechargement/prepackage/EGM_EUROPE_PACK_20151028$EGM_8-0SHP_20151028/file/EGM_8-0SHP_20151028.7z'
 
-    def download(self):
-        self.output().makedirs()
-        referer = 'http://www.eurogeographics.org/content/euroglobalmap-opendata?sid=10868'
-        shell("wget -O {output}.7z --referer='{referer}' '{url}'".format(
-            output=self.output().path,
-            referer=referer,
-            url=self.URL,
-        ))
+    def version(self):
+            return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL,
+                        downloader=geographies_downloader)
 
     def run(self):
-        os.makedirs(self.output().path)
-        self.download()
+        copyfile(self.input().path, '{output}.7z'.format(output=self.output().path))
         shell('7z x "{file}" -o{output}'.format(
             file=self.output().path + '.7z',
             output=self.output().path))
-
-        #shell('unzip -d {output} {output}.zip'.format(output=self.output().path))
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
@@ -93,11 +98,16 @@ class DownloadNUTSNames(Task):
 
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fen%2Fgeo.dic'
 
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.URL)
+
     def run(self):
-        shell('wget -O {output} "{url}"'.format(
-            output=self.output().path,
-            url=self.URL
-        ))
+        copyfile(self.input().path, self.output().path)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))

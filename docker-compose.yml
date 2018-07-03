@@ -9,6 +9,7 @@ services:
       - ./data-services:/data-services
       - ./cartodb-postgresql:/cartodb-postgresql
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     environment:
       PGUSER: docker
       PGPASSWORD: docker
@@ -30,6 +31,7 @@ services:
       - ./data-services:/data-services
       - ./cartodb-postgresql:/cartodb-postgresql
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     environment:
       PGDATA: /var/lib/postgresql/pg_data
       POSTGRES_USER: docker
@@ -50,6 +52,7 @@ services:
       - ./docs/build/html:/usr/share/nginx/html/docs/:ro
       - ./perftest:/usr/share/nginx/html/perftest/:ro
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     ports:
       - 80
 
@@ -58,6 +61,7 @@ services:
     volumes:
       - .:/bigmetadata
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     ports:
       - 8082
     depends_on:
@@ -83,6 +87,7 @@ services:
     volumes:
       - .:/bigmetadata
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
+      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     depends_on:
       - ${PGSERVICE:-postgres}
       - bigmetadata_daemon

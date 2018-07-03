@@ -7,23 +7,29 @@ Tiger
 import json
 import os
 import subprocess
+import time
+import re
 from collections import OrderedDict
 from lib.timespan import get_timespan
-from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask, LoadPostgresFromURL,
-                              SimplifiedTempTableTask)
+from lib.logger import get_logger
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, TagsTask, Carto2TempTableTask,
+                              SimplifiedTempTableTask, RepoFile, LoadPostgresFromZipFile)
 from tasks.util import classpath, grouper, shell
 from tasks.meta import OBSTable, OBSColumn, GEOM_REF, GEOM_NAME, OBSTag, current_session
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.targets import PostgresTarget
 from tasks.simplification import SIMPLIFIED_SUFFIX
 from tasks.simplify import Simplify
+from lib.logger import get_logger
 
 from luigi import (Task, WrapperTask, Parameter, LocalTarget, IntParameter)
 from decimal import Decimal
 
+LOGGER = get_logger(__name__)
 
 GEOID_SUMLEVEL_COLUMN = "_geoidsl"
 GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
+BLOCK = 'block'
 
 
 class TigerSourceTags(TagsTask):
@@ -356,16 +362,23 @@ class TigerGeographyShapefileToSQL(TempTableTask):
             qualified_table=self.output().table))
 
 
-class DownloadTiger(LoadPostgresFromURL):
+class DownloadTiger(LoadPostgresFromZipFile):
     url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
     year = Parameter()
+
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=self.url_template.format(year=self.year))
 
     def run(self):
         schema = 'tiger{year}'.format(year=self.year)
         shell("psql -c 'DROP SCHEMA IF EXISTS \"{schema}\" CASCADE'".format(schema=schema))
         shell("psql -c 'CREATE SCHEMA \"{schema}\"'".format(schema=schema))
-        url = self.url_template.format(year=self.year)
-        self.load_from_url(url)
+        self.load_from_zipfile(self.input().path)
 
 
 class SimplifiedDownloadTiger(Task):
@@ -379,6 +392,95 @@ class SimplifiedDownloadTiger(Task):
         yield Simplify(schema='tiger{year}'.format(year=self.year),
                        table=SUMLEVELS[self.geography]['table'],
                        table_id='.'.join(['tiger{year}'.format(year=self.year), self.geography]))
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
+
+
+class SplitByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return DownloadTiger(year=self.year)
+
+    def run(self):
+        session = current_session()
+        query = '''
+                CREATE TABLE {table_output} AS
+                SELECT *
+                FROM "{schema_input}".{table_input}
+                WHERE statefp10 = '{state}'
+                '''.format(schema_input='tiger{year}'.format(year=self.year),
+                           table_input=SUMLEVELS[self.geography]['table'],
+                           table_output=self.output().table,
+                           state=self.state)
+        session.execute(query)
+        session.commit()
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              '{name}_state{state}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                           state=self.state))
+
+
+class SimplifyGeoChunkByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return SplitByState(year=self.year, geography=self.geography, state=self.state)
+
+    def run(self):
+        yield Simplify(schema=self.input().schema,
+                       table=self.input().tablename,
+                       table_id='.'.join(['tiger{year}'.format(year=self.year),
+                                          '{geo}_by_state'.format(geo=self.geography)]))
+
+    def output(self):
+        return PostgresTarget('tiger{year}'.format(year=self.year),
+                              '{name}_state{state}{suffix}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                                   state=self.state,
+                                                                   suffix=SIMPLIFIED_SUFFIX))
+
+
+class SimplifyGeoByState(Task):
+    year = Parameter()
+    geography = Parameter()
+
+    def requires(self):
+        simplifications = {}
+        for state_code, _ in STATES.items():
+            simplifications[state_code] = SimplifyGeoChunkByState(year=self.year,
+                                                                  geography=self.geography,
+                                                                  state=state_code)
+        return simplifications
+
+    def run(self):
+        session = current_session()
+        for _, table in self.input().items():
+            query = '''
+                    CREATE TABLE IF NOT EXISTS {output} AS
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    WHERE 1=0
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+
+            query = '''
+                    INSERT INTO {output}
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+            session.commit()
 
     def output(self):
         return PostgresTarget('tiger{year}'.format(year=self.year),
@@ -655,14 +757,18 @@ class SumLevel(TableTask):
         return SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
+        if self.geography == BLOCK:
+            tiger = SimplifyGeoByState(geography=self.geography, year=self.year)
+        else:
+            tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'attributes': Attributes(),
             'geoids': GeoidColumns(),
             'geoms': GeomColumns(),
-            'data': SimplifiedDownloadTiger(geography=self.geography, year=self.year),
+            'data': tiger,
         }
 
     def columns(self):
@@ -708,10 +814,13 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def requires(self):
-        tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
+        if self.geography == BLOCK:
+            tiger = SimplifyGeoByState(geography=self.geography, year=self.year)
+        else:
+            tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'data': tiger,
             'geoids': GeoidColumns(),
@@ -974,6 +1083,83 @@ class PriSecRoads(TableTask):
                                    input=self.input()['data'].table))
 
 
+class TigerBlocksInterpolation(Task):
+    '''
+    Task used to create a table with the block and blockgroups geoid and the
+    percentage of the block in the block group
+    '''
+    year = Parameter()
+
+    def requires(self):
+        return {
+            'shoreline_block': ShorelineClip(year=self.year, geography='block'),
+            'shoreline_blockgroup': ShorelineClip(year=self.year, geography='block_group'),
+        }
+
+    def run(self):
+        session = current_session()
+        with session.no_autoflush:
+            tiger_tables = {}
+            tiger_tables_query = '''SELECT id,tablename
+                                    FROM observatory.obs_table
+                                    WHERE id ilike 'us.census.tiger.shoreline_clip_block%'
+                                 '''
+
+            tiger_tables_result = session.execute(tiger_tables_query)
+            if tiger_tables_result:
+                for tiger_table in tiger_tables_result.fetchall():
+                    if re.search('block_group_{}'.format(self.year), tiger_table['id']):
+                        tiger_tables['block_group'] = tiger_table['tablename']
+                    elif re.search('block_{}'.format(self.year), tiger_table['id']):
+                        tiger_tables['block'] = tiger_table['tablename']
+
+                # Create the table with block/blockgroups and percentage field empty
+                start_time = time.time()
+                LOGGER.info("Start creating the interpolation table...")
+                query = '''
+                        CREATE TABLE {table_output} AS
+                        SELECT geoid blockid, left(geoid,12) blockgroupid, 0::float percentage, the_geom block_geom
+                        FROM "{schema_input}".{block_table} b
+                        '''.format(schema_input='observatory',
+                                   block_table=tiger_tables['block'],
+                                   table_output=self.output().table)
+                session.execute(query)
+                end_time = time.time()
+                LOGGER.info("Time creating the table {}".format((end_time - start_time)))
+                # Creating indexes
+                LOGGER.info("Start creating the indexes for the interpolation table...")
+                start_time = time.time()
+                indexes_query = '''
+                    CREATE INDEX blocks_idx ON {table_output} (blockid);
+                    CREATE INDEX block_groups_idx ON {table_output} (blockgroupid);
+                '''.format(table_output=self.output().table)
+                session.execute(indexes_query)
+                end_time = time.time()
+                LOGGER.info("Indexes created in {}".format((end_time - start_time)))
+                # Set the interpolation percentages in the table
+                LOGGER.info("Start updating the table...")
+                start_time = time.time()
+                update_percentage_query = '''
+                        UPDATE {table_output} b
+                        SET percentage = (
+                            SELECT (ST_Area(b.block_geom)/ST_Area(bg.the_geom))::float*100.00
+                            FROM "{schema_input}".{bg_table} bg
+                            WHERE b.blockgroupid = bg.geoid
+                        )
+                        '''.format(schema_input='observatory',
+                                   bg_table=tiger_tables['block_group'],
+                                   table_output=self.output().table)
+                session.execute(update_percentage_query)
+                session.commit()
+                end_time = time.time()
+                LOGGER.info("Time creating the table {}".format((end_time - start_time)))
+            else:
+                LOGGER.error('Cant retrieve tiger tables for block and block group')
+
+    def output(self):
+        schema = 'tiger{year}'.format(year=self.year)
+        return PostgresTarget(schema, 'blocks_interpolation')
+
 def load_sumlevels():
     '''
     Load summary levels from JSON. Returns a dict by sumlevel number.
@@ -982,4 +1168,13 @@ def load_sumlevels():
         return json.load(fhandle)
 
 
+def load_states():
+    '''
+    Load states from JSON. Returns a dict by state number.
+    '''
+    with open(os.path.join(os.path.dirname(__file__), 'states.json')) as fhandle:
+        return json.load(fhandle)
+
+
 SUMLEVELS = load_sumlevels()
+STATES = load_states()

@@ -8,8 +8,8 @@ from collections import OrderedDict
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper
-from tasks.util import shell, classpath
+from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper, RepoFile
+from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA,
@@ -41,19 +41,25 @@ SURVEY_URLS = {
 
 URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-telecharger/comprehensive/comp_download.cfm?CTLG={survey_code}&FMT=CSV{geo_code}'
 
+
 class BaseParams(metaclass=ABCMeta):
     resolution = Parameter(default=GEO_PR)
     survey = Parameter(default=SURVEY_CEN)
 
 
 class DownloadData(BaseParams, DownloadUnzipTask):
+    def version(self):
+        return 1
+
+    def requires(self):
+        return RepoFile(resource_id=self.task_id,
+                        version=self.version(),
+                        url=URL.format(survey_url=SURVEY_URLS[self.survey],
+                                       survey_code=SURVEY_CODES[self.survey],
+                                       geo_code=GEOGRAPHY_CODES[self.resolution]))
+
     def download(self):
-        urllib.request.urlretrieve(url=URL.format(
-                           survey_url=SURVEY_URLS[self.survey],
-                           survey_code=SURVEY_CODES[self.survey],
-                           geo_code=GEOGRAPHY_CODES[self.resolution],
-                           ),
-                           filename=self.output().path + '.zip')
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class SplitAndTransposeData(BaseParams, Task):
