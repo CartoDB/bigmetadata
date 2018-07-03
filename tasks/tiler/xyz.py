@@ -38,13 +38,9 @@ class TilerXYZTableTask(Task):
     def run(self):
         config_data = self._get_config_data()
         for table_config in config_data:
-            table_schema = self._get_table_schema(table_config)
             table_bboxes = table_config['bboxes']
-            self._create_schema_and_table(table_schema)
-            self._generate_and_insert_tiles(self.zoom_level, table_schema, table_config, table_bboxes)
-
-    def _get_table_name(self, table_schema):
-        return table_schema['table_name'] + '_' + self.month
+            self._create_schema_and_table(table_config)
+            self._generate_and_insert_tiles(self.zoom_level, table_config, table_bboxes)
 
     def _get_mc_dates(self):
         session = current_session()
@@ -53,25 +49,32 @@ class TilerXYZTableTask(Task):
                 '''.format(schema='us.mastercard', geo_level=self.geography, month=self.month)
         return session.execute(query).fetchone()[0]
 
-    def _create_schema_and_table(self, table_schema):
+    def _create_schema_and_table(self, table_config):
+        table_schema = self._get_table_schema(table_config)
         session = current_session()
         session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
         cols_schema = []
-        table_name = '"{}"."{}"'.format(table_schema['schema'], self._get_table_name(table_schema))
-        for _, cols in table_schema['columns'].items():
+        table_names = []
+        for _, cols in table_config['columns'].items():
             cols_schema += cols
-        sql_table = '''CREATE TABLE IF NOT EXISTS {}(
-                x INTEGER NOT NULL,
-                y INTEGER NOT NULL,
-                z INTEGER NOT NULL,
-                mvt_geometry Geometry NOT NULL,
-                geoid VARCHAR NOT NULL,
-                area_ratio NUMERIC,
-                area NUMERIC,
-                {},
-                CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
-            )'''.format(table_name, ", ".join(cols_schema))
-        session.execute(sql_table)
+        if table_config['sharded']:
+            for value in table_config['sharding']['values']:
+                table_names.append('"{}"."{}_{}"'.format(table_config['schema'], table_config['table'], value))
+        else:
+            table_names.append('"{}"."{}"'.format(table_config['schema'], table_config['table']))
+        for table_names in table_names:
+            sql_table = '''CREATE TABLE IF NOT EXISTS {}(
+                    x INTEGER NOT NULL,
+                    y INTEGER NOT NULL,
+                    z INTEGER NOT NULL,
+                    mvt_geometry Geometry NOT NULL,
+                    geoid VARCHAR NOT NULL,
+                    area_ratio NUMERIC,
+                    area NUMERIC,
+                    {},
+                    CONSTRAINT xyzusall_pk PRIMARY KEY (x,y,z,geoid)
+                )'''.format(table_name, ", ".join(cols_schema))
+            session.execute(sql_table)
         session.commit()
 
     def _get_config_data(self):
@@ -108,7 +111,8 @@ class TilerXYZTableTask(Task):
 
         return False
 
-    def _generate_and_insert_tiles(self, zoom, table_schema, table_config, bboxes_config):
+    def _generate_and_insert_tiles(self, zoom, table_config, bboxes_config):
+        table_schema = self._get_table_schema(table_config)
         do_columns = [column['id'] for column in table_config['columns']['do']]
         mc_columns = [column['id'] for column in table_config['columns']['mc']]
         mc_categories = [category['id'] for category in table_config['mc_categories']]

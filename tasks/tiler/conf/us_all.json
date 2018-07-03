@@ -1,7 +1,9 @@
 [
     {
-        "table": "xyz_us_all",
+        "table": "xyz_us_do_geoms",
         "schema": "tiler",
+        "geoms": true,
+        "sharded": true,
         "bboxes": [
             {
                 "description": "Contiguous US",
@@ -9,11 +11,11 @@
             },
             {
                 "description": "Alaska",
-                "xmin": -179.45, "ymin": 51.10, "xmax": -129.94, "ymax": 71.63 
+                "xmin": -179.45, "ymin": 51.10, "xmax": -129.94, "ymax": 71.63
             },
             {
                 "description": "Alaska2",
-                "xmin": 172.30, "ymin": 51.283, "xmax": 179.865, "ymax": 53.074 
+                "xmin": 172.30, "ymin": 51.283, "xmax": 179.865, "ymax": 53.074
             },
             {
                 "description": "Hawaii",
@@ -145,7 +147,6 @@
                 {
                     "id": "us.census.acs.B01001019",
                     "column_name": "male_62_64",
-                    "type": "numeric",
                     "nullable": true
                 },
                 {
@@ -508,7 +509,20 @@
                     "type": "numeric",
                     "nullable": true
                 }
-            ],
+            ]
+        }
+    },
+    {
+        "table": "xyz_us_mc",
+        "schema": "tiler",
+        "geoms": false,
+        "bboxes": [],
+        "sharded": true,
+        "sharding": {
+            "field": "month",
+            "values": [1,2,3,4,5,6,7,8,9,10,11,12]
+        },
+        "columns": {
             "mc": [
                 {
                     "id": "ticket_size_score",
