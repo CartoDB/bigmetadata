@@ -31,18 +31,18 @@ class XYZTables(TilerXYZTableTask):
     def get_geography_level(self, level):
         return GEOGRAPHY_LEVELS[level]
 
-    def get_table_columns(self, config):
+    def get_table_columns(self, config, shard_value=None):
         columns = []
-        for column in self.get_columns(config):
+        for column in self.get_columns(config, shard_value):
             nullable = '' if column['nullable'] else 'NOT NULL'
             columns.append("{} {} {}".format(column['column_name'], column['type'], nullable))
         return columns
 
-    def get_columns(self, config):
+    def get_columns(self, config, shard_value=None):
         columns = []
         # TODO Make possible to define columns prefix as in the JSON
         if config['table'] == 'xyz_us_mc':
-            mc_dates = [date.replace('-', '') for date in self._get_mc_dates()]
+            mc_dates = [date.replace('-', '') for date in self._get_mc_dates(shard_value)]
             for mc_date in mc_dates:
                 for mc_category in config['mc_categories']:
                     for column in config['columns']:
@@ -57,35 +57,26 @@ class XYZTables(TilerXYZTableTask):
 
         return columns
 
-    def get_recordset(self, config):
-        columns = self.get_columns(config)
+    def _get_recordset(self, config, shard_value=None):
+        columns = self.get_columns(config, shard_value)
         recordset = ["mvtdata->>'id' as id"]
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         recordset.append("(mvtdata->>'area')::numeric as area")
-        if table_config['table'] == 'xyz_us_mc':
-            mc_categories = [category['id'] for category in table_config['mc_categories']]
-            mc_dates = mc_dates = [date.replace('-', '') for date in self._get_mc_dates()]
-            for mc_date in mc_dates:
-                for mc_category in table_config['mc_categories']:
-                    recordset += ["(mvtdata->>'{name}')::{type} as {name}".format(name='_'.join([column['column_name'],
-                                                                                                 mc_category['id'],
-                                                                                                 mc_date]).lower(),
-                                                                                  type=column['type'])
-                                  for column in columns]
-        else:
-            recordset += ["(mvtdata->>'{name}')::{type} as {name}".format(name=column['column_name'].lower(),
-                                                                          type=column['type'])
-                          for column in columns]
+        for column in columns:
+            recordset.append("(mvtdata->>'{name}')::{type} as {name}".format(name=column['column_name'].lower(),
+                                                                             type=column['type']))
 
+        LOGGER.info(column)
         return recordset
 
-    def get_tile_query(self, config):
-        columns = [column['id'] for column in self.get_columns(config)]
+    def get_tile_query(self, config, tile, geography, shard_value=None):
+        columns = [column['id'] for column in config['columns']]
+        recordset = self._get_recordset(config, shard_value)
         if config['table'] == 'xyz_us_mc':
             mc_categories = [category['id'] for category in config['mc_categories']]
-            mc_dates = mc_dates = [date.replace('-', '') for date in self._get_mc_dates()]
+            mc_dates = self._get_mc_dates(shard_value)
             return '''
-                SELECT {x}, {y}, {z}, NULL as mvtgeom, {recordset}
+                SELECT {x} x, {y} y, {z} z, NULL as mvtgeom, {recordset}
                 FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',
                                                     ARRAY[]::TEXT[],
                                                     ARRAY['{cols}']::TEXT[],
@@ -99,7 +90,7 @@ class XYZTables(TilerXYZTableTask):
                         mcdates="','".join(mc_dates))
         else:
             return '''
-                SELECT {x}, {y}, {z}, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
+                SELECT {x} x, {y} y, {z} z, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
                 FROM cdb_observatory.OBS_GetMCDOMVT({z},{x},{y},'{geography_level}',
                                                     ARRAY['{cols}']::TEXT[],
                                                     ARRAY[]::TEXT[],
@@ -108,9 +99,7 @@ class XYZTables(TilerXYZTableTask):
                 WHERE mvtgeom IS NOT NULL;
                 '''.format(x=tile[0], y=tile[1], z=tile[2], geography_level=geography,
                         recordset=", ".join(recordset),
-                        cols="', '".join(columns),
-                        mccategories="', '".join(mc_categories),
-                        mcdates="','".join(mc_dates))
+                        cols="', '".join(columns))
 
     def _get_mc_dates(self, month="02"):
         session = current_session()

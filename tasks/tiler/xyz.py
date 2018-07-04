@@ -24,9 +24,6 @@ class TilerXYZTableTask(Task):
     def __init__(self, *args, **kwargs):
         super(TilerXYZTableTask, self).__init__(*args, **kwargs)
         self.config_data = self._get_config_data()
-        if not os.path.exists('tmp/tiler'):
-            os.makedirs('tmp/tiler')
-        self._csv_filename = 'tmp/tiler/tile_{}.csv'.format(self.task_id)
 
     def get_config_file(self):
         raise NotImplementedError('Config file must be implemented by the child class')
@@ -34,56 +31,53 @@ class TilerXYZTableTask(Task):
     def get_geography_level(self, level):
         raise NotImplementedError('Geography levels file must be implemented by the child class')
 
-    def get_columns(self, config):
+    def get_columns(self, config, shard_value=None):
         raise NotImplementedError('Get columns function must be implemented by the child class')
 
-    def get_table_columns(self, config):
+    def get_table_columns(self, config, shard_value=None):
         raise NotImplementedError('Get Table columns function must be implemented by the child class')
 
-    def get_recordset(self, config):
-        raise NotImplementedError('Get recordset function must be implemented by the child class')
-
-    def get_tile_query(self, config):
+    def get_tile_query(self, config, tile, geography, shard_value=None):
         raise NotImplementedError('Get tile query function must be implemented by the child class')
 
 
     def run(self):
         config_data = self._get_config_data()
-        for table_config in config_data:
-            table_bboxes = table_config['bboxes']
-            tables_data = self._get_table_names(table_config)
+        for config in config_data:
+            table_bboxes = config['bboxes']
+            tables_data = self._get_table_names(config)
             for table_data in tables_data:
-                self._create_schema_and_table(table_data, table_config)
-                self._generate_and_insert_tiles(self.zoom_level, table_data, table_config, table_bboxes)
-                self._insert_tiles(table_data)
+                self._create_schema_and_table(table_data, config)
+                self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
+                #self._insert_tiles(table_data)
 
     def _get_table_names(self,config):
         table_names = []
         if config['sharded']:
             for value in config['sharding']['values']:
-                table_names.append({"schema": config['schema'], "table": "{}_{}".format(config['table'], value)})
+                table_names.append({"schema": config['schema'], "table": "{}_{}".format(config['table'], value), "value": value})
         else:
-            table_names.append({"schema": config['schema'], "table": config['table']})
+            table_names.append({"schema": config['schema'], "table": config['table'], "value": None})
 
         return table_names
 
-    def _create_schema_and_table(self, table_data, table_config):
+    def _create_schema_and_table(self, table_data, config):
         session = current_session()
         session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
-        cols_schema = self.get_table_columns(table_config)
+        cols_schema = self.get_table_columns(config, table_data['value'])
         sql_table = '''CREATE TABLE IF NOT EXISTS {table}(
-                x INTEGER NOT NULL,
-                y INTEGER NOT NULL,
-                z INTEGER NOT NULL,
-                mvt_geometry Geometry NOT NULL,
-                geoid VARCHAR NOT NULL,
-                area_ratio NUMERIC,
-                area NUMERIC,
-                {cols},
-                CONSTRAINT {table_name}_pk PRIMARY KEY (x,y,z,geoid)
-            )'''.format(table=self._get_table_name(table_data),
-                        table_name=table_data['table'],
-                        cols=", ".join(cols_schema))
+                       x INTEGER NOT NULL,
+                       y INTEGER NOT NULL,
+                       z INTEGER NOT NULL,
+                       mvt_geometry Geometry NOT NULL,
+                       geoid VARCHAR NOT NULL,
+                       area_ratio NUMERIC,
+                       area NUMERIC,
+                       {cols},
+                       CONSTRAINT {table_name}_pk PRIMARY KEY (x,y,z,geoid)
+                    )'''.format(table=self._get_table_name(table_data),
+                                table_name=table_data['table'],
+                                cols=", ".join(cols_schema))
         session.execute(sql_table)
         session.commit()
 
@@ -101,8 +95,7 @@ class TilerXYZTableTask(Task):
 
         return False
 
-    def _generate_and_insert_tiles(self, zoom, table_data, table_config, bboxes_config):
-        recordset = self.get_recordset(table_config)
+    def _generate_csv_tiles(self, zoom, table_data, config, bboxes_config):
         tiles = []
         tile_start = time.time()
         for x in range(0, (pow(2, zoom) + 1)):
@@ -110,32 +103,34 @@ class TilerXYZTableTask(Task):
                 if self._tile_in_bboxes(zoom, x, y, bboxes_config):
                     tiles.append([x, y, zoom])
         tile_end = time.time()
-        LOGGER.info("Tiles to be processed: {} tiles. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
+        LOGGER.info("Tiles to be processed: {}. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
         sql_start = time.time()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            tile_query = self.get_tile_query(config)
-            exceptions = loop.run_until_complete(self._generate_tiles(tiles, recordset,
-                                                                      tile_query))
+            exceptions = loop.run_until_complete(self._generate_tiles(tiles, config, table_data))
+            exceptions =  [e for e in exceptions if e is not None]
             if exceptions:
                 LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([str(e) for e in exceptions if e is not None])))
         finally:
             loop.close()
         sql_end = time.time()
-        LOGGER.info("Generation tiles time was {} seconds".format(sql_end - sql_start))
+        LOGGER.info("Generated tiles it took {} seconds".format(sql_end - sql_start))
 
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
                            concurrent.futures._base.TimeoutError),
                           max_time=600)
-    async def _generate_tiles(self, tiles, recordset, tile_query):
-        mc_dates = self._get_mc_dates()
-        with open(self._csv_filename, 'w+') as csvfile:
+    async def _generate_tiles(self, tiles, config, table_data):
+        with open(self._get_csv_filename(table_data), 'w+') as csvfile:
             db_pool = await async_pool()
+            columns = self.get_columns(config, table_data['value'])
             csvwriter = csv.writer(csvfile)
+            headers = ['x', 'y', 'z', 'mvt_geometry', 'geoid', 'area_ratio', 'area']
+            headers += [column['column_name'].lower() for column in columns]
+            csvwriter.writerow(headers)
             geography_level = self.get_geography_level(self.geography)
-            executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, recordset, tile_query)
+            executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, config, table_data['value'])
                               for tile in tiles]
             exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
             return exceptions
@@ -144,7 +139,10 @@ class TilerXYZTableTask(Task):
                           (asyncio.TimeoutError,
                            concurrent.futures._base.TimeoutError),
                           max_time=600)
-    async def _generate_tile(self, db_pool, csvwriter, tile, geography, recordset, tile_query):
+    async def _generate_tile(self, db_pool, csvwriter, tile, geography, config, shard_value=None):
+        LOGGER.info("Before tile query with shard value {}".format(shard_value))
+        tile_query = self.get_tile_query(config, tile, geography, shard_value)
+        LOGGER.info(tile_query)
         conn = None
         try:
             conn = await db_pool.acquire()
@@ -171,20 +169,23 @@ class TilerXYZTableTask(Task):
             cursor.copy_from(f, table_name, sep=',', null='')
             session.commit()
         copy_end = time.time()
-        LOGGER.info("Copy tiles time was {} seconds".format(copy_end - copy_start))
+        LOGGER.info("Copy tiles for table {} took {} seconds".format(table_data['table'],copy_end - copy_start))
 
     def output(self):
         targets = []
-        for table_config in self.config_data:
-            tables_data = self._get_table_names(table_config)
+        for config in self.config_data:
+            tables_data = self._get_table_names(config)
             for table_data in tables_data:
                 targets.append(PostgresTarget(table_data['schema'],
-                                            self._get_table_name(table_data),
-                                            where='z = {}'.format(self.zoom_level)))
+                                              self._get_table_name(table_data),
+                                              where='z = {}'.format(self.zoom_level)))
         return targets
 
     def _get_table_name(self, table_data):
         return "\"{schema}\".\"{table}\"".format(schema=table_data['schema'], table=table_data['table'])
 
     def _get_csv_filename(self, table_data):
-        return "tiler_{table_name}".format(table_name=self._get_table_name(table_data))
+        if not os.path.exists('tmp/tiler'):
+            os.makedirs('tmp/tiler')
+        return "tmp/tiler/tiler_{table_name}_{geography}.csv".format(table_name=table_data['table'],
+                                                                     geography=self.geography)

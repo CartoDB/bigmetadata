@@ -515,7 +515,36 @@
         "table": "xyz_us_mc",
         "schema": "tiler",
         "geoms": false,
-        "bboxes": [],
+        "bboxes": [
+            {
+                "description": "Contiguous US",
+                "xmin": -124.848974, "ymin": 24.396308, "xmax": -66.885444, "ymax": 49.384358
+            },
+            {
+                "description": "Alaska",
+                "xmin": -179.45, "ymin": 51.10, "xmax": -129.94, "ymax": 71.63
+            },
+            {
+                "description": "Alaska2",
+                "xmin": 172.30, "ymin": 51.283, "xmax": 179.865, "ymax": 53.074
+            },
+            {
+                "description": "Hawaii",
+                "xmin": -178.443593, "ymin": 18.86546, "xmax": -154.755792, "ymax": 28.517269
+            },
+            {
+                "description": "Puerto Rico",
+                "xmin": -67.998751, "ymin": 17.623468, "xmax": -64.512674, "ymax": 18.568002
+            },
+            {
+                "description": "Samoa",
+                "xmin": -171.141907, "ymin": -14.601813, "xmax": -168.101612, "ymax": -10.997203
+            },
+            {
+                "description": "Northern Mariana Islands",
+                "xmin": 144.563426, "ymin": 13.182335, "xmax": 146.154418, "ymax": 20.616556
+            }
+        ],
         "sharded": true,
         "sharding": {
             "values": [1,2,3,4,5,6,7,8,9,10,11,12]
