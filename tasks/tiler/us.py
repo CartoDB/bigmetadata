@@ -66,7 +66,6 @@ class XYZTables(TilerXYZTableTask):
             recordset.append("(mvtdata->>'{name}')::{type} as {name}".format(name=column['column_name'].lower(),
                                                                              type=column['type']))
 
-        LOGGER.info(column)
         return recordset
 
     def get_tile_query(self, config, tile, geography, shard_value=None):

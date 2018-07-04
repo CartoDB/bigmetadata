@@ -140,9 +140,7 @@ class TilerXYZTableTask(Task):
                            concurrent.futures._base.TimeoutError),
                           max_time=600)
     async def _generate_tile(self, db_pool, csvwriter, tile, geography, config, shard_value=None):
-        LOGGER.info("Before tile query with shard value {}".format(shard_value))
         tile_query = self.get_tile_query(config, tile, geography, shard_value)
-        LOGGER.info(tile_query)
         conn = None
         try:
             conn = await db_pool.acquire()
@@ -181,7 +179,7 @@ class TilerXYZTableTask(Task):
             tables_data = self._get_table_names(config)
             for table_data in tables_data:
                 targets.append(PostgresTarget(table_data['schema'],
-                                              self._get_table_name(table_data),
+                                              table_data['table'],
                                               where='z = {}'.format(self.zoom_level)))
         return targets
 
