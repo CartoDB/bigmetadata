@@ -49,7 +49,7 @@ class TilerXYZTableTask(Task):
             for table_data in tables_data:
                 self._create_schema_and_table(table_data, config)
                 self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
-                #self._insert_tiles(table_data)
+                self._insert_tiles(table_data)
 
     def _get_table_names(self,config):
         table_names = []
@@ -69,7 +69,7 @@ class TilerXYZTableTask(Task):
                        x INTEGER NOT NULL,
                        y INTEGER NOT NULL,
                        z INTEGER NOT NULL,
-                       mvt_geometry Geometry NOT NULL,
+                       mvt_geometry Geometry,
                        geoid VARCHAR NOT NULL,
                        area_ratio NUMERIC,
                        area NUMERIC,
@@ -166,8 +166,12 @@ class TilerXYZTableTask(Task):
         session = current_session()
         with open(self._get_csv_filename(table_data), 'rb') as f:
             cursor = session.connection().connection.cursor()
-            cursor.copy_from(f, table_name, sep=',', null='')
+            sql_copy = """
+                        COPY {table} FROM STDIN WITH CSV HEADER DELIMITER AS ','
+                       """.format(table=table_name)
+            cursor.copy_expert(sql=sql_copy, file=f)
             session.commit()
+            cursor.close()
         copy_end = time.time()
         LOGGER.info("Copy tiles for table {} took {} seconds".format(table_data['table'],copy_end - copy_start))
 
