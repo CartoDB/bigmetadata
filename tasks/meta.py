@@ -32,7 +32,7 @@ def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
 
 
 async def async_pool(user=None, password=None, host=None, port=None,
-                     db=None, max_connections=100, timeout=60):
+                     db=None, max_connections=150, timeout=60):
     user = user or os.environ.get('PGUSER', 'postgres')
     password = password or os.environ.get('PGPASSWORD', '')
     host = host or os.environ.get('PGHOST', 'localhost')

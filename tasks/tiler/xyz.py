@@ -126,9 +126,16 @@ class TilerXYZTableTask(Task):
             table_bboxes = config['bboxes']
             tables_data = self._get_table_names(config)
             for table_data in tables_data:
+                start_time = time.time()
+                LOGGER.info("Processing table {}".format(table_data['table']))
                 self._create_schema_and_table(table_data, config)
                 self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
                 self._insert_tiles(table_data)
+                end_time = time.time()
+                LOGGER.info("Finished processing table {}. It took {} seconds".format(
+                    table_data['table'],
+                    (end_time - start_time)
+                ))
 
     def _get_table_names(self,config):
         table_names = []
@@ -196,6 +203,11 @@ class TilerXYZTableTask(Task):
         sql_end = time.time()
         LOGGER.info("Generated tiles it took {} seconds".format(sql_end - sql_start))
 
+    def batch(self,iterable, n=1):
+        l = len(iterable)
+        for ndx in range(0, l, n):
+            yield iterable[ndx:min(ndx + n, l)]
+
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
                            concurrent.futures._base.TimeoutError),
@@ -209,9 +221,16 @@ class TilerXYZTableTask(Task):
             headers += [column['column_name'].lower() for column in columns]
             csvwriter.writerow(headers)
             geography_level = self.get_geography_level(self.geography)
-            executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, config, table_data['value'])
-                              for tile in tiles]
-            exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
+            batch_no = 1
+            for tiles_batch in self.batch(tiles, 100):
+                LOGGER.info("Processing batch {} with {} elements".format(batch_no, len(tiles_batch)))
+                batch_start = time.time()
+                executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, config, table_data['value'])
+                                for tile in tiles_batch]
+                exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
+                batch_end = time.time()
+                LOGGER.info("Batch {} processed in {} seconds".format(batch_no, (batch_end - batch_start)))
+                batch_no += 1
             return exceptions
 
     @backoff.on_exception(backoff.expo,
