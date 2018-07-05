@@ -15,6 +15,86 @@ import csv
 
 LOGGER = get_logger(__name__)
 
+class TilesTempTable(Task):
+    zoom_level = IntParameter()
+    geography = Parameter()
+    config_file = Parameter()
+
+    def __init__(self, *args, **kwargs):
+        super(TilesTempTable, self).__init__(*args, **kwargs)
+        self.config_data = self._get_config_data()
+
+    def run(self):
+        session = current_session()
+        config_data = self._get_config_data()
+        for config in config_data:
+            self._create_table(session, config)
+            tiles = self._calculate_tiles(config)
+            self._store_tiles(session, tiles, config)
+
+    def _calculate_tiles(self,config):
+        tiles = []
+        for x in range(0, (pow(2, self.zoom_level) + 1)):
+            for y in range(0, (pow(2, self.zoom_level) + 1)):
+                if self._tile_in_bboxes(self.zoom_level, x, y, config['bboxes']):
+                    tiles.append([x, y, self.zoom_level])
+        return tiles
+
+    def _tile_in_bboxes(self, zoom, x, y, bboxes):
+        rect1 = tile2bounds(zoom, x, y)
+        for bbox in bboxes:
+            rect2 = [bbox['xmin'], bbox['ymin'], bbox['xmax'], bbox['ymax']]
+            if bboxes_intersect(rect1, rect2):
+                return True
+
+        return False
+
+    def _store_tiles(self, session, tiles, config):
+        for tile in tiles:
+            bounds = 'SELECT cdb_observatory.OBS_GetTileBoundsx'
+            query = '''
+                    WITH data as (
+                        SELECT {x} x, {y} y, {z} z, cdb_observatory.OBS_GetTileBounds({z},{x},{y}) bounds
+                    )
+                    INSERT INTO \"{schema}\".\"{table}\" (x,y,z,bounds,envelope,ext)
+                    SELECT x, y, z, bounds bounds, ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
+                    ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
+                    FROM data
+                    '''.format(schema=config['schema'],table=self._get_table_name(config),
+                               x=tile[0],y=tile[1],z=tile[2])
+            session.execute(query)
+        session.commit()
+
+    def _create_table(self,session,config):
+        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(config['schema']))
+        sql_table = '''CREATE TABLE IF NOT EXISTS \"{schema}\".\"{table}\"(
+                       x INTEGER NOT NULL,
+                       y INTEGER NOT NULL,
+                       z INTEGER NOT NULL,
+                       bounds Numeric[],
+                       envelope Geometry,
+                       ext Geometry,
+                       CONSTRAINT {table}_pk PRIMARY KEY (x,y,z)
+                    )'''.format(schema=config['schema'],
+                                table=self._get_table_name(config))
+        session.execute(sql_table)
+        session.commit()
+
+    def output(self):
+        targets = []
+        for config in self.config_data:
+            targets.append(PostgresTarget(config['schema'],
+                                          self._get_table_name(config)))
+        return targets
+
+    def _get_table_name(self,config):
+        return "{table}_tiles_temp_{geo}_{zoom}".format(table=config['table'], geo=self.geography, zoom=self.zoom_level)
+
+    def _get_config_data(self):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        with (open('{}/conf/{}'.format(dir_path, self.config_file))) as f:
+            return json.load(f)
+
 
 class TilerXYZTableTask(Task):
 
@@ -39,7 +119,6 @@ class TilerXYZTableTask(Task):
 
     def get_tile_query(self, config, tile, geography, shard_value=None):
         raise NotImplementedError('Get tile query function must be implemented by the child class')
-
 
     def run(self):
         config_data = self._get_config_data()

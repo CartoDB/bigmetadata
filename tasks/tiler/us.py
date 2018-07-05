@@ -1,5 +1,5 @@
 from tasks.us.census.tiger import ShorelineClip
-from tasks.tiler.xyz import TilerXYZTableTask
+from tasks.tiler.xyz import TilerXYZTableTask, TilesTempTable
 from luigi import WrapperTask
 from lib.logger import get_logger
 from tasks.meta import current_session, async_pool
@@ -22,7 +22,10 @@ class XYZTables(TilerXYZTableTask):
 
     def requires(self):
         return {
-            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
+            'shorelineclip': ShorelineClip(geography=self.geography, year='2015'),
+            'tiles': TilesTempTable(geography=self.geography,
+                                    zoom_level=self.zoom_level,
+                                    config_file=self.get_config_file())
         }
 
     def get_config_file(self):
