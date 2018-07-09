@@ -330,8 +330,11 @@ fr-income:
 
 ### Geographica
 
-geographica-all:
-	make -- run geographica.csv.AllMeasurements
+geographica-us-all:
+	make -- run geographica.us.csv.AllMeasurements
+
+geographica-ca-all:
+	make -- run geographica.ca.csv.AllMeasurements
 
 ### mx
 mx-all: mx-geo mx-census
