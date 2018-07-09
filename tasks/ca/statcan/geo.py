@@ -96,7 +96,6 @@ class DownloadGeography(DownloadUnzipTask):
     def download(self):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
-
 class ImportGeography(Shp2TempTableTask):
     '''
     Import geographies into postgres by geography level

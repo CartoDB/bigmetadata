@@ -923,7 +923,10 @@ class TableTask(Task):
             LOGGER.info('time: %s', after - before)
         else:
             LOGGER.info('populate')
+            before = time.time()
             self.populate()
+            after = time.time()
+            LOGGER.info('time: %s', after - before)
 
         before = time.time()
         LOGGER.info('update_or_create_metadata')
