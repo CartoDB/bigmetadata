@@ -233,7 +233,9 @@ class Survey(BaseParams, TableTask):
         in_colnames = ['da.geom_id']
         for colname in out_colnames:
             if colname != 'geo_code':
-                in_colnames.append('({colname} * (ST_Area(da.the_geom)/ST_Area(cd.the_geom))) {colname}'.format(colname=colname))
+                # We reduce the number of decimals to reduce the size of the row to avoid hit
+                # the limit which is 8Kb. More info https://github.com/CartoDB/bigmetadata/issues/527
+                in_colnames.append('round(cast(float8 ({colname} * (ST_Area(da.the_geom)/ST_Area(cd.the_geom))) as numeric), 2) {colname}'.format(colname=colname))
 
         insert_query = '''
                 INSERT INTO {output} ({out_colnames})
