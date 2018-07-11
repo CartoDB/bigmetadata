@@ -1,6 +1,5 @@
 import os
 import urllib.request
-import time
 
 from abc import ABCMeta
 from luigi import Task, Parameter, WrapperTask, LocalTarget
@@ -236,7 +235,7 @@ class Survey(BaseParams, TableTask):
             if colname != 'geo_code':
                 in_colnames.append('({colname} * (ST_Area(da.the_geom)/ST_Area(cd.the_geom))) {colname}'.format(colname=colname))
 
-        insert_query =   '''
+        insert_query = '''
                 INSERT INTO {output} ({out_colnames})
                 SELECT {in_colnames} FROM {da_geom} da
                 INNER JOIN {cd_geom} cd ON (cd.geom_id = left(da.geom_id,4))
