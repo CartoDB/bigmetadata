@@ -4,7 +4,6 @@ import csv
 
 from luigi import Task, WrapperTask, Parameter
 from luigi.local_target import LocalTarget
-from tasks.ca.statcan.geo import Geography
 from tasks.ca.statcan.data import AllCensusTopics, AllNHSTopics
 from tasks.meta import current_session
 from lib.logger import get_logger
