@@ -59,7 +59,7 @@ GEOGRAPHY = {
     GEO_SA3: {'name': 'Statistical Area Level 3', 'weight': 15, 'region_col': 'SA3_CODE', 'proper_name': 'SA3_NAME'},
     GEO_SA2: {'name': 'Statistical Area Level 2', 'weight': 14, 'region_col': 'SA2_MAIN', 'proper_name': 'SA2_NAME'},
     GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT', 'proper_name': 'STATE_NAME'},
-    GEO_MB: {'name': 'Mesh blocks', 'weight': 13, 'region_col': 'MB_CODE16', 'proper_name': 'SA2_NAME16'},
+    GEO_MB: {'name': 'Mesh blocks', 'weight': 13, 'region_col': 'MB_CODE16', 'proper_name': 'SA2_NAME16', 'parent_col': 'SA1_7DIG16'},
     GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE', 'proper_name': 'GCCSA_NAME'},
     GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE', 'proper_name': 'LGA_NAME'},
     GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN', 'proper_name': 'SLA_NAME'},
@@ -234,6 +234,12 @@ class GeographyColumns(ColumnsTask):
             weight=0,
             targets={geom: GEOM_REF},
         )
+        parent_id = OBSColumn(
+            type='Text',
+            id=self.resolution + '_parent_id',
+            weight=0,
+            targets={geom: GEOM_REF},
+        )
         geom_name = OBSColumn(
             type='Text',
             name= 'Proper name of {}'.format(GEOGRAPHY[self.resolution]['name']),
@@ -255,6 +261,7 @@ class GeographyColumns(ColumnsTask):
         cols = OrderedDict([
             ('geom_name', geom_name),
             ('geom_id', geom_id),
+            ('parent_id', parent_id),
             ('the_geom', geom),
         ])
 
@@ -294,13 +301,19 @@ class Geography(TableTask):
 
     def populate(self):
         session = current_session()
+        if self.resolution == GEO_MB:
+            parent_col = GEOGRAPHY[self.resolution]['parent_col'] + ' as parent_id,'
+        else:
+            parent_col = ''
         session.execute('INSERT INTO {output} '
                         'SELECT {geom_name} as geom_name, '
                         '       {region_col} as geom_id, '
+                        '       {parent_col}'
                         '       wkb_geometry as the_geom '
                         'FROM {input} '.format(
                             geom_name=GEOGRAPHY[self.resolution]['proper_name'],
                             region_col=GEOGRAPHY[self.resolution]['region_col'],
+                            parent_col=parent_col,
                             output=self.output().table,
                             input=self.input()['data'].table))
 
