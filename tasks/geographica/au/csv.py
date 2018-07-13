@@ -30,7 +30,7 @@ class Measurements2CSV(Task):
 
     def requires(self):
         return {
-            'bcp': BCPAllGeographiesAllTables()
+            'bcp': BCPAllGeographiesAllTables(year=2011)
         }
 
     def _get_config_data(self):
