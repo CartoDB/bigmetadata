@@ -64,6 +64,13 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
+	"au.geo.importgeography_mb_2011": {
+		"simplification": "mapshaper",
+		"geomfield": "wkb_geometry",
+		"factor": "10",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
 	"au.geo.importgeography_sed_2011": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
