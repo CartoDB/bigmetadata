@@ -16,7 +16,8 @@ GEOGRAPHY_LEVELS = {
     'GEO_SA4': 'au.geo.SA4',
     'GEO_SA3': 'au.geo.SA3',
     'GEO_SA2': 'au.geo.SA2',
-    'GEO_SA1': 'au.geo.SA1'
+    'GEO_SA1': 'au.geo.SA1',
+    'GEO_MB': 'au.geo.MB'
 }
 
 
