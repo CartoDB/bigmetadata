@@ -28,5 +28,5 @@
 {"numer_id": "au.data.B26_FI_2000_2499_Tot", "denom_id": "au.data.B26_Tot_Tot"},
 {"numer_id": "au.data.B26_FI_2500_2999_Tot", "denom_id": "au.data.B26_Tot_Tot"},
 {"numer_id": "au.data.B26_FI_3000_3499_Tot", "denom_id": "au.data.B26_Tot_Tot"},
-{"numer_id": "au.data.B26_FI_3500_3999_Tot", "denom_id": "au.data.B26_Tot_Tot"}]
+{"numer_id": "au.data.B26_FI_3500_3999_Tot", "denom_id": "au.data.B26_Tot_Tot"},
 {"numer_id": "au.data.B26_FI_4000_more_Tot", "denom_id": "au.data.B26_Tot_Tot"}]
