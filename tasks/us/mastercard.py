@@ -1,13 +1,16 @@
 import os
 import urllib.request
+import itertools
 from luigi import Parameter, WrapperTask
 from tasks.base_tasks import (DownloadUnzipTask, CSV2TempTableTask, TempTableTask)
 from tasks.meta import current_session
+from tasks.targets import PostgresTarget
 
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
+TILER_SCHEMA = 'tiler'
 BLOCK = 'block'
 BLOCK_GROUP = 'block group'
 CENSUS_TRACT = 'tract'
@@ -21,27 +24,80 @@ GEOGRAPHIES = [
     STATE
 ]
 
+MONTH = 'month'
+CATEGORY = 'category'
+REGION_TYPE = 'region_type'
+REGION_ID = 'region_id'
+TOTAL_MERCHANTS = 'total_merchants'
+TICKET_SIZE_SCORE = 'ticket_size_score'
+TICKET_SIZE_COUNTRY_SCORE = 'ticket_size_country_score'
+TICKET_SIZE_METRO_SCORE = 'ticket_size_metro_score'
+TICKET_SIZE_STATE_SCORE = 'ticket_size_state_score'
+GROWTH_SCORE = 'growth_score'
+GROWTH_COUNTRY_SCORE = 'growth_country_score'
+GROWTH_METRO_SCORE = 'growth_metro_score'
+GROWTH_STATE_SCORE = 'growth_state_score'
+STABILITY_SCORE = 'stability_score'
+STABILITY_COUNTRY_SCORE = 'stability_country_score'
+STABILITY_METRO_SCORE = 'stability_metro_score'
+STABILITY_STATE_SCORE = 'stability_state_score'
+TRANSACTIONS_SCORE = 'transactions_score'
+TRANSACTIONS_COUNTRY_SCORE = 'transactions_country_score'
+TRANSACTIONS_METRO_SCORE = 'transactions_metro_score'
+TRANSACTIONS_STATE_SCORE = 'transactions_state_score'
+SALES_SCORE = 'sales_score'
+SALES_COUNTRY_SCORE = 'sales_country_score'
+SALES_METRO_SCORE = 'sales_metro_score'
+SALES_STATE_SCORE = 'sales_state_score'
+
 # (file_source_column, db_target_column)
-MONTH_COLUMN = ('month', 'month')
-CATEGORY_COLUMN = ('category', 'category')
-REGION_TYPE_COLUMN = ('region_type', 'region_type')
-REGION_ID_COLUMN = ('region_id', 'region_id')
-TOTAL_MERCHANTS_COLUMN = ('total_merchants', 'total_merchants')
-TICKET_SIZE_COUNTRY_SCORE_COLUMN = ('ticket_size_score', 'ticket_size_country_score')
-TICKET_SIZE_METRO_SCORE_COLUMN = ('ticket_size_metro_score', 'ticket_size_metro_score')
-TICKET_SIZE_STATE_SCORE_COLUMN = ('ticket_size_state_score', 'ticket_size_state_score')
-GROWTH_COUNTRY_SCORE_COLUMN = ('growth_score', 'growth_country_score')
-GROWTH_METRO_SCORE_COLUMN = ('growth_metro_score', 'growth_metro_score')
-GROWTH_STATE_SCORE_COLUMN = ('growth_state_score', 'growth_state_score')
-STABILITY_COUNTRY_SCORE_COLUMN = ('stability_score', 'stability_country_score')
-STABILITY_METRO_SCORE_COLUMN = ('stability_metro_score', 'stability_metro_score')
-STABILITY_STATE_SCORE_COLUMN = ('stability_state_score', 'stability_state_score')
-TRANSACTIONS_COUNTRY_SCORE_COLUMN = ('transactions_score', 'transactions_country_score')
-TRANSACTIONS_METRO_SCORE_COLUMN = ('transactions_metro_score', 'transactions_metro_score')
-TRANSACTIONS_STATE_SCORE_COLUMN = ('transactions_state_score', 'transactions_state_score')
-SALES_COUNTRY_SCORE_COLUMN = ('sales_score', 'sales_country_score')
-SALES_METRO_SCORE_COLUMN = ('sales_metro_score', 'sales_metro_score')
-SALES_STATE_SCORE_COLUMN = ('sales_state_score', 'sales_state_score')
+MONTH_COLUMN = (MONTH, MONTH)
+CATEGORY_COLUMN = (CATEGORY, CATEGORY)
+REGION_TYPE_COLUMN = (REGION_TYPE, REGION_TYPE)
+REGION_ID_COLUMN = (REGION_ID, REGION_ID)
+TOTAL_MERCHANTS_COLUMN = (TOTAL_MERCHANTS, TOTAL_MERCHANTS)
+TICKET_SIZE_COUNTRY_SCORE_COLUMN = (TICKET_SIZE_SCORE, TICKET_SIZE_COUNTRY_SCORE)
+TICKET_SIZE_METRO_SCORE_COLUMN = (TICKET_SIZE_METRO_SCORE, TICKET_SIZE_METRO_SCORE)
+TICKET_SIZE_STATE_SCORE_COLUMN = (TICKET_SIZE_STATE_SCORE, TICKET_SIZE_STATE_SCORE)
+GROWTH_COUNTRY_SCORE_COLUMN = (GROWTH_SCORE, GROWTH_COUNTRY_SCORE)
+GROWTH_METRO_SCORE_COLUMN = (GROWTH_METRO_SCORE, GROWTH_METRO_SCORE)
+GROWTH_STATE_SCORE_COLUMN = (GROWTH_STATE_SCORE, GROWTH_STATE_SCORE)
+STABILITY_COUNTRY_SCORE_COLUMN = (STABILITY_SCORE, STABILITY_COUNTRY_SCORE)
+STABILITY_METRO_SCORE_COLUMN = (STABILITY_METRO_SCORE, STABILITY_METRO_SCORE)
+STABILITY_STATE_SCORE_COLUMN = (STABILITY_STATE_SCORE, STABILITY_STATE_SCORE)
+TRANSACTIONS_COUNTRY_SCORE_COLUMN = (TRANSACTIONS_SCORE, TRANSACTIONS_COUNTRY_SCORE)
+TRANSACTIONS_METRO_SCORE_COLUMN = (TRANSACTIONS_METRO_SCORE, TRANSACTIONS_METRO_SCORE)
+TRANSACTIONS_STATE_SCORE_COLUMN = (TRANSACTIONS_STATE_SCORE, TRANSACTIONS_STATE_SCORE)
+SALES_COUNTRY_SCORE_COLUMN = (SALES_SCORE, SALES_COUNTRY_SCORE)
+SALES_METRO_SCORE_COLUMN = (SALES_METRO_SCORE, SALES_METRO_SCORE)
+SALES_STATE_SCORE_COLUMN = (SALES_STATE_SCORE, SALES_STATE_SCORE)
+
+MEASUREMENT_COLUMNS = [
+    TOTAL_MERCHANTS_COLUMN,
+    TICKET_SIZE_COUNTRY_SCORE_COLUMN,
+    TICKET_SIZE_METRO_SCORE_COLUMN,
+    TICKET_SIZE_STATE_SCORE_COLUMN,
+    GROWTH_COUNTRY_SCORE_COLUMN,
+    GROWTH_METRO_SCORE_COLUMN,
+    GROWTH_STATE_SCORE_COLUMN,
+    STABILITY_COUNTRY_SCORE_COLUMN,
+    STABILITY_METRO_SCORE_COLUMN,
+    STABILITY_STATE_SCORE_COLUMN,
+    TRANSACTIONS_COUNTRY_SCORE_COLUMN,
+    TRANSACTIONS_METRO_SCORE_COLUMN,
+    TRANSACTIONS_STATE_SCORE_COLUMN,
+    SALES_COUNTRY_SCORE_COLUMN,
+    SALES_METRO_SCORE_COLUMN,
+    SALES_STATE_SCORE_COLUMN,
+]
+
+CATEGORIES = {
+    'NEP': 'non eating places',
+    'EP': 'eating places',
+    'APP': 'apparel',
+    'SB': 'small business',
+    'TR': 'total retail',
+}
 
 
 class DownloadUnzipMasterCard(DownloadUnzipTask):
@@ -70,7 +126,7 @@ class ImportMasterCardData(CSV2TempTableTask):
                 return os.path.join(self.input().path, file)
 
 
-class MasterCardData(TempTableTask):
+class MasterCardDataBaseTable(TempTableTask):
     geography = Parameter()
 
     def requires(self):
@@ -183,6 +239,133 @@ class MasterCardData(TempTableTask):
             ))
             session.rollback()
             raise e
+
+
+class MasterCardData(TempTableTask):
+    geography = Parameter()
+
+    def requires(self):
+        return MasterCardDataBaseTable(geography=self.geography)
+
+    def _create_table(self, session):
+        LOGGER.info('Creating table {}'.format(self.output().table))
+
+        fields = ','.join(['{}_{} NUMERIC'.format(x[0].lower(), x[1].lower()) for x in
+                           itertools.product([x[1] for x in MEASUREMENT_COLUMNS],
+                                             CATEGORIES.keys())])
+        query = '''
+                CREATE TABLE "{schema}".{table} (
+                    {region_id} text NOT NULL,
+                    {month} text NOT NULL,
+                    {fields}
+                );
+                '''.format(
+                        schema=self.output().schema,
+                        table=self.output().tablename,
+                        region_id=REGION_ID_COLUMN[1],
+                        month=MONTH_COLUMN[1],
+                        fields=fields,
+                    )
+        session.execute(query)
+        session.commit()
+
+    def _insert_tr(self, session):
+        LOGGER.info('Inserting "total retail" data into {}'.format(self.output().table))
+
+        output_fields = ','.join(['{}_tr'.format(x[1].lower()) for x in MEASUREMENT_COLUMNS])
+        input_fields = ','.join(['mc.{field} as {field}_tr'.format(field=x[1].lower())
+                                 for x in MEASUREMENT_COLUMNS])
+
+        query = '''
+                INSERT INTO "{output_schema}".{output_table} (
+                    {region_id},
+                    {month},
+                    {output_fields}
+                )
+                SELECT
+                    mc.{region_id},
+                    mc.{month},
+                    {input_fields}
+                    FROM
+                        "{input_schema}".{input_table} mc
+                    WHERE mc.category = 'total retail';
+                '''.format(
+                        output_schema=self.output().schema,
+                        output_table=self.output().tablename,
+                        region_id=REGION_ID_COLUMN[1],
+                        month=MONTH_COLUMN[1],
+                        output_fields=output_fields,
+                        input_fields=input_fields,
+                        input_schema=self.input().schema,
+                        input_table=self.input().tablename,
+                    )
+        session.execute(query)
+        session.commit()
+
+    def _create_constraints(self, session):
+        LOGGER.info('Creating constraints for {}'.format(self.output().table))
+
+        query = '''
+                ALTER TABLE "{schema}".{table}
+                ADD PRIMARY KEY({region_id}, {month});
+                '''.format(
+                    schema=self.output().schema,
+                    table=self.output().tablename,
+                    region_id=REGION_ID_COLUMN[1],
+                    month=MONTH_COLUMN[1],
+                )
+        session.execute(query)
+        session.commit()
+
+    def _update_category(self, session, category):
+        LOGGER.info('Updating {} with "{}" category'.format(self.output().table, category[1]))
+
+        fields = ','.join(['{field}_{category} = cat.{field}'.format(
+                                field=x[1].lower(), category=category[0].lower())
+                           for x in MEASUREMENT_COLUMNS])
+
+        query = '''
+                UPDATE "{output_schema}".{output_table} as mcc SET
+                    {fields}
+                FROM
+                    "{input_schema}".{input_table} cat
+                WHERE mcc.{region_id} = cat.{region_id}
+                  AND mcc.{month} = cat.{month}
+                  AND cat.category = '{category}';
+                '''.format(
+                    output_schema=self.output().schema,
+                    output_table=self.output().tablename,
+                    region_id=REGION_ID_COLUMN[1],
+                    month=MONTH_COLUMN[1],
+                    input_schema=self.input().schema,
+                    input_table=self.input().tablename,
+                    fields=fields,
+                    category=category[1]
+                )
+        session.execute(query)
+        session.commit()
+
+    def run(self):
+        session = current_session()
+        try:
+            self._create_table(session)
+            self._insert_tr(session)  # Insert the 'total retail' data
+            self._create_constraints(session)
+            for catid, catname in CATEGORIES.items():  # Insert the rest of the categories
+                if catid != 'TR':
+                    self._update_category(session, (catid, catname))
+        except Exception as e:
+            LOGGER.error('Error creating/populating {table}: {error}'.format(
+                table=self.output().table,
+                error=str(e)
+            ))
+            session.rollback()
+            session.execute('DROP TABLE "{schema}".{table};'.format(schema=self.output().schema,
+                                                                    table=self.output().tablename,))
+            raise e
+
+    def output(self):
+        return PostgresTarget(TILER_SCHEMA, 'mc_' + self.geography)
 
 
 class AllMasterCardData(WrapperTask):
