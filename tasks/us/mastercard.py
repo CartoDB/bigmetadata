@@ -135,6 +135,10 @@ class MasterCardDataBaseTable(TempTableTask):
     def run(self):
         session = current_session()
 
+        geography = self.geography
+        if self.geography == 'block_group':
+            geography = 'block group'
+
         try:
             query = '''
                     CREATE TABLE {table} (
@@ -227,7 +231,7 @@ class MasterCardDataBaseTable(TempTableTask):
                         sales_metro_score_column=SALES_METRO_SCORE_COLUMN[0],
                         sales_state_score_column=SALES_STATE_SCORE_COLUMN[0],
                         region_type=REGION_TYPE_COLUMN[0],
-                        geography=self.geography
+                        geography=geography
                     )
             session.execute(query)
 
