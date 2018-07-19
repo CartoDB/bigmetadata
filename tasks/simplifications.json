@@ -348,6 +348,13 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
+	"uk.census.postcodeareas.importpostcodeareas_": {
+		"simplification": "mapshaper",
+		"geomfield": "wkb_geometry",
+		"factor": "9",
+		"maxmemory": "8192",
+		"skipfailures": "no"
+	},
 
 	"US": "-------------------------------------",
 
