@@ -7,6 +7,7 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
+from tasks.uk.census.postcodeareas import PostcodeAreas, PostcodeAreasColumns
 
 from .ons import ImportUK, ImportEnglandWalesLocal
 from .scotland import ImportScotland
@@ -148,7 +149,46 @@ class Census(TableTask):
         current_session().execute(stmt)
 
 
+class CensusPostcodeAreas(TableTask):
+    def requires(self):
+        deps = {
+            'geom_columns': PostcodeAreasColumns(),
+            'data_columns': CensusColumns(),
+            'geo_oa': OutputAreas(),
+            'geo_pa': PostcodeAreas(),
+        }
+        for t in self.source_tables():
+            deps[t] = CensusTableTask(table=t)
+
+        return deps
+
+    def targets(self):
+        return {
+            self.input()['geo_pa'].obs_table: GEOM_REF,
+        }
+
+    def table_timespan(self):
+        return get_timespan('2011')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['GeographyCode'] = input_['geom_columns']['pa_id']
+        cols.update(input_['data_columns'])
+        return cols
+
+    def source_tables(self):
+        tables = set()
+        for col in COLUMNS_DEFINITION.values():
+            tables.update([d['table'] for d in col['data']])
+        return tables
+
+    def run(self):
+        pass
+
+
 class CensusWrapper(MetaWrapper):
     def tables(self):
         yield Census()
+        yield CensusPostcodeAreas()
         yield OutputAreas()
