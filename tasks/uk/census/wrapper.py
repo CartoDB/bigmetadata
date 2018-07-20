@@ -8,10 +8,13 @@ from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from tasks.uk.census.postcodeareas import PostcodeAreas, PostcodeAreasColumns
+from lib.logger import get_logger
 
 from .ons import ImportUK, ImportEnglandWalesLocal
 from .scotland import ImportScotland
 from .metadata import parse_table, COLUMNS_DEFINITION
+
+LOGGER = get_logger(__name__)
 
 
 class CensusTableTask(WrapperTask):
@@ -146,19 +149,20 @@ class Census(TableTask):
                    out_colnames=', '.join(out_colnames),
                    in_colnames=', '.join(in_colnames),
                    from_part=from_part)
+
         current_session().execute(stmt)
 
 
 class CensusPostcodeAreas(TableTask):
     def requires(self):
         deps = {
-            'geom_columns': PostcodeAreasColumns(),
+            'geom_oa_columns': OutputAreaColumns(),
+            'geom_pa_columns': PostcodeAreasColumns(),
             'data_columns': CensusColumns(),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
+            'census': Census(),
         }
-        for t in self.source_tables():
-            deps[t] = CensusTableTask(table=t)
 
         return deps
 
@@ -173,18 +177,42 @@ class CensusPostcodeAreas(TableTask):
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['GeographyCode'] = input_['geom_columns']['pa_id']
+        cols['GeographyCode'] = input_['geom_pa_columns']['pa_id']
         cols.update(input_['data_columns'])
         return cols
 
-    def source_tables(self):
-        tables = set()
-        for col in COLUMNS_DEFINITION.values():
-            tables.update([d['table'] for d in col['data']])
-        return tables
+    def populate(self):
+        input_ = self.input()
+        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
 
-    def run(self):
-        pass
+        stmt = '''
+                INSERT INTO {output} (geographycode, {out_colnames})
+                SELECT pa_id, {sum_colnames}
+                  FROM (
+                    SELECT CASE WHEN ST_Within(geo_pa.the_geom, geo_oa.the_geom)
+                                    THEN ST_Area(geo_pa.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                                WHEN ST_Within(geo_oa.the_geom, geo_pa.the_geom)
+                                    THEN 1
+                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pa.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                           END area_ratio,
+                           pa_id, {in_colnames}
+                      FROM {census_table} census,
+                           {geo_oa_table} geo_oa,
+                           {geo_pa_table} geo_pa
+                     WHERE census.geographycode = geo_oa.oa_sa
+                       AND ST_Intersects(geo_oa.the_geom, geo_pa.the_geom) = True
+                    ) q GROUP BY pa_id
+               '''.format(
+                    output=self.output().table,
+                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
+                    out_colnames=', '.join(colnames),
+                    in_colnames=', '.join(colnames),
+                    census_table=input_['census'].table,
+                    geo_oa_table=input_['geo_oa'].table,
+                    geo_pa_table=input_['geo_pa'].table,
+                )
+
+        current_session().execute(stmt)
 
 
 class CensusWrapper(MetaWrapper):
