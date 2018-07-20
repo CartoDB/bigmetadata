@@ -46,7 +46,7 @@ class Measurements2CSV(Task):
         if result:
             join_data = {}
             join_data['numer'] = {}
-            colnames = ['geom_id']
+            colnames = ['geom_id as geoid']
             for data in result.fetchall():
                 join_data['numer'][data['numer_table']] = {'table': 'observatory.{}'.format(data['numer_table']),
                                                            'join_column': data['numer_join_col']}
