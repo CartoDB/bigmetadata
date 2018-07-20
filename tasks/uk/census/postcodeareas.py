@@ -1,10 +1,11 @@
 from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, ColumnsTask, TagsTask,
-                              TableTask, SimplifiedTempTableTask)
+                              TableTask, SimplifiedTempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, OBSTable
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from lib.timespan import get_timespan
+from tasks.uk.shoreline import Shoreline
 
 from collections import OrderedDict
 
@@ -37,9 +38,36 @@ class ImportPostcodeAreas(Shp2TempTableTask):
         return self.input().path
 
 
+class ShorelineClippedPostcodeAreas(TempTableTask):
+    def requires(self):
+        return {
+            'shoreline': Shoreline(),
+            'postcode_area': ImportPostcodeAreas(),
+        }
+
+    def version(self):
+        return 1
+
+    def run(self):
+        session = current_session()
+
+        stmt = '''
+                CREATE TABLE {output_table} AS
+                SELECT name, label, ST_Intersection(pa.wkb_geometry, shore.the_geom) wkb_geometry
+                  FROM {postcode_areas_table} pa,
+                       {shoreline_table} shore
+               '''.format(
+                   output_table=self.output().table,
+                   postcode_areas_table=self.input()['postcode_area'].table,
+                   shoreline_table=self.input()['shoreline'].table,
+               )
+
+        session.execute(stmt)
+
+
 class SimplifiedPostcodeAreas(SimplifiedTempTableTask):
     def requires(self):
-        return ImportPostcodeAreas()
+        return ShorelineClippedPostcodeAreas()
 
 
 class SourceTags(TagsTask):
