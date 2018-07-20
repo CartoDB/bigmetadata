@@ -1,9 +1,9 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, TempTableTask, ColumnsTask, TagsTask,
+from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, ColumnsTask, TagsTask,
                               TableTask, SimplifiedTempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
 from tasks.meta import GEOM_REF, OBSColumn, OBSTag, OBSTable
-from tasks.tags import SectionTags, SubsectionTags, UnitTags, LicenseTags, BoundaryTags
+from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from lib.timespan import get_timespan
 
 from collections import OrderedDict

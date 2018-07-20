@@ -16,39 +16,38 @@ class LicenseTags(TagsTask):
             OBSTag(id='no-restrictions',
                    name='Unrestricted',
                    type='license',
-                   description='You may do whatever you want with this information'
-                  ),
+                   description='You may do whatever you want with this information'),
             OBSTag(id='uk_ogl',
-                    name='UK Open Government Licence (OGL)',
-                    type='license',
-                    description='The Licensor grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information subject to the conditions `here <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/>`_.'),
+                   name='UK Open Government Licence (OGL)',
+                   type='license',
+                   description='The Licensor grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information subject to the conditions `here <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/>`_.'),
             OBSTag(id='uk_ed_datashare',
-                    name='Edinburgh DataShare',
-                    type='license',
-                    description='Conditions `here <https://datashare.is.ed.ac.uk/bitstream/handle/10283/2405/license.txt?sequence=3&isAllowed=y>`_.'),
+                   name='Edinburgh DataShare',
+                   type='license',
+                   description='Conditions `here <https://datashare.is.ed.ac.uk/bitstream/handle/10283/2405/license.txt?sequence=3&isAllowed=y>`_.'),
             OBSTag(id='ine_property',
-                    name='National Statistics Institute (INE) Property',
-                    type='license',
-                    description='http://www.ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#'),
+                   name='National Statistics Institute (INE) Property',
+                   type='license',
+                   description='http://www.ine.es/ss/Satellite?L=1&c=Page&cid=1254735849170&p=1254735849170&pagename=Ayuda%2FINELayout#'),
             OBSTag(id='zillow',
-                    name='Zillow Group Data',
-                    type='license',
-                    description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.'),
+                   name='Zillow Group Data',
+                   type='license',
+                   description='http://www.zillow.com/research/data/. All data accessed and downloaded from this page is free for public use by consumers, media, analysts, academics etc., consistent with our published Terms of Use. Proper and clear attribution of all data to Zillow is required.'),
             OBSTag(id='eurostat_copyright',
                    name='Eurostat Copyright',
                    type='license',
                    description='''
-            Eurostat has a policy of encouraging free re-use of its data, both for
-            non-commercial and commercial purposes. All statistical
-            data, metadata, content of web pages or other dissemination
-            tools, official publications and other documents published
-            on its website, with the exceptions listed below, can be
-            reused without any payment or written licence provided that:
-            the source is indicated as Eurostat; when re-use involves
-            modifications to the data or text, this must be stated
-            clearly to the end user of the information. `Full copyright
-            notice
-            <http://ec.europa.eu/eurostat/about/our-partners/copyright>`_.''')
+                               Eurostat has a policy of encouraging free re-use of its data, both for
+                               non-commercial and commercial purposes. All statistical
+                               data, metadata, content of web pages or other dissemination
+                               tools, official publications and other documents published
+                               on its website, with the exceptions listed below, can be
+                               reused without any payment or written licence provided that:
+                               the source is indicated as Eurostat; when re-use involves
+                               modifications to the data or text, this must be stated
+                               clearly to the end user of the information. `Full copyright
+                               notice
+                               <http://ec.europa.eu/eurostat/about/our-partners/copyright>`_.''')
         ]
 
 
