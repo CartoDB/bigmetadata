@@ -165,6 +165,7 @@ class TilerXYZTableTask(Task):
                     )'''.format(table=self._get_table_name(table_data),
                                 table_name=table_data['table'],
                                 cols=", ".join(cols_schema))
+
         session.execute(sql_table)
         session.commit()
 
@@ -190,18 +191,22 @@ class TilerXYZTableTask(Task):
                 if self._tile_in_bboxes(zoom, x, y, bboxes_config):
                     tiles.append([x, y, zoom])
         tile_end = time.time()
+
         LOGGER.info("Tiles to be processed: {}. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
+
         sql_start = time.time()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
             exceptions = loop.run_until_complete(self._generate_tiles(tiles, config, table_data))
             exceptions =  [e for e in exceptions if e is not None]
+
             if exceptions:
                 LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([str(e) for e in exceptions if e is not None])))
         finally:
             loop.close()
         sql_end = time.time()
+
         LOGGER.info("Generated tiles it took {} seconds".format(sql_end - sql_start))
 
     def batch(self, iterable, n=1):
@@ -213,6 +218,7 @@ class TilerXYZTableTask(Task):
                           (asyncio.TimeoutError,
                            concurrent.futures._base.TimeoutError),
                           max_time=600)
+
     async def _generate_tiles(self, tiles, config, table_data):
         with open(self._get_csv_filename(table_data), 'w+') as csvfile:
             db_pool = await async_pool()
@@ -232,19 +238,24 @@ class TilerXYZTableTask(Task):
                 batch_end = time.time()
                 LOGGER.info("Batch {} processed in {} seconds".format(batch_no, (batch_end - batch_start)))
                 batch_no += 1
+
             return exceptions
 
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
                            concurrent.futures._base.TimeoutError),
                           max_time=600)
+
     async def _generate_tile(self, db_pool, csvwriter, tile, geography, config, shard_value=None):
         tile_query = self.get_tile_query(config, tile, geography, shard_value)
+
         conn = None
         try:
             conn = await db_pool.acquire()
             tile_start = time.time()
+
             records = await conn.fetch(tile_query)
+
             tile_end = time.time()
             LOGGER.debug('Generated tile [{}/{}/{}] in {} seconds'.format(tile[0], tile[1], tile[2],
                                                                           (tile_end - tile_start)))

@@ -32,16 +32,14 @@ class SourceLicenseTags(TagsTask):
 
 
 def geographies_downloader(url, output_path):
-    referer = 'http://www.eurogeographics.org/content/euroglobalmap-opendata?sid=10868'
-    shell("wget -O {output} --referer='{referer}' '{url}'".format(
+    shell("wget -O {output} '{url}'".format(
         output=output_path,
-        referer=referer,
-        url=url,
+        url=url
     ))
 
 
 class DownloadGeographies(Task):
-    URL = 'http://wxs-telechargement.ign.fr/aoar2g7319l0hi4l42nkzlc5/telechargement/prepackage/EGM_EUROPE_PACK_20151028$EGM_8-0SHP_20151028/file/EGM_8-0SHP_20151028.7z'
+    URL='http://wxs-telechargement.ign.fr/aoar2g7319l0hi4l42nkzlc5/telechargement/prepackage/EGM_EUROPE_PACK_20171110$EGM_10-0SHP/file/EGM_10-1-0SHP_20171110.zip'
 
     def version(self):
             return 1
@@ -53,9 +51,9 @@ class DownloadGeographies(Task):
                         downloader=geographies_downloader)
 
     def run(self):
-        copyfile(self.input().path, '{output}.7z'.format(output=self.output().path))
-        shell('7z x "{file}" -o{output}'.format(
-            file=self.output().path + '.7z',
+        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+        shell('unzip "{file}" -d {output}'.format(
+            file=self.output().path + '.zip',
             output=self.output().path))
 
     def output(self):
@@ -69,8 +67,8 @@ class ImportSHNGeoms(Shp2TempTableTask):
         return DownloadGeographies()
 
     def input_shp(self):
-        #~/bigmetadata/tmp/eurostat.geo/DownloadGeographies__99914b932b/EGM_8-0SHP_20151028/DATA/FullEurope | grep PolbndA
-        return os.path.join(self.input().path, 'EGM_8-0SHP_20151028', 'DATA', 'FullEurope', 'PolbndA.shp')
+        #~/bigmetadata/tmp/eurostat.geo/DownloadGeographies__99914b932b/EGM_10-1-0SHP_20171110/DATA/FullEurope | grep PolbndA_optionKS
+        return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', 'FullEurope', 'PolbndA_optionKS.shp')
 
 
 class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
@@ -91,7 +89,7 @@ class ImportSHNNames(Shp2TempTableTask):
         return DownloadGeographies()
 
     def input_shp(self):
-        return os.path.join(self.input().path, 'EGM_8-0SHP_20151028', 'DATA', 'FullEurope', 'EBM_NAM.dbf')
+        return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', 'FullEurope', 'EBM_NAM_optionKS.dbf')
 
 
 class DownloadNUTSNames(Task):

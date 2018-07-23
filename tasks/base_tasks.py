@@ -29,7 +29,7 @@ from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
                         session_commit, session_rollback)
 from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
-                        create_temp_schema, unqualified_task_id, generate_tile_summary)
+                        create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file)
 from tasks.simplification import SIMPLIFIED_SUFFIX
 from tasks.simplify import Simplify
 
@@ -462,18 +462,7 @@ class DownloadUnzipTask(DownloadUncompressTask):
 
     def uncompress(self):
         output = self.output().path
-        LOGGER.debug("Uncompressing {output}".format(output=output))
-        try:
-            with zipfile.ZipFile('{output}.zip'.format(output=output), 'r') as z:
-                z.extractall(path='{output}'.format(output=output))
-        except NotImplementedError as err:
-            s_err = str(err)
-            LOGGER.warn("%s.zip error: %s. Fallback to command line...", output, s_err)
-            if s_err == 'compression type 9 (deflate64)':
-                # Support for unsupported file types, such as PKWare deflate64 format
-                subprocess.check_call(['unzip', '{output}.zip'.format(output=output), '-d', output])
-            else:
-                raise
+        uncompress_file(self.output().path)
 
 
 
@@ -923,7 +912,10 @@ class TableTask(Task):
             LOGGER.info('time: %s', after - before)
         else:
             LOGGER.info('populate')
+            before = time.time()
             self.populate()
+            after = time.time()
+            LOGGER.info('time: %s', after - before)
 
         before = time.time()
         LOGGER.info('update_or_create_metadata')

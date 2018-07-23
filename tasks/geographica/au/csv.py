@@ -4,20 +4,21 @@ import csv
 
 from luigi import Task, WrapperTask, Parameter
 from luigi.local_target import LocalTarget
-from tasks.us.census.tiger import ShorelineClip
-from tasks.us.census.acs import ACSMetaWrapper
+from tasks.au.data import BCPAllGeographiesAllTables
 from tasks.meta import current_session
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
 # TODO Add block level when we have ACS for block
-GEOGRAPHY_LEVELS = {'state': 'us.census.tiger.state',
-                    'county': 'us.census.tiger.county',
-                    'census_tract': 'us.census.tiger.census_tract',
-                    'zcta5': 'us.census.tiger.zcta5',
-                    'block_group': 'us.census.tiger.block_group',
-                    'block': 'us.census.tiger.block'}
+GEOGRAPHY_LEVELS = {
+    'GEO_STE': 'au.geo.STE',
+    'GEO_SA4': 'au.geo.SA4',
+    'GEO_SA3': 'au.geo.SA3',
+    'GEO_SA2': 'au.geo.SA2',
+    'GEO_SA1': 'au.geo.SA1',
+    'GEO_MB': 'au.geo.MB'
+}
 
 
 class Measurements2CSV(Task):
@@ -29,9 +30,7 @@ class Measurements2CSV(Task):
 
     def requires(self):
         return {
-            'shorelineclip': ShorelineClip(geography=self.geography, year='2015'),
-            'acs5yr': ACSMetaWrapper(geography=self.geography, year='2015', sample='5yr'),
-            'acs1yr': ACSMetaWrapper(geography=self.geography, year='2015', sample='1yr'),
+            'bcp': BCPAllGeographiesAllTables(year=2011)
         }
 
     def _get_config_data(self):
@@ -49,7 +48,7 @@ class Measurements2CSV(Task):
         if result:
             join_data = {}
             join_data['numer'] = {}
-            colnames = ['geoid']
+            colnames = ['geom_id as geoid']
             for data in result.fetchall():
                 join_data['numer'][data['numer_table']] = {'table': 'observatory.{}'.format(data['numer_table']),
                                                            'join_column': data['numer_join_col']}
@@ -100,11 +99,11 @@ class Measurements2CSV(Task):
             self.output().remove
 
     def output(self):
-        csv_filename = 'tmp/geographica/{}'.format(self.file_name)
+        csv_filename = 'tmp/geographica/au/{}'.format(self.file_name)
         return LocalTarget(path=csv_filename, format='csv')
 
 
 class AllMeasurements(WrapperTask):
     def requires(self):
         for geography in GEOGRAPHY_LEVELS.keys():
-            yield Measurements2CSV(geography=geography, file_name='do_{}.csv'.format(geography))
+            yield Measurements2CSV(geography=geography, file_name='do_au_{}.csv'.format(geography))

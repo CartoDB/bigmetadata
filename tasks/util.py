@@ -6,6 +6,7 @@ import time
 import re
 import subprocess
 import shutil
+import zipfile
 
 from lib.logger import get_logger
 
@@ -436,3 +437,17 @@ def copyfile(src, dst):
             pass
 
     shutil.copyfile(src, dst)
+
+def uncompress_file(zip_file):
+    LOGGER.debug("Uncompressing {zip_file}".format(zip_file=zip_file))
+    try:
+        with zipfile.ZipFile('{zip_file}.zip'.format(zip_file=zip_file), 'r') as z:
+            z.extractall(path='{zip_file}'.format(zip_file=zip_file))
+    except NotImplementedError as err:
+        s_err = str(err)
+        LOGGER.warn("%s.zip error: %s. Fallback to command line...", zip_file, s_err)
+        if s_err == 'compression type 9 (deflate64)':
+            # Support for unsupported file types, such as PKWare deflate64 format
+            subprocess.check_call(['unzip', '{zip_file}.zip'.format(zip_file=zip_file), '-d', zip_file])
+        else:
+            raise
