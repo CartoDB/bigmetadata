@@ -1,4 +1,4 @@
-[{"numer_id": "us.census.acs.B01003001"},
+[{"numer_id": "us.census.acs.B01003001", "normalization": "predenominated"},
 {"numer_id": "us.census.acs.B01001026", "denom_id": "us.census.acs.B01003001"},
 {"numer_id": "us.census.acs.B01001027", "denom_id": "us.census.acs.B01003001"},
 {"numer_id": "us.census.acs.B01001028", "denom_id": "us.census.acs.B01003001"},

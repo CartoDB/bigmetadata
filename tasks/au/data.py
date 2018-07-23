@@ -9,9 +9,12 @@ from lib.timespan import get_timespan
 from tasks.util import shell, copyfile
 from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper, RepoFile
 from tasks.meta import current_session, OBSColumn, GEOM_REF
-from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography)
+from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
+from lib.logger import get_logger
+
+LOGGER = get_logger(__name__)
 
 PROFILES = (
     'BCP',
@@ -373,18 +376,25 @@ class BCP(TableTask):
         }
 
     def requires(self):
-        import_data = {}
-        for state in STATES:
-            import_data[state] = ImportData(resolution=self.resolution,
-                                            state=state, profile='BCP',
-                                            tablename=self.tablename,
-                                            year=self.year)
-        return {
-            'data': import_data,
+        requirements = {
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': Columns(year=self.year, profile='BCP', tablename=self.tablename),
         }
+        import_data = {}
+        if self.resolution == GEO_MB:
+            # We need to have the data from the parent geometries
+            # in order to interpolate
+            requirements['geo_sa1'] = Geography(resolution=GEO_SA1, year=self.year)
+            requirements['data'] = BCP(tablename=self.tablename, year=self.year, resolution=GEO_SA1)
+        else:
+            for state in STATES:
+                import_data[state] = ImportData(resolution=self.resolution,
+                                                state=state, profile='BCP',
+                                                tablename=self.tablename,
+                                                year=self.year)
+            requirements['data'] = import_data,
+        return requirements
 
     def table_timespan(self):
         return get_timespan(str(self.year))
@@ -394,11 +404,42 @@ class BCP(TableTask):
         input_ = self.input()
         cols['region_id'] = input_['geometa']['geom_id']
         for colname, coltarget in input_['meta'].items():
-            # if coltarget._id.split('.')[-1].lower().startswith(self.topic.lower()):
             cols[colname] = coltarget
         return cols
 
     def populate(self):
+        if self.resolution == GEO_MB:
+            self.populate_mb()
+        else:
+            self.populate_general()
+
+    def populate_mb(self):
+        session = current_session()
+        column_targets = self.columns()
+        out_colnames = [oc.lower() for oc in list(column_targets.keys())]
+        in_colnames = ['mb.geom_id as region_id']
+        for ic in list(column_targets.keys()):
+            if ic != 'region_id':
+                in_colnames.append('round(cast(float8 ({ic} * (ST_Area(mb.the_geom)/ST_Area(sa1geo.the_geom))) as numeric), 2) as {ic}'.format(ic=ic.lower()))
+        insert_query = '''
+              INSERT INTO {output} ("{out_colnames}")
+              SELECT {in_colnames}
+              FROM {input_geo_mb} mb
+              INNER JOIN {input_geo_sa1} sa1geo ON (mb.parent_id = sa1geo.geom_id)
+              INNER JOIN {input_data} sa1data ON (mb.parent_id = sa1data.region_id)
+              '''.format(output=self.output().table,
+                         input_data=self.input()['data'].table,
+                         input_geo_mb=self.input()['geo'].table,
+                         input_geo_sa1=self.input()['geo_sa1'].table,
+                         in_colnames=', '.join(in_colnames),
+                         out_colnames='", "'.join(out_colnames))
+        try:
+            LOGGER.debug(insert_query)
+            session.execute(insert_query)
+        except Exception:
+            session.rollback()
+
+    def populate_general(self):
         session = current_session()
         column_targets = self.columns()
         out_colnames = [oc.lower() for oc in list(column_targets.keys())]

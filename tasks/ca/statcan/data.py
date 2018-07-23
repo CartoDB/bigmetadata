@@ -109,9 +109,6 @@ class SplitAndTransposeData(BaseParams, Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
-#####################################
-# IMPORT TO TEMP TABLES
-#####################################
 class CopyDataToTable(BaseParams, TempTableTask):
 
     topic = Parameter()
@@ -180,9 +177,17 @@ class ImportAll(WrapperTask):
                 yield ImportData(resolution=resolution, survey=survey)
 
 
-#####################################
-# COPY TO OBSERVATORY
-#####################################
+class InterpolateNHSDAFromCD(Task):
+    topic = Parameter()
+    resolution = Parameter()
+
+    def requires(self):
+        return {
+            'nhs': NHS(resolution=GEO_CD, topic=self.topic, survey=SURVEY_NHS),
+            'geo_cd': Geography(resolution='GEO_CD'),
+            'geo_da': Geography(resolution='GEO_DA')
+        }
+
 class Survey(BaseParams, TableTask):
 
     topic = Parameter(default='t001')
@@ -212,6 +217,42 @@ class Survey(BaseParams, TableTask):
         return cols
 
     def populate(self):
+        if self.survey == SURVEY_NHS:
+            if self.resolution == GEO_DA:
+                self.populate_da_from_cd()
+            else:
+                self.populate_general()
+        else:
+            self.populate_general()
+
+    def populate_da_from_cd(self):
+        session = current_session()
+        columns = self.columns()
+        colnames = list(columns.keys())
+        out_colnames = [oc for oc in colnames if oc is not None]
+        in_colnames = ['da.geom_id']
+        for colname in out_colnames:
+            if colname != 'geo_code':
+                # We reduce the number of decimals to reduce the size of the row to avoid hit
+                # the limit which is 8Kb. More info https://github.com/CartoDB/bigmetadata/issues/527
+                in_colnames.append('round(cast(float8 ({colname} * (ST_Area(da.the_geom)/ST_Area(cd.the_geom))) as numeric), 2) {colname}'.format(colname=colname))
+
+        insert_query = '''
+                INSERT INTO {output} ({out_colnames})
+                SELECT {in_colnames} FROM {da_geom} da
+                INNER JOIN {cd_geom} cd ON (cd.geom_id = left(da.geom_id,4))
+                INNER JOIN {cd_data} data ON (cd.geom_id = data.geo_code)
+                '''.format(output=self.output().table,
+                           da_geom=self.input()['geo'].table,
+                           cd_geom=self.input()['geo_cd'].table,
+                           cd_data=self.input()['data_cd'].table,
+                           in_colnames=', '.join(in_colnames),
+                           out_colnames=', '.join(out_colnames))
+
+        LOGGER.debug(insert_query)
+        session.execute(insert_query)
+
+    def populate_general(self):
         session = current_session()
         columns = self.columns()
         out_colnames = list(columns.keys())
@@ -276,12 +317,20 @@ class AllCensusTopics(BaseParams, WrapperTask):
 class NHS(Survey):
 
     def requires(self):
-        return {
-            'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic),
+        requires = {
             'geo': Geography(resolution=self.resolution),
             'geometa': GeographyColumns(resolution=self.resolution),
             'meta': NHSColumns(),
         }
+        # DA interpolate data and there is no data for DA in NHS so we should
+        # avoid this step for DA resolution
+        if self.resolution == GEO_DA:
+            requires['geo_cd'] = Geography(resolution=GEO_CD)
+            requires['data_cd'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
+        else:
+            requires['data'] = CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic)
+
+        return requires
 
     def targets(self):
         return {
@@ -296,7 +345,7 @@ class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 30))   # 1-29
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
