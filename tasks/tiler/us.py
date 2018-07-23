@@ -45,7 +45,7 @@ class XYZTables(TilerXYZTableTask):
         columns = []
         # TODO Make possible to define columns prefix as in the JSON
         if config['table'] == 'xyz_us_mc':
-            mc_dates = [date.replace('-', '') for date in self._get_mc_dates(shard_value)]
+            mc_dates = [date.replace('/', '') for date in self._get_mc_dates(shard_value)]
             for mc_date in mc_dates:
                 for mc_category in config['mc_categories']:
                     for column in config['columns']:
@@ -86,10 +86,10 @@ class XYZTables(TilerXYZTableTask):
                                                     ARRAY['{mcdates}']::TEXT[])
                 WHERE mvtgeom IS NOT NULL;
                 '''.format(x=tile[0], y=tile[1], z=tile[2], geography_level=geography,
-                        recordset=", ".join(recordset),
-                        cols="', '".join(columns),
-                        mccategories="', '".join(mc_categories),
-                        mcdates="','".join(mc_dates))
+                           recordset=", ".join(recordset),
+                           cols="', '".join(columns),
+                           mccategories="', '".join(mc_categories),
+                           mcdates="','".join(mc_dates))
         else:
             return '''
                 SELECT {x} x, {y} y, {z} z, ST_CollectionExtract(ST_MakeValid(mvtgeom), 3) mvtgeom, {recordset}
@@ -100,8 +100,8 @@ class XYZTables(TilerXYZTableTask):
                                                     ARRAY[]::TEXT[])
                 WHERE mvtgeom IS NOT NULL;
                 '''.format(x=tile[0], y=tile[1], z=tile[2], geography_level=geography,
-                        recordset=", ".join(recordset),
-                        cols="', '".join(columns))
+                           recordset=", ".join(recordset),
+                           cols="', '".join(columns))
 
     def _get_mc_dates(self, month="02"):
         session = current_session()

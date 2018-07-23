@@ -15,6 +15,7 @@ import csv
 
 LOGGER = get_logger(__name__)
 
+
 class TilesTempTable(Task):
     zoom_level = IntParameter()
     geography = Parameter()
@@ -32,7 +33,7 @@ class TilesTempTable(Task):
             tiles = self._calculate_tiles(config)
             self._store_tiles(session, tiles, config)
 
-    def _calculate_tiles(self,config):
+    def _calculate_tiles(self, config):
         tiles = []
         for x in range(0, (pow(2, self.zoom_level) + 1)):
             for y in range(0, (pow(2, self.zoom_level) + 1)):
@@ -60,12 +61,12 @@ class TilesTempTable(Task):
                     SELECT x, y, z, bounds bounds, ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
                     ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
                     FROM data
-                    '''.format(schema=config['schema'],table=self._get_table_name(config),
-                               x=tile[0],y=tile[1],z=tile[2])
+                    '''.format(schema=config['schema'], table=self._get_table_name(config),
+                               x=tile[0], y=tile[1], z=tile[2])
             session.execute(query)
         session.commit()
 
-    def _create_table(self,session,config):
+    def _create_table(self, session, config):
         session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(config['schema']))
         sql_table = '''CREATE TABLE IF NOT EXISTS \"{schema}\".\"{table}\"(
                        x INTEGER NOT NULL,
@@ -87,7 +88,7 @@ class TilesTempTable(Task):
                                           self._get_table_name(config)))
         return targets
 
-    def _get_table_name(self,config):
+    def _get_table_name(self, config):
         return "{table}_tiles_temp_{geo}_{zoom}".format(table=config['table'], geo=self.geography, zoom=self.zoom_level)
 
     def _get_config_data(self):
@@ -137,7 +138,7 @@ class TilerXYZTableTask(Task):
                     (end_time - start_time)
                 ))
 
-    def _get_table_names(self,config):
+    def _get_table_names(self, config):
         table_names = []
         if config['sharded']:
             for value in config['sharding']['values']:
@@ -203,10 +204,10 @@ class TilerXYZTableTask(Task):
         sql_end = time.time()
         LOGGER.info("Generated tiles it took {} seconds".format(sql_end - sql_start))
 
-    def batch(self,iterable, n=1):
-        l = len(iterable)
-        for ndx in range(0, l, n):
-            yield iterable[ndx:min(ndx + n, l)]
+    def batch(self, iterable, n=1):
+        iterable_lenght = len(iterable)
+        for ndx in range(0, iterable_lenght, n):
+            yield iterable[ndx:min(ndx + n, iterable_lenght)]
 
     @backoff.on_exception(backoff.expo,
                           (asyncio.TimeoutError,
@@ -226,7 +227,7 @@ class TilerXYZTableTask(Task):
                 LOGGER.info("Processing batch {} with {} elements".format(batch_no, len(tiles_batch)))
                 batch_start = time.time()
                 executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, config, table_data['value'])
-                                for tile in tiles_batch]
+                                  for tile in tiles_batch]
                 exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
                 batch_end = time.time()
                 LOGGER.info("Batch {} processed in {} seconds".format(batch_no, (batch_end - batch_start)))
@@ -245,7 +246,8 @@ class TilerXYZTableTask(Task):
             tile_start = time.time()
             records = await conn.fetch(tile_query)
             tile_end = time.time()
-            LOGGER.debug('Generated tile [{}/{}/{}] in {} seconds'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
+            LOGGER.debug('Generated tile [{}/{}/{}] in {} seconds'.format(tile[0], tile[1], tile[2],
+                                                                          (tile_end - tile_start)))
             for record in records:
                 csvwriter.writerow(tuple(record))
             else:
