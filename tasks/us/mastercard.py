@@ -10,7 +10,7 @@ from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
-TILER_SCHEMA = 'tiler'
+MC_SCHEMA = 'us.mastercard'
 BLOCK = 'block'
 BLOCK_GROUP = 'block group'
 CENSUS_TRACT = 'tract'
@@ -369,7 +369,7 @@ class MasterCardData(TempTableTask):
             raise e
 
     def output(self):
-        return PostgresTarget(TILER_SCHEMA, 'mc_' + self.geography)
+        return PostgresTarget(MC_SCHEMA, 'mc_' + self.geography)
 
 
 class AllMasterCardData(WrapperTask):
