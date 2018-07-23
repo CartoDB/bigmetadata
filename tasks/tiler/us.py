@@ -2,7 +2,7 @@ from tasks.us.census.tiger import ShorelineClip
 from tasks.tiler.xyz import TilerXYZTableTask, TilesTempTable
 from luigi import WrapperTask
 from lib.logger import get_logger
-from tasks.meta import current_session, async_pool
+from tasks.meta import current_session
 
 LOGGER = get_logger(__name__)
 

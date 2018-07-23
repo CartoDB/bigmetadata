@@ -142,7 +142,9 @@ class TilerXYZTableTask(Task):
         table_names = []
         if config['sharded']:
             for value in config['sharding']['values']:
-                table_names.append({"schema": config['schema'], "table": "{}_{}".format(config['table'], value), "value": value})
+                table_names.append({"schema": config['schema'],
+                                    "table": "{}_{}".format(config['table'], value),
+                                    "value": value})
         else:
             table_names.append({"schema": config['schema'], "table": config['table'], "value": None})
 
