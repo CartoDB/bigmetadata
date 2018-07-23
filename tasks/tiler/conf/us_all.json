@@ -513,6 +513,7 @@
     },
     {
         "table": "xyz_us_mc",
+        "bypass": true,
         "schema": "tiler",
         "geoms": false,
         "bboxes": [

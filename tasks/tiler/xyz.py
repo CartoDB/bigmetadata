@@ -124,19 +124,20 @@ class TilerXYZTableTask(Task):
     def run(self):
         config_data = self._get_config_data()
         for config in config_data:
-            table_bboxes = config['bboxes']
-            tables_data = self._get_table_names(config)
-            for table_data in tables_data:
-                start_time = time.time()
-                LOGGER.info("Processing table {}".format(table_data['table']))
-                self._create_schema_and_table(table_data, config)
-                self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
-                self._insert_tiles(table_data)
-                end_time = time.time()
-                LOGGER.info("Finished processing table {}. It took {} seconds".format(
-                    table_data['table'],
-                    (end_time - start_time)
-                ))
+            if not config.get('bypass', False):
+                table_bboxes = config['bboxes']
+                tables_data = self._get_table_names(config)
+                for table_data in tables_data:
+                    start_time = time.time()
+                    LOGGER.info("Processing table {}".format(table_data['table']))
+                    self._create_schema_and_table(table_data, config)
+                    self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
+                    self._insert_tiles(table_data)
+                    end_time = time.time()
+                    LOGGER.info("Finished processing table {}. It took {} seconds".format(
+                        table_data['table'],
+                        (end_time - start_time)
+                    ))
 
     def _get_table_names(self, config):
         table_names = []
