@@ -228,7 +228,7 @@ class TilerXYZTableTask(Task):
             columns = self.get_columns(config, table_data['value'])
             csvwriter = csv.writer(csvfile)
             headers = ['x', 'y', 'z', 'mvt_geometry', 'geoid', 'area_ratio', 'area']
-            headers += [column['column_name'].lower() for column in columns]
+            headers += [column.get('column_alias', column['column_name']).lower() for column in columns]
             csvwriter.writerow(headers)
             geography_level = self.get_geography_level(self.geography)
             batch_no = 1

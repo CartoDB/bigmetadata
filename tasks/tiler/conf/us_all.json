@@ -36,6 +36,13 @@
         ],
         "columns": [
             {
+                "id": "geoname",
+                "column_name": "geoname",
+                "column_alias": "name",
+                "type": "text",
+                "nullable": true
+            },
+            {
                 "id": "us.census.acs_columns.columns.B01003001",
                 "column_name": "total_pop",
                 "type": "numeric",

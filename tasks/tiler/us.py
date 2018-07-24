@@ -14,6 +14,15 @@ GEOGRAPHY_LEVELS = {
     'block': 'us.census.tiger.block'
 }
 
+GEONAME_COLUMN = 'geoname'
+GEOGRAPHY_NAME_COLUMNS = {
+    'state': 'us.census.tiger.state_geoname',
+    'county': 'us.census.tiger.county_geoname',
+    'census_tract': 'us.census.tiger.census_tract_geoname',
+    'block_group': 'us.census.tiger.block_group_geoname',
+    'block': 'us.census.tiger.block_geoname',
+}
+
 
 class XYZTables(TilerXYZTableTask):
 
@@ -38,7 +47,9 @@ class XYZTables(TilerXYZTableTask):
         columns = []
         for column in self.get_columns(config, shard_value):
             nullable = '' if column['nullable'] else 'NOT NULL'
-            columns.append("{} {} {}".format(column['column_name'], column['type'], nullable))
+            columns.append("{} {} {}".format(column.get('column_alias', column['column_name']),
+                                             column['type'],
+                                             nullable))
         return columns
 
     def get_columns(self, config, shard_value=None):
@@ -56,6 +67,8 @@ class XYZTables(TilerXYZTableTask):
                                         "type": column['type'], "nullable": ['nullable']})
         else:
             for column in config['columns']:
+                if column['id'] == GEONAME_COLUMN:
+                    column['id'] = GEOGRAPHY_NAME_COLUMNS[self.geography]
                 columns.append(column)
 
         return columns
@@ -66,8 +79,10 @@ class XYZTables(TilerXYZTableTask):
         recordset.append("(mvtdata->>'area_ratio')::numeric as area_ratio")
         recordset.append("(mvtdata->>'area')::numeric as area")
         for column in columns:
-            recordset.append("(mvtdata->>'{name}')::{type} as {name}".format(name=column['column_name'].lower(),
-                                                                             type=column['type']))
+            recordset.append("(mvtdata->>'{name}')::{type} as {alias}".format(name=column['column_name'].lower(),
+                                                                              type=column['type'],
+                                                                              alias=column.get('column_alias',
+                                                                                               column['column_name'])))
 
         return recordset
 
