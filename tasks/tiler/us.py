@@ -1,5 +1,6 @@
 from tasks.us.census.tiger import ShorelineClip
-from tasks.tiler.xyz import TilerXYZTableTask, TilesTempTable
+from tasks.targets import PostgresTarget
+from tasks.tiler.xyz import TilerXYZTableTask, TilesTempTable, SimpleTilerDOXYZTableTask
 from luigi import WrapperTask
 from lib.logger import get_logger
 from tasks.meta import current_session
@@ -143,3 +144,27 @@ class AllUSXYZTables(WrapperTask):
             return 'block_group'
         elif zoom == 14:
             return 'block'
+
+
+class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
+    def __init__(self, *args, **kwargs):
+        super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
+
+    def get_config_file(self):
+        return 'us_all.json'
+
+    def get_geography_name(self):
+        return GEOGRAPHY_LEVELS[self.geography]
+
+    def get_columns_ids(self):
+        columns_ids = []
+
+        for column in self._get_columns():
+            if column['id'] == GEONAME_COLUMN:
+                column['id'] = GEOGRAPHY_NAME_COLUMNS[self.geography]
+            columns_ids.append(column['id'])
+
+        return columns_ids
+
+    def output(self):
+        return PostgresTarget('tiler', 'xyz_us_do_geoms')

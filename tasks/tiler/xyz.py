@@ -305,3 +305,129 @@ class TilerXYZTableTask(Task):
             os.makedirs('tmp/tiler')
         return "tmp/tiler/tiler_{table_name}_{geography}.csv".format(table_name=table_data['table'],
                                                                      geography=self.geography)
+
+
+class SimpleTilerDOXYZTableTask(Task):
+
+    zoom_level = IntParameter()
+    geography = Parameter()
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleTilerDOXYZTableTask, self).__init__(*args, **kwargs)
+        self.columns = self._get_columns()
+
+    def requires(self):
+        return TilesTempTable(zoom_level=self.zoom_level,
+                              geography=self.geography,
+                              config_file=self.get_config_file())
+
+    def get_config_file(self):
+        raise NotImplementedError('get_config_file must be implemented by the child class')
+
+    def get_geography_name(self):
+        raise NotImplementedError('get_geography_name must be implemented by the child class')
+
+    def get_columns_ids(self):
+        return [x['id'] for x in self._get_columns()]
+
+    def _get_columns(self):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        with (open('{}/conf/{}'.format(dir_path, self.get_config_file()))) as f:
+            for table in json.load(f):
+                if table['table'] == self.output().tablename:
+                    return table['columns']
+
+    def _get_table_columns(self):
+        columns = []
+        for column in self._get_columns():
+            nullable = '' if column['nullable'] else 'NOT NULL'
+            columns.append("{} {} {}".format(column.get('column_alias', column['column_name']),
+                                             column['type'],
+                                             nullable))
+        return columns
+
+    def _create_table(self):
+        session = current_session()
+
+        LOGGER.info('Creating schema "{schema}" if needed'.format(schema=self.output().schema))
+        session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
+
+        LOGGER.info('Creating table {table} if needed'.format(table=self.output().table))
+        query = '''
+                CREATE TABLE IF NOT EXISTS "{schema}".{table}(
+                    x INTEGER NOT NULL,
+                    y INTEGER NOT NULL,
+                    z INTEGER NOT NULL,
+                    geoid VARCHAR NOT NULL,
+                    mvt_geometry Geometry,
+                    area_ratio NUMERIC,
+                    area NUMERIC,
+                    {cols},
+                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (x,y,z,geoid)
+                )
+                '''.format(schema=self.output().schema,
+                           table=self.output().tablename,
+                           cols=", ".join(self._get_table_columns()))
+
+        session.execute(query)
+        session.commit()
+
+    def _insert_data(self):
+        session = current_session()
+
+        columns = self._get_columns()
+        out_columns = [x.get('column_alias', x['column_name']) for x in columns]
+        in_columns = ["((aa).mvtdata::json->>'{name}')::{type} as {alias}".format(
+                        name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
+                      ) for x in columns]
+        in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
+
+        LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
+        query = '''
+                INSERT INTO "{schema}".{table} (x, y, z, geoid,
+                                                area_ratio, area, mvt_geometry,
+                                                {out_columns})
+                SELECT (aa).x, (aa).y, (aa).zoom z, (aa).mvtdata::json->>'id'::text as geoid,
+                       ((aa).mvtdata::json->>'area_ratio')::numeric as area_ratio,
+                       ((aa).mvtdata::json->>'area')::numeric as area, (aa).mvtgeom,
+                       {in_columns}
+                  FROM (
+                    SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
+                    ARRAY[{in_columns_ids}]::TEXT[],
+                    ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]) aa
+                    ) q;
+                '''.format(schema=self.output().schema,
+                           table=self.output().tablename,
+                           zoom_level=self.zoom_level,
+                           geography=self.get_geography_name(),
+                           out_columns=','.join(out_columns),
+                           in_columns=','.join(in_columns),
+                           in_columns_ids=','.join(in_columns_ids))
+
+        session.execute(query)
+        session.commit()
+
+    def run(self):
+        self._create_table()
+        self._insert_data()
+
+    def output(self):
+        raise NotImplementedError('output must be implemented by the child class')
+
+    def complete(self):
+        session = current_session()
+        count = 0
+
+        try:
+            query = '''
+                    SELECT count(*) FROM "{schema}".{table} WHERE z = {zoom_level}
+                    '''.format(schema=self.output().schema,
+                               table=self.output().tablename,
+                               zoom_level=self.zoom_level,)
+            count = session.execute(query).fetchone()[0]
+            if count > 0:
+                LOGGER.warn('The zoom level is already loaded')
+        except Exception:
+            LOGGER.info('Error checking output. Maybe the table doesn\'t exist')
+
+        return count > 0
