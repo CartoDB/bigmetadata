@@ -170,7 +170,7 @@ class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
         return PostgresTarget('tiler', 'xyz_us_do_geoms')
 
 
-class AllUSSimpleXYZTables(WrapperTask):
+class AllSimpleDOXYZTables(WrapperTask):
 
     def requires(self):
         for zoom in range(0, 15):
