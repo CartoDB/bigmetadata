@@ -168,3 +168,22 @@ class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
 
     def output(self):
         return PostgresTarget('tiler', 'xyz_us_do_geoms')
+
+
+class AllUSSimpleXYZTables(WrapperTask):
+
+    def requires(self):
+        for zoom in range(0, 15):
+            yield SimpleDOXYZTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
+
+    def _get_geography_level(self, zoom):
+        if zoom >= 0 and zoom <= 4:
+            return 'state'
+        elif zoom >= 5 and zoom <= 8:
+            return 'county'
+        elif zoom >= 9 and zoom <= 11:
+            return 'census_tract'
+        elif zoom >= 12 and zoom <= 13:
+            return 'block_group'
+        elif zoom == 14:
+            return 'block'
