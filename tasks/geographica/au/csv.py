@@ -91,6 +91,7 @@ class Measurements2CSV(Task):
         try:
             self.output().makedirs()
             with(open(self.output().path, 'w+')) as csvfile:
+                headers[0]='geoid'
                 writer = csv.DictWriter(csvfile, fieldnames=headers)
                 writer.writeheader()
                 for measurement in measurements:
