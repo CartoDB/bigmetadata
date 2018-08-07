@@ -584,6 +584,7 @@ class Shp2TempTableTask(TempTableTask):
     '''
 
     encoding = Parameter(default='latin1', significant=False)
+    other_options = ''
 
     def input_shp(self):
         '''
@@ -609,14 +610,16 @@ class Shp2TempTableTask(TempTableTask):
                                          schema=schema,
                                          tablename=tablename,
                                          shp=shp,
-                                         operation=operation)
+                                         operation=operation,
+                                         other_options=self.other_options)
             output = shell(cmd)
             if self.utf8_error(output):
                 cmd = self.build_ogr_command(encoding=self.encoding,
                                              schema=schema,
                                              tablename=tablename,
                                              shp=shp,
-                                             operation=operation)
+                                             operation=operation,
+                                             other_options=self.other_options)
                 shell(cmd)
             # We don't add lco (layer creation options) because in the append mode
             # are ignored
@@ -630,12 +633,14 @@ class Shp2TempTableTask(TempTableTask):
         return 'PG_USE_COPY=yes PGCLIENTENCODING=UTF8 ' \
                'ogr2ogr --config SHAPE_ENCODING {encoding} -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                'active_schema={schema}" -t_srs "EPSG:4326" ' \
+               '{other_options} ' \
                '-nlt MultiPolygon -nln {table} ' \
                '{operation} \'{input}\' '.format(encoding=args['encoding'],
                                                  schema=args['schema'],
                                                  table=args['tablename'],
                                                  input=args['shp'],
-                                                 operation=args['operation'])
+                                                 operation=args['operation'],
+                                                 other_options=args['other_options'])
 
 
 class CSV2TempTableTask(TempTableTask):
