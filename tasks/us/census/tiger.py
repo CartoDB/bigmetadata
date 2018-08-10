@@ -398,6 +398,34 @@ class SimplifiedDownloadTiger(Task):
                               SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
 
 
+class SimplifyByState(Task):
+    year = Parameter()
+    geography = Parameter()
+
+    def run(self):
+        session = current_session()
+        for _, table in self.input().items():
+            query = '''
+                    CREATE TABLE IF NOT EXISTS {output} AS
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    WHERE 1=0
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+
+            query = '''
+                    INSERT INTO {output}
+                    SELECT *
+                    FROM "{schema_input}".{table_input}
+                    '''.format(schema_input=table.schema,
+                               table_input=table.tablename,
+                               output=self.output().table)
+            session.execute(query)
+            session.commit()
+
+
 class SplitByState(Task):
     year = Parameter()
     geography = Parameter()
@@ -447,9 +475,7 @@ class SimplifyGeoChunkByState(Task):
                                                                    suffix=SIMPLIFIED_SUFFIX))
 
 
-class SimplifyGeoByState(Task):
-    year = Parameter()
-    geography = Parameter()
+class SimplifyGeoByState(SimplifyByState):
 
     def requires(self):
         simplifications = {}
@@ -458,29 +484,6 @@ class SimplifyGeoByState(Task):
                                                                   geography=self.geography,
                                                                   state=state_code)
         return simplifications
-
-    def run(self):
-        session = current_session()
-        for _, table in self.input().items():
-            query = '''
-                    CREATE TABLE IF NOT EXISTS {output} AS
-                    SELECT *
-                    FROM "{schema_input}".{table_input}
-                    WHERE 1=0
-                    '''.format(schema_input=table.schema,
-                               table_input=table.tablename,
-                               output=self.output().table)
-            session.execute(query)
-
-            query = '''
-                    INSERT INTO {output}
-                    SELECT *
-                    FROM "{schema_input}".{table_input}
-                    '''.format(schema_input=table.schema,
-                               table_input=table.tablename,
-                               output=self.output().table)
-            session.execute(query)
-            session.commit()
 
     def output(self):
         return PostgresTarget('tiger{year}'.format(year=self.year),
@@ -678,6 +681,69 @@ class SimplifiedUnionTigerWaterGeoms(SimplifiedTempTableTask):
         return UnionTigerWaterGeoms(year=self.year, geography=self.geography)
 
 
+class SplitUnionTigerWaterGeomsByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return UnionTigerWaterGeoms(year=self.year, geography=self.geography)
+
+    def run(self):
+        session = current_session()
+        query = '''
+                CREATE TABLE {table_output} AS
+                SELECT *
+                FROM "{schema_input}".{table_input}
+                WHERE geoid like '{state}%'
+                '''.format(schema_input=self.input().schema,
+                           table_input=self.input().tablename,
+                           table_output=self.output().table,
+                           state=self.state)
+        session.execute(query)
+        session.commit()
+
+    def output(self):
+        return PostgresTarget('us.census.tiger',
+                              'UnionTigerWaterGeoms_{name}_state{state}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                                                state=self.state))
+
+
+class SimplifyUnionTigerWaterGeomsChunkByState(Task):
+    year = Parameter()
+    geography = Parameter()
+    state = Parameter()
+
+    def requires(self):
+        return SplitUnionTigerWaterGeomsByState(year=self.year, geography=self.geography, state=self.state)
+
+    def run(self):
+        yield Simplify(schema=self.input().schema,
+                       table=self.input().tablename,
+                       table_id='.'.join(['us.census.tiger',
+                                          'UnionTigerWaterGeoms_{geo}_by_state'.format(geo=self.geography)]))
+
+    def output(self):
+        return PostgresTarget('us.census.tiger',
+                              'UnionTigerWaterGeoms_{name}_state{state}{suffix}'.format(name=SUMLEVELS[self.geography]['table'],
+                                                                                        state=self.state,
+                                                                                        suffix=SIMPLIFIED_SUFFIX))
+
+
+class SimplifiedUnionTigerWaterGeomsByState(SimplifyByState):
+    def requires(self):
+        simplifications = {}
+        for state_code, _ in STATES.items():
+            simplifications[state_code] = SimplifyUnionTigerWaterGeomsChunkByState(year=self.year,
+                                                                                   geography=self.geography,
+                                                                                   state=state_code)
+        return simplifications
+
+    def output(self):
+        return PostgresTarget('us.census.tiger',
+                              'UnionTigerWaterGeom_' + SUMLEVELS[self.geography]['table'] + SIMPLIFIED_SUFFIX)
+
+
 class ShorelineClip(TableTask):
     '''
     Clip the provided geography to shoreline.
@@ -693,8 +759,12 @@ class ShorelineClip(TableTask):
         return 10
 
     def requires(self):
+        if self.geography == BLOCK:
+            tiger = SimplifiedUnionTigerWaterGeomsByState(year=self.year, geography=self.geography)
+        else:
+            tiger = SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography)
         return {
-            'data': SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography),
+            'data': tiger,
             'geoms': ClippedGeomColumns(),
             'geoids': GeoidColumns(),
             'attributes': Attributes(),
