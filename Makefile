@@ -358,13 +358,16 @@ uk-census:
 	make -- run uk.census.wrapper.CensusWrapper
 
 ### us
-us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-zillow
+us-all: us-bls us-acs-2015 us-acs-2016 us-lodes us-spielman us-tiger-2015 us-tiger-2016 us-enviroatlas us-huc us-zillow
 
 us-bls:
 	make -- run us.bls.AllQCEW --maxtimespan 2017Q1
 
-us-acs:
-	make -- run us.census.acs.ACSAll
+us-acs-2015:
+	make -- run us.census.acs.ACSAll --year 2015
+
+us-acs-2016:
+	make -- run us.census.acs.ACSAll --year 2016
 
 us-lodes:
 	make -- run us.census.lodes.LODESMetaWrapper --geography block --year 2013
@@ -372,46 +375,87 @@ us-lodes:
 us-spielman:
 	make -- run us.census.spielman_singleton_segments.SpielmanSingletonMetaWrapper
 
-us-tiger: us-tiger-census_tract us-tiger-county us-tiger-block_group us-tiger-congressional_district us-tiger-puma us-tiger-school_district_secondary us-tiger-state us-tiger-school_district_unified us-tiger-cbsa us-tiger-school_district_elementary us-tiger-place us-tiger-zcta5 us-tiger-block
+us-tiger-2015: us-tiger-census_tract-2015 us-tiger-county-2015 us-tiger-block_group-2015 us-tiger-congressional_district-2015 us-tiger-puma-2015 us-tiger-school_district_secondary-2015 us-tiger-state-2015 us-tiger-school_district_unified-2015 us-tiger-cbsa-2015 us-tiger-school_district_elementary-2015 us-tiger-place-2015 us-tiger-zcta5-2015 us-tiger-block-2015
 
-us-tiger-census_tract:
+us-tiger-census_tract-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography census_tract
 
-us-tiger-county:
+us-tiger-county-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography county
 
-us-tiger-block_group:
+us-tiger-block_group-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography block_group
 
-us-tiger-congressional_district:
+us-tiger-congressional_district-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography congressional_district
 
-us-tiger-puma:
+us-tiger-puma-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography puma
 
-us-tiger-school_district_secondary:
+us-tiger-school_district_secondary-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography school_district_secondary
 
-us-tiger-state:
+us-tiger-state-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography state
 
-us-tiger-school_district_unified:
+us-tiger-school_district_unified-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography school_district_unified
 
-us-tiger-cbsa:
+us-tiger-cbsa-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography cbsa
 
-us-tiger-school_district_elementary:
+us-tiger-school_district_elementary-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography school_district_elementary
 
-us-tiger-place:
+us-tiger-place-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography place
 
-us-tiger-block:
+us-tiger-block-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography block
 
-us-tiger-zcta5:
+us-tiger-zcta5-2015:
 	make -- run us.census.tiger.SumLevel4Geo --year 2015 --geography zcta5
+
+us-tiger-2016: us-tiger-census_tract-2016 us-tiger-county-2016 us-tiger-block_group-2016 us-tiger-congressional_district-2016 us-tiger-puma-2016 us-tiger-school_district_secondary-2016 us-tiger-state-2016 us-tiger-school_district_unified-2016 us-tiger-cbsa-2016 us-tiger-school_district_elementary-2016 us-tiger-place-2016 us-tiger-zcta5-2016 us-tiger-block-2016
+
+us-tiger-census_tract-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography census_tract
+
+us-tiger-county-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography county
+
+us-tiger-block_group-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography block_group
+
+us-tiger-congressional_district-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography congressional_district
+
+us-tiger-puma-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography puma
+
+us-tiger-school_district_secondary-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography school_district_secondary
+
+us-tiger-state-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography state
+
+us-tiger-school_district_unified-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography school_district_unified
+
+us-tiger-cbsa-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography cbsa
+
+us-tiger-school_district_elementary-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography school_district_elementary
+
+us-tiger-place-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography place
+
+us-tiger-block-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography block
+
+us-tiger-zcta5-2016:
+	make -- run us.census.tiger.SumLevel4Geo --year 2016 --geography zcta5
 
 us-enviroatlas:
 	make -- run us.epa.enviroatlas.AllTables

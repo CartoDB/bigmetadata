@@ -345,8 +345,8 @@ class ExtractAll(WrapperTask):
 
 
 class ACSAll(WrapperTask):
+    year = Parameter()
 
     def requires(self):
-        for year in YEARS:
-            for sample in SAMPLES:
-                yield ExtractAll(year=year, sample=sample)
+        for sample in SAMPLES:
+            yield ExtractAll(year=self.year, sample=sample)
