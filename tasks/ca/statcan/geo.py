@@ -47,6 +47,7 @@ GEOGRAPHY_DESCS = {
     GEO_CSD: '',
     GEO_CMA: '',
     GEO_DA: '',
+    GEO_FSA: '',
 }
 
 GEOGRAPHY_PROPERNAMES = {
@@ -56,6 +57,7 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CSD: 'CSDNAME',
     GEO_CMA: 'CMANAME',
     GEO_DA: 'DAUID',  # DA has no proper name
+    GEO_FSA: 'PRNAME',
 }
 
 GEOGRAPHY_CODES = {
@@ -65,6 +67,7 @@ GEOGRAPHY_CODES = {
     GEO_CSD: 301,
     GEO_CMA: 201,
     GEO_DA: 1501,
+    GEO_FSA: 1601,
 }
 
 GEOGRAPHY_TAGS = {
@@ -73,7 +76,8 @@ GEOGRAPHY_TAGS = {
     GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CMA: ['cartographic_boundary'],
-    GEO_DA: ['cartographic_boundary', 'interpolation_boundary']
+    GEO_DA: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_FSA: ['cartographic_boundary', 'interpolation_boundary'],
 }
 
 GEOGRAPHY_FORMAT = {
@@ -84,6 +88,16 @@ GEOGRAPHY_FORMAT = {
     GEO_CMA: 'a',  # SHP
     GEO_DA: 'a',  # SHP
     GEO_FSA: 'g',  # GML
+}
+
+GEOGRAPHY_UID = {
+    GEO_CT: 'ctuid',
+    GEO_PR: 'pruid',
+    GEO_CD: 'cduid',
+    GEO_CSD: 'csduid',
+    GEO_CMA: 'cmauid',
+    GEO_DA: 'dauid',
+    GEO_FSA: 'cfsauid',
 }
 
 
@@ -110,50 +124,32 @@ class DownloadGeography(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportSHPGeography(Shp2TempTableTask):
+class ImportGeography(Shp2TempTableTask):
     '''
     Import geographies into postgres by geography level
     '''
 
     resolution = Parameter(default=GEO_PR)
+    extension = Parameter(default='shp', significant=False)
 
     def requires(self):
         return DownloadGeography(resolution=self.resolution)
 
     def input_shp(self):
-        cmd = 'ls {input}/*.shp'.format(
-            input=self.input().path
+        cmd = 'ls {input}/*.{extension}'.format(
+            input=self.input().path,
+            extension=self.extension
         )
-        for shp in shell(cmd).strip().split('\n'):
-            yield shp
-
-
-class ImportGMLGeography(Shp2TempTableTask):
-    '''
-    Import geographies into postgres by geography level
-    '''
-
-    resolution = Parameter(default=GEO_FSA)
-
-    def requires(self):
-        return DownloadGeography(resolution=self.resolution)
-
-    def input_shp(self):
-        cmd = 'ls {input}/*.gml'.format(
-            input=self.input().path
-        )
-        for gml in shell(cmd).strip().split('\n'):
-            yield gml
+        for geofile in shell(cmd).strip().split('\n'):
+            yield geofile
 
 
 class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
 
     def requires(self):
-        if self.resolution == GEO_FSA:
-            return ImportGMLGeography(resolution=self.resolution)
-        else:
-            return ImportSHPGeography(resolution=self.resolution)
+        extension = 'gml' if self.resolution == GEO_FSA else 'gml'
+        return ImportGeography(resolution=self.resolution, extension=extension)
 
 
 class GeographyColumns(ColumnsTask):
@@ -167,6 +163,7 @@ class GeographyColumns(ColumnsTask):
         GEO_CSD: 4,
         GEO_CT: 5,
         GEO_DA: 6,
+        GEO_FSA: 7,
     }
 
     def version(self):
@@ -249,12 +246,12 @@ class Geography(TableTask):
         session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT {name} as geom_name, '
-                        '       {code}uid as geom_id, '
+                        '       {code} as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
                             name=GEOGRAPHY_PROPERNAMES[self.resolution],
                             output=self.output().table,
-                            code=self.resolution.replace('_', ''),
+                            code=GEOGRAPHY_UID[self.resolution],
                             input=self.input()['data'].table))
 
 
