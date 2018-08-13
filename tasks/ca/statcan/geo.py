@@ -18,6 +18,7 @@ GEO_CD = 'cd_'
 GEO_CSD = 'csd'
 GEO_CMA = 'cma'
 GEO_DA = 'da_'
+GEO_FSA = 'fsa'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -26,8 +27,8 @@ GEOGRAPHIES = (
     GEO_CSD,
     GEO_CMA,
     GEO_DA,
+    GEO_FSA,
 )
-
 
 GEOGRAPHY_NAMES = {
     GEO_CT: 'Census tracts',
@@ -36,6 +37,7 @@ GEOGRAPHY_NAMES = {
     GEO_CSD: 'Census subdivisions',
     GEO_CMA: 'Census metropolitan areas and census agglomerations',
     GEO_DA: 'Census dissemination areas',
+    GEO_FSA: 'Forward sortation areas',
 }
 
 GEOGRAPHY_DESCS = {
@@ -53,7 +55,7 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CD: 'CDNAME',
     GEO_CSD: 'CSDNAME',
     GEO_CMA: 'CMANAME',
-    GEO_DA: 'DAUID' # DA has no proper name
+    GEO_DA: 'DAUID',  # DA has no proper name
 }
 
 GEOGRAPHY_CODES = {
@@ -72,7 +74,16 @@ GEOGRAPHY_TAGS = {
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CMA: ['cartographic_boundary'],
     GEO_DA: ['cartographic_boundary', 'interpolation_boundary']
+}
 
+GEOGRAPHY_FORMAT = {
+    GEO_CT: 'a',  # SHP
+    GEO_PR: 'a',  # SHP
+    GEO_CD: 'a',  # SHP
+    GEO_CSD: 'a',  # SHP
+    GEO_CMA: 'a',  # SHP
+    GEO_DA: 'a',  # SHP
+    GEO_FSA: 'g',  # GML
 }
 
 
@@ -83,7 +94,7 @@ class DownloadGeography(DownloadUnzipTask):
     resolution = Parameter(default=GEO_PR)
     year = Parameter(default="2011")
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip'
 
     def version(self):
         return 1
@@ -91,12 +102,15 @@ class DownloadGeography(DownloadUnzipTask):
     def requires(self):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
-                        url=self.URL.format(year=self.year, resolution=self.resolution))
+                        url=self.URL.format(year=self.year,
+                                            resolution=self.resolution,
+                                            format=GEOGRAPHY_FORMAT[self.resolution]))
 
     def download(self):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
-class ImportGeography(Shp2TempTableTask):
+
+class ImportSHPGeography(Shp2TempTableTask):
     '''
     Import geographies into postgres by geography level
     '''
@@ -114,11 +128,32 @@ class ImportGeography(Shp2TempTableTask):
             yield shp
 
 
+class ImportGMLGeography(Shp2TempTableTask):
+    '''
+    Import geographies into postgres by geography level
+    '''
+
+    resolution = Parameter(default=GEO_FSA)
+
+    def requires(self):
+        return DownloadGeography(resolution=self.resolution)
+
+    def input_shp(self):
+        cmd = 'ls {input}/*.gml'.format(
+            input=self.input().path
+        )
+        for gml in shell(cmd).strip().split('\n'):
+            yield gml
+
+
 class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
 
     def requires(self):
-        return ImportGeography(resolution=self.resolution)
+        if self.resolution == GEO_FSA:
+            return ImportGMLGeography(resolution=self.resolution)
+        else:
+            return ImportSHPGeography(resolution=self.resolution)
 
 
 class GeographyColumns(ColumnsTask):
