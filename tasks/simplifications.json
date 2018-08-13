@@ -460,6 +460,13 @@
 		"geomfield": "the_geom",
 		"factor": "40"
 	},
+	"us.census.tiger.uniontigerwatergeoms_block_by_state": {
+		"simplification": "mapshaper",
+		"geomfield": "the_geom",
+		"factor": "8",
+		"maxmemory": "8192",
+		"skipfailures": "yes"
+	},
 	"us.census.tiger.uniontigerwatergeoms_block_group_2015": {
 		"simplification": "mapshaper",
 		"geomfield": "the_geom",
