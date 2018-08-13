@@ -721,7 +721,8 @@ class SimplifyUnionTigerWaterGeomsChunkByState(Task):
         yield Simplify(schema=self.input().schema,
                        table=self.input().tablename,
                        table_id='.'.join(['us.census.tiger',
-                                          'UnionTigerWaterGeoms_{geo}_by_state'.format(geo=self.geography)]))
+                                          'UnionTigerWaterGeoms_{geo}_by_state_{year}'.format(geo=self.geography,
+                                                                                              year=self.year)]))
 
     def output(self):
         return PostgresTarget('us.census.tiger',
