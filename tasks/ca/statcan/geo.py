@@ -148,7 +148,7 @@ class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
 
     def requires(self):
-        extension = 'gml' if self.resolution == GEO_FSA else 'gml'
+        extension = 'gml' if self.resolution == GEO_FSA else 'shp'
         return ImportGeography(resolution=self.resolution, extension=extension)
 
 
