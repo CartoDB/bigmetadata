@@ -47,7 +47,24 @@ class LicenseTags(TagsTask):
                                modifications to the data or text, this must be stated
                                clearly to the end user of the information. `Full copyright
                                notice
-                               <http://ec.europa.eu/eurostat/about/our-partners/copyright>`_.''')
+                               <http://ec.europa.eu/eurostat/about/our-partners/copyright>`_.'''),
+            OBSTag(id='us_government_works',
+                   name='U.S. Government Works',
+                   type='license',
+                   description='''
+                               United States government creative works, including writing, images,
+                               and computer code, are usually prepared by officers or employees
+                               of the United States government as part of their official duties.
+                               A government work is generally not subject to copyright in the United States
+                               and there is generally no copyright restriction on reproduction,
+                               derivative works, distribution, performance, or display of a government work.
+                               Unless the work falls under an exception, anyone may, without restriction under
+                               U.S. copyright laws, reproduce the work in print or digital form,
+                               create derivative works, perform the work publicly, display the work,
+                               distribute copies or digitally transfer the work to the public by sale
+                               or other transfer of ownership, or by rental, lease, or lending.
+                               `Full copyright notice
+                               <https://www.usa.gov/government-works>`_.'''),
         ]
 
 

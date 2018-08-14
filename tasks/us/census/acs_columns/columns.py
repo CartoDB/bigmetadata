@@ -9,6 +9,7 @@ from lib.columns import ColumnsDeclarations
 
 NAMESPACE = 'tasks.us.census.acs'
 
+
 class ACSTags(TagsTask):
 
     task_namespace = NAMESPACE
@@ -48,7 +49,7 @@ class Columns(ColumnsTask):
         }
 
     def version(self):
-        return 21
+        return 22
 
     def columns(self):
         input_ = self.input()
@@ -3241,7 +3242,7 @@ class Columns(ColumnsTask):
 
         united_states_section = input_['sections']['united_states']
         acs_source = input_['censustags']['acs']
-        no_restrictions = input_['license']['no-restrictions']
+        no_restrictions = input_['license']['us_government_works']
         for _, col in columns.items():
             col.tags.append(united_states_section)
             col.tags.append(acs_source)
@@ -3269,7 +3270,7 @@ class QuantileColumns(ColumnsTask):
         }
 
     def version(self):
-        return 8
+        return 9
 
     def columns(self):
         quantile_columns = OrderedDict()
@@ -3283,7 +3284,7 @@ class QuantileColumns(ColumnsTask):
                 description=col.description,
                 aggregate='quantile',
                 targets={col: 'quantile_source'},
-                tags=[input_['license']['no-restrictions'], input_['censustags']['acs'],
+                tags=[input_['license']['us_government_works'], input_['censustags']['acs'],
                       input_['sections']['united_states']],
                 weight=1
             )
