@@ -222,6 +222,8 @@ class Survey(BaseParams, TableTask):
         if self.survey == SURVEY_NHS:
             if self.resolution == GEO_DA:
                 self.populate_da_from_cd()
+            if self.resolution == GEO_FSA:
+                self.populate_fsa_from_cd()
             else:
                 self.populate_general()
         else:
@@ -246,12 +248,45 @@ class Survey(BaseParams, TableTask):
                 INNER JOIN {cd_data} data ON (cd.geom_id = data.geo_code)
                 '''.format(output=self.output().table,
                            da_geom=self.input()['geo'].table,
-                           cd_geom=self.input()['geo_cd'].table,
-                           cd_data=self.input()['data_cd'].table,
+                           cd_geom=self.input()['geo_source'].table,
+                           cd_data=self.input()['data_source'].table,
                            in_colnames=', '.join(in_colnames),
                            out_colnames=', '.join(out_colnames))
 
         LOGGER.debug(insert_query)
+        session.execute(insert_query)
+
+    def populate_fsa_from_cd(self):
+        session = current_session()
+        columns = self.columns()
+        colnames = list(columns.keys())
+        out_colnames = [oc for oc in colnames if oc is not None]
+        in_colnames = [x for x in out_colnames if x != 'geo_code']
+
+        insert_query = '''
+                INSERT INTO {output} ({out_colnames})
+                SELECT geom_id, {in_colnames_group}
+                  FROM (
+                    SELECT geo_fsa.geom_id, ST_Area(ST_Intersection(geo_fsa.the_geom, geo_cd.the_geom)) / ST_Area(geo_cd.the_geom) area_ratio,
+                           {in_colnames}
+                      FROM {fsa_geom} geo_fsa,
+                           {cd_geom} geo_cd,
+                           {cd_data} data_cd
+                     WHERE geo_cd.geom_id = data_cd.geo_code
+                       AND ST_Intersects(geo_fsa.the_geom, geo_cd.the_geom)
+                ) q
+                GROUP BY geom_id
+                '''.format(
+                    output=self.output().table,
+                    fsa_geom=self.input()['geo'].table,
+                    cd_geom=self.input()['geo_source'].table,
+                    cd_data=self.input()['data_source'].table,
+                    in_colnames_group=', '.join(['round(sum({x} * area_ratio)::numeric, 2) as {x}'.format(x=x) for x in in_colnames]),
+                    in_colnames=', '.join(in_colnames),
+                    out_colnames=', '.join(out_colnames)
+                )
+
+        LOGGER.error(insert_query)
         session.execute(insert_query)
 
     def populate_general(self):
@@ -278,8 +313,8 @@ class Survey(BaseParams, TableTask):
             "CASE {ic}::TEXT WHEN '-6' THEN NULL ELSE {ic} END".format(ic=ic) for ic in in_colnames if ic is not None]
         out_colnames = [oc for oc in out_colnames if oc is not None]
 
-        cmd =   'INSERT INTO {output} ({out_colnames}) ' \
-                'SELECT {in_colnames} FROM {input} '.format(
+        cmd = 'INSERT INTO {output} ({out_colnames}) ' \
+              'SELECT {in_colnames} FROM {input} '.format(
                     output=self.output().table,
                     input=in_table.table,
                     in_colnames=', '.join(in_colnames),
@@ -326,9 +361,9 @@ class NHS(Survey):
         }
         # DA interpolate data and there is no data for DA in NHS so we should
         # avoid this step for DA resolution
-        if self.resolution == GEO_DA:
-            requires['geo_cd'] = Geography(resolution=GEO_CD)
-            requires['data_cd'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
+        if self.resolution in [GEO_DA, GEO_FSA]:
+            requires['geo_source'] = Geography(resolution=GEO_CD)
+            requires['data_source'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
         else:
             requires['data'] = CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic)
 
