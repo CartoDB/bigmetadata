@@ -12,7 +12,7 @@ from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWr
 from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
-    GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA,
+    GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA,
     GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.ca.statcan.util import StatCanParser
 from tasks.ca.statcan.cols_census import CensusColumns
@@ -72,6 +72,7 @@ class SplitAndTransposeData(BaseParams, Task):
             GEO_CSD: None,
             GEO_CMA: ('cmaca_name', (r'part\)$',)),
             GEO_DA: None,
+            GEO_FSA: None,
         },
         SURVEY_NHS: {
             GEO_CT: None,
@@ -187,6 +188,7 @@ class InterpolateNHSDAFromCD(Task):
             'geo_cd': Geography(resolution='GEO_CD'),
             'geo_da': Geography(resolution='GEO_DA')
         }
+
 
 class Survey(BaseParams, TableTask):
 
@@ -308,7 +310,7 @@ class AllCensusTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 11))   # 1-10
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield Census(resolution=resolution, survey=SURVEY_CEN, topic=topic)
@@ -345,7 +347,7 @@ class AllNHSTopics(BaseParams, WrapperTask):
     def requires(self):
         topic_range = list(range(1, 30))   # 1-29
 
-        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA):
+        for resolution in (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA):
             for count in topic_range:
                 topic = 't{:03d}'.format(count)
                 yield NHS(resolution=resolution, survey=SURVEY_NHS, topic=topic)
@@ -356,8 +358,8 @@ class CensusMetaWrapper(MetaWrapper):
     topic = Parameter()
 
     params = {
-        'topic': ['t{:03d}'.format(i) for i in range(1,11)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA)
+        'topic': ['t{:03d}'.format(i) for i in range(1, 11)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA)
     }
 
     def tables(self):
@@ -370,8 +372,8 @@ class NHSMetaWrapper(MetaWrapper):
     topic = Parameter()
 
     params = {
-        'topic': ['t{:03d}'.format(i) for i in range(1,30)],
-        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA) # NHS not available at Dissemination Area level
+        'topic': ['t{:03d}'.format(i) for i in range(1, 30)],
+        'resolution': (GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA)  # NHS not available at DA or FSA level
     }
 
     def tables(self):

@@ -5,6 +5,11 @@
 				"resolution": "da_",
 				"survey": "census",
 				"topic": "t010"
+			},
+			{
+				"resolution": "fsa",
+				"survey": "census",
+				"topic": "t010"
 			}
 		]
     },
@@ -12,6 +17,11 @@
 		"exceptions": [
 			{
 				"resolution": "da_",
+				"survey": "census",
+				"topic": "t010"
+			},
+			{
+				"resolution": "fsa",
 				"survey": "census",
 				"topic": "t010"
 			}
@@ -23,7 +33,21 @@
 				"resolution": "da_",
 				"survey": "census",
 				"topic": "t010"
+			},
+			{
+				"resolution": "fsa",
+				"survey": "census",
+				"topic": "t010"
 			}
 		]
-    }
+		},
+		"t010c007_t": {
+			"exceptions": [
+				{
+					"resolution": "fsa",
+					"survey": "census",
+					"topic": "t010"
+				}
+			]
+		}
 }
