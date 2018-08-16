@@ -190,6 +190,38 @@ class InterpolateNHSDAFromCD(Task):
         }
 
 
+class InterpolateFSAFromCSD(TempTableTask):
+    def requires(self):
+        return {
+            'geo_fsa': Geography(resolution=GEO_FSA),
+            'geo_csd': Geography(resolution=GEO_CSD),
+        }
+
+    def run(self):
+        session = current_session()
+
+        insert_query = '''
+                CREATE TABLE {output} AS
+                SELECT fsa.geom_id as fsa_geom_id, source_geo.geom_id as csd_geom_id,
+                  CASE WHEN ST_Within(fsa.the_geom, source_geo.the_geom)
+                         THEN ST_Area(fsa.the_geom) / Nullif(ST_Area(source_geo.the_geom), 0)
+                       WHEN ST_Within(source_geo.the_geom, fsa.the_geom)
+                         THEN 1
+                       ELSE ST_Area(ST_Intersection(source_geo.the_geom, fsa.the_geom)) / Nullif(ST_Area(source_geo.the_geom), 0)
+                   END area_ratio
+                  FROM {fsa_geom} fsa,
+                       {csd_geom} source_geo
+                 WHERE ST_Intersects(fsa.the_geom, source_geo.the_geom)
+                '''.format(
+                    output=self.output().table,
+                    fsa_geom=self.input()['geo_fsa'].table,
+                    csd_geom=self.input()['geo_csd'].table,
+                )
+
+        LOGGER.debug(insert_query)
+        session.execute(insert_query)
+
+
 class Survey(BaseParams, TableTask):
 
     topic = Parameter(default='t001')
@@ -222,8 +254,8 @@ class Survey(BaseParams, TableTask):
         if self.survey == SURVEY_NHS:
             if self.resolution == GEO_DA:
                 self.populate_da_from_cd()
-            if self.resolution == GEO_FSA:
-                self.populate_fsa_from_cd()
+            elif self.resolution == GEO_FSA:
+                self.populate_fsa_from_csd()
             else:
                 self.populate_general()
         else:
@@ -256,7 +288,7 @@ class Survey(BaseParams, TableTask):
         LOGGER.debug(insert_query)
         session.execute(insert_query)
 
-    def populate_fsa_from_cd(self):
+    def populate_fsa_from_csd(self):
         session = current_session()
         columns = self.columns()
         colnames = list(columns.keys())
@@ -265,28 +297,20 @@ class Survey(BaseParams, TableTask):
 
         insert_query = '''
                 INSERT INTO {output} ({out_colnames})
-                SELECT geom_id, {in_colnames_group}
-                  FROM (
-                    SELECT geo_fsa.geom_id, ST_Area(ST_Intersection(geo_fsa.the_geom, geo_cd.the_geom)) / ST_Area(geo_cd.the_geom) area_ratio,
-                           {in_colnames}
-                      FROM {fsa_geom} geo_fsa,
-                           {cd_geom} geo_cd,
-                           {cd_data} data_cd
-                     WHERE geo_cd.geom_id = data_cd.geo_code
-                       AND ST_Intersects(geo_fsa.the_geom, geo_cd.the_geom)
-                ) q
-                GROUP BY geom_id
+                SELECT fsa_geom_id, {in_colnames_group}
+                  FROM {csd_data} data_csd,
+                       {interpolation_table} interp
+                 WHERE data_csd.geo_code = interp.csd_geom_id
+                 GROUP BY fsa_geom_id
                 '''.format(
                     output=self.output().table,
-                    fsa_geom=self.input()['geo'].table,
-                    cd_geom=self.input()['geo_source'].table,
-                    cd_data=self.input()['data_source'].table,
+                    csd_data=self.input()['data_source'].table,
+                    interpolation_table=self.input()['geo_interpolation'].table,
                     in_colnames_group=', '.join(['round(sum({x} * area_ratio)::numeric, 2) as {x}'.format(x=x) for x in in_colnames]),
-                    in_colnames=', '.join(in_colnames),
                     out_colnames=', '.join(out_colnames)
                 )
 
-        LOGGER.error(insert_query)
+        LOGGER.debug(insert_query)
         session.execute(insert_query)
 
     def populate_general(self):
@@ -361,9 +385,12 @@ class NHS(Survey):
         }
         # DA interpolate data and there is no data for DA in NHS so we should
         # avoid this step for DA resolution
-        if self.resolution in [GEO_DA, GEO_FSA]:
+        if self.resolution == GEO_DA:
             requires['geo_source'] = Geography(resolution=GEO_CD)
             requires['data_source'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
+        elif self.resolution == GEO_FSA:
+            requires['data_source'] = NHS(resolution=GEO_CSD, survey=self.survey, topic=self.topic)
+            requires['geo_interpolation'] = InterpolateFSAFromCSD()
         else:
             requires['data'] = CopyDataToTable(resolution=self.resolution, survey=SURVEY_NHS, topic=self.topic)
 
