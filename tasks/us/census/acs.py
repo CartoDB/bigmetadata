@@ -33,7 +33,7 @@ SAMPLE_5YR = '5yr'
 GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
-YEARS = ['2015']
+YEARS = ['2015', '2016']
 SAMPLES = [SAMPLE_5YR]
 
 
@@ -82,9 +82,9 @@ class Quantiles(TableTask):
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
-            'tiger': GeoidColumns(year='2015'),
-            'sumlevel': SumLevel(geography=self.geography, year='2015'),
-            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
+            'tiger': GeoidColumns(year=self.year),
+            'sumlevel': SumLevel(geography=self.geography, year=self.year),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=self.year)
         }
 
     def version(self):
@@ -99,8 +99,8 @@ class Quantiles(TableTask):
     def columns(self):
         input_ = self.input()
         columns = OrderedDict({
-            'geoidsl': input_['tiger'][self.geography + GEOID_SUMLEVEL_COLUMN],
-            'geoidsc': input_['tiger'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]
+            'geoidsl': input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]
         })
         columns.update(input_['columns'])
         return columns
@@ -176,14 +176,14 @@ class Extract(TableTask):
     def requires(self):
         dependencies = {
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
-            'tiger': GeoidColumns(year='2015'),
+            'tiger': GeoidColumns(year=self.year),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'sumlevel': SumLevel(geography=self.geography, year='2015'),
-            'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
+            'sumlevel': SumLevel(geography=self.geography, year=self.year),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=self.year)
         }
 
         if self.geography == BLOCK:
-            dependencies['interpolation'] = TigerBlocksInterpolation(year='2015')
+            dependencies['interpolation'] = TigerBlocksInterpolation(year=self.year)
             dependencies['bg_extract'] = Extract(geography=BLOCK_GROUP, sample=self.sample, year=self.year)
 
         return dependencies
@@ -202,8 +202,8 @@ class Extract(TableTask):
     def columns(self):
         input_ = self.input()
         cols = OrderedDict([
-            ('geoidsl', input_['tiger'][self.geography + GEOID_SUMLEVEL_COLUMN]),
-            ('geoidsc', input_['tiger'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('geoidsl', input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN]),
+            ('geoidsc', input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         for colkey, col in input_['acs'].items():
             cols[colkey] = col
