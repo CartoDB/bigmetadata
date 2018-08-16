@@ -46,13 +46,14 @@ class TigerSourceTags(TagsTask):
 
 
 class ClippedGeomColumns(ColumnsTask):
+    year = Parameter()
 
     def version(self):
         return 15
 
     def requires(self):
         return {
-            'geom_columns': GeomColumns(),
+            'geom_columns': GeomColumns(year=self.year),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
             'source': TigerSourceTags(),
@@ -73,7 +74,7 @@ class ClippedGeomColumns(ColumnsTask):
         for colname, coltarget in self.input()['geom_columns'].items():
             col = coltarget.get(session)
 
-            level = SUMLEVELS[colname]
+            level = SUMLEVELS['_'.join(colname.split('_')[:-1])]
             additional_tags = []
             if level['cartographic']:
                 additional_tags.append(boundary_type['cartographic_boundary'])
@@ -82,7 +83,7 @@ class ClippedGeomColumns(ColumnsTask):
 
             cols[colname + '_clipped'] = OBSColumn(
                 type='Geometry',
-                name='Shoreline clipped ' + col.name,
+                name='Shoreline clipped ' + '_{}'.format(self.year) + col.name,
                 weight=Decimal(col.weight) + Decimal(0.01),
                 description='A cartography-ready version of {name}'.format(
                     name=col.name),
@@ -96,6 +97,7 @@ class ClippedGeomColumns(ColumnsTask):
 
 
 class GeomColumns(ColumnsTask):
+    year = Parameter()
 
     def version(self):
         return 17
@@ -124,9 +126,9 @@ class GeomColumns(ColumnsTask):
 
         columns = {}
         for level in list(SUMLEVELS.values()):
-            columns[level['slug']] = OBSColumn(
+            columns[level['slug'] + '_{}'.format(self.year)] = OBSColumn(
                 type='Geometry',
-                name=level['name'],
+                name=level['name'] + '_{}'.format(self.year),
                 description=level['census_description'],
                 weight=level['weight'],
                 tags=[sections['united_states'], subsections['boundary'], source, license]
@@ -170,13 +172,16 @@ class GeoidColumns(ColumnsTask):
 
     This allows external tables to depend on both shoreline clipped and non-shoreline clipped geometries.
     '''
+
+    year = Parameter()
+
     def version(self):
         return 7
 
     def requires(self):
         return {
-            'raw': GeomColumns(),
-            'clipped': ClippedGeomColumns()
+            'raw': GeomColumns(year=self.year),
+            'clipped': ClippedGeomColumns(year=self.year)
         }
 
     def columns(self):
@@ -206,13 +211,15 @@ class GeoidColumns(ColumnsTask):
 
 class GeonameColumns(ColumnsTask):
 
+    year = Parameter()
+
     def version(self):
         return 2
 
     def requires(self):
         return {
-            'raw': GeomColumns(),
-            'clipped': ClippedGeomColumns(),
+            'raw': GeomColumns(year=self.year),
+            'clipped': ClippedGeomColumns(year=self.year),
             'subsections': SubsectionTags(),
             'sections': SectionTags(),
         }
@@ -766,16 +773,16 @@ class ShorelineClip(TableTask):
             tiger = SimplifiedUnionTigerWaterGeoms(year=self.year, geography=self.geography)
         return {
             'data': tiger,
-            'geoms': ClippedGeomColumns(),
-            'geoids': GeoidColumns(),
+            'geoms': ClippedGeomColumns(year=self.year),
+            'geoids': GeoidColumns(year=self.year),
             'attributes': Attributes(),
-            'geonames': GeonameColumns(),
+            'geonames': GeonameColumns(year=self.year),
         }
 
     def columns(self):
         return OrderedDict([
-            ('geoid', self.input()['geoids'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
-            ('the_geom', self.input()['geoms'][self.geography + '_clipped']),
+            ('geoid', self.input()['geoids'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('the_geom', self.input()['geoms'][self.geography + '_{}'.format(self.year) + '_clipped']),
             ('aland', self.input()['attributes']['aland'])
         ])
 
@@ -837,16 +844,16 @@ class SumLevel(TableTask):
             tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'attributes': Attributes(),
-            'geoids': GeoidColumns(),
-            'geoms': GeomColumns(),
+            'geoids': GeoidColumns(year=self.year),
+            'geoms': GeomColumns(year=self.year),
             'data': tiger,
         }
 
     def columns(self):
         input_ = self.input()
         return OrderedDict([
-            ('geoid', input_['geoids'][self.geography + GEOID_SUMLEVEL_COLUMN]),
-            ('the_geom', input_['geoms'][self.geography]),
+            ('geoid', input_['geoids'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN]),
+            ('the_geom', input_['geoms'][self.geography + '_{}'.format(self.year)]),
             ('aland', input_['attributes']['aland']),
             ('awater', input_['attributes']['awater']),
         ])
@@ -894,10 +901,10 @@ class GeoNamesTable(TableTask):
             tiger = SimplifiedDownloadTiger(geography=self.geography, year=self.year)
         return {
             'data': tiger,
-            'geoids': GeoidColumns(),
+            'geoids': GeoidColumns(year=self.year),
             'sections': SectionTags(),
             'subsections': SubsectionTags(),
-            'geonames': GeonameColumns(),
+            'geonames': GeonameColumns(year=self.year),
             'shoreline': ShorelineClip(year=self.year, geography=self.geography),
             'sumlevel': SumLevel(year=self.year, geography=self.geography),
         }
@@ -908,9 +915,9 @@ class GeoNamesTable(TableTask):
 
     def columns(self):
         return OrderedDict([
-            ('geoidsl', self.input()['geoids'][self.geography + GEOID_SUMLEVEL_COLUMN]),
-            ('geoidsc', self.input()['geoids'][self.geography + GEOID_SHORELINECLIPPED_COLUMN]),
-            ('geoname', self.input()['geonames'][self.geography + '_geoname'])
+            ('geoidsl', self.input()['geoids'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN]),
+            ('geoidsc', self.input()['geoids'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('geoname', self.input()['geonames'][self.geography + '_{}'.format(self.year) + '_geoname'])
         ])
 
     def table_timespan(self):

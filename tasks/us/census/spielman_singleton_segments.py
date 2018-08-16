@@ -133,7 +133,7 @@ class SpielmanSingletonTable(TableTask):
             'columns': SpielmanSingletonColumns(),
             'data_file': ProcessSpielmanSingletonFile(),
             'data': SpielmanSingletonTempTable(),
-            'tiger': GeoidColumns(),
+            'tiger': GeoidColumns(year='2015'),
             'shoreline': ShorelineClip(year='2015', geography='census_tract'),
             'sumlevel': SumLevel(year='2015', geography='census_tract'),
         }

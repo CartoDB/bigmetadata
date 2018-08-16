@@ -318,7 +318,7 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns(),
+            'geoids': GeoidColumns(year='2015'),
             'sumlevel': SumLevel(year='2015', geography='zcta5'),
             'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
         }

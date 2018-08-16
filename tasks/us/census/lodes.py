@@ -544,7 +544,7 @@ class WorkplaceAreaCharacteristics(TableTask):
     def requires(self):
         return {
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
-            'tiger_meta': GeoidColumns(),
+            'tiger_meta': GeoidColumns(year='2015'),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
             'sumlevel': SumLevel(year='2015', geography='block'),
             'shorelineclip': ShorelineClip(year='2015', geography='block'),

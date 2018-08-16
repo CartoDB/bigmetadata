@@ -216,7 +216,7 @@ class QCEW(TableTask):
     def requires(self):
         requirements = {
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
-            'geoid_cols': GeoidColumns(),
+            'geoid_cols': GeoidColumns(year='2015'),
             'naics': OrderedDict(),
             'sumlevel': SumLevel(year='2015', geography='county'),
             'shorelineclip': ShorelineClip(year='2015', geography='county'),

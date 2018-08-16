@@ -82,7 +82,7 @@ class Quantiles(TableTask):
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
-            'tiger': GeoidColumns(),
+            'tiger': GeoidColumns(year='2015'),
             'sumlevel': SumLevel(geography=self.geography, year='2015'),
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
         }
@@ -176,7 +176,7 @@ class Extract(TableTask):
     def requires(self):
         dependencies = {
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
-            'tiger': GeoidColumns(),
+            'tiger': GeoidColumns(year='2015'),
             'data': DownloadACS(year=self.year, sample=self.sample),
             'sumlevel': SumLevel(geography=self.geography, year='2015'),
             'shorelineclip': ShorelineClip(geography=self.geography, year='2015')
