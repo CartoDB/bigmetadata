@@ -351,8 +351,13 @@ mx-census:
 ### uk
 uk-all: uk-geo uk-census
 
-uk-geo:
+uk-geo: uk-geo-cdrc uk-geo-gov
+
+uk-geo-cdrc:
 	make -- run uk.cdrc.CDRCMetaWrapper
+
+uk-geo-gov:
+	make -- run uk.gov.GovMetaWrapper
 
 uk-census:
 	make -- run uk.census.wrapper.CensusWrapper

@@ -47,6 +47,7 @@ def cdrc_downloader(url, output_path):
 
 
 class DownloadOutputAreas(DownloadUnzipTask):
+    # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
     URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
 
     def version(self):
