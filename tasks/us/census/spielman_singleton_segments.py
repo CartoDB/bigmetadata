@@ -162,8 +162,8 @@ class SpielmanSingletonTable(TableTask):
 
     def columns(self):
         columns = OrderedDict({
-            'geoidsl': self.input()['tiger']['census_tract' + GEOID_SUMLEVEL_COLUMN],
-            'geoidsc': self.input()['tiger']['census_tract' + GEOID_SHORELINECLIPPED_COLUMN],
+            'geoidsl': self.input()['tiger']['census_tract' + '_2015' + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': self.input()['tiger']['census_tract' + '_2015' + GEOID_SHORELINECLIPPED_COLUMN],
         })
         columns.update(self.input()['columns'])
         return columns

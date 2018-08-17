@@ -563,8 +563,8 @@ class WorkplaceAreaCharacteristics(TableTask):
         data_columns = self.input()['data_meta']
         tiger_columns = self.input()['tiger_meta']
         cols = OrderedDict([
-            ('w_geocode_sl', tiger_columns['block' + GEOID_SUMLEVEL_COLUMN]),
-            ('w_geocode_sc', tiger_columns['block' + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('w_geocode_sl', tiger_columns['block' + '_2015' + GEOID_SUMLEVEL_COLUMN]),
+            ('w_geocode_sc', tiger_columns['block' + '_2015' + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         cols.update(data_columns)
         return cols
