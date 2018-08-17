@@ -21,10 +21,6 @@ from .metadata import sanitize_identifier
 class DownloadUK(Task):
     API_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/def.sdmx.json?search={}*'
     DOWNLOAD_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/{id}.bulk.csv?time=2011&measures=20100&geography={geo}'
-    GEO_TYPES = [
-        'TYPE258',  # Small Areas (Northern Ireland)
-        'TYPE299'   # Output Areas (England, Wales, Scotland)
-    ]
 
     table = Parameter()
 
@@ -63,9 +59,6 @@ class DownloadUK(Task):
 class ImportUK(TempTableTask):
     table = Parameter()
 
-    def requires(self):
-        return DownloadUK(self.table)
-
     @staticmethod
     def id_to_column(colid):
         return sanitize_identifier(colid)
@@ -88,6 +81,18 @@ class ImportUK(TempTableTask):
                 cols,
                 csvfile
             )
+
+
+class DownloadUKOutputAreas(DownloadUK):
+    GEO_TYPES = [
+        'TYPE258',  # Small Areas (Northern Ireland)
+        'TYPE299'   # Output Areas (England, Wales, Scotland)
+    ]
+
+
+class ImportUKOutputAreas(ImportUK):
+    def requires(self):
+        return DownloadUKOutputAreas(self.table)
 
 
 class DownloadEnglandWalesLocal(DownloadUnzipTask):
