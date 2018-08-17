@@ -351,7 +351,7 @@ mx-census:
 ### uk
 uk-all: uk-geo uk-census
 
-uk-geo: uk-geo-cdrc uk-geo-gov
+uk-geo: uk-geo-cdrc uk-geo-gov uk-geo-datashare
 
 uk-geo-cdrc:
 	make -- run uk.cdrc.CDRCMetaWrapper
@@ -359,8 +359,16 @@ uk-geo-cdrc:
 uk-geo-gov:
 	make -- run uk.gov.GovMetaWrapper
 
-uk-census:
-	make -- run uk.census.wrapper.CensusWrapper
+uk-geo-datashare:
+	make -- run uk.datashare.PostcodeAreas
+
+uk-census: uk-census-output-areas uk-census-postcode-areas
+
+uk-census-output-areas:
+	make -- run uk.census.wrapper.CensusOutputAreas
+
+uk-census-postcode-areas:
+	make -- run uk.census.wrapper.CensusPostcodeAreas
 
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-zillow
