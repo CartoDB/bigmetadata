@@ -7,20 +7,20 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
-from tasks.uk.census.postcodeareas import PostcodeAreas, PostcodeAreasColumns
+from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
 from lib.logger import get_logger
 
-from .ons import ImportUK, ImportEnglandWalesLocal
+from .ons import ImportUKOutputAreas, ImportEnglandWalesLocal
 from .scotland import ImportScotland
 from .metadata import parse_table, COLUMNS_DEFINITION
 
 LOGGER = get_logger(__name__)
 
 
-class CensusTableTask(WrapperTask):
+class CensusOutputAreasTableTask(WrapperTask):
     # Which task to use to import an specific table
     REGION_MAPPING = {
-        "UK": ImportUK,
+        "UK": ImportUKOutputAreas,
         "EW": ImportEnglandWalesLocal,
         "SC": ImportScotland
     }
@@ -38,7 +38,7 @@ class CensusTableTask(WrapperTask):
         return self.requires().output().table
 
 
-class Census(TableTask):
+class CensusOutputAreas(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
@@ -46,7 +46,7 @@ class Census(TableTask):
             'geo': OutputAreas(),
         }
         for t in self.source_tables():
-            deps[t] = CensusTableTask(table=t)
+            deps[t] = CensusOutputAreasTableTask(table=t)
 
         return deps
 
@@ -161,7 +161,7 @@ class CensusPostcodeAreas(TableTask):
             'data_columns': CensusColumns(),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
-            'census': Census(),
+            'census': CensusOutputAreas(),
         }
 
         return deps
@@ -213,10 +213,3 @@ class CensusPostcodeAreas(TableTask):
                 )
 
         current_session().execute(stmt)
-
-
-class CensusWrapper(MetaWrapper):
-    def tables(self):
-        yield Census()
-        yield CensusPostcodeAreas()
-        yield OutputAreas()
