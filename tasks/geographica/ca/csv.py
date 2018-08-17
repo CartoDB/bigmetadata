@@ -10,11 +10,11 @@ from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
-# TODO Add block level when we have ACS for block
 GEOGRAPHY_LEVELS = {
-    'GEO_PR': 'ca.statcan.geo.pr_',
-    'GEO_CD': 'ca.statcan.geo.cd_',
-    'GEO_DA': 'ca.statcan.geo.da_'
+    'GEO_PR': 'ca.statcan.geo.pr_',  # Canada, provinces and territories
+    'GEO_CD': 'ca.statcan.geo.cd_',  # Census divisions
+    'GEO_DA': 'ca.statcan.geo.da_',  # Census dissemination areas
+    'GEO_FSA': 'ca.statcan.geo.fsa',  # Forward Sortation Areas
 }
 
 
