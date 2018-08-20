@@ -362,13 +362,19 @@ uk-geo-gov:
 uk-geo-datashare:
 	make -- run uk.datashare.PostcodeAreas
 
-uk-census: uk-census-output-areas uk-census-postcode-areas
+uk-census: uk-census-output-areas uk-census-postcode-areas uk-census-lower-super-output-areas uk-census-middle-super-output-areas
 
 uk-census-output-areas:
 	make -- run uk.census.wrapper.CensusOutputAreas
 
 uk-census-postcode-areas:
 	make -- run uk.census.wrapper.CensusPostcodeAreas
+
+uk-census-lower-super-output-areas:
+	make -- run uk.census.wrapper.CensusLowerSuperOutputAreas
+
+uk-census-middle-super-output-areas:
+	make -- run uk.census.wrapper.CensusMiddleSuperOutputAreas
 
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-zillow
