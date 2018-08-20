@@ -2,6 +2,7 @@ from collections import OrderedDict
 import json
 import os
 import re
+from luigi import Parameter
 
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
 from tasks.base_tasks import ColumnsTask, TagsTask
@@ -51,6 +52,8 @@ class SourceTags(TagsTask):
 
 
 class CensusColumns(ColumnsTask):
+    suffix = Parameter(default='oa')
+
     def requires(self):
         return {
             'units': UnitTags(),
@@ -77,7 +80,7 @@ class CensusColumns(ColumnsTask):
         columns = OrderedDict()
         for key, column in COLUMNS_DEFINITION.items():
             columns[key] = OBSColumn(
-                id=column['id'],
+                id='{id}_{suffix}'.format(id=column['id'], suffix=self.suffix),
                 name=column['name'],
                 description='',
                 type='Numeric',

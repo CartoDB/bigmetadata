@@ -8,6 +8,9 @@ from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
+from tasks.uk.gov import (LowerLayerSuperOutputAreas, LowerLayerSuperOutputAreasColumns,
+                          MiddleLayerSuperOutputAreas, MiddleLayerSuperOutputAreasColumns)
+
 from lib.logger import get_logger
 
 from .ons import ImportUKOutputAreas, ImportEnglandWalesLocal
@@ -42,7 +45,7 @@ class CensusOutputAreas(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
-            'data_columns': CensusColumns(),
+            'data_columns': CensusColumns(suffix='oa'),
             'geo': OutputAreas(),
         }
         for t in self.source_tables():
@@ -158,7 +161,7 @@ class CensusPostcodeAreas(TableTask):
         deps = {
             'geom_oa_columns': OutputAreaColumns(),
             'geom_pa_columns': PostcodeAreasColumns(),
-            'data_columns': CensusColumns(),
+            'data_columns': CensusColumns(suffix='oa'),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
             'census': CensusOutputAreas(),
@@ -213,3 +216,81 @@ class CensusPostcodeAreas(TableTask):
                 )
 
         current_session().execute(stmt)
+
+
+class CensusSOAsFromOAs(TableTask):
+    '''
+    As the SOAs and OAs layers are coupled and SOAs are bigger than OAs,
+    calculating the measurements for the SOAs is a matter of adding up
+    the values, so the data for the Super Output Areas is currently extracted
+    from the Output Areas.
+    '''
+
+    def targets(self):
+        return {
+            self.input()['target_geom'].obs_table: GEOM_REF,
+        }
+
+    def table_timespan(self):
+        return get_timespan('2011')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['GeographyCode'] = input_['target_geom_columns']['geographycode']
+        cols.update(input_['target_data_columns'])
+        return cols
+
+    def populate(self):
+        input_ = self.input()
+        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+
+        stmt = '''
+                INSERT INTO {output} (geographycode, {out_colnames})
+                SELECT geo_target.geographycode, {sum_colnames}
+                  FROM {data_source} data_source,
+                       {geo_source} geo_source,
+                       {geo_target} geo_target
+                 WHERE geo_source.oa_sa = data_source.geographycode
+                   AND ST_Intersects(geo_target.the_geom, ST_PointOnSurface(geo_source.the_geom))
+                 GROUP BY geo_target.geographycode
+               '''.format(
+                    output=self.output().table,
+                    out_colnames=', '.join(colnames),
+                    sum_colnames=', '.join(['sum({x}) {x}'.format(x=x) for x in colnames]),
+                    data_source=input_['source_data'].table,
+                    geo_source=input_['source_geom'].table,
+                    geo_target=input_['target_geom'].table,
+                )
+
+        current_session().execute(stmt)
+
+
+class CensusLowerSuperOutputAreas(CensusSOAsFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': LowerLayerSuperOutputAreasColumns(),
+            'target_geom': LowerLayerSuperOutputAreas(),
+            'target_data_columns': CensusColumns(suffix='lsoa'),
+        }
+
+        return deps
+
+
+class CensusMiddleSuperOutputAreas(CensusSOAsFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': MiddleLayerSuperOutputAreasColumns(),
+            'target_geom': MiddleLayerSuperOutputAreas(),
+            'target_data_columns': CensusColumns(suffix='msoa'),
+        }
+
+        return deps

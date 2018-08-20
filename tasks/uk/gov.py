@@ -211,6 +211,7 @@ class LowerLayerSuperOutputAreasColumns(ColumnsTask):
         source = input_['source']['uk-gov-source']
         boundary_type = input_['boundary']
         geom = OBSColumn(
+            id='lsoa_geo',
             type='Geometry',
             name='Lower Layer Super Output Areas (LSOA) and Data Zones',
             description='Full Clipped Lower Layer Super Output Area Boundaries '
@@ -252,12 +253,14 @@ class LowerLayerSuperOutputAreasColumns(ColumnsTask):
                   boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
+            id='lsoa_id',
             type='Text',
             name='Lower Layer Super Output Area ID',
             weight=0,
             targets={geom: GEOM_REF}
         )
         geomname = OBSColumn(
+            id='lsoa_name',
             type='Text',
             name='Lower Layer Super Output Area Name',
             weight=0,
@@ -265,9 +268,9 @@ class LowerLayerSuperOutputAreasColumns(ColumnsTask):
         )
 
         return OrderedDict([
-            ('lsoa_geo', geom),
-            ('lsoa_id', geomref),
-            ('lsoa_name', geomname),
+            ('the_geom', geom),
+            ('geographycode', geomref),
+            ('name', geomname),
         ])
 
 
@@ -340,6 +343,7 @@ class MiddleLayerSuperOutputAreasColumns(ColumnsTask):
         source = input_['source']['uk-gov-source']
         boundary_type = input_['boundary']
         geom = OBSColumn(
+            id='msoa_geo',
             type='Geometry',
             name='Middle Layer Super Output Areas (LSOA) and Intermediate Zones',
             description='Full Clipped Middle Layer Super Output Area Boundaries '
@@ -371,12 +375,14 @@ class MiddleLayerSuperOutputAreasColumns(ColumnsTask):
                   boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
+            id='msoa_id',
             type='Text',
             name='Middle Layer Super Output Area ID',
             weight=0,
             targets={geom: GEOM_REF}
         )
         geomname = OBSColumn(
+            id='msoa_name',
             type='Text',
             name='Middle Layer Super Output Area Name',
             weight=0,
@@ -384,9 +390,9 @@ class MiddleLayerSuperOutputAreasColumns(ColumnsTask):
         )
 
         return OrderedDict([
-            ('msoa_geo', geom),
-            ('msoa_id', geomref),
-            ('msoa_name', geomname),
+            ('the_geom', geom),
+            ('geographycode', geomref),
+            ('name', geomname),
         ])
 
 
