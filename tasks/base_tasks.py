@@ -577,39 +577,39 @@ class GdbFeatureClass2TempTableTask(TempTableTask):
                          tablename=self.output().tablename))
 
 
-class Shp2TempTableTask(TempTableTask):
+class GeoFile2TempTableTask(TempTableTask):
     '''
-    A task that loads :meth:`~.tasks.Shp2TempTableTask.input_shp()` into a
-    temporary Postgres table.  That method must be overriden.
+    A task that loads :meth:`~.tasks.GeoFile2TempTableTask.input_files()`
+    into a temporary Postgres table. That method must be overriden.
     '''
 
     encoding = Parameter(default='latin1', significant=False)
     other_options = ''
 
-    def input_shp(self):
+    def input_files(self):
         '''
         This method must be implemented by subclasses.  Should return either
-        a path to a single shapefile, or an iterable of paths to shapefiles.
+        a path to a single file, or an iterable of paths to files.
         In that case, the first in the list will determine the schema.
         '''
-        raise NotImplementedError("Must specify `input_shp` method")
+        raise NotImplementedError("Must specify `input_files` method")
 
     def run(self):
-        if isinstance(self.input_shp(), str):
-            shps = [self.input_shp()]
+        if isinstance(self.input_files(), str):
+            files = [self.input_files()]
         else:
-            shps = self.input_shp()
+            files = self.input_files()
         schema = self.output().schema
         tablename = self.output().tablename
         operation = '-overwrite -lco OVERWRITE=yes -lco SCHEMA={schema} -lco PRECISION=no'.format(
             schema=schema)
-        for shp in shps:
+        for geofile in files:
             # First we  try to import using utf8 as encoding if not able we
             # fallback to the encoding passed as parameter
             cmd = self.build_ogr_command(encoding='utf-8',
                                          schema=schema,
                                          tablename=tablename,
-                                         shp=shp,
+                                         geofile=geofile,
                                          operation=operation,
                                          other_options=self.other_options)
             output = shell(cmd)
@@ -617,7 +617,7 @@ class Shp2TempTableTask(TempTableTask):
                 cmd = self.build_ogr_command(encoding=self.encoding,
                                              schema=schema,
                                              tablename=tablename,
-                                             shp=shp,
+                                             geofile=geofile,
                                              operation=operation,
                                              other_options=self.other_options)
                 shell(cmd)
@@ -638,7 +638,7 @@ class Shp2TempTableTask(TempTableTask):
                '{operation} \'{input}\' '.format(encoding=args['encoding'],
                                                  schema=args['schema'],
                                                  table=args['tablename'],
-                                                 input=args['shp'],
+                                                 input=args['geofile'],
                                                  operation=args['operation'],
                                                  other_options=args['other_options'])
 
