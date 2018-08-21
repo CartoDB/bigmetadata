@@ -1,9 +1,10 @@
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.util import copyfile
 import os
+from luigi import WrapperTask
 from collections import OrderedDict
 from lib.timespan import get_timespan
 
@@ -440,7 +441,7 @@ class MiddleLayerSuperOutputAreas(TableTask):
         session.execute(query)
 
 
-class GovMetaWrapper(MetaWrapper):
+class GovWrapper(WrapperTask):
     def tables(self):
         yield LowerLayerSuperOutputAreas()
         yield MiddleLayerSuperOutputAreas()
