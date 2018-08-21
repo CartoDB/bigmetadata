@@ -348,7 +348,7 @@
 		"maxmemory": "8192",
 		"skipfailures": "no"
 	},
-	"uk.census.postcodeareas.shorelineclippedpostcodeareas_": {
+	"uk.datashare.shorelineclippedpostcodeareas_": {
 		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
 		"factor": "9",
