@@ -357,7 +357,7 @@ uk-geo-cdrc:
 	make -- run uk.cdrc.CDRCMetaWrapper
 
 uk-geo-gov:
-	make -- run uk.gov.GovMetaWrapper
+	make -- run uk.gov.GovWrapper
 
 uk-geo-datashare:
 	make -- run uk.datashare.PostcodeAreas
