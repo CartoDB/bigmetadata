@@ -442,6 +442,6 @@ class MiddleLayerSuperOutputAreas(TableTask):
 
 
 class GovWrapper(WrapperTask):
-    def tables(self):
+    def requires(self):
         yield LowerLayerSuperOutputAreas()
         yield MiddleLayerSuperOutputAreas()
