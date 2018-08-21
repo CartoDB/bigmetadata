@@ -4,7 +4,7 @@ from luigi import LocalTarget, Task, IntParameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, TagsTask, GeoFile2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
+from tasks.base_tasks import (ColumnsTask, TagsTask, Shp2TempTableTask, CSV2TempTableTask, TempTableTask, TableTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import current_session, OBSColumn, GEOM_REF, OBSTag, OBSTable
 from tasks.util import shell, classpath, copyfile
@@ -60,13 +60,13 @@ class DownloadGeographies(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
-class ImportSHNGeoms(GeoFile2TempTableTask):
+class ImportSHNGeoms(Shp2TempTableTask):
     level = IntParameter()
 
     def requires(self):
         return DownloadGeographies()
 
-    def input_files(self):
+    def input_shp(self):
         # ~/bigmetadata/tmp/eurostat.geo/DownloadGeographies__99914b932b/EGM_10-1-0SHP_20171110/DATA/FullEurope | grep PolbndA_optionKS
         return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', 'FullEurope', 'PolbndA_optionKS.shp')
 
@@ -81,14 +81,14 @@ class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
         return ImportSHNGeoms(level=self.level)
 
 
-class ImportSHNNames(GeoFile2TempTableTask):
+class ImportSHNNames(Shp2TempTableTask):
 
     encoding = 'utf8'
 
     def requires(self):
         return DownloadGeographies()
 
-    def input_files(self):
+    def input_shp(self):
         return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', 'FullEurope', 'EBM_NAM_optionKS.dbf')
 
 

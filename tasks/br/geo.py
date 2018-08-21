@@ -2,7 +2,7 @@ from luigi import Task, Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
                               RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTable
@@ -153,12 +153,12 @@ class DownloadGeography(BaseParams, DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportGeography(BaseParams, GeoFile2TempTableTask):
+class ImportGeography(BaseParams, Shp2TempTableTask):
 
     def requires(self):
         return DownloadGeography(resolution=self.resolution, state=self.state)
 
-    def input_files(self):
+    def input_shp(self):
         cmd = 'ls {input}/*.shp'.format(
             input=self.input().path
         )

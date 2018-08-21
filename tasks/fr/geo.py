@@ -1,4 +1,4 @@
-from tasks.base_tasks import (ColumnsTask, MetaWrapper, GeoFile2TempTableTask, TableTask, DownloadUnzipTask,
+from tasks.base_tasks import (ColumnsTask, MetaWrapper, Shp2TempTableTask, TableTask, DownloadUnzipTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from tasks.util import copyfile
@@ -25,12 +25,12 @@ class DownloadOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportOutputAreas(GeoFile2TempTableTask):
+class ImportOutputAreas(Shp2TempTableTask):
 
     def requires(self):
         return DownloadOutputAreas()
 
-    def input_files(self):
+    def input_shp(self):
         # may need to point to directory iris-2013-01-01?
         return os.path.join(self.input().path, 'iris-2013-01-01.shp')
 

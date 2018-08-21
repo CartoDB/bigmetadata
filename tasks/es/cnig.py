@@ -2,7 +2,7 @@
 
 from luigi import Task, Parameter, LocalTarget, WrapperTask
 
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, GeoFile2TempTableTask, SimplifiedTempTableTask,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, Shp2TempTableTask, SimplifiedTempTableTask,
                               RepoFile)
 from lib.timespan import get_timespan
 from tasks.util import shell, classpath, copyfile
@@ -39,7 +39,7 @@ class DownloadGeometry(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.seq).lower())
 
 
-class ImportGeometry(GeoFile2TempTableTask):
+class ImportGeometry(Shp2TempTableTask):
 
     resolution = Parameter()
     timestamp = Parameter()
@@ -48,7 +48,7 @@ class ImportGeometry(GeoFile2TempTableTask):
     def requires(self):
         return DownloadGeometry(seq='114023')
 
-    def input_files(self):
+    def input_shp(self):
         '''
         We don't know precise name of file inside zip archive beforehand, so
         use find to track it down.

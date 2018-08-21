@@ -1,5 +1,5 @@
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF
-from tasks.base_tasks import ColumnsTask, GeoFile2TempTableTask, DownloadUnzipTask, TableTask
+from tasks.base_tasks import ColumnsTask, Shp2TempTableTask, DownloadUnzipTask, TableTask
 from tasks.util import shell
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
@@ -29,7 +29,7 @@ class DownloadUnzipMapPLUTO(DownloadUnzipTask):
         ))
 
 
-class MapPLUTOTmpTable(GeoFile2TempTableTask):
+class MapPLUTOTmpTable(Shp2TempTableTask):
 
     borough = Parameter()
     release = Parameter()
@@ -37,7 +37,7 @@ class MapPLUTOTmpTable(GeoFile2TempTableTask):
     def requires(self):
         return DownloadUnzipMapPLUTO(borough=self.borough, release=self.release)
 
-    def input_files(self):
+    def input_shp(self):
         return os.path.join(self.input().path, '{}MapPLUTO.shp'.format(self.borough.upper()))
 
 

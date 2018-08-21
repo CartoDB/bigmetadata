@@ -2,7 +2,7 @@ from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, TableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
@@ -108,7 +108,7 @@ class DownloadElectoralDistricts(DownloadData):
     URL = 'http://data.diegovalle.net/mapsmapas/eleccion_2010.zip'
 
 
-class ImportGeography(GeoFile2TempTableTask):
+class ImportGeography(Shp2TempTableTask):
     '''
     Import geographies into postgres by resolution using ogr2ogr
     '''
@@ -118,7 +118,7 @@ class ImportGeography(GeoFile2TempTableTask):
     def requires(self):
         return DownloadGeographies()
 
-    def input_files(self):
+    def input_shp(self):
         cmd = 'ls {input}/encuesta_intercensal_2015/shps/'.format(
             input=self.input().path
         )
@@ -139,7 +139,7 @@ class SimplifiedImportGeography(SimplifiedTempTableTask):
         return ImportGeography(resolution=self.resolution)
 
 
-class ImportDemographicData(GeoFile2TempTableTask):
+class ImportDemographicData(Shp2TempTableTask):
 
     resolution = Parameter()
     table = Parameter()
@@ -147,7 +147,7 @@ class ImportDemographicData(GeoFile2TempTableTask):
     def requires(self):
         return DownloadDemographicData()
 
-    def input_files(self):
+    def input_shp(self):
         cmd = 'ls {input}/{scince}/shps/'.format(
             input=self.input().path,
             scince=SCINCE_DIRECTORY
