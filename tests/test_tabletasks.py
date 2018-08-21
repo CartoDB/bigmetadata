@@ -66,7 +66,7 @@ class TestGeomTableTask(BaseTestTableTask):
             ))
 
 
-class TestShp2TempTableTask(GeoFile2TempTableTask):
+class TestGeoFile2TempTableTask(GeoFile2TempTableTask):
 
     def input_files(self):
         return os.path.join('tests', 'fixtures', 'cartodb-query.shp')
@@ -151,7 +151,7 @@ def test_shp_2_temp_table_task():
     Shp to temp table task should run and generate no entry in OBSTable, but
     a physical table in the right schema.
     '''
-    task = TestShp2TempTableTask()
+    task = TestGeoFile2TempTableTask()
     before_table_count = current_session().execute(
         'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
     runtask(task)

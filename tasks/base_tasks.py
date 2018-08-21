@@ -609,7 +609,7 @@ class GeoFile2TempTableTask(TempTableTask):
             cmd = self.build_ogr_command(encoding='utf-8',
                                          schema=schema,
                                          tablename=tablename,
-                                         geofile=geofile,
+                                         input=geofile,
                                          operation=operation,
                                          other_options=self.other_options)
             output = shell(cmd)
@@ -617,7 +617,7 @@ class GeoFile2TempTableTask(TempTableTask):
                 cmd = self.build_ogr_command(encoding=self.encoding,
                                              schema=schema,
                                              tablename=tablename,
-                                             geofile=geofile,
+                                             input=geofile,
                                              operation=operation,
                                              other_options=self.other_options)
                 shell(cmd)
@@ -638,7 +638,7 @@ class GeoFile2TempTableTask(TempTableTask):
                '{operation} \'{input}\' '.format(encoding=args['encoding'],
                                                  schema=args['schema'],
                                                  table=args['tablename'],
-                                                 input=args['geofile'],
+                                                 input=args['input'],
                                                  operation=args['operation'],
                                                  other_options=args['other_options'])
 
