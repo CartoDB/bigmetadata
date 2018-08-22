@@ -1,5 +1,5 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, GeoFile2TempTableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
@@ -62,12 +62,12 @@ class DownloadOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportOutputAreas(Shp2TempTableTask):
+class ImportOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Output Area Classification',
                             'Shapefiles', '2011_OAC.shp')
 
