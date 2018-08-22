@@ -45,7 +45,7 @@ class ImportLowerLayerSuperOutputAreas(GeoFile2TempTableTask):
     def requires(self):
         return DownloadLowerLayerSuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_England_and_Wales.shp')
 
 
@@ -90,7 +90,7 @@ class ImportMiddleLayerSuperOutputAreas(GeoFile2TempTableTask):
     def requires(self):
         return DownloadMiddleLayerSuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Middle_Layer_Super_Output_Areas_December_2011_Full_Clipped_Boundaries_in_England_and_Wales.shp')
 
 
@@ -121,7 +121,7 @@ class ImportDataZones(GeoFile2TempTableTask):
     def requires(self):
         return DownloadDataZones()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SG_DataZone_Bdry_2011.shp')
 
 
@@ -152,7 +152,7 @@ class ImportIntermediateZones(GeoFile2TempTableTask):
     def requires(self):
         return DownloadIntermediateZones()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SG_IntermediateZone_Bdry_2011.shp')
 
 
@@ -183,7 +183,7 @@ class ImportNISuperOutputAreas(GeoFile2TempTableTask):
     def requires(self):
         return DownloadNISuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SOA2011.shp')
 
 

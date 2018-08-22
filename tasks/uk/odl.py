@@ -49,7 +49,7 @@ class ImportPostcodeDistricts(GeoFile2TempTableTask):
     def requires(self):
         return DownloadPostcodeBoundaries()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Distribution', 'Districts.shp')
 
 
@@ -144,7 +144,7 @@ class ImportPostcodeSectors(GeoFile2TempTableTask):
     def requires(self):
         return DownloadPostcodeBoundaries()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Distribution', 'Sectors.shp')
 
 
