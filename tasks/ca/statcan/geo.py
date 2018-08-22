@@ -18,6 +18,7 @@ GEO_CD = 'cd_'
 GEO_CSD = 'csd'
 GEO_CMA = 'cma'
 GEO_DA = 'da_'
+GEO_FSA = 'fsa'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -26,8 +27,8 @@ GEOGRAPHIES = (
     GEO_CSD,
     GEO_CMA,
     GEO_DA,
+    GEO_FSA,
 )
-
 
 GEOGRAPHY_NAMES = {
     GEO_CT: 'Census tracts',
@@ -36,6 +37,7 @@ GEOGRAPHY_NAMES = {
     GEO_CSD: 'Census subdivisions',
     GEO_CMA: 'Census metropolitan areas and census agglomerations',
     GEO_DA: 'Census dissemination areas',
+    GEO_FSA: 'Forward sortation areas',
 }
 
 GEOGRAPHY_DESCS = {
@@ -45,6 +47,7 @@ GEOGRAPHY_DESCS = {
     GEO_CSD: '',
     GEO_CMA: '',
     GEO_DA: '',
+    GEO_FSA: '',
 }
 
 GEOGRAPHY_PROPERNAMES = {
@@ -53,7 +56,8 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CD: 'CDNAME',
     GEO_CSD: 'CSDNAME',
     GEO_CMA: 'CMANAME',
-    GEO_DA: 'DAUID' # DA has no proper name
+    GEO_DA: 'DAUID',  # DA has no proper name
+    GEO_FSA: 'PRNAME',
 }
 
 GEOGRAPHY_CODES = {
@@ -63,6 +67,7 @@ GEOGRAPHY_CODES = {
     GEO_CSD: 301,
     GEO_CMA: 201,
     GEO_DA: 1501,
+    GEO_FSA: 1601,
 }
 
 GEOGRAPHY_TAGS = {
@@ -71,8 +76,28 @@ GEOGRAPHY_TAGS = {
     GEO_CD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CSD: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_CMA: ['cartographic_boundary'],
-    GEO_DA: ['cartographic_boundary', 'interpolation_boundary']
+    GEO_DA: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_FSA: ['cartographic_boundary', 'interpolation_boundary'],
+}
 
+GEOGRAPHY_FORMAT = {
+    GEO_CT: 'a',  # SHP
+    GEO_PR: 'a',  # SHP
+    GEO_CD: 'a',  # SHP
+    GEO_CSD: 'a',  # SHP
+    GEO_CMA: 'a',  # SHP
+    GEO_DA: 'a',  # SHP
+    GEO_FSA: 'g',  # GML
+}
+
+GEOGRAPHY_UID = {
+    GEO_CT: 'ctuid',
+    GEO_PR: 'pruid',
+    GEO_CD: 'cduid',
+    GEO_CSD: 'csduid',
+    GEO_CMA: 'cmauid',
+    GEO_DA: 'dauid',
+    GEO_FSA: 'cfsauid',
 }
 
 
@@ -83,7 +108,7 @@ class DownloadGeography(DownloadUnzipTask):
     resolution = Parameter(default=GEO_PR)
     year = Parameter(default="2011")
 
-    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11a_e.zip'
+    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip'
 
     def version(self):
         return 1
@@ -91,7 +116,9 @@ class DownloadGeography(DownloadUnzipTask):
     def requires(self):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
-                        url=self.URL.format(year=self.year, resolution=self.resolution))
+                        url=self.URL.format(year=self.year,
+                                            resolution=self.resolution,
+                                            format=GEOGRAPHY_FORMAT[self.resolution]))
 
     def download(self):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
@@ -103,23 +130,26 @@ class ImportGeography(GeoFile2TempTableTask):
     '''
 
     resolution = Parameter(default=GEO_PR)
+    extension = Parameter(default='shp', significant=False)
 
     def requires(self):
         return DownloadGeography(resolution=self.resolution)
 
     def input_files(self):
-        cmd = 'ls {input}/*.shp'.format(
-            input=self.input().path
+        cmd = 'ls {input}/*.{extension}'.format(
+            input=self.input().path,
+            extension=self.extension
         )
-        for shp in shell(cmd).strip().split('\n'):
-            yield shp
+        for geofile in shell(cmd).strip().split('\n'):
+            yield geofile
 
 
 class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
 
     def requires(self):
-        return ImportGeography(resolution=self.resolution)
+        extension = 'gml' if self.resolution == GEO_FSA else 'shp'
+        return ImportGeography(resolution=self.resolution, extension=extension)
 
 
 class GeographyColumns(ColumnsTask):
@@ -133,6 +163,7 @@ class GeographyColumns(ColumnsTask):
         GEO_CSD: 4,
         GEO_CT: 5,
         GEO_DA: 6,
+        GEO_FSA: 7,
     }
 
     def version(self):
@@ -215,12 +246,12 @@ class Geography(TableTask):
         session = current_session()
         session.execute('INSERT INTO {output} '
                         'SELECT {name} as geom_name, '
-                        '       {code}uid as geom_id, '
+                        '       {code} as geom_id, '
                         '       wkb_geometry as geom '
                         'FROM {input} '.format(
                             name=GEOGRAPHY_PROPERNAMES[self.resolution],
                             output=self.output().table,
-                            code=self.resolution.replace('_', ''),
+                            code=GEOGRAPHY_UID[self.resolution],
                             input=self.input()['data'].table))
 
 
