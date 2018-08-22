@@ -1,4 +1,4 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, ColumnsTask, TagsTask,
+from tasks.base_tasks import (DownloadUnzipTask, RepoFile, GeoFile2TempTableTask, ColumnsTask, TagsTask,
                               TableTask, SimplifiedTempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
@@ -27,14 +27,14 @@ class DownloadPostcodeAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportPostcodeAreas(Shp2TempTableTask):
+class ImportPostcodeAreas(GeoFile2TempTableTask):
 
     other_options = '-s_srs "EPSG:27700"'
 
     def requires(self):
         return DownloadPostcodeAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return self.input().path
 
 

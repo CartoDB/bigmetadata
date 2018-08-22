@@ -41,7 +41,7 @@ The actual flow of ``Task`` dependencies could be charted like this:
       node_height = 60;
 
       download_data [ label = "Download data", description = ":class:`~.tasks.DownloadUnzipTask`, :class:`Task` " ];
-      import_data [ label = "Import data", description = ":class:`~.tasks.CSV2TempTableTask`, :class:`~.tasks.Shp2TempTableTask`, :class:`~.tasks.TempTableTask` "];
+      import_data [ label = "Import data", description = ":class:`~.tasks.CSV2TempTableTask`, :class:`~.tasks.GeoFile2TempTableTask`, :class:`~.tasks.TempTableTask` "];
       process_data [ label = "Preprocess data", description = ":class:`~.tasks.TempTableTask`", stacked ];
       generate_metadata [ label = "Write metadata", description = ":class:`~.tasks.ColumnsTask`" ];
       output_table [ label = "Output table", description = ":class:`~.tasks.TableTask`" ];
