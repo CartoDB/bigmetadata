@@ -46,7 +46,7 @@ class CensusOutputAreas(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
-            'data_columns': CensusColumns(suffix='oa'),
+            'data_columns': CensusColumns(),
             'geo': OutputAreas(),
         }
         for t in self.source_tables():
@@ -162,7 +162,7 @@ class CensusPostcodeAreas(TableTask):
         deps = {
             'geom_oa_columns': OutputAreaColumns(),
             'geom_pa_columns': PostcodeAreasColumns(),
-            'data_columns': CensusColumns(suffix='oa'),
+            'data_columns': CensusColumns(),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
             'census': CensusOutputAreas(),
@@ -275,11 +275,11 @@ class CensusPostcodeDistricts(CensusPostcodeEntitiesFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': PostcodeDistrictsColumns(),
             'target_geom': PostcodeDistricts(),
-            'target_data_columns': CensusColumns(suffix='pd'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps
@@ -290,11 +290,11 @@ class CensusPostcodeSectors(CensusPostcodeEntitiesFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': PostcodeSectorsColumns(),
             'target_geom': PostcodeSectors(),
-            'target_data_columns': CensusColumns(suffix='ps'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps
@@ -353,11 +353,11 @@ class CensusLowerSuperOutputAreas(CensusSOAsFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': LowerLayerSuperOutputAreasColumns(),
             'target_geom': LowerLayerSuperOutputAreas(),
-            'target_data_columns': CensusColumns(suffix='lsoa'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps
@@ -368,11 +368,11 @@ class CensusMiddleSuperOutputAreas(CensusSOAsFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': MiddleLayerSuperOutputAreasColumns(),
             'target_geom': MiddleLayerSuperOutputAreas(),
-            'target_data_columns': CensusColumns(suffix='msoa'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps
