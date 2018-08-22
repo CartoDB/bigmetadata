@@ -1,4 +1,4 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, SimplifiedTempTableTask, TagsTask,
+from tasks.base_tasks import (DownloadUnzipTask, RepoFile, GeoFile2TempTableTask, SimplifiedTempTableTask, TagsTask,
                               ColumnsTask, TableTask)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSTag, OBSColumn, OBSTable, current_session
@@ -44,7 +44,7 @@ class DownloadPostcodeBoundaries(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportPostcodeDistricts(Shp2TempTableTask):
+class ImportPostcodeDistricts(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadPostcodeBoundaries()
@@ -139,7 +139,7 @@ class PostcodeDistricts(TableTask):
         session.execute(query)
 
 
-class ImportPostcodeSectors(Shp2TempTableTask):
+class ImportPostcodeSectors(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadPostcodeBoundaries()

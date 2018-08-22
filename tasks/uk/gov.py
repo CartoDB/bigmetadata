@@ -1,4 +1,4 @@
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, GeoFile2TempTableTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
@@ -40,7 +40,7 @@ class DownloadLowerLayerSuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportLowerLayerSuperOutputAreas(Shp2TempTableTask):
+class ImportLowerLayerSuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadLowerLayerSuperOutputAreas()
@@ -85,7 +85,7 @@ class DownloadMiddleLayerSuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportMiddleLayerSuperOutputAreas(Shp2TempTableTask):
+class ImportMiddleLayerSuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadMiddleLayerSuperOutputAreas()
@@ -116,7 +116,7 @@ class DownloadDataZones(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportDataZones(Shp2TempTableTask):
+class ImportDataZones(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadDataZones()
@@ -147,7 +147,7 @@ class DownloadIntermediateZones(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportIntermediateZones(Shp2TempTableTask):
+class ImportIntermediateZones(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadIntermediateZones()
@@ -178,7 +178,7 @@ class DownloadNISuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportNISuperOutputAreas(Shp2TempTableTask):
+class ImportNISuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadNISuperOutputAreas()
