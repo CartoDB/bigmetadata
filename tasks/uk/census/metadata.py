@@ -2,7 +2,6 @@ from collections import OrderedDict
 import json
 import os
 import re
-from luigi import Parameter
 
 from tasks.meta import OBSColumn, DENOMINATOR, OBSTag
 from tasks.base_tasks import ColumnsTask, TagsTask

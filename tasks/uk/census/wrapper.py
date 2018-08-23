@@ -220,6 +220,12 @@ class CensusPostcodeAreas(TableTask):
 
 
 class CensusPostcodeEntitiesFromOAs(TableTask):
+    def requires(self):
+        '''
+        This method must be overriden in subclasses.
+        '''
+        raise NotImplementedError('The requires method must be overriden in subclasses')
+
     def targets(self):
         return {
             self.input()['target_geom'].obs_table: GEOM_REF,
@@ -307,6 +313,12 @@ class CensusSOAsFromOAs(TableTask):
     the values, so the data for the Super Output Areas is currently extracted
     from the Output Areas.
     '''
+
+    def requires(self):
+        '''
+        This method must be overriden in subclasses.
+        '''
+        raise NotImplementedError('The requires method must be overriden in subclasses')
 
     def targets(self):
         return {
