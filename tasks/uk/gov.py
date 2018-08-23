@@ -1,4 +1,4 @@
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, Shp2TempTableTask,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, GeoFile2TempTableTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
@@ -40,12 +40,12 @@ class DownloadLowerLayerSuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportLowerLayerSuperOutputAreas(Shp2TempTableTask):
+class ImportLowerLayerSuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadLowerLayerSuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Lower_Layer_Super_Output_Areas_December_2011_Full_Clipped__Boundaries_in_England_and_Wales.shp')
 
 
@@ -85,12 +85,12 @@ class DownloadMiddleLayerSuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportMiddleLayerSuperOutputAreas(Shp2TempTableTask):
+class ImportMiddleLayerSuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadMiddleLayerSuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'Middle_Layer_Super_Output_Areas_December_2011_Full_Clipped_Boundaries_in_England_and_Wales.shp')
 
 
@@ -116,12 +116,12 @@ class DownloadDataZones(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportDataZones(Shp2TempTableTask):
+class ImportDataZones(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadDataZones()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SG_DataZone_Bdry_2011.shp')
 
 
@@ -147,12 +147,12 @@ class DownloadIntermediateZones(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportIntermediateZones(Shp2TempTableTask):
+class ImportIntermediateZones(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadIntermediateZones()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SG_IntermediateZone_Bdry_2011.shp')
 
 
@@ -178,12 +178,12 @@ class DownloadNISuperOutputAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportNISuperOutputAreas(Shp2TempTableTask):
+class ImportNISuperOutputAreas(GeoFile2TempTableTask):
 
     def requires(self):
         return DownloadNISuperOutputAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return os.path.join(self.input().path, 'SOA2011.shp')
 
 
@@ -442,6 +442,6 @@ class MiddleLayerSuperOutputAreas(TableTask):
 
 
 class GovWrapper(WrapperTask):
-    def tables(self):
+    def requires(self):
         yield LowerLayerSuperOutputAreas()
         yield MiddleLayerSuperOutputAreas()

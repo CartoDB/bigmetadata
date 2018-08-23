@@ -1,4 +1,4 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, Shp2TempTableTask, ColumnsTask, TagsTask,
+from tasks.base_tasks import (DownloadUnzipTask, RepoFile, GeoFile2TempTableTask, ColumnsTask, TagsTask,
                               TableTask, SimplifiedTempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
@@ -27,14 +27,14 @@ class DownloadPostcodeAreas(DownloadUnzipTask):
         copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
-class ImportPostcodeAreas(Shp2TempTableTask):
+class ImportPostcodeAreas(GeoFile2TempTableTask):
 
     other_options = '-s_srs "EPSG:27700"'
 
     def requires(self):
         return DownloadPostcodeAreas()
 
-    def input_shp(self):
+    def input_files(self):
         return self.input().path
 
 
@@ -108,6 +108,7 @@ class PostcodeAreasColumns(ColumnsTask):
         source = input_['source']['uk_ed_datashare_source']
         boundary_type = input_['boundary']
         geom = OBSColumn(
+            id='pa_geo',
             type='Geometry',
             name='GB Postcode Areas',
             description='''
@@ -122,12 +123,14 @@ class PostcodeAreasColumns(ColumnsTask):
                   boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
+            id='pa_id',
             type='Text',
             name='GB Postcode Area ID',
             weight=0,
             targets={geom: GEOM_REF}
         )
         geomname = OBSColumn(
+            id='pa_name',
             type='Text',
             name='GB Postcode Area Name',
             weight=0,

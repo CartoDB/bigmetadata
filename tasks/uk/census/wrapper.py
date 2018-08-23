@@ -8,6 +8,7 @@ from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
+from tasks.uk.odl import PostcodeDistricts, PostcodeDistrictsColumns, PostcodeSectors, PostcodeSectorsColumns
 from tasks.uk.gov import (LowerLayerSuperOutputAreas, LowerLayerSuperOutputAreasColumns,
                           MiddleLayerSuperOutputAreas, MiddleLayerSuperOutputAreasColumns)
 
@@ -45,7 +46,7 @@ class CensusOutputAreas(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
-            'data_columns': CensusColumns(suffix='oa'),
+            'data_columns': CensusColumns(),
             'geo': OutputAreas(),
         }
         for t in self.source_tables():
@@ -161,7 +162,7 @@ class CensusPostcodeAreas(TableTask):
         deps = {
             'geom_oa_columns': OutputAreaColumns(),
             'geom_pa_columns': PostcodeAreasColumns(),
-            'data_columns': CensusColumns(suffix='oa'),
+            'data_columns': CensusColumns(),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
             'census': CensusOutputAreas(),
@@ -218,6 +219,87 @@ class CensusPostcodeAreas(TableTask):
         current_session().execute(stmt)
 
 
+class CensusPostcodeEntitiesFromOAs(TableTask):
+    def targets(self):
+        return {
+            self.input()['target_geom'].obs_table: GEOM_REF,
+        }
+
+    def table_timespan(self):
+        return get_timespan('2011')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['GeographyCode'] = input_['target_geom_columns']['geographycode']
+        cols.update(input_['target_data_columns'])
+        return cols
+
+    def populate(self):
+        input_ = self.input()
+        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+
+        stmt = '''
+                INSERT INTO {output} (geographycode, {out_colnames})
+                SELECT geographycode, {sum_colnames}
+                  FROM (
+                    SELECT CASE WHEN ST_Within(geo_pe.the_geom, geo_oa.the_geom)
+                                    THEN ST_Area(geo_pe.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                                WHEN ST_Within(geo_oa.the_geom, geo_pe.the_geom)
+                                    THEN 1
+                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pe.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                           END area_ratio,
+                           geo_pe.geographycode, {in_colnames}
+                      FROM {census_table} census,
+                           {geo_oa_table} geo_oa,
+                           {geo_pe_table} geo_pe
+                     WHERE census.geographycode = geo_oa.oa_sa
+                       AND ST_Intersects(geo_oa.the_geom, geo_pe.the_geom) = True
+                    ) q GROUP BY geographycode
+               '''.format(
+                    output=self.output().table,
+                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
+                    out_colnames=', '.join(colnames),
+                    in_colnames=', '.join(colnames),
+                    census_table=input_['source_data'].table,
+                    geo_oa_table=input_['source_geom'].table,
+                    geo_pe_table=input_['target_geom'].table,
+                    geo_id='pa_id'
+                )
+
+        current_session().execute(stmt)
+
+
+class CensusPostcodeDistricts(CensusPostcodeEntitiesFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeDistrictsColumns(),
+            'target_geom': PostcodeDistricts(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
+
+
+class CensusPostcodeSectors(CensusPostcodeEntitiesFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeSectorsColumns(),
+            'target_geom': PostcodeSectors(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
+
+
 class CensusSOAsFromOAs(TableTask):
     '''
     As the SOAs and OAs layers are coupled and SOAs are bigger than OAs,
@@ -271,11 +353,11 @@ class CensusLowerSuperOutputAreas(CensusSOAsFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': LowerLayerSuperOutputAreasColumns(),
             'target_geom': LowerLayerSuperOutputAreas(),
-            'target_data_columns': CensusColumns(suffix='lsoa'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps
@@ -286,11 +368,11 @@ class CensusMiddleSuperOutputAreas(CensusSOAsFromOAs):
         deps = {
             'source_geom_columns': OutputAreaColumns(),
             'source_geom': OutputAreas(),
-            'source_data_columns': CensusColumns(suffix='oa'),
+            'source_data_columns': CensusColumns(),
             'source_data': CensusOutputAreas(),
             'target_geom_columns': MiddleLayerSuperOutputAreasColumns(),
             'target_geom': MiddleLayerSuperOutputAreas(),
-            'target_data_columns': CensusColumns(suffix='msoa'),
+            'target_data_columns': CensusColumns(),
         }
 
         return deps

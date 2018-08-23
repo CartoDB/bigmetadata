@@ -3,7 +3,7 @@ import os
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, Shp2TempTableTask, SimplifiedTempTableTask, TableTask,
+from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
                               TagsTask, RepoFile)
 from tasks.util import shell, copyfile, classpath, uncompress_file
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag, OBSTable
@@ -163,7 +163,8 @@ class DownloadAndMergeMeshBlocks(Task):
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id, 'au_mb_all_merged.shp'))
 
-class ImportGeography(Shp2TempTableTask):
+
+class ImportGeography(GeoFile2TempTableTask):
     '''
     Import geographies into postgres by geography level
     '''
@@ -177,7 +178,7 @@ class ImportGeography(Shp2TempTableTask):
         else:
             return DownloadGeography(resolution=self.resolution, year=self.year)
 
-    def input_shp(self):
+    def input_files(self):
         if self.resolution == GEO_MB:
             yield self.input().path
         else:
