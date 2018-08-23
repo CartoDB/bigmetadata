@@ -10,14 +10,14 @@ from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
-# TODO Add block level when we have ACS for block
 GEOGRAPHY_LEVELS = {
-    'GEO_STE': 'au.geo.STE',
-    'GEO_SA4': 'au.geo.SA4',
-    'GEO_SA3': 'au.geo.SA3',
-    'GEO_SA2': 'au.geo.SA2',
-    'GEO_SA1': 'au.geo.SA1',
-    'GEO_MB': 'au.geo.MB'
+    'GEO_STE': 'au.geo.STE',  # State/Territory
+    'GEO_SA4': 'au.geo.SA4',  # Statistical Area Level 4
+    'GEO_SA3': 'au.geo.SA3',  # Statistical Area Level 3
+    'GEO_SA2': 'au.geo.SA2',  # Statistical Area Level 2
+    'GEO_SA1': 'au.geo.SA1',  # Statistical Area Level 1
+    'GEO_MB': 'au.geo.MB',  # Mesh blocks
+    'GEO_POA': 'au.geo.POA',  # Postal Areas
 }
 
 
