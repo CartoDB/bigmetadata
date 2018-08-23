@@ -354,11 +354,39 @@ mx-census:
 ### uk
 uk-all: uk-geo uk-census
 
-uk-geo:
+uk-geo: uk-geo-cdrc uk-geo-gov uk-geo-datashare uk-geo-odl
+
+uk-geo-cdrc:
 	make -- run uk.cdrc.CDRCMetaWrapper
 
-uk-census:
-	make -- run uk.census.wrapper.CensusWrapper
+uk-geo-gov:
+	make -- run uk.gov.GovWrapper
+
+uk-geo-datashare:
+	make -- run uk.datashare.PostcodeAreas
+
+uk-geo-odl:
+	make -- run uk.odl.ODLWrapper
+
+uk-census: uk-census-output-areas uk-census-postcode-areas uk-census-postcode-districts uk-census-postcode-sectors uk-census-lower-super-output-areas uk-census-middle-super-output-areas
+
+uk-census-output-areas:
+	make -- run uk.census.wrapper.CensusOutputAreas
+
+uk-census-postcode-areas:
+	make -- run uk.census.wrapper.CensusPostcodeAreas
+
+uk-census-postcode-districts:
+	make -- run uk.census.wrapper.CensusPostcodeDistricts
+
+uk-census-postcode-sectors:
+	make -- run uk.census.wrapper.CensusPostcodeSectors
+
+uk-census-lower-super-output-areas:
+	make -- run uk.census.wrapper.CensusLowerSuperOutputAreas
+
+uk-census-middle-super-output-areas:
+	make -- run uk.census.wrapper.CensusMiddleSuperOutputAreas
 
 ### us
 us-all: us-bls us-acs us-lodes us-spielman us-tiger us-enviroatlas us-huc us-zillow

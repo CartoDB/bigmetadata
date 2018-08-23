@@ -37,6 +37,8 @@ class Simplify(WrapperTask):
 
     def requires(self):
         params = get_simplification_params(self.table_key.lower())
+        if not params:
+            LOGGER.error("Simplification not found. Edit 'simplifications.json' and add an entry for '{}'".format(self.table_key.lower()))
         LOGGER.info("Simplifying %s using %s", self.table, params.get(SIMPLIFICATION))
 
         simplification = params[SIMPLIFICATION]

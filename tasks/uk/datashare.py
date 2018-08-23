@@ -108,6 +108,7 @@ class PostcodeAreasColumns(ColumnsTask):
         source = input_['source']['uk_ed_datashare_source']
         boundary_type = input_['boundary']
         geom = OBSColumn(
+            id='pa_geo',
             type='Geometry',
             name='GB Postcode Areas',
             description='''
@@ -122,12 +123,14 @@ class PostcodeAreasColumns(ColumnsTask):
                   boundary_type['cartographic_boundary'], boundary_type['interpolation_boundary']]
         )
         geomref = OBSColumn(
+            id='pa_id',
             type='Text',
             name='GB Postcode Area ID',
             weight=0,
             targets={geom: GEOM_REF}
         )
         geomname = OBSColumn(
+            id='pa_name',
             type='Text',
             name='GB Postcode Area Name',
             weight=0,
