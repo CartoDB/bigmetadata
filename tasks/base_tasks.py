@@ -465,7 +465,6 @@ class DownloadUnzipTask(DownloadUncompressTask):
         uncompress_file(self.output().path)
 
 
-
 class DownloadGUnzipTask(DownloadUncompressTask):
     '''
     Download a gz file to location {output}.gz and unzip it to the file

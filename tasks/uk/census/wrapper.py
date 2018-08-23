@@ -7,20 +7,24 @@ from lib.timespan import get_timespan
 from tasks.base_tasks import MetaWrapper, TableTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
-from tasks.uk.census.postcodeareas import PostcodeAreas, PostcodeAreasColumns
+from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
+from tasks.uk.odl import PostcodeDistricts, PostcodeDistrictsColumns, PostcodeSectors, PostcodeSectorsColumns
+from tasks.uk.gov import (LowerLayerSuperOutputAreas, LowerLayerSuperOutputAreasColumns,
+                          MiddleLayerSuperOutputAreas, MiddleLayerSuperOutputAreasColumns)
+
 from lib.logger import get_logger
 
-from .ons import ImportUK, ImportEnglandWalesLocal
+from .ons import ImportUKOutputAreas, ImportEnglandWalesLocal
 from .scotland import ImportScotland
 from .metadata import parse_table, COLUMNS_DEFINITION
 
 LOGGER = get_logger(__name__)
 
 
-class CensusTableTask(WrapperTask):
+class CensusOutputAreasTableTask(WrapperTask):
     # Which task to use to import an specific table
     REGION_MAPPING = {
-        "UK": ImportUK,
+        "UK": ImportUKOutputAreas,
         "EW": ImportEnglandWalesLocal,
         "SC": ImportScotland
     }
@@ -38,7 +42,7 @@ class CensusTableTask(WrapperTask):
         return self.requires().output().table
 
 
-class Census(TableTask):
+class CensusOutputAreas(TableTask):
     def requires(self):
         deps = {
             'geom_columns': OutputAreaColumns(),
@@ -46,7 +50,7 @@ class Census(TableTask):
             'geo': OutputAreas(),
         }
         for t in self.source_tables():
-            deps[t] = CensusTableTask(table=t)
+            deps[t] = CensusOutputAreasTableTask(table=t)
 
         return deps
 
@@ -161,7 +165,7 @@ class CensusPostcodeAreas(TableTask):
             'data_columns': CensusColumns(),
             'geo_oa': OutputAreas(),
             'geo_pa': PostcodeAreas(),
-            'census': Census(),
+            'census': CensusOutputAreas(),
         }
 
         return deps
@@ -215,8 +219,172 @@ class CensusPostcodeAreas(TableTask):
         current_session().execute(stmt)
 
 
-class CensusWrapper(MetaWrapper):
-    def tables(self):
-        yield Census()
-        yield CensusPostcodeAreas()
-        yield OutputAreas()
+class CensusPostcodeEntitiesFromOAs(TableTask):
+    def requires(self):
+        '''
+        This method must be overriden in subclasses.
+        '''
+        raise NotImplementedError('The requires method must be overriden in subclasses')
+
+    def targets(self):
+        return {
+            self.input()['target_geom'].obs_table: GEOM_REF,
+        }
+
+    def table_timespan(self):
+        return get_timespan('2011')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['GeographyCode'] = input_['target_geom_columns']['geographycode']
+        cols.update(input_['target_data_columns'])
+        return cols
+
+    def populate(self):
+        input_ = self.input()
+        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+
+        stmt = '''
+                INSERT INTO {output} (geographycode, {out_colnames})
+                SELECT geographycode, {sum_colnames}
+                  FROM (
+                    SELECT CASE WHEN ST_Within(geo_pe.the_geom, geo_oa.the_geom)
+                                    THEN ST_Area(geo_pe.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                                WHEN ST_Within(geo_oa.the_geom, geo_pe.the_geom)
+                                    THEN 1
+                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pe.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
+                           END area_ratio,
+                           geo_pe.geographycode, {in_colnames}
+                      FROM {census_table} census,
+                           {geo_oa_table} geo_oa,
+                           {geo_pe_table} geo_pe
+                     WHERE census.geographycode = geo_oa.oa_sa
+                       AND ST_Intersects(geo_oa.the_geom, geo_pe.the_geom) = True
+                    ) q GROUP BY geographycode
+               '''.format(
+                    output=self.output().table,
+                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
+                    out_colnames=', '.join(colnames),
+                    in_colnames=', '.join(colnames),
+                    census_table=input_['source_data'].table,
+                    geo_oa_table=input_['source_geom'].table,
+                    geo_pe_table=input_['target_geom'].table,
+                    geo_id='pa_id'
+                )
+
+        current_session().execute(stmt)
+
+
+class CensusPostcodeDistricts(CensusPostcodeEntitiesFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeDistrictsColumns(),
+            'target_geom': PostcodeDistricts(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
+
+
+class CensusPostcodeSectors(CensusPostcodeEntitiesFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeSectorsColumns(),
+            'target_geom': PostcodeSectors(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
+
+
+class CensusSOAsFromOAs(TableTask):
+    '''
+    As the SOAs and OAs layers are coupled and SOAs are bigger than OAs,
+    calculating the measurements for the SOAs is a matter of adding up
+    the values, so the data for the Super Output Areas is currently extracted
+    from the Output Areas.
+    '''
+
+    def requires(self):
+        '''
+        This method must be overriden in subclasses.
+        '''
+        raise NotImplementedError('The requires method must be overriden in subclasses')
+
+    def targets(self):
+        return {
+            self.input()['target_geom'].obs_table: GEOM_REF,
+        }
+
+    def table_timespan(self):
+        return get_timespan('2011')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['GeographyCode'] = input_['target_geom_columns']['geographycode']
+        cols.update(input_['target_data_columns'])
+        return cols
+
+    def populate(self):
+        input_ = self.input()
+        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+
+        stmt = '''
+                INSERT INTO {output} (geographycode, {out_colnames})
+                SELECT geo_target.geographycode, {sum_colnames}
+                  FROM {data_source} data_source,
+                       {geo_source} geo_source,
+                       {geo_target} geo_target
+                 WHERE geo_source.oa_sa = data_source.geographycode
+                   AND ST_Intersects(geo_target.the_geom, ST_PointOnSurface(geo_source.the_geom))
+                 GROUP BY geo_target.geographycode
+               '''.format(
+                    output=self.output().table,
+                    out_colnames=', '.join(colnames),
+                    sum_colnames=', '.join(['sum({x}) {x}'.format(x=x) for x in colnames]),
+                    data_source=input_['source_data'].table,
+                    geo_source=input_['source_geom'].table,
+                    geo_target=input_['target_geom'].table,
+                )
+
+        current_session().execute(stmt)
+
+
+class CensusLowerSuperOutputAreas(CensusSOAsFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': LowerLayerSuperOutputAreasColumns(),
+            'target_geom': LowerLayerSuperOutputAreas(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
+
+
+class CensusMiddleSuperOutputAreas(CensusSOAsFromOAs):
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': MiddleLayerSuperOutputAreasColumns(),
+            'target_geom': MiddleLayerSuperOutputAreas(),
+            'target_data_columns': CensusColumns(),
+        }
+
+        return deps
