@@ -365,7 +365,7 @@ uk-geo-datashare:
 uk-geo-odl:
 	make -- run uk.odl.ODLWrapper
 
-uk-census: uk-census-output-areas uk-census-postcode-areas uk-census-postcode-districts uk-census-postcode-sectors k-census-lower-super-output-areas uk-census-middle-super-output-areas
+uk-census: uk-census-output-areas uk-census-postcode-areas uk-census-postcode-districts uk-census-postcode-sectors uk-census-lower-super-output-areas uk-census-middle-super-output-areas
 
 uk-census-output-areas:
 	make -- run uk.census.wrapper.CensusOutputAreas
