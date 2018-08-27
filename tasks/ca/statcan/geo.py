@@ -2,8 +2,7 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask,
-                              RepoFile)
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags

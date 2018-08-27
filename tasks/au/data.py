@@ -7,7 +7,7 @@ from collections import OrderedDict
 
 from lib.timespan import get_timespan
 from tasks.util import shell, copyfile
-from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper, RepoFile
+from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags

@@ -9,8 +9,7 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper,
-                              RepoFile)
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper)
 from tasks.util import shell, copyfile
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags

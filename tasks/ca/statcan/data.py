@@ -8,7 +8,7 @@ from collections import OrderedDict
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import RepoFileUnzipTask, TableTask, TempTableTask, MetaWrapper, RepoFile
+from tasks.base_tasks import RepoFileUnzipTask, TableTask, TempTableTask, MetaWrapper
 from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (

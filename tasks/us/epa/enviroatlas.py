@@ -5,7 +5,7 @@ from tasks.util import copyfile
 from lib.timespan import get_timespan
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, UnitTags
 from tasks.us.epa.huc import HUC, HUCColumns, SourceTags
-from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, RepoFile
+from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask
 from collections import OrderedDict
 
 import os

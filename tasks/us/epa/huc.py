@@ -2,7 +2,7 @@ import os
 
 from lib.timespan import get_timespan
 from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GdbFeatureClass2TempTableTask, TagsTask, TableTask,
-                              SimplifiedTempTableTask, RepoFile)
+                              SimplifiedTempTableTask)
 from tasks.meta import OBSTable, OBSColumn, OBSTag, GEOM_REF, current_session
 from tasks.tags import SubsectionTags, SectionTags, LicenseTags
 from tasks.util import copyfile
