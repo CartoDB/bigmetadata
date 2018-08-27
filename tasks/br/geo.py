@@ -2,7 +2,7 @@ from luigi import Task, Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
                               RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTable
@@ -125,16 +125,13 @@ class BaseParams(metaclass=ABCMeta):
     state = Parameter(default='ac')
 
 
-class DownloadGeography(BaseParams, DownloadUnzipTask):
+class DownloadGeography(BaseParams, RepoFileUnzipTask):
 
     PATH = 'ftp://geoftp.ibge.gov.br/organizacao_do_territorio/malhas_territoriais/malhas_de_setores_censitarios__divisoes_intramunicipais/censo_2010/setores_censitarios_shp/{state}/'
 
     FILENAME = '{state}_{resolution}.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
+    def get_url(self):
         path = self.PATH.format(state=self.state)
 
         res = self.resolution
@@ -145,12 +142,7 @@ class DownloadGeography(BaseParams, DownloadUnzipTask):
 
         url = path + filename
 
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=url)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+        return url
 
 
 class ImportGeography(BaseParams, GeoFile2TempTableTask):

@@ -40,7 +40,7 @@ The actual flow of ``Task`` dependencies could be charted like this:
       node_width = 240;
       node_height = 60;
 
-      download_data [ label = "Download data", description = ":class:`~.tasks.DownloadUnzipTask`, :class:`Task` " ];
+      download_data [ label = "Download data", description = ":class:`~.tasks.RepoFileUnzipTask`, :class:`Task` " ];
       import_data [ label = "Import data", description = ":class:`~.tasks.CSV2TempTableTask`, :class:`~.tasks.GeoFile2TempTableTask`, :class:`~.tasks.TempTableTask` "];
       process_data [ label = "Preprocess data", description = ":class:`~.tasks.TempTableTask`", stacked ];
       generate_metadata [ label = "Write metadata", description = ":class:`~.tasks.ColumnsTask`" ];
@@ -85,7 +85,7 @@ And navigate to it in your browser.
     
     from tasks.util import underscore_slugify, shell, classpath
     from tasks.base_tasks import (TempTableTask, TableTask, ColumnsTask,
-                             DownloadUnzipTask, CSV2TempTableTask)
+                             RepoFileUnzipTask, CSV2TempTableTask)
     from tasks.meta import current_session, DENOMINATOR
     
     # We like OrderedDict because it makes it easy to pass dicts
@@ -113,23 +113,22 @@ And navigate to it in your browser.
 The first step of most ETLs is going to be downloading the source and
 saving it to a temporary folder.
 
-``DownloadUnzipTask`` is a utility class that handles the file naming
-and unzipping of the temporary output for you. You just have to write
-the code which will do the download to the output file name.
+``RepoFileUnzipTask`` is a utility class that handles the file naming
+and unzipping of the temporary output for you. It requires RepoFile
+so all the files are managed by the repository. You just have to write
+the code which will tell the downloader where to get the source file
+from.
 
 .. code:: python
 
-    class DownloadQCEW(DownloadUnzipTask):
+    class DownloadQCEW(RepoFileUnzipTask):
         
         year = IntParameter()
         
         URL = 'http://www.bls.gov/cew/data/files/{year}/csv/{year}_qtrly_singlefile.zip'
         
-        def download(self):
-            shell('wget -O {output}.zip {url}'.format(
-               output=self.output().path,
-               url=self.URL.format(year=self.year)
-            ))
+        def get_url(self):
+            return URL.format(year=self.year)
 
 Within the IPython environment, we can create and run the task within a
 sandbox.

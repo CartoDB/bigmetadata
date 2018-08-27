@@ -2,7 +2,7 @@ from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, TableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
@@ -71,17 +71,9 @@ DEMOGRAPHIC_TABLES = {
 }
 
 
-class DownloadData(DownloadUnzipTask):
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+class DownloadData(RepoFileUnzipTask):
+    def get_url(self):
+        return self.URL
 
 
 class DownloadGeographies(DownloadData):

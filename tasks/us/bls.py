@@ -1,4 +1,4 @@
-from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, DownloadUnzipTask, TagsTask,
+from tasks.base_tasks import (ColumnsTask, TempTableTask, TableTask, RepoFileUnzipTask, TagsTask,
                               CSV2TempTableTask, RepoFile)
 from tasks.util import underscore_slugify, copyfile
 from tasks.meta import current_session, DENOMINATOR, UNIVERSE
@@ -17,22 +17,14 @@ import os
 import glob
 
 
-class DownloadQCEW(DownloadUnzipTask):
+class DownloadQCEW(RepoFileUnzipTask):
 
     year = IntParameter()
 
     URL = 'http://www.bls.gov/cew/data/files/{year}/csv/{year}_qtrly_singlefile.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL.format(year=self.year))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL.format(year=self.year)
 
 
 class RawQCEW(CSV2TempTableTask):

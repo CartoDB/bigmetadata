@@ -8,7 +8,7 @@ from collections import OrderedDict
 from lib.logger import get_logger
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import DownloadUnzipTask, TableTask, TempTableTask, MetaWrapper, RepoFile
+from tasks.base_tasks import RepoFileUnzipTask, TableTask, TempTableTask, MetaWrapper, RepoFile
 from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
@@ -47,19 +47,11 @@ class BaseParams(metaclass=ABCMeta):
     survey = Parameter(default=SURVEY_CEN)
 
 
-class DownloadData(BaseParams, DownloadUnzipTask):
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=URL.format(survey_url=SURVEY_URLS[self.survey],
-                                       survey_code=SURVEY_CODES[self.survey],
-                                       geo_code=GEOGRAPHY_CODES[self.resolution]))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+class DownloadData(BaseParams, RepoFileUnzipTask):
+    def get_url(self):
+        return URL.format(survey_url=SURVEY_URLS[self.survey],
+                          survey_code=SURVEY_CODES[self.survey],
+                          geo_code=GEOGRAPHY_CODES[self.resolution])
 
 
 class SplitAndTransposeData(BaseParams, Task):

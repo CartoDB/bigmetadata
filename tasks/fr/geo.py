@@ -1,4 +1,4 @@
-from tasks.base_tasks import (ColumnsTask, MetaWrapper, GeoFile2TempTableTask, TableTask, DownloadUnzipTask,
+from tasks.base_tasks import (ColumnsTask, MetaWrapper, GeoFile2TempTableTask, TableTask, RepoFileUnzipTask,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from tasks.util import copyfile
@@ -8,21 +8,13 @@ import os
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 
-class DownloadOutputAreas(DownloadUnzipTask):
+class DownloadOutputAreas(RepoFileUnzipTask):
     # Note that this set of IRIS contours is from 2013, may need to find 2014 contours to match the data
 
     URL = 'https://www.data.gouv.fr/s/resources/contour-des-iris-insee-tout-en-un/20150428-161348/iris-2013-01-01.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportOutputAreas(GeoFile2TempTableTask):

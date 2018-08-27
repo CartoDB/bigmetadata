@@ -1,4 +1,4 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, GeoFile2TempTableTask, ColumnsTask, TagsTask,
+from tasks.base_tasks import (RepoFileUnzipTask, RepoFile, GeoFile2TempTableTask, ColumnsTask, TagsTask,
                               TableTask, SimplifiedTempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
@@ -10,21 +10,13 @@ from tasks.uk.shoreline import Shoreline
 from collections import OrderedDict
 
 
-class DownloadPostcodeAreas(DownloadUnzipTask):
+class DownloadPostcodeAreas(RepoFileUnzipTask):
 
     # Source: https://datashare.is.ed.ac.uk/handle/10283/2405
     URL = 'https://datashare.is.ed.ac.uk/bitstream/handle/10283/2405/gb_postcode_areas.zip?sequence=1&isAllowed=y'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportPostcodeAreas(GeoFile2TempTableTask):

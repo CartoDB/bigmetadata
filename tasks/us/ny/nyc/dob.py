@@ -3,7 +3,7 @@ from xlrd import open_workbook
 from xlrd.xldate import xldate_as_tuple
 
 from lib.timespan import get_timespan
-from tasks.base_tasks import ColumnsTask, TableTask, TempTableTask, DownloadUnzipTask
+from tasks.base_tasks import ColumnsTask, TableTask, TempTableTask, RepoFileUnzipTask
 from tasks.util import shell
 from tasks.meta import current_session, OBSColumn
 from collections import OrderedDict
@@ -20,19 +20,16 @@ import os
 LOGGER = get_logger(__name__)
 
 
-class DownloadPermitIssuanceMonthly(DownloadUnzipTask):
+class DownloadPermitIssuanceMonthly(RepoFileUnzipTask):
 
     month = IntParameter()
     year = IntParameter()
 
     URL = 'https://www1.nyc.gov/assets/buildings/foil/per{month}{year}excel.zip'
 
-    def download(self):
-        shell('wget -O {output}.zip {url}'.format(
-            url=self.URL.format(month=('0' + str(self.month))[-2:],
-                                year=('0' + str(self.year))[-2:]),
-            output=self.output().path
-        ))
+    def get_url(self):
+        return self.URL.format(month=('0' + str(self.month))[-2:],
+                               year=('0' + str(self.year))[-2:])
 
 
 class PermitIssuanceXLS2TempTableTask(TempTableTask):

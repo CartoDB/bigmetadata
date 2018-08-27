@@ -3,7 +3,7 @@ import os
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, SimplifiedTempTableTask, TableTask,
                               TagsTask, RepoFile)
 from tasks.util import shell, copyfile, classpath, uncompress_file
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag, OBSTable
@@ -97,23 +97,16 @@ class LicenseTags(TagsTask):
         ]
 
 
-class DownloadGeography(DownloadUnzipTask):
+class DownloadGeography(RepoFileUnzipTask):
 
     year = Parameter()
     resolution = Parameter()
 
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
 
-    def version(self):
-        return 1
+    def get_url(self):
+        return self.URL.format(resolution=self.resolution, year=self.year)
 
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL.format(resolution=self.resolution, year=self.year))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 class DownloadAndMergeMeshBlocks(Task):
 

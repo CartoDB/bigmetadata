@@ -1,4 +1,4 @@
-from tasks.base_tasks import (DownloadUnzipTask, RepoFile, GeoFile2TempTableTask, SimplifiedTempTableTask, TagsTask,
+from tasks.base_tasks import (RepoFileUnzipTask, RepoFile, GeoFile2TempTableTask, SimplifiedTempTableTask, TagsTask,
                               ColumnsTask, TableTask)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSTag, OBSColumn, OBSTable, current_session
@@ -27,21 +27,13 @@ class ODLSourceTags(TagsTask):
                    ]
 
 
-class DownloadPostcodeBoundaries(DownloadUnzipTask):
+class DownloadPostcodeBoundaries(RepoFileUnzipTask):
 
     # Source: https://www.opendoorlogistics.com/downloads/
     URL = 'https://www.opendoorlogistics.com/wp-content/uploads/Data/UK-postcode-boundaries-Jan-2015.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportPostcodeDistricts(GeoFile2TempTableTask):
