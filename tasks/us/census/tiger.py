@@ -49,7 +49,7 @@ class ClippedGeomColumns(ColumnsTask):
     year = Parameter()
 
     def version(self):
-        return 15
+        return 16
 
     def requires(self):
         return {
@@ -100,7 +100,7 @@ class GeomColumns(ColumnsTask):
     year = Parameter()
 
     def version(self):
-        return 17
+        return 18
 
     def requires(self):
         return {
@@ -176,7 +176,7 @@ class GeoidColumns(ColumnsTask):
     year = Parameter()
 
     def version(self):
-        return 7
+        return 8
 
     def requires(self):
         return {
@@ -214,7 +214,7 @@ class GeonameColumns(ColumnsTask):
     year = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
