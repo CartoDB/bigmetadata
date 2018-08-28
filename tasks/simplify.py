@@ -15,6 +15,10 @@ SKIP_FAILURES = 'skipfailures'
 SIMPLIFICATION_MAPSHAPER = 'mapshaper'
 SIMPLIFICATION_POSTGIS = 'postgis'
 
+DEFAULT_SIMPLIFICATION = SIMPLIFICATION_MAPSHAPER
+DEFAULT_MAXMEMORY = '8192'
+DEFAULT_SKIPFAILURES = 'no'
+
 LOGGER = get_logger(__name__)
 
 
@@ -39,16 +43,19 @@ class Simplify(WrapperTask):
         params = get_simplification_params(self.table_key.lower())
         if not params:
             LOGGER.error("Simplification not found. Edit 'simplifications.json' and add an entry for '{}'".format(self.table_key.lower()))
-        LOGGER.info("Simplifying %s using %s", self.table, params.get(SIMPLIFICATION))
 
-        simplification = params[SIMPLIFICATION]
+        simplification = params.get(SIMPLIFICATION, DEFAULT_SIMPLIFICATION)
+        LOGGER.info("Simplifying %s using %s", self.table, simplification)
         if simplification == SIMPLIFICATION_MAPSHAPER:
             return SimplifyGeometriesMapshaper(schema=self.schema, table_input=self.table,
-                                               geomfield=params[GEOM_FIELD], retainfactor=params[FACTOR],
-                                               skipfailures=params[SKIP_FAILURES], maxmemory=params[MAX_MEMORY])
+                                               geomfield=params[GEOM_FIELD],
+                                               retainfactor=params[FACTOR],
+                                               skipfailures=params.get(SKIP_FAILURES, DEFAULT_SKIPFAILURES),
+                                               maxmemory=params.get(MAX_MEMORY, DEFAULT_MAXMEMORY))
         elif simplification == SIMPLIFICATION_POSTGIS:
             return SimplifyGeometriesPostGIS(schema=self.schema, table_input=self.table,
-                                             geomfield=params[GEOM_FIELD], retainfactor=params[FACTOR])
+                                             geomfield=params[GEOM_FIELD],
+                                             retainfactor=params[FACTOR])
         else:
             raise ValueError('Invalid simplification "{simplification}" for {table}'.format(
                 simplification=simplification, table=self.table))
