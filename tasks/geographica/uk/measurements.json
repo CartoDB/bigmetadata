@@ -1,0 +1,8 @@
+[
+{"numer_id": "uk.ons.LC2102EW0001", "normalization": "predenominated"},
+{"numer_id": "uk.ons.LC2102EW0016", "denom_id": "uk.ons.LC2102EW0001"},
+{"numer_id": "uk.ons.LC2102EW0031", "denom_id": "uk.ons.LC2102EW0001"},
+{"numer_id": "uk.ons.LC2102EW0046", "denom_id": "uk.ons.LC2102EW0001"},
+{"numer_id": "uk.ons.LC2102EW0061", "denom_id": "uk.ons.LC2102EW0001"},
+{"numer_id": "uk.ons.LC2102EW0076", "denom_id": "uk.ons.LC2102EW0001"}
+]

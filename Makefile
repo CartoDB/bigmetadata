@@ -339,6 +339,9 @@ geographica-ca-all:
 geographica-au-all:
 	make -- run geographica.au.csv.AllMeasurements
 
+geographica-uk-all:
+	make -- run geographica.uk.csv.AllMeasurements
+
 ### mx
 mx-all: mx-geo mx-census
 
