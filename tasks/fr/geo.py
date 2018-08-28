@@ -1,5 +1,5 @@
 from tasks.base_tasks import (ColumnsTask, MetaWrapper, GeoFile2TempTableTask, TableTask, RepoFileUnzipTask,
-                              SimplifiedTempTableTask, RepoFile)
+                              SimplifiedTempTableTask)
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF, GEOM_NAME
 from tasks.util import copyfile
 from lib.timespan import get_timespan

@@ -1,5 +1,5 @@
 from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, RepoFileUnzipTask, GeoFile2TempTableTask,
-                              SimplifiedTempTableTask, RepoFile)
+                              SimplifiedTempTableTask)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.util import copyfile

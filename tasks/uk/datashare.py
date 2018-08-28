@@ -1,4 +1,4 @@
-from tasks.base_tasks import (RepoFileUnzipTask, RepoFile, GeoFile2TempTableTask, ColumnsTask, TagsTask,
+from tasks.base_tasks import (RepoFileUnzipTask, GeoFile2TempTableTask, ColumnsTask, TagsTask,
                               TableTask, SimplifiedTempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.util import copyfile
