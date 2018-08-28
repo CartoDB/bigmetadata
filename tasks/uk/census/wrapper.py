@@ -157,66 +157,41 @@ class CensusOutputAreas(TableTask):
         current_session().execute(stmt)
 
 
-class CensusPostcodeAreas(TableTask):
-    def requires(self):
-        deps = {
-            'geom_oa_columns': OutputAreaColumns(),
-            'geom_pa_columns': PostcodeAreasColumns(),
-            'data_columns': CensusColumns(),
-            'geo_oa': OutputAreas(),
-            'geo_pa': PostcodeAreas(),
-            'census': CensusOutputAreas(),
-        }
-
-        return deps
-
-    def targets(self):
-        return {
-            self.input()['geo_pa'].obs_table: GEOM_REF,
-        }
-
+class CensusPostcodeAreas(InterpolationTask):
     def table_timespan(self):
         return get_timespan('2011')
 
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['GeographyCode'] = input_['geom_pa_columns']['pa_id']
-        cols.update(input_['data_columns'])
+        cols['pa_id'] = input_['target_geom_columns']['pa_id']
+        cols.update(input_['source_data_columns'])
         return cols
 
-    def populate(self):
-        input_ = self.input()
-        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+    def requires(self):
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeAreasColumns(),
+            'target_geom': PostcodeAreas(),
+            'target_data_columns': CensusColumns(),
+        }
 
-        stmt = '''
-                INSERT INTO {output} (geographycode, {out_colnames})
-                SELECT pa_id, {sum_colnames}
-                  FROM (
-                    SELECT CASE WHEN ST_Within(geo_pa.the_geom, geo_oa.the_geom)
-                                    THEN ST_Area(geo_pa.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                                WHEN ST_Within(geo_oa.the_geom, geo_pa.the_geom)
-                                    THEN 1
-                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pa.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                           END area_ratio,
-                           pa_id, {in_colnames}
-                      FROM {census_table} census,
-                           {geo_oa_table} geo_oa,
-                           {geo_pa_table} geo_pa
-                     WHERE census.geographycode = geo_oa.oa_sa
-                       AND ST_Intersects(geo_oa.the_geom, geo_pa.the_geom) = True
-                    ) q GROUP BY pa_id
-               '''.format(
-                    output=self.output().table,
-                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
-                    out_colnames=', '.join(colnames),
-                    in_colnames=', '.join(colnames),
-                    census_table=input_['census'].table,
-                    geo_oa_table=input_['geo_oa'].table,
-                    geo_pa_table=input_['geo_pa'].table,
-                )
+        return deps
 
-        current_session().execute(stmt)
+    def get_interpolation_parameters(self):
+        params = {
+            'source_data_geoid': 'geographycode',
+            'source_geom_geoid': 'oa_sa',
+            'target_data_geoid': 'pa_id',
+            'target_geom_geoid': 'pa_id',
+            'source_geom_geomfield': 'the_geom',
+            'target_geom_geomfield': 'the_geom',
+        }
+
+        return params
 
 
 class CensusPostcodeEntitiesFromOAs(InterpolationTask):

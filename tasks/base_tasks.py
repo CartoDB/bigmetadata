@@ -1788,7 +1788,7 @@ class InterpolationTask(BaseInterpolationTask):
 
         stmt = '''
                 INSERT INTO {output} ({target_data_geoid}, {out_colnames})
-                SELECT {source_data_geoid}, {sum_colnames}
+                SELECT {target_geom_geoid}, {sum_colnames}
                   FROM (
                     SELECT CASE WHEN ST_Within(target_geom_table.{target_geom_geomfield},
                                                source_geom_table.{source_geom_geomfield})
@@ -1801,14 +1801,14 @@ class InterpolationTask(BaseInterpolationTask):
                                                              target_geom_table.{target_geom_geomfield})) /
                                              Nullif(ST_Area(source_geom_table.{source_geom_geomfield}), 0)
                            END area_ratio,
-                           target_geom_table.{source_data_geoid}, {in_colnames}
+                           target_geom_table.{target_geom_geoid}, {in_colnames}
                       FROM {source_data_table} source_data_table,
                            {source_geom_table} source_geom_table,
                            {target_geom_table} target_geom_table
                      WHERE source_data_table.{source_data_geoid} = source_geom_table.{source_geom_geoid}
                        AND ST_Intersects(source_geom_table.{source_geom_geomfield},
                                          target_geom_table.{target_geom_geomfield}) = True
-                    ) q GROUP BY {source_data_geoid}
+                    ) q GROUP BY {target_geom_geoid}
                '''.format(
                     output=self.output().table,
                     sum_colnames=', '.join(['round(sum({x} / Nullif(area_ratio, 0))) {x}'.format(x=x) for x in colnames]),
@@ -1820,6 +1820,7 @@ class InterpolationTask(BaseInterpolationTask):
                     source_data_geoid=interpolation_params['source_data_geoid'],
                     source_geom_geoid=interpolation_params['source_geom_geoid'],
                     target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
                     source_geom_geomfield=interpolation_params['source_geom_geomfield'],
                     target_geom_geomfield=interpolation_params['target_geom_geomfield'],
                 )
@@ -1843,14 +1844,14 @@ class CoupledInterpolationTask(BaseInterpolationTask):
 
         stmt = '''
                 INSERT INTO {output} ({target_data_geoid}, {out_colnames})
-                SELECT target_geom_table.{source_data_geoid}, {sum_colnames}
+                SELECT target_geom_table.{target_geom_geoid}, {sum_colnames}
                   FROM {source_data_table} source_data_table,
                        {source_geom_table} source_geom_table,
                        {target_geom_table} target_geom_table
                  WHERE source_geom_table.{source_geom_geoid} = source_data_table.{source_data_geoid}
                    AND ST_Intersects(target_geom_table.{target_geom_geomfield},
                                      ST_PointOnSurface(source_geom_table.{source_geom_geomfield}))
-                 GROUP BY target_geom_table.{source_data_geoid}
+                 GROUP BY target_geom_table.{target_geom_geoid}
                '''.format(
                     output=self.output().table,
                     out_colnames=', '.join(colnames),
@@ -1859,6 +1860,7 @@ class CoupledInterpolationTask(BaseInterpolationTask):
                     source_geom_table=input_['source_geom'].table,
                     target_geom_table=input_['target_geom'].table,
                     target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
                     source_data_geoid=interpolation_params['source_data_geoid'],
                     source_geom_geoid=interpolation_params['source_geom_geoid'],
                     source_geom_geomfield=interpolation_params['source_geom_geomfield'],
