@@ -4,7 +4,7 @@ from luigi import WrapperTask, Parameter
 
 from tasks.meta import current_session, GEOM_REF
 from lib.timespan import get_timespan
-from tasks.base_tasks import MetaWrapper, TableTask, InterpolationTask, CoupledInterpolationTask
+from tasks.base_tasks import TableTask, InterpolationTask, CoupledInterpolationTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
