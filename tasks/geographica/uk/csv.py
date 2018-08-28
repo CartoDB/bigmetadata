@@ -4,17 +4,16 @@ import csv
 
 from luigi import Task, WrapperTask, Parameter
 from luigi.local_target import LocalTarget
-from tasks.ca.statcan.data import AllCensusTopics, AllNHSTopics
 from tasks.meta import current_session
+from tasks.uk.census.wrapper import CensusPostcodeAreas, CensusPostcodeDistricts, CensusPostcodeSectors
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
 GEOGRAPHY_LEVELS = {
-    'GEO_PR': 'ca.statcan.geo.pr_',  # Canada, provinces and territories
-    'GEO_CD': 'ca.statcan.geo.cd_',  # Census divisions
-    'GEO_DA': 'ca.statcan.geo.da_',  # Census dissemination areas
-    'GEO_FSA': 'ca.statcan.geo.fsa',  # Forward Sortation Areas
+    'GEO_PA': 'uk.datashare.pa_geo',  # Postcode Areas
+    'GEO_PD': 'uk.odl.pd_geo',  # Postcode Districts
+    'GEO_PS': 'uk.odl.ps_geo',  # Postcode Sectors
 }
 
 
@@ -26,10 +25,15 @@ class Measurements2CSV(Task):
         super(Measurements2CSV, self).__init__(*args, **kwargs)
 
     def requires(self):
-        return {
-            'nhs': AllNHSTopics(),
-            'census': AllCensusTopics(),
-        }
+        requirements = {}
+        if self.geography == 'GEO_PA':
+            requirements['data'] = CensusPostcodeAreas()
+        elif self.geography == 'GEO_PD':
+            requirements['data'] = CensusPostcodeDistricts()
+        elif self.geography == 'GEO_PS':
+            requirements['data'] = CensusPostcodeSectors()
+
+        return requirements
 
     def _get_config_data(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -42,11 +46,16 @@ class Measurements2CSV(Task):
         for measure in measurements:
             measure['geom_id'] = GEOGRAPHY_LEVELS[self.geography]
         json_metadata = json.dumps(measurements)
+
         result = session.execute(self._get_meta_query(json_metadata))
         if result:
             join_data = {}
             join_data['numer'] = {}
-            colnames = ['geom_id as geoid']
+            if self.geography == 'GEO_PA':
+                colnames = ['geom.pa_id as geoid']
+            else:
+                colnames = ['geom.geographycode as geoid']
+
             for data in result.fetchall():
                 join_data['numer'][data['numer_table']] = {'table': 'observatory.{}'.format(data['numer_table']),
                                                            'join_column': data['numer_join_col']}
@@ -54,6 +63,7 @@ class Measurements2CSV(Task):
                 # TODO Make it possible to have multiple geometry tables
                 join_data['geom'] = {'table': 'observatory.{}'.format(data['geom_table']), 'join_column': data['geom_join_col']}
                 colnames.append(data['numer_col'])
+
             measurement_result = session.execute(self._get_measurements_query(join_data, colnames))
             if measurement_result:
                 measurements = measurement_result.fetchall()
@@ -89,7 +99,7 @@ class Measurements2CSV(Task):
         try:
             self.output().makedirs()
             with(open(self.output().path, 'w+')) as csvfile:
-                headers[0] = 'geoid'
+                headers[0]='geoid'
                 writer = csv.DictWriter(csvfile, fieldnames=headers)
                 writer.writeheader()
                 for measurement in measurements:
@@ -98,11 +108,11 @@ class Measurements2CSV(Task):
             self.output().remove
 
     def output(self):
-        csv_filename = 'tmp/geographica/ca/{}'.format(self.file_name)
+        csv_filename = 'tmp/geographica/uk/{}'.format(self.file_name)
         return LocalTarget(path=csv_filename, format='csv')
 
 
 class AllMeasurements(WrapperTask):
     def requires(self):
         for geography in GEOGRAPHY_LEVELS.keys():
-            yield Measurements2CSV(geography=geography, file_name='do_ca_{}.csv'.format(geography))
+            yield Measurements2CSV(geography=geography, file_name='do_uk_{}.csv'.format(geography))

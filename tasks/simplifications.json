@@ -2,358 +2,249 @@
 	"AU": "-------------------------------------",
 
 	"au.geo.importgeography_ced_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "7"
 	},
 	"au.geo.importgeography_gccsa_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_lga_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "17",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "17"
 	},
 	"au.geo.importgeography_poa_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "15",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "15"
 	},
 	"au.geo.importgeography_ra_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_sa1_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "11",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "11"
 	},
 	"au.geo.importgeography_sa2_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "11",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "11"
 	},
 	"au.geo.importgeography_sa3_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "11",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "11"
 	},
 	"au.geo.importgeography_sa4_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_mb_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_sed_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "11",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "11"
 	},
 	"au.geo.importgeography_sla_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "14",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "14"
 	},
 	"au.geo.importgeography_sos_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_sosr_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_ssc_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "13",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "13"
 	},
 	"au.geo.importgeography_ste_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"au.geo.importgeography_sua_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "12",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "12"
 	},
 	"au.geo.importgeography_ucl_2011": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "13",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "13"
 	},
 
 	"BR": "-------------------------------------",
 
 	"br.geo.importgeography_distritos": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"br.geo.importgeography_municipios": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "12",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "12"
 	},
 	"br.geo.importgeography_setores_censitar": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"br.geo.importgeography_subdistritos": {
 		"schema": "observatory",
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 
 	"CA": "-------------------------------------",
 
 	"ca.statcan.geo.importgeography_cd_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "13.5",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "13.5"
 	},
 	"ca.statcan.geo.importgeography_cma": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"ca.statcan.geo.importgeography_csd": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"ca.statcan.geo.importgeography_ct_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "7"
 	},
 	"ca.statcan.geo.importgeography_pr_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "12",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "12"
 	},
 	"ca.statcan.geo.importgeography_da_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "7"
+	},
+	"ca.statcan.geo.importgeography_fsa": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
 	},
 
 	"ES": "-------------------------------------",
 
 	"es.cnig.importgeometry_x_ccaa_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.cnig.importgeometry_y_ccaa_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.cnig.importgeometry_x_prov_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.cnig.importgeometry_y_prov_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.cnig.importgeometry_x_muni_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.cnig.importgeometry_y_muni_20150101": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 	"es.ine.rawgeometry_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 
 	"EU": "-------------------------------------",
 
 	"eu.geo.importshngeoms_0": {
 		"schema": "observatory",
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "9.7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "9.7"
 	},
 	"eu.geo.importshngeoms_2": {
 		"schema": "observatory",
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "9.5",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "9.5"
 	},
 	"eu.geo.importshngeoms_3": {
 		"schema": "observatory",
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "9.1",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "9.1"
 	},
 
 	"FR": "-------------------------------------",
 
 	"fr.geo.importoutputareas_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 
 	"MX": "-------------------------------------",
 
 	"mx.inegi.importgeography_ageb": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "7"
 	},
 	"mx.inegi.importgeography_entidad": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "7",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "7"
 	},
 	"mx.inegi.importgeography_localidad_urbana": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "6.5",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "6.5"
 	},
 	"mx.inegi.importgeography_manzana": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"mx.inegi.importgeography_municipio": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"mx.inegi.importgeography_servicios_area": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "10",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "10"
 	},
 
 	"UK": "-------------------------------------",
 
 	"uk.cdrc.importoutputareas_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "9",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "9"
 	},
-	"uk.census.postcodeareas.shorelineclippedpostcodeareas_": {
-		"simplification": "mapshaper",
+	"uk.datashare.shorelineclippedpostcodeareas_": {
 		"geomfield": "wkb_geometry",
-		"factor": "9",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "9"
+	},
+	"uk.odl.importpostcodedistricts_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.odl.importpostcodesectors_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.gov.importlowerlayersuperoutputareas_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.gov.importmiddlelayersuperoutputareas_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.gov.importdatazones_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.gov.importintermediatezones_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
+	},
+	"uk.gov.importnisuperoutputareas_": {
+		"geomfield": "wkb_geometry",
+		"factor": "9"
 	},
 
 	"US": "-------------------------------------",
@@ -364,95 +255,56 @@
 		"factor": "40"
 	},
 	"tiger2015.block_by_state": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.block_group": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.cbsa": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.census_tract": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.congressional_district": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.county": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.place": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.puma": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.school_district_elementary": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.school_district_secondary": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.school_district_unified": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.state": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2015.zcta5": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 
 	"tiger2016.block": {
@@ -461,95 +313,56 @@
 		"factor": "40"
 	},
 	"tiger2016.block_by_state": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.block_group": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.cbsa": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.census_tract": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.congressional_district": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.county": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.place": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.puma": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.school_district_elementary": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.school_district_secondary": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.school_district_unified": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.state": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 	"tiger2016.zcta5": {
-		"simplification": "mapshaper",
 		"geomfield": "geom",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	},
 
 	"us.census.tiger.uniontigerwatergeoms_block_2015": {
@@ -557,81 +370,59 @@
 		"geomfield": "the_geom",
 		"factor": "40"
 	},
-	"us.census.tiger.uniontigerwatergeoms_block_by_state_2016": {
-		"simplification": "mapshaper",
+	"us.census.tiger.uniontigerwatergeoms_block_by_state_2015": {
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_block_group_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_cbsa_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_census_tract_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_congressional_di_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_county_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_place_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_puma_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_school_district__2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_state_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_zcta5_2015": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 
@@ -641,88 +432,63 @@
 		"factor": "40"
 	},
 	"us.census.tiger.uniontigerwatergeoms_block_by_state_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_block_group_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_cbsa_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_census_tract_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_congressional_di_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_county_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_place_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_puma_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_school_district__2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_state_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_zcta5_2016": {
-		"simplification": "mapshaper",
 		"geomfield": "the_geom",
 		"factor": "8",
-		"maxmemory": "8192",
 		"skipfailures": "yes"
 	},
 
 	"us.epa.huc.importhuc_": {
-		"simplification": "mapshaper",
 		"geomfield": "wkb_geometry",
-		"factor": "8",
-		"maxmemory": "8192",
-		"skipfailures": "no"
+		"factor": "8"
 	}
 }

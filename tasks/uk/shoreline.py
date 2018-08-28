@@ -1,12 +1,12 @@
 from tasks.base_tasks import TempTableTask
-from tasks.uk.cdrc import OutputAreas
+from tasks.uk.gov import LowerLayerSuperOutputAreas
 from tasks.meta import current_session
 
 
 class Shoreline(TempTableTask):
 
     def requires(self):
-        return OutputAreas()
+        return LowerLayerSuperOutputAreas()
 
     def version(self):
         return 1
