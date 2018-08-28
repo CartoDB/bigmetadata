@@ -307,12 +307,70 @@
 		"factor": "8"
 	},
 
+	"tiger2016.block": {
+		"simplification": "postgis",
+		"geomfield": "geom",
+		"factor": "40"
+	},
+	"tiger2016.block_by_state": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.block_group": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.cbsa": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.census_tract": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.congressional_district": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.county": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.place": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.puma": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.school_district_elementary": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.school_district_secondary": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.school_district_unified": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.state": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+	"tiger2016.zcta5": {
+		"geomfield": "geom",
+		"factor": "8"
+	},
+
 	"us.census.tiger.uniontigerwatergeoms_block_2015": {
 		"simplification": "postgis",
 		"geomfield": "the_geom",
 		"factor": "40"
 	},
-	"us.census.tiger.uniontigerwatergeoms_block_by_state": {
+	"us.census.tiger.uniontigerwatergeoms_block_by_state_2015": {
 		"geomfield": "the_geom",
 		"factor": "8",
 		"skipfailures": "yes"
@@ -363,6 +421,67 @@
 		"skipfailures": "yes"
 	},
 	"us.census.tiger.uniontigerwatergeoms_zcta5_2015": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+
+	"us.census.tiger.uniontigerwatergeoms_block_2016": {
+		"simplification": "postgis",
+		"geomfield": "the_geom",
+		"factor": "40"
+	},
+	"us.census.tiger.uniontigerwatergeoms_block_by_state_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_block_group_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_cbsa_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_census_tract_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_congressional_di_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_county_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_place_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_puma_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_school_district__2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_state_2016": {
+		"geomfield": "the_geom",
+		"factor": "8",
+		"skipfailures": "yes"
+	},
+	"us.census.tiger.uniontigerwatergeoms_zcta5_2016": {
 		"geomfield": "the_geom",
 		"factor": "8",
 		"skipfailures": "yes"

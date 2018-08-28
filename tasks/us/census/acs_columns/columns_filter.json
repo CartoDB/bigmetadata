@@ -2296,6 +2296,52 @@
 				"year": "2015",
 				"sample": "5yr",
 				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
 			}
 		]
 	},
@@ -2352,6 +2398,52 @@
 			},
 			{
 				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
 				"sample": "5yr",
 				"geography": "zcta5"
 			}
@@ -2412,6 +2504,52 @@
 				"year": "2015",
 				"sample": "5yr",
 				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
 			}
 		]
 	},
@@ -2468,6 +2606,52 @@
 			},
 			{
 				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
 				"sample": "5yr",
 				"geography": "zcta5"
 			}
@@ -2528,6 +2712,52 @@
 				"year": "2015",
 				"sample": "5yr",
 				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
 			}
 		]
 	},
@@ -2584,6 +2814,52 @@
 			},
 			{
 				"year": "2015",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"geography": "congressional_district"
+			},
+			{
+				"year": "2016",
+				"geography": "county"
+			},
+			{
+				"year": "2016",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"geography": "puma"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"geography": "state"
+			},
+			{
+				"year": "2016",
 				"sample": "5yr",
 				"geography": "zcta5"
 			}

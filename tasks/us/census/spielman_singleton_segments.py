@@ -133,7 +133,7 @@ class SpielmanSingletonTable(TableTask):
             'columns': SpielmanSingletonColumns(),
             'data_file': ProcessSpielmanSingletonFile(),
             'data': SpielmanSingletonTempTable(),
-            'tiger': GeoidColumns(),
+            'tiger': GeoidColumns(year='2015'),
             'shoreline': ShorelineClip(year='2015', geography='census_tract'),
             'sumlevel': SumLevel(year='2015', geography='census_tract'),
         }
@@ -162,8 +162,8 @@ class SpielmanSingletonTable(TableTask):
 
     def columns(self):
         columns = OrderedDict({
-            'geoidsl': self.input()['tiger']['census_tract' + GEOID_SUMLEVEL_COLUMN],
-            'geoidsc': self.input()['tiger']['census_tract' + GEOID_SHORELINECLIPPED_COLUMN],
+            'geoidsl': self.input()['tiger']['census_tract' + '_2015' + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': self.input()['tiger']['census_tract' + '_2015' + GEOID_SHORELINECLIPPED_COLUMN],
         })
         columns.update(self.input()['columns'])
         return columns
