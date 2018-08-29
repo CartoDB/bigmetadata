@@ -1,27 +1,5 @@
 version: '3.1'
 services:
-  postgres:
-    image: carto/bigmetadata_postgres
-    volumes:
-      - ${DO_LOCAL_POSTGRESQL_LIB_DIR:-./postgres/data}:/var/lib/postgresql
-      - ./observatory-extension:/observatory-extension
-      - ./dataservices-api:/dataservices-api
-      - ./data-services:/data-services
-      - ./cartodb-postgresql:/cartodb-postgresql
-      - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
-      - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
-    environment:
-      PGUSER: docker
-      PGPASSWORD: docker
-      PGDATABASE: gis
-      LC_ALL: C.UTF-8
-      LANG: C.UTF-8
-      ALLOW_IP_RANGE: '172.0.0.0/8'
-    privileged: true
-    ports:
-      - 5554:5432
-    env_file: .env
-
   postgres10:
     image: carto/bigmetadata_postgres_10
     volumes:
@@ -65,9 +43,9 @@ services:
     ports:
       - 8082
     depends_on:
-      - ${PGSERVICE:-postgres}
+      - postgres10
     environment:
-      PGHOST: ${PGSERVICE:-postgres}
+      PGHOST: postgres10
       PGPORT: ${PGPORT:-5432}
       PYTHONPATH: /bigmetadata
       PGUSER: docker
@@ -89,12 +67,12 @@ services:
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
       - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     depends_on:
-      - ${PGSERVICE:-postgres}
+      - postgres10
       - bigmetadata_daemon
     entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
       PYTHONPATH: '/bigmetadata'
-      PGHOST: ${PGSERVICE:-postgres}
+      PGHOST: postgres10
       PGPORT: ${PGPORT:-5432}
       PGUSER: docker
       PGPASSWORD: docker

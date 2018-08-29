@@ -25,7 +25,7 @@ catalog/build/*
 catalog/img
 catalog/img_thumb
 carto/
-postgres/data
+postgres10/data
 docs/build
 perftest/*.json
 /repository

@@ -7,8 +7,6 @@ ifneq (, $(findstring docker-, $$(firstword $(MAKECMDGOALS))))
   MAKE_TASK := $(shell echo $(wordlist 1,1,$(MAKECMDGOALS)) | sed "s/^docker-//g")
 endif
 
-PGSERVICE ?= postgres10
-
 ###
 ### Tasks runners
 ###
@@ -29,14 +27,14 @@ run:
 	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 docker-run:
-	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
+	docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 run-parallel:
 	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 # Run a task using docker. For example make docker-es-all
 docker-%:
-	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
+	docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
 
 ###
 ### Utils
@@ -81,8 +79,8 @@ rebuild-all:
 # update the observatory-extension in our DB container
 # Depends on having an observatory-extension folder linked
 extension:
-	PGSERVICE=$(PGSERVICE) docker exec $$(docker-compose ps -q $(PGSERVICE)) sh -c 'cd observatory-extension && make install'
-	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
+	docker exec $$(docker-compose ps -q postgres10) sh -c 'cd observatory-extension && make install'
+	docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
 
 # update dataservices-api in our DB container
 # Depends on having a dataservices-api folder linked
@@ -247,7 +245,7 @@ deploy-html-catalog:
 ###
 
 dump: extension
-	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_dump.log bigmetadata make dump-task
+	docker-compose run -d -e LOGGING_FILE=etl_dump.log bigmetadata make dump-task
 
 dump-task: test
 	make run -- carto.DumpS3
