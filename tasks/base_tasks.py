@@ -1741,7 +1741,8 @@ class BaseInterpolationTask(TableTask):
     def requires(self):
         '''
         This method MUST be overriden in subclasses.
-        Subclasses MUST define the following requirements:
+        Subclasses MUST define the following requirements
+        (MUST return a dictionary with the following keys):
 
         'source_geom_columns'   a task with the source geometry columns
         'source_geom'           a task with the source geometries (interpolated from)
@@ -1756,7 +1757,8 @@ class BaseInterpolationTask(TableTask):
     def get_interpolation_parameters(self):
         '''
         This method MUST be overriden in subclasses.
-        Subclasses MUST define the following parameters:
+        Subclasses MUST define the following parameters
+        (MUST return a dictionary with the following keys):
 
         'source_data_geoid'     the name of the id column from the source data table
         'source_geom_geoid'     the name of the id column from the source geometries table
