@@ -356,6 +356,8 @@ class TableTarget(Target):
 
 class RepoTarget(LocalTarget):
     def __init__(self, schema, tablename, repo_dir, resource_id, version, filename):
+        self.format = None
+        self.is_tmp = False
         self.schema = schema
         self.tablename = tablename
         self.repo_dir = repo_dir
