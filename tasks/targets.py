@@ -386,9 +386,12 @@ class RepoTarget(LocalTarget):
                            table=self.tablename,
                            resource_id=self.resource_id,
                            version=self.version)
-        result = current_session().execute(query).fetchone()
-        if result:
-            path = result[0]
+        try:
+            result = current_session().execute(query).fetchone()
+            if result:
+                path = result[0]
+        except:
+            path = None
 
         return path
 
