@@ -27,7 +27,7 @@ from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
                         session_commit, session_rollback)
-from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget)
+from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget, RepoTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
                         create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file,
                         copyfile)
@@ -1671,7 +1671,7 @@ class RepoFile(Task):
     downloader = Parameter(default=base_downloader, significant=False)
 
     _repo_dir = 'repository'
-    _path = None
+    _new_file_name = str(uuid.uuid4())
 
     def requires(self):
         return CreateRepoTable()
@@ -1682,33 +1682,11 @@ class RepoFile(Task):
         digest = digest_file(self.output().path)
         self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
 
-    def _create_filepath(self):
-        return self._build_path(str(uuid.uuid4()))
-
-    def _build_path(self, filename):
-        return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
-
     def _retrieve_remote_file(self):
         LOGGER.info('Downloading remote file')
-        if os.path.isfile(self._get_filepath()):
-            os.remove(self._get_filepath())
+        if os.path.isfile(self.output().path):
+            os.remove(self.output().path)
         self.downloader(self.url, self.output().path)
-
-    def _from_db(self, resource_id, version):
-        checksum, url, path = None, None, None
-        query = '''
-                SELECT checksum, url, path FROM "{schema}".{table}
-                WHERE id = '{resource_id}'
-                  AND version = {version}
-                '''.format(schema=self.input().schema,
-                           table=self.input().tablename,
-                           resource_id=resource_id,
-                           version=version)
-        result = current_session().execute(query).fetchone()
-        if result:
-            checksum, url, path = result
-
-        return checksum, url, path
 
     def _to_db(self, resource_id, version, checksum, url, path):
         LOGGER.info('Storing entry in repository')
@@ -1737,22 +1715,6 @@ class RepoFile(Task):
         current_session().execute(query)
         current_session().commit()
 
-    def _get_filepath(self):
-        path = self._from_db(self.resource_id, self.version)[2]
-        if not path:
-            if not self._path:
-                self._path = self._create_filepath()
-            path = self._path
-
-        return path
-
-    def complete(self):
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-
-        return self._from_db(self.resource_id, self.version)[2] is not None and \
-            os.path.isfile(self._get_filepath())
-
     def output(self):
-        return LocalTarget(self._get_filepath())
+        return RepoTarget(self.input().schema, self.input().tablename,
+                          self._repo_dir, self.resource_id, self.version, self._new_file_name)
