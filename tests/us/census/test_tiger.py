@@ -20,10 +20,9 @@ from tests.util import runtask, setup, teardown
 
 @with_setup(setup, teardown)
 def test_geom_columns_run():
-    runtask(GeomColumns())
+    runtask(GeomColumns(year='2015'))
 
 
 @with_setup(setup, teardown)
 def test_geoid_columns_run():
-    runtask(GeoidColumns())
-
+    runtask(GeoidColumns(year='2015'))

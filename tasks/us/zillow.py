@@ -318,7 +318,7 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns(),
+            'geoids': GeoidColumns(year='2015'),
             'sumlevel': SumLevel(year='2015', geography='zcta5'),
             'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
         }
@@ -359,8 +359,8 @@ class Zillow(TableTask):
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name_sl', input_['geoids'][tiger_geo + GEOID_SUMLEVEL_COLUMN]),
-            ('region_name_sc', input_['geoids'][tiger_geo + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('region_name_sl', input_['geoids'][tiger_geo + '_2015' + GEOID_SUMLEVEL_COLUMN]),
+            ('region_name_sc', input_['geoids'][tiger_geo + '_2015' + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         columns.update(input_['metadata'])
 

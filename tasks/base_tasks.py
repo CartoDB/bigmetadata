@@ -26,7 +26,7 @@ from lib.util import digest_file
 from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
-                        session_commit, session_rollback)
+                        session_commit, session_rollback, GEOM_REF)
 from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget, RepoTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
                         create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file,
@@ -1718,3 +1718,138 @@ class RepoFile(Task):
     def output(self):
         return RepoTarget(self.input().schema, self.input().tablename,
                           self._repo_dir, self.resource_id, self.version, self._new_file_name)
+
+
+class BaseInterpolationTask(TableTask):
+    def requires(self):
+        '''
+        This method MUST be overriden in subclasses.
+        Subclasses MUST define the following requirements
+        (MUST return a dictionary with the following keys):
+
+        'source_geom_columns'   a task with the source geometry columns
+        'source_geom'           a task with the source geometries (interpolated from)
+        'source_data_columns'   a task with the source data columns
+        'source_data'           a task with the source data (interpolated from)
+        'target_geom_columns'   a task with the target geometry columns
+        'target_geom'           a task with the source geometries (interpolated to)
+        'target_data_columns'   a task with the target data columns
+        '''
+        raise NotImplementedError('The requires method must be overriden in subclasses')
+
+    def get_interpolation_parameters(self):
+        '''
+        This method MUST be overriden in subclasses.
+        Subclasses MUST define the following parameters
+        (MUST return a dictionary with the following keys):
+
+        'source_data_geoid'     the name of the id column from the source data table
+        'source_geom_geoid'     the name of the id column from the source geometries table
+        'target_data_geoid'     the name of the id column from the target data table
+        'target_geom_geoid'     the name of the id column from the target geometries table
+        'source_geom_geomfield' the name of the geometry column from the source geometries table
+        'target_geom_geomfield' the name of the geometry column from the target geometries table
+        '''
+        raise NotImplementedError('The get_interpolation_parameters method must be overriden in subclasses')
+
+    def targets(self):
+        return {
+            self.input()['target_geom'].obs_table: GEOM_REF,
+        }
+
+
+class InterpolationTask(BaseInterpolationTask):
+    '''
+    This task interpolates the data for one geography level from the data/geometries from
+    another geography level by computing the intersections and area relations between the
+    geometries.
+    '''
+
+    def populate(self):
+        input_ = self.input()
+        interpolation_params = self.get_interpolation_parameters()
+
+        colnames = [x for x in list(self.columns().keys()) if x.lower() != interpolation_params['target_geom_geoid']]
+
+        stmt = '''
+                INSERT INTO {output} ({target_data_geoid}, {out_colnames})
+                SELECT {target_geom_geoid}, {sum_colnames}
+                  FROM (
+                    SELECT CASE WHEN ST_Within(target_geom_table.{target_geom_geomfield},
+                                               source_geom_table.{source_geom_geomfield})
+                                     THEN ST_Area(target_geom_table.{target_geom_geomfield}) /
+                                          Nullif(ST_Area(source_geom_table.{source_geom_geomfield}), 0)
+                                WHEN ST_Within(source_geom_table.{source_geom_geomfield},
+                                               target_geom_table.{target_geom_geomfield})
+                                     THEN 1
+                                ELSE ST_Area(ST_Intersection(source_geom_table.{source_geom_geomfield},
+                                                             target_geom_table.{target_geom_geomfield})) /
+                                             Nullif(ST_Area(source_geom_table.{source_geom_geomfield}), 0)
+                           END area_ratio,
+                           target_geom_table.{target_geom_geoid}, {in_colnames}
+                      FROM {source_data_table} source_data_table,
+                           {source_geom_table} source_geom_table,
+                           {target_geom_table} target_geom_table
+                     WHERE source_data_table.{source_data_geoid} = source_geom_table.{source_geom_geoid}
+                       AND ST_Intersects(source_geom_table.{source_geom_geomfield},
+                                         target_geom_table.{target_geom_geomfield}) = True
+                    ) q GROUP BY {target_geom_geoid}
+               '''.format(
+                    output=self.output().table,
+                    sum_colnames=', '.join(['round(sum({x} / Nullif(area_ratio, 0))) {x}'.format(x=x) for x in colnames]),
+                    out_colnames=', '.join(colnames),
+                    in_colnames=', '.join(colnames),
+                    source_data_table=input_['source_data'].table,
+                    source_geom_table=input_['source_geom'].table,
+                    target_geom_table=input_['target_geom'].table,
+                    source_data_geoid=interpolation_params['source_data_geoid'],
+                    source_geom_geoid=interpolation_params['source_geom_geoid'],
+                    target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
+                    source_geom_geomfield=interpolation_params['source_geom_geomfield'],
+                    target_geom_geomfield=interpolation_params['target_geom_geomfield'],
+                )
+
+        current_session().execute(stmt)
+
+
+class CoupledInterpolationTask(BaseInterpolationTask):
+    '''
+    This task interpolates the data for one geography level from the data/geometries from
+    another geography level when both layers are coupled.
+    Calculating the measurements for the target layer is a matter of adding up the values
+    from the source layer.
+    '''
+
+    def populate(self):
+        input_ = self.input()
+        interpolation_params = self.get_interpolation_parameters()
+
+        colnames = [x for x in list(self.columns().keys()) if x.lower() != interpolation_params['target_geom_geoid']]
+
+        stmt = '''
+                INSERT INTO {output} ({target_data_geoid}, {out_colnames})
+                SELECT target_geom_table.{target_geom_geoid}, {sum_colnames}
+                  FROM {source_data_table} source_data_table,
+                       {source_geom_table} source_geom_table,
+                       {target_geom_table} target_geom_table
+                 WHERE source_geom_table.{source_geom_geoid} = source_data_table.{source_data_geoid}
+                   AND ST_Intersects(target_geom_table.{target_geom_geomfield},
+                                     ST_PointOnSurface(source_geom_table.{source_geom_geomfield}))
+                 GROUP BY target_geom_table.{target_geom_geoid}
+               '''.format(
+                    output=self.output().table,
+                    out_colnames=', '.join(colnames),
+                    sum_colnames=', '.join(['sum({x}) {x}'.format(x=x) for x in colnames]),
+                    source_data_table=input_['source_data'].table,
+                    source_geom_table=input_['source_geom'].table,
+                    target_geom_table=input_['target_geom'].table,
+                    target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
+                    source_data_geoid=interpolation_params['source_data_geoid'],
+                    source_geom_geoid=interpolation_params['source_geom_geoid'],
+                    source_geom_geomfield=interpolation_params['source_geom_geomfield'],
+                    target_geom_geomfield=interpolation_params['target_geom_geomfield'],
+                )
+
+        current_session().execute(stmt)

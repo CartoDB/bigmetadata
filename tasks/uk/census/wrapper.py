@@ -4,7 +4,7 @@ from luigi import WrapperTask, Parameter
 
 from tasks.meta import current_session, GEOM_REF
 from lib.timespan import get_timespan
-from tasks.base_tasks import MetaWrapper, TableTask
+from tasks.base_tasks import TableTask, InterpolationTask, CoupledInterpolationTask
 from tasks.uk.cdrc import OutputAreas, OutputAreaColumns
 from tasks.uk.census.metadata import CensusColumns
 from tasks.uk.datashare import PostcodeAreas, PostcodeAreasColumns
@@ -157,80 +157,44 @@ class CensusOutputAreas(TableTask):
         current_session().execute(stmt)
 
 
-class CensusPostcodeAreas(TableTask):
-    def requires(self):
-        deps = {
-            'geom_oa_columns': OutputAreaColumns(),
-            'geom_pa_columns': PostcodeAreasColumns(),
-            'data_columns': CensusColumns(),
-            'geo_oa': OutputAreas(),
-            'geo_pa': PostcodeAreas(),
-            'census': CensusOutputAreas(),
-        }
-
-        return deps
-
-    def targets(self):
-        return {
-            self.input()['geo_pa'].obs_table: GEOM_REF,
-        }
-
+class CensusPostcodeAreas(InterpolationTask):
     def table_timespan(self):
         return get_timespan('2011')
 
     def columns(self):
         cols = OrderedDict()
         input_ = self.input()
-        cols['GeographyCode'] = input_['geom_pa_columns']['pa_id']
-        cols.update(input_['data_columns'])
+        cols['pa_id'] = input_['target_geom_columns']['pa_id']
+        cols.update(input_['source_data_columns'])
         return cols
 
-    def populate(self):
-        input_ = self.input()
-        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
-
-        stmt = '''
-                INSERT INTO {output} (geographycode, {out_colnames})
-                SELECT pa_id, {sum_colnames}
-                  FROM (
-                    SELECT CASE WHEN ST_Within(geo_pa.the_geom, geo_oa.the_geom)
-                                    THEN ST_Area(geo_pa.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                                WHEN ST_Within(geo_oa.the_geom, geo_pa.the_geom)
-                                    THEN 1
-                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pa.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                           END area_ratio,
-                           pa_id, {in_colnames}
-                      FROM {census_table} census,
-                           {geo_oa_table} geo_oa,
-                           {geo_pa_table} geo_pa
-                     WHERE census.geographycode = geo_oa.oa_sa
-                       AND ST_Intersects(geo_oa.the_geom, geo_pa.the_geom) = True
-                    ) q GROUP BY pa_id
-               '''.format(
-                    output=self.output().table,
-                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
-                    out_colnames=', '.join(colnames),
-                    in_colnames=', '.join(colnames),
-                    census_table=input_['census'].table,
-                    geo_oa_table=input_['geo_oa'].table,
-                    geo_pa_table=input_['geo_pa'].table,
-                )
-
-        current_session().execute(stmt)
-
-
-class CensusPostcodeEntitiesFromOAs(TableTask):
     def requires(self):
-        '''
-        This method must be overriden in subclasses.
-        '''
-        raise NotImplementedError('The requires method must be overriden in subclasses')
-
-    def targets(self):
-        return {
-            self.input()['target_geom'].obs_table: GEOM_REF,
+        deps = {
+            'source_geom_columns': OutputAreaColumns(),
+            'source_geom': OutputAreas(),
+            'source_data_columns': CensusColumns(),
+            'source_data': CensusOutputAreas(),
+            'target_geom_columns': PostcodeAreasColumns(),
+            'target_geom': PostcodeAreas(),
+            'target_data_columns': CensusColumns(),
         }
 
+        return deps
+
+    def get_interpolation_parameters(self):
+        params = {
+            'source_data_geoid': 'geographycode',
+            'source_geom_geoid': 'oa_sa',
+            'target_data_geoid': 'pa_id',
+            'target_geom_geoid': 'pa_id',
+            'source_geom_geomfield': 'the_geom',
+            'target_geom_geomfield': 'the_geom',
+        }
+
+        return params
+
+
+class CensusPostcodeEntitiesFromOAs(InterpolationTask):
     def table_timespan(self):
         return get_timespan('2011')
 
@@ -241,39 +205,17 @@ class CensusPostcodeEntitiesFromOAs(TableTask):
         cols.update(input_['target_data_columns'])
         return cols
 
-    def populate(self):
-        input_ = self.input()
-        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+    def get_interpolation_parameters(self):
+        params = {
+            'source_data_geoid': 'geographycode',
+            'source_geom_geoid': 'oa_sa',
+            'target_data_geoid': 'geographycode',
+            'target_geom_geoid': 'geographycode',
+            'source_geom_geomfield': 'the_geom',
+            'target_geom_geomfield': 'the_geom',
+        }
 
-        stmt = '''
-                INSERT INTO {output} (geographycode, {out_colnames})
-                SELECT geographycode, {sum_colnames}
-                  FROM (
-                    SELECT CASE WHEN ST_Within(geo_pe.the_geom, geo_oa.the_geom)
-                                    THEN ST_Area(geo_pe.the_geom) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                                WHEN ST_Within(geo_oa.the_geom, geo_pe.the_geom)
-                                    THEN 1
-                                ELSE ST_Area(ST_Intersection(geo_oa.the_geom, geo_pe.the_geom)) / Nullif(ST_Area(geo_oa.the_geom), 0)
-                           END area_ratio,
-                           geo_pe.geographycode, {in_colnames}
-                      FROM {census_table} census,
-                           {geo_oa_table} geo_oa,
-                           {geo_pe_table} geo_pe
-                     WHERE census.geographycode = geo_oa.oa_sa
-                       AND ST_Intersects(geo_oa.the_geom, geo_pe.the_geom) = True
-                    ) q GROUP BY geographycode
-               '''.format(
-                    output=self.output().table,
-                    sum_colnames=', '.join(['round(sum({x} / area_ratio)) {x}'.format(x=x) for x in colnames]),
-                    out_colnames=', '.join(colnames),
-                    in_colnames=', '.join(colnames),
-                    census_table=input_['source_data'].table,
-                    geo_oa_table=input_['source_geom'].table,
-                    geo_pe_table=input_['target_geom'].table,
-                    geo_id='pa_id'
-                )
-
-        current_session().execute(stmt)
+        return params
 
 
 class CensusPostcodeDistricts(CensusPostcodeEntitiesFromOAs):
@@ -306,24 +248,13 @@ class CensusPostcodeSectors(CensusPostcodeEntitiesFromOAs):
         return deps
 
 
-class CensusSOAsFromOAs(TableTask):
+class CensusSOAsFromOAs(CoupledInterpolationTask):
     '''
     As the SOAs and OAs layers are coupled and SOAs are bigger than OAs,
     calculating the measurements for the SOAs is a matter of adding up
     the values, so the data for the Super Output Areas is currently extracted
     from the Output Areas.
     '''
-
-    def requires(self):
-        '''
-        This method must be overriden in subclasses.
-        '''
-        raise NotImplementedError('The requires method must be overriden in subclasses')
-
-    def targets(self):
-        return {
-            self.input()['target_geom'].obs_table: GEOM_REF,
-        }
 
     def table_timespan(self):
         return get_timespan('2011')
@@ -335,29 +266,17 @@ class CensusSOAsFromOAs(TableTask):
         cols.update(input_['target_data_columns'])
         return cols
 
-    def populate(self):
-        input_ = self.input()
-        colnames = [x for x in list(self.columns().keys()) if x != 'GeographyCode']
+    def get_interpolation_parameters(self):
+        params = {
+            'source_data_geoid': 'geographycode',
+            'source_geom_geoid': 'oa_sa',
+            'target_data_geoid': 'geographycode',
+            'target_geom_geoid': 'geographycode',
+            'source_geom_geomfield': 'the_geom',
+            'target_geom_geomfield': 'the_geom',
+        }
 
-        stmt = '''
-                INSERT INTO {output} (geographycode, {out_colnames})
-                SELECT geo_target.geographycode, {sum_colnames}
-                  FROM {data_source} data_source,
-                       {geo_source} geo_source,
-                       {geo_target} geo_target
-                 WHERE geo_source.oa_sa = data_source.geographycode
-                   AND ST_Intersects(geo_target.the_geom, ST_PointOnSurface(geo_source.the_geom))
-                 GROUP BY geo_target.geographycode
-               '''.format(
-                    output=self.output().table,
-                    out_colnames=', '.join(colnames),
-                    sum_colnames=', '.join(['sum({x}) {x}'.format(x=x) for x in colnames]),
-                    data_source=input_['source_data'].table,
-                    geo_source=input_['source_geom'].table,
-                    geo_target=input_['target_geom'].table,
-                )
-
-        current_session().execute(stmt)
+        return params
 
 
 class CensusLowerSuperOutputAreas(CensusSOAsFromOAs):
