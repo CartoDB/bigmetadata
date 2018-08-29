@@ -92,9 +92,9 @@ dataservices-api:
 	  cd /dataservices-api/server/extension && make install && \
 	  cd /dataservices-api/server/lib/python/cartodb_services && \
 	  pip install -r requirements.txt && pip install --upgrade .'
-	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres/dataservices_config.sql
+	docker-compose run --rm bigmetadata psql -f /bigmetadata/postgres_10/dataservices_config.sql
 	docker exec $$(docker-compose ps -q redis) sh -c \
-	  "$$(cat postgres/dataservices_config.redis)"
+	  "$$(cat postgres_10/dataservices_config.redis)"
 
 ###
 ### Tests
