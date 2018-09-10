@@ -1,16 +1,16 @@
 {
 	"c0001": {
-	"id": "c0001",
-	"source_name": "Population, 2016",
-	"name": "Population, 2016",
-	"description": "Population, 2016",
-	"type": "NUMERIC",
-	"denominators": [],
-	"units": "people",
-	"subsection": "segments",
-	"weight": "10",
-	"aggregate": "sum",
-	"gender_split": "no"
+		"id": "c0001",
+		"source_name": "Population, 2016",
+		"name": "Population, 2016",
+		"description": "Population, 2016",
+		"type": "NUMERIC",
+		"denominators": [],
+		"units": "people",
+		"subsection": "segments",
+		"weight": "10",
+		"aggregate": "sum",
+		"gender_split": "no"
 	},
 	"c0002": {
 		"id": "c0002",
