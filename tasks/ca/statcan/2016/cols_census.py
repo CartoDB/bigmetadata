@@ -55,7 +55,7 @@ class CensusColumns(ColumnsTask):
 
             cols[key + '_t'] = OBSColumn(
                 id=column['id'] + '_t',
-                name='{} (Total)'.format(column['name']),
+                name=column['name'],
                 description=column.get('description', ''),
                 type='Numeric',
                 weight=column.get('weight', DEFAULT_WEIGHT),
