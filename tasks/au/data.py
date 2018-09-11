@@ -7,7 +7,7 @@ from collections import OrderedDict
 
 from lib.timespan import get_timespan
 from tasks.util import shell, copyfile
-from tasks.base_tasks import ColumnsTask, DownloadUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper, RepoFile
+from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -39,7 +39,7 @@ TABLES = ['B01','B02','B03','B04A','B04B','B05','B06','B07','B08A','B08B','B09',
 URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
 
 
-class DownloadData(DownloadUnzipTask):
+class DownloadData(RepoFileUnzipTask):
 
     year = Parameter()
     resolution = Parameter()
@@ -47,20 +47,12 @@ class DownloadData(DownloadUnzipTask):
     state = Parameter()
     header = Parameter()
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=URL.format(year=self.year,
-                                       profile=self.profile,
-                                       resolution=self.resolution,
-                                       state=self.state,
-                                       header=self.header))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return URL.format(year=self.year,
+                          profile=self.profile,
+                          resolution=self.resolution,
+                          state=self.state,
+                          header=self.header)
 
 
 class ImportData(CSV2TempTableTask):

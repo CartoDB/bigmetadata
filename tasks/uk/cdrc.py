@@ -1,5 +1,5 @@
 # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, GeoFile2TempTableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, RepoFileUnzipTask, GeoFile2TempTableTask, MetaWrapper,
                               SimplifiedTempTableTask, RepoFile)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
@@ -46,21 +46,15 @@ def cdrc_downloader(url, output_path):
         cookie=os.environ['CDRC_COOKIE']))
 
 
-class DownloadOutputAreas(DownloadUnzipTask):
+class DownloadOutputAreas(RepoFileUnzipTask):
     # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
     URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
-
-    def version(self):
-        return 1
 
     def requires(self):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
                         url=self.URL,
                         downloader=cdrc_downloader)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportOutputAreas(GeoFile2TempTableTask):

@@ -16,7 +16,7 @@ Proper use of utility classes
 
 There are extensive :ref:`abstract-classes` available for development.  These
 can do things like download and unzip a file to disk
-(:ref:`tasks.base_tasks.DownloadUnzipTask`) and import a CSV on disk to a temporary
+(:ref:`tasks.base_tasks.RepoFileUnzipTask`) and import a CSV on disk to a temporary
 table (:ref:`tasks.base_tasks.CSV2TempTableTask`).  These classes should be used when
 possible to minimize specialized ETL code.  In particular, these tasks save
 output to well-known locations so as to avoid redundantly running the same
@@ -79,17 +79,17 @@ An example of this:
 
 .. code:: python
 
-    from tasks.base_tasks import DownloadUnzipTask
+    from tasks.base_tasks import RepoFileUnzipTask
 
-    class MyBadTask(DownloadUnzipTask):
+    class MyBadTask(RepoFileUnzipTask):
 
         goodparam = Parameter()
         badparam = Parameter()
 
-        def url(self):
+        def get_url(self):
             return 'http://somesite/with/data/{}'.format(self.goodparam)
 
-:ref:`tasks.base_tasks.DownloadUnzipTask` will generate the location for a unique
+:ref:`tasks.base_tasks.RepoFileUnzipTask` will generate the location for a unique
 output file automatically based off of all its params, but ``badparam`` above
 doesn't actually affect the file being downloaded.  That means if we change
 ``badparam`` we'll download the same file twice.
@@ -102,9 +102,9 @@ parameters.  For example:
 
 .. code:: python
 
-    from tasks.base_tasks import DownloadUnzipTask
+    from tasks.base_tasks import RepoFileUnzipTask
 
-    class MyBadTask(DownloadUnzipTask):
+    class MyBadTask(RepoFileUnzipTask):
         '''
         My URL doesn't depend on `badparam`!
         '''
@@ -112,7 +112,7 @@ parameters.  For example:
         goodparam = Parameter()
         badparam = Parameter(default='foo')
 
-        def url(self):
+        def get_url(self):
             return 'http://somesite/with/data/{}'.format(self.goodparam)
 
 Now it's easy to simply forget that ``badparam`` even exists!  But it still

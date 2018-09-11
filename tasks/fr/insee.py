@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, CSV2TempTableTask, MetaWrapper,
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, RepoFileUnzipTask, CSV2TempTableTask, MetaWrapper,
                               RepoFile)
 from tasks.util import classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
@@ -17,16 +17,13 @@ import pandas as pd
 TOPICS = ['population', 'housing', 'education', 'household', 'employment']
 
 
-class DownloadUnzipFR(DownloadUnzipTask):
+class DownloadUnzipFR(RepoFileUnzipTask):
 
     table_theme = Parameter()
 
     URL_base = 'https://www.insee.fr/fr/statistiques/fichier/'
 
-    def version(self):
-        return 1
-
-    def requires(self):
+    def get_url(self):
         themes = {
             'population': '2028582/',
             'housing': '2028267/',
@@ -45,12 +42,7 @@ class DownloadUnzipFR(DownloadUnzipTask):
 
         URL = self.URL_base + themes.get(self.table_theme) + iris.get(self.table_theme)
 
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+        return URL
 
 
 class DownloadFR(Task):

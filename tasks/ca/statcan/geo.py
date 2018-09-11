@@ -2,8 +2,7 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask,
-                              RepoFile)
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -99,24 +98,16 @@ YEAR_URL = {
 
 
 # 2011 Boundary Files
-class DownloadGeography(DownloadUnzipTask):
+class DownloadGeography(RepoFileUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
     year = Parameter()
 
-    def version(self):
-        return 1
-
-    def requires(self):
+    def get_url(self):
         url = YEAR_URL[self.year]
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=url.format(year=self.year,
-                                       resolution=self.resolution,
-                                       format=GEOGRAPHY_FORMAT[self.resolution]))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+        return url.format(year=self.year,
+                          resolution=self.resolution,
+                          format=GEOGRAPHY_FORMAT[self.resolution])
 
 
 class ImportGeography(GeoFile2TempTableTask):

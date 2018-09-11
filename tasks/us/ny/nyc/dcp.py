@@ -1,5 +1,5 @@
 from tasks.meta import OBSTable, OBSColumn, current_session, GEOM_REF
-from tasks.base_tasks import ColumnsTask, GeoFile2TempTableTask, DownloadUnzipTask, TableTask
+from tasks.base_tasks import ColumnsTask, GeoFile2TempTableTask, RepoFileUnzipTask, TableTask
 from tasks.util import shell
 from tasks.poi import POIColumns
 from tasks.us.ny.nyc.columns import NYCColumns
@@ -14,19 +14,15 @@ import os
 RELEASES = ['17', '16', '15']
 
 
-class DownloadUnzipMapPLUTO(DownloadUnzipTask):
+class DownloadUnzipMapPLUTO(RepoFileUnzipTask):
 
     borough = Parameter()
     release = Parameter()
 
     URL = 'http://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/{borough}_mappluto_{release}.zip'
 
-    def download(self):
-
-        shell('wget -O {output}.zip {url}'.format(
-            output=self.output().path,
-            url=self.URL.format(borough=self.borough, release=self.release)
-        ))
+    def get_url(self):
+        return self.URL.format(borough=self.borough, release=self.release)
 
 
 class MapPLUTOTmpTable(GeoFile2TempTableTask):

@@ -9,8 +9,7 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper,
-                              RepoFile)
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, TagsTask, TableTask, CSV2TempTableTask, MetaWrapper)
 from tasks.util import shell, copyfile
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -63,18 +62,13 @@ class LicenseTags(TagsTask):
         ]
 
 
-class DownloadData(DownloadUnzipTask):
+class DownloadData(RepoFileUnzipTask):
 
     state = Parameter()
     URL = 'ftp://ftp.ibge.gov.br/Censos/Censo_Demografico_2010/Resultados_do_Universo/Agregados_por_Setores_Censitarios/'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url='{url}{filename}'.format(url=self.URL, filename=self._get_filename()))
+    def get_url(self):
+        return '{url}{filename}'.format(url=self.URL, filename=self._get_filename())
 
     def _get_filename(self):
         cmd = 'curl -s {url}'.format(url=self.URL)
@@ -84,9 +78,6 @@ class DownloadData(DownloadUnzipTask):
         cmd += 'grep -i ^{state}_[0-9]*\.zip$'.format(state=self.state)
 
         return shell(cmd)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
 
 
 class ImportData(CSV2TempTableTask):

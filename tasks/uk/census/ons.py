@@ -12,7 +12,7 @@ from luigi import Task, Parameter
 from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
 from tasks.meta import current_session
-from tasks.base_tasks import DownloadUnzipTask, TempTableTask, RepoFile
+from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, RepoFile
 from tasks.util import copyfile
 
 from .metadata import sanitize_identifier
@@ -95,19 +95,11 @@ class ImportUKOutputAreas(ImportUK):
         return DownloadUKOutputAreas(self.table)
 
 
-class DownloadEnglandWalesLocal(DownloadUnzipTask):
+class DownloadEnglandWalesLocal(RepoFileUnzipTask):
     URL = 'https://www.nomisweb.co.uk/output/census/2011/release_4-1_bulk_all_tables.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
     def run(self):
         super(DownloadEnglandWalesLocal, self).run()

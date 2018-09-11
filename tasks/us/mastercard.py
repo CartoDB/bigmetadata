@@ -2,7 +2,7 @@ import os
 import urllib.request
 import itertools
 from luigi import Parameter, WrapperTask
-from tasks.base_tasks import (DownloadUnzipTask, CSV2TempTableTask, TempTableTask)
+from tasks.base_tasks import (RepoFileUnzipTask, CSV2TempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.targets import PostgresTarget
 
@@ -100,11 +100,11 @@ CATEGORIES = {
 }
 
 
-class DownloadUnzipMasterCard(DownloadUnzipTask):
+class DownloadUnzipMasterCard(RepoFileUnzipTask):
     URL = 'http://172.17.0.1/mastercard/my_fake_data.zip'
 
-    def download(self):
-        urllib.request.urlretrieve(self.URL, self.output().path + '.zip')
+    def get_url(self):
+        return self.URL
 
 
 class ImportMasterCardData(CSV2TempTableTask):

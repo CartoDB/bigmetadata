@@ -27,9 +27,10 @@ from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
                         session_commit, session_rollback, GEOM_REF)
-from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget)
+from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget, RepoTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
-                        create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file)
+                        create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file,
+                        copyfile)
 from tasks.simplification import SIMPLIFIED_SUFFIX
 from tasks.simplify import Simplify
 
@@ -408,31 +409,35 @@ class TableToCarto(Task):
         return target
 
 
-class DownloadUncompressTask(Task):
+class RepoFileUncompressTask(Task):
     '''
     Download a compressed file to location {output} and uncompresses it to the folder
     {output}.  Subclasses only need to define the following methods:
-    :meth:`~.tasks.DownloadUncompressTask.download`
-    :meth:`~.tasks.DownloadUncompressTask.uncompress`
+    :meth:`~.tasks.RepoFileUncompressTask.uncompress`
+    :meth:`~.tasks.RepoFileUncompressTask.get_url`
     '''
 
-    def download(self):
-        '''
-        Subclasses must override this.  A good starting point is:
+    def version(self):
+        return 1
 
-        .. code:: python
+    def requires(self):
+        return RepoFile(resource_id=self.task_id, version=self.version(), url=self.get_url())
 
-            shell('wget -O {output}.zip {url}'.format(
-              output=self.output().path,
-              url=<URL>
-            ))
+    def get_url(self):
         '''
-        raise NotImplementedError('DownloadUncompressTask must define download()')
+        Subclasses must override this.
+        '''
+        raise NotImplementedError('RepoFileUncompressTask must define get_url()')
+
+    def copy_from_repo(self):
+        copyfile(self.input().path,
+                 '{output}.{extension}'.format(output=self.output().path,
+                                               extension=self.compressed_extension))
 
     def run(self):
         os.makedirs(self.output().path)
         try:
-            self.download()
+            self.copy_from_repo()
             self.uncompress()
         except:
             os.rmdir(self.output().path)
@@ -442,7 +447,7 @@ class DownloadUncompressTask(Task):
         '''
         Subclasses must override this.
         '''
-        raise NotImplementedError('DownloadUncompressTask must define uncompress()')
+        raise NotImplementedError('RepoFileUncompressTask must define uncompress()')
 
     def output(self):
         '''
@@ -453,29 +458,29 @@ class DownloadUncompressTask(Task):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id))
 
 
-class DownloadUnzipTask(DownloadUncompressTask):
+class RepoFileUnzipTask(RepoFileUncompressTask):
     '''
     Download a zip file to location {output}.zip and unzip it to the folder
-    {output}.  Subclasses only need to define a
-    :meth:`~.tasks.DownloadUnzipTask.download` method.
+    {output}.
     '''
+    compressed_extension = 'zip'
 
     def uncompress(self):
-        output = self.output().path
         uncompress_file(self.output().path)
 
 
-class DownloadGUnzipTask(DownloadUncompressTask):
+class RepoFileGUnzipTask(RepoFileUncompressTask):
     '''
     Download a gz file to location {output}.gz and unzip it to the file
-    {output}/task_id.{file_extension} . Subclasses only need to define a
-    :meth:`~.tasks.DownloadGUnzipTask.download` method.
+    {output}/task_id.{file_extension}.
     '''
-
+    compressed_extension = 'gz'
     file_extension = Parameter(default='csv')
 
     def uncompress(self):
-        gunzip = gzip.GzipFile('{output}.gz'.format(output=self.output().path), 'rb')
+        gunzip = gzip.GzipFile('{output}.{extension}'.format(output=self.output().path,
+                                                             extension=self.compressed_extension),
+                               'rb')
         with open(os.path.join(self.output().path, '{filename}.{extension}'.format(
                 filename=self.task_id, extension=self.file_extension)), 'wb') as outfile:
             outfile.write(gunzip.read())
@@ -1666,7 +1671,7 @@ class RepoFile(Task):
     downloader = Parameter(default=base_downloader, significant=False)
 
     _repo_dir = 'repository'
-    _path = None
+    _new_file_name = str(uuid.uuid4())
 
     def requires(self):
         return CreateRepoTable()
@@ -1677,32 +1682,25 @@ class RepoFile(Task):
         digest = digest_file(self.output().path)
         self._to_db(self.resource_id, self.version, digest, self.url, self.output().path)
 
-    def _create_filepath(self):
-        return self._build_path(str(uuid.uuid4()))
-
-    def _build_path(self, filename):
-        return os.path.join(self._repo_dir, self.resource_id, str(self.version), filename)
-
     def _retrieve_remote_file(self):
+        LOGGER.info('Downloading remote file')
+        if os.path.isfile(self.output().path):
+            os.remove(self.output().path)
         self.downloader(self.url, self.output().path)
 
-    def _from_db(self, resource_id, version):
-        checksum, url, path = None, None, None
+    def _to_db(self, resource_id, version, checksum, url, path):
+        LOGGER.info('Storing entry in repository')
         query = '''
-                SELECT checksum, url, path FROM "{schema}".{table}
-                WHERE id = '{resource_id}'
-                  AND version = {version}
+                DELETE FROM "{schema}".{table}
+                WHERE id = '{resource_id}' AND version = {version};
                 '''.format(schema=self.input().schema,
                            table=self.input().tablename,
                            resource_id=resource_id,
-                           version=version)
-        result = current_session().execute(query).fetchone()
-        if result:
-            checksum, url, path = result
-
-        return checksum, url, path
-
-    def _to_db(self, resource_id, version, checksum, url, path):
+                           version=version,
+                           url=url,
+                           checksum=checksum,
+                           path=path)
+        current_session().execute(query)
         query = '''
                 INSERT INTO "{schema}".{table}
                     (id, version, url, checksum, path, added)
@@ -1717,24 +1715,9 @@ class RepoFile(Task):
         current_session().execute(query)
         current_session().commit()
 
-    def _get_filepath(self):
-        path = self._from_db(self.resource_id, self.version)[2]
-        if not path:
-            if not self._path:
-                self._path = self._create_filepath()
-            path = self._path
-
-        return path
-
-    def complete(self):
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-
-        return self._from_db(self.resource_id, self.version)[2] is not None
-
     def output(self):
-        return LocalTarget(self._get_filepath())
+        return RepoTarget(self.input().schema, self.input().tablename,
+                          self._repo_dir, self.resource_id, self.version, self._new_file_name)
 
 
 class BaseInterpolationTask(TableTask):

@@ -8,8 +8,8 @@ import csv
 from collections import OrderedDict
 from tasks.meta import OBSColumn, current_session, OBSTag, GEOM_REF
 from lib.timespan import get_timespan
-from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, DownloadGUnzipTask,
-                              TagsTask, MetaWrapper, RepoFile)
+from tasks.base_tasks import (ColumnsTask, CSV2TempTableTask, TableTask, RepoFileGUnzipTask,
+                              TagsTask, MetaWrapper)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags
 from tasks.us.census.tiger import (GeoidColumns, SumLevel, ShorelineClip,
                                    GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
@@ -474,33 +474,22 @@ class WorkplaceAreaCharacteristicsColumns(ColumnsTask):
         return cols
 
 
-class DownloadUnzipLodes(DownloadGUnzipTask):
+class DownloadUnzipLodes(RepoFileGUnzipTask):
     year = IntParameter(default=2013)
     filetype = Parameter(default='rac')
     state = Parameter()
     partorsegment = Parameter(default='S000')
     jobtype = Parameter(default='JT00')
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.url())
+    def get_url(self):
+        return 'http://lehd.ces.census.gov/data/lodes/LODES7/{}/{}/{}'.format(
+            self.state, self.filetype, self.filename_lodes())
 
     def filename_lodes(self):
         #   [STATE]_[FILETYPE]_[PART/SEG]_[TYPE]_[YEAR].csv.gz   where
         return '{}_{}_{}_{}_{}.csv.gz'.format(self.state, self.filetype,
                                               self.partorsegment,
                                               self.jobtype, self.year)
-
-    def url(self):
-        return 'http://lehd.ces.census.gov/data/lodes/LODES7/{}/{}/{}'.format(
-            self.state, self.filetype, self.filename_lodes())
-
-    def download(self):
-        copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
 
 
 class WorkplaceAreaCharacteristicsTemp(CSV2TempTableTask):
