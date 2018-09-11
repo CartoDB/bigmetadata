@@ -52,7 +52,7 @@ over again.  These tasks are meant to take care of the most repetitive aspects.
    :members:
    :show-inheritance:
 
-.. autoclass:: tasks.base_tasks.DownloadUnzipTask
+.. autoclass:: tasks.base_tasks.RepoFileUnzipTask
    :members:
    :show-inheritance:
 

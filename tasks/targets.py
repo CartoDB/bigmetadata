@@ -1,7 +1,7 @@
 import os
 import requests
 
-from luigi import Target
+from luigi import Target, LocalTarget
 from hashlib import sha1
 
 from tasks.util import (query_cartodb, underscore_slugify, OBSERVATORY_PREFIX, OBSERVATORY_SCHEMA)
@@ -352,3 +352,49 @@ class TableTarget(Target):
                                                   column=col)
 
             session.add(coltable)
+
+
+class RepoTarget(LocalTarget):
+    def __init__(self, schema, tablename, repo_dir, resource_id, version, filename):
+        self.format = None
+        self.is_tmp = False
+        self.schema = schema
+        self.tablename = tablename
+        self.repo_dir = repo_dir
+        self.resource_id = resource_id
+        self.version = version
+        self.filename = filename
+
+    @property
+    def path(self):
+        path = self._get_path()
+        if path and os.path.isfile(path):
+            return path
+        else:
+            return self._build_path()
+
+    def _build_path(self):
+        return os.path.join(self.repo_dir, self.resource_id, str(self.version), self.filename)
+
+    def _get_path(self):
+        path = None
+        query = '''
+                SELECT path FROM "{schema}".{table}
+                WHERE id = '{resource_id}'
+                  AND version = {version}
+                '''.format(schema=self.schema,
+                           table=self.tablename,
+                           resource_id=self.resource_id,
+                           version=self.version)
+        try:
+            result = current_session().execute(query).fetchone()
+            if result:
+                path = result[0]
+        except:
+            path = None
+
+        return path
+
+    def exists(self):
+        path = self._get_path()
+        return path and os.path.isfile(path)

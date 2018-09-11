@@ -1,5 +1,5 @@
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, DownloadUnzipTask, GeoFile2TempTableTask,
-                              SimplifiedTempTableTask, RepoFile)
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, RepoFileUnzipTask, GeoFile2TempTableTask,
+                              SimplifiedTempTableTask)
 from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 from tasks.meta import GEOM_REF, OBSColumn, OBSTable, OBSTag, current_session
 from tasks.util import copyfile
@@ -23,21 +23,13 @@ class LowerLayerSuperOutputAreasSourceTags(TagsTask):
                    ]
 
 
-class DownloadLowerLayerSuperOutputAreas(DownloadUnzipTask):
+class DownloadLowerLayerSuperOutputAreas(RepoFileUnzipTask):
     # https://data.gov.uk/dataset/fa883558-22fb-4a1a-8529-cffdee47d500/lower-layer-super-output-area-lsoa-boundaries
     # http://geoportal.statistics.gov.uk/datasets/da831f80764346889837c72508f046fa_0
     URL = 'https://opendata.arcgis.com/datasets/da831f80764346889837c72508f046fa_0.zip?outSR=%7B%22wkid%22%3A27700%2C%22latestWkid%22%3A27700%7D'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportLowerLayerSuperOutputAreas(GeoFile2TempTableTask):
@@ -68,21 +60,13 @@ class MiddleLayerSuperOutputAreasSourceTags(TagsTask):
                    ]
 
 
-class DownloadMiddleLayerSuperOutputAreas(DownloadUnzipTask):
+class DownloadMiddleLayerSuperOutputAreas(RepoFileUnzipTask):
     # https://data.gov.uk/dataset/2cf1f346-2f74-4c06-bd4b-30d7e4df5ae7/middle-layer-super-output-area-msoa-boundaries
     # http://geoportal.statistics.gov.uk/datasets/826dc85fb600440889480f4d9dbb1a24_0
     URL = 'https://opendata.arcgis.com/datasets/826dc85fb600440889480f4d9dbb1a24_0.zip?outSR=%7B%22wkid%22%3A27700%2C%22latestWkid%22%3A27700%7D'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportMiddleLayerSuperOutputAreas(GeoFile2TempTableTask):
@@ -100,20 +84,12 @@ class SimplifiedImportMiddleLayerSuperOutputAreas(SimplifiedTempTableTask):
 
 
 # Scotland Data Zones == Lower Level Super Output Areas
-class DownloadDataZones(DownloadUnzipTask):
+class DownloadDataZones(RepoFileUnzipTask):
     # https://data.gov.uk/dataset/ab9f1f20-3b7f-4efa-9bd2-239acf63b540/data-zone-boundaries-2011
     URL = 'http://sedsh127.sedsh.gov.uk/Atom_data/ScotGov/ZippedShapefiles/SG_DataZoneBdry_2011.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportDataZones(GeoFile2TempTableTask):
@@ -131,20 +107,12 @@ class SimplifiedImportDataZones(SimplifiedTempTableTask):
 
 
 # Scotland Intermediate Zones == Middle Level Super Output Areas
-class DownloadIntermediateZones(DownloadUnzipTask):
+class DownloadIntermediateZones(RepoFileUnzipTask):
     # https://data.gov.uk/dataset/133d4983-c57d-4ded-bc59-390c962ea280/intermediate-zone-boundaries-2011
     URL = 'http://sedsh127.sedsh.gov.uk/Atom_data/ScotGov/ZippedShapefiles/SG_IntermediateZoneBdry_2011.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportIntermediateZones(GeoFile2TempTableTask):
@@ -162,20 +130,12 @@ class SimplifiedImportIntermediateZones(SimplifiedTempTableTask):
 
 
 # Northern Ireland Super Output Areas == Lower Level Super Output Areas
-class DownloadNISuperOutputAreas(DownloadUnzipTask):
+class DownloadNISuperOutputAreas(RepoFileUnzipTask):
     # https://www.nisra.gov.uk/support/geography/northern-ireland-super-output-areas
     URL = 'https://www.nisra.gov.uk/sites/nisra.gov.uk/files/publications/SOA2011_Esri_Shapefile_0.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class ImportNISuperOutputAreas(GeoFile2TempTableTask):

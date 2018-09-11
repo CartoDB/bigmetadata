@@ -2,8 +2,7 @@ from luigi import Parameter, WrapperTask
 
 from lib.timespan import get_timespan
 
-from tasks.base_tasks import (ColumnsTask, DownloadUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask,
-                              RepoFile)
+from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask)
 from tasks.util import shell, copyfile
 from tasks.meta import GEOM_REF, GEOM_NAME, OBSTable, OBSColumn, current_session
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
@@ -103,25 +102,17 @@ GEOGRAPHY_UID = {
 
 # http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
 # 2011 Boundary Files
-class DownloadGeography(DownloadUnzipTask):
+class DownloadGeography(RepoFileUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
     year = Parameter(default="2011")
 
     URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL.format(year=self.year,
-                                            resolution=self.resolution,
-                                            format=GEOGRAPHY_FORMAT[self.resolution]))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL.format(year=self.year,
+                               resolution=self.resolution,
+                               format=GEOGRAPHY_FORMAT[self.resolution])
 
 
 class ImportGeography(GeoFile2TempTableTask):

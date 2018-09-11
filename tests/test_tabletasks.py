@@ -11,7 +11,7 @@ from nose.tools import (assert_equal, assert_is_not_none, assert_is_none,
 from lib.timespan import get_timespan
 from tests.util import runtask, setup, teardown
 
-from tasks.base_tasks import (ColumnsTask, TableTask, GeoFile2TempTableTask, DownloadUnzipTask, CSV2TempTableTask,
+from tasks.base_tasks import (ColumnsTask, TableTask, GeoFile2TempTableTask, RepoFileUnzipTask, CSV2TempTableTask,
                               Carto2TempTableTask)
 from tasks.meta import OBSColumn, OBSColumnTableTile, current_session
 from tasks.util import shell
@@ -72,13 +72,9 @@ class TestGeoFile2TempTableTask(GeoFile2TempTableTask):
         return os.path.join('tests', 'fixtures', 'cartodb-query.shp')
 
 
-class TestDownloadUnzipTask(DownloadUnzipTask):
-
-    def download(self):
-        shell('wget -O {output}.zip "{url}"'.format(
-            output=self.output().path,
-            url='http://andrew.carto.com/api/v2/sql?q=select%20*%20from%20dma_master_polygons%20limit%201&format=shp'
-        ))
+class TestRepoFileUnzipTask(RepoFileUnzipTask):
+    def get_url(self):
+        return 'http://andrew.carto.com/api/v2/sql?q=select%20*%20from%20dma_master_polygons%20limit%201&format=shp'
 
 
 class TestCarto2TempTableTask(Carto2TempTableTask):
@@ -188,7 +184,7 @@ def test_download_unzip_task():
     '''
     Download unzip task should download remote assets and unzip them locally.
     '''
-    task = TestDownloadUnzipTask()
+    task = TestRepoFileUnzipTask()
     if task.output().exists():
         shell('rm -r {}'.format(task.output().path))
     assert_false(task.output().exists())

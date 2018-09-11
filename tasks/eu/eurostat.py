@@ -1,5 +1,5 @@
-from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, DownloadUnzipTask,
-                              DownloadGUnzipTask, RepoFile)
+from tasks.base_tasks import (ColumnsTask, TableTask, TagsTask, CSV2TempTableTask, RepoFileUnzipTask,
+                              RepoFileGUnzipTask, RepoFile)
 from tasks.eu.geo import NUTSColumns, NUTSGeometries
 from tasks.meta import OBSColumn, OBSTag, current_session, GEOM_REF
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
@@ -85,19 +85,11 @@ class EUTempTable(CSV2TempTableTask):
         return self.input().path
 
 
-class DownloadUnzipDICTTables(DownloadUnzipTask):
+class DownloadUnzipDICTTables(RepoFileUnzipTask):
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=dic%2Fall_dic.zip'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class DICTablesCache(object):
@@ -123,19 +115,11 @@ class DICTablesCache(object):
         return self._cache[filepath]
 
 
-class DownloadGUnzipMetabase(DownloadGUnzipTask):
+class DownloadGUnzipMetabase(RepoFileGUnzipTask):
     URL = 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=metabase.txt.gz'
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=self.URL)
-
-    def download(self):
-        copyfile(self.input().path, '{output}.gz'.format(output=self.output().path))
+    def get_url(self):
+        return self.URL
 
 
 class MetabaseTable(CSV2TempTableTask):
