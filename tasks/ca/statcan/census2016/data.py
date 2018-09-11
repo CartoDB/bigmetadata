@@ -3,7 +3,7 @@ from tasks.ca.statcan.geo import (GEOGRAPHIES, GeographyColumns, Geography,
                                   GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA)
 from tasks.ca.statcan.census2016.cols_census import CensusColumns
 
-from tasks.base_tasks import DownloadUnzipTask, RepoFile, TempTableTask
+from tasks.base_tasks import RepoFileUnzipTask, RepoFile, TempTableTask
 from tasks.util import copyfile
 from tasks.meta import current_session
 from lib.logger import get_logger
@@ -23,19 +23,11 @@ GEOGRAPHY_CODES = {
 URL = 'https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/prof/details/download-telecharger/comp/GetFile.cfm?Lang=E&TYPE=CSV&GEONO={geo_code}'
 
 
-class DownloadData(DownloadUnzipTask):
+class DownloadData(RepoFileUnzipTask):
     geocode = Parameter()
 
-    def version(self):
-        return 1
-
-    def requires(self):
-        return RepoFile(resource_id=self.task_id,
-                        version=self.version(),
-                        url=URL.format(geo_code=self.geocode))
-
-    def download(self):
-        copyfile(self.input().path, '{output}.zip'.format(output=self.output().path))
+    def get_url(self):
+        return URL.format(geo_code=self.geocode)
 
 
 class ImportData(TempTableTask):
