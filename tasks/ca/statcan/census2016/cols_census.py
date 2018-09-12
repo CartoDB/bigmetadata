@@ -5,7 +5,7 @@ from collections import OrderedDict
 from tasks.base_tasks import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, PublicTags
 from tasks.ca.statcan.license import LicenseTags, SourceTags
-from tasks.meta import OBSColumn, DENOMINATOR
+from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
 
 
 def load_definition():
@@ -20,7 +20,7 @@ GENDERS = {
     '_f': 'Female',
     '_m': 'Male',
 }
-TABLES = {
+TOPICS = {
     't001': ['segments', 'age_gender', 'families', 'housing'],
     't002': ['education', 'employment', 'income'],
     't003': ['language'],
@@ -30,8 +30,6 @@ TABLES = {
 
 
 class CensusColumns(ColumnsTask):
-    table = Parameter()
-
     def requires(self):
         return {
             'sections': SectionTags(),
@@ -59,34 +57,36 @@ class CensusColumns(ColumnsTask):
         cols = OrderedDict()
 
         for key, column in COLUMNS_DEFINITION.items():
-            if column['subsection'] in TABLES[self.table]:
-                tags = [source_ca, section, public, license_ca, subsections[column['subsection']]]
-                tags += [units[column.get('units')]] if column.get('units') is not None else []
+            tags = [source_ca, section, public, license_ca, subsections[column['subsection']]]
+            tags += [units[column.get('units')]] if column.get('units') is not None else []
 
-                cols[key + '_t'] = OBSColumn(
-                    id=column['id'] + '_t',
-                    name=column['name'],
-                    description=column.get('description', ''),
-                    type='Numeric',
-                    weight=column.get('weight', DEFAULT_WEIGHT),
-                    aggregate=column.get('aggregate', DEFAULT_AGGREGATE),
-                    targets={cols[denom + '_t']: DENOMINATOR for denom in column['denominators']},
-                    tags=tags
-                )
-                if column.get('gender_split', 'no').lower() == 'yes':
-                    for suffix, gender in GENDERS.items():
-                        denominators = [denom + '_t' for denom in column['denominators']] + \
-                                    [denom + suffix for denom in column['denominators']]
+            aggregate = column.get('aggregate', DEFAULT_AGGREGATE)
+            target = UNIVERSE if aggregate in ('median', 'average') else DENOMINATOR
 
-                        cols[key + suffix] = OBSColumn(
-                            id=column['id'] + suffix,
-                            name='{} ({})'.format(column['name'], gender),
-                            description=column.get('description', ''),
-                            type='Numeric',
-                            weight=column.get('weight', DEFAULT_WEIGHT),
-                            aggregate=column.get('aggregate', DEFAULT_AGGREGATE),
-                            targets={cols[denom]: DENOMINATOR for denom in denominators},
-                            tags=tags
-                        )
+            cols[key + '_t'] = OBSColumn(
+                id=column['id'] + '_t',
+                name=column['name'],
+                description=column.get('description', ''),
+                type='Numeric',
+                weight=column.get('weight', DEFAULT_WEIGHT),
+                aggregate=aggregate,
+                targets={cols[denom + '_t']: target for denom in column['denominators']},
+                tags=tags
+            )
+            if column.get('gender_split', 'no').lower() == 'yes':
+                for suffix, gender in GENDERS.items():
+                    denominators = [denom + '_t' for denom in column['denominators']] + \
+                                [denom + suffix for denom in column['denominators']]
+
+                    cols[key + suffix] = OBSColumn(
+                        id=column['id'] + suffix,
+                        name='{} ({})'.format(column['name'], gender),
+                        description=column.get('description', ''),
+                        type='Numeric',
+                        weight=column.get('weight', DEFAULT_WEIGHT),
+                        aggregate=aggregate,
+                        targets={cols[denom]: target for denom in denominators},
+                        tags=tags
+                    )
 
         return cols
