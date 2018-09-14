@@ -2,14 +2,13 @@ import csv
 import os
 import glob
 from collections import OrderedDict
-from luigi import Task, Parameter, LocalTarget, WrapperTask
+from luigi import Parameter, WrapperTask
 from tasks.ca.statcan.geo import (GEOGRAPHIES, GeographyColumns, Geography,
                                   GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA)
 from tasks.ca.statcan.census2016.cols_census import (CensusColumns, COLUMNS_DEFINITION, TOPICS,
                                                      SEGMENT_ALL, SEGMENT_TOTAL, SEGMENT_FEMALE, SEGMENT_MALE)
 
-from tasks.base_tasks import RepoFileUnzipTask, RepoFile, TempTableTask, TableTask
-from tasks.util import copyfile
+from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, TableTask
 from tasks.meta import current_session, GEOM_REF
 from lib.logger import get_logger
 from lib.timespan import get_timespan
