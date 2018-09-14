@@ -6,6 +6,7 @@ from tasks.base_tasks import ColumnsTask
 from tasks.tags import SectionTags, SubsectionTags, UnitTags, PublicTags
 from tasks.ca.statcan.license import LicenseTags, SourceTags
 from tasks.meta import OBSColumn, DENOMINATOR, UNIVERSE
+from lib.columns import ColumnsDeclarations
 
 
 def load_definition():
@@ -16,20 +17,30 @@ def load_definition():
 COLUMNS_DEFINITION = load_definition()
 DEFAULT_WEIGHT = 10
 DEFAULT_AGGREGATE = 'sum'
+
+SEGMENT_ALL = 'all'
+SEGMENT_TOTAL = 't'
+SEGMENT_FEMALE = 'f'
+SEGMENT_MALE = 'm'
 GENDERS = {
-    '_f': 'Female',
-    '_m': 'Male',
+    SEGMENT_FEMALE: 'Female',
+    SEGMENT_MALE: 'Male',
 }
+
 TOPICS = {
     't001': ['segments', 'age_gender', 'families', 'housing'],
-    't002': ['education', 'employment', 'income'],
+    't002': ['education'],
     't003': ['language'],
     't004': ['race_ethnicity'],
     't005': ['nationality', 'migration'],
+    't006': ['employment', 'income'],
 }
 
 
 class CensusColumns(ColumnsTask):
+    resolution = Parameter()
+    topic = Parameter()
+
     def requires(self):
         return {
             'sections': SectionTags(),
@@ -75,11 +86,11 @@ class CensusColumns(ColumnsTask):
             )
             if column.get('gender_split', 'no').lower() == 'yes':
                 for suffix, gender in GENDERS.items():
-                    denominators = [denom + '_t' for denom in column['denominators']] + \
-                                [denom + suffix for denom in column['denominators']]
+                    denominators = ['{}_{}'.format(denom, SEGMENT_TOTAL) for denom in column['denominators']] + \
+                                   ['{}_{}'.format(denom, suffix) for denom in column['denominators']]
 
-                    cols[key + suffix] = OBSColumn(
-                        id=column['id'] + suffix,
+                    cols['{}_{}'.format(key, suffix)] = OBSColumn(
+                        id='{}_{}'.format(column['id'], suffix),
                         name='{} ({})'.format(column['name'], gender),
                         description=column.get('description', ''),
                         type='Numeric',
@@ -88,5 +99,10 @@ class CensusColumns(ColumnsTask):
                         targets={cols[denom]: target for denom in denominators},
                         tags=tags
                     )
+
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns_filter.json'))
+        parameters = '{{"resolution":"{resolution}", "topic":"{topic}"}}'.format(
+                        resolution=self.resolution, topic=self.topic)
+        cols = columnsFilter.filter_columns(cols, parameters)
 
         return cols
