@@ -1,6 +1,7 @@
 import csv
 import os
 import glob
+import logging
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 from tasks.ca.statcan.geo import (GEOGRAPHIES, GeographyColumns, Geography,
@@ -69,12 +70,12 @@ class ImportData(TempTableTask):
         for key, column in COLUMNS_DEFINITION.items():
             if column['subsection'] in TOPICS[self.topic]:
                 if self.segment in [SEGMENT_ALL, SEGMENT_TOTAL]:
-                    cols += [key + '_t']
+                    cols.append(key + '_t')
                 if column.get('gender_split', 'no') == 'yes':
                     if self.segment in [SEGMENT_ALL, SEGMENT_FEMALE]:
-                        cols += [key + '_f']
+                        cols.append(key + '_f')
                     if self.segment in [SEGMENT_ALL, SEGMENT_MALE]:
-                        cols += [key + '_m']
+                        cols.append(key + '_m')
 
         columns = ['{} NUMERIC'.format(col) for col in cols]
         session = current_session()
@@ -96,6 +97,7 @@ class ImportData(TempTableTask):
     def populate_from_csv(self):
         input_ = self.input()
         session = current_session()
+        is_logger_debug = LOGGER.isEnabledFor(logging.DEBUG)
 
         i = 0
         path = glob.glob(os.path.join(input_['data'].path, '*data.csv'))[0]
@@ -111,9 +113,10 @@ class ImportData(TempTableTask):
                     f_column_name = line[8]
                     f_measurement_total = safe_float_cast(line[11])
 
-                    LOGGER.debug('Reading line {} ::: {} ({}) | {} | {} '.format(
-                        num, f_geom_id, f_geolevel, f_column_name, f_measurement_total
-                    ))
+                    if is_logger_debug:
+                        LOGGER.debug('Reading line {} ::: {} ({}) | {} | {} '.format(
+                            num, f_geom_id, f_geolevel, f_column_name, f_measurement_total
+                        ))
 
                     if coldef['source_name'] != f_column_name:
                         raise ValueError("Line {line} (geoid={geoid}): The name for {column} doesn't match ('{f_name}' / '{json_name}')".format(
@@ -121,22 +124,16 @@ class ImportData(TempTableTask):
                             f_name=f_column_name, json_name=coldef['source_name']
                         ))
 
-                    measure_names = []
-                    measure_values = []
-
+                    measurements = {}
                     if self.segment in [SEGMENT_ALL, SEGMENT_TOTAL]:
-                        measure_names += [colname + '_t']
-                        measure_values += [f_measurement_total]
+                        measurements[colname + '_t'] = f_measurement_total
 
                     if coldef.get('gender_split', 'no') == 'yes':
                         if self.segment in [SEGMENT_ALL, SEGMENT_FEMALE]:
-                            measure_names += [colname + '_f']
-                            measure_values += [safe_float_cast(line[13])]
+                            measurements[colname + '_f'] = safe_float_cast(line[13])
                         if self.segment in [SEGMENT_ALL, SEGMENT_MALE]:
-                            measure_names += [colname + '_m']
-                            measure_values += [safe_float_cast(line[12])]
+                            measurements[colname + '_m'] = safe_float_cast(line[12])
 
-                    measurements = dict(zip(measure_names, measure_values))
                     stmt = '''
                            INSERT INTO {output} (geom_id, geolevel, {measure_names})
                            SELECT '{geoid}', {geolevel}, {measure_values}
@@ -223,29 +220,20 @@ class CensusDataWrapper(WrapperTask):
     topic = Parameter()
 
     def requires(self):
+        segments = [SEGMENT_ALL]
         if self.topic == 't003':
-            return [
-                CensusData(resolution=self.resolution, topic=self.topic, segment=SEGMENT_TOTAL),
-                CensusData(resolution=self.resolution, topic=self.topic, segment=SEGMENT_FEMALE),
-                CensusData(resolution=self.resolution, topic=self.topic, segment=SEGMENT_MALE),
-            ]
-        else:
-            return CensusData(resolution=self.resolution, topic=self.topic, segment=SEGMENT_ALL)
+            segments = [SEGMENT_TOTAL, SEGMENT_FEMALE, SEGMENT_MALE]
+
+        return [CensusData(resolution=self.resolution, topic=self.topic, segment=s) for s in segments]
 
 
 class AllCensusTopics(WrapperTask):
     resolution = Parameter()
 
     def requires(self):
-        tasks = []
-        for topic in TOPICS.keys():
-            tasks.append(CensusDataWrapper(resolution=self.resolution, topic=topic))
-        return tasks
+        return [CensusDataWrapper(resolution=self.resolution, topic=topic) for topic in TOPICS.keys()]
 
 
 class AllCensusResolutions(WrapperTask):
     def requires(self):
-        tasks = []
-        for resolution in GEOGRAPHIES:
-            tasks.append(AllCensusTopics(resolution=resolution))
-        return tasks
+        return [AllCensusTopics(resolution=resolution) for resolution in GEOGRAPHIES]
