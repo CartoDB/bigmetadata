@@ -116,7 +116,7 @@ class ImportData(TempTableTask):
                     ))
 
                     if coldef['source_name'] != f_column_name:
-                        LOGGER.ERROR("Line {line} (geoid={geoid}): The name for {column} doesn't match ('{f_name}' / '{json_name}')".format(
+                        raise ValueError("Line {line} (geoid={geoid}): The name for {column} doesn't match ('{f_name}' / '{json_name}')".format(
                             line=num, geoid=f_geom_id, column=colname,
                             f_name=f_column_name, json_name=coldef['source_name']
                         ))
@@ -175,8 +175,8 @@ class CensusData(TableTask):
         return {
             'meta': CensusColumns(resolution=self.resolution, topic=self.topic),
             'data': ImportData(geocode=GEOGRAPHY_CODES[self.resolution], topic=self.topic, segment=self.segment),
-            'geometa': GeographyColumns(resolution=self.resolution, year='2016'),
-            'geo': Geography(resolution=self.resolution, year='2016'),
+            'geometa': GeographyColumns(resolution=self.resolution, year=2016),
+            'geo': Geography(resolution=self.resolution, year=2016),
         }
 
     def targets(self):

@@ -187,16 +187,16 @@ class InterpolateNHSDAFromCD(Task):
     def requires(self):
         return {
             'nhs': NHS(resolution=GEO_CD, topic=self.topic, survey=SURVEY_NHS),
-            'geo_cd': Geography(resolution='GEO_CD', year='2011'),
-            'geo_da': Geography(resolution='GEO_DA', year='2011')
+            'geo_cd': Geography(resolution='GEO_CD', year=2011),
+            'geo_da': Geography(resolution='GEO_DA', year=2011)
         }
 
 
 class InterpolateFSAFromCSD(TempTableTask):
     def requires(self):
         return {
-            'geo_fsa': Geography(resolution=GEO_FSA, year='2011'),
-            'geo_csd': Geography(resolution=GEO_CSD, year='2011'),
+            'geo_fsa': Geography(resolution=GEO_FSA, year=2011),
+            'geo_csd': Geography(resolution=GEO_CSD, year=2011),
         }
 
     def run(self):
@@ -353,8 +353,8 @@ class Census(Survey):
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
-            'geo': Geography(resolution=self.resolution, year='2011'),
-            'geometa': GeographyColumns(resolution=self.resolution, year='2011'),
+            'geo': Geography(resolution=self.resolution, year=2011),
+            'geometa': GeographyColumns(resolution=self.resolution, year=2011),
             'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
@@ -381,8 +381,8 @@ class NHS(Survey):
 
     def requires(self):
         requires = {
-            'geo': Geography(resolution=self.resolution, year='2011'),
-            'geometa': GeographyColumns(resolution=self.resolution, year='2011'),
+            'geo': Geography(resolution=self.resolution, year=2011),
+            'geometa': GeographyColumns(resolution=self.resolution, year=2011),
             'meta': NHSColumns(),
         }
         # DA interpolate data and there is no data for DA in NHS so we should
@@ -427,7 +427,7 @@ class CensusMetaWrapper(MetaWrapper):
     }
 
     def tables(self):
-        yield Geography(resolution=self.resolution, year='2011')
+        yield Geography(resolution=self.resolution, year=2011)
         yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
 
 
@@ -441,5 +441,5 @@ class NHSMetaWrapper(MetaWrapper):
     }
 
     def tables(self):
-        yield Geography(resolution=self.resolution, year='2011')
+        yield Geography(resolution=self.resolution, year=2011)
         yield NHS(resolution=self.resolution, topic=self.topic, survey=SURVEY_NHS)

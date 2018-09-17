@@ -1,4 +1,4 @@
-from luigi import Parameter, WrapperTask
+from luigi import Parameter, IntParameter, WrapperTask
 
 from lib.timespan import get_timespan
 
@@ -79,6 +79,11 @@ GEOGRAPHY_FORMAT = {
     GEO_FSA: 'g',  # GML
 }
 
+GEOGRAPHY_EXTENSION = {
+    'a': 'shp',
+    'g': 'gml',
+}
+
 GEOGRAPHY_UID = {
     GEO_CT: 'ctuid',
     GEO_PR: 'pruid',
@@ -91,9 +96,9 @@ GEOGRAPHY_UID = {
 
 YEAR_URL = {
     # http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
-    '2011': 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip',
+    2011: 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip',
     # https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm
-    '2016': 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/{year}/l{resolution}000b16a_e.zip',
+    2016: 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/2016/l{resolution}000b16a_e.zip',
 }
 
 
@@ -101,12 +106,11 @@ YEAR_URL = {
 class DownloadGeography(RepoFileUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter()
+    year = IntParameter()
 
     def get_url(self):
         url = YEAR_URL[self.year]
-        return url.format(year=self.year,
-                          resolution=self.resolution,
+        return url.format(resolution=self.resolution,
                           format=GEOGRAPHY_FORMAT[self.resolution])
 
 
@@ -116,7 +120,7 @@ class ImportGeography(GeoFile2TempTableTask):
     '''
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter()
+    year = IntParameter()
     extension = Parameter(default='shp', significant=False)
 
     def requires(self):
@@ -133,17 +137,17 @@ class ImportGeography(GeoFile2TempTableTask):
 
 class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
-        extension = 'gml' if self.resolution == GEO_FSA and self.year == '2011' else 'shp'
+        extension = GEOGRAPHY_EXTENSION[GEOGRAPHY_FORMAT[self.resolution]] if self.year == 2011 else 'shp'
         return ImportGeography(resolution=self.resolution, year=self.year, extension=extension)
 
 
 class GeographyColumns(ColumnsTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter()
+    year = IntParameter()
 
     weights = {
         GEO_PR: 1,
@@ -206,11 +210,9 @@ class GeographyColumns(ColumnsTask):
 
 
 class Geography(TableTask):
-    '''
-    '''
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 10
@@ -247,7 +249,7 @@ class Geography(TableTask):
 
 
 class AllGeographies(WrapperTask):
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
@@ -255,7 +257,7 @@ class AllGeographies(WrapperTask):
 
 
 class AllGeographyColumns(WrapperTask):
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
