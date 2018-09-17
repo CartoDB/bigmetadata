@@ -136,7 +136,7 @@ class SimplifiedImportGeography(SimplifiedTempTableTask):
     year = Parameter()
 
     def requires(self):
-        extension = 'gml' if self.resolution == GEO_FSA else 'shp'
+        extension = 'gml' if self.resolution == GEO_FSA and self.year == '2011' else 'shp'
         return ImportGeography(resolution=self.resolution, year=self.year, extension=extension)
 
 
