@@ -43,9 +43,9 @@ services:
     ports:
       - 8082
     depends_on:
-      - postgres10
+      - ${PGSERVICE:-postgres10}
     environment:
-      PGHOST: postgres10
+      PGHOST: ${PGSERVICE:-postgres10}
       PGPORT: ${PGPORT:-5432}
       PYTHONPATH: /bigmetadata
       PGUSER: docker
@@ -67,12 +67,12 @@ services:
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
       - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     depends_on:
-      - postgres10
+      - ${PGSERVICE:-postgres10}
       - bigmetadata_daemon
     entrypoint: /bigmetadata/conf/client_entrypoint.sh
     environment:
       PYTHONPATH: '/bigmetadata'
-      PGHOST: postgres10
+      PGHOST: ${PGSERVICE:-postgres10}
       PGPORT: ${PGPORT:-5432}
       PGUSER: docker
       PGPASSWORD: docker
