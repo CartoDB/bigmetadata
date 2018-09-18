@@ -9,6 +9,7 @@ endif
 
 PGSERVICE ?= postgres10
 LOG_LEVEL ?= INFO
+WORKERS ?= 1
 
 ###
 ### Tasks runners
@@ -30,7 +31,11 @@ run:
 	python3 -m luigi $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)
 
 docker-run:
-	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK) --log-level $(LOG_LEVEL)
+ifeq ($(WORKERS),1)
+		PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --module tasks.$(MOD_NAME) tasks.$(TASK) --log-level $(LOG_LEVEL)
+else
+		PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MOD_NAME).log bigmetadata luigi --parallel-scheduling --workers $(WORKERS) --module tasks.$(MOD_NAME) tasks.$(TASK) --log-level $(LOG_LEVEL)
+endif
 
 run-parallel:
 	python3 -m luigi --parallel-scheduling --workers=8 $(SCHEDULER) --module tasks.$(MOD_NAME) tasks.$(TASK)

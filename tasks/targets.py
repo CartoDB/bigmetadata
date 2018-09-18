@@ -9,6 +9,10 @@ from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, current_session)
 from sqlalchemy import Table, types, Column
 
+from lib.logger import get_logger
+
+LOGGER = get_logger(__name__)
+
 
 class PostgresTarget(Target):
     '''
@@ -34,21 +38,27 @@ class PostgresTarget(Target):
     def schema(self):
         return self._schema
 
+    @property
+    def qualified_tablename(self):
+        return '"{}"."{}"'.format(self.schema, self.tablename)
+
     def _existenceness(self):
         '''
         Returns 0 if the table does not exist, 1 if it exists but has no
         rows (is empty), and 2 if it exists and has one or more rows.
         '''
         session = current_session()
-        resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
-                               "WHERE table_schema ILIKE '{schema}'  "
-                               "  AND table_name ILIKE '{tablename}' ".format(
-                                   schema=self._schema,
-                                   tablename=self._tablename))
+        sql = 'SELECT COUNT(*) FROM information_schema.tables ' \
+              "WHERE table_schema ILIKE '{schema}'  " \
+              "  AND table_name ILIKE '{tablename}' ".format(
+            schema=self._schema,
+            tablename=self._tablename)
+        LOGGER.debug('Existenceness SQL: {}'.format(sql))
+        resp = session.execute(sql)
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
-            'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
+            'SELECT row_number() over () FROM "{schema}"."{tablename}" WHERE {where} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename, where=self._where))
         if resp.fetchone() is None:
             return 1
@@ -176,12 +186,16 @@ class TagTarget(Target):
         self._tag = tag
         self._task = task
 
+    _tag_cache = {}
+
     def get(self, session):
         '''
         Return a copy of the underlying OBSColumn in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTag).get(self._id)
+        if not self._tag_cache.get(self._id, None):
+            with session.no_autoflush:
+                self._tag_cache[self._id] = session.query(OBSTag).get(self._id)
+        return self._tag_cache[self._id]
 
     def update_or_create(self):
         with current_session().no_autoflush:
@@ -190,13 +204,11 @@ class TagTarget(Target):
     def exists(self):
         session = current_session()
         existing = self.get(session)
-        new_version = float(self._tag.version or 0.0)
-        if existing:
-            existing_version = float(existing.version or 0.0)
-            current_session().expunge(existing)
-        else:
-            existing_version = 0.0
-        if existing and existing_version == new_version:
+        new_version = self._tag.version or 0.0
+        if existing in session:
+            session.expunge(existing)
+        existing_version = existing.version or 0.0
+        if existing and float(existing_version) == float(new_version):
             return True
         elif existing and existing_version > new_version:
             raise Exception('Metadata version mismatch: cannot run task {task} '
@@ -221,6 +233,7 @@ class TableTarget(Target):
         obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
             underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
+        self.qualified_tablename = '"{schema}"."{table}"'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self.obs_table = obs_table
         self._tablename = obs_table.tablename
         self._schema = schema

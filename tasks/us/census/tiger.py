@@ -892,7 +892,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
-        return 5
+        return 4
 
     def requires(self):
         if self.geography == BLOCK:

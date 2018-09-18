@@ -228,18 +228,6 @@ class TagsTask(Task):
             output[orig_id] = TagTarget(tag, self)
         return output
 
-    def complete(self):
-        '''
-        Custom complete method that attempts to check if output exists, as is
-        default, but in case of failure allows attempt to run dependencies (a
-        missing dependency could result in exception on `output`).
-        '''
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-        else:
-            return super(TagsTask, self).complete()
-
 
 class TableToCartoViaImportAPI(Task):
     '''
