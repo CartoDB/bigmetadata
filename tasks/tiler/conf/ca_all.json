@@ -1,0 +1,540 @@
+[
+    {
+        "table": "xyz_ca_do_geoms",
+        "schema": "tiler",
+        "geoms": true,
+        "sharded": false,
+        "bboxes": [
+            {
+                "description": "Canada",
+                "xmin": -141.11, "ymin": 41.624, "xmax": -52.46, "ymax": 83.25
+            }
+        ],
+        "columns": [
+            {
+                "id": "ca.statcan.geo.geom_name",
+                "column_name": "geoname",
+                "column_alias": "name",
+                "type": "text",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c001_t",
+                "column_name": "total_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c001_m",
+                "column_name": "male_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c001_f",
+                "column_name": "female_pop",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c002_f",
+                "column_name": "female_under_5",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c003_f",
+                "column_name": "female_5_to_9",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c004_f",
+                "column_name": "female_10_to_14",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c005_f",
+                "column_name": "female_15_to_19",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c011_f",
+                "column_name": "female_20_to_24",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c012_f",
+                "column_name": "female_25_to_29",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c013_f",
+                "column_name": "female_30_to_34",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c014_f",
+                "column_name": "female_35_to_39",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c015_f",
+                "column_name": "female_40_to_44",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c016_f",
+                "column_name": "female_45_to_49",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c017_f",
+                "column_name": "female_50_to_54",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c018_f",
+                "column_name": "female_55_to_59",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c019_f",
+                "column_name": "female_60_to_64",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c020_f",
+                "column_name": "female_65_to_69",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c021_f",
+                "column_name": "female_70_to_74",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c022_f",
+                "column_name": "female_75_to_79",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c023_f",
+                "column_name": "female_80_to_84",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c024_f",
+                "column_name": "female_85_and_over",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c002_m",
+                "column_name": "male_under_5",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c003_m",
+                "column_name": "male_5_to_9",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c004_m",
+                "column_name": "male_10_to_14",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c005_m",
+                "column_name": "male_15_to_19",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c011_m",
+                "column_name": "male_20_to_24",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c012_m",
+                "column_name": "male_25_to_29",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c013_m",
+                "column_name": "male_30_to_34",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c014_m",
+                "column_name": "male_35_to_39",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c015_m",
+                "column_name": "male_40_to_44",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c016_m",
+                "column_name": "male_45_to_49",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c017_m",
+                "column_name": "male_50_to_54",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c018_m",
+                "column_name": "male_55_to_59",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c019_m",
+                "column_name": "male_60_to_64",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c020_m",
+                "column_name": "male_65_to_69",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c021_m",
+                "column_name": "male_70_to_74",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c022_m",
+                "column_name": "male_75_to_79",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c023_m",
+                "column_name": "male_80_to_84",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_census.t001c024_m",
+                "column_name": "male_85_and_over",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t005c002_t",
+                "column_name": "no_certificate_diploma_or_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t005c003_t",
+                "column_name": "high_school_diploma_or_equivalent",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t005c004_t",
+                "column_name": "postsecondary_certificate_diploma_or_degree",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c002_t",
+                "column_name": "income_less_5000",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c003_t",
+                "column_name": "income_5000_9999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c004_t",
+                "column_name": "income_10000_14999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c005_t",
+                "column_name": "income_15000_19999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c006_t",
+                "column_name": "income_20000_29999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c007_t",
+                "column_name": "income_30000_39999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c008_t",
+                "column_name": "income_40000_49999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c009_t",
+                "column_name": "income_50000_59999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c010_t",
+                "column_name": "income_60000_79999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c011_t",
+                "column_name": "income_80000_99999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c012_t",
+                "column_name": "income_100000_124999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c013_t",
+                "column_name": "income_125000_149999",
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ca.statcan.cols_nhs.t012c014_t",
+                "column_name": "income_150000_or_more",
+                "type": "numeric",
+                "nullable": true
+            }
+        ]
+    },
+    {
+        "table": "xyz_ca_mc",
+        "bypass": true,
+        "schema": "tiler",
+        "geoms": false,
+        "bboxes": [
+            {
+                "description": "Canada",
+                "xmin": -141.11, "ymin": 41.624, "xmax": -52.46, "ymax": 83.25
+            }
+        ],
+        "sharded": true,
+        "sharding": {
+            "values": [1,2,3,4,5,6,7,8,9,10,11,12]
+        },
+        "columns": [
+            {
+                "id": "ticket_size_score",
+                "column_name": "ticket_size_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_score",
+                "column_name": "growth_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_score",
+                "column_name": "stability_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_score",
+                "column_name": "transactions_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_score",
+                "column_name": "sales_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "upfront_composite_score",
+                "column_name": "upfront_composite_score",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_country_pctile",
+                "column_name": "ticket_size_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_metro_pctile",
+                "column_name": "ticket_size_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "ticket_size_prov_pctile",
+                "column_name": "ticket_size_prov_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_country_pctile",
+                "column_name": "growth_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_metro_pctile",
+                "column_name": "growth_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "growth_prov_pctile",
+                "column_name": "growth_prov_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_country_pctile",
+                "column_name": "stability_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_metro_pctile",
+                "column_name": "stability_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "stability_prov_pctile",
+                "column_name": "stability_prov_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_country_pctile",
+                "column_name": "transactions_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_metro_pctile",
+                "column_name": "transactions_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "transactions_prov_pctile",
+                "column_name": "transactions_prov_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_country_pctile",
+                "column_name": "sales_country_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_metro_pctile",
+                "column_name": "sales_metro_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            },
+            {
+                "id": "sales_prov_pctile",
+                "column_name": "sales_prov_pctile",
+                "column_name_suffix": ["mc_categories", "mc_dates"],
+                "type": "numeric",
+                "nullable": true
+            }
+        ],
+        "mc_categories": [
+            {
+                "id": "NEP",
+                "name": "non eating places"
+            },
+            {
+                "id": "EP",
+                "name": "eating places"
+            },
+            {
+                "id": "APP",
+                "name": "apparel"
+            },
+            {
+                "id": "SB",
+                "name": "small business"
+            },
+            {
+                "id": "TR",
+                "name": "total retail"
+            }
+        ]
+    }
+]
