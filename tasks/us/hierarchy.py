@@ -1,4 +1,4 @@
-from luigi import WrapperTask, Parameter, IntParameter, ListParameter
+from luigi import Task, WrapperTask, Parameter, IntParameter, ListParameter
 from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from tasks.base_tasks import TempTableTask
 from tasks.meta import current_session
@@ -15,13 +15,15 @@ def _union(tables, output):
         unions=' UNION '.join(unions))
 
 
-class USHierarchy(WrapperTask):
+class USHierarchy(Task):
     year = IntParameter()
 
     def requires(self):
         levels = self._levels()
-        return [USHierarchyInfoUnion(year=self.year, levels=levels),
-                USHierarchyChildParentsUnion(year=self.year, levels=levels)]
+        return {
+            'info': USHierarchyInfoUnion(year=self.year, levels=levels),
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
+        }
 
     def _levels(self):
         level_infos = [(level, info) for level, info in SUMLEVELS.items()]
@@ -30,6 +32,35 @@ class USHierarchy(WrapperTask):
                                     key=lambda level_info: level_info[1][
                                         'weight'])
         return [level_info[0] for level_info in sorted_level_infos]
+
+    def run(self):
+        session = current_session()
+        session.execute('ALTER TABLE {rel_table} ADD '
+                        'CONSTRAINT ushierarchy_fk_child '
+                        'FOREIGN KEY (child_id, child_level) '
+                        'REFERENCES {info_table} (geoid, level) '.format(
+            rel_table=self.input()['rel'].qualified_tablename,
+            info_table=self.input()['info'].qualified_tablename))
+        session.execute('ALTER TABLE {rel_table} ADD '
+                        'CONSTRAINT ushierarchy_fk_parent '
+                        'FOREIGN KEY (parent_id, parent_level) '
+                        'REFERENCES {info_table} (geoid, level) '.format(
+            rel_table=self.input()['rel'].qualified_tablename,
+            info_table=self.input()['info'].qualified_tablename))
+        session.commit()
+
+    def complete(self):
+        session = current_session()
+        sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
+              "WHERE table_schema = '{schema}' " \
+              "  AND table_name = '{table}' " \
+              "  AND constraint_name = '{constraint}'"
+        table = self.input()['info']
+        check = sql.format(schema=table.schema,
+                           table=table.tablename,
+                           constraint='ushierarchy_fk_parent')
+        result = session.execute(check).fetchall()
+        return len(result) > 0
 
 
 class _YearLevelsTask:
@@ -45,8 +76,10 @@ class USHierarchyInfoUnion(TempTableTask, _YearLevelsTask):
 
     def run(self):
         session = current_session()
-        session.execute(
-            _union(self.input(), self.output().qualified_tablename))
+        tablename = self.output().qualified_tablename
+        session.execute(_union(self.input(), tablename))
+        alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY (geoid, level)'
+        session.execute(alter_sql.format(tablename=tablename))
         session.commit()
 
 
@@ -54,9 +87,9 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
 
     def requires(self):
         child_parents = self._child_parents()
-        return [USLevelHierarchy(year=self.year,
-                                 current_geography=child_parent[0],
-                                 parent_geography=child_parent[1])
+        return [USLevelInclusionHierarchy(year=self.year,
+                                          current_geography=child_parent[0],
+                                          parent_geography=child_parent[1])
                 for child_parent in child_parents]
 
     def _child_parents(self):
@@ -70,8 +103,11 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
 
     def run(self):
         session = current_session()
-        session.execute(
-            _union(self.input(), self.output().qualified_tablename))
+        tablename = self.output().qualified_tablename
+        session.execute(_union(self.input(), tablename))
+        alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY ' \
+                    '(child_id, child_level, parent_id, parent_level)'
+        session.execute(alter_sql.format(tablename=tablename))
         session.commit()
 
 
@@ -94,6 +130,68 @@ def abbr_tablename(target, geographies, year):
         target = '_'.join([splits[0], '_'.join(abbrs), str(year), splits[-1]])
 
     return target
+
+
+class USLevelInclusionHierarchy(Task):
+    year = IntParameter()
+    current_geography = Parameter()
+    parent_geography = Parameter()
+
+    UNWEIGHTED_CHILD_SQL = """
+        SELECT DISTINCT child_id, child_level
+        FROM {table}
+        WHERE weight = 1
+        GROUP BY child_id, child_level
+        HAVING count(1) > 1
+    """
+
+    def requires(self):
+        return {
+            'level': USLevelHierarchy(year=self.year,
+                                      current_geography=self.current_geography,
+                                      parent_geography=self.parent_geography),
+            'current_geom': ShorelineClip(year=self.year,
+                                          geography=self.current_geography),
+            'parent_geom': ShorelineClip(year=self.year,
+                                         geography=self.parent_geography)
+        }
+
+    def run(self):
+        session = current_session()
+        sql = '''
+            UPDATE {table}
+            SET weight = ST_Area(
+                ST_Intersection(cgt.the_geom, pgt.the_geom), False)
+            FROM
+                observatory.{current_geom_table} cgt,
+                observatory.{parent_geom_table} pgt
+            WHERE cgt.geoid = {table}.child_id
+              AND pgt.geoid = {table}.parent_id
+              AND (child_id, child_level) IN (
+              {unweighted_child_sql}
+        )
+        '''
+        table = self.input()['level'].qualified_tablename
+        session.execute(
+            sql.format(
+                table=table,
+                current_geom_table=self.input()['current_geom'].get(
+                    session).tablename,
+                parent_geom_table=self.input()['parent_geom'].get(
+                    session).tablename,
+                unweighted_child_sql=self.UNWEIGHTED_CHILD_SQL.format(
+                    table=table)
+            )
+        )
+        session.commit()
+
+    def complete(self):
+        return len(current_session().execute(self.UNWEIGHTED_CHILD_SQL.format(
+            table=self.input()['level'].qualified_tablename)).fetchall()) == 0
+
+    def output(self):
+        return self.input()['level']
+
 
 
 class USLevelHierarchy(TempTableTask):
@@ -120,30 +218,32 @@ class USLevelHierarchy(TempTableTask):
 
     def run(self):
         session = current_session()
-        current_info_tablename = (
-            self.input()['current_info']).qualified_tablename
-        current_geom_table = (self.input()['current_geom']).get(session)
-        parent_geom_table = (self.input()['parent_geom']).get(session)
+        input = self.input()
+        current_info_tablename = input['current_info'].qualified_tablename
+        current_geom_table = input['current_geom'].get(session)
+        parent_info_tablename = input['parent_info'].qualified_tablename
+        parent_geom_table = input['parent_geom'].get(session)
 
-        # ST_Area(ST_Intersection(cgt.the_geom, pgt.the_geom), FALSE) AS weight
-        # cit.level AS child_level,
-        # pgt.level AS parent_level,
         sql = '''
         CREATE TABLE {output_table} AS
         SELECT
             cit.geoid AS child_id,
+            cit.level AS child_level,
             pgt.geoid AS parent_id,
-            1 AS weight
+            pit.level AS parent_level,
+            1.0::FLOAT AS weight
         FROM {current_info_table} cit
         INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.geoid
         INNER JOIN observatory.{parent_geom_table} pgt
             ON ST_Within(ST_PointOnSurface(cgt.the_geom), pgt.the_geom)
+        INNER JOIN {parent_info_table} pit ON pgt.geoid = pit.geoid
         '''
 
         session.execute(sql.format(
             output_table=self.output().qualified_tablename,
             current_info_table=current_info_tablename,
             current_geom_table=current_geom_table.tablename,
+            parent_info_table=parent_info_tablename,
             parent_geom_table=parent_geom_table.tablename
         ))
         session.commit()
