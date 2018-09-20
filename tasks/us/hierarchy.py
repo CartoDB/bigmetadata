@@ -186,8 +186,12 @@ class USLevelInclusionHierarchy(Task):
         session.commit()
 
     def complete(self):
-        return len(current_session().execute(self.UNWEIGHTED_CHILD_SQL.format(
-            table=self.input()['level'].qualified_tablename)).fetchall()) == 0
+        try:
+            return len(current_session().execute(self.UNWEIGHTED_CHILD_SQL.format(
+                table=self.input()['level'].qualified_tablename)).fetchall()) == 0
+        except:
+            # Table doesn't exist yet
+            return False
 
     def output(self):
         return self.input()['level']
