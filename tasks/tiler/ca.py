@@ -1,4 +1,3 @@
-from tasks.targets import PostgresTarget
 from tasks.tiler.xyz import SimpleTilerDOXYZTableTask
 from luigi import WrapperTask
 from lib.logger import get_logger
@@ -26,10 +25,6 @@ class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
 
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
-        self.mc_geography_level = self.geography
-
-    def get_config_file(self):
-        return 'ca_all.json'
 
     def get_geography_name(self):
         return GEOGRAPHY_LEVELS[self.geography]
@@ -43,9 +38,6 @@ class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
             columns_ids.append(column['id'])
 
         return columns_ids
-
-    def output(self):
-        return PostgresTarget('tiler', 'xyz_ca_do_geoms')
 
 
 class AllSimpleDOXYZTables(WrapperTask):

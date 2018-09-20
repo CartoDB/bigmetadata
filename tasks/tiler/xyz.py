@@ -103,6 +103,7 @@ class SimpleTilerDOXYZTableTask(Task):
     def __init__(self, *args, **kwargs):
         super(SimpleTilerDOXYZTableTask, self).__init__(*args, **kwargs)
         self.columns = self._get_columns()
+        self.mc_geography_level = self.geography
 
     def requires(self):
         return TilesTempTable(zoom_level=self.zoom_level,
@@ -110,7 +111,7 @@ class SimpleTilerDOXYZTableTask(Task):
                               config_file=self.get_config_file())
 
     def get_config_file(self):
-        raise NotImplementedError('get_config_file must be implemented by the child class')
+        return '{country}_all.json'.format(country=self.country)
 
     def get_geography_name(self):
         raise NotImplementedError('get_geography_name must be implemented by the child class')
@@ -206,7 +207,7 @@ class SimpleTilerDOXYZTableTask(Task):
         self._insert_data()
 
     def output(self):
-        raise NotImplementedError('output must be implemented by the child class')
+        return PostgresTarget('tiler', 'xyz_{country}_do_geoms'.format(country=self.country))
 
     def complete(self):
         session = current_session()
