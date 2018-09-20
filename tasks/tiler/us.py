@@ -147,6 +147,8 @@ class AllUSXYZTables(WrapperTask):
 
 
 class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
+    country = 'us'
+
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
 
