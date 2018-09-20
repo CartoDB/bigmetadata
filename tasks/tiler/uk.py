@@ -17,12 +17,19 @@ GEOGRAPHY_NAME_COLUMNS = {
     'postcode_sector': 'uk.odl.ps_id',
 }
 
+GEOGRAPHY_SIMPLIFICATION = {
+    'postcode_area': 0.1,
+    'postcode_district': 0.01,
+    'censupostcode_sectors_tract': 0.001,
+}
+
 
 class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
     country = 'uk'
 
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
+        self.simplification_tolerance = GEOGRAPHY_SIMPLIFICATION[self.geography]
 
     def get_geography_name(self):
         return GEOGRAPHY_LEVELS[self.geography]

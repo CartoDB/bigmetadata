@@ -23,12 +23,22 @@ GEOGRAPHY_NAME_COLUMNS = {
     'mesh_block': 'au.geo.MB_name',
 }
 
+GEOGRAPHY_SIMPLIFICATION = {
+    'state': 0.1,
+    'sa4': 0.01,
+    'sa3': 0.001,
+    'sa2': 0.0001,
+    'sa1': 0.0001,
+    'mesh_block': 0.0001,
+}
+
 
 class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
     country = 'au'
 
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
+        self.simplification_tolerance = GEOGRAPHY_SIMPLIFICATION[self.geography]
 
     def get_geography_name(self):
         return GEOGRAPHY_LEVELS[self.geography]

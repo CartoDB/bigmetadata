@@ -21,12 +21,21 @@ GEOGRAPHY_NAME_COLUMNS = {
     'block': 'us.census.tiger.block_geoname',
 }
 
+GEOGRAPHY_SIMPLIFICATION = {
+    'state': 0.1,
+    'county': 0.01,
+    'census_tract': 0.001,
+    'block_group': 0.0001,
+    'block': 0.0001,
+}
+
 
 class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
     country = 'us'
 
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
+        self.simplification_tolerance = GEOGRAPHY_SIMPLIFICATION[self.geography]
 
     def get_geography_name(self):
         return GEOGRAPHY_LEVELS[self.geography]

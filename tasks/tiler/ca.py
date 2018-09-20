@@ -19,12 +19,20 @@ GEOGRAPHY_NAME_COLUMNS = {
     'dissemination_area': 'ca.statcan.geo.da__name',
 }
 
+GEOGRAPHY_SIMPLIFICATION = {
+    'province': 0.1,
+    'census_division': 0.01,
+    'forward_sortation_area': 0.001,
+    'dissemination_area': 0.0001,
+}
+
 
 class SimpleDOXYZTables(SimpleTilerDOXYZTableTask):
     country = 'ca'
 
     def __init__(self, *args, **kwargs):
         super(SimpleDOXYZTables, self).__init__(*args, **kwargs)
+        self.simplification_tolerance = GEOGRAPHY_SIMPLIFICATION[self.geography]
 
     def get_geography_name(self):
         return GEOGRAPHY_LEVELS[self.geography]
