@@ -494,6 +494,13 @@ class TempTableTask(Task):
     def on_success(self):
         session_commit(self)
 
+    def target_tablename(self):
+        '''
+        Can be overriden to expose a different table name
+        :return:
+        '''
+        return unqualified_task_id(self.task_id)
+
     def run(self):
         '''
         Must be overriden by subclass.  Should create and populate a table
@@ -510,7 +517,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
+        return PostgresTarget(classpath(self), self.target_tablename())
 
 
 @TempTableTask.event_handler(Event.START)

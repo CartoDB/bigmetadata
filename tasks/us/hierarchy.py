@@ -34,7 +34,7 @@ class USHierarchy(WrapperTask):
 
 class _YearLevelsTask:
     year = IntParameter()
-    levels = ListParameter()
+    levels = ListParameter(significant=False)
 
 
 class USHierarchyInfoUnion(TempTableTask, _YearLevelsTask):
@@ -81,8 +81,19 @@ GEOGRAPHIES_ABBREVIATIONS = {
     'school_district_elementary': 'sde'
 }
 
+
 def _abbreviation(geography):
     return GEOGRAPHIES_ABBREVIATIONS.get(geography, geography)
+
+
+def abbr_tablename(target, geographies, year):
+    abbrs = [_abbreviation(geography) for geography in geographies]
+
+    if [x for x in zip(abbrs, geographies) if x[0] != x[1]]:
+        splits = target.split('_')
+        target = '_'.join([splits[0], '_'.join(abbrs), str(year), splits[-1]])
+
+    return target
 
 
 class USLevelHierarchy(TempTableTask):
@@ -102,12 +113,10 @@ class USLevelHierarchy(TempTableTask):
                                          geography=self.parent_geography)
         }
 
-    def get_table_id(self):
-        current_abbreviation = _abbreviation(self.current_geography)
-        parent_abbreviation = _abbreviation(self.parent_geography)
-
-        return '.'.join([self.input().schema,
-                         '_'.join(self.input().tablename.split('_')[:-1])])
+    def target_tablename(self):
+        return abbr_tablename(super(USLevelHierarchy, self).target_tablename(),
+                              [self.current_geography, self.parent_geography],
+                              self.year)
 
     def run(self):
         session = current_session()
@@ -193,6 +202,11 @@ class USLevelInfoFromGeoNames(TempTableTask, _YearGeographyTask):
 
     def requires(self):
         return GeoNamesTable(year=self.year, geography=self.geography)
+
+    def target_tablename(self):
+        return abbr_tablename(
+            super(USLevelInfoFromGeoNames, self).target_tablename(),
+            [self.geography], self.year)
 
     def run(self):
         session = current_session()
