@@ -158,7 +158,7 @@ class GeographyColumns(ColumnsTask):
     }
 
     def version(self):
-        return 14
+        return 15
 
     def requires(self):
         return {
@@ -191,6 +191,7 @@ class GeographyColumns(ColumnsTask):
             targets={geom: GEOM_REF},
         )
         geom_name = OBSColumn(
+            id=self.resolution + '_name',
             type='Text',
             weight=1,
             name='Name of ' + GEOGRAPHY_NAMES[self.resolution],
