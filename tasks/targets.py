@@ -51,8 +51,8 @@ class PostgresTarget(Target):
         sql = 'SELECT COUNT(*) FROM information_schema.tables ' \
               "WHERE table_schema ILIKE '{schema}'  " \
               "  AND table_name ILIKE '{tablename}' ".format(
-            schema=self._schema,
-            tablename=self._tablename)
+                schema=self._schema,
+                tablename=self._tablename)
         LOGGER.debug('Existenceness SQL: {}'.format(sql))
         resp = session.execute(sql)
         if int(resp.fetchone()[0]) == 0:

@@ -7,7 +7,7 @@ from lib.logger import get_logger
 LOGGER = get_logger(__name__)
 
 
-def _union(tables, output):
+def _union_query(tables, output):
     unions = ['SELECT * FROM {table}'.format(table=table.qualified_tablename)
               for table in tables]
     return 'CREATE TABLE {output} AS {unions}'.format(
@@ -27,9 +27,7 @@ class USHierarchy(Task):
         }
 
     def _levels(self):
-        level_infos = [(level, info) for level, info in SUMLEVELS.items()]
-
-        sorted_level_infos = reversed(sorted(level_infos,
+        sorted_level_infos = reversed(sorted(SUMLEVELS.items(),
                                              key=lambda level_info:
                                              level_info[1][
                                                  'weight']))
@@ -37,18 +35,19 @@ class USHierarchy(Task):
 
     def run(self):
         session = current_session()
+        input_ = self.input()
         session.execute('ALTER TABLE {rel_table} ADD '
                         'CONSTRAINT ushierarchy_fk_child '
                         'FOREIGN KEY (child_id, child_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-            rel_table=self.input()['rel'].qualified_tablename,
-            info_table=self.input()['info'].qualified_tablename))
+                            rel_table=input_['rel'].qualified_tablename,
+                            info_table=input_['info'].qualified_tablename))
         session.execute('ALTER TABLE {rel_table} ADD '
                         'CONSTRAINT ushierarchy_fk_parent '
                         'FOREIGN KEY (parent_id, parent_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-            rel_table=self.input()['rel'].qualified_tablename,
-            info_table=self.input()['info'].qualified_tablename))
+                            rel_table=input_['rel'].qualified_tablename,
+                            info_table=input_['info'].qualified_tablename))
         session.commit()
 
     def complete(self):
@@ -79,7 +78,7 @@ class USHierarchyInfoUnion(TempTableTask, _YearLevelsTask):
     def run(self):
         session = current_session()
         tablename = self.output().qualified_tablename
-        session.execute(_union(self.input(), tablename))
+        session.execute(_union_query(self.input(), tablename))
         alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY (geoid, level)'
         session.execute(alter_sql.format(tablename=tablename))
         session.commit()
@@ -119,7 +118,7 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
     def run(self):
         session = current_session()
         tablename = self.output().qualified_tablename
-        session.execute(_union(self.input(), tablename))
+        session.execute(_union_query(self.input(), tablename))
         alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY ' \
                     '(child_id, child_level, parent_id, parent_level)'
         session.execute(alter_sql.format(tablename=tablename))

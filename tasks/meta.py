@@ -7,6 +7,7 @@ functions for persisting metadata about tables loaded via ETL
 import os
 import re
 import inspect
+import functools
 
 from luigi import Target
 
@@ -592,7 +593,7 @@ class OBSColumn(Base):
     session = current_session()
     # Passing the same session object to the creator saves thousands
     # of `select 1` queries, because each use of the session was pinging
-    tag_creator_with_session = lambda x, session=session: tag_creator(x, session)
+    tag_creator_with_session = functools.partial(tag_creator, session=session)
     tags = association_proxy('column_column_tags', 'tag', creator=tag_creator_with_session)
 
     targets = association_proxy('tgts', 'reltype', creator=coltocoltargets_creator)
