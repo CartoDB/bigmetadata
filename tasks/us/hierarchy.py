@@ -90,10 +90,20 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
     def requires(self):
         child_parents = self._child_parents()
         LOGGER.info('Child-parents: {}'.format(child_parents))
-        return [USLevelInclusionHierarchy(year=self.year,
-                                          current_geography=child_parent[0],
-                                          parent_geographies=child_parent[1])
-                for child_parent in child_parents]
+        return {
+            'hierarchy': [USLevelInclusionHierarchy(year=self.year,
+                                                    current_geography=
+                                                    child_parent[0],
+                                                    parent_geographies=
+                                                    child_parent[1])
+                          for child_parent in child_parents],
+            'weight': [USLevelHierarchyWeights(year=self.year,
+                                               current_geography=child_parent[
+                                                   0],
+                                               parent_geographies=child_parent[
+                                                   1])
+                       for child_parent in child_parents]
+        }
 
     def _child_parents(self):
         child_parents = []
@@ -137,7 +147,20 @@ def abbr_tablename(target, geographies, year):
     return target
 
 
-class USLevelInclusionHierarchy(Task):
+class USLevelInclusionHierarchy(WrapperTask):
+    year = IntParameter()
+    current_geography = Parameter()
+    parent_geographies = ListParameter()
+
+    def requires(self):
+        return {
+            'level': USLevelHierarchy(year=self.year,
+                                      current_geography=self.current_geography,
+                                      parent_geographies=self.parent_geographies)
+        }
+
+
+class USLevelHierarchyWeights(Task):
     year = IntParameter()
     current_geography = Parameter()
     parent_geographies = ListParameter()
