@@ -4,6 +4,14 @@
 			{
 				"resolution": "fsa",
 				"topic": "t001"
+			},
+			{
+				"resolution": "da_",
+				"topic": "t001"
+			},
+			{
+				"resolution": "db_",
+				"topic": "t001"
 			}
 		]
     },
@@ -11,6 +19,14 @@
 		"exceptions": [
 			{
 				"resolution": "fsa",
+				"topic": "t001"
+			},
+			{
+				"resolution": "da_",
+				"topic": "t001"
+			},
+			{
+				"resolution": "db_",
 				"topic": "t001"
 			}
 		]

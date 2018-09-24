@@ -1871,6 +1871,34 @@ class ReverseCoupledInterpolationTask(BaseInterpolationTask):
 
         colnames = [x for x in list(self.columns().keys()) if x.lower() != interpolation_params['target_geom_geoid']]
 
-        # TODO
+        stmt = '''
+                INSERT INTO {output} ({target_data_geoid}, {out_colnames})
+                SELECT target_geom_table.{target_geom_geoid}, {ratio_colnames}
+                  FROM {source_data_table} source_data_table,
+                       {source_geom_table} source_geom_table,
+                       {target_geom_table} target_geom_table
+                 WHERE source_geom_table.{source_geom_geoid} = source_data_table.{source_data_geoid}
+                   AND ST_Intersects(source_geom_table.{source_geom_geomfield},
+                                     ST_PointOnSurface(target_geom_table.{target_geom_geomfield}))
+               '''.format(
+                    output=self.output().table,
+                    out_colnames=', '.join(colnames),
+                    ratio_colnames=', '.join(['''
+                                              ROUND(({x} * (ST_Area(target_geom_table.{geo_t}) /
+                                                            ST_Area(source_geom_table.{geo_s})))::numeric, 2) {x}
+                                              '''.format(x=x,
+                                                         geo_s=interpolation_params['source_geom_geomfield'],
+                                                         geo_t=interpolation_params['target_geom_geomfield'])
+                                              for x in colnames]),
+                    source_data_table=input_['source_data'].table,
+                    source_geom_table=input_['source_geom'].table,
+                    target_geom_table=input_['target_geom'].table,
+                    target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
+                    source_data_geoid=interpolation_params['source_data_geoid'],
+                    source_geom_geoid=interpolation_params['source_geom_geoid'],
+                    source_geom_geomfield=interpolation_params['source_geom_geomfield'],
+                    target_geom_geomfield=interpolation_params['target_geom_geomfield'],
+                )
 
         current_session().execute(stmt)

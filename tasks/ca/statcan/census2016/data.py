@@ -99,19 +99,25 @@ class ImportData(TempTableTask):
         session = current_session()
         is_logger_debug = LOGGER.isEnabledFor(logging.DEBUG)
 
-        i = 0
+        i, col_id, col_total, col_male, col_female = 0, -1, -1, -1, -1
         path = glob.glob(os.path.join(input_['data'].path, '*data.csv'))[0]
         with open(path) as f:
             reader = csv.reader(f, delimiter=",")
             for num, line in enumerate(reader):
+                if i == 0:
+                    col_id = line.index('DIM: Profile of Dissemination Areas (2247)')
+                    col_total = line.index('Dim: Sex (3): Member ID: [1]: Total - Sex')
+                    col_female = line.index('Dim: Sex (3): Member ID: [3]: Female')
+                    col_male = line.index('Dim: Sex (3): Member ID: [2]: Male')
+
                 colname = 'c{}'.format(str(i).zfill(4))
                 coldef = COLUMNS_DEFINITION.get(colname)
 
                 if coldef and coldef['subsection'] in TOPICS[self.topic]:
                     f_geom_id = line[1]
                     f_geolevel = line[2]
-                    f_column_name = line[8]
-                    f_measurement_total = safe_float_cast(line[11])
+                    f_column_name = line[col_id]
+                    f_measurement_total = safe_float_cast(line[col_total])
 
                     if is_logger_debug:
                         LOGGER.debug('Reading line {} ::: {} ({}) | {} | {} '.format(
@@ -130,9 +136,9 @@ class ImportData(TempTableTask):
 
                     if coldef.get('gender_split', 'no') == 'yes':
                         if self.segment in [SEGMENT_ALL, SEGMENT_FEMALE]:
-                            measurements[colname + '_f'] = safe_float_cast(line[13])
+                            measurements[colname + '_f'] = safe_float_cast(line[col_female])
                         if self.segment in [SEGMENT_ALL, SEGMENT_MALE]:
-                            measurements[colname + '_m'] = safe_float_cast(line[12])
+                            measurements[colname + '_m'] = safe_float_cast(line[col_male])
 
                     stmt = '''
                            INSERT INTO {output} (geom_id, geolevel, {measure_names})
@@ -239,7 +245,11 @@ class CensusDBFromDA(ReverseCoupledInterpolationTask):
         cols = OrderedDict()
         input_ = self.input()
         cols['geom_id'] = input_['target_geom_columns']['geom_id']
-        cols.update(input_['target_data_columns'])
+        for colname, coltarget in input_['target_data_columns'].items():
+            colid, segment = colname.split('_')
+            if COLUMNS_DEFINITION[colid]['subsection'] in TOPICS[self.topic]:
+                if segment == self.segment or self.segment == SEGMENT_ALL:
+                    cols[colname] = coltarget
         return cols
 
     def get_interpolation_parameters(self):
@@ -264,7 +274,10 @@ class CensusDataWrapper(WrapperTask):
         if self.topic == 't003':
             segments = [SEGMENT_TOTAL, SEGMENT_FEMALE, SEGMENT_MALE]
 
-        return [CensusData(resolution=self.resolution, topic=self.topic, segment=s) for s in segments]
+        if self.resolution == GEO_DB:
+            return [CensusDBFromDA(topic=self.topic, segment=s) for s in segments]
+        else:
+            return [CensusData(resolution=self.resolution, topic=self.topic, segment=s) for s in segments]
 
 
 class AllCensusTopics(WrapperTask):
