@@ -5,11 +5,11 @@ import logging
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 from tasks.ca.statcan.geo import (GEOGRAPHIES, GeographyColumns, Geography,
-                                  GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA)
+                                  GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA, GEO_DB)
 from tasks.ca.statcan.census2016.cols_census import (CensusColumns, COLUMNS_DEFINITION, TOPICS,
                                                      SEGMENT_ALL, SEGMENT_TOTAL, SEGMENT_FEMALE, SEGMENT_MALE)
 
-from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, TableTask
+from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, TableTask, ReverseCoupledInterpolationTask
 from tasks.meta import current_session, GEOM_REF
 from lib.logger import get_logger
 from lib.timespan import get_timespan
@@ -213,6 +213,46 @@ class CensusData(TableTask):
 
         LOGGER.debug(query)
         session.execute(query)
+
+
+class CensusDBFromDA(ReverseCoupledInterpolationTask):
+    topic = Parameter()
+    segment = Parameter()
+
+    def requires(self):
+        deps = {
+            'source_geom_columns': GeographyColumns(resolution=GEO_DA, year=2016),
+            'source_geom': Geography(resolution=GEO_DA, year=2016),
+            'source_data_columns': CensusColumns(resolution=GEO_DA, topic=self.topic),
+            'source_data': CensusData(resolution=GEO_DA, topic=self.topic, segment=self.segment),
+            'target_geom_columns': GeographyColumns(resolution=GEO_DB, year=2016),
+            'target_geom': Geography(resolution=GEO_DB, year=2016),
+            'target_data_columns': CensusColumns(resolution=GEO_DB, topic=self.topic),
+        }
+
+        return deps
+
+    def table_timespan(self):
+        return get_timespan('2016')
+
+    def columns(self):
+        cols = OrderedDict()
+        input_ = self.input()
+        cols['geom_id'] = input_['target_geom_columns']['geom_id']
+        cols.update(input_['target_data_columns'])
+        return cols
+
+    def get_interpolation_parameters(self):
+        params = {
+            'source_data_geoid': 'geom_id',
+            'source_geom_geoid': 'geom_id',
+            'target_data_geoid': 'geom_id',
+            'target_geom_geoid': 'geom_id',
+            'source_geom_geomfield': 'the_geom',
+            'target_geom_geomfield': 'the_geom',
+        }
+
+        return params
 
 
 class CensusDataWrapper(WrapperTask):

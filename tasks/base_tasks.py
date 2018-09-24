@@ -1816,7 +1816,8 @@ class InterpolationTask(BaseInterpolationTask):
 class CoupledInterpolationTask(BaseInterpolationTask):
     '''
     This task interpolates the data for one geography level from the data/geometries from
-    another geography level when both layers are coupled.
+    another geography level when both layers are coupled and the target geometries are bigger
+    than the source ones.
     Calculating the measurements for the target layer is a matter of adding up the values
     from the source layer.
     '''
@@ -1851,5 +1852,25 @@ class CoupledInterpolationTask(BaseInterpolationTask):
                     source_geom_geomfield=interpolation_params['source_geom_geomfield'],
                     target_geom_geomfield=interpolation_params['target_geom_geomfield'],
                 )
+
+        current_session().execute(stmt)
+
+
+class ReverseCoupledInterpolationTask(BaseInterpolationTask):
+    '''
+    This task interpolates the data for one geography level from the data/geometries from
+    another geography level when both layers are coupled and the source geometries are bigger
+    than the target ones.
+    Calculating the measurements for the target layer is a matter of weighting the measurements
+    by the relation between the area of the target geometries and the area of the source ones.
+    '''
+
+    def populate(self):
+        input_ = self.input()
+        interpolation_params = self.get_interpolation_parameters()
+
+        colnames = [x for x in list(self.columns().keys()) if x.lower() != interpolation_params['target_geom_geoid']]
+
+        # TODO
 
         current_session().execute(stmt)

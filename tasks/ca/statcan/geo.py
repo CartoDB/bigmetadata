@@ -18,6 +18,8 @@ GEO_CSD = 'csd'
 GEO_CMA = 'cma'
 GEO_DA = 'da_'
 GEO_FSA = 'fsa'
+GEO_FSA = 'fsa'
+GEO_DB = 'db_'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -27,6 +29,7 @@ GEOGRAPHIES = (
     GEO_CMA,
     GEO_DA,
     GEO_FSA,
+    GEO_DB,
 )
 
 GEOGRAPHY_NAMES = {
@@ -37,6 +40,7 @@ GEOGRAPHY_NAMES = {
     GEO_CMA: 'Census metropolitan areas and census agglomerations',
     GEO_DA: 'Census dissemination areas',
     GEO_FSA: 'Forward sortation areas',
+    GEO_DB: 'Census dissemination blocks',
 }
 
 GEOGRAPHY_DESCS = {
@@ -47,6 +51,7 @@ GEOGRAPHY_DESCS = {
     GEO_CMA: '',
     GEO_DA: '',
     GEO_FSA: '',
+    GEO_DB: '',
 }
 
 GEOGRAPHY_PROPERNAMES = {
@@ -57,6 +62,7 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CMA: 'CMANAME',
     GEO_DA: 'DAUID',  # DA has no proper name
     GEO_FSA: 'PRNAME',
+    GEO_DB: 'DBUID',  # DB has no proper name
 }
 
 GEOGRAPHY_TAGS = {
@@ -67,6 +73,7 @@ GEOGRAPHY_TAGS = {
     GEO_CMA: ['cartographic_boundary'],
     GEO_DA: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_FSA: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_DB: ['cartographic_boundary', 'interpolation_boundary'],
 }
 
 GEOGRAPHY_FORMAT = {
@@ -77,6 +84,7 @@ GEOGRAPHY_FORMAT = {
     GEO_CMA: 'a',  # SHP
     GEO_DA: 'a',  # SHP
     GEO_FSA: 'g',  # GML
+    GEO_DB: 'a',  # SHPL
 }
 
 GEOGRAPHY_EXTENSION = {
@@ -92,6 +100,7 @@ GEOGRAPHY_UID = {
     GEO_CMA: 'cmauid',
     GEO_DA: 'dauid',
     GEO_FSA: 'cfsauid',
+    GEO_DB: 'dbuid',
 }
 
 YEAR_URL = {
@@ -157,6 +166,7 @@ class GeographyColumns(ColumnsTask):
         GEO_CT: 5,
         GEO_DA: 6,
         GEO_FSA: 7,
+        GEO_DB: 8,
     }
 
     def version(self):

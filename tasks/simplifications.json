@@ -124,6 +124,10 @@
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},
+	"ca.statcan.geo.importgeography_db__2011": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
 
 	"ca.statcan.geo.importgeography_cd__2016": {
 		"geomfield": "wkb_geometry",
@@ -150,6 +154,10 @@
 		"factor": "7"
 	},
 	"ca.statcan.geo.importgeography_fsa_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+	"ca.statcan.geo.importgeography_db__2016": {
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},
