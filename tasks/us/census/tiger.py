@@ -892,6 +892,7 @@ class GeoNamesTable(TableTask):
     year = Parameter()
 
     def version(self):
+        # FIXME: back to 5 before merging CartoDB/bigmetadata/pull/572
         return 4
 
     def requires(self):
