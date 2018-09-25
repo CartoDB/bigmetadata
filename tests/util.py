@@ -98,8 +98,9 @@ def session_scope():
     """Provide a transactional scope around a series of operations."""
     from tasks.meta import current_session, session_commit, session_rollback
     try:
-        yield current_session()
-        session_commit(None)
+        session = current_session()
+        yield session
+        session_commit(None, session)
     except Exception as e:
         session_rollback(None, e)
         raise

@@ -978,13 +978,13 @@ class OBSTimespan(UniqueMixin, Base):
         return query.filter(OBSTimespan.id == id)
 
 #@luigi.Task.event_handler(Event.SUCCESS)
-def session_commit(task):
+def session_commit(task, session=_current_session):
     '''
     commit the global session
     '''
     LOGGER.info('commit {}'.format(task.task_id if task else ''))
     try:
-        _current_session.commit()
+        session.commit()
     except IntegrityError as iex:
         # if re.search(r'obs_timespan_pkey', iex.orig.args[0]):
         #     import ipdb; ipdb.set_trace()
