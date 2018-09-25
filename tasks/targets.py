@@ -411,3 +411,21 @@ class RepoTarget(LocalTarget):
     def exists(self):
         path = self._get_path()
         return path and os.path.isfile(path)
+
+
+class ConstraintExistsTarget(Target):
+    def __init__(self, schema, table, constraint):
+        self.schema = schema
+        self.table = table
+        self.constraint = constraint
+        self.session = current_session()
+
+    def exists(self):
+        sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
+              "WHERE table_schema = '{schema}' " \
+              "  AND table_name = '{table}' " \
+              "  AND constraint_name = '{constraint}'"
+        check = sql.format(schema=self.schema,
+                           table=self.table,
+                           constraint=self.constraint)
+        return len(self.session.execute(check).fetchall()) > 0

@@ -2,6 +2,7 @@ from luigi import Task, WrapperTask, Parameter, IntParameter, ListParameter
 from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from tasks.base_tasks import TempTableTask
 from tasks.meta import current_session
+from tasks.targets import ConstraintExistsTarget
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
@@ -50,18 +51,10 @@ class USHierarchy(Task):
                             info_table=input_['info'].qualified_tablename))
         session.commit()
 
-    def complete(self):
-        session = current_session()
-        sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
-              "WHERE table_schema = '{schema}' " \
-              "  AND table_name = '{table}' " \
-              "  AND constraint_name = '{constraint}'"
+    def output(self):
         table = self.input()['info']
-        check = sql.format(schema=table.schema,
-                           table=table.tablename,
-                           constraint='ushierarchy_fk_parent')
-        result = session.execute(check).fetchall()
-        return len(result) > 0
+        return ConstraintExistsTarget(table.schema, table.tablename,
+                                      'ushierarchy_fk_parent')
 
 
 class _YearLevelsTask:
@@ -118,7 +111,9 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
     def run(self):
         session = current_session()
         tablename = self.output().qualified_tablename
-        session.execute(_union_query(self.input(), tablename))
+        session.execute(_union_query(self.input()['hierarchy'], tablename))
+        delete_sql = 'DELETE FROM {tablename} WHERE parent_id IS NULL'
+        session.execute(delete_sql.format(tablename=tablename))
         alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY ' \
                     '(child_id, child_level, parent_id, parent_level)'
         session.execute(alter_sql.format(tablename=tablename))
@@ -157,6 +152,9 @@ class USLevelInclusionHierarchy(WrapperTask):
                                       current_geography=self.current_geography,
                                       parent_geographies=self.parent_geographies)
         }
+
+    def output(self):
+        return self.input()['level']
 
 
 class USLevelHierarchyWeights(Task):
