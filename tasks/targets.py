@@ -205,19 +205,20 @@ class TagTarget(Target):
         session = current_session()
         existing = self.get(session)
         new_version = self._tag.version or 0.0
-        if existing in session:
-            session.expunge(existing)
-        existing_version = existing.version or 0.0
-        if existing and float(existing_version) == float(new_version):
-            return True
-        elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: cannot run task {task} '
-                            '(id "{id}") '
-                            'with ETL version ({etl}) older than what is in '
-                            'DB ({db})'.format(task=self._task.task_id,
-                                               id=self._id,
-                                               etl=new_version,
-                                               db=existing_version))
+        if existing:
+            if existing in session:
+                session.expunge(existing)
+            existing_version = existing.version or 0.0
+            if float(existing_version) == float(new_version):
+                return True
+            if existing_version > new_version:
+                raise Exception('Metadata version mismatch: cannot run task {task} '
+                                '(id "{id}") '
+                                'with ETL version ({etl}) older than what is in '
+                                'DB ({db})'.format(task=self._task.task_id,
+                                                   id=self._id,
+                                                   etl=new_version,
+                                                   db=existing_version))
         return False
 
 
