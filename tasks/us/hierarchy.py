@@ -217,8 +217,9 @@ class USLevelHierarchyWeights(Task):
             table=self.input()['level'].qualified_tablename)
         try:
             return len(current_session().execute(sql).fetchall()) == 0
-        except:
+        except Exception as e:
             # Table doesn't exist yet
+            LOGGER.error("ERROR running {}: {}".format(sql, e))
             return False
 
     def output(self):
