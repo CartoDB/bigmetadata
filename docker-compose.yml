@@ -1,5 +1,15 @@
 version: '3.1'
 services:
+  clickhouse-server:
+    image: yandex/clickhouse-server
+    volumes:
+      - ${LOCAL_CLICKHOUSE_LIB_DIR:-/var/lib/clickhouse}:/var/lib/clickhouse
+    container_name: bigmetadata_clickhouse_server
+    privileged: true
+    ports:
+      - 8123:8123
+      - 9000:9000
+
   postgres:
     image: carto/bigmetadata_postgres
     volumes:
@@ -89,6 +99,7 @@ services:
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
       - ${DO_REPOSITORY_DIR:-./repository}:/bigmetadata/repository
     depends_on:
+      - clickhouse-server
       - ${PGSERVICE:-postgres}
       - bigmetadata_daemon
     entrypoint: /bigmetadata/conf/client_entrypoint.sh

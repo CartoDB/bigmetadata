@@ -52,6 +52,11 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
     su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE LANGUAGE plpythonu'"
 
     echo
+    echo 'Creating extension plpythonu'
+    echo
+    su - psql -c 'CREATE EXTENSION plpythonu'
+
+    echo
     echo 'PostgreSQL init process complete; ready for start up.'
     echo
 
