@@ -1,5 +1,13 @@
 version: '3.1'
 services:
+  clickhouse-server:
+    image: yandex/clickhouse-server
+    container_name: bigmetadata_clickhouse_server
+    privileged: true
+    ports:
+      - 8123:8123
+      - 9000:9000
+
   postgres:
     image: carto/bigmetadata_postgres
     volumes:

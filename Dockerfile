@@ -5,9 +5,12 @@ RUN apt-get update
 RUN apt-get -y install make build-essential wget curl unzip git p7zip-full software-properties-common vim inetutils-ping htop
 RUN add-apt-repository -y ppa:cartodb/postgresql-10
 RUN add-apt-repository -y ppa:cartodb/nodejs
+RUN echo "deb http://repo.yandex.ru/clickhouse/deb/stable/ main/" >> /etc/apt/sources.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv E0C56BD4
+
 RUN apt-get update --fix-missing
 
-RUN apt-get -y install nodejs postgresql-client-10 postgresql-server-dev-10 postgresql-server-dev-9.5 gdal-bin python3-pip
+RUN apt-get -y install nodejs postgresql-client-10 postgresql-server-dev-10 postgresql-server-dev-9.5 gdal-bin python3-pip clickhouse-client
 
 # Mapshaper
 RUN npm install -g mapshaper
