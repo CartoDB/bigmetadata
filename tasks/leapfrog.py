@@ -15,22 +15,23 @@ def execute_ch_query(query):
     return shell(cmd)
 
 
+def iterate_point(minx, miny, maxx, maxy, increment):
+        currentx = minx
+        currenty = miny
+        while currentx < maxx:
+            while currenty < maxy:
+                yield currentx, currenty
+                currenty = currenty + increment
+            currenty = miny
+            currentx = currentx + increment
+
+
 class CreateGrid(Task):
     minx = FloatParameter()
     miny = FloatParameter()
     maxx = FloatParameter()
     maxy = FloatParameter()
     increment = FloatParameter()
-
-    def _iterate_point(self):
-        currentx = self.minx
-        currenty = self.miny
-        while currentx < self.maxx:
-            while currenty < self.maxy:
-                yield currentx, currenty
-                currenty = currenty + self.increment
-            currenty = self.miny
-            currentx = currentx + self.increment
 
     def run(self):
         session = current_session()
@@ -57,7 +58,7 @@ class CreateGrid(Task):
         session.commit()
 
         i = 0
-        for point in self._iterate_point():
+        for point in iterate_point(self.minx, self.miny, self.maxx, self.maxy, self.increment):
             query = '''
                     INSERT INTO "{schema}".{table} (the_geom)
                     SELECT ST_SetSRID(ST_MakePoint({x}, {y}), 4326)
@@ -246,3 +247,20 @@ class ImportGridToCH(Task):
                 )
         exists = execute_ch_query(query)
         return exists == '1'
+
+
+class FakeCSV(Task):
+    minx = FloatParameter()
+    miny = FloatParameter()
+    maxx = FloatParameter()
+    maxy = FloatParameter()
+    increment = FloatParameter()
+
+    def run(self):
+        with open(self.output().path, 'a') as file:
+            for point in iterate_point(self.minx, self.miny, self.maxx, self.maxy, self.increment):
+                #LOGGER.error('a')
+                file.write(','.join([str(point[0]), str(point[1])] + ['2018-09-29'])+'\n')
+
+    def output(self):
+        return LocalTarget(os.path.join('tmp', 'leapfrog_huge_grid.csv'))
