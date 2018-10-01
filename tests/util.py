@@ -43,6 +43,7 @@ def setup():
     session.execute('CREATE SCHEMA observatory')
     session.commit()
     Base.metadata.create_all()
+    session.close()
 
 
 def teardown():
@@ -54,6 +55,7 @@ def teardown():
     Base.metadata.drop_all()
     session.execute('DROP SCHEMA IF EXISTS observatory CASCADE')
     session.commit()
+    session.close()
 
 
 def runtask(task, superclasses=None):
