@@ -13,7 +13,7 @@ def _union_query(tables, output):
               for table in tables]
     return 'CREATE TABLE {output} AS {unions}'.format(
         output=output,
-        unions=' UNION '.join(unions))
+        unions=' UNION ALL '.join(unions))
 
 
 class USHierarchy(Task):
@@ -41,14 +41,14 @@ class USHierarchy(Task):
                         'CONSTRAINT ushierarchy_fk_child '
                         'FOREIGN KEY (child_id, child_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-                            rel_table=input_['rel'].qualified_tablename,
-                            info_table=input_['info'].qualified_tablename))
+            rel_table=input_['rel'].qualified_tablename,
+            info_table=input_['info'].qualified_tablename))
         session.execute('ALTER TABLE {rel_table} ADD '
                         'CONSTRAINT ushierarchy_fk_parent '
                         'FOREIGN KEY (parent_id, parent_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-                            rel_table=input_['rel'].qualified_tablename,
-                            info_table=input_['info'].qualified_tablename))
+            rel_table=input_['rel'].qualified_tablename,
+            info_table=input_['info'].qualified_tablename))
         session.commit()
 
     def output(self):
@@ -392,13 +392,12 @@ class USLevelInfoFromGeoNames(TempTableTask, _YearGeographyTask):
         output_table = self.output().qualified_tablename
         output_tablename = self.output().tablename
 
-        sql = '''
-            CREATE TABLE {output_table} AS
-            SELECT n.geoidsc geoid, '{geography}' as level, n.geoname, {year} as year
-            FROM observatory.{names_table} n
-        '''
         session.execute(
-            sql.format(output_table=output_table,
+            '''
+                CREATE TABLE {output_table} AS
+                SELECT n.geoidsc geoid, '{geography}' as level, n.geoname, {year} as year
+                FROM observatory.{names_table} n
+            '''.format(output_table=output_table,
                        geography=self.geography,
                        year=self.year,
                        names_table=names_table))
