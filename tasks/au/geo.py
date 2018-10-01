@@ -10,7 +10,9 @@ from tasks.meta import GEOM_REF, GEOM_NAME, OBSColumn, current_session, OBSTag, 
 from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 
 from collections import OrderedDict
+from lib.logger import get_logger
 
+LOGGER = get_logger(__name__)
 
 GEO_STE = 'STE'
 GEO_SA4 = 'SA4'
@@ -192,10 +194,11 @@ class SimplifiedRawGeometry(SimplifiedTempTableTask):
 
 class GeographyColumns(ColumnsTask):
 
+    year = Parameter()
     resolution = Parameter()
 
     def version(self):
-        return 2
+        return 3
 
     def requires(self):
         return {
@@ -215,7 +218,7 @@ class GeographyColumns(ColumnsTask):
         boundary_type = input_['boundary']
 
         geom = OBSColumn(
-            id=self.resolution,
+            id='{}_{}'.format(self.resolution, self.year),
             type='Geometry',
             name=GEOGRAPHY[self.resolution]['name'],
             description='',
@@ -224,20 +227,20 @@ class GeographyColumns(ColumnsTask):
         )
         geom_id = OBSColumn(
             type='Text',
-            id=self.resolution + '_id',
+            id='{}_id_{}'.format(self.resolution, self.year),
             weight=0,
             targets={geom: GEOM_REF},
         )
         parent_id = OBSColumn(
             type='Text',
-            id=self.resolution + '_parent_id',
+            id='{}_parent_id_{}'.format(self.resolution, self.year),
             weight=0,
             targets={geom: GEOM_REF},
         )
         geom_name = OBSColumn(
             type='Text',
             name= 'Proper name of {}'.format(GEOGRAPHY[self.resolution]['name']),
-            id=self.resolution + '_name',
+            id='{}_name_{}'.format(self.resolution, self.year),
             description='',
             weight=1,
             targets={geom: GEOM_NAME},
@@ -259,7 +262,7 @@ class GeographyColumns(ColumnsTask):
             ('the_geom', geom),
         ])
 
-        for colname, col in cols.items():
+        for _, col in cols.items():
             if col.id in interpolated_boundaries:
                 col.tags.append(boundary_type['interpolation_boundary'])
             if col.id in cartographic_boundaries:
@@ -278,7 +281,7 @@ class Geography(TableTask):
     def requires(self):
         return {
             'data': SimplifiedRawGeometry(resolution=self.resolution, year=self.year),
-            'columns': GeographyColumns(resolution=self.resolution)
+            'columns': GeographyColumns(resolution=self.resolution, year=self.year)
         }
 
     def table_timespan(self):
@@ -291,7 +294,14 @@ class Geography(TableTask):
         }
 
     def columns(self):
-        return self.input()['columns']
+        if self.resolution == GEO_MB:
+            return self.input()['columns']
+        else:
+            cols = OrderedDict()
+            for key, value in self.input()['columns'].items():
+                if key != 'parent_id':
+                    cols[key] = value
+            return cols
 
     def populate(self):
         session = current_session()
@@ -299,17 +309,19 @@ class Geography(TableTask):
             parent_col = GEOGRAPHY[self.resolution]['parent_col'] + ' as parent_id,'
         else:
             parent_col = ''
-        session.execute('INSERT INTO {output} '
-                        'SELECT {geom_name} as geom_name, '
-                        '       {region_col} as geom_id, '
-                        '       {parent_col}'
-                        '       wkb_geometry as the_geom '
-                        'FROM {input} '.format(
-                            geom_name=GEOGRAPHY[self.resolution]['proper_name'],
-                            region_col=GEOGRAPHY[self.resolution]['region_col'],
-                            parent_col=parent_col,
-                            output=self.output().table,
-                            input=self.input()['data'].table))
+        query = '''
+                INSERT INTO {output}
+                SELECT {geom_name} as geom_name,
+                       {region_col} as geom_id,
+                       {parent_col}
+                       wkb_geometry as the_geom
+                FROM {input}
+                '''.format(geom_name=GEOGRAPHY[self.resolution]['proper_name'],
+                           region_col=GEOGRAPHY[self.resolution]['region_col'],
+                           parent_col=parent_col,
+                           output=self.output().table,
+                           input=self.input()['data'].table)
+        session.execute(query)
 
 
 class AllGeographies(WrapperTask):
