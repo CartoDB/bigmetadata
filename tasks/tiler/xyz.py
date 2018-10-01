@@ -1,5 +1,5 @@
 from tasks.targets import PostgresTarget
-from luigi import IntParameter, Parameter, Task
+from luigi import IntParameter, Parameter, Task, WrapperTask
 from tasks.meta import current_session
 from lib.logger import get_logger
 from lib.tileutils import tile2bounds
@@ -8,21 +8,29 @@ import json
 import os
 
 LOGGER = get_logger(__name__)
+GEONAME_COLUMN = 'geoname'
 
 
-class TilesTempTable(Task):
+class ConfigFile():
+    def _get_config_data(self, config_file):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        with (open('{}/conf/{}'.format(dir_path, config_file))) as f:
+            return json.load(f)
+
+
+class TilesTempTable(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
     config_file = Parameter()
 
     def __init__(self, *args, **kwargs):
         super(TilesTempTable, self).__init__(*args, **kwargs)
-        self.config_data = self._get_config_data()
+        self.config_data = self._get_config_data(self.config_file)
 
     def run(self):
         session = current_session()
-        config_data = self._get_config_data()
-        for config in config_data:
+        config_data = self._get_config_data(self.config_file)
+        for config in config_data["tables"]:
             self._create_table(session, config)
             tiles = self._calculate_tiles(config)
             self._store_tiles(session, tiles, config)
@@ -46,14 +54,14 @@ class TilesTempTable(Task):
 
     def _store_tiles(self, session, tiles, config):
         for tile in tiles:
-            bounds = 'SELECT cdb_observatory.OBS_GetTileBoundsx'
             query = '''
                     WITH data as (
                         SELECT {x} x, {y} y, {z} z, cdb_observatory.OBS_GetTileBounds({z},{x},{y}) bounds
                     )
                     INSERT INTO \"{schema}\".\"{table}\" (x,y,z,bounds,envelope,ext)
-                    SELECT x, y, z, bounds bounds, ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
-                    ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
+                    SELECT x, y, z, bounds bounds,
+                           ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
+                           ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
                     FROM data
                     '''.format(schema=config['schema'], table=self._get_table_name(config),
                                x=tile[0], y=tile[1], z=tile[2])
@@ -77,7 +85,7 @@ class TilesTempTable(Task):
 
     def output(self):
         targets = []
-        for config in self.config_data:
+        for config in self.config_data["tables"]:
             targets.append(PostgresTarget(config['schema'],
                                           self._get_table_name(config)))
         return targets
@@ -85,18 +93,12 @@ class TilesTempTable(Task):
     def _get_table_name(self, config):
         return "{table}_tiles_temp_{geo}_{zoom}".format(table=config['table'], geo=self.geography, zoom=self.zoom_level)
 
-    def _get_config_data(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/conf/{}'.format(dir_path, self.config_file))) as f:
-            return json.load(f)
 
-
-class SimpleTilerDOXYZTableTask(Task):
-
+class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
+    config_file = Parameter()
 
-    simplification_tolerance = 0
     table_postfix = None
     mc_geography_level = None
 
@@ -104,27 +106,37 @@ class SimpleTilerDOXYZTableTask(Task):
         super(SimpleTilerDOXYZTableTask, self).__init__(*args, **kwargs)
         self.columns = self._get_columns()
         self.mc_geography_level = self.geography
+        self.config_data = self._get_config_data(self.config_file)
 
     def requires(self):
         return TilesTempTable(zoom_level=self.zoom_level,
                               geography=self.geography,
-                              config_file=self.get_config_file())
+                              config_file=self.config_file)
 
-    def get_config_file(self):
-        return '{country}_all.json'.format(country=self.country)
+    def _get_country(self):
+        return self.config_data["country"]
+
+    def _get_simplification_tolerance(self):
+        return self.config_data["geolevels"][self.geography].get("simplification", 0)
 
     def get_geography_name(self):
-        raise NotImplementedError('get_geography_name must be implemented by the child class')
+        return self.config_data["geolevels"][self.geography]["geography"]
 
     def get_columns_ids(self):
-        return [x['id'] for x in self._get_columns()]
+        columns_ids = []
+
+        for column in self._get_columns():
+            if column['id'] == GEONAME_COLUMN:
+                column['id'] = self.config_data["geolevels"][self.geography]["geoname"]
+            columns_ids.append(column['id'])
+
+        return columns_ids
 
     def _get_columns(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/conf/{}'.format(dir_path, self.get_config_file()))) as f:
-            for table in json.load(f):
-                if table['table'] == self.output().tablename:
-                    return table['columns']
+        config_data = self._get_config_data(self.config_file)
+        for config in config_data["tables"]:
+            if config['table'] == self.output().tablename:
+                return config['columns']
 
     def _get_table_columns(self):
         columns = []
@@ -193,8 +205,8 @@ class SimpleTilerDOXYZTableTask(Task):
                            out_columns=','.join(out_columns),
                            in_columns=','.join(in_columns),
                            in_columns_ids=','.join(in_columns_ids),
-                           country=self.country,
-                           simplification_tolerance=self.simplification_tolerance,
+                           country=self._get_country(),
+                           simplification_tolerance=self._get_simplification_tolerance(),
                            table_postfix=self.table_postfix if self.table_postfix is not None else '',
                            mc_geography_level="'{}'".format(self.mc_geography_level)
                                               if self.mc_geography_level is not None else 'NULL')
@@ -207,7 +219,8 @@ class SimpleTilerDOXYZTableTask(Task):
         self._insert_data()
 
     def output(self):
-        return PostgresTarget('tiler', 'xyz_{country}_do_geoms'.format(country=self.country))
+        config_data = self._get_config_data(self.config_file)
+        return PostgresTarget('tiler', 'xyz_{country}_do_geoms'.format(country=config_data["country"]))
 
     def complete(self):
         session = current_session()
@@ -226,3 +239,14 @@ class SimpleTilerDOXYZTableTask(Task):
             LOGGER.info('Error checking output. Maybe the table doesn\'t exist')
 
         return count > 0
+
+
+class AllSimpleDOXYZTables(WrapperTask, ConfigFile):
+    config_file = Parameter()
+
+    def requires(self):
+        for geolevel in self.config_data["geolevels"]:
+            for zoom in geolevel["zoomlevels"]:
+                yield SimpleTilerDOXYZTableTask(zoom_level=zoom,
+                                                geography=geolevel,
+                                                config_file=self.config_file)
