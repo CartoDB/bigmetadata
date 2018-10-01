@@ -52,9 +52,11 @@ class AllSimpleDOXYZTables(WrapperTask):
             yield SimpleDOXYZTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
 
     def _get_geography_level(self, zoom):
-        if zoom >= 0 and zoom <= 5:
+        if zoom >= 0 and zoom <= 7:
             return 'postcode_area'
-        elif zoom >= 6 and zoom <= 9:
+        elif zoom >= 8 and zoom <= 11:
             return 'postcode_district'
-        elif zoom >= 10 and zoom <= 14:
+        elif zoom >= 12 and zoom <= 13:
             return 'postcode_sector'
+        elif zoom >= 14 and zoom <= 14:
+            return 'postcode_unit'

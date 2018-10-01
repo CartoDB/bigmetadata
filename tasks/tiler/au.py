@@ -61,11 +61,11 @@ class AllSimpleDOXYZTables(WrapperTask):
             yield SimpleDOXYZTables(zoom_level=zoom, geography=self._get_geography_level(zoom))
 
     def _get_geography_level(self, zoom):
-        if zoom >= 0 and zoom <= 4:
+        if zoom >= 0 and zoom <= 3:
             return 'state'
-        elif zoom >= 5 and zoom <= 7:
+        elif zoom >= 4 and zoom <= 6:
             return 'sa4'
-        elif zoom >= 8 and zoom <= 9:
+        elif zoom >= 7 and zoom <= 9:
             return 'sa3'
         elif zoom >= 10 and zoom <= 11:
             return 'sa2'

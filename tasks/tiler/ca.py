@@ -57,9 +57,9 @@ class AllSimpleDOXYZTables(WrapperTask):
     def _get_geography_level(self, zoom):
         if zoom >= 0 and zoom <= 4:
             return 'province'
-        elif zoom >= 5 and zoom <= 8:
+        elif zoom >= 5 and zoom <= 9:
             return 'census_division'
-        elif zoom >= 9 and zoom <= 11:
-            return 'forward_sortation_area'
-        elif zoom >= 12 and zoom <= 14:
+        elif zoom >= 10 and zoom <= 12:
             return 'dissemination_area'
+        elif zoom >= 13 and zoom <= 14:
+            return 'dissemination_block'
