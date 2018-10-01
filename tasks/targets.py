@@ -48,18 +48,21 @@ class PostgresTarget(Target):
         rows (is empty), and 2 if it exists and has one or more rows.
         '''
         session = current_session()
-        sql = 'SELECT COUNT(*) FROM information_schema.tables ' \
-              "WHERE table_schema ILIKE '{schema}'  " \
-              "  AND table_name ILIKE '{tablename}' ".format(
-                schema=self._schema,
-                tablename=self._tablename)
+        sql = '''
+                SELECT COUNT(*) FROM information_schema.tables
+                WHERE table_schema ILIKE '{schema}'
+                  AND table_name ILIKE '{tablename}'
+              '''.format(
+            schema=self._schema,
+            tablename=self._tablename)
         LOGGER.debug('Existenceness SQL: {}'.format(sql))
         resp = session.execute(sql)
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
             'SELECT row_number() over () FROM "{schema}"."{tablename}" WHERE {where} LIMIT 1'.format(
-                schema=self._schema, tablename=self._tablename, where=self._where))
+                schema=self._schema, tablename=self._tablename,
+                where=self._where))
         if resp.fetchone() is None:
             return 1
         else:
