@@ -3,7 +3,8 @@
 
 # Usage: tail -f -n 1000 <path to luigi log> | ./parse_luigi_log.py
 
-import sys, re
+import sys
+import re
 from datetime import datetime
 
 tasks = {}
@@ -14,15 +15,18 @@ for line in sys.stdin:
     match = re.compile(EXTRACT_RE).match(line)
     if match:
         groups = match.groupdict()
-        date = datetime.strptime(groups['date'] + ' ' + groups['time'], '%Y-%m-%d %H:%M:%S,%f')
+        date = datetime.strptime(groups['date'] + ' ' + groups['time'],
+                                 '%Y-%m-%d %H:%M:%S,%f')
         action = groups['action']
         task = groups['task']
-        if not task in tasks.keys():
+        if task not in tasks.keys():
             tasks[task] = {}
         tasks[task][action] = date
 
         if tasks[task].get('running', None):
-            if tasks[task].get('done', None) or tasks[task].get('failed', None):
+            if tasks[task].get('done', None) or tasks[task].get('failed',
+                                                                None):
                 action = 'done' if 'done' in tasks[task].keys() else 'failed'
                 elapsed = tasks[task][action] - tasks[task]['running']
-                print("{} {} {}".format(str(elapsed).split('.')[0], action, task))
+                print("{} {} {}".format(str(elapsed).split('.')[0], action,
+                                        task))
