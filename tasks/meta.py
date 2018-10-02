@@ -35,6 +35,8 @@ class CurrentSession(object):
         self._session = None
         self._pid = None
         self._async_conn = False
+        # https://docs.python.org/3/howto/logging.html#optimization
+        self.debug_logging_enabled = LOGGER.isEnabledFor(DEBUG)
 
     def begin(self):
         if not self._session:
@@ -52,7 +54,7 @@ class CurrentSession(object):
         try:
             self._session.execute("SELECT 1")
             # Useful for debugging. This is called thousands of times
-            if LOGGER.isEnabledFor(DEBUG):
+            if self.debug_logging_enabled:
                 curframe = inspect.currentframe()
                 calframe = inspect.getouterframes(curframe, 2)
                 callers = ' <- '.join([c[3] for c in calframe[1:9]])
