@@ -193,7 +193,7 @@ class TagTarget(Target):
 
     def get(self, session):
         '''
-        Return a copy of the underlying OBSColumn in the specified session.
+        Return a copy of the underlying OBSTag in the specified session.
         '''
         if not self._tag_cache.get(self._id, None):
             with session.no_autoflush:
