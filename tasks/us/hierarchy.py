@@ -127,12 +127,9 @@ GEOGRAPHIES_ABBREVIATIONS = {
 }
 
 
-def _abbreviation(geography):
-    return GEOGRAPHIES_ABBREVIATIONS.get(geography, geography)
-
 
 def abbr_tablename(target, geographies, year):
-    abbrs = [_abbreviation(geography) for geography in geographies]
+    abbrs = [GEOGRAPHIES_ABBREVIATIONS.get(geo, geo) for geo in geographies]
 
     if [x for x in zip(abbrs, geographies) if x[0] != x[1]]:
         splits = target.split('_')
