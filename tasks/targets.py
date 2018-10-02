@@ -27,7 +27,7 @@ class PostgresTarget(Target):
 
     @property
     def table(self):
-        return '"{schema}".{tablename}'.format(schema=self._schema,
+        return '"{schema}"."{tablename}"'.format(schema=self._schema,
                                                tablename=self._tablename)
 
     @property
@@ -60,7 +60,7 @@ class PostgresTarget(Target):
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
-            'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
+            'SELECT row_number() over () FROM "{schema}"."{tablename}" WHERE {where} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename,
                 where=self._where))
         if resp.fetchone() is None:
