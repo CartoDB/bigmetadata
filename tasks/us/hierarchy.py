@@ -127,7 +127,6 @@ GEOGRAPHIES_ABBREVIATIONS = {
 }
 
 
-
 def abbr_tablename(target, geographies, year):
     abbrs = [GEOGRAPHIES_ABBREVIATIONS.get(geo, geo) for geo in geographies]
 
