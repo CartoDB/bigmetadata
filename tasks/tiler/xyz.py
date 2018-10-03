@@ -195,8 +195,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                   FROM (
                     SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
                     ARRAY[{in_columns_ids}]::TEXT[],
-                    ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[],
-                    '{country}', {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
+                    ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
+                    {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
                     ) q;
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
