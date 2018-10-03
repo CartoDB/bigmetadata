@@ -1,4 +1,11 @@
+'''
+Generator for the `Metadata_2016_GCP_DataPack.csv` file from `au_metadata_columns.csv`
+Note: `au_metadata_columns.csv` is a CSV with the columns extracted manually from `Metadata_2016_GCP_DataPack.xlsx`
+'''
+
 import csv
+import os
+import tempfile
 
 tables = {
     "G01": ["Selected Person Characteristics by Sex", "people", "age_gender"],
@@ -61,37 +68,72 @@ tables = {
     "G59": ["Method of Travel to Work by Sex", "people", "transportation"],
 }
 
-# Note: `au_metadata_columns.csv` is a CSV with the columns extracted manually from `Metadata_2016_GCP_DataPack.xlsx`
-with open('au_metadata_columns.csv', 'r') as infile:
-    with open('Metadata_2016_GCP_DataPack.csv', 'a') as outfile:
-        reader = csv.reader(infile, delimiter=',', quotechar='"')
-        writer = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(['Sequential', 'Short', 'Name', 'DENOMINATORS', 'Tablename', 'unit', 'subsection',
-                         'Column heading description in profile', 'AGG', 'order', 'Table descr'])
-        for row in reader:
-            datapack = row[3]
 
-            if datapack not in tables.keys():
-                continue
+def _is_gender_column(short, gender):
+    return short.startswith('{}_'.format(gender)) or short.endswith('_{}'.format(gender))
 
-            sequential = row[0]
-            short = row[1]
-            name = row[2].replace('_', ' ')
-            profile_table = row[4]
-            description = row[5]
-            denominators = []
 
-            if short.endswith('_P') and short != 'Tot_P_P':
-                denominators.append('Tot_P_P')
-            elif short.endswith('_M'):
-                denominators.append('Tot_P_P')
-                if short != 'Tot_P_M':
+def _is_other_column(short, _):
+    return not short.startswith('P_') and not short.endswith('_P') \
+           and not short.startswith('M_') and not short.endswith('_M') \
+           and not short.startswith('F_') and not short.endswith('_F')
+
+
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                       'au_metadata_columns.csv'), 'r') as infile:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                           'Metadata_2016_GCP_DataPack.csv'), 'a') as outfile:
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False) as tempfile_:
+            reader = csv.reader(infile, delimiter=',', quotechar='"')
+            tempwriter = csv.writer(tempfile_, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(outfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(['Sequential', 'Short', 'Name', 'DENOMINATORS', 'Tablename', 'unit', 'subsection',
+                            'Column heading description in profile', 'AGG', 'order', 'Table descr'])
+            for row in reader:
+                table = row[3][:3]
+
+                if table not in tables.keys():
+                    continue
+
+                sequential = row[0]
+                short = row[1]
+                name = row[2].replace('_', ' ')
+                datapack = row[3]
+                profile_table = row[4]
+                description = row[5]
+                denominators = []
+
+                if short.startswith('P_') or short.endswith('_P') and short != 'Tot_P_P':
+                    denominators.append('Tot_P_P')
+                elif short.startswith('M_'):
+                    denominators.append('Tot_P_P')
                     denominators.append('Tot_P_M')
-            elif short.endswith('_F'):
-                denominators.append('Tot_P_P')
-                if short != 'Tot_P_F':
+                    denominators.append('P_' + short[2:])
+                elif short.endswith('_M'):
+                    denominators.append('Tot_P_P')
+                    if short != 'Tot_P_M':
+                        denominators.append('Tot_P_M')
+                    denominators.append(short[:short.find('_M')] + '_P')
+                elif short.startswith('F_'):
+                    denominators.append('Tot_P_P')
                     denominators.append('Tot_P_F')
+                    denominators.append('P_' + short[2:])
+                elif short.endswith('_F'):
+                    denominators.append('Tot_P_P')
+                    if short != 'Tot_P_F':
+                        denominators.append('Tot_P_F')
+                    denominators.append(short[:short.find('_F')] + '_P')
 
-            writer.writerow([sequential, short, name, '|'.join(denominators), datapack,
-                             tables[datapack][1], tables[datapack][2], description, None,
-                             sequential[1:], tables[datapack][0]])
+                tempwriter.writerow([sequential, short, name, '|'.join(denominators), datapack,
+                                    tables[table][1], tables[table][2], description, None,
+                                    sequential[1:], tables[table][0]])
+
+            searches = [(_is_gender_column, 'P'), (_is_gender_column, 'F'), (_is_gender_column, 'M'),
+                        (_is_other_column, '')]
+            for search in searches:
+                tempfile_.seek(0)
+                tempreader = csv.reader(tempfile_, delimiter=',', quotechar='"')
+                for row in tempreader:
+                    short = row[1]
+                    if search[0](short, search[1]):
+                        writer.writerow(row)
