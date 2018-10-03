@@ -2,6 +2,7 @@ import os
 import csv
 import re
 import glob
+import json
 
 from luigi import Parameter, IntParameter, WrapperTask
 from collections import OrderedDict
@@ -156,79 +157,12 @@ class Columns(ColumnsTask):
             'source': SourceTags(),
             'license': LicenseTags()
         }
-        # all tables except B01 require B01
-        if self.tablename != 'B01':
-            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
-        if self.tablename == 'B02':
-            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
-            requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
-        if self.tablename == 'B04A':
-            requirements['B04B'] = Columns(tablename='B04B', year=self.year, profile=self.profile)
-        if self.tablename == 'B08A':
-            requirements['B08B'] = Columns(tablename='B08B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B10A':
-            requirements['B10B'] = Columns(tablename='B10B', year=self.year, profile=self.profile)
-            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
-        if self.tablename == 'B10B':
-            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B11A':
-            requirements['B11B'] = Columns(tablename='B11B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B12A':
-            requirements['B12B'] = Columns(tablename='B12B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B16A':
-            requirements['B16B'] = Columns(tablename='B16B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B17A':
-            requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B20A':
-            requirements['B20B'] = Columns(tablename='B20B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B22A':
-            requirements['B22B'] = Columns(tablename='B22B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B23A':
-            requirements['B23B'] = Columns(tablename='B23B', year=self.year, profile=self.profile)
-
-        pattern = re.compile('B2[6-8]')
-        if pattern.match(self.tablename):
-            requirements['B25'] = Columns(tablename='B25', year=self.year, profile=self.profile)
-
-        pattern = re.compile('B3[1-6]')
-        if pattern.match(self.tablename):
-            requirements['B29'] = Columns(tablename='B29', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B40A':
-            requirements['B40B'] = Columns(tablename='B40B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B42A':
-            requirements['B42B'] = Columns(tablename='B42B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B44A':
-            requirements['B44B'] = Columns(tablename='B44B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B45A':
-            requirements['B45B'] = Columns(tablename='B45B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B41A':
-            requirements['B41B'] = Columns(tablename='B41B', year=self.year, profile=self.profile)
-            requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
-        if self.tablename == 'B41B':
-            requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B43A':
-            requirements['B43B'] = Columns(tablename='B43B', year=self.year, profile=self.profile)
-            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
-        if self.tablename == 'B43B':
-            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
-        if self.tablename == 'B43C':
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
+        reqs = self._fetch_requirements()
+        col_reqs = reqs.get('all', [])
+        col_reqs.extend(reqs.get(self.tablename, []))
+        for col_req in col_reqs:
+            if col_req != self.tablename:
+                requirements[col_req] = Columns(tablename=col_req, year=self.year, profile=self.profile)
 
         return requirements
 
@@ -258,17 +192,17 @@ class Columns(ColumnsTask):
             reader = csv.reader(csv_meta_file, delimiter=',', quotechar='"')
 
             for line in reader:
-                if not line[0].startswith(self.profile[0]):
-                    continue
+                id_ = line[0]               # A: Sequential
+                tablename = line[4]         # H: Tablename
 
                 # ignore tables we don't care about right now
-                if not line[4].startswith(self.tablename):
+                if not id_.startswith(self.profile[0]) or \
+                   not tablename.startswith(self.tablename):
                     continue
 
                 col_id = line[1]            # B: short
                 col_name = line[2]          # C: name
                 denominators = line[3]      # D: denominators
-                tablename = line[4]         # H: Tablename
                 col_unit = line[5]          # F: unit
                 col_subsections = line[6]   # G: subsection
                 if tablename == '{}02'.format(self.profile[0]):
@@ -318,6 +252,11 @@ class Columns(ColumnsTask):
                     cols[col_id].tags.append(subsection_tag)
 
         return cols
+
+    def _fetch_requirements(self):
+        dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meta')
+        with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
+            return json.load(f)
 
 
 #####################################
