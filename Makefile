@@ -266,11 +266,17 @@ meta:
 ###
 
 ### au
-au-all:
-	make -- run au.data.BCPAllGeographiesAllTables --year 2011
+au-all-2011:
+	make -- run au.data.XCPAllGeographiesAllTables --year 2011
 
-au-geo:
+au-geo-2011:
 	make -- run au.geo.AllGeographies --year 2011
+
+au-all-2016:
+	make -- run au.data.XCPAllGeographiesAllTables --year 2016
+
+au-geo-2016:
+	make -- run au.geo.AllGeographies --year 2016
 
 ### br
 br-all: br-geo br-census

@@ -13,6 +13,7 @@ from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2Temp
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from lib.columns import ColumnsDeclarations
 
 from lib.logger import get_logger
 
@@ -42,7 +43,7 @@ TABLES = {
            'G55A', 'G55B', 'G56A', 'G56B', 'G57A', 'G57B', 'G58A', 'G58B', 'G59', ]
 }
 
-URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
+URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_short-header.zip'
 
 
 class DownloadData(RepoFileUnzipTask):
@@ -50,14 +51,12 @@ class DownloadData(RepoFileUnzipTask):
     resolution = Parameter()
     profile = Parameter()
     state = Parameter()
-    header = Parameter()
 
     def get_url(self):
         return URL.format(year=self.year,
                           profile=self.profile,
                           resolution=self.resolution,
-                          state=self.state,
-                          header=self.header)
+                          state=self.state,)
 
 
 class ImportData(CSV2TempTableTask):
@@ -65,12 +64,11 @@ class ImportData(CSV2TempTableTask):
     year = IntParameter()
     resolution = Parameter()
     state = Parameter()
-    profile = Parameter(default='BCP')
-    header = Parameter(default='short')
+    profile = Parameter()
 
     def requires(self):
         return DownloadData(resolution=self.resolution, profile=self.profile,
-                            state=self.state, year=self.year, header=self.header)
+                            state=self.state, year=self.year)
 
     def input_csv(self):
         return glob.glob(os.path.join(self.input().path, '**',
@@ -111,7 +109,7 @@ class ImportAllTables(WrapperTask):
     state = Parameter()
 
     def requires(self):
-        for table in TABLES:
+        for table in TABLES[self.year]:
             yield ImportData(resolution=self.resolution, state=self.state,
                              year=self.year, tablename=table)
 
@@ -146,6 +144,7 @@ class ImportAll(WrapperTask):
 
 class Columns(ColumnsTask):
     year = IntParameter()
+    resolution = Parameter()
     profile = Parameter()
     tablename = Parameter()
 
@@ -162,7 +161,8 @@ class Columns(ColumnsTask):
         col_reqs.extend(reqs.get(self.tablename, []))
         for col_req in col_reqs:
             if col_req != self.tablename:
-                requirements[col_req] = Columns(tablename=col_req, year=self.year, profile=self.profile)
+                requirements[col_req] = Columns(tablename=col_req, resolution=self.resolution,
+                                                year=self.year, profile=self.profile)
 
         return requirements
 
@@ -227,6 +227,7 @@ class Columns(ColumnsTask):
                         targets_dict[column_reqs[denom_id].get(session)] = reltype
                     else:
                         targets_dict[cols[denom_id]] = reltype
+
                 targets_dict.pop(None, None)
 
                 cols[col_id] = OBSColumn(
@@ -251,12 +252,34 @@ class Columns(ColumnsTask):
                     subsection_tag = subsectiontags[subsection]
                     cols[col_id].tags.append(subsection_tag)
 
-        return cols
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
+        parameters = '{{"year":"{year}","resolution":"{resolution}", "tablename":"{tablename}"}}'.format(
+                        year=self.year, resolution=self.resolution, tablename=self.tablename)
+        filtered_cols = columnsFilter.filter_columns(cols, parameters)
+
+        return filtered_cols
 
     def _fetch_requirements(self):
         dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meta')
         with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
             return json.load(f)
+
+
+class AllColumnsResolution(WrapperTask):
+    year = IntParameter()
+    resolution = Parameter()
+
+    def requires(self):
+        for table in TABLES[self.year]:
+            yield Columns(year=self.year, resolution=self.resolution, profile=PROFILES[self.year], tablename=table)
+
+
+class AllColumns(WrapperTask):
+    year = IntParameter()
+
+    def requires(self):
+        for resolution in GEOGRAPHIES:
+            yield AllColumnsResolution(year=self.year, resolution=resolution)
 
 
 #####################################
@@ -279,7 +302,8 @@ class XCP(TableTask):
         requirements = {
             'geo': Geography(resolution=self.resolution, year=self.year),
             'geometa': GeographyColumns(resolution=self.resolution, year=self.year),
-            'meta': Columns(year=self.year, profile=PROFILES[self.year], tablename=self.tablename),
+            'meta': Columns(year=self.year, resolution=self.resolution,
+                            profile=PROFILES[self.year], tablename=self.tablename),
         }
         import_data = {}
         if self.resolution == GEO_MB:
@@ -371,7 +395,7 @@ class XCP(TableTask):
                     (self.resolution == 'SED' and state.lower() in ('wa', 'ot'))):
                         colname = colname.replace('Median_rent_weekly_', 'Median_rent_weekly')
 
-                in_colnames.append('"{}"::{}'.format(
+                in_colnames.append('NULLIF("{}", \'..\')::{}'.format(
                     colname.replace(self.tablename + '_', ''),
                     target.get(session).type)
                 )
@@ -400,7 +424,7 @@ class XCPAllTables(WrapperTask):
     resolution = Parameter()
 
     def requires(self):
-        for table in TABLES:
+        for table in TABLES[self.year]:
             yield XCP(resolution=self.resolution, tablename=table, year=self.year)
 
 
