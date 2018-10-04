@@ -19,11 +19,12 @@ else:
 
 tasks = {}
 
-EXTRACT_RE = r'(?P<date>\S*) (?P<time>\S*).*(?P<action>running|done|failed).*\btasks\.\b(?P<task>.*)'
+EXTRACT_RE = re.compile(r'(?P<date>\S*) (?P<time>\S*).*(?P<action>running|done|failed).*\btasks\.\b(?P<task>.*)')
+TASK_SEPARATOR_RE = re.compile(r'===== Luigi Execution Summary =====')
 
 try:
     for line in log_lines:
-        match = re.compile(EXTRACT_RE).match(line)
+        match = EXTRACT_RE.match(line)
         if match:
             groups = match.groupdict()
             date = datetime.strptime(groups['date'] + ' ' + groups['time'],
@@ -41,6 +42,8 @@ try:
                     elapsed = tasks[task][action] - tasks[task]['running']
                     print("{} {} {}".format(str(elapsed).split('.')[0], action,
                                             task))
+        elif TASK_SEPARATOR_RE.match(line):
+            print("\n\n===== New task\n\n")
     if show_partial:
         for task, task_info in tasks.items():
             if not task_info.get('done', None):
