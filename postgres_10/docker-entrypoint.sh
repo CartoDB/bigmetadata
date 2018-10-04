@@ -39,23 +39,26 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
     echo
     echo 'Creating extension postgis'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE EXTENSION postgis'"
+    su - postgres -c  "psql -U ${POSTGRES_USER:-postgres} -d $POSTGRES_DB -c 'CREATE EXTENSION postgis'"
+    echo 'Extension postgis created!'
 
     echo
     echo 'Creating extension postgis_topology'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE EXTENSION postgis_topology'"
+    su - postgres -c  "psql -U ${POSTGRES_USER:-postgres} -d $POSTGRES_DB -c 'CREATE EXTENSION postgis_topology'"
+    echo 'Extension postgis_topology created!'
 
     echo
     echo 'Creating extension plpythonu'
     echo
-    su - postgres -c  "PGUSER=${PGUSER:-postgres} psql -d $POSTGRES_DB -c 'CREATE LANGUAGE plpythonu'"
+    su - postgres -c  "psql -U ${POSTGRES_USER:-postgres} -d $POSTGRES_DB -c 'CREATE LANGUAGE plpythonu'"
+    echo 'Extension plpythonu created!'
 
     echo
     echo 'PostgreSQL init process complete; ready for start up.'
     echo
 
-    su - postgres -c "PGUSER=${PGUSER:-postgres} /usr/lib/postgresql/10/bin/pg_ctl -D $PGDATA -m fast -w stop"
+    su - postgres -c "PGUSER=${POSTGRES_USER:-postgres} /usr/lib/postgresql/10/bin/pg_ctl -D $PGDATA -m fast -w stop"
 
 fi
 

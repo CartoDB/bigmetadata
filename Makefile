@@ -36,6 +36,7 @@ run-parallel:
 
 # Run a task using docker. For example make docker-es-all
 docker-%:
+	docker-compose run --rm bigmetadata mkdir -p tmp/logs
 	PGSERVICE=$(PGSERVICE) docker-compose run -d -e LOGGING_FILE=etl_$(MAKE_TASK).log bigmetadata make $(MAKE_TASK) SCHEDULER=$(SCHEDULER)
 
 ###
