@@ -8,7 +8,6 @@ from luigi import Parameter, IntParameter, WrapperTask
 from collections import OrderedDict
 
 from lib.timespan import get_timespan
-from tasks.util import shell
 from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
