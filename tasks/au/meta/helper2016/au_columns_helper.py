@@ -127,12 +127,6 @@ def _is_gender_column(short, gender):
     return short.startswith('{}_'.format(gender)) or short.endswith('_{}'.format(gender))
 
 
-def _is_other_column(short, _):
-    return not short.startswith('P_') and not short.endswith('_P') \
-           and not short.startswith('M_') and not short.endswith('_M') \
-           and not short.startswith('F_') and not short.endswith('_F')
-
-
 def _filter_denominators(denominators, datapack):
     filtered = denominators
     for filter_ in DENOMINATOR_FILTERS:
@@ -194,8 +188,7 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                     tables[table][1], tables[table][2], description, None,
                                     sequential[1:], tables[table][0]])
 
-            searches = [(_is_gender_column, 'P'), (_is_gender_column, 'F'), (_is_gender_column, 'M'),
-                        (_is_other_column, '')]
+            searches = [(_is_gender_column, 'P'), (_is_gender_column, 'F'), (_is_gender_column, 'M')]
             for search in searches:
                 tempfile_.seek(0)
                 tempreader = csv.reader(tempfile_, delimiter=',', quotechar='"')
@@ -203,3 +196,13 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),
                     short = row[1]
                     if search[0](short, search[1]):
                         writer.writerow(row)
+
+            tempfile_.seek(0)
+            tempreader = csv.reader(tempfile_, delimiter=',', quotechar='"')
+            for row in tempreader:
+                short = row[1]
+                for search in searches:
+                    if search[0](short, search[1]):
+                        break
+                else:
+                    writer.writerow(row)
