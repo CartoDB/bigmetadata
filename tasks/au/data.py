@@ -442,7 +442,7 @@ class XCPMetaWrapper(MetaWrapper):
 
     params = {
         'resolution': GEOGRAPHIES,
-        'table': TABLES,
+        'table': [TABLES[2011], TABLES[2016]],
         'year': [2011, 2016]
     }
 
