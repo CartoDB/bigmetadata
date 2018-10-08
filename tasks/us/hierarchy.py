@@ -268,7 +268,8 @@ class USLevelHierarchy(TempTableTask):
                 current_info_table=current_info_tablename,
                 current_geom_table=current_geom_table.tablename,
                 parent_info_table=parent_info_tablename,
-                parent_geom_table=parent_geom_table.tablename)
+                parent_geom_table=parent_geom_table.tablename,
+                inner_or_left='LEFT')
         ))
 
         inputs = list(zip(input_['parents_infos'], input_['parents_geoms']))
@@ -290,7 +291,8 @@ class USLevelHierarchy(TempTableTask):
                     current_info_table=current_info_tablename,
                     current_geom_table=current_geom_table.tablename,
                     parent_info_table=parent_info_tablename,
-                    parent_geom_table=parent_geom_table.tablename)))
+                    parent_geom_table=parent_geom_table.tablename,
+                    inner_or_left='INNER')))
 
             # ... and then, delete the rows with null parents for those
             # child that have any parent
@@ -317,9 +319,9 @@ class USLevelHierarchy(TempTableTask):
             1.0::FLOAT AS weight
         FROM {current_info_table} cit
         INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.geoid
-        LEFT JOIN observatory.{parent_geom_table} pgt
+        {inner_or_left} JOIN observatory.{parent_geom_table} pgt
             ON ST_Within(ST_PointOnSurface(cgt.the_geom), pgt.the_geom)
-        LEFT JOIN {parent_info_table} pit ON pgt.geoid = pit.geoid
+        {inner_or_left} JOIN {parent_info_table} pit ON pgt.geoid = pit.geoid
     '''
 
 
