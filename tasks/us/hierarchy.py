@@ -163,6 +163,7 @@ class USLevelHierarchyWeights(Task):
         SELECT DISTINCT child_id, child_level
         FROM {table}
         WHERE weight = 1
+        AND parent_id IS NOT NULL
         GROUP BY child_id, child_level
         HAVING count(1) > 1
     """
