@@ -1,6 +1,6 @@
 tmp
 env
-postgres/data
+postgres10/data
 catalog
 .git
 observatory-extension
