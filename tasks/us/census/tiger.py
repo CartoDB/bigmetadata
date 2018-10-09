@@ -443,6 +443,14 @@ class SplitByState(Task):
 
     def run(self):
         session = current_session()
+        sql_index = '''
+                    CREATE INDEX IF NOT EXISTS {table_input}_statefp10_idx
+                    ON "{schema_input}".{table_input} (statefp10)
+                    '''
+        session.execute(sql_index.format(
+            schema_input='tiger{year}'.format(year=self.year),
+            table_input=SUMLEVELS[self.geography]['table']))
+
         query = '''
                 CREATE TABLE {table_output} AS
                 SELECT *
