@@ -55,17 +55,66 @@ class DownloadData(RepoFileUnzipTask):
         return URL.format(geo_code=self.geocode)
 
 
-class ImportData(TempTableTask):
+class CopyData(TempTableTask):
     geocode = Parameter()
+
+    def requires(self):
+        return DownloadData(geocode=self.geocode)
+
+    def _create_table(self, session):
+        query = '''
+                CREATE TABLE {output} (
+                    year TEXT,
+                    geocode TEXT,
+                    geolevel TEXT,
+                    geoname TEXT,
+                    gnr TEXT,
+                    gnrlf TEXT,
+                    quality TEXT,
+                    altgeocode TEXT,
+                    name TEXT,
+                    profileid NUMERIC,
+                    profiledesc TEXT,
+                    total TEXT,
+                    male TEXT,
+                    female TEXT,
+                    PRIMARY KEY(geocode, geolevel, profileid)
+                )
+                '''.format(
+                    output=self.output().table,
+                )
+
+        LOGGER.debug(query)
+        session.execute(query)
+        session.commit()
+
+    def run(self):
+        session = current_session()
+
+        self._create_table(session)
+
+        path = glob.glob(os.path.join(self.input().path, '*data.csv'))[0]
+        with open(path, 'rb') as f:
+            cursor = session.connection().connection.cursor()
+            sql_copy = """
+                        COPY {table} FROM STDIN WITH CSV HEADER DELIMITER AS ','
+                       """.format(table=self.output().table)
+            cursor.copy_expert(sql=sql_copy, file=f)
+            session.commit()
+            cursor.close()
+
+
+class ImportData(TempTableTask):
+    resolution = Parameter()
     topic = Parameter()
     segment = Parameter()
 
     def requires(self):
         return {
-            'data': DownloadData(geocode=self.geocode),
+            'data': CopyData(geocode=GEOGRAPHY_CODES[self.resolution]),
         }
 
-    def create_table(self):
+    def _create_table(self):
         cols = []
         for key, column in COLUMNS_DEFINITION.items():
             if column['subsection'] in TOPICS[self.topic]:
@@ -82,7 +131,6 @@ class ImportData(TempTableTask):
         query = '''
                 CREATE TABLE {output} (
                     geom_id TEXT,
-                    geolevel NUMERIC,
                     {columns},
                     PRIMARY KEY (geom_id)
                 )
@@ -94,76 +142,63 @@ class ImportData(TempTableTask):
         LOGGER.debug(query)
         session.execute(query)
 
-    def populate_from_csv(self):
-        input_ = self.input()
+    def _upsert_data(self, ids, column_suffix):
         session = current_session()
-        is_logger_debug = LOGGER.isEnabledFor(logging.DEBUG)
 
-        i, col_id, col_total, col_male, col_female = 0, -1, -1, -1, -1
-        path = glob.glob(os.path.join(input_['data'].path, '*data.csv'))[0]
-        with open(path) as f:
-            reader = csv.reader(f, delimiter=",")
-            for num, line in enumerate(reader):
-                if i == 0:
-                    col_id = line.index('DIM: Profile of Dissemination Areas (2247)')
-                    col_total = line.index('Dim: Sex (3): Member ID: [1]: Total - Sex')
-                    col_female = line.index('Dim: Sex (3): Member ID: [3]: Female')
-                    col_male = line.index('Dim: Sex (3): Member ID: [2]: Male')
+        AGG_COLUMN = {
+            't': 'total',
+            'f': 'female',
+            'm': 'male',
+        }
 
-                colname = 'c{}'.format(str(i).zfill(4))
-                coldef = COLUMNS_DEFINITION.get(colname)
+        stmt = '''
+               INSERT INTO {output} (geom_id, {measure_names})
+               SELECT geom_id, {measure_names_num}
+               FROM crosstab('SELECT geocode, profileid, {agg_column}
+                    FROM {input}
+                    WHERE geolevel = ''{geolevel}''
+                    ORDER BY 1, 2')
+                    AS ct(geom_id text, {measure_ids})
+               ON CONFLICT (geom_id)
+               DO UPDATE SET {upsert}
+               '''.format(
+                output=self.output().table,
+                input=self.input()['data'].table,
+                geolevel=GEOLEVEL_FROM_GEOGRAPHY[self.resolution],
+                agg_column=AGG_COLUMN[column_suffix],
+                measure_names=','.join(['c{}_{}'.format(str(x).zfill(4), column_suffix) for x in ids]),
+                measure_names_num=','.join(["nullif(nullif(nullif(nullif(c{}_{}, '..'), '...'), 'F'), 'x')::numeric".format(str(x).zfill(4), column_suffix) for x in ids]),
+                measure_ids=','.join(['c{}_{} text'.format(str(x).zfill(4), column_suffix) for x in ids]),
+                upsert=','.join(['{colname} = EXCLUDED.{colname}'.format(colname=x)
+                                 for x in ['c{}_{}'.format(str(x).zfill(4), column_suffix) for x in ids]])
+                )
+        LOGGER.debug(stmt)
+        session.execute(stmt)
 
-                if coldef and coldef['subsection'] in TOPICS[self.topic]:
-                    f_geom_id = line[1]
-                    f_geolevel = line[2]
-                    f_column_name = line[col_id]
-                    f_measurement_total = safe_float_cast(line[col_total])
+    def _populate_from_copy(self):
+        t_ids = []
+        m_ids = []
+        f_ids = []
+        for key, column in COLUMNS_DEFINITION.items():
+            if column['subsection'] in TOPICS[self.topic]:
+                if self.segment in [SEGMENT_ALL, SEGMENT_TOTAL]:
+                    t_ids.append(int(key[1:]))
+                if column.get('gender_split', 'no') == 'yes':
+                    if self.segment in [SEGMENT_ALL, SEGMENT_FEMALE]:
+                        f_ids.append(int(key[1:]))
+                    if self.segment in [SEGMENT_ALL, SEGMENT_MALE]:
+                        m_ids.append(int(key[1:]))
 
-                    if is_logger_debug:
-                        LOGGER.debug('Reading line {} ::: {} ({}) | {} | {} '.format(
-                            num, f_geom_id, f_geolevel, f_column_name, f_measurement_total
-                        ))
-
-                    if coldef['source_name'] != f_column_name:
-                        raise ValueError("Line {line} (geoid={geoid}): The name for {column} doesn't match ('{f_name}' / '{json_name}')".format(
-                            line=num, geoid=f_geom_id, column=colname,
-                            f_name=f_column_name, json_name=coldef['source_name']
-                        ))
-
-                    measurements = {}
-                    if self.segment in [SEGMENT_ALL, SEGMENT_TOTAL]:
-                        measurements[colname + '_t'] = f_measurement_total
-
-                    if coldef.get('gender_split', 'no') == 'yes':
-                        if self.segment in [SEGMENT_ALL, SEGMENT_FEMALE]:
-                            measurements[colname + '_f'] = safe_float_cast(line[col_female])
-                        if self.segment in [SEGMENT_ALL, SEGMENT_MALE]:
-                            measurements[colname + '_m'] = safe_float_cast(line[col_male])
-
-                    stmt = '''
-                           INSERT INTO {output} (geom_id, geolevel, {measure_names})
-                           SELECT '{geoid}', {geolevel}, {measure_values}
-                           ON CONFLICT (geom_id)
-                           DO UPDATE SET {upsert}
-                           '''.format(
-                                output=self.output().table,
-                                measure_names=','.join(measurements.keys()),
-                                geoid=f_geom_id,
-                                geolevel=f_geolevel,
-                                measure_values=','.join(["NULLIF('{}', 'x')::NUMERIC".format(x)
-                                                         for x in measurements.values()]),
-                                upsert=','.join(['{colname} = EXCLUDED.{colname}'.format(colname=x)
-                                                 for x in measurements.keys()])
-                           )
-                    session.execute(stmt)
-
-                i += 1
-                if (i > NUM_MEASUREMENTS):
-                    i = 1
+        if t_ids:
+            self._upsert_data(t_ids, 't')
+        if f_ids:
+            self._upsert_data(f_ids, 'f')
+        if m_ids:
+            self._upsert_data(m_ids, 'm')
 
     def run(self):
-        self.create_table()
-        self.populate_from_csv()
+        self._create_table()
+        self._populate_from_copy()
 
 
 class CensusData(TableTask):
@@ -177,7 +212,7 @@ class CensusData(TableTask):
     def requires(self):
         return {
             'meta': CensusColumns(resolution=self.resolution, topic=self.topic),
-            'data': ImportData(geocode=GEOGRAPHY_CODES[self.resolution], topic=self.topic, segment=self.segment),
+            'data': ImportData(resolution=self.resolution, topic=self.topic, segment=self.segment),
             'geometa': GeographyColumns(resolution=self.resolution, year=2016),
             'geo': Geography(resolution=self.resolution, year=2016),
         }
@@ -210,7 +245,6 @@ class CensusData(TableTask):
         query = '''
                 INSERT INTO {output} ({out_colnames})
                 SELECT {in_colnames} FROM {input}
-                WHERE geolevel = {geolevel}
                 '''.format(output=self.output().table,
                            input=input_['data'].table,
                            in_colnames=', '.join(colnames),

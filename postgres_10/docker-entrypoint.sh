@@ -55,6 +55,12 @@ if [ ! -s "$PGDATA/PG_VERSION" ]; then
     echo 'Extension plpythonu created!'
 
     echo
+    echo 'Creating extension tablefunc'
+    echo
+    su - postgres -c  "psql -U ${POSTGRES_USER:-postgres} -d $POSTGRES_DB -c 'CREATE EXTENSION tablefunc;'"
+    echo 'Extension tablefunc created!'
+
+    echo
     echo 'PostgreSQL init process complete; ready for start up.'
     echo
 

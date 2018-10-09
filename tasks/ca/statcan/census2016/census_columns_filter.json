@@ -46,5 +46,173 @@
 				"topic": "t001"
 			}
 		]
-    }
+	},
+	"c0008_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0008_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0009_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0009_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0010_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0010_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0011_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0011_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0012_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0012_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0013_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0013_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0014_f": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	},
+	"c0014_m": {
+		"exceptions": [
+			{
+				"resolution": "cma",
+				"topic": "t001"
+			},
+			{
+				"resolution": "ct_",
+				"topic": "t001"
+			}
+		]
+	}
 }
