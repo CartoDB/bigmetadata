@@ -3,6 +3,7 @@ from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from tasks.base_tasks import TempTableTask
 from tasks.meta import current_session
 from tasks.targets import ConstraintExistsTarget
+from tasks.targets import PostgresTarget
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
@@ -62,7 +63,7 @@ class _YearLevelsTask:
     levels = ListParameter(significant=False)
 
 
-class USHierarchyInfoUnion(TempTableTask, _YearLevelsTask):
+class USHierarchyInfoUnion(Task, _YearLevelsTask):
 
     def requires(self):
         return [USLevelInfo(year=self.year, geography=level)
@@ -76,8 +77,13 @@ class USHierarchyInfoUnion(TempTableTask, _YearLevelsTask):
         session.execute(alter_sql.format(tablename=tablename))
         session.commit()
 
+    def output(self):
+        return PostgresTarget(
+            'tiler',
+            'us_hierarchy_geonames_{year}'.format(year=self.year))
 
-class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
+
+class USHierarchyChildParentsUnion(Task, _YearLevelsTask):
 
     def requires(self):
         child_parents = self._child_parents()
@@ -110,14 +116,31 @@ class USHierarchyChildParentsUnion(TempTableTask, _YearLevelsTask):
 
     def run(self):
         session = current_session()
-        tablename = self.output().qualified_tablename
-        session.execute(_union_query(self.input()['hierarchy'], tablename))
-        delete_sql = 'DELETE FROM {tablename} WHERE parent_id IS NULL'
-        session.execute(delete_sql.format(tablename=tablename))
-        alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY ' \
+
+        table = self.output().tablename
+        qualified_table = self.output().qualified_tablename
+
+        union_sql = _union_query(self.input()['hierarchy'], qualified_table)
+        session.execute(union_sql)
+
+        delete_sql = 'DELETE FROM {qualified_table} WHERE parent_id IS NULL'
+        session.execute(delete_sql.format(qualified_table=qualified_table))
+
+        alter_sql = 'ALTER TABLE {qualified_table} ADD PRIMARY KEY ' \
                     '(child_id, child_level, parent_id, parent_level)'
-        session.execute(alter_sql.format(tablename=tablename))
+        session.execute(alter_sql.format(qualified_table=qualified_table))
+
+        parent_index_sql = '''CREATE INDEX {table}_parent_idx
+                              ON {qualified_table} (parent_id, parent_level)
+            '''.format(table=table, qualified_table=qualified_table)
+        session.execute(parent_index_sql)
+
         session.commit()
+
+    def output(self):
+        return PostgresTarget(
+            'tiler',
+            'us_hierarchy_child_parents_{year}'.format(year=self.year))
 
 
 GEOGRAPHIES_ABBREVIATIONS = {
@@ -359,13 +382,12 @@ class USLevelInfoFromShorelineClip(TempTableTask, _YearGeographyTask):
 
         sql = '''
             CREATE TABLE {output_table} AS
-            SELECT n.geoid geoid, '{geography}' as level, n.geoid as name, {year} as year
+            SELECT n.geoid geoid, '{geography}' as level, n.geoid as name
             FROM observatory.{names_table} n
         '''
         session.execute(
             sql.format(output_table=output_table,
                        geography=self.geography,
-                       year=self.year,
                        names_table=names_table))
         session.execute('''
             CREATE INDEX {output_tablename}_idx ON {output_table} (geoid)
@@ -394,11 +416,10 @@ class USLevelInfoFromGeoNames(TempTableTask, _YearGeographyTask):
         session.execute(
             '''
                 CREATE TABLE {output_table} AS
-                SELECT n.geoidsc geoid, '{geography}' as level, n.geoname, {year} as year
+                SELECT n.geoidsc geoid, '{geography}' as level, n.geoname
                 FROM observatory.{names_table} n
             '''.format(output_table=output_table,
                        geography=self.geography,
-                       year=self.year,
                        names_table=names_table))
         session.execute('''
             CREATE INDEX {output_tablename}_idx ON {output_table} (geoid)
