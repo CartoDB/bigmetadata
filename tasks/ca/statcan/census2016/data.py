@@ -1,7 +1,5 @@
-import csv
 import os
 import glob
-import logging
 from collections import OrderedDict
 from luigi import Parameter, WrapperTask
 from tasks.ca.statcan.geo import (GEOGRAPHIES, GeographyColumns, Geography,
