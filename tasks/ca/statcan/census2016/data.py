@@ -69,6 +69,7 @@ class CopyData(TempTableTask):
                     gnr TEXT,
                     gnrlf TEXT,
                     quality TEXT,
+                    {csdtypename}
                     altgeocode TEXT,
                     name TEXT,
                     profileid NUMERIC,
@@ -80,6 +81,7 @@ class CopyData(TempTableTask):
                 )
                 '''.format(
                     output=self.output().table,
+                    csdtypename='csdtypename TEXT,' if self.geocode == '044' else ''
                 )
 
         LOGGER.debug(query)
