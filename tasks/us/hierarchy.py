@@ -233,9 +233,9 @@ class USLevelHierarchyWeights(Task):
         session.commit()
 
     def complete(self):
-        sql = self.UNWEIGHTED_CHILD_SQL.format(
-            table=self.input()['level'].qualified_tablename)
         try:
+            sql = self.UNWEIGHTED_CHILD_SQL.format(
+                table=self.input()['level'].qualified_tablename)
             return len(current_session().execute(sql).fetchall()) == 0
         except Exception as e:
             # Table doesn't exist yet
