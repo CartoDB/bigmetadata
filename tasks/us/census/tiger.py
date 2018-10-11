@@ -81,17 +81,23 @@ class ClippedGeomColumns(ColumnsTask):
             if level['interpolated']:
                 additional_tags.append(boundary_type['interpolation_boundary'])
 
-            cols[colname + '_clipped'] = OBSColumn(
-                type='Geometry',
-                name='Shoreline clipped ' + '_{}'.format(self.year) + col.name,
-                weight=Decimal(col.weight) + Decimal(0.01),
-                description='A cartography-ready version of {name}'.format(
-                    name=col.name),
-                targets={col: 'cartography'},
-                tags=[sections['united_states'],
-                      subsections['boundary'],
-                      source, license] + additional_tags
-            )
+            try:
+                cols[colname + '_clipped'] = OBSColumn(
+                    type='Geometry',
+                    name='Shoreline clipped ' + '_{}'.format(self.year) + col.name,
+                    weight=Decimal(col.weight) + Decimal(0.01),
+                    description='A cartography-ready version of {name}'.format(
+                        name=col.name),
+                    targets={col: 'cartography'},
+                    tags=[sections['united_states'],
+                          subsections['boundary'],
+                          source, license] + additional_tags
+                )
+            except Exception as e:
+                LOGGER.error(
+                    "Error loading column {}, {}, {}".format(colname, col, coltarget._id))
+                raise e
+
 
         return cols
 
