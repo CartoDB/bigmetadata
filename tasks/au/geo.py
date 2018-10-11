@@ -1,4 +1,4 @@
-from luigi import Parameter, WrapperTask, Task, LocalTarget
+from luigi import Parameter, IntParameter, WrapperTask, Task, LocalTarget
 import os
 import json
 
@@ -34,26 +34,12 @@ GEO_SUA = 'SUA'
 GEO_RA = 'RA'
 GEO_MB = 'MB'
 
-GEOGRAPHIES = (
-    GEO_STE,
-    GEO_SA4,
-    GEO_SA3,
-    GEO_SA2,
-    GEO_SA1,
-    GEO_MB,
-    GEO_GCCSA,
-    GEO_LGA,
-    GEO_SLA,
-    GEO_SSC,
-    GEO_POA,
-    GEO_CED,
-    GEO_SED,
-    GEO_SOS,
-    GEO_SOSR,
-    GEO_UCL,
-    GEO_SUA,
-    GEO_RA
-)
+GEOGRAPHIES = {
+    2011: (GEO_STE, GEO_SA4, GEO_SA3, GEO_SA2, GEO_SA1, GEO_MB, GEO_GCCSA, GEO_LGA, GEO_SLA,
+           GEO_SSC, GEO_POA, GEO_CED, GEO_SED, GEO_SOS, GEO_SOSR, GEO_UCL, GEO_SUA, GEO_RA),
+    2016: (GEO_STE, GEO_SA4, GEO_SA3, GEO_SA2, GEO_SA1, GEO_MB, GEO_GCCSA, GEO_LGA,
+           GEO_SSC, GEO_POA, GEO_CED, GEO_SED, GEO_SOS, GEO_SOSR, GEO_UCL, GEO_SUA, GEO_RA),
+}
 
 
 class GeographyMeta():
@@ -86,7 +72,7 @@ class LicenseTags(TagsTask):
 
 class DownloadGeography(RepoFileUnzipTask):
 
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
@@ -149,7 +135,7 @@ class ImportGeography(GeoFile2TempTableTask):
     Import geographies into postgres by geography level
     '''
 
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def requires(self):
@@ -170,7 +156,7 @@ class ImportGeography(GeoFile2TempTableTask):
 
 
 class SimplifiedRawGeometry(SimplifiedTempTableTask):
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def requires(self):
@@ -179,7 +165,7 @@ class SimplifiedRawGeometry(SimplifiedTempTableTask):
 
 class GeographyColumns(ColumnsTask, GeographyMeta):
 
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def version(self):
@@ -257,7 +243,7 @@ class GeographyColumns(ColumnsTask, GeographyMeta):
 
 class Geography(TableTask, GeographyMeta):
 
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def version(self):
@@ -311,8 +297,8 @@ class Geography(TableTask, GeographyMeta):
 
 class AllGeographies(WrapperTask):
 
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             yield Geography(resolution=resolution, year=self.year)

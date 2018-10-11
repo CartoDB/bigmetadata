@@ -48,12 +48,6 @@
         "region_col": "LGA_CODE",
         "proper_name": "LGA_NAME"
     },
-    "SLA": {
-        "name": "Statistical Local Areas",
-        "weight": 10,
-        "region_col": "SLA_MAIN",
-        "proper_name": "SLA_NAME"
-    },
     "SSC": {
         "name": "State Suburbs",
         "weight": 9,

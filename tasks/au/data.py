@@ -128,7 +128,7 @@ class ImportAllResolutions(WrapperTask):
     state = Parameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             yield ImportAllTables(resolution=resolution, state=self.state, year=self.year)
 
 
@@ -136,7 +136,7 @@ class ImportAll(WrapperTask):
     year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             for state in STATES:
                 yield ImportAllTables(resolution=resolution, state=state, year=self.year)
 
@@ -277,7 +277,7 @@ class AllColumns(WrapperTask):
     year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             yield AllColumnsResolution(year=self.year, resolution=resolution)
 
 
@@ -433,7 +433,7 @@ class XCPAllGeographiesAllTables(WrapperTask):
     year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in [self.year]:
             yield XCPAllTables(resolution=resolution, year=self.year)
 
 
@@ -443,7 +443,7 @@ class XCPMetaWrapper(MetaWrapper):
     year = IntParameter()
 
     params = {
-        'resolution': GEOGRAPHIES,
+        'resolution': GEOGRAPHIES[2011],
         'table': TABLES[2011],
         'year': [2011]
     }
