@@ -1,5 +1,6 @@
 from luigi import Parameter, WrapperTask, Task, LocalTarget
 import os
+import json
 
 from lib.timespan import get_timespan
 
@@ -55,26 +56,10 @@ GEOGRAPHIES = (
 )
 
 
-GEOGRAPHY = {
-    GEO_STE: {'name': 'State/Territory', 'weight': 17, 'region_col': 'STATE_CODE', 'proper_name': 'STATE_NAME'},
-    GEO_SA4: {'name': 'Statistical Area Level 4', 'weight': 16, 'region_col': 'SA4_CODE', 'proper_name': 'SA4_NAME'},
-    GEO_SA3: {'name': 'Statistical Area Level 3', 'weight': 15, 'region_col': 'SA3_CODE', 'proper_name': 'SA3_NAME'},
-    GEO_SA2: {'name': 'Statistical Area Level 2', 'weight': 14, 'region_col': 'SA2_MAIN', 'proper_name': 'SA2_NAME'},
-    GEO_SA1: {'name': 'Statistical Area Level 1', 'weight': 13, 'region_col': 'SA1_7DIGIT', 'proper_name': 'STATE_NAME'},
-    GEO_MB: {'name': 'Mesh blocks', 'weight': 13, 'region_col': 'MB_CODE16', 'proper_name': 'SA2_NAME16', 'parent_col': 'SA1_7DIG16'},
-    GEO_GCCSA: {'name': 'Greater Capital City Statistical Areas', 'weight': 12, 'region_col': 'GCCSA_CODE', 'proper_name': 'GCCSA_NAME'},
-    GEO_LGA: {'name': 'Local Government Areas', 'weight': 11, 'region_col': 'LGA_CODE', 'proper_name': 'LGA_NAME'},
-    GEO_SLA: {'name': 'Statistical Local Areas', 'weight': 10, 'region_col': 'SLA_MAIN', 'proper_name': 'SLA_NAME'},
-    GEO_SSC: {'name': 'State Suburbs', 'weight': 9, 'region_col': 'SSC_CODE', 'proper_name': 'SSC_NAME'},
-    GEO_POA: {'name': 'Postal Areas', 'weight': 8, 'region_col': 'POA_CODE', 'proper_name': 'POA_NAME'},
-    GEO_CED: {'name': 'Commonwealth Electoral Divisions', 'weight': 7, 'region_col': 'CED_CODE', 'proper_name': 'CED_NAME'},
-    GEO_SED: {'name': 'State Electoral Divisions', 'weight': 6, 'region_col': 'SED_CODE', 'proper_name': 'SED_NAME'},
-    GEO_SOS: {'name': 'Section of State', 'weight': 5, 'region_col': 'SOS_CODE', 'proper_name': 'SOS_NAME'},
-    GEO_SOSR: {'name': 'Section of State Ranges', 'weight': 4, 'region_col': 'SOSR_CODE', 'proper_name': 'SOSR_NAME'},
-    GEO_UCL: {'name': 'Urban Centres and Localities', 'weight': 3, 'region_col': 'UCL_CODE', 'proper_name': 'UCL_NAME'},
-    GEO_SUA: {'name': 'Significant Urban Areas', 'weight': 2, 'region_col': 'SUA_CODE', 'proper_name': 'SUA_NAME'},
-    GEO_RA: {'name': 'Remoteness Areas', 'weight': 1, 'region_col': 'RA_CODE', 'proper_name': 'RA_NAME'},
-}
+class GeographyMeta():
+    def _get_geo_meta(self, year):
+        with open(os.path.join(os.path.dirname(__file__), 'geography_meta_{}.json'.format(year))) as f:
+            return json.load(f)
 
 
 class SourceTags(TagsTask):
@@ -128,7 +113,7 @@ class DownloadAndMergeMeshBlocks(Task):
 
     def requires(self):
         requires = {}
-        for key,url in self.URLS.items():
+        for key, url in self.URLS.items():
             requires[key] = (RepoFile(resource_id=key+"_"+self.task_id,
                                       version=self.version(),
                                       url=url))
@@ -192,7 +177,7 @@ class SimplifiedRawGeometry(SimplifiedTempTableTask):
         return ImportGeography(year=self.year, resolution=self.resolution)
 
 
-class GeographyColumns(ColumnsTask):
+class GeographyColumns(ColumnsTask, GeographyMeta):
 
     year = Parameter()
     resolution = Parameter()
@@ -220,9 +205,9 @@ class GeographyColumns(ColumnsTask):
         geom = OBSColumn(
             id='{}_{}'.format(self.resolution, self.year),
             type='Geometry',
-            name=GEOGRAPHY[self.resolution]['name'],
+            name=self._get_geo_meta(self.year)[self.resolution]['name'],
             description='',
-            weight=GEOGRAPHY[self.resolution]['weight'],
+            weight=self._get_geo_meta(self.year)[self.resolution]['weight'],
             tags=[source, license, sections['au'], subsections['boundary']],
         )
         geom_id = OBSColumn(
@@ -239,7 +224,7 @@ class GeographyColumns(ColumnsTask):
         )
         geom_name = OBSColumn(
             type='Text',
-            name= 'Proper name of {}'.format(GEOGRAPHY[self.resolution]['name']),
+            name='Proper name of {}'.format(self._get_geo_meta(self.year)[self.resolution]['name']),
             id='{}_name_{}'.format(self.resolution, self.year),
             description='',
             weight=1,
@@ -270,7 +255,7 @@ class GeographyColumns(ColumnsTask):
         return cols
 
 
-class Geography(TableTask):
+class Geography(TableTask, GeographyMeta):
 
     year = Parameter()
     resolution = Parameter()
@@ -306,7 +291,7 @@ class Geography(TableTask):
     def populate(self):
         session = current_session()
         if self.resolution == GEO_MB:
-            parent_col = GEOGRAPHY[self.resolution]['parent_col'] + ' as parent_id,'
+            parent_col = self._get_geo_meta(self.year)[self.resolution]['parent_col'] + ' as parent_id,'
         else:
             parent_col = ''
         query = '''
@@ -316,8 +301,8 @@ class Geography(TableTask):
                        {parent_col}
                        wkb_geometry as the_geom
                 FROM {input}
-                '''.format(geom_name=GEOGRAPHY[self.resolution]['proper_name'],
-                           region_col=GEOGRAPHY[self.resolution]['region_col'],
+                '''.format(geom_name=self._get_geo_meta(self.year)[self.resolution]['proper_name'],
+                           region_col=self._get_geo_meta(self.year)[self.resolution]['region_col'],
                            parent_col=parent_col,
                            output=self.output().table,
                            input=self.input()['data'].table)
