@@ -27,7 +27,7 @@ class PostgresTarget(Target):
 
     @property
     def table(self):
-        return '"{schema}"."{tablename}"'.format(schema=self._schema,
+        return '"{schema}".{tablename}'.format(schema=self._schema,
                                                tablename=self._tablename)
 
     @property
@@ -40,7 +40,7 @@ class PostgresTarget(Target):
 
     @property
     def qualified_tablename(self):
-        return '"{}"."{}"'.format(self.schema, self.tablename)
+        return '"{}".{}'.format(self.schema, self.tablename)
 
     def _existenceness(self):
         '''
@@ -60,7 +60,7 @@ class PostgresTarget(Target):
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
-            'SELECT row_number() over () FROM "{schema}"."{tablename}" WHERE {where} LIMIT 1'.format(
+            'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename,
                 where=self._where))
         if resp.fetchone() is None:
@@ -237,7 +237,7 @@ class TableTarget(Target):
         obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
             underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
-        self.qualified_tablename = '"{schema}"."{table}"'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
+        self.qualified_tablename = '"{schema}".{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self.obs_table = obs_table
         self._tablename = obs_table.tablename
         self._schema = schema
