@@ -75,6 +75,7 @@ class DownloadGeography(RepoFileUnzipTask):
     year = IntParameter()
     resolution = Parameter()
 
+    # http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo
     URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/Boundaries_{year}_{resolution}/\$File/{year}_{resolution}_shape.zip'
 
     def get_url(self):
