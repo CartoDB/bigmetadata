@@ -433,7 +433,7 @@ class XCPAllGeographiesAllTables(WrapperTask):
     year = IntParameter()
 
     def requires(self):
-        for resolution in [self.year]:
+        for resolution in GEOGRAPHIES[self.year]:
             yield XCPAllTables(resolution=resolution, year=self.year)
 
 
