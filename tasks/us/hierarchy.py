@@ -89,18 +89,11 @@ class USHierarchyChildParentsUnion(Task, _YearLevelsTask):
         child_parents = self._child_parents()
         LOGGER.info('Child-parents: {}'.format(child_parents))
         return {
-            'hierarchy': [USLevelInclusionHierarchy(year=self.year,
-                                                    current_geography=
-                                                    child_parent[0],
-                                                    parent_geographies=
-                                                    child_parent[1])
-                          for child_parent in child_parents],
-            'weight': [USLevelHierarchyWeights(year=self.year,
-                                               current_geography=child_parent[
-                                                   0],
-                                               parent_geographies=child_parent[
-                                                   1])
-                       for child_parent in child_parents]
+            'hierarchy': [
+                USHierarchyChildParent(year=self.year,
+                                       current_geography=child_parent[0],
+                                       parent_geographies=child_parent[1])
+                for child_parent in child_parents]
         }
 
     def _child_parents(self):
@@ -160,23 +153,7 @@ def abbr_tablename(target, geographies, year):
     return target
 
 
-class USLevelInclusionHierarchy(WrapperTask):
-    year = IntParameter()
-    current_geography = Parameter()
-    parent_geographies = ListParameter()
-
-    def requires(self):
-        return {
-            'level': USLevelHierarchy(year=self.year,
-                                      current_geography=self.current_geography,
-                                      parent_geographies=self.parent_geographies)
-        }
-
-    def output(self):
-        return self.input()['level']
-
-
-class USLevelHierarchyWeights(Task):
+class USHierarchyChildParent(TempTableTask):
     year = IntParameter()
     current_geography = Parameter()
     parent_geographies = ListParameter()
@@ -230,6 +207,18 @@ class USLevelHierarchyWeights(Task):
                         table=table)
                 )
             )
+
+        create_sql = '''
+            CREATE TABLE {table} AS
+            SELECT DISTINCT ON (child_id, child_level)
+                child_id, child_level, parent_id, parent_level, weight
+            FROM {weighed_table}
+            ORDER BY child_id, child_level, weight desc
+        '''
+        session.execute(create_sql.format(
+            table=self.output().qualified_tablename,
+            weighted_table=self.input()['level'].qualified_tablename
+        ))
         session.commit()
 
     def complete(self):
@@ -239,11 +228,8 @@ class USLevelHierarchyWeights(Task):
             return len(current_session().execute(sql).fetchall()) == 0
         except Exception as e:
             # Table doesn't exist yet
-            LOGGER.error("ERROR running {}: {}".format(sql, e))
+            LOGGER.debug("ERROR running complete")
             return False
-
-    def output(self):
-        return self.input()['level']
 
 
 class USLevelHierarchy(TempTableTask):
