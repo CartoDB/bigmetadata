@@ -332,7 +332,9 @@ class XCP(TableTask):
 
     def _get_geoid(self):
         return 'region_id' if self.year == 2011 \
-               else '{}_CODE_{}'.format(self.resolution, self.year)
+               else '{}_{}_{}'.format(self.resolution,
+                                      '7DIGITCODE' if self.resolution == 'SA1' else 'CODE',
+                                      self.year)
 
     def populate(self):
         if self.resolution == GEO_MB:
