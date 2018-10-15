@@ -89,7 +89,7 @@ DENOMINATOR_FILTERS = ['LPLFS', 'P_Wife_in_RM_', 'P_Educ_85_years_and_over', 'P_
                        'P_3000_3999_Tot', 'P_4000_4999_Tot', 'P_5000over_Tot',
                        'P_0_299_Tot', 'P_300_449_Tot', 'P_450_599_Tot', 'P_600_799_Tot', 'P_800_999_Tot',
                        'P_1000_1399_Tot', 'P_1400_1799_Tot', 'P_1800_2399_Tot', 'P_2400_2999_Tot', 'P_3000_3999_Tot',
-                       'P_4000_over_Tot', 'P_LonePnt_0_14', 'P_CU15_', 'P_DpStu_', 'P_NDpChl_0_14', 'P_OthRI_0_14', 
+                       'P_4000_over_Tot', 'P_LonePnt_0_14', 'P_CU15_', 'P_DpStu_', 'P_NDpChl_0_14', 'P_OthRI_0_14',
                        'P_URI_in_FH_0_14', 'P_GrpH_Mem_0_14', 'P_LonePsn_0_14', ]
 DENOMINATOR_ALIASES = {
     'all': {
