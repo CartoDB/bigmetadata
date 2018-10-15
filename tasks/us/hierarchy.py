@@ -212,7 +212,7 @@ class USHierarchyChildParent(TempTableTask):
             CREATE TABLE {table} AS
             SELECT DISTINCT ON (child_id, child_level)
                 child_id, child_level, parent_id, parent_level, weight
-            FROM {weighed_table}
+            FROM {weighted_table}
             ORDER BY child_id, child_level, weight desc
         '''
         session.execute(create_sql.format(
