@@ -420,9 +420,14 @@ class RepoTarget(LocalTarget):
 class ConstraintExistsTarget(Target):
     def __init__(self, schema, table, constraint):
         self.schema = schema
-        self.table = table
+        self.tablename = table
         self.constraint = constraint
         self.session = current_session()
+
+    @property
+    def table(self):
+        return '"{schema}".{tablename}'.format(schema=self.schema,
+                                               tablename=self.tablename)
 
     def exists(self):
         sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
@@ -430,6 +435,37 @@ class ConstraintExistsTarget(Target):
               "  AND table_name = '{table}' " \
               "  AND constraint_name = '{constraint}'"
         check = sql.format(schema=self.schema,
-                           table=self.table,
+                           table=self.tablename,
                            constraint=self.constraint)
         return len(self.session.execute(check).fetchall()) > 0
+
+
+class PostgresFunctionTarget(Target):
+    def __init__(self, schema, function_name):
+        self._schema = schema
+        self._function_name = function_name
+        self._session = current_session()
+
+    @property
+    def function(self):
+        return '"{schema}".{function_name}'.format(schema=self._schema,
+                                                   function_name=self._function_name)
+
+    @property
+    def function_name(self):
+        return self._function_name
+
+    @property
+    def schema(self):
+        return self._schema
+
+    def exists(self):
+        query = '''
+                SELECT 1 FROM information_schema.routines
+                WHERE routine_schema = '{schema}'
+                AND routine_name = '{function_name}'
+                '''.format(
+                    schema=self._schema,
+                    function_name=self._function_name)
+
+        return len(self._session.execute(query).fetchall()) > 0

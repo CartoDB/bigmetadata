@@ -3,7 +3,7 @@ from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from tasks.base_tasks import TempTableTask
 from tasks.meta import current_session
 from tasks.targets import ConstraintExistsTarget
-from tasks.targets import PostgresTarget
+from tasks.targets import PostgresTarget, PostgresFunctionTarget
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
@@ -17,23 +17,123 @@ def _union_query(tables, output):
         unions=' UNION ALL '.join(unions))
 
 
+def _levels():
+    sorted_level_infos = reversed(sorted(SUMLEVELS.items(),
+                                         key=lambda level_info:
+                                         level_info[1]['weight']))
+    return [level_info[0] for level_info in sorted_level_infos]
+
+
+class DenormalizedUSHierarchy(Task):
+    year = IntParameter()
+
+    def requires(self):
+        levels = _levels()
+        return {
+            'data': USHierarchy(year=self.year),
+            'function': GetParentsFunction(year=self.year),
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
+        }
+
+    def _create_indexes(self, session):
+        LOGGER.info('Creating index on {table}'.format(table=self.output().table))
+        query = '''
+                CREATE INDEX idx_{tablename} ON {table} (child_id, child_level);
+                '''.format(
+                    tablename=self.output().tablename,
+                    table=self.output().table,
+                )
+        session.execute(query)
+
+        LOGGER.info('Clustering table {table}'.format(table=self.output().table))
+        query = '''
+                CLUSTER {table} USING idx_{tablename};
+                '''.format(
+                    tablename=self.output().tablename,
+                    table=self.output().table,
+                )
+        session.execute(query)
+
+        session.commit()
+
+    def run(self):
+        session = current_session()
+
+        LOGGER.info('Creating table {table}'.format(table=self.output().table))
+        query = '''
+                CREATE TABLE {output} AS
+                SELECT child_id, child_level, {get_parents_function}(child_id)
+                FROM {input};
+                '''.format(
+                    output=self.output().table,
+                    input=self.input()['rel'].table,
+                    get_parents_function=self.input()['function'].function,
+                )
+        session.execute(query)
+        session.commit()
+
+        self._create_indexes(session)
+
+    def output(self):
+        return PostgresTarget('tiler', 'us_dz_hierarchy_geonames_{year}'.format(year=self.year))
+
+
+class GetParentsFunction(Task):
+    year = IntParameter()
+
+    def requires(self):
+        return USHierarchy(year=self.year)
+
+    def run(self):
+        session = current_session()
+        query = '''
+                CREATE OR REPLACE FUNCTION "{schema}".{function} (geoid TEXT)
+                RETURNS JSONB
+                AS $$
+                DECLARE
+                    children JSONB DEFAULT NULL;
+                BEGIN
+                    WITH RECURSIVE children(child_id, child_level, parent_id, parent_level, geoname) AS (
+                        SELECT child_id, child_level, parent_id, parent_level, null::text geoname
+                        FROM tiler.us_hierarchy_child_parents_{year}
+                        WHERE child_id = geoid
+                        UNION ALL
+                        SELECT p.child_id, p.child_level, p.parent_id, p.parent_level, n.geoname
+                        FROM tiler.us_hierarchy_child_parents_{year} p
+                        INNER JOIN children c ON c.parent_id = p.child_id AND c.parent_level = p.child_level
+                        LEFT JOIN tiler.us_hierarchy_geonames_{year} n ON p.parent_id = n.geoid
+                                                                      AND p.parent_level = n.level
+                    )
+                    SELECT ('{{' || string_agg('"' || parent_level || '": "' || geoname || '"', ',') || '}}')::JSONB
+                        INTO children
+                        FROM children
+                    WHERE geoname IS NOT NULL;
+
+                    RETURN children;
+                END
+                $$ LANGUAGE plpgsql PARALLEL SAFE;
+                '''.format(
+                    schema=self.output().schema,
+                    function=self.output().function_name,
+                    year=self.year,
+                )
+        session.execute(query)
+        session.commit()
+
+    def output(self):
+        return PostgresFunctionTarget('tiler', 'get_us_parents_{year}'.format(year=self.year))
+
+
 class USHierarchy(Task):
     year = IntParameter()
 
     def requires(self):
-        levels = self._levels()
+        levels = _levels()
         LOGGER.info('Levels: {}'.format(levels))
         return {
             'info': USHierarchyInfoUnion(year=self.year, levels=levels),
             'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
         }
-
-    def _levels(self):
-        sorted_level_infos = reversed(sorted(SUMLEVELS.items(),
-                                             key=lambda level_info:
-                                             level_info[1][
-                                                 'weight']))
-        return [level_info[0] for level_info in sorted_level_infos]
 
     def run(self):
         session = current_session()
