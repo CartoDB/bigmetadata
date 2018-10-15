@@ -331,10 +331,15 @@ class XCP(TableTask):
         return cols
 
     def _get_geoid(self):
-        return 'region_id' if self.year == 2011 \
-               else '{}_{}_{}'.format(self.resolution,
-                                      '7DIGITCODE' if self.resolution == 'SA1' else 'CODE',
-                                      self.year)
+        if self.year == 2011:
+            return 'region_id'
+        else:
+            if self.resolution == 'SA1':
+                return '{}_{}_{}'.format(self.resolution, '7DIGITCODE', self.year)
+            elif self.resolution == 'SA2':
+                return '{}_{}_{}'.format(self.resolution, 'MAINCODE', self.year)
+            else:
+                return '{}_{}_{}'.format(self.resolution, 'CODE', self.year)
 
     def populate(self):
         if self.resolution == GEO_MB:
