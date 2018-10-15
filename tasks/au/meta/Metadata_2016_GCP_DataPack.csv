@@ -4550,7 +4550,7 @@ G7204,F_Ptn_in_DFM_65_74,Females Partner in de facto marriage Age 65 74 years,To
 G7205,F_Ptn_in_DFM_75_84,Females Partner in de facto marriage Age 75 84 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,75-84 years|FEMALES,,7205,Relationship in Household by Age by Sex
 G7206,F_Ptn_in_DFM_85ov,Females Partner in de facto marriage Age 85 years and over,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,85 years and over|FEMALES,,7206,Relationship in Household by Age by Sex
 G7207,F_Ptn_in_DFM_Tot,Females Partner in de facto marriage Total,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,Total|FEMALES,,7207,Relationship in Household by Age by Sex
-G7208,F_LonePnt_0_14,Females Lone parent Age 0 14 years,Tot_P_P|Tot_P_F|P_LonePnt_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7208,Relationship in Household by Age by Sex
+G7208,F_LonePnt_0_14,Females Lone parent Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7208,Relationship in Household by Age by Sex
 G7209,F_LonePnt_15_24,Females Lone parent Age 15 24 years,Tot_P_P|Tot_P_F|P_LonePnt_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7209,Relationship in Household by Age by Sex
 G7210,F_LonePnt_25_34,Females Lone parent Age 25 34 years,Tot_P_P|Tot_P_F|P_LonePnt_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7210,Relationship in Household by Age by Sex
 G7211,F_LonePnt_35_44,Females Lone parent Age 35 44 years,Tot_P_P|Tot_P_F|P_LonePnt_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7211,Relationship in Household by Age by Sex
@@ -4560,27 +4560,27 @@ G7214,F_LonePnt_65_74,Females Lone parent Age 65 74 years,Tot_P_P|Tot_P_F|P_Lone
 G7215,F_LonePnt_75_84,Females Lone parent Age 75 84 years,Tot_P_P|Tot_P_F|P_LonePnt_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7215,Relationship in Household by Age by Sex
 G7216,F_LonePnt_85ov,Females Lone parent Age 85 years and over,Tot_P_P|Tot_P_F|P_LonePnt_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7216,Relationship in Household by Age by Sex
 G7217,F_LonePnt_Tot,Females Lone parent Total,Tot_P_P|Tot_P_F|P_LonePnt_Tot,G23A,people,families|age_gender,Total|FEMALES,,7217,Relationship in Household by Age by Sex
-G7218,F_CU15_0_14,Females Child under 15 Age 0 14 years,Tot_P_P|Tot_P_F|P_CU15_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7218,Relationship in Household by Age by Sex
-G7219,F_CU15_15_24,Females Child under 15 Age 15 24 years,Tot_P_P|Tot_P_F|P_CU15_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7219,Relationship in Household by Age by Sex
-G7220,F_CU15_25_34,Females Child under 15 Age 25 34 years,Tot_P_P|Tot_P_F|P_CU15_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7220,Relationship in Household by Age by Sex
-G7221,F_CU15_35_44,Females Child under 15 Age 35 44 years,Tot_P_P|Tot_P_F|P_CU15_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7221,Relationship in Household by Age by Sex
-G7222,F_CU15_45_54,Females Child under 15 Age 45 54 years,Tot_P_P|Tot_P_F|P_CU15_45_54,G23A,people,families|age_gender,45-54 years|FEMALES,,7222,Relationship in Household by Age by Sex
-G7223,F_CU15_55_64,Females Child under 15 Age 55 64 years,Tot_P_P|Tot_P_F|P_CU15_55_64,G23A,people,families|age_gender,55-64 years|FEMALES,,7223,Relationship in Household by Age by Sex
-G7224,F_CU15_65_74,Females Child under 15 Age 65 74 years,Tot_P_P|Tot_P_F|P_CU15_65_74,G23A,people,families|age_gender,65-74 years|FEMALES,,7224,Relationship in Household by Age by Sex
-G7225,F_CU15_75_84,Females Child under 15 Age 75 84 years,Tot_P_P|Tot_P_F|P_CU15_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7225,Relationship in Household by Age by Sex
-G7226,F_CU15_85ov,Females Child under 15 Age 85 years and over,Tot_P_P|Tot_P_F|P_CU15_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7226,Relationship in Household by Age by Sex
-G7227,F_CU15_Tot,Females Child under 15 Total,Tot_P_P|Tot_P_F|P_CU15_Tot,G23A,people,families|age_gender,Total|FEMALES,,7227,Relationship in Household by Age by Sex
-G7228,F_DpStu_0_14,Females Dependent student Aged 15 24 years Age 0 14 years,Tot_P_P|Tot_P_F|P_DpStu_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7228,Relationship in Household by Age by Sex
-G7229,F_DpStu_15_24,Females Dependent student Aged 15 24 years Age 15 24 years,Tot_P_P|Tot_P_F|P_DpStu_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7229,Relationship in Household by Age by Sex
-G7230,F_DpStu_25_34,Females Dependent student Aged 15 24 years Age 25 34 years,Tot_P_P|Tot_P_F|P_DpStu_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7230,Relationship in Household by Age by Sex
-G7231,F_DpStu_35_44,Females Dependent student Aged 15 24 years Age 35 44 years,Tot_P_P|Tot_P_F|P_DpStu_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7231,Relationship in Household by Age by Sex
-G7232,F_DpStu_45_54,Females Dependent student Aged 15 24 years Age 45 54 years,Tot_P_P|Tot_P_F|P_DpStu_45_54,G23A,people,families|age_gender,45-54 years|FEMALES,,7232,Relationship in Household by Age by Sex
-G7233,F_DpStu_55_64,Females Dependent student Aged 15 24 years Age 55 64 years,Tot_P_P|Tot_P_F|P_DpStu_55_64,G23A,people,families|age_gender,55-64 years|FEMALES,,7233,Relationship in Household by Age by Sex
-G7234,F_DpStu_65_74,Females Dependent student Aged 15 24 years Age 65 74 years,Tot_P_P|Tot_P_F|P_DpStu_65_74,G23A,people,families|age_gender,65-74 years|FEMALES,,7234,Relationship in Household by Age by Sex
-G7235,F_DpStu_75_84,Females Dependent student Aged 15 24 years Age 75 84 years,Tot_P_P|Tot_P_F|P_DpStu_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7235,Relationship in Household by Age by Sex
-G7236,F_DpStu_85ov,Females Dependent student Aged 15 24 years Age 85 years and over,Tot_P_P|Tot_P_F|P_DpStu_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7236,Relationship in Household by Age by Sex
-G7237,F_DpStu_Tot,Females Dependent student Aged 15 24 years Total,Tot_P_P|Tot_P_F|P_DpStu_Tot,G23A,people,families|age_gender,Total|FEMALES,,7237,Relationship in Household by Age by Sex
-G7238,F_NDpChl_0_14,Females Non dependent child Age 0 14 years,Tot_P_P|Tot_P_F|P_NDpChl_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7238,Relationship in Household by Age by Sex
+G7218,F_CU15_0_14,Females Child under 15 Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7218,Relationship in Household by Age by Sex
+G7219,F_CU15_15_24,Females Child under 15 Age 15 24 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,15-24 years|FEMALES,,7219,Relationship in Household by Age by Sex
+G7220,F_CU15_25_34,Females Child under 15 Age 25 34 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,25-34 years|FEMALES,,7220,Relationship in Household by Age by Sex
+G7221,F_CU15_35_44,Females Child under 15 Age 35 44 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,35-44 years|FEMALES,,7221,Relationship in Household by Age by Sex
+G7222,F_CU15_45_54,Females Child under 15 Age 45 54 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,45-54 years|FEMALES,,7222,Relationship in Household by Age by Sex
+G7223,F_CU15_55_64,Females Child under 15 Age 55 64 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,55-64 years|FEMALES,,7223,Relationship in Household by Age by Sex
+G7224,F_CU15_65_74,Females Child under 15 Age 65 74 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,65-74 years|FEMALES,,7224,Relationship in Household by Age by Sex
+G7225,F_CU15_75_84,Females Child under 15 Age 75 84 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,75-84 years|FEMALES,,7225,Relationship in Household by Age by Sex
+G7226,F_CU15_85ov,Females Child under 15 Age 85 years and over,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,85 years and over|FEMALES,,7226,Relationship in Household by Age by Sex
+G7227,F_CU15_Tot,Females Child under 15 Total,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,Total|FEMALES,,7227,Relationship in Household by Age by Sex
+G7228,F_DpStu_0_14,Females Dependent student Aged 15 24 years Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7228,Relationship in Household by Age by Sex
+G7229,F_DpStu_15_24,Females Dependent student Aged 15 24 years Age 15 24 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,15-24 years|FEMALES,,7229,Relationship in Household by Age by Sex
+G7230,F_DpStu_25_34,Females Dependent student Aged 15 24 years Age 25 34 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,25-34 years|FEMALES,,7230,Relationship in Household by Age by Sex
+G7231,F_DpStu_35_44,Females Dependent student Aged 15 24 years Age 35 44 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,35-44 years|FEMALES,,7231,Relationship in Household by Age by Sex
+G7232,F_DpStu_45_54,Females Dependent student Aged 15 24 years Age 45 54 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,45-54 years|FEMALES,,7232,Relationship in Household by Age by Sex
+G7233,F_DpStu_55_64,Females Dependent student Aged 15 24 years Age 55 64 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,55-64 years|FEMALES,,7233,Relationship in Household by Age by Sex
+G7234,F_DpStu_65_74,Females Dependent student Aged 15 24 years Age 65 74 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,65-74 years|FEMALES,,7234,Relationship in Household by Age by Sex
+G7235,F_DpStu_75_84,Females Dependent student Aged 15 24 years Age 75 84 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,75-84 years|FEMALES,,7235,Relationship in Household by Age by Sex
+G7236,F_DpStu_85ov,Females Dependent student Aged 15 24 years Age 85 years and over,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,85 years and over|FEMALES,,7236,Relationship in Household by Age by Sex
+G7237,F_DpStu_Tot,Females Dependent student Aged 15 24 years Total,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,Total|FEMALES,,7237,Relationship in Household by Age by Sex
+G7238,F_NDpChl_0_14,Females Non dependent child Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7238,Relationship in Household by Age by Sex
 G7239,F_NDpChl_15_24,Females Non dependent child Age 15 24 years,Tot_P_P|Tot_P_F|P_NDpChl_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7239,Relationship in Household by Age by Sex
 G7240,F_NDpChl_25_34,Females Non dependent child Age 25 34 years,Tot_P_P|Tot_P_F|P_NDpChl_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7240,Relationship in Household by Age by Sex
 G7241,F_NDpChl_35_44,Females Non dependent child Age 35 44 years,Tot_P_P|Tot_P_F|P_NDpChl_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7241,Relationship in Household by Age by Sex
@@ -4590,7 +4590,7 @@ G7244,F_NDpChl_65_74,Females Non dependent child Age 65 74 years,Tot_P_P|Tot_P_F
 G7245,F_NDpChl_75_84,Females Non dependent child Age 75 84 years,Tot_P_P|Tot_P_F|P_NDpChl_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7245,Relationship in Household by Age by Sex
 G7246,F_NDpChl_85ov,Females Non dependent child Age 85 years and over,Tot_P_P|Tot_P_F|P_NDpChl_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7246,Relationship in Household by Age by Sex
 G7247,F_NDpChl_Tot,Females Non dependent child Total,Tot_P_P|Tot_P_F|P_NDpChl_Tot,G23A,people,families|age_gender,Total|FEMALES,,7247,Relationship in Household by Age by Sex
-G7248,F_OthRI_0_14,Females Other related individual Age 0 14 years,Tot_P_P|Tot_P_F|P_OthRI_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7248,Relationship in Household by Age by Sex
+G7248,F_OthRI_0_14,Females Other related individual Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7248,Relationship in Household by Age by Sex
 G7249,F_OthRI_15_24,Females Other related individual Age 15 24 years,Tot_P_P|Tot_P_F|P_OthRI_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7249,Relationship in Household by Age by Sex
 G7250,F_OthRI_25_34,Females Other related individual Age 25 34 years,Tot_P_P|Tot_P_F|P_OthRI_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7250,Relationship in Household by Age by Sex
 G7251,F_OthRI_35_44,Females Other related individual Age 35 44 years,Tot_P_P|Tot_P_F|P_OthRI_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7251,Relationship in Household by Age by Sex
@@ -4600,7 +4600,7 @@ G7254,F_OthRI_65_74,Females Other related individual Age 65 74 years,Tot_P_P|Tot
 G7255,F_OthRI_75_84,Females Other related individual Age 75 84 years,Tot_P_P|Tot_P_F|P_OthRI_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7255,Relationship in Household by Age by Sex
 G7256,F_OthRI_85ov,Females Other related individual Age 85 years and over,Tot_P_P|Tot_P_F|P_OthRI_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7256,Relationship in Household by Age by Sex
 G7257,F_OthRI_Tot,Females Other related individual Total,Tot_P_P|Tot_P_F|P_OthRI_Tot,G23A,people,families|age_gender,Total|FEMALES,,7257,Relationship in Household by Age by Sex
-G7258,F_URI_in_FH_0_14,Females Unrelated individual living in family household Age 0 14 years,Tot_P_P|Tot_P_F|P_URI_in_FH_0_14,G23A,people,families|age_gender,0-14 years|FEMALES,,7258,Relationship in Household by Age by Sex
+G7258,F_URI_in_FH_0_14,Females Unrelated individual living in family household Age 0 14 years,Tot_P_P|Tot_P_F,G23A,people,families|age_gender,0-14 years|FEMALES,,7258,Relationship in Household by Age by Sex
 G7259,F_URI_in_FH_15_24,Females Unrelated individual living in family household Age 15 24 years,Tot_P_P|Tot_P_F|P_URI_in_FH_15_24,G23A,people,families|age_gender,15-24 years|FEMALES,,7259,Relationship in Household by Age by Sex
 G7260,F_URI_in_FH_25_34,Females Unrelated individual living in family household Age 25 34 years,Tot_P_P|Tot_P_F|P_URI_in_FH_25_34,G23A,people,families|age_gender,25-34 years|FEMALES,,7260,Relationship in Household by Age by Sex
 G7261,F_URI_in_FH_35_44,Females Unrelated individual living in family household Age 35 44 years,Tot_P_P|Tot_P_F|P_URI_in_FH_35_44,G23A,people,families|age_gender,35-44 years|FEMALES,,7261,Relationship in Household by Age by Sex
@@ -4610,7 +4610,7 @@ G7264,F_URI_in_FH_65_74,Females Unrelated individual living in family household 
 G7265,F_URI_in_FH_75_84,Females Unrelated individual living in family household Age 75 84 years,Tot_P_P|Tot_P_F|P_URI_in_FH_75_84,G23A,people,families|age_gender,75-84 years|FEMALES,,7265,Relationship in Household by Age by Sex
 G7266,F_URI_in_FH_85ov,Females Unrelated individual living in family household Age 85 years and over,Tot_P_P|Tot_P_F|P_URI_in_FH_85ov,G23A,people,families|age_gender,85 years and over|FEMALES,,7266,Relationship in Household by Age by Sex
 G7267,F_URI_in_FH_Tot,Females Unrelated individual living in family household Total,Tot_P_P|Tot_P_F|P_URI_in_FH_Tot,G23A,people,families|age_gender,Total|FEMALES,,7267,Relationship in Household by Age by Sex
-G7268,F_GrpH_Mem_0_14,Females Group household member Age 0 14 years,Tot_P_P|Tot_P_F|P_GrpH_Mem_0_14,G23B,people,families|age_gender,0-14 years|FEMALES,,7268,Relationship in Household by Age by Sex
+G7268,F_GrpH_Mem_0_14,Females Group household member Age 0 14 years,Tot_P_P|Tot_P_F,G23B,people,families|age_gender,0-14 years|FEMALES,,7268,Relationship in Household by Age by Sex
 G7269,F_GrpH_Mem_15_24,Females Group household member Age 15 24 years,Tot_P_P|Tot_P_F|P_GrpH_Mem_15_24,G23B,people,families|age_gender,15-24 years|FEMALES,,7269,Relationship in Household by Age by Sex
 G7270,F_GrpH_Mem_25_34,Females Group household member Age 25 34 years,Tot_P_P|Tot_P_F|P_GrpH_Mem_25_34,G23B,people,families|age_gender,25-34 years|FEMALES,,7270,Relationship in Household by Age by Sex
 G7271,F_GrpH_Mem_35_44,Females Group household member Age 35 44 years,Tot_P_P|Tot_P_F|P_GrpH_Mem_35_44,G23B,people,families|age_gender,35-44 years|FEMALES,,7271,Relationship in Household by Age by Sex
@@ -4620,7 +4620,7 @@ G7274,F_GrpH_Mem_65_74,Females Group household member Age 65 74 years,Tot_P_P|To
 G7275,F_GrpH_Mem_75_84,Females Group household member Age 75 84 years,Tot_P_P|Tot_P_F|P_GrpH_Mem_75_84,G23B,people,families|age_gender,75-84 years|FEMALES,,7275,Relationship in Household by Age by Sex
 G7276,F_GrpH_Mem_85ov,Females Group household member Age 85 years and over,Tot_P_P|Tot_P_F|P_GrpH_Mem_85ov,G23B,people,families|age_gender,85 years and over|FEMALES,,7276,Relationship in Household by Age by Sex
 G7277,F_GrpH_Mem_Tot,Females Group household member Total,Tot_P_P|Tot_P_F|P_GrpH_Mem_Tot,G23B,people,families|age_gender,Total|FEMALES,,7277,Relationship in Household by Age by Sex
-G7278,F_LonePsn_0_14,Females Lone person Age 0 14 years,Tot_P_P|Tot_P_F|P_LonePsn_0_14,G23B,people,families|age_gender,0-14 years|FEMALES,,7278,Relationship in Household by Age by Sex
+G7278,F_LonePsn_0_14,Females Lone person Age 0 14 years,Tot_P_P|Tot_P_F,G23B,people,families|age_gender,0-14 years|FEMALES,,7278,Relationship in Household by Age by Sex
 G7279,F_LonePsn_15_24,Females Lone person Age 15 24 years,Tot_P_P|Tot_P_F|P_LonePsn_15_24,G23B,people,families|age_gender,15-24 years|FEMALES,,7279,Relationship in Household by Age by Sex
 G7280,F_LonePsn_25_34,Females Lone person Age 25 34 years,Tot_P_P|Tot_P_F|P_LonePsn_25_34,G23B,people,families|age_gender,25-34 years|FEMALES,,7280,Relationship in Household by Age by Sex
 G7281,F_LonePsn_35_44,Females Lone person Age 35 44 years,Tot_P_P|Tot_P_F|P_LonePsn_35_44,G23B,people,families|age_gender,35-44 years|FEMALES,,7281,Relationship in Household by Age by Sex
@@ -7631,7 +7631,7 @@ G7084,M_Ptn_in_DFM_65_74,Males Partner in de facto marriage Age 65 74 years,Tot_
 G7085,M_Ptn_in_DFM_75_84,Males Partner in de facto marriage Age 75 84 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,75-84 years|MALES,,7085,Relationship in Household by Age by Sex
 G7086,M_Ptn_in_DFM_85ov,Males Partner in de facto marriage Age 85 years and over,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,85 years and over|MALES,,7086,Relationship in Household by Age by Sex
 G7087,M_Ptn_in_DFM_Tot,Males Partner in de facto marriage Total,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,Total|MALES,,7087,Relationship in Household by Age by Sex
-G7088,M_LonePnt_0_14,Males Lone parent Age 0 14 years,Tot_P_P|Tot_P_M|P_LonePnt_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7088,Relationship in Household by Age by Sex
+G7088,M_LonePnt_0_14,Males Lone parent Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7088,Relationship in Household by Age by Sex
 G7089,M_LonePnt_15_24,Males Lone parent Age 15 24 years,Tot_P_P|Tot_P_M|P_LonePnt_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7089,Relationship in Household by Age by Sex
 G7090,M_LonePnt_25_34,Males Lone parent Age 25 34 years,Tot_P_P|Tot_P_M|P_LonePnt_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7090,Relationship in Household by Age by Sex
 G7091,M_LonePnt_35_44,Males Lone parent Age 35 44 years,Tot_P_P|Tot_P_M|P_LonePnt_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7091,Relationship in Household by Age by Sex
@@ -7641,27 +7641,27 @@ G7094,M_LonePnt_65_74,Males Lone parent Age 65 74 years,Tot_P_P|Tot_P_M|P_LonePn
 G7095,M_LonePnt_75_84,Males Lone parent Age 75 84 years,Tot_P_P|Tot_P_M|P_LonePnt_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7095,Relationship in Household by Age by Sex
 G7096,M_LonePnt_85ov,Males Lone parent Age 85 years and over,Tot_P_P|Tot_P_M|P_LonePnt_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7096,Relationship in Household by Age by Sex
 G7097,M_LonePnt_Tot,Males Lone parent Total,Tot_P_P|Tot_P_M|P_LonePnt_Tot,G23A,people,families|age_gender,Total|MALES,,7097,Relationship in Household by Age by Sex
-G7098,M_CU15_0_14,Males Child under 15 Age 0 14 years,Tot_P_P|Tot_P_M|P_CU15_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7098,Relationship in Household by Age by Sex
-G7099,M_CU15_15_24,Males Child under 15 Age 15 24 years,Tot_P_P|Tot_P_M|P_CU15_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7099,Relationship in Household by Age by Sex
-G7100,M_CU15_25_34,Males Child under 15 Age 25 34 years,Tot_P_P|Tot_P_M|P_CU15_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7100,Relationship in Household by Age by Sex
-G7101,M_CU15_35_44,Males Child under 15 Age 35 44 years,Tot_P_P|Tot_P_M|P_CU15_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7101,Relationship in Household by Age by Sex
-G7102,M_CU15_45_54,Males Child under 15 Age 45 54 years,Tot_P_P|Tot_P_M|P_CU15_45_54,G23A,people,families|age_gender,45-54 years|MALES,,7102,Relationship in Household by Age by Sex
-G7103,M_CU15_55_64,Males Child under 15 Age 55 64 years,Tot_P_P|Tot_P_M|P_CU15_55_64,G23A,people,families|age_gender,55-64 years|MALES,,7103,Relationship in Household by Age by Sex
-G7104,M_CU15_65_74,Males Child under 15 Age 65 74 years,Tot_P_P|Tot_P_M|P_CU15_65_74,G23A,people,families|age_gender,65-74 years|MALES,,7104,Relationship in Household by Age by Sex
-G7105,M_CU15_75_84,Males Child under 15 Age 75 84 years,Tot_P_P|Tot_P_M|P_CU15_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7105,Relationship in Household by Age by Sex
-G7106,M_CU15_85ov,Males Child under 15 Age 85 years and over,Tot_P_P|Tot_P_M|P_CU15_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7106,Relationship in Household by Age by Sex
-G7107,M_CU15_Tot,Males Child under 15 Total,Tot_P_P|Tot_P_M|P_CU15_Tot,G23A,people,families|age_gender,Total|MALES,,7107,Relationship in Household by Age by Sex
-G7108,M_DpStu_0_14,Males Dependent student Aged 15 24 years Age 0 14 years,Tot_P_P|Tot_P_M|P_DpStu_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7108,Relationship in Household by Age by Sex
-G7109,M_DpStu_15_24,Males Dependent student Aged 15 24 years Age 15 24 years,Tot_P_P|Tot_P_M|P_DpStu_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7109,Relationship in Household by Age by Sex
-G7110,M_DpStu_25_34,Males Dependent student Aged 15 24 years Age 25 34 years,Tot_P_P|Tot_P_M|P_DpStu_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7110,Relationship in Household by Age by Sex
-G7111,M_DpStu_35_44,Males Dependent student Aged 15 24 years Age 35 44 years,Tot_P_P|Tot_P_M|P_DpStu_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7111,Relationship in Household by Age by Sex
-G7112,M_DpStu_45_54,Males Dependent student Aged 15 24 years Age 45 54 years,Tot_P_P|Tot_P_M|P_DpStu_45_54,G23A,people,families|age_gender,45-54 years|MALES,,7112,Relationship in Household by Age by Sex
-G7113,M_DpStu_55_64,Males Dependent student Aged 15 24 years Age 55 64 years,Tot_P_P|Tot_P_M|P_DpStu_55_64,G23A,people,families|age_gender,55-64 years|MALES,,7113,Relationship in Household by Age by Sex
-G7114,M_DpStu_65_74,Males Dependent student Aged 15 24 years Age 65 74 years,Tot_P_P|Tot_P_M|P_DpStu_65_74,G23A,people,families|age_gender,65-74 years|MALES,,7114,Relationship in Household by Age by Sex
-G7115,M_DpStu_75_84,Males Dependent student Aged 15 24 years Age 75 84 years,Tot_P_P|Tot_P_M|P_DpStu_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7115,Relationship in Household by Age by Sex
-G7116,M_DpStu_85ov,Males Dependent student Aged 15 24 years Age 85 years and over,Tot_P_P|Tot_P_M|P_DpStu_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7116,Relationship in Household by Age by Sex
-G7117,M_DpStu_Tot,Males Dependent student Aged 15 24 years Total,Tot_P_P|Tot_P_M|P_DpStu_Tot,G23A,people,families|age_gender,Total|MALES,,7117,Relationship in Household by Age by Sex
-G7118,M_NDpChl_0_14,Males Non dependent child Age 0 14 years,Tot_P_P|Tot_P_M|P_NDpChl_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7118,Relationship in Household by Age by Sex
+G7098,M_CU15_0_14,Males Child under 15 Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7098,Relationship in Household by Age by Sex
+G7099,M_CU15_15_24,Males Child under 15 Age 15 24 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,15-24 years|MALES,,7099,Relationship in Household by Age by Sex
+G7100,M_CU15_25_34,Males Child under 15 Age 25 34 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,25-34 years|MALES,,7100,Relationship in Household by Age by Sex
+G7101,M_CU15_35_44,Males Child under 15 Age 35 44 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,35-44 years|MALES,,7101,Relationship in Household by Age by Sex
+G7102,M_CU15_45_54,Males Child under 15 Age 45 54 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,45-54 years|MALES,,7102,Relationship in Household by Age by Sex
+G7103,M_CU15_55_64,Males Child under 15 Age 55 64 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,55-64 years|MALES,,7103,Relationship in Household by Age by Sex
+G7104,M_CU15_65_74,Males Child under 15 Age 65 74 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,65-74 years|MALES,,7104,Relationship in Household by Age by Sex
+G7105,M_CU15_75_84,Males Child under 15 Age 75 84 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,75-84 years|MALES,,7105,Relationship in Household by Age by Sex
+G7106,M_CU15_85ov,Males Child under 15 Age 85 years and over,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,85 years and over|MALES,,7106,Relationship in Household by Age by Sex
+G7107,M_CU15_Tot,Males Child under 15 Total,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,Total|MALES,,7107,Relationship in Household by Age by Sex
+G7108,M_DpStu_0_14,Males Dependent student Aged 15 24 years Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7108,Relationship in Household by Age by Sex
+G7109,M_DpStu_15_24,Males Dependent student Aged 15 24 years Age 15 24 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,15-24 years|MALES,,7109,Relationship in Household by Age by Sex
+G7110,M_DpStu_25_34,Males Dependent student Aged 15 24 years Age 25 34 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,25-34 years|MALES,,7110,Relationship in Household by Age by Sex
+G7111,M_DpStu_35_44,Males Dependent student Aged 15 24 years Age 35 44 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,35-44 years|MALES,,7111,Relationship in Household by Age by Sex
+G7112,M_DpStu_45_54,Males Dependent student Aged 15 24 years Age 45 54 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,45-54 years|MALES,,7112,Relationship in Household by Age by Sex
+G7113,M_DpStu_55_64,Males Dependent student Aged 15 24 years Age 55 64 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,55-64 years|MALES,,7113,Relationship in Household by Age by Sex
+G7114,M_DpStu_65_74,Males Dependent student Aged 15 24 years Age 65 74 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,65-74 years|MALES,,7114,Relationship in Household by Age by Sex
+G7115,M_DpStu_75_84,Males Dependent student Aged 15 24 years Age 75 84 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,75-84 years|MALES,,7115,Relationship in Household by Age by Sex
+G7116,M_DpStu_85ov,Males Dependent student Aged 15 24 years Age 85 years and over,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,85 years and over|MALES,,7116,Relationship in Household by Age by Sex
+G7117,M_DpStu_Tot,Males Dependent student Aged 15 24 years Total,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,Total|MALES,,7117,Relationship in Household by Age by Sex
+G7118,M_NDpChl_0_14,Males Non dependent child Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7118,Relationship in Household by Age by Sex
 G7119,M_NDpChl_15_24,Males Non dependent child Age 15 24 years,Tot_P_P|Tot_P_M|P_NDpChl_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7119,Relationship in Household by Age by Sex
 G7120,M_NDpChl_25_34,Males Non dependent child Age 25 34 years,Tot_P_P|Tot_P_M|P_NDpChl_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7120,Relationship in Household by Age by Sex
 G7121,M_NDpChl_35_44,Males Non dependent child Age 35 44 years,Tot_P_P|Tot_P_M|P_NDpChl_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7121,Relationship in Household by Age by Sex
@@ -7671,7 +7671,7 @@ G7124,M_NDpChl_65_74,Males Non dependent child Age 65 74 years,Tot_P_P|Tot_P_M|P
 G7125,M_NDpChl_75_84,Males Non dependent child Age 75 84 years,Tot_P_P|Tot_P_M|P_NDpChl_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7125,Relationship in Household by Age by Sex
 G7126,M_NDpChl_85ov,Males Non dependent child Age 85 years and over,Tot_P_P|Tot_P_M|P_NDpChl_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7126,Relationship in Household by Age by Sex
 G7127,M_NDpChl_Tot,Males Non dependent child Total,Tot_P_P|Tot_P_M|P_NDpChl_Tot,G23A,people,families|age_gender,Total|MALES,,7127,Relationship in Household by Age by Sex
-G7128,M_OthRI_0_14,Males Other related individual Age 0 14 years,Tot_P_P|Tot_P_M|P_OthRI_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7128,Relationship in Household by Age by Sex
+G7128,M_OthRI_0_14,Males Other related individual Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7128,Relationship in Household by Age by Sex
 G7129,M_OthRI_15_24,Males Other related individual Age 15 24 years,Tot_P_P|Tot_P_M|P_OthRI_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7129,Relationship in Household by Age by Sex
 G7130,M_OthRI_25_34,Males Other related individual Age 25 34 years,Tot_P_P|Tot_P_M|P_OthRI_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7130,Relationship in Household by Age by Sex
 G7131,M_OthRI_35_44,Males Other related individual Age 35 44 years,Tot_P_P|Tot_P_M|P_OthRI_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7131,Relationship in Household by Age by Sex
@@ -7681,7 +7681,7 @@ G7134,M_OthRI_65_74,Males Other related individual Age 65 74 years,Tot_P_P|Tot_P
 G7135,M_OthRI_75_84,Males Other related individual Age 75 84 years,Tot_P_P|Tot_P_M|P_OthRI_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7135,Relationship in Household by Age by Sex
 G7136,M_OthRI_85ov,Males Other related individual Age 85 years and over,Tot_P_P|Tot_P_M|P_OthRI_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7136,Relationship in Household by Age by Sex
 G7137,M_OthRI_Tot,Males Other related individual Total,Tot_P_P|Tot_P_M|P_OthRI_Tot,G23A,people,families|age_gender,Total|MALES,,7137,Relationship in Household by Age by Sex
-G7138,M_URI_in_FH_0_14,Males Unrelated individual living in family household Age 0 14 years,Tot_P_P|Tot_P_M|P_URI_in_FH_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7138,Relationship in Household by Age by Sex
+G7138,M_URI_in_FH_0_14,Males Unrelated individual living in family household Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7138,Relationship in Household by Age by Sex
 G7139,M_URI_in_FH_15_24,Males Unrelated individual living in family household Age 15 24 years,Tot_P_P|Tot_P_M|P_URI_in_FH_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7139,Relationship in Household by Age by Sex
 G7140,M_URI_in_FH_25_34,Males Unrelated individual living in family household Age 25 34 years,Tot_P_P|Tot_P_M|P_URI_in_FH_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7140,Relationship in Household by Age by Sex
 G7141,M_URI_in_FH_35_44,Males Unrelated individual living in family household Age 35 44 years,Tot_P_P|Tot_P_M|P_URI_in_FH_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7141,Relationship in Household by Age by Sex
@@ -7691,7 +7691,7 @@ G7144,M_URI_in_FH_65_74,Males Unrelated individual living in family household Ag
 G7145,M_URI_in_FH_75_84,Males Unrelated individual living in family household Age 75 84 years,Tot_P_P|Tot_P_M|P_URI_in_FH_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7145,Relationship in Household by Age by Sex
 G7146,M_URI_in_FH_85ov,Males Unrelated individual living in family household Age 85 years and over,Tot_P_P|Tot_P_M|P_URI_in_FH_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7146,Relationship in Household by Age by Sex
 G7147,M_URI_in_FH_Tot,Males Unrelated individual living in family household Total,Tot_P_P|Tot_P_M|P_URI_in_FH_Tot,G23A,people,families|age_gender,Total|MALES,,7147,Relationship in Household by Age by Sex
-G7148,M_GrpH_Mem_0_14,Males Group household member Age 0 14 years,Tot_P_P|Tot_P_M|P_GrpH_Mem_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7148,Relationship in Household by Age by Sex
+G7148,M_GrpH_Mem_0_14,Males Group household member Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7148,Relationship in Household by Age by Sex
 G7149,M_GrpH_Mem_15_24,Males Group household member Age 15 24 years,Tot_P_P|Tot_P_M|P_GrpH_Mem_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7149,Relationship in Household by Age by Sex
 G7150,M_GrpH_Mem_25_34,Males Group household member Age 25 34 years,Tot_P_P|Tot_P_M|P_GrpH_Mem_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7150,Relationship in Household by Age by Sex
 G7151,M_GrpH_Mem_35_44,Males Group household member Age 35 44 years,Tot_P_P|Tot_P_M|P_GrpH_Mem_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7151,Relationship in Household by Age by Sex
@@ -7701,7 +7701,7 @@ G7154,M_GrpH_Mem_65_74,Males Group household member Age 65 74 years,Tot_P_P|Tot_
 G7155,M_GrpH_Mem_75_84,Males Group household member Age 75 84 years,Tot_P_P|Tot_P_M|P_GrpH_Mem_75_84,G23A,people,families|age_gender,75-84 years|MALES,,7155,Relationship in Household by Age by Sex
 G7156,M_GrpH_Mem_85ov,Males Group household member Age 85 years and over,Tot_P_P|Tot_P_M|P_GrpH_Mem_85ov,G23A,people,families|age_gender,85 years and over|MALES,,7156,Relationship in Household by Age by Sex
 G7157,M_GrpH_Mem_Tot,Males Group household member Total,Tot_P_P|Tot_P_M|P_GrpH_Mem_Tot,G23A,people,families|age_gender,Total|MALES,,7157,Relationship in Household by Age by Sex
-G7158,M_LonePsn_0_14,Males Lone person Age 0 14 years,Tot_P_P|Tot_P_M|P_LonePsn_0_14,G23A,people,families|age_gender,0-14 years|MALES,,7158,Relationship in Household by Age by Sex
+G7158,M_LonePsn_0_14,Males Lone person Age 0 14 years,Tot_P_P|Tot_P_M,G23A,people,families|age_gender,0-14 years|MALES,,7158,Relationship in Household by Age by Sex
 G7159,M_LonePsn_15_24,Males Lone person Age 15 24 years,Tot_P_P|Tot_P_M|P_LonePsn_15_24,G23A,people,families|age_gender,15-24 years|MALES,,7159,Relationship in Household by Age by Sex
 G7160,M_LonePsn_25_34,Males Lone person Age 25 34 years,Tot_P_P|Tot_P_M|P_LonePsn_25_34,G23A,people,families|age_gender,25-34 years|MALES,,7160,Relationship in Household by Age by Sex
 G7161,M_LonePsn_35_44,Males Lone person Age 35 44 years,Tot_P_P|Tot_P_M|P_LonePsn_35_44,G23A,people,families|age_gender,35-44 years|MALES,,7161,Relationship in Household by Age by Sex
