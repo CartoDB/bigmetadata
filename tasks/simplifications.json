@@ -74,6 +74,79 @@
 		"factor": "13"
 	},
 
+	"au.geo.importgeography_ced_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "7"
+	},
+	"au.geo.importgeography_gccsa_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_lga_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "17"
+	},
+	"au.geo.importgeography_poa_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "15"
+	},
+	"au.geo.importgeography_ra_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_sa1_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "11"
+	},
+	"au.geo.importgeography_sa2_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "11"
+	},
+	"au.geo.importgeography_sa3_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "11"
+	},
+	"au.geo.importgeography_sa4_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_mb_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_sed_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "11"
+	},
+	"au.geo.importgeography_sla_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "14"
+	},
+	"au.geo.importgeography_sos_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_sosr_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_ssc_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "13"
+	},
+	"au.geo.importgeography_ste_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"au.geo.importgeography_sua_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+	"au.geo.importgeography_ucl_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "13"
+	},
+
 	"BR": "-------------------------------------",
 
 	"br.geo.importgeography_distritos": {
