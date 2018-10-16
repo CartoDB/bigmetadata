@@ -81,8 +81,8 @@
     "SOSR": {
         "name": "Section of State Ranges",
         "weight": 4,
-        "region_col": "SOSR_CODE16",
-        "proper_name": "SOSR_NAME16"
+        "region_col": "SOSRCODE16",
+        "proper_name": "SOSRNAME16"
     },
     "UCL": {
         "name": "Urban Centres and Localities",
