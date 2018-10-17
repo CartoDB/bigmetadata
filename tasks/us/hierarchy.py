@@ -62,7 +62,7 @@ class DenormalizedUSHierarchy(Task):
         LOGGER.info('Creating table {table}'.format(table=self.output().table))
         query = '''
                 CREATE TABLE {output} AS
-                SELECT child_id, child_level, {get_parents_function}(child_id)
+                SELECT child_id, child_level, {get_parents_function}(child_id) parent_names
                 FROM {input};
                 '''.format(
                     output=self.output().table,
