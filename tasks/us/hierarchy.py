@@ -1,20 +1,14 @@
-from luigi import Task, WrapperTask, Parameter, IntParameter, ListParameter
-from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
+from luigi import WrapperTask
+from tasks.hierarchy import (DenormalizedHierarchy, Hierarchy, HierarchyChildParentsUnion, HierarchyInfoUnion,
+                             HierarchyChildParent, GetParentsFunction, LevelHierarchy, HierarchyChildParent, 
+                             LevelInfo, _YearGeographyTask)
 from tasks.base_tasks import TempTableTask
 from tasks.meta import current_session
-from tasks.targets import ConstraintExistsTarget
-from tasks.targets import PostgresTarget, PostgresFunctionTarget
+from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
-
-
-def _union_query(tables, output):
-    unions = ['SELECT * FROM {table}'.format(table=table.qualified_tablename)
-              for table in tables]
-    return 'CREATE TABLE {output} AS {unions}'.format(
-        output=output,
-        unions=' UNION ALL '.join(unions))
+COUNTRY = 'us'
 
 
 def _levels():
@@ -24,108 +18,38 @@ def _levels():
     return [level_info[0] for level_info in sorted_level_infos]
 
 
-class DenormalizedUSHierarchy(Task):
-    year = IntParameter()
+class USDenormalizedHierarchy(DenormalizedHierarchy):
+    @property
+    def _country(self):
+        return COUNTRY
 
     def requires(self):
         levels = _levels()
         return {
             'data': USHierarchy(year=self.year),
-            'function': GetParentsFunction(year=self.year),
+            'function': USGetParentsFunction(year=self.year),
             'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
         }
 
-    def _create_indexes(self, session):
-        LOGGER.info('Creating index on {table}'.format(table=self.output().table))
-        query = '''
-                CREATE INDEX idx_{tablename} ON {table} (child_id, child_level);
-                '''.format(
-                    tablename=self.output().tablename,
-                    table=self.output().table,
-                )
-        session.execute(query)
 
-        LOGGER.info('Clustering table {table}'.format(table=self.output().table))
-        query = '''
-                CLUSTER {table} USING idx_{tablename};
-                '''.format(
-                    tablename=self.output().tablename,
-                    table=self.output().table,
-                )
-        session.execute(query)
-
-        session.commit()
-
-    def run(self):
-        session = current_session()
-
-        LOGGER.info('Creating table {table}'.format(table=self.output().table))
-        query = '''
-                CREATE TABLE {output} AS
-                SELECT child_id, child_level, {get_parents_function}(child_id) parent_names
-                FROM {input};
-                '''.format(
-                    output=self.output().table,
-                    input=self.input()['rel'].table,
-                    get_parents_function=self.input()['function'].function,
-                )
-        session.execute(query)
-        session.commit()
-
-        self._create_indexes(session)
-
-    def output(self):
-        return PostgresTarget('tiler', 'us_dz_hierarchy_geonames_{year}'.format(year=self.year))
-
-
-class GetParentsFunction(Task):
-    year = IntParameter()
+class USGetParentsFunction(GetParentsFunction):
+    @property
+    def _country(self):
+        return COUNTRY
 
     def requires(self):
-        return USHierarchy(year=self.year)
-
-    def run(self):
-        session = current_session()
-        query = '''
-                CREATE OR REPLACE FUNCTION "{schema}".{function} (geoid TEXT)
-                RETURNS JSONB
-                AS $$
-                DECLARE
-                    children JSONB DEFAULT NULL;
-                BEGIN
-                    WITH RECURSIVE children(child_id, child_level, parent_id, parent_level, geoname) AS (
-                        SELECT child_id, child_level, parent_id, parent_level, null::text geoname
-                        FROM tiler.us_hierarchy_child_parents_{year}
-                        WHERE child_id = geoid
-                        UNION ALL
-                        SELECT p.child_id, p.child_level, p.parent_id, p.parent_level, n.geoname
-                        FROM tiler.us_hierarchy_child_parents_{year} p
-                        INNER JOIN children c ON c.parent_id = p.child_id AND c.parent_level = p.child_level
-                        LEFT JOIN tiler.us_hierarchy_geonames_{year} n ON p.parent_id = n.geoid
-                                                                      AND p.parent_level = n.level
-                    )
-                    SELECT ('{{' || string_agg('"' || parent_level || '": "' || geoname || '"', ',') || '}}')::JSONB
-                        INTO children
-                        FROM children
-                    WHERE geoname IS NOT NULL;
-
-                    RETURN children;
-                END
-                $$ LANGUAGE plpgsql PARALLEL SAFE;
-                '''.format(
-                    schema=self.output().schema,
-                    function=self.output().function_name,
-                    year=self.year,
-                )
-        session.execute(query)
-        session.commit()
-
-    def output(self):
-        return PostgresFunctionTarget('tiler', 'get_us_parents_{year}'.format(year=self.year))
+        levels = _levels()
+        return {
+            'data': USHierarchy(year=self.year),
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels),
+            'info': USHierarchyInfoUnion(year=self.year, levels=levels),
+        }
 
 
-class USHierarchy(Task):
-    year = IntParameter()
+class USHierarchy(Hierarchy):
+    @property
+    def _country(self):
+        return COUNTRY
 
     def requires(self):
         levels = _levels()
@@ -135,55 +59,21 @@ class USHierarchy(Task):
             'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
         }
 
-    def run(self):
-        session = current_session()
-        input_ = self.input()
-        session.execute('ALTER TABLE {rel_table} ADD '
-                        'CONSTRAINT ushierarchy_fk_child '
-                        'FOREIGN KEY (child_id, child_level) '
-                        'REFERENCES {info_table} (geoid, level) '.format(
-            rel_table=input_['rel'].qualified_tablename,
-            info_table=input_['info'].qualified_tablename))
-        session.execute('ALTER TABLE {rel_table} ADD '
-                        'CONSTRAINT ushierarchy_fk_parent '
-                        'FOREIGN KEY (parent_id, parent_level) '
-                        'REFERENCES {info_table} (geoid, level) '.format(
-            rel_table=input_['rel'].qualified_tablename,
-            info_table=input_['info'].qualified_tablename))
-        session.commit()
 
-    def output(self):
-        table = self.input()['info']
-        return ConstraintExistsTarget(table.schema, table.tablename,
-                                      'ushierarchy_fk_parent')
-
-
-class _YearLevelsTask:
-    year = IntParameter()
-    levels = ListParameter(significant=False)
-
-
-class USHierarchyInfoUnion(Task, _YearLevelsTask):
+class USHierarchyInfoUnion(HierarchyInfoUnion):
+    @property
+    def _country(self):
+        return COUNTRY
 
     def requires(self):
         return [USLevelInfo(year=self.year, geography=level)
                 for level in self.levels]
 
-    def run(self):
-        session = current_session()
-        tablename = self.output().qualified_tablename
-        session.execute(_union_query(self.input(), tablename))
-        alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY (geoid, level)'
-        session.execute(alter_sql.format(tablename=tablename))
-        session.commit()
 
-    def output(self):
-        return PostgresTarget(
-            'tiler',
-            'us_hierarchy_geonames_{year}'.format(year=self.year))
-
-
-class USHierarchyChildParentsUnion(Task, _YearLevelsTask):
+class USHierarchyChildParentsUnion(HierarchyChildParentsUnion):
+    @property
+    def _country(self):
+        return COUNTRY
 
     def requires(self):
         child_parents = self._child_parents()
@@ -195,45 +85,6 @@ class USHierarchyChildParentsUnion(Task, _YearLevelsTask):
                                        parent_geographies=child_parent[1])
                 for child_parent in child_parents]
         }
-
-    def _child_parents(self):
-        child_parents = []
-        previous = None
-        for idx, level in enumerate(self.levels):
-            if previous:
-                parents = self.levels[idx:]
-                if parents:
-                    child_parents.append([previous, parents])
-            previous = level
-        return child_parents
-
-    def run(self):
-        session = current_session()
-
-        table = self.output().tablename
-        qualified_table = self.output().qualified_tablename
-
-        union_sql = _union_query(self.input()['hierarchy'], qualified_table)
-        session.execute(union_sql)
-
-        delete_sql = 'DELETE FROM {qualified_table} WHERE parent_id IS NULL'
-        session.execute(delete_sql.format(qualified_table=qualified_table))
-
-        alter_sql = 'ALTER TABLE {qualified_table} ADD PRIMARY KEY ' \
-                    '(child_id, child_level, parent_id, parent_level)'
-        session.execute(alter_sql.format(qualified_table=qualified_table))
-
-        parent_index_sql = '''CREATE INDEX {table}_parent_idx
-                              ON {qualified_table} (parent_id, parent_level)
-            '''.format(table=table, qualified_table=qualified_table)
-        session.execute(parent_index_sql)
-
-        session.commit()
-
-    def output(self):
-        return PostgresTarget(
-            'tiler',
-            'us_hierarchy_child_parents_{year}'.format(year=self.year))
 
 
 GEOGRAPHIES_ABBREVIATIONS = {
@@ -253,20 +104,7 @@ def abbr_tablename(target, geographies, year):
     return target
 
 
-class USHierarchyChildParent(TempTableTask):
-    year = IntParameter()
-    current_geography = Parameter()
-    parent_geographies = ListParameter()
-
-    UNWEIGHTED_CHILD_SQL = """
-        SELECT DISTINCT child_id, child_level
-        FROM {table}
-        WHERE weight = 1
-        AND parent_id IS NOT NULL
-        GROUP BY child_id, child_level
-        HAVING count(1) > 1
-    """
-
+class USHierarchyChildParent(HierarchyChildParent):
     def requires(self):
         return {
             'level': USLevelHierarchy(year=self.year,
@@ -279,64 +117,8 @@ class USHierarchyChildParent(TempTableTask):
                              parent_geography in self.parent_geographies]
         }
 
-    def run(self):
-        session = current_session()
-        sql = '''
-            UPDATE {table}
-            SET weight = ST_Area(
-                ST_Intersection(cgt.the_geom, pgt.the_geom), False)
-            FROM
-                observatory.{current_geom_table} cgt,
-                observatory.{parent_geom_table} pgt
-            WHERE cgt.geoid = {table}.child_id
-              AND pgt.geoid = {table}.parent_id
-              AND (child_id, child_level) IN (
-              {unweighted_child_sql}
-        )
-        '''
-        table = self.input()['level'].qualified_tablename
-        for parent_geom in self.input()['parent_geoms']:
-            session.execute(
-                sql.format(
-                    table=table,
-                    current_geom_table=self.input()['current_geom'].get(
-                        session).tablename,
-                    parent_geom_table=parent_geom.get(
-                        session).tablename,
-                    unweighted_child_sql=self.UNWEIGHTED_CHILD_SQL.format(
-                        table=table)
-                )
-            )
 
-        create_sql = '''
-            CREATE TABLE {table} AS
-            SELECT DISTINCT ON (child_id, child_level)
-                child_id, child_level, parent_id, parent_level, weight
-            FROM {weighted_table}
-            ORDER BY child_id, child_level, weight desc
-        '''
-        session.execute(create_sql.format(
-            table=self.output().qualified_tablename,
-            weighted_table=self.input()['level'].qualified_tablename
-        ))
-        session.commit()
-
-    def complete(self):
-        try:
-            sql = self.UNWEIGHTED_CHILD_SQL.format(
-                table=self.input()['level'].qualified_tablename)
-            return len(current_session().execute(sql).fetchall()) == 0
-        except Exception as e:
-            # Table doesn't exist yet
-            LOGGER.debug("ERROR running complete")
-            return False
-
-
-class USLevelHierarchy(TempTableTask):
-    year = IntParameter()
-    current_geography = Parameter()
-    parent_geographies = ListParameter()
-
+class USLevelHierarchy(LevelHierarchy):
     def requires(self):
         return {
             'current_info': USLevelInfo(year=self.year,
@@ -356,88 +138,6 @@ class USLevelHierarchy(TempTableTask):
                               [self.current_geography, 'parents'],
                               self.year)
 
-    def run(self):
-        session = current_session()
-        input_ = self.input()
-        current_info_tablename = input_['current_info'].qualified_tablename
-        current_geom_table = input_['current_geom'].get(session)
-        parent_info_tablename = input_['parents_infos'][0].qualified_tablename
-        parent_geom_table = input_['parents_geoms'][0].get(session)
-
-        create_table_sql = '''
-        CREATE TABLE {output_table} AS
-        {child_parent_sql}
-        '''
-
-        # First creation will link child with direct parents and leave nulls
-        # for those that don't have.
-        session.execute(create_table_sql.format(
-            output_table=self.output().qualified_tablename,
-            child_parent_sql=self._CHILD_PARENT_SQL.format(
-                current_info_table=current_info_tablename,
-                current_geom_table=current_geom_table.tablename,
-                parent_info_table=parent_info_tablename,
-                parent_geom_table=parent_geom_table.tablename,
-                inner_or_left='LEFT')
-        ))
-
-        inputs = list(zip(input_['parents_infos'], input_['parents_geoms']))
-        for parent_info_geom in inputs[1:]:
-            # For those without parents, insert the next ones
-            parent_info_tablename = parent_info_geom[0].qualified_tablename
-            parent_geom_table = parent_info_geom[1].get(session)
-            fill_parents_sql = '''
-                INSERT INTO {output_table}
-                (child_id, child_level, parent_id, parent_level, weight)
-                {child_parent_sql}
-                INNER JOIN {output_table} ot ON ot.child_id = cit.geoid
-                                            AND ot.child_level = cit.level
-                WHERE ot.parent_id IS NULL
-            '''
-            session.execute(fill_parents_sql.format(
-                output_table=self.output().qualified_tablename,
-                child_parent_sql=self._CHILD_PARENT_SQL.format(
-                    current_info_table=current_info_tablename,
-                    current_geom_table=current_geom_table.tablename,
-                    parent_info_table=parent_info_tablename,
-                    parent_geom_table=parent_geom_table.tablename,
-                    inner_or_left='INNER')))
-
-            # ... and then, delete the rows with null parents for those
-            # child that have any parent
-            delete_non_orphans = '''
-                DELETE FROM {output_table} ot
-                WHERE ot.parent_id IS NULL
-                AND (child_id, child_level) IN (
-                    SELECT child_id, child_level
-                    FROM {output_table}
-                    WHERE parent_id IS NOT NULL
-            )
-            '''
-            session.execute(delete_non_orphans.format(
-                output_table=self.output().qualified_tablename))
-
-        session.commit()
-
-    _CHILD_PARENT_SQL = '''
-        SELECT
-            cit.geoid AS child_id,
-            cit.level AS child_level,
-            pgt.geoid AS parent_id,
-            pit.level AS parent_level,
-            1.0::FLOAT AS weight
-        FROM {current_info_table} cit
-        INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.geoid
-        {inner_or_left} JOIN observatory.{parent_geom_table} pgt
-            ON ST_Within(ST_PointOnSurface(cgt.the_geom), pgt.the_geom)
-        {inner_or_left} JOIN {parent_info_table} pit ON pgt.geoid = pit.geoid
-    '''
-
-
-class _YearGeographyTask:
-    year = IntParameter()
-    geography = Parameter()
-
 
 class USLevelInfo(WrapperTask, _YearGeographyTask):
     GEOGRAPHIES_WITHOUT_GEONAMES = ['zcta5']
@@ -454,61 +154,35 @@ class USLevelInfo(WrapperTask, _YearGeographyTask):
         return self.input()
 
 
-class USLevelInfoFromShorelineClip(TempTableTask, _YearGeographyTask):
-
+class USLevelInfoFromShorelineClip(LevelInfo):
     def requires(self):
         return ShorelineClip(year=self.year, geography=self.geography)
 
-    def run(self):
-        session = current_session()
+    @property
+    def _geoid_field(self):
+        return 'geoid'
 
-        names_table = self.input().get(session).tablename
-        output_table = self.output().qualified_tablename
-        output_tablename = self.output().tablename
+    @property
+    def _geoname_field(self):
+        return 'geoid'
 
-        sql = '''
-            CREATE TABLE {output_table} AS
-            SELECT n.geoid geoid, '{geography}' as level, n.geoid as name
-            FROM observatory.{names_table} n
-        '''
-        session.execute(
-            sql.format(output_table=output_table,
-                       geography=self.geography,
-                       names_table=names_table))
-        session.execute('''
-            CREATE INDEX {output_tablename}_idx ON {output_table} (geoid)
-        '''.format(output_table=output_table,
-                   output_tablename=output_tablename))
-        session.commit()
+    def target_tablename(self):
+        return abbr_tablename(super(USLevelInfoFromShorelineClip, self).target_tablename(),
+                              [self.geography], self.year)
 
 
-class USLevelInfoFromGeoNames(TempTableTask, _YearGeographyTask):
-
+class USLevelInfoFromGeoNames(LevelInfo):
     def requires(self):
         return GeoNamesTable(year=self.year, geography=self.geography)
 
+    @property
+    def _geoid_field(self):
+        return 'geoidsc'
+
+    @property
+    def _geoname_field(self):
+        return 'geoname'
+
     def target_tablename(self):
-        return abbr_tablename(
-            super(USLevelInfoFromGeoNames, self).target_tablename(),
-            [self.geography], self.year)
-
-    def run(self):
-        session = current_session()
-
-        names_table = self.input().get(session).tablename
-        output_table = self.output().qualified_tablename
-        output_tablename = self.output().tablename
-
-        session.execute(
-            '''
-                CREATE TABLE {output_table} AS
-                SELECT n.geoidsc geoid, '{geography}' as level, n.geoname
-                FROM observatory.{names_table} n
-            '''.format(output_table=output_table,
-                       geography=self.geography,
-                       names_table=names_table))
-        session.execute('''
-            CREATE INDEX {output_tablename}_idx ON {output_table} (geoid)
-        '''.format(output_table=output_table,
-                   output_tablename=output_tablename))
-        session.commit()
+        return abbr_tablename(super(USLevelInfoFromGeoNames, self).target_tablename(),
+                              [self.geography], self.year)
