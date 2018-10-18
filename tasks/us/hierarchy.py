@@ -1,9 +1,6 @@
 from luigi import WrapperTask
 from tasks.hierarchy import (DenormalizedHierarchy, Hierarchy, HierarchyChildParentsUnion, HierarchyInfoUnion,
-                             HierarchyChildParent, GetParentsFunction, LevelHierarchy, HierarchyChildParent, 
-                             LevelInfo, _YearGeographyTask)
-from tasks.base_tasks import TempTableTask
-from tasks.meta import current_session
+                             HierarchyChildParent, GetParentsFunction, LevelHierarchy, LevelInfo, _YearGeographyTask)
 from tasks.us.census.tiger import GeoNamesTable, ShorelineClip, SUMLEVELS
 from lib.logger import get_logger
 
