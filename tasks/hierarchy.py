@@ -8,14 +8,6 @@ from lib.logger import get_logger
 LOGGER = get_logger(__name__)
 
 
-def _union_query(tables, output):
-    unions = ['SELECT * FROM {table}'.format(table=table.qualified_tablename)
-              for table in tables]
-    return 'CREATE TABLE {output} AS {unions}'.format(
-        output=output,
-        unions=' UNION ALL '.join(unions))
-
-
 class _CountryTask:
     @property
     def _country(self):
@@ -145,6 +137,7 @@ class Hierarchy(Task, _CountryTask):
     def run(self):
         session = current_session()
         input_ = self.input()
+
         session.execute('ALTER TABLE {rel_table} ADD '
                         'CONSTRAINT {country}hierarchy_fk_parent '
                         'FOREIGN KEY (child_id, child_level) '
@@ -152,6 +145,7 @@ class Hierarchy(Task, _CountryTask):
                             rel_table=input_['rel'].qualified_tablename,
                             info_table=input_['info'].qualified_tablename,
                             country=self._country,))
+
         session.execute('ALTER TABLE {rel_table} ADD '
                         'CONSTRAINT {country}hierarchy_fk_child '
                         'FOREIGN KEY (parent_id, parent_level) '
@@ -179,10 +173,20 @@ class HierarchyInfoUnion(Task, _YearCountryLevelsTask):
         '''
         raise NotImplementedError('HierarchyInfoUnion must define requires()')
 
+    def _union_query(self, tables, output):
+        unions = ['''SELECT geoid, level, string_agg(geoname, ', ') geoname
+                     FROM {table}
+                     GROUP BY geoid, level'''.format(table=table.qualified_tablename)
+                  for table in tables]
+        return 'CREATE TABLE {output} AS {unions}'.format(
+            output=output,
+            unions=' UNION ALL '.join(unions))
+
     def run(self):
         session = current_session()
         tablename = self.output().qualified_tablename
-        session.execute(_union_query(self.input(), tablename))
+
+        session.execute(self._union_query(self.input(), tablename))
         alter_sql = 'ALTER TABLE {tablename} ADD PRIMARY KEY (geoid, level)'
         session.execute(alter_sql.format(tablename=tablename))
         session.commit()
@@ -213,13 +217,20 @@ class HierarchyChildParentsUnion(Task, _YearCountryLevelsTask):
             previous = level
         return child_parents
 
+    def _union_query(self, tables, output):
+        unions = ['SELECT * FROM {table}'.format(table=table.qualified_tablename)
+                  for table in tables]
+        return 'CREATE TABLE {output} AS {unions}'.format(
+            output=output,
+            unions=' UNION ALL '.join(unions))
+
     def run(self):
         session = current_session()
 
         table = self.output().tablename
         qualified_table = self.output().qualified_tablename
 
-        union_sql = _union_query(self.input()['hierarchy'], qualified_table)
+        union_sql = self._union_query(self.input()['hierarchy'], qualified_table)
         session.execute(union_sql)
 
         delete_sql = 'DELETE FROM {qualified_table} WHERE parent_id IS NULL'
@@ -283,8 +294,8 @@ class HierarchyChildParent(TempTableTask):
             FROM
                 observatory.{current_geom_table} cgt,
                 observatory.{parent_geom_table} pgt
-            WHERE cgt.{current_geod_field} = {table}.child_id
-              AND pgt.{parent_geod_field} = {table}.parent_id
+            WHERE cgt.{current_geoid_field} = {table}.child_id
+              AND pgt.{parent_geoid_field} = {table}.parent_id
               AND (child_id, child_level) IN (
               {unweighted_child_sql}
         )
@@ -298,8 +309,8 @@ class HierarchyChildParent(TempTableTask):
                         session).tablename,
                     parent_geom_table=parent_geom.get(
                         session).tablename,
-                    current_geod_field=self._current_geoid_field,
-                    parent_geod_field=self._parent_geoid_field,
+                    current_geoid_field=self._current_geoid_field,
+                    parent_geoid_field=self._parent_geoid_field,
                     unweighted_child_sql=self.UNWEIGHTED_CHILD_SQL.format(
                         table=table)
                 )
@@ -344,6 +355,10 @@ class LevelHierarchy(TempTableTask):
         '''
         raise NotImplementedError('LevelHierarchy must define requires()')
 
+    @property
+    def _geoid_field(self):
+        return 'geoid'
+
     def run(self):
         session = current_session()
         input_ = self.input()
@@ -366,7 +381,8 @@ class LevelHierarchy(TempTableTask):
                 current_geom_table=current_geom_table.tablename,
                 parent_info_table=parent_info_tablename,
                 parent_geom_table=parent_geom_table.tablename,
-                inner_or_left='LEFT')
+                geoid_field=self._geoid_field,
+                inner_or_left='LEFT',)
         ))
 
         inputs = list(zip(input_['parents_infos'], input_['parents_geoms']))
@@ -384,11 +400,13 @@ class LevelHierarchy(TempTableTask):
             '''
             session.execute(fill_parents_sql.format(
                 output_table=self.output().qualified_tablename,
+                geoid_field=self._geoid_field,
                 child_parent_sql=self._CHILD_PARENT_SQL.format(
                     current_info_table=current_info_tablename,
                     current_geom_table=current_geom_table.tablename,
                     parent_info_table=parent_info_tablename,
                     parent_geom_table=parent_geom_table.tablename,
+                    geoid_field=self._geoid_field,
                     inner_or_left='INNER')))
 
             # ... and then, delete the rows with null parents for those
@@ -411,14 +429,14 @@ class LevelHierarchy(TempTableTask):
         SELECT
             cit.geoid AS child_id,
             cit.level AS child_level,
-            pgt.geoid AS parent_id,
+            pgt.{geoid_field} AS parent_id,
             pit.level AS parent_level,
             1.0::FLOAT AS weight
         FROM {current_info_table} cit
-        INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.geoid
+        INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.{geoid_field}
         {inner_or_left} JOIN observatory.{parent_geom_table} pgt
             ON ST_Within(ST_PointOnSurface(cgt.the_geom), pgt.the_geom)
-        {inner_or_left} JOIN {parent_info_table} pit ON pgt.geoid = pit.geoid
+        {inner_or_left} JOIN {parent_info_table} pit ON pgt.{geoid_field} = pit.geoid
     '''
 
 
