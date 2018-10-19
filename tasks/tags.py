@@ -71,7 +71,7 @@ class LicenseTags(TagsTask):
 class UnitTags(TagsTask):
 
     def version(self):
-        return 10
+        return 11
 
     def tags(self):
         return [
@@ -111,10 +111,14 @@ class UnitTags(TagsTask):
                    name='Days',
                    type='unit',
                    description=''),
-           OBSTag(id='nights',
-                  name='Nights',
-                  type='unit',
-                  description=''),
+            OBSTag(id='weeks',
+                   name='Weeks',
+                   type='unit',
+                   description=''),
+            OBSTag(id='nights',
+                   name='Nights',
+                   type='unit',
+                   description=''),
             OBSTag(id='telephones',
                    name='Telephones',
                    type='unit',

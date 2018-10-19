@@ -1811,7 +1811,8 @@ class InterpolationTask(BaseInterpolationTask):
 class CoupledInterpolationTask(BaseInterpolationTask):
     '''
     This task interpolates the data for one geography level from the data/geometries from
-    another geography level when both layers are coupled.
+    another geography level when both layers are coupled and the target geometries are bigger
+    than the source ones.
     Calculating the measurements for the target layer is a matter of adding up the values
     from the source layer.
     '''
@@ -1836,6 +1837,54 @@ class CoupledInterpolationTask(BaseInterpolationTask):
                     output=self.output().table,
                     out_colnames=', '.join(colnames),
                     sum_colnames=', '.join(['sum({x}) {x}'.format(x=x) for x in colnames]),
+                    source_data_table=input_['source_data'].table,
+                    source_geom_table=input_['source_geom'].table,
+                    target_geom_table=input_['target_geom'].table,
+                    target_data_geoid=interpolation_params['target_data_geoid'],
+                    target_geom_geoid=interpolation_params['target_geom_geoid'],
+                    source_data_geoid=interpolation_params['source_data_geoid'],
+                    source_geom_geoid=interpolation_params['source_geom_geoid'],
+                    source_geom_geomfield=interpolation_params['source_geom_geomfield'],
+                    target_geom_geomfield=interpolation_params['target_geom_geomfield'],
+                )
+
+        current_session().execute(stmt)
+
+
+class ReverseCoupledInterpolationTask(BaseInterpolationTask):
+    '''
+    This task interpolates the data for one geography level from the data/geometries from
+    another geography level when both layers are coupled and the source geometries are bigger
+    than the target ones.
+    Calculating the measurements for the target layer is a matter of weighting the measurements
+    by the relation between the area of the target geometries and the area of the source ones.
+    '''
+
+    def populate(self):
+        input_ = self.input()
+        interpolation_params = self.get_interpolation_parameters()
+
+        colnames = [x for x in list(self.columns().keys()) if x.lower() != interpolation_params['target_geom_geoid']]
+
+        stmt = '''
+                INSERT INTO {output} ({target_data_geoid}, {out_colnames})
+                SELECT target_geom_table.{target_geom_geoid}, {ratio_colnames}
+                  FROM {source_data_table} source_data_table,
+                       {source_geom_table} source_geom_table,
+                       {target_geom_table} target_geom_table
+                 WHERE source_geom_table.{source_geom_geoid} = source_data_table.{source_data_geoid}
+                   AND ST_Intersects(source_geom_table.{source_geom_geomfield},
+                                     ST_PointOnSurface(target_geom_table.{target_geom_geomfield}))
+               '''.format(
+                    output=self.output().table,
+                    out_colnames=', '.join(colnames),
+                    ratio_colnames=', '.join(['''
+                                              ROUND(({x} * (ST_Area(target_geom_table.{geo_t}) /
+                                                            ST_Area(source_geom_table.{geo_s})))::numeric, 2) {x}
+                                              '''.format(x=x,
+                                                         geo_s=interpolation_params['source_geom_geomfield'],
+                                                         geo_t=interpolation_params['target_geom_geomfield'])
+                                              for x in colnames]),
                     source_data_table=input_['source_data'].table,
                     source_geom_table=input_['source_geom'].table,
                     target_geom_table=input_['target_geom'].table,

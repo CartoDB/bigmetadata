@@ -1,87 +1,82 @@
 import os
 import csv
 import re
+import glob
+import json
 
-from luigi import Parameter, WrapperTask
+from luigi import Parameter, IntParameter, WrapperTask
 from collections import OrderedDict
 
 from lib.timespan import get_timespan
-from tasks.util import shell, copyfile
 from tasks.base_tasks import ColumnsTask, RepoFileUnzipTask, TableTask, CSV2TempTableTask, MetaWrapper
 from tasks.meta import current_session, OBSColumn, GEOM_REF
 from tasks.au.geo import (SourceTags, LicenseTags, GEOGRAPHIES, GeographyColumns, Geography, GEO_MB, GEO_SA1)
 from tasks.tags import SectionTags, SubsectionTags, UnitTags
+from lib.columns import ColumnsDeclarations
 
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
-PROFILES = (
-    'BCP',
-)
+PROFILES = {
+    2011: 'BCP',
+    2016: 'GCP',
+}
 
-STATES = (
-    # 'AUST',
-    'NSW',
-    'Vic',
-    'Qld',
-    'SA',
-    'WA',
-    'Tas',
-    'NT',
-    'ACT',
-    'OT',
-)
+STATES = ('NSW', 'Vic', 'Qld', 'SA', 'WA', 'Tas', 'NT', 'ACT', 'OT', )
 
-TABLES = ['B01','B02','B03','B04A','B04B','B05','B06','B07','B08A','B08B','B09','B10A','B10B','B10C','B11A','B11B','B12A','B12B','B13','B14','B15','B16A','B16B','B17A','B17B','B18','B19','B20A','B20B','B21','B22A','B22B','B23A','B23B','B24','B25','B26','B27','B28','B29','B30','B31','B32','B33','B34','B35','B36','B37','B38','B39','B40A','B40B','B41A','B41B','B41C','B42A','B42B','B43A','B43B','B43C','B43D','B44A','B44B','B45A','B45B','B46',]
+TABLES = {
+    2011: ['B01', 'B02', 'B03', 'B04A', 'B04B', 'B05', 'B06', 'B07', 'B08A', 'B08B', 'B09', 'B10A', 'B10B', 'B10C',
+           'B11A', 'B11B', 'B12A', 'B12B', 'B13', 'B14', 'B15', 'B16A', 'B16B', 'B17A', 'B17B', 'B18', 'B19',
+           'B20A', 'B20B', 'B21', 'B22A', 'B22B', 'B23A', 'B23B', 'B24', 'B25', 'B26', 'B27', 'B28', 'B29', 'B30',
+           'B31', 'B32', 'B33', 'B34', 'B35', 'B36', 'B37', 'B38', 'B39', 'B40A', 'B40B', 'B41A', 'B41B', 'B41C',
+           'B42A', 'B42B', 'B43A', 'B43B', 'B43C', 'B43D', 'B44A', 'B44B', 'B45A', 'B45B', 'B46', ],
+    2016: ['G01', 'G02', 'G03', 'G04A', 'G04B', 'G05', 'G06', 'G07', 'G08',
+           'G09A', 'G09B', 'G09C', 'G09D', 'G09E', 'G09F', 'G09G', 'G09H', 'G10A', 'G10B', 'G10C',
+           'G11A', 'G11B', 'G11C', 'G12A', 'G12B', 'G13A', 'G13B', 'G13C', 'G14', 'G15', 'G16A', 'G16B',
+           'G17A', 'G17B', 'G17C', 'G18', 'G19', 'G20A', 'G20B', 'G21', 'G22A', 'G22B', 'G23A', 'G23B', 'G24', 'G25',
+           'G26', 'G27', 'G28', 'G29', 'G30', 'G31', 'G32', 'G33', 'G34', 'G35', 'G36', 'G37', 'G38', 'G39', 'G40',
+           'G41', 'G42', 'G43A', 'G43B', 'G44A', 'G44B', 'G44C', 'G44D', 'G44E', 'G44F', 'G45A', 'G45B', 'G46A', 'G46B',
+           'G47A', 'G47B', 'G47C', 'G48A', 'G48B', 'G48C', 'G49A', 'G49B', 'G49C', 'G50A', 'G50B', 'G50C',
+           'G51A', 'G51B', 'G51C', 'G51D', 'G52A', 'G52B', 'G52C', 'G52D', 'G53A', 'G53B', 'G54A', 'G54B',
+           'G55A', 'G55B', 'G56A', 'G56B', 'G57A', 'G57B', 'G58A', 'G58B', 'G59', ]
+}
 
-
-URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_{header}-header.zip'
+URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_short-header.zip'
 
 
 class DownloadData(RepoFileUnzipTask):
-
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
     profile = Parameter()
     state = Parameter()
-    header = Parameter()
 
     def get_url(self):
         return URL.format(year=self.year,
                           profile=self.profile,
                           resolution=self.resolution,
-                          state=self.state,
-                          header=self.header)
+                          state=self.state,)
 
 
 class ImportData(CSV2TempTableTask):
-
     tablename = Parameter()
-
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
     state = Parameter()
-    profile = Parameter(default='BCP')
-    header = Parameter(default='short')
+    profile = Parameter()
 
     def requires(self):
         return DownloadData(resolution=self.resolution, profile=self.profile,
-                            state=self.state, year=self.year, header=self.header)
+                            state=self.state, year=self.year)
 
     def input_csv(self):
-        cmd = 'find {path} -name \'{year}Census_{tablename}_{state}_{resolution}_{header}.csv\''.format(
-            path=self.input().path,
-            year=self.year,
-            tablename=self.tablename,
-            state=self.state.upper(),
-            resolution=self.resolution,
-            header=self.header,
-            )
-        path = shell(cmd)
-        path = path.strip()
-
-        return path
+        return glob.glob(os.path.join(self.input().path, '**',
+                                      '{year}Census_{tablename}_{state}_{resolution}*.csv'.format(
+                                        path=self.input().path,
+                                        year=self.year,
+                                        tablename=self.tablename,
+                                        state=self.state.upper(),
+                                        resolution=self.resolution,)), recursive=True)[0]
 
     def after_copy(self):
         session = current_session()
@@ -108,20 +103,18 @@ class ImportData(CSV2TempTableTask):
 
 
 class ImportAllTables(WrapperTask):
-
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
     state = Parameter()
 
     def requires(self):
-        for table in TABLES:
+        for table in TABLES[self.year]:
             yield ImportData(resolution=self.resolution, state=self.state,
                              year=self.year, tablename=table)
 
 
 class ImportAllStates(WrapperTask):
-
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def requires(self):
@@ -131,28 +124,26 @@ class ImportAllStates(WrapperTask):
 
 
 class ImportAllResolutions(WrapperTask):
-
-    year = Parameter()
+    year = IntParameter()
     state = Parameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             yield ImportAllTables(resolution=resolution, state=self.state, year=self.year)
 
 
 class ImportAll(WrapperTask):
-
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
+        for resolution in GEOGRAPHIES[self.year]:
             for state in STATES:
                 yield ImportAllTables(resolution=resolution, state=state, year=self.year)
 
 
 class Columns(ColumnsTask):
-
-    year = Parameter()
+    year = IntParameter()
+    resolution = Parameter()
     profile = Parameter()
     tablename = Parameter()
 
@@ -164,79 +155,13 @@ class Columns(ColumnsTask):
             'source': SourceTags(),
             'license': LicenseTags()
         }
-        # all tables except B01 require B01
-        if self.tablename != 'B01':
-            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
-        if self.tablename == 'B02':
-            requirements['B01'] = Columns(tablename='B01', year=self.year, profile=self.profile)
-            requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
-        if self.tablename == 'B04A':
-            requirements['B04B'] = Columns(tablename='B04B', year=self.year, profile=self.profile)
-        if self.tablename == 'B08A':
-            requirements['B08B'] = Columns(tablename='B08B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B10A':
-            requirements['B10B'] = Columns(tablename='B10B', year=self.year, profile=self.profile)
-            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
-        if self.tablename == 'B10B':
-            requirements['B10C'] = Columns(tablename='B10C', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B11A':
-            requirements['B11B'] = Columns(tablename='B11B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B12A':
-            requirements['B12B'] = Columns(tablename='B12B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B16A':
-            requirements['B16B'] = Columns(tablename='B16B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B17A':
-            requirements['B17B'] = Columns(tablename='B17B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B20A':
-            requirements['B20B'] = Columns(tablename='B20B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B22A':
-            requirements['B22B'] = Columns(tablename='B22B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B23A':
-            requirements['B23B'] = Columns(tablename='B23B', year=self.year, profile=self.profile)
-
-        pattern = re.compile('B2[6-8]')
-        if pattern.match(self.tablename):
-            requirements['B25'] = Columns(tablename='B25', year=self.year, profile=self.profile)
-
-        pattern = re.compile('B3[1-6]')
-        if pattern.match(self.tablename):
-            requirements['B29'] = Columns(tablename='B29', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B40A':
-            requirements['B40B'] = Columns(tablename='B40B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B42A':
-            requirements['B42B'] = Columns(tablename='B42B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B44A':
-            requirements['B44B'] = Columns(tablename='B44B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B45A':
-            requirements['B45B'] = Columns(tablename='B45B', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B41A':
-            requirements['B41B'] = Columns(tablename='B41B', year=self.year, profile=self.profile)
-            requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
-        if self.tablename == 'B41B':
-            requirements['B41C'] = Columns(tablename='B41C', year=self.year, profile=self.profile)
-
-        if self.tablename == 'B43A':
-            requirements['B43B'] = Columns(tablename='B43B', year=self.year, profile=self.profile)
-            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
-        if self.tablename == 'B43B':
-            requirements['B43C'] = Columns(tablename='B43C', year=self.year, profile=self.profile)
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
-        if self.tablename == 'B43C':
-            requirements['B43D'] = Columns(tablename='B43D', year=self.year, profile=self.profile)
+        reqs = self._fetch_requirements()
+        col_reqs = reqs.get('all', [])
+        col_reqs.extend(reqs.get(self.tablename, []))
+        for col_req in col_reqs:
+            if col_req != self.tablename:
+                requirements[col_req] = Columns(tablename=col_req, resolution=self.resolution,
+                                                year=self.year, profile=self.profile)
 
         return requirements
 
@@ -255,57 +180,35 @@ class Columns(ColumnsTask):
 
         # column req's from other tables
         column_reqs = {}
-        column_reqs.update(input_.get('B01', {}))
-        column_reqs.update(input_.get('B02', {}))
-        column_reqs.update(input_.get('B04B', {}))
-        column_reqs.update(input_.get('B08B', {}))
-        column_reqs.update(input_.get('B10B', {}))
-        column_reqs.update(input_.get('B10C', {}))
-        column_reqs.update(input_.get('B11B', {}))
-        column_reqs.update(input_.get('B12B', {}))
-        column_reqs.update(input_.get('B16B', {}))
-        column_reqs.update(input_.get('B17B', {}))
-        column_reqs.update(input_.get('B20B', {}))
-        column_reqs.update(input_.get('B22B', {}))
-        column_reqs.update(input_.get('B23B', {}))
-        column_reqs.update(input_.get('B25', {}))
-        column_reqs.update(input_.get('B29', {}))
-        column_reqs.update(input_.get('B40B', {}))
-        column_reqs.update(input_.get('B42B', {}))
-        column_reqs.update(input_.get('B44B', {}))
-        column_reqs.update(input_.get('B45B', {}))
-        column_reqs.update(input_.get('B41B', {}))
-        column_reqs.update(input_.get('B41C', {}))
-        column_reqs.update(input_.get('B43B', {}))
-        column_reqs.update(input_.get('B43C', {}))
-        column_reqs.update(input_.get('B43D', {}))
+        for key, value in input_.items():
+            if key.startswith(self.profile[0]):
+                column_reqs.update(value)
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
 
         session = current_session()
-        with open(os.path.join(os.path.dirname(__file__),filepath)) as csv_meta_file:
+        with open(os.path.join(os.path.dirname(__file__), filepath)) as csv_meta_file:
             reader = csv.reader(csv_meta_file, delimiter=',', quotechar='"')
 
             for line in reader:
-                if not line[0].startswith('B'):
-                    continue
+                id_ = line[0]               # A: Sequential
+                tablename = line[4]         # H: Tablename
 
                 # ignore tables we don't care about right now
-                if not line[4].startswith(self.tablename):
+                if not id_.startswith(self.profile[0]) or \
+                   not tablename.startswith(self.tablename):
                     continue
 
-                col_id = line[1]            #B: short
-                col_name = line[2]          #C: name
-                denominators = line[3]      #D: denominators
-                tablename = line[4]         #H: Tablename
-                col_unit = line[5]          #F: unit
-                col_subsections = line[6]   #G: subsection
-                desc = line[7]              #H: Column heading description in profile
-                if tablename == 'B02':
-                    col_agg = line[8]       #I: AGG (for B02 only)
+                col_id = line[1]            # B: short
+                col_name = line[2]          # C: name
+                denominators = line[3]      # D: denominators
+                col_unit = line[5]          # F: unit
+                col_subsections = line[6]   # G: subsection
+                if tablename == '{}02'.format(self.profile[0]):
+                    col_agg = line[8]       # I: AGG (for B02 only)
                 else:
                     col_agg = None
-                tabledesc = line[10]             #K: Table description
+                tabledesc = line[10]        # K: Table description
 
                 denominators = denominators.split('|')
 
@@ -323,6 +226,7 @@ class Columns(ColumnsTask):
                         targets_dict[column_reqs[denom_id].get(session)] = reltype
                     else:
                         targets_dict[cols[denom_id]] = reltype
+
                 targets_dict.pop(None, None)
 
                 cols[col_id] = OBSColumn(
@@ -347,16 +251,42 @@ class Columns(ColumnsTask):
                     subsection_tag = subsectiontags[subsection]
                     cols[col_id].tags.append(subsection_tag)
 
-        return cols
+        columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
+        parameters = '{{"year":"{year}","resolution":"{resolution}", "tablename":"{tablename}"}}'.format(
+                        year=self.year, resolution=self.resolution, tablename=self.tablename)
+        filtered_cols = columnsFilter.filter_columns(cols, parameters)
+
+        return filtered_cols
+
+    def _fetch_requirements(self):
+        dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meta')
+        with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
+            return json.load(f)
+
+
+class AllColumnsResolution(WrapperTask):
+    year = IntParameter()
+    resolution = Parameter()
+
+    def requires(self):
+        for table in TABLES[self.year]:
+            yield Columns(year=self.year, resolution=self.resolution, profile=PROFILES[self.year], tablename=table)
+
+
+class AllColumns(WrapperTask):
+    year = IntParameter()
+
+    def requires(self):
+        for resolution in GEOGRAPHIES[self.year]:
+            yield AllColumnsResolution(year=self.year, resolution=resolution)
 
 
 #####################################
 # COPY TO OBSERVATORY
 #####################################
-class BCP(TableTask):
-
+class XCP(TableTask):
     tablename = Parameter()
-    year = Parameter()
+    year = IntParameter()
     resolution = Parameter()
 
     def version(self):
@@ -370,22 +300,23 @@ class BCP(TableTask):
     def requires(self):
         requirements = {
             'geo': Geography(resolution=self.resolution, year=self.year),
-            'geometa': GeographyColumns(resolution=self.resolution),
-            'meta': Columns(year=self.year, profile='BCP', tablename=self.tablename),
+            'geometa': GeographyColumns(resolution=self.resolution, year=self.year),
+            'meta': Columns(year=self.year, resolution=self.resolution,
+                            profile=PROFILES[self.year], tablename=self.tablename),
         }
         import_data = {}
         if self.resolution == GEO_MB:
             # We need to have the data from the parent geometries
             # in order to interpolate
             requirements['geo_sa1'] = Geography(resolution=GEO_SA1, year=self.year)
-            requirements['data'] = BCP(tablename=self.tablename, year=self.year, resolution=GEO_SA1)
+            requirements['data'] = XCP(tablename=self.tablename, year=self.year, resolution=GEO_SA1)
         else:
             for state in STATES:
                 import_data[state] = ImportData(resolution=self.resolution,
-                                                state=state, profile='BCP',
+                                                state=state, profile=PROFILES[self.year],
                                                 tablename=self.tablename,
                                                 year=self.year)
-            requirements['data'] = import_data,
+            requirements['data'] = import_data
         return requirements
 
     def table_timespan(self):
@@ -398,6 +329,17 @@ class BCP(TableTask):
         for colname, coltarget in input_['meta'].items():
             cols[colname] = coltarget
         return cols
+
+    def _get_geoid(self):
+        if self.year == 2011:
+            return 'region_id'
+        else:
+            if self.resolution == 'SA1':
+                return '{}_{}_{}'.format(self.resolution, '7DIGITCODE', self.year)
+            elif self.resolution == 'SA2':
+                return '{}_{}_{}'.format(self.resolution, 'MAINCODE', self.year)
+            else:
+                return '{}_{}_{}'.format(self.resolution, 'CODE', self.year)
 
     def populate(self):
         if self.resolution == GEO_MB:
@@ -445,26 +387,26 @@ class BCP(TableTask):
 
                 # weird trailing underscore for australia but no states
                 if colname.endswith('Median_rent_weekly_') and \
-                   ((self.resolution == 'RA' and state.lower() != 'aust') or \
-                    (self.resolution == 'SA4' and state.lower() in ('vic', 'wa', 'ot')) or \
-                    (self.resolution == 'SA3' and state.lower() in ('vic', 'wa')) or \
-                    (self.resolution == 'SA2' and state.lower() in ('vic', 'wa', 'nsw')) or \
-                    (self.resolution == 'SA1' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or \
-                    (self.resolution == 'GCCSA' and state.lower() in ('vic', 'wa', 'ot')) or \
-                    (self.resolution == 'LGA' and state.lower() in ('wa')) or \
-                    (self.resolution == 'SLA' and state.lower() in ('wa')) or \
-                    (self.resolution == 'SSC' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or \
-                    (self.resolution == 'POA' and state.lower() in ('wa', 'qld', 'nsw')) or \
-                    (self.resolution == 'CED' and state.lower() in ('vic', 'wa')) or \
+                   ((self.resolution == 'RA' and state.lower() != 'aust') or
+                    (self.resolution == 'SA4' and state.lower() in ('vic', 'wa', 'ot')) or
+                    (self.resolution == 'SA3' and state.lower() in ('vic', 'wa')) or
+                    (self.resolution == 'SA2' and state.lower() in ('vic', 'wa', 'nsw')) or
+                    (self.resolution == 'SA1' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or
+                    (self.resolution == 'GCCSA' and state.lower() in ('vic', 'wa', 'ot')) or
+                    (self.resolution == 'LGA' and state.lower() in ('wa')) or
+                    (self.resolution == 'SLA' and state.lower() in ('wa')) or
+                    (self.resolution == 'SSC' and state.lower() in ('vic', 'wa', 'qld', 'nt', 'sa', 'nsw')) or
+                    (self.resolution == 'POA' and state.lower() in ('wa', 'qld', 'nsw')) or
+                    (self.resolution == 'CED' and state.lower() in ('vic', 'wa')) or
                     (self.resolution == 'SED' and state.lower() in ('wa', 'ot'))):
-                    colname = colname.replace('Median_rent_weekly_', 'Median_rent_weekly')
+                        colname = colname.replace('Median_rent_weekly_', 'Median_rent_weekly')
 
-                in_colnames.append('"{}"::{}'.format(
+                in_colnames.append('NULLIF("{}", \'..\')::{}'.format(
                     colname.replace(self.tablename + '_', ''),
                     target.get(session).type)
                 )
 
-            in_colnames[0] = '"region_id"'
+            in_colnames[0] = '"{}"'.format(self._get_geoid())
 
             cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
                   'SELECT {in_colnames} FROM {input} '.format(
@@ -475,6 +417,7 @@ class BCP(TableTask):
             try:
                 session.execute(cmd)
             except Exception as err:
+                LOGGER.error(err)
                 failstates.append(state)
                 session.rollback()
         if failstates:
@@ -482,45 +425,34 @@ class BCP(TableTask):
                 failstates, self.resolution, self.tablename))
 
 
-class BCPAllTables(WrapperTask):
-
-    year = Parameter()
+class XCPAllTables(WrapperTask):
+    year = IntParameter()
     resolution = Parameter()
 
     def requires(self):
-        for table in TABLES:
-            yield BCP(resolution=self.resolution, tablename=table, year=self.year)
+        for table in TABLES[self.year]:
+            yield XCP(resolution=self.resolution, tablename=table, year=self.year)
 
 
-class BCPAllGeographiesAllTables(WrapperTask):
-
-    year = Parameter()
-
-    def requires(self):
-        for resolution in GEOGRAPHIES:
-            yield BCPAllTables(resolution=resolution, year=self.year)
-
-
-class BCPAllColumns(WrapperTask):
-
-    year = Parameter()
+class XCPAllGeographiesAllTables(WrapperTask):
+    year = IntParameter()
 
     def requires(self):
-        for table in TABLES:
-            yield Columns(profile='BCP', tablename=table, year=self.year)
+        for resolution in GEOGRAPHIES[self.year]:
+            yield XCPAllTables(resolution=resolution, year=self.year)
 
-class BCPMetaWrapper(MetaWrapper):
 
+class XCPMetaWrapper(MetaWrapper):
     resolution = Parameter()
     table = Parameter()
-    year = Parameter()
+    year = IntParameter()
 
     params = {
-        'resolution': GEOGRAPHIES,
-        'table': TABLES,
-        'year':['2011']
+        'resolution': GEOGRAPHIES[2011],
+        'table': TABLES[2011],
+        'year': [2011]
     }
 
     def tables(self):
         yield Geography(resolution=self.resolution, year=self.year)
-        yield BCP(resolution=self.resolution, tablename=self.table, year=self.year)
+        yield XCP(resolution=self.resolution, tablename=self.table, year=self.year)

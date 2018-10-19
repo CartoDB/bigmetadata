@@ -1,0 +1,105 @@
+{
+    "STE": {
+        "name": "State/Territory",
+        "weight": 17,
+        "region_col": "STATE_CODE",
+        "proper_name": "STATE_NAME"
+    },
+    "SA4": {
+        "name": "Statistical Area Level 4",
+        "weight": 16,
+        "region_col": "SA4_CODE",
+        "proper_name": "SA4_NAME"
+    },
+    "SA3": {
+        "name": "Statistical Area Level 3",
+        "weight": 15,
+        "region_col": "SA3_CODE",
+        "proper_name": "SA3_NAME"
+    },
+    "SA2": {
+        "name": "Statistical Area Level 2",
+        "weight": 14,
+        "region_col": "SA2_MAIN",
+        "proper_name": "SA2_NAME"
+    },
+    "SA1": {
+        "name": "Statistical Area Level 1",
+        "weight": 13,
+        "region_col": "SA1_7DIGIT",
+        "proper_name": "STATE_NAME"
+    },
+    "MB": {
+        "name": "Mesh blocks",
+        "weight": 13,
+        "region_col": "MB_CODE16",
+        "proper_name": "SA2_NAME16",
+        "parent_col": "SA1_7DIG16"
+    },
+    "GCCSA": {
+        "name": "Greater Capital City Statistical Areas",
+        "weight": 12,
+        "region_col": "GCCSA_CODE",
+        "proper_name": "GCCSA_NAME"
+    },
+    "LGA": {
+        "name": "Local Government Areas",
+        "weight": 11,
+        "region_col": "LGA_CODE",
+        "proper_name": "LGA_NAME"
+    },
+    "SSC": {
+        "name": "State Suburbs",
+        "weight": 9,
+        "region_col": "SSC_CODE",
+        "proper_name": "SSC_NAME"
+    },
+    "POA": {
+        "name": "Postal Areas",
+        "weight": 8,
+        "region_col": "POA_CODE",
+        "proper_name": "POA_NAME"
+    },
+    "CED": {
+        "name": "Commonwealth Electoral Divisions",
+        "weight": 7,
+        "region_col": "CED_CODE",
+        "proper_name": "CED_NAME"
+    },
+    "SED": {
+        "name": "State Electoral Divisions",
+        "weight": 6,
+        "region_col": "SED_CODE",
+        "proper_name": "SED_NAME"
+    },
+    "SOS": {
+        "name": "Section of State",
+        "weight": 5,
+        "region_col": "SOS_CODE16",
+        "proper_name": "SOS_NAME16"
+    },
+    "SOSR": {
+        "name": "Section of State Ranges",
+        "weight": 4,
+        "region_col": "SOSRCODE16",
+        "proper_name": "SOSRNAME16"
+    },
+    "UCL": {
+        "name": "Urban Centres and Localities",
+        "weight": 3,
+        "region_col": "UCL_CODE16",
+        "proper_name": "UCL_NAME16"
+    },
+    "SUA": {
+        "name": "Significant Urban Areas",
+        "weight": 2,
+        "region_col": "SUA_CODE16",
+        "proper_name": "SUA_NAME16"
+    },
+    "RA": {
+        "name": "Remoteness Areas",
+        "weight": 1,
+        "region_col": "RA_CODE16",
+        "proper_name": "RA_NAME16"
+    }
+}

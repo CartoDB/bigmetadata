@@ -1,4 +1,4 @@
-from luigi import Parameter, WrapperTask
+from luigi import Parameter, IntParameter, WrapperTask
 
 from lib.timespan import get_timespan
 
@@ -18,6 +18,8 @@ GEO_CSD = 'csd'
 GEO_CMA = 'cma'
 GEO_DA = 'da_'
 GEO_FSA = 'fsa'
+GEO_FSA = 'fsa'
+GEO_DB = 'db_'
 
 GEOGRAPHIES = (
     GEO_CT,
@@ -27,6 +29,7 @@ GEOGRAPHIES = (
     GEO_CMA,
     GEO_DA,
     GEO_FSA,
+    GEO_DB,
 )
 
 GEOGRAPHY_NAMES = {
@@ -37,6 +40,7 @@ GEOGRAPHY_NAMES = {
     GEO_CMA: 'Census metropolitan areas and census agglomerations',
     GEO_DA: 'Census dissemination areas',
     GEO_FSA: 'Forward sortation areas',
+    GEO_DB: 'Census dissemination blocks',
 }
 
 GEOGRAPHY_DESCS = {
@@ -47,6 +51,7 @@ GEOGRAPHY_DESCS = {
     GEO_CMA: '',
     GEO_DA: '',
     GEO_FSA: '',
+    GEO_DB: '',
 }
 
 GEOGRAPHY_PROPERNAMES = {
@@ -57,16 +62,7 @@ GEOGRAPHY_PROPERNAMES = {
     GEO_CMA: 'CMANAME',
     GEO_DA: 'DAUID',  # DA has no proper name
     GEO_FSA: 'PRNAME',
-}
-
-GEOGRAPHY_CODES = {
-    GEO_CT: 401,
-    GEO_PR: 101,
-    GEO_CD: 701,
-    GEO_CSD: 301,
-    GEO_CMA: 201,
-    GEO_DA: 1501,
-    GEO_FSA: 1601,
+    GEO_DB: 'DBUID',  # DB has no proper name
 }
 
 GEOGRAPHY_TAGS = {
@@ -77,6 +73,7 @@ GEOGRAPHY_TAGS = {
     GEO_CMA: ['cartographic_boundary'],
     GEO_DA: ['cartographic_boundary', 'interpolation_boundary'],
     GEO_FSA: ['cartographic_boundary', 'interpolation_boundary'],
+    GEO_DB: ['cartographic_boundary', 'interpolation_boundary'],
 }
 
 GEOGRAPHY_FORMAT = {
@@ -87,6 +84,12 @@ GEOGRAPHY_FORMAT = {
     GEO_CMA: 'a',  # SHP
     GEO_DA: 'a',  # SHP
     GEO_FSA: 'g',  # GML
+    GEO_DB: 'a',  # SHPL
+}
+
+GEOGRAPHY_EXTENSION = {
+    'a': 'shp',
+    'g': 'gml',
 }
 
 GEOGRAPHY_UID = {
@@ -97,22 +100,27 @@ GEOGRAPHY_UID = {
     GEO_CMA: 'cmauid',
     GEO_DA: 'dauid',
     GEO_FSA: 'cfsauid',
+    GEO_DB: 'dbuid',
+}
+
+YEAR_URL = {
+    # http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
+    2011: 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip',
+    # https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm
+    2016: 'http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/files-fichiers/2016/l{resolution}000b16a_e.zip',
 }
 
 
-# http://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2011-eng.cfm
 # 2011 Boundary Files
 class DownloadGeography(RepoFileUnzipTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = Parameter(default="2011")
-
-    URL = 'http://www12.statcan.gc.ca/census-recensement/{year}/geo/bound-limit/files-fichiers/g{resolution}000b11{format}_e.zip'
+    year = IntParameter()
 
     def get_url(self):
-        return self.URL.format(year=self.year,
-                               resolution=self.resolution,
-                               format=GEOGRAPHY_FORMAT[self.resolution])
+        url = YEAR_URL[self.year]
+        return url.format(resolution=self.resolution,
+                          format=GEOGRAPHY_FORMAT[self.resolution])
 
 
 class ImportGeography(GeoFile2TempTableTask):
@@ -121,10 +129,11 @@ class ImportGeography(GeoFile2TempTableTask):
     '''
 
     resolution = Parameter(default=GEO_PR)
+    year = IntParameter()
     extension = Parameter(default='shp', significant=False)
 
     def requires(self):
-        return DownloadGeography(resolution=self.resolution)
+        return DownloadGeography(resolution=self.resolution, year=self.year)
 
     def input_files(self):
         cmd = 'ls {input}/*.{extension}'.format(
@@ -137,15 +146,17 @@ class ImportGeography(GeoFile2TempTableTask):
 
 class SimplifiedImportGeography(SimplifiedTempTableTask):
     resolution = Parameter(default=GEO_PR)
+    year = IntParameter()
 
     def requires(self):
-        extension = 'gml' if self.resolution == GEO_FSA else 'shp'
-        return ImportGeography(resolution=self.resolution, extension=extension)
+        extension = GEOGRAPHY_EXTENSION[GEOGRAPHY_FORMAT[self.resolution]] if self.year == 2011 else 'shp'
+        return ImportGeography(resolution=self.resolution, year=self.year, extension=extension)
 
 
 class GeographyColumns(ColumnsTask):
 
     resolution = Parameter(default=GEO_PR)
+    year = IntParameter()
 
     weights = {
         GEO_PR: 1,
@@ -155,6 +166,7 @@ class GeographyColumns(ColumnsTask):
         GEO_CT: 5,
         GEO_DA: 6,
         GEO_FSA: 7,
+        GEO_DB: 8,
     }
 
     def version(self):
@@ -177,7 +189,7 @@ class GeographyColumns(ColumnsTask):
         data_license = input_['license']['statcan-license']
         data_source = input_['source']['statcan-census-2011']
         geom = OBSColumn(
-            id=self.resolution,
+            id='{resolution}_{year}'.format(resolution=self.resolution, year=self.year),
             type='Geometry',
             name=GEOGRAPHY_NAMES[self.resolution],
             description=GEOGRAPHY_DESCS[self.resolution],
@@ -185,12 +197,13 @@ class GeographyColumns(ColumnsTask):
             tags=[sections['ca'], subsections['boundary'], data_license, data_source],
         )
         geom_id = OBSColumn(
-            id=self.resolution + '_id',
+            id='{resolution}_id_{year}'.format(resolution=self.resolution, year=self.year),
             type='Text',
             weight=0,
             targets={geom: GEOM_REF},
         )
         geom_name = OBSColumn(
+            id='{resolution}_name_{year}'.format(resolution=self.resolution, year=self.year),
             type='Text',
             weight=1,
             name='Name of ' + GEOGRAPHY_NAMES[self.resolution],
@@ -207,22 +220,21 @@ class GeographyColumns(ColumnsTask):
 
 
 class Geography(TableTask):
-    '''
-    '''
 
     resolution = Parameter(default=GEO_PR)
+    year = IntParameter()
 
     def version(self):
         return 10
 
     def requires(self):
         return {
-            'data': SimplifiedImportGeography(resolution=self.resolution),
-            'columns': GeographyColumns(resolution=self.resolution)
+            'data': SimplifiedImportGeography(resolution=self.resolution, year=self.year),
+            'columns': GeographyColumns(resolution=self.resolution, year=self.year)
         }
 
     def table_timespan(self):
-        return get_timespan('2011')
+        return get_timespan(self.year)
 
     # TODO: https://github.com/CartoDB/bigmetadata/issues/435
     def targets(self):
@@ -247,14 +259,16 @@ class Geography(TableTask):
 
 
 class AllGeographies(WrapperTask):
+    year = IntParameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield Geography(resolution=resolution)
+            yield Geography(resolution=resolution, year=self.year)
 
 
 class AllGeographyColumns(WrapperTask):
+    year = IntParameter()
 
     def requires(self):
         for resolution in GEOGRAPHIES:
-            yield GeographyColumns(resolution=resolution)
+            yield GeographyColumns(resolution=resolution, year=self.year)
