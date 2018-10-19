@@ -68,31 +68,28 @@ def extract_nulls_from_log(infile, outfile, relevant_fields):
     except OSError:
         pass
 
-    with open(outfile, 'a') as fout:
-        with open(infile) as fin:
-            current_params = {}
-            for line in fin:
-                if STR_ERROR in line:
-                    current_params = {}
-                    try:
-                        vals = {item.split("=")[0].strip(): item.split("=")[1].strip()
-                                for item in line[line.rfind('(') + 1:line.rfind(')')].split(',')}
-                        for key, val in vals.items():
-                            if key in relevant_fields:
-                                current_params[key] = val
-                    except Exception as e:
-                        pass
+    with open(outfile, 'a') as fout, open(infile) as fin:
+        current_params = {}
+        for line in fin:
+            if STR_ERROR in line:
+                current_params = {}
+                try:
+                    vals = {item.split("=")[0].strip(): item.split("=")[1].strip()
+                            for item in line[line.rfind('(') + 1:line.rfind(')')].split(',')}
+                    current_params = {k: v for k, v in vals.items() if k in relevant_fields}
+                except Exception as e:
+                    pass
 
-                elif STR_NULL in line and STR_INFO not in line:
-                    columns = [x.strip() for x in line[line.rfind(STR_NULL) + len(STR_NULL):].split(',')]
+            elif STR_NULL in line and STR_INFO not in line:
+                columns = [x.strip() for x in line[line.rfind(STR_NULL) + len(STR_NULL):].split(',')]
 
-                    for column in columns:
-                        if column in cols:
-                            if current_params not in cols[column][STR_EXCEPTIONS]:
-                                cols[column][STR_EXCEPTIONS].extend([current_params])
-                        else:
-                            cols[column] = {}
-                            cols[column][STR_EXCEPTIONS] = [current_params]
+                for column in columns:
+                    if column in cols:
+                        if current_params not in cols[column][STR_EXCEPTIONS]:
+                            cols[column][STR_EXCEPTIONS].append(current_params)
+                    else:
+                        cols[column] = {}
+                        cols[column][STR_EXCEPTIONS] = [current_params]
 
         fout.write(json.dumps(cols, indent=4))
 
@@ -102,42 +99,20 @@ def extract_nulls_from_log(infile, outfile, relevant_fields):
 def merge_nulls_files(infile1, infile2, outfile):
     STR_EXCEPTIONS = 'exceptions'
 
-    def _merge_item(item, itemlist):
-        for iteml in itemlist:
-            if item == iteml:
-                break
-        else:
-            return item
-
-        return None
-
     try:
         os.remove(outfile)
     except OSError:
         pass
 
-    with open(outfile, 'a') as fout:
-        with open(infile1) as fin1:
-            json1 = json.load(fin1)
-            with open(infile2) as fin2:
-                json2 = json.load(fin2)
+    with open(outfile, 'a') as fout, open(infile1) as fin1, open(infile2) as fin2:
+        json1 = json.load(fin1)
+        json2 = json.load(fin2)
 
-                # The ones from infile1 that are also in infile2
-                for column1 in json1:
-                    column2 = json2.get(column1, json2.get(column1.lower(), None))
-                    if column2 is not None:
-                        exceptions1 = json1[column1][STR_EXCEPTIONS]
+        for column in set(list(json1.keys()) + list(json2.keys())):
+            col1 = json1.get(column, json1.get(column.lower(), {})).get(STR_EXCEPTIONS, [])
+            col2 = json2.get(column, json2.get(column.lower(), {})).get(STR_EXCEPTIONS, [])
 
-                        for exception2 in column2[STR_EXCEPTIONS]:
-                            mergeable = _merge_item(exception2, exceptions1)
-
-                            if mergeable is not None:
-                                exceptions1.extend([mergeable])
-
-                # The ones from infile2 that are not present in infile1
-                for column2 in json2:
-                    if column2.lower() not in [x.lower() for x in json1]:
-                        json1[column2] = json2[column2]
+            json1[column][STR_EXCEPTIONS] = col1 + col2
 
         fout.write(json.dumps(json1, indent=4))
 
