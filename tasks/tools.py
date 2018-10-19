@@ -112,7 +112,7 @@ def merge_nulls_files(infile1, infile2, outfile):
             col1 = json1.get(column, json1.get(column.lower(), {})).get(STR_EXCEPTIONS, [])
             col2 = json2.get(column, json2.get(column.lower(), {})).get(STR_EXCEPTIONS, [])
 
-            json1[column][STR_EXCEPTIONS] = col1 + col2
+            json1[column][STR_EXCEPTIONS] = col1 + [x for x in col2 if x not in col1]
 
         fout.write(json.dumps(json1, indent=4))
 
