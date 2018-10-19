@@ -1,9 +1,7 @@
-from luigi import WrapperTask
 from tasks.hierarchy import (DenormalizedHierarchy, Hierarchy, HierarchyChildParentsUnion, HierarchyInfoUnion,
-                             HierarchyChildParent, GetParentsFunction, LevelHierarchy, LevelInfo, _YearGeographyTask)
+                             HierarchyChildParent, GetParentsFunction, LevelHierarchy, LevelInfo)
 from tasks.ca.statcan.geo import (GEO_PR, GEO_CD, GEO_FSA, GEO_CMA, GEO_CSD, GEO_DA, GEO_CT, GEO_DB,
                                   Geography)
-from tasks.us.census.tiger import GeoNamesTable
 from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
