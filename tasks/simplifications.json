@@ -169,31 +169,68 @@
 
 	"CA": "-------------------------------------",
 
-	"ca.statcan.geo.importgeography_cd_": {
+	"ca.statcan.geo.importgeography_cd__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "13.5"
 	},
-	"ca.statcan.geo.importgeography_cma": {
+	"ca.statcan.geo.importgeography_cma_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "10"
 	},
-	"ca.statcan.geo.importgeography_csd": {
+	"ca.statcan.geo.importgeography_csd_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "10"
 	},
-	"ca.statcan.geo.importgeography_ct_": {
+	"ca.statcan.geo.importgeography_ct__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "7"
 	},
-	"ca.statcan.geo.importgeography_pr_": {
+	"ca.statcan.geo.importgeography_pr__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},
-	"ca.statcan.geo.importgeography_da_": {
+	"ca.statcan.geo.importgeography_da__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "7"
 	},
-	"ca.statcan.geo.importgeography_fsa": {
+	"ca.statcan.geo.importgeography_fsa_2011": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+	"ca.statcan.geo.importgeography_db__2011": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+
+	"ca.statcan.geo.importgeography_cd__2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "13.5"
+	},
+	"ca.statcan.geo.importgeography_cma_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"ca.statcan.geo.importgeography_csd_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "10"
+	},
+	"ca.statcan.geo.importgeography_ct__2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "7"
+	},
+	"ca.statcan.geo.importgeography_pr__2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+	"ca.statcan.geo.importgeography_da__2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "7"
+	},
+	"ca.statcan.geo.importgeography_fsa_2016": {
+		"geomfield": "wkb_geometry",
+		"factor": "12"
+	},
+	"ca.statcan.geo.importgeography_db__2016": {
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},

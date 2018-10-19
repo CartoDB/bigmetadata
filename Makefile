@@ -289,16 +289,26 @@ br-geo:
 	make -- run br.geo.AllGeographies
 
 ### ca
-ca-all: ca-nhs-all ca-census-all
+ca-all: ca-all-2011 ca-all-2016
 
-ca-nhs-all:
+ca-all-2011: ca-geo-2011 ca-nhs-all-2011 ca-census-all-2011
+
+ca-nhs-all-2011:
 	make -- run ca.statcan.data.AllNHSTopics
 
-ca-census-all:
+ca-census-all-2011:
 	make -- run ca.statcan.data.AllCensusTopics
 
-ca-geo:
-	make -- run ca.statcan.geo.AllGeographies
+ca-geo-2011:
+	make -- run ca.statcan.geo.AllGeographies --year 2011
+
+ca-all-2016: ca-geo-2016 ca-census-all-2016
+
+ca-census-all-2016:
+	make -- run ca.statcan.census2016.data.AllCensusResolutions
+
+ca-geo-2016:
+	make -- run ca.statcan.geo.AllGeographies --year 2016
 
 ### es
 es-all: es-cnig es-ine
