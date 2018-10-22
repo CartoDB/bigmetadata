@@ -52,10 +52,10 @@ python:
 	docker-compose run --rm bigmetadata python
 
 sh-sql:
-	docker exec -it $$(docker-compose ps -q postgres) /bin/bash
+	docker exec -it $$(docker-compose ps -q ${PGSERVICE}) /bin/bash
 
 py-sql:
-	docker exec -it $$(docker-compose ps -q postgres) python
+	docker exec -it $$(docker-compose ps -q ${PGSERVICE}) python
 
 ps:
 	docker-compose ps
@@ -88,7 +88,7 @@ extension:
 # update dataservices-api in our DB container
 # Depends on having a dataservices-api folder linked
 dataservices-api:
-	docker exec $$(docker-compose ps -q postgres) sh -c ' \
+	docker exec $$(docker-compose ps -q ${PGSERVICE}) sh -c ' \
 	  cd /cartodb-postgresql && make install && \
 	  cd /data-services/geocoder/extension && make install && \
 	  cd /dataservices-api/client && make install && \
@@ -125,7 +125,7 @@ extension-fixtures:
 
 extension-unittest:
 	docker exec -it \
-	  $$(docker-compose ps -q postgres) \
+	  $$(docker-compose ps -q ${PGSERVICE}) \
 	  /bin/bash -c "cd observatory-extension \
 	                && chmod -R a+w src/pg/test/results \
 	                && make install \
@@ -133,7 +133,7 @@ extension-unittest:
 
 dataservices-api-client-unittest:
 	docker exec -it \
-	  $$(docker-compose ps -q postgres) \
+	  $$(docker-compose ps -q ${PGSERVICE}) \
 	  /bin/bash -c "cd dataservices-api/client \
 	                && chmod -R a+w test \
 	                && make install \
@@ -142,7 +142,7 @@ dataservices-api-client-unittest:
 
 dataservices-api-server-unittest:
 	docker exec -it \
-	  $$(docker-compose ps -q postgres) \
+	  $$(docker-compose ps -q ${PGSERVICE}) \
 	  /bin/bash -c "cd dataservices-api/server/extension \
 	                && chmod -R a+w test \
 	                && make install \
