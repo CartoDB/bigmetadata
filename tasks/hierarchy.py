@@ -52,8 +52,9 @@ class DenormalizedHierarchy(Task, _CountryTask):
         LOGGER.info('Creating table {table}'.format(table=self.output().table))
         query = '''
                 CREATE TABLE {output} AS
-                SELECT child_id, child_level, {get_parents_function}(child_id) parent_names
-                FROM {input};
+                SELECT geoid, level, parent_names.*
+                FROM {input} i,
+                    {get_parents_function}(child_id, child_level) parent_names
                 '''.format(
                     output=self.output().table,
                     input=self.input()['rel'].table,
@@ -82,9 +83,26 @@ class GetParentsFunction(Task, _CountryTask):
 
     def run(self):
         input_ = self.input()
+        rel_table = input_['rel'].table
+        schema = self.output().schema
+        function = self.output().function_name
+
         session = current_session()
+        levels_query = '''
+                SELECT DISTINCT parent_level
+                FROM {input_relations}'''.format(input_relations=rel_table)
+        levels = [l[0] for l in session.execute(levels_query).fetchall()]
+
+        level_types = ', '.join(['{} AS text'.format(l) for l in levels])
+        cols_type = """
+                "{schema}".{function}_levels
+            """.format(schema=schema, function=function)
+        session.execute('''
+                CREATE OR REPLACE TYPE {cols_type} as ({level_types})
+        '''.format(cols_type=cols_type, level_types=level_types))
+
         query = '''
-                CREATE OR REPLACE FUNCTION "{schema}".{function} (geoid TEXT)
+                CREATE OR REPLACE FUNCTION "{schema}".{function}_json (geoid TEXT, level TEXT)
                 RETURNS JSONB
                 AS $$
                 DECLARE
@@ -93,7 +111,7 @@ class GetParentsFunction(Task, _CountryTask):
                     WITH RECURSIVE children(child_id, child_level, parent_id, parent_level, geoname) AS (
                         SELECT child_id, child_level, parent_id, parent_level, null::text geoname
                         FROM {input_relations}
-                        WHERE child_id = geoid
+                        WHERE child_id = geoid AND child_level = level
                         UNION ALL
                         SELECT p.child_id, p.child_level, p.parent_id, p.parent_level, n.geoname
                         FROM {input_relations} p
@@ -110,12 +128,32 @@ class GetParentsFunction(Task, _CountryTask):
                 END
                 $$ LANGUAGE plpgsql PARALLEL SAFE;
                 '''.format(
-                    schema=self.output().schema,
-                    function=self.output().function_name,
-                    input_relations=input_['rel'].table,
+                    schema=schema,
+                    function=function,
+                    input_relations=rel_table,
                     input_geonames=input_['info'].table,
                 )
+
+        LOGGER.debug(query)
         session.execute(query)
+
+        cols_query = '''
+                CREATE OR REPLACE FUNCTION "{schema}".{function}(geoid TEXT, level TEXT)
+                RETURNS {cols_type}
+                AS $$
+                BEGIN
+                    RETURN SELECT jsonb_populate_record(null::{cols_type},
+                                                        "{schema}".{function}_json(geoid, level))
+                END
+                $$ LANGUAGE plpgsql PARALLEL SAFE;
+                '''.format(
+            schema=schema,
+            function=function,
+            level_types=level_types,
+            cols_type=cols_type)
+        LOGGER.debug(cols_query)
+        session.execute(cols_query)
+
         session.commit()
 
     def output(self):
