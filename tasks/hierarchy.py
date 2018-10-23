@@ -52,7 +52,7 @@ class DenormalizedHierarchy(Task, _CountryTask):
         LOGGER.info('Creating table {table}'.format(table=self.output().table))
         query = '''
                 CREATE TABLE {output} AS
-                SELECT geoid, level, parent_names.*
+                SELECT child_id as geoid, child_level as level, parent_names.*
                 FROM {input} i,
                     {get_parents_function}(child_id, child_level) parent_names
                 '''.format(
@@ -93,12 +93,17 @@ class GetParentsFunction(Task, _CountryTask):
                 FROM {input_relations}'''.format(input_relations=rel_table)
         levels = [l[0] for l in session.execute(levels_query).fetchall()]
 
-        level_types = ', '.join(['{} AS text'.format(l) for l in levels])
+        level_types = ', '.join(['{} text'.format(l) for l in levels])
         cols_type = """
                 "{schema}".{function}_levels
             """.format(schema=schema, function=function)
+
         session.execute('''
-                CREATE OR REPLACE TYPE {cols_type} as ({level_types})
+                DROP TYPE IF EXISTS {cols_type} CASCADE
+        '''.format(cols_type=cols_type))
+
+        session.execute('''
+                CREATE TYPE {cols_type} as ({level_types})
         '''.format(cols_type=cols_type, level_types=level_types))
 
         query = '''
