@@ -44,8 +44,6 @@ class DenormalizedHierarchy(Task, _CountryTask):
                 )
         session.execute(query)
 
-        session.commit()
-
     def run(self):
         session = current_session()
 
@@ -61,9 +59,9 @@ class DenormalizedHierarchy(Task, _CountryTask):
                     get_parents_function=self.input()['function'].function,
                 )
         session.execute(query)
-        session.commit()
 
         self._create_indexes(session)
+        session.commit()
 
     def output(self):
         return PostgresTarget('tiler', '{country}_dz_hierarchy_geonames_{year}'.format(country=self._country,
