@@ -510,7 +510,7 @@ class LevelInfo(TempTableTask, _YearGeographyTask):
         session = current_session()
 
         input_table = self.input().get(session)
-        schema = input_table.schema
+        schema = 'tiler'
         names_table = input_table.tablename
         output_table = self.output().qualified_tablename
         output_tablename = self.output().tablename
