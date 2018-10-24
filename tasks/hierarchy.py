@@ -415,7 +415,7 @@ class LevelHierarchy(TempTableTask):
         parent_info_tablename = input_['parents_infos'][0].qualified_tablename
         parent_geom_table = input_['parents_geoms'][0].get(session)
 
-        session.execute('CREATE SCHEMA IF NOT EXISTS {}'.format(schema))
+        session.execute('CREATE SCHEMA IF NOT EXISTS "{}"'.format(schema))
 
         create_table_sql = '''
             CREATE TABLE {output_table} AS
@@ -520,7 +520,7 @@ class LevelInfo(TempTableTask, _YearGeographyTask):
         output_table = self.output().qualified_tablename
         output_tablename = self.output().tablename
 
-        session.execute('CREATE SCHEMA IF NOT EXISTS {}'.format(schema))
+        session.execute('CREATE SCHEMA IF NOT EXISTS "{}"'.format(schema))
 
         query = '''
                 CREATE TABLE {output_table} AS
