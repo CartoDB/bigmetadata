@@ -144,9 +144,14 @@ class GetParentsFunction(Task, _CountryTask):
                 CREATE OR REPLACE FUNCTION "{schema}".{function}(geoid TEXT, level TEXT)
                 RETURNS {cols_type}
                 AS $$
+                DECLARE
+                    _output {cols_type};
                 BEGIN
-                    RETURN SELECT jsonb_populate_record(null::{cols_type},
+                    SELECT * FROM jsonb_populate_record(null::{cols_type},
                                                         "{schema}".{function}_json(geoid, level))
+                    INTO _output;
+
+                    RETURN _output;
                 END
                 $$ LANGUAGE plpgsql PARALLEL SAFE;
                 '''.format(
