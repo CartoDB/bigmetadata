@@ -28,7 +28,7 @@ class DenormalizedHierarchy(Task, _CountryTask):
     def _create_indexes(self, session):
         LOGGER.info('Creating index on {table}'.format(table=self.output().table))
         query = '''
-                CREATE INDEX idx_{tablename} ON {table} (child_id, child_level);
+                CREATE INDEX idx_{tablename} ON {table} (geoid, level);
                 '''.format(
                     tablename=self.output().tablename,
                     table=self.output().table,
