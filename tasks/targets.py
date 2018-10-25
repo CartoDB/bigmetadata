@@ -432,7 +432,7 @@ class ConstraintExistsTarget(Target):
     def exists(self):
         sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
               "WHERE table_schema = '{schema}' " \
-              "  AND table_name = '{table}' " \
+              "  AND table_name ilike '{table}' " \
               "  AND constraint_name = '{constraint}'"
         check = sql.format(schema=self.schema,
                            table=self.tablename,

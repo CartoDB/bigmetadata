@@ -2,7 +2,7 @@ import os
 import urllib.request
 import itertools
 from luigi import Parameter, WrapperTask
-from tasks.base_tasks import (RepoFileUnzipTask, CSV2TempTableTask, TempTableTask)
+from tasks.base_tasks import (RepoFileGUnzipTask, CSV2TempTableTask, TempTableTask)
 from tasks.meta import current_session
 from tasks.targets import PostgresTarget
 
@@ -10,45 +10,31 @@ from lib.logger import get_logger
 
 LOGGER = get_logger(__name__)
 
-MC_SCHEMA = 'us.mastercard'
-BLOCK = 'block'
-BLOCK_GROUP = 'block group'
-CENSUS_TRACT = 'tract'
-COUNTY = 'county'
-STATE = 'state'
-GEOGRAPHIES = [
-    BLOCK,
-    BLOCK_GROUP,
-    CENSUS_TRACT,
-    COUNTY,
-    STATE
-]
-
 MONTH = 'month'
 CATEGORY = 'category'
 REGION_TYPE = 'region_type'
 REGION_ID = 'region_id'
 TOTAL_MERCHANTS = 'total_merchants'
 TICKET_SIZE_SCORE = 'ticket_size_score'
-TICKET_SIZE_COUNTRY_SCORE = 'ticket_size_country_score'
-TICKET_SIZE_METRO_SCORE = 'ticket_size_metro_score'
-TICKET_SIZE_STATE_SCORE = 'ticket_size_state_score'
+TICKET_SIZE_COUNTRY_SCORE = 'ticket_size_{country_level_name}_score'
+TICKET_SIZE_METRO_SCORE = 'ticket_size_{metro_level_name}_score'
+TICKET_SIZE_STATE_SCORE = 'ticket_size_{state_level_name}_score'
 GROWTH_SCORE = 'growth_score'
-GROWTH_COUNTRY_SCORE = 'growth_country_score'
-GROWTH_METRO_SCORE = 'growth_metro_score'
-GROWTH_STATE_SCORE = 'growth_state_score'
+GROWTH_COUNTRY_SCORE = 'growth_{country_level_name}_score'
+GROWTH_METRO_SCORE = 'growth_{metro_level_name}_score'
+GROWTH_STATE_SCORE = 'growth_{state_level_name}_score'
 STABILITY_SCORE = 'stability_score'
-STABILITY_COUNTRY_SCORE = 'stability_country_score'
-STABILITY_METRO_SCORE = 'stability_metro_score'
-STABILITY_STATE_SCORE = 'stability_state_score'
+STABILITY_COUNTRY_SCORE = 'stability_{country_level_name}_score'
+STABILITY_METRO_SCORE = 'stability_{metro_level_name}_score'
+STABILITY_STATE_SCORE = 'stability_{state_level_name}_score'
 TRANSACTIONS_SCORE = 'transactions_score'
-TRANSACTIONS_COUNTRY_SCORE = 'transactions_country_score'
-TRANSACTIONS_METRO_SCORE = 'transactions_metro_score'
-TRANSACTIONS_STATE_SCORE = 'transactions_state_score'
+TRANSACTIONS_COUNTRY_SCORE = 'transactions_{country_level_name}_score'
+TRANSACTIONS_METRO_SCORE = 'transactions_{metro_level_name}_score'
+TRANSACTIONS_STATE_SCORE = 'transactions_{state_level_name}_score'
 SALES_SCORE = 'sales_score'
-SALES_COUNTRY_SCORE = 'sales_country_score'
-SALES_METRO_SCORE = 'sales_metro_score'
-SALES_STATE_SCORE = 'sales_state_score'
+SALES_COUNTRY_SCORE = 'sales_{country_level_name}_score'
+SALES_METRO_SCORE = 'sales_{metro_level_name}_score'
+SALES_STATE_SCORE = 'sales_{state_level_name}_score'
 
 # (file_source_column, db_target_column)
 MONTH_COLUMN = (MONTH, MONTH)
@@ -99,25 +85,51 @@ CATEGORIES = {
     'TR': 'total retail',
 }
 
+GEOGRAPHIES = {
+    'us': ['block',  'block group', 'tract', 'county', 'state'],
+    'ca': ['province', 'census division', 'dissemination area', 'dissemination block'],
+    'au': ['state', 'sa1', 'sa2', 'sa3', 'sa4', 'mesh block'],
+    'uk': ['postcode area', 'postcode district', 'postcode sector', 'postcode unit'],
+}
 
-class DownloadUnzipMasterCard(RepoFileUnzipTask):
-    URL = 'http://172.17.0.1/mastercard/my_fake_data.zip'
+STATE_LEVEL_NAME = {
+    'ca': 'prov',
+    'uk': 'pc_area',
+}
+
+METRO_LEVEL_NAME = {
+    'uk': 'pc_district',
+}
+
+
+def geoname_format(country, name):
+    return name.format(country_level_name='country',
+                       state_level_name=STATE_LEVEL_NAME.get(country, 'state'),
+                       metro_level_name=METRO_LEVEL_NAME.get(country, 'metro'))
+
+
+class DownloadGUnzipMC(RepoFileGUnzipTask):
+    country = Parameter()
+
+    URL = 'http://172.17.0.1:8000/mc/my_{country}mc_fake_data.csv.gz'
 
     def get_url(self):
-        return self.URL
+        return self.URL.format(country=self.country)
 
 
-class ImportMasterCardData(CSV2TempTableTask):
+class ImportMCData(CSV2TempTableTask):
+    country = Parameter()
+
     FILE_EXTENSION = 'csv'
 
     def requires(self):
-        return DownloadUnzipMasterCard()
+        return DownloadGUnzipMC(country=self.country)
 
     def coldef(self):
         '''
         :return: Lowercased column names
         '''
-        uppercased = super(ImportMasterCardData, self).coldef()
+        uppercased = super(ImportMCData, self).coldef()
         return [(t[0].lower(), t[1]) for t in uppercased]
 
     def input_csv(self):
@@ -126,18 +138,22 @@ class ImportMasterCardData(CSV2TempTableTask):
                 return os.path.join(self.input().path, file)
 
 
-class MasterCardDataBaseTable(TempTableTask):
+class MCDataBaseTable(TempTableTask):
+    country = Parameter()
     geography = Parameter()
 
     def requires(self):
-        return ImportMasterCardData()
+        return ImportMCData(country=self.country)
+
+    def get_geography_name(self):
+        return self.geography.replace('_', ' ')
 
     def run(self):
         session = current_session()
+        geography = self.get_geography_name()
 
-        geography = self.geography
-        if self.geography == 'block_group':
-            geography = 'block group'
+        if geography not in GEOGRAPHIES[self.country]:
+            raise ValueError('Invalid geography: "{}"'.format(geography))
 
         try:
             query = '''
@@ -169,21 +185,36 @@ class MasterCardDataBaseTable(TempTableTask):
                         month=MONTH_COLUMN[1],
                         category=CATEGORY_COLUMN[1],
                         total_merchants_column=TOTAL_MERCHANTS_COLUMN[1],
-                        ticket_size_country_score_column=TICKET_SIZE_COUNTRY_SCORE_COLUMN[1],
-                        ticket_size_metro_score_column=TICKET_SIZE_METRO_SCORE_COLUMN[1],
-                        ticket_size_state_score_column=TICKET_SIZE_STATE_SCORE_COLUMN[1],
-                        growth_country_score_column=GROWTH_COUNTRY_SCORE_COLUMN[1],
-                        growth_metro_score_column=GROWTH_METRO_SCORE_COLUMN[1],
-                        growth_state_score_column=GROWTH_STATE_SCORE_COLUMN[1],
-                        stability_country_score_column=STABILITY_COUNTRY_SCORE_COLUMN[1],
-                        stability_metro_score_column=STABILITY_METRO_SCORE_COLUMN[1],
-                        stability_state_score_column=STABILITY_STATE_SCORE_COLUMN[1],
-                        transactions_country_score_column=TRANSACTIONS_COUNTRY_SCORE_COLUMN[1],
-                        transactions_metro_score_column=TRANSACTIONS_METRO_SCORE_COLUMN[1],
-                        transactions_state_score_column=TRANSACTIONS_STATE_SCORE_COLUMN[1],
-                        sales_country_score_column=SALES_COUNTRY_SCORE_COLUMN[1],
-                        sales_metro_score_column=SALES_METRO_SCORE_COLUMN[1],
-                        sales_state_score_column=SALES_STATE_SCORE_COLUMN[1],
+                        ticket_size_country_score_column=geoname_format(self.country,
+                                                                        TICKET_SIZE_COUNTRY_SCORE_COLUMN[1]),
+                        ticket_size_metro_score_column=geoname_format(self.country,
+                                                                      TICKET_SIZE_METRO_SCORE_COLUMN[1]),
+                        ticket_size_state_score_column=geoname_format(self.country,
+                                                                      TICKET_SIZE_STATE_SCORE_COLUMN[1]),
+                        growth_country_score_column=geoname_format(self.country,
+                                                                   GROWTH_COUNTRY_SCORE_COLUMN[1]),
+                        growth_metro_score_column=geoname_format(self.country,
+                                                                 GROWTH_METRO_SCORE_COLUMN[1]),
+                        growth_state_score_column=geoname_format(self.country,
+                                                                 GROWTH_STATE_SCORE_COLUMN[1]),
+                        stability_country_score_column=geoname_format(self.country,
+                                                                      STABILITY_COUNTRY_SCORE_COLUMN[1]),
+                        stability_metro_score_column=geoname_format(self.country,
+                                                                    STABILITY_METRO_SCORE_COLUMN[1]),
+                        stability_state_score_column=geoname_format(self.country,
+                                                                    STABILITY_STATE_SCORE_COLUMN[1]),
+                        transactions_country_score_column=geoname_format(self.country,
+                                                                         TRANSACTIONS_COUNTRY_SCORE_COLUMN[1]),
+                        transactions_metro_score_column=geoname_format(self.country,
+                                                                       TRANSACTIONS_METRO_SCORE_COLUMN[1]),
+                        transactions_state_score_column=geoname_format(self.country,
+                                                                       TRANSACTIONS_STATE_SCORE_COLUMN[1]),
+                        sales_country_score_column=geoname_format(self.country,
+                                                                  SALES_COUNTRY_SCORE_COLUMN[1]),
+                        sales_metro_score_column=geoname_format(self.country,
+                                                                SALES_METRO_SCORE_COLUMN[1]),
+                        sales_state_score_column=geoname_format(self.country,
+                                                                SALES_STATE_SCORE_COLUMN[1]),
                     )
             session.execute(query)
 
@@ -215,21 +246,36 @@ class MasterCardDataBaseTable(TempTableTask):
                         month=MONTH_COLUMN[0],
                         category=CATEGORY_COLUMN[0],
                         total_merchants_column=TOTAL_MERCHANTS_COLUMN[0],
-                        ticket_size_country_score_column=TICKET_SIZE_COUNTRY_SCORE_COLUMN[0],
-                        ticket_size_metro_score_column=TICKET_SIZE_METRO_SCORE_COLUMN[0],
-                        ticket_size_state_score_column=TICKET_SIZE_STATE_SCORE_COLUMN[0],
-                        growth_country_score_column=GROWTH_COUNTRY_SCORE_COLUMN[0],
-                        growth_metro_score_column=GROWTH_METRO_SCORE_COLUMN[0],
-                        growth_state_score_column=GROWTH_STATE_SCORE_COLUMN[0],
-                        stability_country_score_column=STABILITY_COUNTRY_SCORE_COLUMN[0],
-                        stability_metro_score_column=STABILITY_METRO_SCORE_COLUMN[0],
-                        stability_state_score_column=STABILITY_STATE_SCORE_COLUMN[0],
-                        transactions_country_score_column=TRANSACTIONS_COUNTRY_SCORE_COLUMN[0],
-                        transactions_metro_score_column=TRANSACTIONS_METRO_SCORE_COLUMN[0],
-                        transactions_state_score_column=TRANSACTIONS_STATE_SCORE_COLUMN[0],
-                        sales_country_score_column=SALES_COUNTRY_SCORE_COLUMN[0],
-                        sales_metro_score_column=SALES_METRO_SCORE_COLUMN[0],
-                        sales_state_score_column=SALES_STATE_SCORE_COLUMN[0],
+                        ticket_size_country_score_column=geoname_format(self.country,
+                                                                        TICKET_SIZE_COUNTRY_SCORE_COLUMN[0]),
+                        ticket_size_metro_score_column=geoname_format(self.country,
+                                                                      TICKET_SIZE_METRO_SCORE_COLUMN[0]),
+                        ticket_size_state_score_column=geoname_format(self.country,
+                                                                      TICKET_SIZE_STATE_SCORE_COLUMN[0]),
+                        growth_country_score_column=geoname_format(self.country,
+                                                                   GROWTH_COUNTRY_SCORE_COLUMN[0]),
+                        growth_metro_score_column=geoname_format(self.country,
+                                                                 GROWTH_METRO_SCORE_COLUMN[0]),
+                        growth_state_score_column=geoname_format(self.country,
+                                                                 GROWTH_STATE_SCORE_COLUMN[0]),
+                        stability_country_score_column=geoname_format(self.country,
+                                                                      STABILITY_COUNTRY_SCORE_COLUMN[0]),
+                        stability_metro_score_column=geoname_format(self.country,
+                                                                    STABILITY_METRO_SCORE_COLUMN[0]),
+                        stability_state_score_column=geoname_format(self.country,
+                                                                    STABILITY_STATE_SCORE_COLUMN[0]),
+                        transactions_country_score_column=geoname_format(self.country,
+                                                                         TRANSACTIONS_COUNTRY_SCORE_COLUMN[0]),
+                        transactions_metro_score_column=geoname_format(self.country,
+                                                                       TRANSACTIONS_METRO_SCORE_COLUMN[0]),
+                        transactions_state_score_column=geoname_format(self.country,
+                                                                       TRANSACTIONS_STATE_SCORE_COLUMN[0]),
+                        sales_country_score_column=geoname_format(self.country,
+                                                                  SALES_COUNTRY_SCORE_COLUMN[0]),
+                        sales_metro_score_column=geoname_format(self.country,
+                                                                SALES_METRO_SCORE_COLUMN[0]),
+                        sales_state_score_column=geoname_format(self.country,
+                                                                SALES_STATE_SCORE_COLUMN[0]),
                         region_type=REGION_TYPE_COLUMN[0],
                         geography=geography
                     )
@@ -245,18 +291,29 @@ class MasterCardDataBaseTable(TempTableTask):
             raise e
 
 
-class MasterCardData(TempTableTask):
+class MCData(TempTableTask):
+    country = Parameter()
     geography = Parameter()
 
+    @property
+    def mc_schema(self):
+        return '{country}.mastercard'.format(country=self.country)
+
     def requires(self):
-        return MasterCardDataBaseTable(geography=self.geography)
+        return MCDataBaseTable(country=self.country, geography=self.geography)
 
     def _create_table(self, session):
         LOGGER.info('Creating table {}'.format(self.output().table))
 
-        fields = ','.join(['{}_{} NUMERIC'.format(x[0].lower(), x[1].lower()) for x in
-                           itertools.product([x[1] for x in MEASUREMENT_COLUMNS],
-                                             CATEGORIES.keys())])
+        fields = ','.join(['{}_{} NUMERIC'.format(geoname_format(self.country, x[0].lower()), x[1].lower())
+                           for x in itertools.product([x[1] for x in MEASUREMENT_COLUMNS],
+                           CATEGORIES.keys())])
+
+        query = '''
+                CREATE SCHEMA IF NOT EXISTS "{schema}"
+                '''.format(schema=self.output().schema)
+        session.execute(query)
+
         query = '''
                 CREATE TABLE "{schema}".{table} (
                     {region_id} text NOT NULL,
@@ -276,8 +333,9 @@ class MasterCardData(TempTableTask):
     def _insert_tr(self, session):
         LOGGER.info('Inserting "total retail" data into {}'.format(self.output().table))
 
-        output_fields = ','.join(['{}_tr'.format(x[1].lower()) for x in MEASUREMENT_COLUMNS])
-        input_fields = ','.join(['mc.{field} as {field}_tr'.format(field=x[1].lower())
+        output_fields = ','.join(['{}_tr'.format(geoname_format(self.country, x[1].lower()))
+                                  for x in MEASUREMENT_COLUMNS])
+        input_fields = ','.join(['mc.{field} as {field}_tr'.format(field=geoname_format(self.country, x[1].lower()))
                                  for x in MEASUREMENT_COLUMNS])
 
         query = '''
@@ -325,7 +383,7 @@ class MasterCardData(TempTableTask):
         LOGGER.info('Updating {} with "{}" category'.format(self.output().table, category[1]))
 
         fields = ','.join(['{field}_{category} = cat.{field}'.format(
-                                field=x[1].lower(), category=category[0].lower())
+                                field=geoname_format(self.country, x[1].lower()), category=category[0].lower())
                            for x in MEASUREMENT_COLUMNS])
 
         query = '''
@@ -369,10 +427,18 @@ class MasterCardData(TempTableTask):
             raise e
 
     def output(self):
-        return PostgresTarget(MC_SCHEMA, 'mc_' + self.geography)
+        return PostgresTarget(self.mc_schema, 'mc_' + self.geography)
 
 
-class AllMasterCardData(WrapperTask):
+class AllMCData(WrapperTask):
+    country = Parameter()
+
     def requires(self):
-        for geography in GEOGRAPHIES:
-            yield MasterCardData(geography=geography)
+        for geography in [x.replace(' ', '_') for x in GEOGRAPHIES[self.country]]:
+            yield MCData(geography=geography, country=self.country)
+
+
+class AllMCCountries(WrapperTask):
+    def requires(self):
+        for country in ['us', 'ca', 'uk', 'au']:
+            yield AllMCData(country=country)
