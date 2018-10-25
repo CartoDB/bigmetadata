@@ -105,22 +105,22 @@ class GetParentsFunction(Task, _CountryTask):
         '''.format(cols_type=cols_type, level_types=level_types))
 
         query = '''
-                CREATE OR REPLACE FUNCTION "{schema}".{function}_json (geoid TEXT, level TEXT)
+                CREATE OR REPLACE FUNCTION "{schema}".{function}_json (geoid_p TEXT, level_p TEXT)
                 RETURNS JSONB
                 AS $$
                 DECLARE
                     children JSONB DEFAULT NULL;
                 BEGIN
                     WITH RECURSIVE children(child_id, child_level, parent_id, parent_level, geoname) AS (
-                        SELECT child_id, child_level, parent_id, parent_level, null::text geoname
-                        FROM {input_relations}
-                        WHERE child_id = geoid AND child_level = level
+                        SELECT p.child_id, p.child_level, p.parent_id, p.parent_level, n.geoname
+                        FROM {input_relations} p
+                        LEFT JOIN {input_geonames} n ON p.parent_id = n.geoid AND p.parent_level = n.level
+                        WHERE p.child_id = geoid_p AND p.child_level = level_p
                         UNION ALL
                         SELECT p.child_id, p.child_level, p.parent_id, p.parent_level, n.geoname
                         FROM {input_relations} p
                         INNER JOIN children c ON c.parent_id = p.child_id AND c.parent_level = p.child_level
-                        LEFT JOIN {input_geonames} n ON p.parent_id = n.geoid
-                                                                      AND p.parent_level = n.level
+                        LEFT JOIN {input_geonames} n ON p.parent_id = n.geoid AND p.parent_level = n.level
                     )
                     SELECT ('{{' || string_agg('"' || parent_level || '": "' || geoname || '"', ',') || '}}')::JSONB
                         INTO children
@@ -165,8 +165,9 @@ class GetParentsFunction(Task, _CountryTask):
         session.commit()
 
     def output(self):
-        return PostgresFunctionTarget('tiler', 'get_{country}_parents_{year}'.format(country=self._country,
-                                                                                     year=self.year))
+        name = 'get_{country}_parents_{year}'.format(country=self._country,
+                                                     year=self.year)
+        return PostgresFunctionTarget(self.input()['rel'].schema, name)
 
 
 class Hierarchy(Task, _CountryTask):
@@ -184,27 +185,36 @@ class Hierarchy(Task, _CountryTask):
         session = current_session()
         input_ = self.input()
 
-        session.execute('ALTER TABLE {rel_table} ADD '
-                        'CONSTRAINT {country}hierarchy_fk_parent '
+        session.execute('ALTER TABLE {rel_table} DROP CONSTRAINT IF EXISTS '
+                        '{country}hierarchy_fk_parent'.format(
+            rel_table=input_['rel'].qualified_tablename,
+            country=self._country, ))
+
+        session.execute('ALTER TABLE {rel_table} ADD CONSTRAINT '
+                        '{country}hierarchy_fk_parent '
                         'FOREIGN KEY (child_id, child_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-                            rel_table=input_['rel'].qualified_tablename,
-                            info_table=input_['info'].qualified_tablename,
-                            country=self._country,))
+            rel_table=input_['rel'].qualified_tablename,
+            info_table=input_['info'].qualified_tablename,
+            country=self._country, ))
 
-        session.execute('ALTER TABLE {rel_table} ADD '
-                        'CONSTRAINT {country}hierarchy_fk_child '
+        session.execute('ALTER TABLE {rel_table} DROP CONSTRAINT IF EXISTS '
+                        '{country}hierarchy_fk_child'.format(
+            rel_table=input_['rel'].qualified_tablename,
+            country=self._country, ))
+        session.execute('ALTER TABLE {rel_table} ADD CONSTRAINT '
+                        '{country}hierarchy_fk_child '
                         'FOREIGN KEY (parent_id, parent_level) '
                         'REFERENCES {info_table} (geoid, level) '.format(
-                            rel_table=input_['rel'].qualified_tablename,
-                            info_table=input_['info'].qualified_tablename,
-                            country=self._country,))
+            rel_table=input_['rel'].qualified_tablename,
+            info_table=input_['info'].qualified_tablename,
+            country=self._country, ))
         session.commit()
 
     def output(self):
         table = self.input()['info']
         return ConstraintExistsTarget(table.schema, table.tablename,
-                                      '{country}hierarchy_fk_parent'.format(country=self._country))
+                                      '{country}hierarchy_fk_child'.format(country=self._country))
 
 
 class _YearCountryLevelsTask(_CountryTask):
@@ -212,7 +222,7 @@ class _YearCountryLevelsTask(_CountryTask):
     levels = ListParameter(significant=False)
 
 
-class HierarchyInfoUnion(Task, _YearCountryLevelsTask):
+class HierarchyInfoUnion(TempTableTask, _YearCountryLevelsTask):
     def requires(self):
         '''
         Subclasses must override this and return a list of `LevelInfo` (one for each level)
@@ -237,14 +247,8 @@ class HierarchyInfoUnion(Task, _YearCountryLevelsTask):
         session.execute(alter_sql.format(tablename=tablename))
         session.commit()
 
-    def output(self):
-        return PostgresTarget(
-            'tiler',
-            '{country}_hierarchy_geonames_{year}'.format(country=self._country,
-                                                         year=self.year))
 
-
-class HierarchyChildParentsUnion(Task, _YearCountryLevelsTask):
+class HierarchyChildParentsUnion(TempTableTask, _YearCountryLevelsTask):
     def requires(self):
         '''
         Subclasses must override this and return a dictionary with the following elements:
@@ -267,7 +271,7 @@ class HierarchyChildParentsUnion(Task, _YearCountryLevelsTask):
         unions = ['SELECT * FROM {table}'.format(table=table.qualified_tablename)
                   for table in tables]
         return 'CREATE TABLE {output} AS {unions}'.format(
-            output=output,
+            output=self.output().qualified_tablename,
             unions=' UNION ALL '.join(unions))
 
     def run(self):
@@ -292,12 +296,6 @@ class HierarchyChildParentsUnion(Task, _YearCountryLevelsTask):
         session.execute(parent_index_sql)
 
         session.commit()
-
-    def output(self):
-        return PostgresTarget(
-            'tiler',
-            '{country}_hierarchy_child_parents_{year}'.format(country=self._country,
-                                                              year=self.year))
 
 
 class HierarchyChildParent(TempTableTask):
@@ -515,8 +513,8 @@ class LevelInfo(TempTableTask, _YearGeographyTask):
         session = current_session()
 
         input_table = self.input().get(session)
-        schema = 'tiler'
         names_table = input_table.tablename
+        schema = self.output().schema
         output_table = self.output().qualified_tablename
         output_tablename = self.output().tablename
 
