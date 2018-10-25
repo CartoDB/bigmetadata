@@ -47,7 +47,7 @@ class CAHierarchy(Hierarchy):
 
     def requires(self):
         levels = _levels()
-        LOGGER.info('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(levels))
         return {
             'info': CAHierarchyInfoUnion(year=self.year, levels=levels),
             'rel': CAHierarchyChildParentsUnion(year=self.year, levels=levels)

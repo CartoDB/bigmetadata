@@ -50,7 +50,7 @@ class USHierarchy(Hierarchy):
 
     def requires(self):
         levels = _levels()
-        LOGGER.info('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(levels))
         return {
             'info': USHierarchyInfoUnion(year=self.year, levels=levels),
             'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)

@@ -47,7 +47,7 @@ class AUHierarchy(Hierarchy):
 
     def requires(self):
         levels = _levels()
-        LOGGER.info('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(levels))
         return {
             'info': AUHierarchyInfoUnion(year=self.year, levels=levels),
             'rel': AUHierarchyChildParentsUnion(year=self.year, levels=levels)
