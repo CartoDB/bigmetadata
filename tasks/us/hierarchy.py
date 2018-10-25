@@ -74,7 +74,7 @@ class USHierarchyChildParentsUnion(HierarchyChildParentsUnion):
 
     def requires(self):
         child_parents = self._child_parents()
-        LOGGER.info('Child-parents: {}'.format(child_parents))
+        LOGGER.debug('Child-parents: {}'.format(child_parents))
         return {
             'hierarchy': [
                 USHierarchyChildParent(year=self.year,
