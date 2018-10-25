@@ -435,7 +435,7 @@ class AllMCData(WrapperTask):
 
     def requires(self):
         for geography in [x.replace(' ', '_') for x in GEOGRAPHIES[self.country]]:
-            yield MCData(geography=geography)
+            yield MCData(geography=geography, country=self.country)
 
 
 class AllMCCountries(WrapperTask):
