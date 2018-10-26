@@ -7,12 +7,10 @@ from lib.logger import get_logger
 LOGGER = get_logger(__name__)
 COUNTRY = 'us'
 
-
-def _levels():
-    sorted_level_infos = reversed(sorted(SUMLEVELS.items(),
-                                         key=lambda level_info:
-                                         level_info[1]['weight']))
-    return [level_info[0] for level_info in sorted_level_infos]
+_sorted_level_infos = reversed(sorted(SUMLEVELS.items(),
+                                      key=lambda level_info:
+                                      level_info[1]['weight']))
+LEVELS = [level_info[0] for level_info in _sorted_level_infos]
 
 
 class USDenormalizedHierarchy(DenormalizedHierarchy):
@@ -21,11 +19,10 @@ class USDenormalizedHierarchy(DenormalizedHierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': USHierarchy(year=self.year),
             'function': USGetParentsFunction(year=self.year),
-            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 
@@ -35,11 +32,10 @@ class USGetParentsFunction(GetParentsFunction):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': USHierarchy(year=self.year),
-            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels),
-            'info': USHierarchyInfoUnion(year=self.year, levels=levels),
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=LEVELS),
+            'info': USHierarchyInfoUnion(year=self.year, levels=LEVELS),
         }
 
 
@@ -49,11 +45,10 @@ class USHierarchy(Hierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
-        LOGGER.debug('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(LEVELS))
         return {
-            'info': USHierarchyInfoUnion(year=self.year, levels=levels),
-            'rel': USHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'info': USHierarchyInfoUnion(year=self.year, levels=LEVELS),
+            'rel': USHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 

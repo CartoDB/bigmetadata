@@ -8,8 +8,7 @@ LOGGER = get_logger(__name__)
 COUNTRY = 'au'
 
 
-def _levels():
-    return [GEO_MB, GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4, GEO_POA, GEO_STE]
+LEVELS = [GEO_MB, GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4, GEO_POA, GEO_STE]
 
 
 class AUDenormalizedHierarchy(DenormalizedHierarchy):
@@ -18,11 +17,10 @@ class AUDenormalizedHierarchy(DenormalizedHierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': AUHierarchy(year=self.year),
             'function': AUGetParentsFunction(year=self.year),
-            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 
@@ -32,11 +30,10 @@ class AUGetParentsFunction(GetParentsFunction):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': AUHierarchy(year=self.year),
-            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=levels),
-            'info': AUHierarchyInfoUnion(year=self.year, levels=levels),
+            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=LEVELS),
+            'info': AUHierarchyInfoUnion(year=self.year, levels=LEVELS),
         }
 
 
@@ -46,11 +43,10 @@ class AUHierarchy(Hierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
-        LOGGER.debug('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(LEVELS))
         return {
-            'info': AUHierarchyInfoUnion(year=self.year, levels=levels),
-            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'info': AUHierarchyInfoUnion(year=self.year, levels=LEVELS),
+            'rel': AUHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 
