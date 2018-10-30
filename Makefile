@@ -528,6 +528,14 @@ wof-all:
 	make -- run whosonfirst.AllWOF
 
 ### Tiler tables
+tiler-au-all:
+	make -- docker-run tiler.xyz.AllSimpleDOXYZTables --config-file au_all.json
+
+tiler-ca-all:
+	make -- docker-run tiler.xyz.AllSimpleDOXYZTables --config-file ca_all.json
+
+tiler-uk-all:
+	make -- docker-run tiler.xyz.AllSimpleDOXYZTables --config-file uk_all.json
 
 tiler-us-all:
-	make -- run tiler.us.AllUSXYZTables
+	make -- docker-run tiler.xyz.AllSimpleDOXYZTables --config-file us_all.json
