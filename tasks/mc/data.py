@@ -434,11 +434,10 @@ class AllMCData(WrapperTask):
     country = Parameter()
 
     def requires(self):
-        for geography in [x.replace(' ', '_') for x in GEOGRAPHIES[self.country]]:
-            yield MCData(geography=geography, country=self.country)
+        return [MCData(geography=x.replace(' ', '_'), country=self.country)
+                for x in GEOGRAPHIES[self.country]]
 
 
 class AllMCCountries(WrapperTask):
     def requires(self):
-        for country in ['us', 'ca', 'uk', 'au']:
-            yield AllMCData(country=country)
+        return [AllMCData(country=c) for c in ['us', 'ca', 'uk', 'au']]

@@ -8,8 +8,7 @@ LOGGER = get_logger(__name__)
 COUNTRY = 'ca'
 
 
-def _levels():
-    return [GEO_DB, GEO_CT, GEO_DA, GEO_CSD, GEO_CMA, GEO_FSA, GEO_CD, GEO_PR]
+LEVELS = [GEO_DB, GEO_CT, GEO_DA, GEO_CSD, GEO_CMA, GEO_FSA, GEO_CD, GEO_PR]
 
 
 class CADenormalizedHierarchy(DenormalizedHierarchy):
@@ -18,11 +17,10 @@ class CADenormalizedHierarchy(DenormalizedHierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': CAHierarchy(year=self.year),
             'function': CAGetParentsFunction(year=self.year),
-            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 
@@ -32,11 +30,10 @@ class CAGetParentsFunction(GetParentsFunction):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
         return {
             'data': CAHierarchy(year=self.year),
-            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=levels),
-            'info': CAHierarchyInfoUnion(year=self.year, levels=levels),
+            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=LEVELS),
+            'info': CAHierarchyInfoUnion(year=self.year, levels=LEVELS),
         }
 
 
@@ -46,11 +43,10 @@ class CAHierarchy(Hierarchy):
         return COUNTRY
 
     def requires(self):
-        levels = _levels()
-        LOGGER.debug('Levels: {}'.format(levels))
+        LOGGER.debug('Levels: {}'.format(LEVELS))
         return {
-            'info': CAHierarchyInfoUnion(year=self.year, levels=levels),
-            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=levels)
+            'info': CAHierarchyInfoUnion(year=self.year, levels=LEVELS),
+            'rel': CAHierarchyChildParentsUnion(year=self.year, levels=LEVELS)
         }
 
 
