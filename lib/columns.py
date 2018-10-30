@@ -1,6 +1,8 @@
 import json
 from collections import OrderedDict
+from lib.logger import get_logger
 
+LOGGER = get_logger(__name__)
 
 CONDITIONS = "conditions"
 EXCEPTIONS = "exceptions"
