@@ -82,7 +82,7 @@ rebuild-all:
 # update the observatory-extension in our DB container
 # Depends on having an observatory-extension folder linked
 extension:
-	PGSERVICE=$(PGSERVICE) docker exec $$(docker-compose ps -q $(PGSERVICE)) sh -c 'cd observatory-extension && make install'
+	PGSERVICE=$(PGSERVICE) docker exec $$(docker-compose ps -q $(PGSERVICE)) sh -c 'cd /observatory-extension && make install'
 	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata psql -c "DROP EXTENSION IF EXISTS observatory; CREATE EXTENSION observatory WITH VERSION 'dev';"
 
 # update dataservices-api in our DB container
