@@ -196,7 +196,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                                                 {out_columns})
                 SELECT (aa).x, (aa).y, (aa).zoom z, (aa).mvtdata::json->>'id'::text as geoid,
                        ((aa).mvtdata::json->>'area_ratio')::numeric as area_ratio,
-                       ((aa).mvtdata::json->>'area')::numeric as area, (aa).mvtgeom,
+                       ((aa).mvtdata::json->>'area')::numeric as area, ST_MakeValid((aa).mvtgeom),
                        {in_columns}
                   FROM (
                     SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
