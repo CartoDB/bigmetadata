@@ -388,7 +388,7 @@ class NHS(Survey):
         # DA interpolate data and there is no data for DA in NHS so we should
         # avoid this step for DA resolution
         if self.resolution == GEO_DA:
-            requires['geo_source'] = Geography(resolution=GEO_CD)
+            requires['geo_source'] = Geography(resolution=GEO_CD, year=2011)
             requires['data_source'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
         elif self.resolution == GEO_FSA:
             requires['data_source'] = NHS(resolution=GEO_CSD, survey=self.survey, topic=self.topic)
