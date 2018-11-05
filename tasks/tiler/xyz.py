@@ -156,10 +156,11 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     def _create_table(self):
         session = current_session()
 
-        LOGGER.info('Creating schema "{schema}" if needed'.format(schema=self.output().schema))
+        output = self.output()
+        LOGGER.info('Creating schema "{schema}" if needed'.format(schema=output.schema))
         session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
 
-        LOGGER.info('Creating table {table} if needed'.format(table=self.output().table))
+        LOGGER.info('Creating table {table} if needed'.format(table=output.table))
         query = '''
                 CREATE TABLE IF NOT EXISTS "{schema}".{table}(
                     x INTEGER NOT NULL,
@@ -172,11 +173,16 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     {cols},
                     CONSTRAINT {schema}_{table}_pk PRIMARY KEY (x,y,z,geoid)
                 )
-                '''.format(schema=self.output().schema,
-                           table=self.output().tablename,
+                '''.format(schema=output.schema,
+                           table=output.tablename,
                            cols=", ".join(self._get_table_columns()))
-
         session.execute(query)
+        session.execute('''
+            ALTER TABLE "{schema}".{table}
+            ALTER COLUMN mvt_geometry
+            SET STORAGE EXTERNAL
+        '''.format(schema=output.schema,
+                   table=output.tablename))
         session.commit()
 
     def _insert_data(self):
