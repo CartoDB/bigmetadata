@@ -258,8 +258,9 @@ class AllSimpleDOXYZTables(WrapperTask, ConfigFile):
 
     def requires(self):
         self.config_data = self._get_config_data(self.config_file)
-        for level, info in self.config_data["geolevels"].items():
-            for zoom in info["zoomlevels"]:
-                yield SimpleTilerDOXYZTableTask(zoom_level=zoom,
-                                                geography=level,
-                                                config_file=self.config_file)
+        return [
+            SimpleTilerDOXYZTableTask(zoom_level=zoom,
+                                      geography=level,
+                                      config_file=self.config_file)
+            for level, info in self.config_data["geolevels"].items()
+            for zoom in info["zoomlevels"]]
