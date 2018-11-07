@@ -83,7 +83,7 @@ class TilesTempTable(Task, ConfigFile):
                        bounds Numeric[],
                        envelope Geometry,
                        ext Geometry,
-                       CONSTRAINT {table}_pk PRIMARY KEY (x,y,z)
+                       CONSTRAINT {table}_pk PRIMARY KEY (z,x,y)
                     )'''.format(schema=config['schema'],
                                 table=self._get_table_name(config))
         session.execute(sql_table)
@@ -171,7 +171,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     area_ratio NUMERIC,
                     area NUMERIC,
                     {cols},
-                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (x,y,z,geoid)
+                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (z,x,y,geoid)
                 )
                 '''.format(schema=output.schema,
                            table=output.tablename,
