@@ -112,6 +112,7 @@ HOST = 'http://172.18.0.1:8000/mc'
 # HOST = 'http://host.docker.internal:8000/mc'
 COMPLETE_URL = '{host}/carto_{country}_mrli_scores.csv.gz'
 UNTIL_URL = '{host}/carto_{country}_mrli_scores_until_{month}.csv.gz'
+MONTH_URL = '{host}/carto_{country}_mrli_scores_{month}.csv.gz'
 
 INPUT_FILE_GEOGRAPHY_ALIAS = {
     'zcta5': 'zip code'
@@ -128,6 +129,7 @@ INPUT_FILE_COUNTRY_ALIAS = {
 class DownloadGUnzipMC(RepoFileGUnzipTask):
     country = Parameter()
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     def get_url(self):
         if self.until_month:
@@ -135,6 +137,11 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
                 host=HOST,
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country],
                 month=self.until_month)
+        elif self.month:
+            return MONTH_URL.format(
+                host=HOST,
+                country=INPUT_FILE_COUNTRY_ALIAS[self.country],
+                month=self.month)
         else:
             return COMPLETE_URL.format(
                 host=HOST,
@@ -144,12 +151,14 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
 class ImportMCData(CSV2TempTableTask):
     country = Parameter()
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     FILE_EXTENSION = 'csv'
 
     def requires(self):
         return DownloadGUnzipMC(country=self.country,
-                                until_month=self.until_month)
+                                until_month=self.until_month,
+                                month=self.month)
 
     def coldef(self):
         '''
@@ -168,9 +177,11 @@ class MCDataBaseTable(TempTableTask):
     country = Parameter()
     geography = Parameter()
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     def requires(self):
-        return ImportMCData(country=self.country, until_month=self.until_month)
+        return ImportMCData(country=self.country, until_month=self.until_month,
+                            month=self.month)
 
     def get_geography_name(self):
         return self.geography.replace('_', ' ')
@@ -322,6 +333,7 @@ class MCData(TempTableTask):
     country = Parameter()
     geography = Parameter()
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     @property
     def mc_schema(self):
@@ -329,7 +341,7 @@ class MCData(TempTableTask):
 
     def requires(self):
         return MCDataBaseTable(country=self.country, geography=self.geography,
-                               until_month=self.until_month)
+                               until_month=self.until_month, month=self.month)
 
     def _create_table(self, session):
         LOGGER.info('Creating table {}'.format(self.output().table))
@@ -396,7 +408,7 @@ class MCData(TempTableTask):
         session.execute(query)
         session.commit()
 
-    PK_EXISTS_RE = 'multiple primary keys for table \".*\" are not allowed'
+    PK_EXISTS_RE = '.*multiple primary keys for table \".*\" are not allowed.*'
 
     def _create_constraints(self, session):
         output = self.output()
@@ -413,12 +425,12 @@ class MCData(TempTableTask):
                 )
         try:
             session.execute(query)
-            session.commit()
         except Exception as e:
             if re.match(self.PK_EXISTS_RE, str(e)):
                 LOGGER.info('PK already exists at {}'.format(output.tablename))
             else:
                 raise e
+        session.commit()
 
     def _update_category(self, session, category):
         LOGGER.info('Updating {} with "{}" category'.format(self.output().table, category[1]))
@@ -435,7 +447,7 @@ class MCData(TempTableTask):
                 WHERE mcc.{region_id} = cat.{region_id}
                   AND mcc.{month} = cat.{month}
                   AND cat.category = '{category}'
-                  AND (mc.{region_id}, mc.{month}) NOT IN
+                  AND (cat.{region_id}, cat.{month}) NOT IN
                     (select {region_id}, {month}
                      from "{output_schema}".{output_table});
                 '''.format(
@@ -473,21 +485,41 @@ class MCData(TempTableTask):
     def output(self):
         return PostgresTarget(self.mc_schema, 'mc_' + self.geography)
 
+    @staticmethod
+    def _month_code_to_date(yyyymm):
+        return '{month}/01/{year}'.format(month=yyyymm[4:6], year=yyyymm[0:4])
+
+    def complete(self):
+        return super(MCData, self).complete() and self.is_month_loaded()
+
+    def is_month_loaded(self):
+        session = current_session()
+        month = self.month if self.month else self.until_month
+        if not month:  # in case of initial full load there's no month check
+            return True
+
+        month_string = self._month_code_to_date(month)
+        query = "select 1 from {table} where month = '{month}' limit 1"
+        result = session.execute(query.format(table=self.output().table,
+                                              month=month_string))
+        return len(result.fetchall()) > 0
 
 class AllMCData(WrapperTask):
     country = Parameter()
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     def requires(self):
-        [MCData(geography=geography, country=self.country,
-                until_month=self.until_month)
+        return [MCData(geography=geography, country=self.country,
+                until_month=self.until_month, month=self.month)
          for geography in [x.replace(' ', '_')
                            for x in GEOGRAPHIES[self.country]]]
 
 
 class AllMCCountries(WrapperTask):
     until_month = Parameter(default=None)
+    month = Parameter(default=None)
 
     def requires(self):
-        [AllMCData(country=country, until_month=self.until_month)
+        return [AllMCData(country=country, until_month=self.until_month, month=self.month)
             for country in ['us', 'ca', 'uk', 'au']]
