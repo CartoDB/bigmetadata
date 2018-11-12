@@ -37,31 +37,6 @@
     "c0720_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -199,31 +174,6 @@
     "c0843_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -231,31 +181,6 @@
     "c0708_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -354,31 +279,6 @@
     "c0718_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -400,31 +300,6 @@
     "c0830_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -488,31 +363,6 @@
     "c0717_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -612,6 +462,10 @@
             },
             {
                 "resolution": "da_",
+                "topic": "t006"
+            },
+            {
+                "resolution": "db_",
                 "topic": "t006"
             }
         ]
@@ -766,31 +620,6 @@
     "c0707_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -819,31 +648,6 @@
     "c0667_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -879,31 +683,6 @@
     "c0721_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -946,31 +725,6 @@
     "c0716_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1013,31 +767,6 @@
     "c0738_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1066,31 +795,6 @@
     "c0740_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1105,31 +809,6 @@
     "c0736_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1179,31 +858,6 @@
     "c0850_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1326,31 +980,6 @@
     "c0844_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1388,31 +1017,6 @@
     "c0720_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1455,31 +1059,6 @@
     "c0834_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1494,31 +1073,6 @@
     "c0739_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1526,31 +1080,6 @@
     "c0710_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1593,31 +1122,6 @@
     "c0848_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1681,31 +1185,6 @@
     "c0832_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1762,31 +1241,6 @@
     "c0829_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1816,31 +1270,6 @@
     "c0850_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1855,31 +1284,6 @@
     "c0732_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1908,31 +1312,6 @@
     "c0715_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -1952,6 +1331,10 @@
             },
             {
                 "resolution": "da_",
+                "topic": "t006"
+            },
+            {
+                "resolution": "db_",
                 "topic": "t006"
             }
         ]
@@ -1994,31 +1377,6 @@
     "c0840_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2047,31 +1405,6 @@
     "c0735_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2135,31 +1468,6 @@
     "c0847_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2195,31 +1503,6 @@
     "c0833_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2255,31 +1538,6 @@
     "c0710_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2294,31 +1552,6 @@
     "c0714_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2333,31 +1566,6 @@
     "c0838_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2414,31 +1622,6 @@
     "c0665_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2453,31 +1636,6 @@
     "c0713_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2527,31 +1685,6 @@
     "c0840_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2685,31 +1818,6 @@
     "c0719_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2866,31 +1974,6 @@
     "c0703_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2933,31 +2016,6 @@
     "c0708_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -2979,31 +2037,6 @@
     "c0707_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3131,31 +2164,6 @@
     "c0833_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3205,31 +2213,6 @@
     "c0664_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3272,31 +2255,6 @@
     "c0661_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3318,31 +2276,6 @@
     "c0845_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3350,31 +2283,6 @@
     "c0834_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3389,31 +2297,6 @@
     "c0709_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3421,31 +2304,6 @@
     "c0662_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3460,31 +2318,6 @@
     "c0664_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3702,31 +2535,6 @@
     "c0662_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3771,31 +2579,6 @@
     "c0844_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3859,31 +2642,6 @@
     "c0841_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3891,31 +2649,6 @@
     "c0846_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -3930,31 +2663,6 @@
     "c0703_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4046,31 +2754,6 @@
     "c0704_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4127,31 +2810,6 @@
     "c0709_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4201,31 +2859,6 @@
     "c0828_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4360,31 +2993,6 @@
     "c0828_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4442,31 +3050,6 @@
     "c0841_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4553,31 +3136,6 @@
     "c0740_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4761,31 +3319,6 @@
     "c0847_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4807,31 +3340,6 @@
     "c0663_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4881,31 +3389,6 @@
     "c0733_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -4997,31 +3480,6 @@
     "c0706_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5136,31 +3594,6 @@
     "c0837_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5224,31 +3657,6 @@
     "c0837_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5270,31 +3678,6 @@
     "c0714_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5309,31 +3692,6 @@
     "c0845_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5355,31 +3713,6 @@
     "c0718_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5452,31 +3785,6 @@
     "c0736_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5484,31 +3792,6 @@
     "c0732_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5516,31 +3799,6 @@
     "c0663_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5562,31 +3820,6 @@
     "c0717_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5615,31 +3848,6 @@
     "c0667_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5661,31 +3869,6 @@
     "c0715_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5736,31 +3919,6 @@
     "c0665_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5768,31 +3926,6 @@
     "c0832_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5849,31 +3982,6 @@
     "c0835_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5909,31 +4017,6 @@
     "c0712_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -5983,31 +4066,6 @@
     "c0849_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6022,31 +4080,6 @@
     "c0836_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6117,31 +4150,6 @@
     "c0738_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6163,31 +4171,6 @@
     "c0737_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6202,31 +4185,6 @@
     "c0739_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6248,31 +4206,6 @@
     "c0719_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6371,31 +4304,6 @@
     "c0849_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6473,31 +4381,6 @@
     "c0839_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6568,31 +4451,6 @@
     "c0712_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6693,31 +4551,6 @@
     "c0661_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6739,31 +4572,6 @@
     "c0704_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6827,31 +4635,6 @@
     "c0705_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6859,31 +4642,6 @@
     "c0831_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6898,31 +4656,6 @@
     "c0721_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -6987,31 +4720,6 @@
     "c0848_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7040,31 +4748,6 @@
     "c0835_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7163,31 +4846,6 @@
     "c0734_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7216,31 +4874,6 @@
     "c0666_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7290,31 +4923,6 @@
     "c0830_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7329,31 +4937,6 @@
     "c0734_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7389,31 +4972,6 @@
     "c0733_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7498,31 +5056,6 @@
     "c0831_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7537,31 +5070,6 @@
     "c0829_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7569,31 +5077,6 @@
     "c0843_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7651,31 +5134,6 @@
     "c0705_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7683,31 +5141,6 @@
     "c0836_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7736,31 +5169,6 @@
     "c0706_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7789,31 +5197,6 @@
     "c0846_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7905,31 +5288,6 @@
     "c0666_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -7972,31 +5330,6 @@
     "c0839_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -8018,31 +5351,6 @@
     "c0713_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -8113,31 +5421,6 @@
     "c0737_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -8201,31 +5484,6 @@
     "c0838_f": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -8233,31 +5491,6 @@
     "c0735_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
@@ -8272,31 +5505,6 @@
     "c0716_m": {
         "exceptions": [
             {
-                "resolution": "fsa",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cma",
-                "topic": "t006"
-            },
-            {
-                "resolution": "ct_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "csd",
-                "topic": "t006"
-            },
-            {
-                "resolution": "cd_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "pr_",
-                "topic": "t006"
-            },
-            {
-                "resolution": "da_",
                 "topic": "t006"
             }
         ]
