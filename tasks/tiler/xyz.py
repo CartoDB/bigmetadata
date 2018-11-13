@@ -209,7 +209,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     ARRAY[{in_columns_ids}]::TEXT[],
                     ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
                     {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
-                    ) q;
+                    ) q
+                  WHERE ST_GeometryType((aa).mvtgeom) != 'ST_MultiLineString'
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
                            zoom_level=self.zoom_level,
