@@ -18,12 +18,15 @@
             "geoname": "uk.odl.ps_id",
             "zoomlevels": [12, 13],
             "simplification": 0.001
-        },
+        }
+    },
+    "pending_geolevels": {
         "postcode_unit": {
             "geography": "uk.odl.pu_geo",
             "geoname": "uk.odl.pu_id",
             "zoomlevels": [14],
-            "simplification": 0.0001
+            "simplification": 0.0001,
+            "pending_reason": "We don't have postalcode unit geometries yet"
         }
     },
     "tables": [
