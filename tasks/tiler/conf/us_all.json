@@ -10,13 +10,19 @@
         "county": {
             "geography": "us.census.tiger.county",
             "geoname": "us.census.tiger.county_geoname",
-            "zoomlevels": [5, 6, 7, 8],
+            "zoomlevels": [5, 6, 7],
+            "simplification": 0.01
+        },
+        "zcta5": {
+            "geography": "us.census.tiger.zcta5",
+            "geoname": "us.census.tiger.zcta5_geoname",
+            "zoomlevels": [8, 9],
             "simplification": 0.01
         },
         "census_tract": {
             "geography": "us.census.tiger.census_tract",
             "geoname": "us.census.tiger.census_tract_geoname",
-            "zoomlevels": [9, 10, 11],
+            "zoomlevels": [10, 11],
             "simplification": 0.001
         },
         "block_group": {
