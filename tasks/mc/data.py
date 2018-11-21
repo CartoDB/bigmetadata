@@ -108,7 +108,7 @@ def geoname_format(country, name):
                        metro_level_name=METRO_LEVEL_NAME.get(country, 'metro'))
 
 
-HOST = 'http://172.18.0.1:8000/mc'
+HOST = 'http://172.17.0.1:8000/mc'
 # HOST = 'http://host.docker.internal:8000/mc'
 COMPLETE_URL = '{host}/carto_{country}_mrli_scores.csv.gz'
 UNTIL_URL = '{host}/carto_{country}_mrli_scores_until_{month}.csv.gz'
@@ -392,9 +392,14 @@ class MCData(TempTableTask):
                     FROM
                         "{input_schema}".{input_table} mc
                     WHERE mc.category = 'total retail'
-                    AND (mc.{region_id}, mc.{month}) NOT IN
-                      (select {region_id}, {month}
-                       from "{output_schema}".{output_table});
+                    AND NOT EXISTS
+                      (
+                       select 1
+                       from "{output_schema}".{output_table} mc2
+                       where mc.{region_id} = mc2.{region_id}
+                       and mc.{month} = mc2.{region_id}
+                       limit 1
+                       );
                 '''.format(
                         output_schema=self.output().schema,
                         output_table=self.output().tablename,
@@ -447,9 +452,14 @@ class MCData(TempTableTask):
                 WHERE mcc.{region_id} = cat.{region_id}
                   AND mcc.{month} = cat.{month}
                   AND cat.category = '{category}'
-                  AND (cat.{region_id}, cat.{month}) NOT IN
-                    (select {region_id}, {month}
-                     from "{output_schema}".{output_table});
+                  AND NOT EXISTS
+                      (
+                       select 1
+                       from "{output_schema}".{output_table} mc2
+                       where cat.{region_id} = mc2.{region_id}
+                       and cat.{month} = mc2.{region_id}
+                       limit 1
+                       );
                 '''.format(
                     output_schema=self.output().schema,
                     output_table=self.output().tablename,

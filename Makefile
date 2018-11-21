@@ -539,3 +539,26 @@ tiler-uk-all:
 
 tiler-us-all:
 	make -- docker-run tiler.xyz.AllSimpleDOXYZTables --config-file us_all.json
+
+### Task to ease deployment of new months at production. You should use this after adding one month.
+### Example of single-month load: `make -- docker-run mc.data.AllMCData --country us --month 201808`
+### Once you have the month loaded, then you can use this task to create a file with the data of the month.
+### Dumps a date (MM/DD/YYYY) of a country. Example: `make tiler-us-mc-increment MONTH=02/01/2018`
+tiler-us-mc-increment:
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "rm -rf tmp/mc/us && mkdir -p tmp/mc/us"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_block where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/block"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_block_group where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/block_group"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_county where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/county"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_state where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/state"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_tract where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/tract"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "psql -c \"copy (select * from \\\"us.mastercard\\\".mc_zcta5 where month='${MONTH}') to stdout with (format binary)\" > tmp/mc/us/zcta5"
+	PGSERVICE=$(PGSERVICE) docker-compose run --rm bigmetadata bash -c "tar cvzf tmp/mc/us.tar.gz -C tmp/mc us"
+
+### To be run in staging/production
+tiler-us-mc-increment-import:
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_block from '/tmp/us/block' with (format binary)"
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_block_group from '/tmp/us/block_group' with (format binary)"
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_county from '/tmp/us/county' with (format binary)"
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_state from '/tmp/us/state' with (format binary)"
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_tract from '/tmp/us/tract' with (format binary)"
+	psql -U postgres -d gis -v ON_ERROR_STOP=1 -c "copy \"us.mastercard\".mc_zcta5 from '/tmp/us/zcta5' with (format binary)"
