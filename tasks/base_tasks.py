@@ -629,11 +629,9 @@ class GeoFile2TempTableTask(TempTableTask):
         return re.search(regex, cmd_output) is not None
 
     def build_ogr_command(self, **args):
-        # LAUNDER: dón't convert to lowercase
         return 'PG_USE_COPY=yes PGCLIENTENCODING=UTF8 ' \
                'ogr2ogr --config SHAPE_ENCODING {encoding} -f PostgreSQL PG:"dbname=$PGDATABASE ' \
                'active_schema={schema}" -t_srs "EPSG:4326" ' \
-               '-lco LAUNDER=no' \
                '{other_options} ' \
                '-nlt MultiPolygon -nln {table} ' \
                '{operation} \'{input}\' '.format(encoding=args['encoding'],

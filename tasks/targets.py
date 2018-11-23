@@ -27,7 +27,7 @@ class PostgresTarget(Target):
 
     @property
     def table(self):
-        return '"{schema}"."{tablename}"'.format(schema=self._schema,
+        return '"{schema}".{tablename}'.format(schema=self._schema,
                                                tablename=self._tablename)
 
     @property
@@ -40,7 +40,7 @@ class PostgresTarget(Target):
 
     @property
     def qualified_tablename(self):
-        return '"{}"."{}"'.format(self.schema, self.tablename)
+        return '"{}".{}'.format(self.schema, self.tablename)
 
     def _existenceness(self):
         '''
@@ -60,7 +60,7 @@ class PostgresTarget(Target):
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
-            'SELECT row_number() over () FROM "{schema}"."{tablename}" WHERE {where} LIMIT 1'.format(
+            'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
                 schema=self._schema, tablename=self._tablename,
                 where=self._where))
         if resp.fetchone() is None:
@@ -237,7 +237,7 @@ class TableTarget(Target):
         obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
             underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
-        self.qualified_tablename = '"{schema}"."{table}"'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
+        self.qualified_tablename = '"{schema}".{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self.obs_table = obs_table
         self._tablename = obs_table.tablename
         self._schema = schema
@@ -420,16 +420,52 @@ class RepoTarget(LocalTarget):
 class ConstraintExistsTarget(Target):
     def __init__(self, schema, table, constraint):
         self.schema = schema
-        self.table = table
+        self.tablename = table
         self.constraint = constraint
         self.session = current_session()
+
+    @property
+    def table(self):
+        return '"{schema}".{tablename}'.format(schema=self.schema,
+                                               tablename=self.tablename)
 
     def exists(self):
         sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
               "WHERE table_schema = '{schema}' " \
-              "  AND table_name = '{table}' " \
+              "  AND table_name ilike '{table}' " \
               "  AND constraint_name = '{constraint}'"
         check = sql.format(schema=self.schema,
-                           table=self.table,
+                           table=self.tablename,
                            constraint=self.constraint)
         return len(self.session.execute(check).fetchall()) > 0
+
+
+class PostgresFunctionTarget(Target):
+    def __init__(self, schema, function_name):
+        self._schema = schema
+        self._function_name = function_name
+        self._session = current_session()
+
+    @property
+    def function(self):
+        return '"{schema}".{function_name}'.format(schema=self._schema,
+                                                   function_name=self._function_name)
+
+    @property
+    def function_name(self):
+        return self._function_name
+
+    @property
+    def schema(self):
+        return self._schema
+
+    def exists(self):
+        query = '''
+                SELECT 1 FROM information_schema.routines
+                WHERE routine_schema = '{schema}'
+                AND routine_name = '{function_name}'
+                '''.format(
+                    schema=self._schema,
+                    function_name=self._function_name)
+
+        return len(self._session.execute(query).fetchall()) > 0

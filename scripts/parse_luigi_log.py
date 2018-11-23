@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+# This can be tackled with Luigi DB instead of parsing the log: https://luigi.readthedocs.io/en/stable/api/luigi.db_task_history.html
 
 
 # Usage:
