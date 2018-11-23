@@ -1,0 +1,1506 @@
+{
+    "Unoccupied_PDs_Psns": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G32"
+            }
+        ]
+    },
+    "Num_Psns_UR_1_FamHhold": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G31"
+            }
+        ]
+    },
+    "P_H_or_W_in_RM_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_Ptn_in_DFM_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_LonePnt_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_15_24": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_25_34": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_35_44": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_45_54": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_55_64": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_65_74": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_75_84": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_CU15_85ov": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_25_34": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_35_44": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_45_54": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_55_64": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_65_74": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_75_84": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_DpStu_85ov": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_NDpChl_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_OthRI_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_URI_in_FH_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_GrpH_Mem_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "P_LonePsn_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "F_GrpH_Mem_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "F_LonePsn_0_14": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G23B"
+            }
+        ]
+    },
+    "F_LSatH_NS_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Macedonian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Maltese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Persian_ED_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Polish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Russian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Samoan_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Serbian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_SAL_Filipino_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_SAL_Indonesian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_SAL_Tagalog_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_SAL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_SAL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Spanish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Tamil_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Thai_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Turkish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Vietnamese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "FOL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "PSEO_SOLSE_VWorW": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "PSEO_SOLSE_NWorNAA": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "PSEO_SOLSE_Tot": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "PSEO_NS": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_Afrikaans_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_Arabic_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_AIndLng_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_CL_Cantones_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_CL_Mandarin_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_CL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_CL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_Croatian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_Dutch_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_French_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "POL_German_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13C"
+            }
+        ]
+    },
+    "M_LSatH_NS_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_SAL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Spanish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Tamil_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Thai_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Turkish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Vietnamese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MOL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FSEO_SOLSE_VWorW": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FSEO_SOLSE_NWorNAA": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FSEO_SOLSE_Tot": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FSEO_NS": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Afrikaans_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Arabic_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_AIndLng_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_CL_Cantones_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_CL_Mandarin_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_CL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_CL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Croatian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Dutch_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_French_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_German_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Greek_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Bengali_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Hindi_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Punjabi_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Sinhalese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Urdu_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_IAL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Italian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Japanese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "FOL_Korean_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13B"
+            }
+        ]
+    },
+    "MSEO_SOLSE_VWorW": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MSEO_SOLSE_NWorNAA": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MSEO_SOLSE_Tot": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MSEO_NS": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Afrikaans_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Arabic_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_AIndLng_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_CL_Canton_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_CL_Mandarin_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_CL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_CL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Croatian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Dutch_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_French_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_German_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Greek_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Bengali_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Hindi_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Punjabi_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Sinhal_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Urdu_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_IAL_Tot_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Italian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Japan_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Korean_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Macedon_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Maltese_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Persian_ED_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Polish_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Russian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Samoan_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_Serbian_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_SAL_Filipin_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_SAL_Indon_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_SAL_Tagalog_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "MOL_SAL_Oth_SEO": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G13A"
+            }
+        ]
+    },
+    "A0_14_SEO_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_SOLSE_VWW_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_SOLSE_NWNAA_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_SOLSE_PinE_NS_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_SOLSE_T_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_L_PinE_NS_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "A0_14_T_B00": {
+        "exceptions": [
+            {
+                "year": "2016",
+                "tablename": "G11A"
+            }
+        ]
+    },
+    "F_Wife_in_RM_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_Ptn_in_DFM_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_LonePnt_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_15_24": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_25_34": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_35_44": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_45_54": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_55_64": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_65_74": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_75_84": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_CU15_85ov": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_25_34": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_35_44": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_45_54": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_55_64": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_65_74": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_75_84": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_DpStu_85ov": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_NDpChl_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_OthRI_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "F_URI_in_FH_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_Hbn_in_RM_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_Ptn_in_DFM_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_LonePnt_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_15_24": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_25_34": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_35_44": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_45_54": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_55_64": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_65_74": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_75_84": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_CU15_85ov": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_25_34": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_35_44": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_45_54": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_55_64": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_65_74": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_75_84": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_DpStu_85ov": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_NDpChl_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_OthRI_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_URI_in_FH_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_GrpH_Mem_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    },
+    "M_LonePsn_0_14": {
+        "exceptions": [
+            {
+                "tablename": "G23A",
+                "year": "2016"
+            }
+        ]
+    }
+}

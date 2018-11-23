@@ -13,7 +13,7 @@ from tasks.util import shell, classpath, copyfile
 from tasks.meta import current_session, GEOM_REF
 from tasks.ca.statcan.geo import (
     GEO_CT, GEO_PR, GEO_CD, GEO_CSD, GEO_CMA, GEO_DA, GEO_FSA,
-    GEOGRAPHY_CODES, GEOGRAPHIES, GeographyColumns, Geography)
+    GEOGRAPHIES, GeographyColumns, Geography)
 from tasks.ca.statcan.util import StatCanParser
 from tasks.ca.statcan.cols_census import CensusColumns
 from tasks.ca.statcan.cols_nhs import NHSColumns
@@ -37,6 +37,16 @@ SURVEY_CODES = {
 SURVEY_URLS = {
     SURVEY_CEN: 'census-recensement',
     SURVEY_NHS: 'nhs-enm',
+}
+
+GEOGRAPHY_CODES = {
+    GEO_CT: 401,
+    GEO_PR: 101,
+    GEO_CD: 701,
+    GEO_CSD: 301,
+    GEO_CMA: 201,
+    GEO_DA: 1501,
+    GEO_FSA: 1601,
 }
 
 URL = 'http://www12.statcan.gc.ca/{survey_url}/2011/dp-pd/prof/details/download-telecharger/comprehensive/comp_download.cfm?CTLG={survey_code}&FMT=CSV{geo_code}'
@@ -177,16 +187,16 @@ class InterpolateNHSDAFromCD(Task):
     def requires(self):
         return {
             'nhs': NHS(resolution=GEO_CD, topic=self.topic, survey=SURVEY_NHS),
-            'geo_cd': Geography(resolution='GEO_CD'),
-            'geo_da': Geography(resolution='GEO_DA')
+            'geo_cd': Geography(resolution='GEO_CD', year=2011),
+            'geo_da': Geography(resolution='GEO_DA', year=2011)
         }
 
 
 class InterpolateFSAFromCSD(TempTableTask):
     def requires(self):
         return {
-            'geo_fsa': Geography(resolution=GEO_FSA),
-            'geo_csd': Geography(resolution=GEO_CSD),
+            'geo_fsa': Geography(resolution=GEO_FSA, year=2011),
+            'geo_csd': Geography(resolution=GEO_CSD, year=2011),
         }
 
     def run(self):
@@ -343,8 +353,8 @@ class Census(Survey):
     def requires(self):
         return {
             'data': CopyDataToTable(resolution=self.resolution, survey=SURVEY_CEN, topic=self.topic),
-            'geo': Geography(resolution=self.resolution),
-            'geometa': GeographyColumns(resolution=self.resolution),
+            'geo': Geography(resolution=self.resolution, year=2011),
+            'geometa': GeographyColumns(resolution=self.resolution, year=2011),
             'meta': CensusColumns(resolution=self.resolution, survey=self.survey, topic=self.topic),
         }
 
@@ -371,14 +381,14 @@ class NHS(Survey):
 
     def requires(self):
         requires = {
-            'geo': Geography(resolution=self.resolution),
-            'geometa': GeographyColumns(resolution=self.resolution),
+            'geo': Geography(resolution=self.resolution, year=2011),
+            'geometa': GeographyColumns(resolution=self.resolution, year=2011),
             'meta': NHSColumns(),
         }
         # DA interpolate data and there is no data for DA in NHS so we should
         # avoid this step for DA resolution
         if self.resolution == GEO_DA:
-            requires['geo_source'] = Geography(resolution=GEO_CD)
+            requires['geo_source'] = Geography(resolution=GEO_CD, year=2011)
             requires['data_source'] = NHS(resolution=GEO_CD, survey=self.survey, topic=self.topic)
         elif self.resolution == GEO_FSA:
             requires['data_source'] = NHS(resolution=GEO_CSD, survey=self.survey, topic=self.topic)
@@ -417,7 +427,7 @@ class CensusMetaWrapper(MetaWrapper):
     }
 
     def tables(self):
-        yield Geography(resolution=self.resolution)
+        yield Geography(resolution=self.resolution, year=2011)
         yield Census(resolution=self.resolution, topic=self.topic, survey=SURVEY_CEN)
 
 
@@ -431,5 +441,5 @@ class NHSMetaWrapper(MetaWrapper):
     }
 
     def tables(self):
-        yield Geography(resolution=self.resolution)
+        yield Geography(resolution=self.resolution, year=2011)
         yield NHS(resolution=self.resolution, topic=self.topic, survey=SURVEY_NHS)

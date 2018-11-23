@@ -4,7 +4,7 @@ import csv
 
 from luigi import Task, WrapperTask, Parameter
 from luigi.local_target import LocalTarget
-from tasks.au.data import BCPAllGeographiesAllTables
+from tasks.au.data import XCPAllGeographiesAllTables
 from tasks.meta import current_session
 from lib.logger import get_logger
 
@@ -30,7 +30,7 @@ class Measurements2CSV(Task):
 
     def requires(self):
         return {
-            'bcp': BCPAllGeographiesAllTables(year=2011)
+            'bcp': XCPAllGeographiesAllTables(year=2011)
         }
 
     def _get_config_data(self):

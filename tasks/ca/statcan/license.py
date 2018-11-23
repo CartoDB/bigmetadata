@@ -14,6 +14,10 @@ class SourceTags(TagsTask):
                    name='Statistics Canada Census of Population 2011',
                    type='source',
                    description='Adapted from Statistics Canada, Census of Population 2011. This does not constitute an endorsement by Statistics Canada of this product.'),
+            OBSTag(id='statcan-census-2016',
+                   name='Statistics Canada Census Profile 2016',
+                   type='source',
+                   description='Adapted from Statistics Canada, Census Profile 2016. This does not constitute an endorsement by Statistics Canada of this product.'),
                ]
 
 

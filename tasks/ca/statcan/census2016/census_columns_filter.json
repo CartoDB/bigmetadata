@@ -1,0 +1,5526 @@
+{
+    "c1217_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0190_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1737_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1122_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1766_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0720_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1181_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1370_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1734_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0157_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1772_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0179_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1179_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1776_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1089_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0103_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t003"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t003"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0003_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t001"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t001"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1387_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1063_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1117_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0146_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1209_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0843_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0708_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1383_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1085_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0010_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1225_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0189_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0200_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1380_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1064_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1233_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1076_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1192_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0162_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1345_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0718_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1961_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0147_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0830_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0204_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1132_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1070_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1109_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1385_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1220_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1686_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0181_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0717_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1296_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0175_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1215_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1060_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1684_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t002"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t002"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1087_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1771_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1131_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1762_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1185_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1191_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0663_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t006"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t006"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1208_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1740_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1221_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1214_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1100_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1758_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1108_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1137_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1102_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0195_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1229_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1136_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1080_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1218_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1389_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1125_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1724_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1336_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1764_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0184_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1754_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0707_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1386_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0184_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1770_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0667_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1103_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1296_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1067_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1134_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0721_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1768_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1137_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0179_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1350_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1758_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0716_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0198_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1106_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1379_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1111_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1344_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0738_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1341_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0177_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1095_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0740_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1115_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0736_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1342_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1091_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1224_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1096_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0197_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1105_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0850_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1064_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1290_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1139_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1290_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1683_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1369_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1730_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1731_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0160_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1689_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1956_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1333_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1343_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1087_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1137_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t005"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t005"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0844_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1291_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t004"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t004"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1727_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1339_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0720_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0012_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0107_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0153_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0009_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1118_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0834_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1079_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0739_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0710_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1381_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0195_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1107_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0201_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1689_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0848_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1958_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0199_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1130_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1348_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0104_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1078_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1731_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1389_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0832_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1086_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0013_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1185_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1112_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1086_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1381_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1762_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0829_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1116_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1688_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1769_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0850_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1101_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0732_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1192_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0012_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0014_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0715_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1349_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0662_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t006"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t006"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0193_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0157_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0159_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1960_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1061_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0840_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1114_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1738_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1388_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0735_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0153_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0106_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0191_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1759_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1292_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1234_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0151_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1382_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0847_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1373_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1099_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1737_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0191_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0833_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1767_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1069_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1726_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1193_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0710_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1954_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0714_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1084_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0838_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1106_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1184_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1760_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1954_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1219_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1100_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1073_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0665_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1235_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0713_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1210_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1772_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1062_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1229_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1724_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1222_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0840_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0106_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1109_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1777_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1074_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1138_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1135_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0186_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1075_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1178_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1729_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1687_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1365_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1351_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1733_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1685_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1195_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1119_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1093_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0719_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1180_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1216_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1077_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1065_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1292_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t004"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t004"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1213_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1763_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1364_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1066_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1685_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1219_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1207_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1960_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1206_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1187_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0156_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1216_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1726_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1069_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1123_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0703_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1378_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1337_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1755_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1392_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0198_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0708_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1728_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1142_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0707_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1230_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1107_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0007_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1777_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0176_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1377_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1082_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1363_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1210_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1104_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1370_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0182_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0188_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1194_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0163_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0200_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1211_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0833_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1194_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1141_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1367_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1068_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1081_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1375_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0664_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1190_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1751_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1074_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1367_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0156_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0661_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1092_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1182_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0845_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0834_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1071_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0709_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0662_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1336_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0664_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1208_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0009_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1955_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1067_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0103_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1335_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1953_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1363_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1380_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1205_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1110_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1753_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0149_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1081_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1207_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0162_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1083_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1340_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1127_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1776_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1186_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1730_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1113_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1077_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1117_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1765_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1102_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0150_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1113_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1212_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0662_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1366_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1334_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0102_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t003"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t003"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1294_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0844_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1091_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1094_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1066_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0180_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1952_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1347_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0147_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1114_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0841_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0846_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1232_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0703_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1183_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1223_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0186_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1349_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1291_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1212_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1751_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1334_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1221_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1689_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1180_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1361_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0704_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1222_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0148_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1085_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0185_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0103_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1372_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1760_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0709_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1083_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1377_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1230_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1752_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1139_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0102_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0828_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0006_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1095_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1073_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1952_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1375_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1366_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1365_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1756_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0175_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1959_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1371_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1780_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1344_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1774_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1123_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1342_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1099_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1953_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0828_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1362_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1141_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0178_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1231_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1376_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1757_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1369_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0841_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1112_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0002_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t001"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t001"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1213_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1184_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1062_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0177_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0185_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0101_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1227_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1089_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0740_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1379_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1386_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1096_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1684_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1368_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0203_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1729_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1346_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1740_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1733_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1753_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0107_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1127_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0202_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1769_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1688_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1084_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1376_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1687_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1124_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1736_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1097_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1391_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0192_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1688_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0847_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1767_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1778_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0663_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0108_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1779_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1236_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1754_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1728_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1133_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0733_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1294_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1120_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1075_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1292_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1390_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0161_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1348_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1065_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1295_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0151_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1378_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1205_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0706_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1182_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0014_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1121_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1757_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0010_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0011_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1768_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1124_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0199_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1374_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1136_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t005"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t005"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0173_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1293_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1368_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0837_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1347_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1761_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1723_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1187_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1388_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1361_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1094_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0154_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0837_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1750_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1129_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0714_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0108_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0845_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1387_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1385_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0718_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1774_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1142_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0666_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0008_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1736_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1350_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1093_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1134_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1351_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0736_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0732_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0663_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0155_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1189_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0717_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1739_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1957_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0193_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0667_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1119_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1957_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0715_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1121_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0163_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1295_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0667_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1735_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1956_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0665_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0832_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1132_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1189_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1108_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0188_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1683_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1090_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1735_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0835_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1126_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0201_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1775_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1775_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0712_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1346_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1779_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0192_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1226_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1763_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1227_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0849_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0194_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0836_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1950_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1755_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1764_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1125_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1778_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1766_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1756_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1727_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0203_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0738_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0187_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0178_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0737_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1383_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0739_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1129_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1739_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0719_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1191_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1225_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0146_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1080_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1770_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1226_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1076_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1179_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1341_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0183_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1233_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1190_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1188_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0849_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1193_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1392_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1116_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1684_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0155_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1082_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1955_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1223_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1734_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1068_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0839_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1232_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1088_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1752_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1120_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1098_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1335_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0180_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1765_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1136_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0712_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0158_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0101_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0148_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1131_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1217_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1723_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1685_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t002"
+            },
+            {
+                "resolution": "da_",
+                "topic": "t002"
+            },
+            {
+                "resolution": "db_",
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0011_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0102_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1092_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1235_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1340_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0661_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1061_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1364_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0704_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1959_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1750_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1186_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1098_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1122_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1060_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1138_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1188_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0705_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0831_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0173_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0721_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1295_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1105_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1071_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0174_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1118_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1950_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1214_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0150_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0848_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1195_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1128_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0159_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0835_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1725_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1781_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1234_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0197_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1291_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1103_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1215_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1686_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1218_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1110_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1362_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1209_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1759_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0734_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1738_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1343_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1133_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0666_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1135_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0008_f": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c0154_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1128_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1130_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0152_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0830_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0204_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0734_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0187_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1063_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1070_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1141_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0733_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1339_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1104_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1732_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0152_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1178_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1079_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1220_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1142_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1333_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1293_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0158_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0831_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1382_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0829_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0843_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0149_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0107_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0160_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0108_t": {
+        "exceptions": [
+            {
+                "resolution": "fsa",
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0174_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1072_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1101_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0705_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0836_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1761_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1236_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1391_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0706_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1115_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1183_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1345_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0846_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1224_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c0194_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1951_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1958_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1374_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1780_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1181_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1390_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1111_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1372_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1961_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0202_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0666_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0161_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0181_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1072_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1296_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0189_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0839_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0176_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1090_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0713_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1732_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1206_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1231_m": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    },
+    "c1078_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1097_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1951_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1088_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1371_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0104_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0737_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0190_m": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0013_m": {
+        "exceptions": [
+            {
+                "topic": "t001"
+            }
+        ]
+    },
+    "c1126_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1781_m": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0182_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c1725_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c1337_m": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c0183_f": {
+        "exceptions": [
+            {
+                "topic": "t003"
+            }
+        ]
+    },
+    "c0838_f": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c0735_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1771_f": {
+        "exceptions": [
+            {
+                "topic": "t002"
+            }
+        ]
+    },
+    "c0716_m": {
+        "exceptions": [
+            {
+                "topic": "t006"
+            }
+        ]
+    },
+    "c1373_f": {
+        "exceptions": [
+            {
+                "topic": "t004"
+            }
+        ]
+    },
+    "c1211_f": {
+        "exceptions": [
+            {
+                "topic": "t005"
+            }
+        ]
+    }
+}
