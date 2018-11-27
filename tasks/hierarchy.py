@@ -11,7 +11,7 @@ LOGGER = get_logger(__name__)
 class _CountryTask:
     @property
     def _country(self):
-        raise NotImplementedError('_CountryTask must define country()')
+        raise NotImplementedError('_CountryTask must define _country()')
 
 
 class DenormalizedHierarchy(Task, _CountryTask):

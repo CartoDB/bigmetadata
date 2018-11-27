@@ -119,8 +119,14 @@ class OutputAreaColumns(ColumnsTask):
 
         return OrderedDict([
             ('the_geom', geom),
-            ('oa_sa', geomref)
+            (self.geoname_column(), geomref)
         ])
+
+    def geoname_column(self):
+        return 'oa_sa'
+
+    def geoid_column(self):
+        return 'oa_sa'
 
 
 class OutputAreas(TableTask):
@@ -152,11 +158,18 @@ class OutputAreas(TableTask):
     def populate(self):
         session = current_session()
         session.execute('INSERT INTO {output} '
-                        'SELECT ST_MakeValid(wkb_geometry), oa_sa '
+                        'SELECT ST_MakeValid(wkb_geometry), {geoname_column} '
                         'FROM {input}'.format(
                             output=self.output().table,
                             input=self.input()['data'].table,
+                            geoname_column=self.geoname_column()
                         ))
+
+    def geoid_column(self):
+        return self.input()['geom_columns'].geoid_column()
+
+    def geoname_column(self):
+        return self.input()['geom_columns'].geoname_column()
 
 
 class OutputAreaClassificationColumns(ColumnsTask):

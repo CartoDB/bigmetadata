@@ -135,6 +135,12 @@ class PostcodeAreasColumns(ColumnsTask):
             ('name', geomname),
         ])
 
+    def geoname_column(self):
+        return 'pa_id'
+
+    def geoid_column(self):
+        return 'name'
+
 
 class PostcodeAreas(TableTask):
 
@@ -170,3 +176,10 @@ class PostcodeAreas(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table,
                         ))
+
+    def geoid_column(self):
+        return self.input()['geom_columns'].geoid_column()
+
+    def geoname_column(self):
+        return self.input()['geom_columns'].geoname_column()
+
