@@ -237,21 +237,23 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
     def complete(self):
         session = current_session()
-        count = 0
+        exists = None
 
         try:
             query = '''
-                    SELECT count(*) FROM "{schema}".{table} WHERE z = {zoom_level}
+                    SELECT 1 FROM "{schema}".{table}
+                    WHERE z = {zoom_level}
+                    LIMIT 1
                     '''.format(schema=self.output().schema,
                                table=self.output().tablename,
                                zoom_level=self.zoom_level,)
-            count = session.execute(query).fetchone()[0]
-            if count > 0:
+            exists = session.execute(query).fetchone()
+            if exists is not None:
                 LOGGER.warn('The zoom level is already loaded')
         except Exception:
             LOGGER.info('Error checking output. Maybe the table doesn\'t exist')
 
-        return count > 0
+        return exists
 
 
 class AllSimpleDOXYZTables(WrapperTask, ConfigFile):
