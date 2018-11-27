@@ -17,6 +17,8 @@ from tasks.tags import SectionTags, SubsectionTags, UnitTags
 
 from luigi import Task, LocalTarget
 
+TIGER_YEAR = '2016'
+
 
 class DownloadSpielmanSingletonFile(Task):
 
@@ -133,9 +135,9 @@ class SpielmanSingletonTable(TableTask):
             'columns': SpielmanSingletonColumns(),
             'data_file': ProcessSpielmanSingletonFile(),
             'data': SpielmanSingletonTempTable(),
-            'tiger': GeoidColumns(year='2015'),
-            'shoreline': ShorelineClip(year='2015', geography='census_tract'),
-            'sumlevel': SumLevel(year='2015', geography='census_tract'),
+            'tiger': GeoidColumns(year=TIGER_YEAR),
+            'shoreline': ShorelineClip(year=TIGER_YEAR, geography='census_tract'),
+            'sumlevel': SumLevel(year=TIGER_YEAR, geography='census_tract'),
         }
 
     def version(self):
@@ -162,8 +164,8 @@ class SpielmanSingletonTable(TableTask):
 
     def columns(self):
         columns = OrderedDict({
-            'geoidsl': self.input()['tiger']['census_tract' + '_2015' + GEOID_SUMLEVEL_COLUMN],
-            'geoidsc': self.input()['tiger']['census_tract' + '_2015' + GEOID_SHORELINECLIPPED_COLUMN],
+            'geoidsl': self.input()['tiger']['census_tract_{}{}'.format(TIGER_YEAR, GEOID_SUMLEVEL_COLUMN)],
+            'geoidsc': self.input()['tiger']['census_tract_{}{}'.format(TIGER_YEAR, GEOID_SHORELINECLIPPED_COLUMN)],
         })
         columns.update(self.input()['columns'])
         return columns
@@ -1133,4 +1135,4 @@ class SpielmanSingletonColumns(ColumnsTask):
 class SpielmanSingletonMetaWrapper(MetaWrapper):
     def tables(self):
         yield SpielmanSingletonTable()
-        yield SumLevel(year='2015', geography='census_tract')
+        yield SumLevel(year=TIGER_YEAR, geography='census_tract')

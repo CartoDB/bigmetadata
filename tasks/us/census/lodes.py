@@ -72,6 +72,8 @@ COLUMN_MAPPING = OrderedDict([
     ('jobs_female', 'CS02'),
 ])
 
+TIGER_YEAR = '2016'
+
 
 class SourceTags(TagsTask):
 
@@ -533,10 +535,10 @@ class WorkplaceAreaCharacteristics(TableTask):
     def requires(self):
         return {
             'data_meta': WorkplaceAreaCharacteristicsColumns(),
-            'tiger_meta': GeoidColumns(year='2015'),
+            'tiger_meta': GeoidColumns(year=TIGER_YEAR),
             'data': WorkplaceAreaCharacteristicsTemp(year=self.year),
-            'sumlevel': SumLevel(year='2015', geography='block'),
-            'shorelineclip': ShorelineClip(year='2015', geography='block'),
+            'sumlevel': SumLevel(year=TIGER_YEAR, geography='block'),
+            'shorelineclip': ShorelineClip(year=TIGER_YEAR, geography='block'),
         }
 
     def table_timespan(self):
@@ -552,8 +554,8 @@ class WorkplaceAreaCharacteristics(TableTask):
         data_columns = self.input()['data_meta']
         tiger_columns = self.input()['tiger_meta']
         cols = OrderedDict([
-            ('w_geocode_sl', tiger_columns['block' + '_2015' + GEOID_SUMLEVEL_COLUMN]),
-            ('w_geocode_sc', tiger_columns['block' + '_2015' + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('w_geocode_sl', tiger_columns['block_{}{}'.format(TIGER_YEAR, GEOID_SUMLEVEL_COLUMN)]),
+            ('w_geocode_sc', tiger_columns['block_{}{}'.format(TIGER_YEAR, GEOID_SHORELINECLIPPED_COLUMN)]),
         ])
         cols.update(data_columns)
         return cols
@@ -582,4 +584,4 @@ class LODESMetaWrapper(MetaWrapper):
 
     def tables(self):
         yield WorkplaceAreaCharacteristics()
-        yield SumLevel(geography=self.geography, year=str(2015))
+        yield SumLevel(geography=self.geography, year=TIGER_YEAR)
