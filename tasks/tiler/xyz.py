@@ -210,7 +210,6 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
                     {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
                     ) q
-                  WHERE ST_GeometryType((aa).mvtgeom) != 'ST_MultiLineString'
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
                            zoom_level=self.zoom_level,
@@ -247,8 +246,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     '''.format(schema=self.output().schema,
                                table=self.output().tablename,
                                zoom_level=self.zoom_level,)
-            exists = session.execute(query).fetchone()
-            if exists is not None:
+            exists = session.execute(query).fetchone() is not None
+            if exists:
                 LOGGER.warn('The zoom level is already loaded')
         except Exception:
             LOGGER.info('Error checking output. Maybe the table doesn\'t exist')
