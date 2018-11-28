@@ -36,6 +36,7 @@ from tasks.simplify import Simplify
 
 LOGGER = get_logger(__name__)
 
+MAX_PG_IDENTIFIER_LENGTH = 63
 
 class ColumnsTask(Task):
     '''
@@ -499,7 +500,7 @@ class TempTableTask(Task):
         Can be overriden to expose a different table name
         :return:
         '''
-        return unqualified_task_id(self.task_id)
+        return unqualified_task_id(self.task_id)[:MAX_PG_IDENTIFIER_LENGTH]
 
     def run(self):
         '''

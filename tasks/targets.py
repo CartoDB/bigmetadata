@@ -55,7 +55,6 @@ class PostgresTarget(Target):
               '''.format(
             schema=self._schema,
             tablename=self._tablename)
-        LOGGER.debug('Existenceness SQL: {}'.format(sql))
         resp = session.execute(sql)
         if int(resp.fetchone()[0]) == 0:
             return 0

@@ -122,10 +122,12 @@ class OutputAreaColumns(ColumnsTask):
             (self.geoname_column(), geomref)
         ])
 
-    def geoname_column(self):
+    @staticmethod
+    def geoname_column():
         return 'oa_sa'
 
-    def geoid_column(self):
+    @staticmethod
+    def geoid_column():
         return 'oa_sa'
 
 
@@ -165,11 +167,13 @@ class OutputAreas(TableTask):
                             geoname_column=self.geoname_column()
                         ))
 
-    def geoid_column(self):
-        return self.input()['geom_columns'].geoid_column()
+    @staticmethod
+    def geoid_column():
+        return OutputAreaColumns.geoid_column()
 
-    def geoname_column(self):
-        return self.input()['geom_columns'].geoname_column()
+    @staticmethod
+    def geoname_column():
+        return OutputAreaColumns.geoname_column()
 
 
 class OutputAreaClassificationColumns(ColumnsTask):

@@ -13,25 +13,29 @@ LOGGER = get_logger(__name__)
 COUNTRY = 'uk'
 
 LEVEL_CLASSES = {
-    'uk.cdrc.the_geom': OutputAreas,
-    'uk.odl.ps_geo': PostcodeSectors,
-    'uk.gov.lsoa_geo': LowerLayerSuperOutputAreas,
-    'uk.gov.msoa_geo': MiddleLayerSuperOutputAreas,
-    'uk.odl.pd_geo': PostcodeDistricts,
-    'uk.datashare.pa_geo': PostcodeAreas
+    'cdrc_the_geom': OutputAreas,
+    'odl_ps_geo': PostcodeSectors,
+    'gov_lsoa_geo': LowerLayerSuperOutputAreas,
+    'gov_msoa_geo': MiddleLayerSuperOutputAreas,
+    'odl_pd_geo': PostcodeDistricts,
+    'datashare_pa_geo': PostcodeAreas
 }
 
 LEVELS = list(LEVEL_CLASSES.keys())
 
 
 def geography(level):
-    return lambda year: LEVEL_CLASSES[level]()
+    return lambda year: geography_class(level)()
+
+
+def geography_class(level):
+    return LEVEL_CLASSES[level]
 
 
 class UKTask:
     @property
     def _country(self):
-        COUNTRY
+        return COUNTRY
 
 
 class UKDenormalizedHierarchy(UKTask, DenormalizedHierarchy):
@@ -83,7 +87,8 @@ class UKHierarchyChildParent(HierarchyChildParent):
         return {
             'level': UKLevelHierarchy(year=self.year,
                                       current_geography=self.current_geography,
-                                      parent_geographies=self.parent_geographies),
+                                      parent_geographies=self.parent_geographies,
+                                      parent_geoid_fields=self._parent_geoid_fields),
             'current_geom': geography(level=self.current_geography)(
                 year=self.year),
             'parent_geoms': [
@@ -93,11 +98,14 @@ class UKHierarchyChildParent(HierarchyChildParent):
 
     @property
     def _current_geoid_field(self):
-        return self.input()['current_geom'].geoid_column()
+        return geography_class(self.current_geography).geoid_column()
 
     @property
-    def _parent_geoid_field(self):
-        return self.input()['parent_geom'].geoid_column()
+    def _parent_geoid_fields(self):
+        return [
+            geography_class(parent_geography).geoid_column() for
+            parent_geography in self.parent_geographies
+        ]
 
 
 class UKLevelHierarchy(LevelHierarchy):
@@ -117,7 +125,7 @@ class UKLevelHierarchy(LevelHierarchy):
 
     @property
     def _geoid_field(self):
-        return 'geom_id'
+        return geography_class(self.current_geography).geoid_column()
 
 
 class UKLevelInfo(LevelInfo):
@@ -126,8 +134,8 @@ class UKLevelInfo(LevelInfo):
 
     @property
     def _geoid_field(self):
-        return self.input().geoid_column()
+        return geography_class(self.geography).geoid_column()
 
     @property
     def _geoname_field(self):
-        return self.input().geoname_column()
+        return geography_class(self.geography).geoname_column()

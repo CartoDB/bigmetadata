@@ -89,14 +89,14 @@ class CAHierarchyChildParent(HierarchyChildParent):
                                        resolution=parent_geography) for
                              parent_geography in self.parent_geographies]
         }
-
+    
     @property
     def _current_geoid_field(self):
         return 'geom_id'
 
     @property
-    def _parent_geoid_field(self):
-        return 'geom_id'
+    def _parent_geoid_fields(self):
+        return ['geom_id'] * len(self.parent_geographies)
 
 
 class CALevelHierarchy(LevelHierarchy):
