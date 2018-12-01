@@ -144,6 +144,12 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
             if config['table'] == self.output().tablename:
                 return config['columns']
 
+    def _get_table_column_names(self):
+        columns = []
+        for column in self._get_columns():
+            columns.append(column.get('column_alias', column['column_name']))
+        return columns
+
     def _get_table_columns(self):
         columns = []
         for column in self._get_columns():
@@ -170,19 +176,54 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     mvt_geometry Geometry,
                     area_ratio NUMERIC,
                     area NUMERIC,
-                    {cols},
-                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (z,x,y,geoid)
+                    {cols}
                 )
+                PARTITION BY LIST (z)
                 '''.format(schema=output.schema,
                            table=output.tablename,
                            cols=", ".join(self._get_table_columns()))
         session.execute(query)
-        session.execute('''
-            ALTER TABLE "{schema}".{table}
-            ALTER COLUMN mvt_geometry
-            SET STORAGE EXTERNAL
-        '''.format(schema=output.schema,
-                   table=output.tablename))
+
+        Z_RANGES = [
+            range(0, 8),    # 0-7
+            range(8, 10),   # 8-9
+            range(10, 11),  # 10
+            range(11, 12),  # 11
+            range(12, 13),  # 12
+            range(13, 14),  # 13
+            range(14, 15),  # 14
+        ]
+        for z_range in Z_RANGES:
+            zs = ['{}'.format(z) for z in z_range]
+            column_names = self._get_table_column_names()
+
+            query = '''
+                    CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
+                    PARTITION OF "{schema}".{table} ({col_names})
+                    FOR VALUES IN ({values})
+                    '''.format(schema=output.schema,
+                               table=output.tablename,
+                               z=z_range[0],
+                               col_names=', '.join(column_names),
+                               values=','.join(zs))
+            session.execute(query)
+
+            index_query = '''
+                          CREATE INDEX IF NOT EXISTS {table}_{z}_idx
+                          ON "{schema}".{table}_{z}
+                          (z, x, y, geoid)
+                          '''.format(schema=output.schema,
+                                     table=output.tablename,
+                                     z=z_range[0])
+            session.execute(index_query)
+
+            session.execute('''
+                ALTER TABLE "{schema}".{table}_{z}
+                ALTER COLUMN mvt_geometry
+                SET STORAGE EXTERNAL
+            '''.format(schema=output.schema,
+                       table=output.tablename,
+                       z=z_range[0]))
         session.commit()
 
     def _insert_data(self):
@@ -236,7 +277,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
     def complete(self):
         session = current_session()
-        exists = None
+        exists = False
 
         try:
             query = '''
