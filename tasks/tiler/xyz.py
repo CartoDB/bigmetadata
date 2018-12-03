@@ -242,25 +242,30 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
         columns = self._get_columns()
         out_columns = [x.get('column_alias', x['column_name']) for x in columns]
-        in_columns = ["((aa).mvtdata::json->>'{name}')::{type} as {alias}".format(
+        in_columns = ["q.{name} as {alias}".format(
                         name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
                       ) for x in columns]
         in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
-
+        obs_getmcdomvt_types = ["{name} {type}".format(
+            name=column['column_name'], type=column['type']
+        ) for column in sorted(columns, key=lambda c: c['column_name'])]
         LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
         query = '''
                 INSERT INTO "{schema}".{table} (x, y, z, geoid,
                                                 area_ratio, area, mvt_geometry,
                                                 {out_columns})
-                SELECT (aa).x, (aa).y, (aa).zoom z, (aa).mvtdata::json->>'id'::text as geoid,
-                       ((aa).mvtdata::json->>'area_ratio')::numeric as area_ratio,
-                       ((aa).mvtdata::json->>'area')::numeric as area, (aa).mvtgeom,
+                SELECT q.x, q.y, q.zoom z, q.id as geoid,
+                       q.area_ratio as area_ratio,
+                       q.area as area, q.mvtgeom,
                        {in_columns}
                   FROM (
-                    SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
+                    SELECT * FROM cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
                     ARRAY[{in_columns_ids}]::TEXT[],
                     ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
-                    {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
+                    {simplification_tolerance}, '{table_postfix}', {mc_geography_level})
+                    AS result(x integer, y integer, zoom integer, mvtgeom geometry,
+                                id text, {obs_getmcdomvt_types},
+                                area_ratio float, area float)
                     ) q
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
@@ -270,6 +275,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                            in_columns=','.join(in_columns),
                            in_columns_ids=','.join(in_columns_ids),
                            country=self._get_country(),
+                           obs_getmcdomvt_types=','.join(obs_getmcdomvt_types),
                            simplification_tolerance=self._get_simplification_tolerance(),
                            table_postfix=self.table_postfix if self.table_postfix is not None else '',
                            mc_geography_level="'{}'".format(self.mc_geography_level)
