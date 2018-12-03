@@ -209,8 +209,10 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
             session.execute(query)
 
             drop_index_query = '''
-                    DROP INDEX IF EXISTS {table}_{z}_idx
-                    '''.format(table=output.tablename, z=z_range[0])
+                    DROP INDEX IF EXISTS "{schema}".{table}_{z}_idx
+                    '''.format(schema=output.schema,
+                               table=output.tablename,
+                               z=z_range[0])
             session.execute(drop_index_query)
 
             session.execute('''
