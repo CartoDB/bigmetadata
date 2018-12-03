@@ -16,6 +16,15 @@ import csv
 LOGGER = get_logger(__name__)
 GEONAME_COLUMN = 'geoname'
 
+Z_RANGES = [
+    range(0, 8),    # 0-7
+    range(8, 10),   # 8-9
+    range(10, 11),  # 10
+    range(11, 12),  # 11
+    range(12, 13),  # 12
+    range(13, 14),  # 13
+    range(14, 15),  # 14
+]
 
 class ConfigFile():
     def _get_config_data(self, config_file):
@@ -184,15 +193,6 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                            cols=", ".join(self._get_table_columns()))
         session.execute(query)
 
-        Z_RANGES = [
-            range(0, 8),    # 0-7
-            range(8, 10),   # 8-9
-            range(10, 11),  # 10
-            range(11, 12),  # 11
-            range(12, 13),  # 12
-            range(13, 14),  # 13
-            range(14, 15),  # 14
-        ]
         for z_range in Z_RANGES:
             zs = ['{}'.format(z) for z in z_range]
             column_names = self._get_table_column_names()
@@ -208,14 +208,10 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                                values=','.join(zs))
             session.execute(query)
 
-            index_query = '''
-                          CREATE INDEX IF NOT EXISTS {table}_{z}_idx
-                          ON "{schema}".{table}_{z}
-                          (z, x, y, geoid)
-                          '''.format(schema=output.schema,
-                                     table=output.tablename,
-                                     z=z_range[0])
-            session.execute(index_query)
+            drop_index_query = '''
+                    DROP INDEX IF EXISTS {table}_{z}_idx
+                    '''.format(table=output.tablename, z=z_range[0])
+            session.execute(drop_index_query)
 
             session.execute('''
                 ALTER TABLE "{schema}".{table}_{z}
@@ -225,6 +221,21 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                        table=output.tablename,
                        z=z_range[0]))
         session.commit()
+
+    def _create_index(self):
+        session = current_session()
+        output = self.output()
+
+        for z_range in Z_RANGES:
+            index_query = '''
+                          CREATE INDEX IF NOT EXISTS {table}_{z}_idx
+                          ON "{schema}".{table}_{z}
+                          (z, x, y, geoid)
+                          '''.format(schema=output.schema,
+                                     table=output.tablename,
+                                     z=z_range[0])
+            session.execute(index_query)
+
 
     def _insert_data(self):
         session = current_session()
@@ -270,6 +281,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     def run(self):
         self._create_table()
         self._insert_data()
+        self._create_index()
 
     def output(self):
         config_data = self._get_config_data(self.config_file)
