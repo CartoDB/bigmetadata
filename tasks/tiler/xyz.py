@@ -201,6 +201,10 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
                     PARTITION OF "{schema}".{table} ({col_names})
                     FOR VALUES IN ({values})
+                    WITH (
+                        autovacuum_enabled = false,
+                        toast.autovacuum_enabled = false
+                    )
                     '''.format(schema=output.schema,
                                table=output.tablename,
                                z=z_range[0],
@@ -230,13 +234,28 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
         for z_range in Z_RANGES:
             index_query = '''
-                          CREATE INDEX IF NOT EXISTS {table}_{z}_idx
+                          CREATE UNIQUE INDEX IF NOT EXISTS {table}_{z}_idx
                           ON "{schema}".{table}_{z}
                           (z, x, y, geoid)
                           '''.format(schema=output.schema,
                                      table=output.tablename,
                                      z=z_range[0])
             session.execute(index_query)
+
+
+    def _set_normal_parameters(self):
+        session = current_session()
+        output = self.output()
+
+        for z_range in Z_RANGES:
+            autovacuum_query = '''
+                          ALTER TABLE "{schema}".{table}_{z}
+                          SET autovacuum_enabled = true,
+                              toast.autovacuum_enabled = true
+                          '''.format(schema=output.schema,
+                                     table=output.tablename,
+                                     z=z_range[0])
+            session.execute(autovacuum_query)
 
 
     def _insert_data(self):
@@ -290,6 +309,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
         self._create_table()
         self._insert_data()
         self._create_index()
+        self._set_normal_parameters()
 
     def output(self):
         config_data = self._get_config_data(self.config_file)
