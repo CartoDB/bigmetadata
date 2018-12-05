@@ -250,8 +250,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
         for z_range in Z_RANGES:
             autovacuum_query = '''
                           ALTER TABLE "{schema}".{table}_{z}
-                          SET autovacuum_enabled = true,
-                              toast.autovacuum_enabled = true
+                          SET (autovacuum_enabled = true,
+                              toast.autovacuum_enabled = true)
                           '''.format(schema=output.schema,
                                      table=output.tablename,
                                      z=z_range[0])
