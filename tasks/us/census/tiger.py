@@ -370,7 +370,7 @@ class TigerGeographyShapefileToSQL(TempTableTask):
 
 
 class DownloadTiger(LoadPostgresFromZipFile):
-    url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
+    url_template = 'https://storage.googleapis.com/carto-tilesetsapi/data-observatory/tiger/tiger{year}_backup.sql.gz'
     year = Parameter()
 
     def version(self):
