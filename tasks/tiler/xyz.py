@@ -113,6 +113,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
     config_file = Parameter()
+    geom_tablename_suffix = Parameter(default=None, significant=False)
 
     table_postfix = None
     mc_geography_level = None
@@ -280,11 +281,24 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                        q.area as area, q.mvtgeom,
                        {in_columns}
                   FROM (
-                    SELECT * FROM cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
-                    ARRAY[{in_columns_ids}]::TEXT[],
-                    ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
-                    {simplification_tolerance}, '{table_postfix}', {mc_geography_level})
-                    AS result(x integer, y integer, zoom integer, mvtgeom geometry,
+                    SELECT * FROM cdb_observatory.OBS_GetMCDOMVT(
+                        {zoom_level},
+                        '{geography}',
+                        ARRAY[{in_columns_ids}]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        '{country}',
+                        ARRAY[]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        {simplification_tolerance},
+                        '{table_postfix}',
+                        {mc_geography_level},
+                        False, -- area_normalized
+                        True, -- use_meta_cache
+                        4096, -- extent
+                        256, -- buf
+                        True, -- clip_geom
+                        {geom_tablename_suffix} -- geom_tablename_suffix
+                    ) AS result(x integer, y integer, zoom integer, mvtgeom geometry,
                                 id text, {obs_getmcdomvt_types},
                                 area_ratio float, area float)
                     ) q
@@ -300,7 +314,9 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                            simplification_tolerance=self._get_simplification_tolerance(),
                            table_postfix=self.table_postfix if self.table_postfix is not None else '',
                            mc_geography_level="'{}'".format(self.mc_geography_level)
-                                              if self.mc_geography_level is not None else 'NULL')
+                                              if self.mc_geography_level is not None else 'NULL',
+                           geom_tablename_suffix="'{}'".format(self.geom_tablename_suffix)
+                                              if self.geom_tablename_suffix is not None else 'NULL')
 
         session.execute(query)
         session.commit()

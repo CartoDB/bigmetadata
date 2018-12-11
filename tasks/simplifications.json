@@ -189,13 +189,25 @@
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},
+	"ca.statcan.geo.geography_pr___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "5"
+	},
 	"ca.statcan.geo.importgeography_da__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "7"
 	},
+  	"ca.statcan.geo.geography_da___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "3"
+	},
 	"ca.statcan.geo.importgeography_fsa_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "12"
+	},
+	"ca.statcan.geo.geography_fsa__2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "5"
 	},
 	"ca.statcan.geo.importgeography_db__2011": {
 		"geomfield": "wkb_geometry",

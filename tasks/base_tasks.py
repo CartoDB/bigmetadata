@@ -546,14 +546,22 @@ class SimplifiedTempTableTask(TempTableTask):
         '''
         return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1])])
 
+    def get_suffix(self):
+        '''
+        Subclasses may override this method if an ETL task
+        needs a custom suffix.
+        '''
+        return SIMPLIFIED_SUFFIX
+
     def run(self):
         yield Simplify(schema=self.input().schema,
                        table=self.input().tablename,
-                       table_id=self.get_table_id())
+                       table_id=self.get_table_id(),
+                       suffix=self.get_suffix())
 
     def output(self):
         return PostgresTarget(self.input().schema,
-                              self.input().tablename + SIMPLIFIED_SUFFIX)
+                              self.input().tablename + self.get_suffix())
 
 
 class GdbFeatureClass2TempTableTask(TempTableTask):
