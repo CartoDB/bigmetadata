@@ -194,69 +194,69 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                            cols=", ".join(self._get_table_columns()))
         session.execute(query)
 
-        for z_range in Z_RANGES:
-            zs = ['{}'.format(z) for z in z_range]
-            column_names = self._get_table_column_names()
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        zs = ['{}'.format(z) for z in z_range]
+        column_names = self._get_table_column_names()
 
-            query = '''
-                    CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
-                    PARTITION OF "{schema}".{table} ({col_names})
-                    FOR VALUES IN ({values})
-                    WITH (
-                        autovacuum_enabled = false,
-                        toast.autovacuum_enabled = false
-                    )
-                    '''.format(schema=output.schema,
-                               table=output.tablename,
-                               z=z_range[0],
-                               col_names=', '.join(column_names),
-                               values=','.join(zs))
-            session.execute(query)
+        query = '''
+                CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
+                PARTITION OF "{schema}".{table} ({col_names})
+                FOR VALUES IN ({values})
+                WITH (
+                    autovacuum_enabled = false,
+                    toast.autovacuum_enabled = false
+                )
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0],
+                           col_names=', '.join(column_names),
+                           values=','.join(zs))
+        session.execute(query)
 
-            drop_index_query = '''
-                    DROP INDEX IF EXISTS "{schema}".{table}_{z}_idx
-                    '''.format(schema=output.schema,
-                               table=output.tablename,
-                               z=z_range[0])
-            session.execute(drop_index_query)
+        drop_index_query = '''
+                DROP INDEX IF EXISTS "{schema}".{table}_{z}_idx
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0])
+        session.execute(drop_index_query)
 
-            session.execute('''
-                ALTER TABLE "{schema}".{table}_{z}
-                ALTER COLUMN mvt_geometry
-                SET STORAGE EXTERNAL
-            '''.format(schema=output.schema,
-                       table=output.tablename,
-                       z=z_range[0]))
+        session.execute('''
+            ALTER TABLE "{schema}".{table}_{z}
+            ALTER COLUMN mvt_geometry
+            SET STORAGE EXTERNAL
+        '''.format(schema=output.schema,
+                   table=output.tablename,
+                   z=z_range[0]))
         session.commit()
 
     def _create_index(self):
         session = current_session()
         output = self.output()
 
-        for z_range in Z_RANGES:
-            index_query = '''
-                          CREATE UNIQUE INDEX IF NOT EXISTS {table}_{z}_idx
-                          ON "{schema}".{table}_{z}
-                          (z, x, y, geoid)
-                          '''.format(schema=output.schema,
-                                     table=output.tablename,
-                                     z=z_range[0])
-            session.execute(index_query)
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        index_query = '''
+                      CREATE UNIQUE INDEX IF NOT EXISTS {table}_{z}_idx
+                      ON "{schema}".{table}_{z}
+                      (z, x, y, geoid)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(index_query)
 
 
     def _set_normal_parameters(self):
         session = current_session()
         output = self.output()
 
-        for z_range in Z_RANGES:
-            autovacuum_query = '''
-                          ALTER TABLE "{schema}".{table}_{z}
-                          SET (autovacuum_enabled = true,
-                              toast.autovacuum_enabled = true)
-                          '''.format(schema=output.schema,
-                                     table=output.tablename,
-                                     z=z_range[0])
-            session.execute(autovacuum_query)
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        autovacuum_query = '''
+                      ALTER TABLE "{schema}".{table}_{z}
+                      SET (autovacuum_enabled = true,
+                          toast.autovacuum_enabled = true)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(autovacuum_query)
 
 
     def _insert_data(self):
