@@ -173,6 +173,10 @@
 		"geomfield": "wkb_geometry",
 		"factor": "13.5"
 	},
+  	"ca.statcan.geo.geography_cd___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "7"
+	},
 	"ca.statcan.geo.importgeography_cma_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "10"
