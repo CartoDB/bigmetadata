@@ -95,8 +95,8 @@ class AUHierarchyChildParent(HierarchyChildParent):
         return 'geom_id'
 
     @property
-    def _parent_geoid_field(self):
-        return 'geom_id'
+    def _parent_geoid_fields(self):
+        return ['geom_id'] * len(self.parent_geographies)
 
 
 class AULevelHierarchy(LevelHierarchy):

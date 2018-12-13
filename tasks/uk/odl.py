@@ -91,6 +91,14 @@ class PostcodeDistrictsColumns(ColumnsTask):
             ('geographycode', geomref),
         ])
 
+    @staticmethod
+    def geoname_column():
+        return 'geographycode'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
+
 
 class PostcodeDistricts(TableTask):
 
@@ -129,6 +137,14 @@ class PostcodeDistricts(TableTask):
                            input=self.input()['data'].table)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return PostcodeDistrictsColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return PostcodeDistrictsColumns.geoname_column()
 
 
 class ImportPostcodeSectors(GeoFile2TempTableTask):
@@ -183,8 +199,16 @@ class PostcodeSectorsColumns(ColumnsTask):
 
         return OrderedDict([
             ('the_geom', geom),
-            ('geographycode', geomref),
+            (self.geoid_column(), geomref),
         ])
+
+    @staticmethod
+    def geoname_column():
+        return 'geographycode'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
 
 
 class PostcodeSectors(TableTask):
@@ -224,6 +248,14 @@ class PostcodeSectors(TableTask):
                            input=self.input()['data'].table)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return PostcodeSectorsColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return PostcodeSectorsColumns.geoname_column()
 
 
 class ODLWrapper(WrapperTask):

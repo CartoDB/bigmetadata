@@ -62,6 +62,25 @@ class SimplifiedPostcodeAreas(SimplifiedTempTableTask):
         return ShorelineClippedPostcodeAreas()
 
 
+class SimplifiedUniquePostcodeAreas(TempTableTask):
+    def requires(self):
+        return SimplifiedPostcodeAreas()
+
+    def run(self):
+        session = current_session()
+        session.execute('''
+            CREATE TABLE {output} AS
+            SELECT name, label, st_union(wkb_geometry) wkb_geometry
+            FROM {input}
+            GROUP BY name, label
+            '''.format(
+            output=self.output().table,
+            input=self.input().table,
+        ))
+
+        session.commit()
+
+
 class SourceTags(TagsTask):
 
     def version(self):
@@ -135,17 +154,25 @@ class PostcodeAreasColumns(ColumnsTask):
             ('name', geomname),
         ])
 
+    @staticmethod
+    def geoname_column():
+        return 'name'
+
+    @staticmethod
+    def geoid_column():
+        return 'pa_id'
+
 
 class PostcodeAreas(TableTask):
 
     def requires(self):
         return {
             'geom_columns': PostcodeAreasColumns(),
-            'data': SimplifiedPostcodeAreas(),
+            'data': SimplifiedUniquePostcodeAreas(),
         }
 
     def version(self):
-        return 1
+        return 2
 
     def table_timespan(self):
         return get_timespan('2017')
@@ -170,3 +197,12 @@ class PostcodeAreas(TableTask):
                             output=self.output().table,
                             input=self.input()['data'].table,
                         ))
+
+    @staticmethod
+    def geoid_column():
+        return PostcodeAreasColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return PostcodeAreasColumns.geoname_column()
+

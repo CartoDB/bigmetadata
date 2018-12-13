@@ -234,6 +234,14 @@ class LowerLayerSuperOutputAreasColumns(ColumnsTask):
             ('name', geomname),
         ])
 
+    @staticmethod
+    def geoname_column():
+        return 'name'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
+
 
 class LowerLayerSuperOutputAreas(TableTask):
 
@@ -282,6 +290,14 @@ class LowerLayerSuperOutputAreas(TableTask):
                            input_ni=self.input()['ni-data'].table,)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return LowerLayerSuperOutputAreasColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return LowerLayerSuperOutputAreasColumns.geoname_column()
 
 
 class MiddleLayerSuperOutputAreasColumns(ColumnsTask):
@@ -356,6 +372,14 @@ class MiddleLayerSuperOutputAreasColumns(ColumnsTask):
             ('name', geomname),
         ])
 
+    @staticmethod
+    def geoname_column():
+        return 'name'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
+
 
 class MiddleLayerSuperOutputAreas(TableTask):
 
@@ -399,6 +423,14 @@ class MiddleLayerSuperOutputAreas(TableTask):
                            input_iz=self.input()['iz-data'].table,)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return MiddleLayerSuperOutputAreasColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return MiddleLayerSuperOutputAreasColumns.geoname_column()
 
 
 class GovWrapper(WrapperTask):

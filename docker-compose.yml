@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   postgres10:
-    image: carto/bigmetadata_postgres_10
+    image: carto/bigmetadata_postgres_10:0.1
     volumes:
       - ${DO_LOCAL_POSTGRESQL_10_LIB_DIR:-./postgres_10/data}:/var/lib/postgresql
       - ./observatory-extension:/observatory-extension

@@ -11,7 +11,7 @@ LOGGER = get_logger(__name__)
 class _CountryTask:
     @property
     def _country(self):
-        raise NotImplementedError('_CountryTask must define country()')
+        raise NotImplementedError('_CountryTask must define _country()')
 
 
 class DenormalizedHierarchy(Task, _CountryTask):
@@ -326,10 +326,12 @@ class HierarchyChildParent(TempTableTask):
         return 'geoid'
 
     @property
-    def _parent_geoid_field(self):
-        return 'geoid'
+    def _parent_geoid_fields(self):
+        return ['geoid'] * len(self.parent_geographies)
 
     def run(self):
+        parent_geoid_fields = self._parent_geoid_fields
+
         session = current_session()
         sql = '''
             UPDATE {table}
@@ -345,7 +347,7 @@ class HierarchyChildParent(TempTableTask):
         )
         '''
         table = self.input()['level'].qualified_tablename
-        for parent_geom in self.input()['parent_geoms']:
+        for i, parent_geom in enumerate(self.input()['parent_geoms']):
             session.execute(
                 sql.format(
                     table=table,
@@ -354,7 +356,7 @@ class HierarchyChildParent(TempTableTask):
                     parent_geom_table=parent_geom.get(
                         session).tablename,
                     current_geoid_field=self._current_geoid_field,
-                    parent_geoid_field=self._parent_geoid_field,
+                    parent_geoid_field=parent_geoid_fields[i],
                     unweighted_child_sql=self.UNWEIGHTED_CHILD_SQL.format(
                         table=table)
                 )
@@ -388,6 +390,7 @@ class LevelHierarchy(TempTableTask):
     year = IntParameter()
     current_geography = Parameter()
     parent_geographies = ListParameter()
+    parent_geoid_fields = ListParameter(significant=False, default=None)
 
     def requires(self):
         '''
@@ -398,6 +401,9 @@ class LevelHierarchy(TempTableTask):
             - 'parent_geoms': the list of `TableTask` with the parent geometries
         '''
         raise NotImplementedError('LevelHierarchy must define requires()')
+
+    def _parent_geoid_field(self, i):
+        return self.parent_geoid_fields[i] if self.parent_geoid_fields else self._geoid_field
 
     @property
     def _geoid_field(self):
@@ -412,6 +418,7 @@ class LevelHierarchy(TempTableTask):
         current_geom_table = input_['current_geom'].get(session)
         parent_info_tablename = input_['parents_infos'][0].qualified_tablename
         parent_geom_table = input_['parents_geoms'][0].get(session)
+        parent_geoid_field = self._parent_geoid_field(0)
 
         session.execute('CREATE SCHEMA IF NOT EXISTS "{}"'.format(schema))
 
@@ -422,19 +429,19 @@ class LevelHierarchy(TempTableTask):
 
         # First creation will link child with direct parents and leave nulls
         # for those that don't have.
-        session.execute(create_table_sql.format(
+        create_table_sql = create_table_sql.format(
             output_table=self.output().qualified_tablename,
             child_parent_sql=self._CHILD_PARENT_SQL.format(
                 current_info_table=current_info_tablename,
                 current_geom_table=current_geom_table.tablename,
                 parent_info_table=parent_info_tablename,
                 parent_geom_table=parent_geom_table.tablename,
-                geoid_field=self._geoid_field,
-                inner_or_left='LEFT',)
-        ))
+                parent_geoid_field=parent_geoid_field,
+                geoid_field=self._geoid_field, inner_or_left='LEFT', ))
+        session.execute(create_table_sql)
 
         inputs = list(zip(input_['parents_infos'], input_['parents_geoms']))
-        for parent_info_geom in inputs[1:]:
+        for i, parent_info_geom in enumerate(inputs[1:]):
             # For those without parents, insert the next ones
             parent_info_tablename = parent_info_geom[0].qualified_tablename
             parent_geom_table = parent_info_geom[1].get(session)
@@ -446,7 +453,7 @@ class LevelHierarchy(TempTableTask):
                                             AND ot.child_level = cit.level
                 WHERE ot.parent_id IS NULL
             '''
-            session.execute(fill_parents_sql.format(
+            insert_into_sql = fill_parents_sql.format(
                 output_table=self.output().qualified_tablename,
                 geoid_field=self._geoid_field,
                 child_parent_sql=self._CHILD_PARENT_SQL.format(
@@ -454,8 +461,10 @@ class LevelHierarchy(TempTableTask):
                     current_geom_table=current_geom_table.tablename,
                     parent_info_table=parent_info_tablename,
                     parent_geom_table=parent_geom_table.tablename,
+                    parent_geoid_field=self._parent_geoid_field(i + 1),
                     geoid_field=self._geoid_field,
-                    inner_or_left='INNER')))
+                    inner_or_left='INNER'))
+            session.execute(insert_into_sql)
 
             # ... and then, delete the rows with null parents for those
             # child that have any parent
@@ -477,14 +486,14 @@ class LevelHierarchy(TempTableTask):
         SELECT
             cit.geoid AS child_id,
             cit.level AS child_level,
-            pgt.{geoid_field} AS parent_id,
+            pgt.{parent_geoid_field} AS parent_id,
             pit.level AS parent_level,
             1.0::FLOAT AS weight
         FROM {current_info_table} cit
         INNER JOIN observatory.{current_geom_table} cgt ON cit.geoid = cgt.{geoid_field}
         {inner_or_left} JOIN observatory.{parent_geom_table} pgt
             ON ST_Within(ST_PointOnSurface(cgt.the_geom), pgt.the_geom)
-        {inner_or_left} JOIN {parent_info_table} pit ON pgt.{geoid_field} = pit.geoid
+        {inner_or_left} JOIN {parent_info_table} pit ON pgt.{parent_geoid_field} = pit.geoid
     '''
 
 
