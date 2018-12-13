@@ -1,5 +1,6 @@
 from luigi import Parameter, IntParameter, WrapperTask
 
+from lib.logger import get_logger
 from lib.timespan import get_timespan
 
 from tasks.base_tasks import (ColumnsTask, RepoFileUnzipTask, GeoFile2TempTableTask, TableTask, SimplifiedTempTableTask)
@@ -11,13 +12,14 @@ from tasks.ca.statcan.license import LicenseTags, SourceTags
 from collections import OrderedDict
 
 
+LOGGER = get_logger(__name__)
+
 GEO_CT = 'ct_'
 GEO_PR = 'pr_'
 GEO_CD = 'cd_'
 GEO_CSD = 'csd'
 GEO_CMA = 'cma'
 GEO_DA = 'da_'
-GEO_FSA = 'fsa'
 GEO_FSA = 'fsa'
 GEO_DB = 'db_'
 
@@ -30,6 +32,11 @@ GEOGRAPHIES = (
     GEO_DA,
     GEO_FSA,
     GEO_DB,
+)
+
+SIMPLIFIED_GEOGRAPHIES = (
+    GEO_FSA,
+    GEO_DA,
 )
 
 GEOGRAPHY_NAMES = {
@@ -153,6 +160,27 @@ class SimplifiedImportGeography(SimplifiedTempTableTask):
         return ImportGeography(resolution=self.resolution, year=self.year, extension=extension)
 
 
+# Task for additional simplifications
+class SimplifiedGeography(SimplifiedTempTableTask):
+    resolution = Parameter()
+    # Suffix will be appended to table id and output table
+    suffix = Parameter()
+    year = IntParameter()
+
+    def get_table_id(self):
+        return "ca.statcan.geo.geography_{resolution}__{year}{suffix}".format(
+            resolution=self.resolution,
+            year=self.year,
+            suffix=self.suffix
+        )
+
+    def get_suffix(self):
+        return self.suffix
+
+    def requires(self):
+        return Geography(resolution=self.resolution, year=self.year)
+
+
 class GeographyColumns(ColumnsTask):
 
     resolution = Parameter(default=GEO_PR)
@@ -222,7 +250,10 @@ class GeographyColumns(ColumnsTask):
 class Geography(TableTask):
 
     resolution = Parameter(default=GEO_PR)
-    year = IntParameter()
+    # FIXME: don't merge to master with this flag on. It's a workaround so
+    # CA can be run for the tiler without regenerating all the geographies.
+    # Once a new DO dump is deployed, this is not needed.
+    year = IntParameter(significant=False)
 
     def version(self):
         return 10
@@ -262,8 +293,18 @@ class AllGeographies(WrapperTask):
     year = IntParameter()
 
     def requires(self):
-        for resolution in GEOGRAPHIES:
-            yield Geography(resolution=resolution, year=self.year)
+        return [Geography(resolution=resolution, year=self.year)
+                for resolution in GEOGRAPHIES]
+
+
+class AllSimplifiedGeographies(WrapperTask):
+    year = IntParameter()
+
+    def requires(self):
+        return [SimplifiedGeography(resolution=resolution,
+                                    year=self.year,
+                                    suffix='_oversimpl')
+                for resolution in SIMPLIFIED_GEOGRAPHIES]
 
 
 class AllGeographyColumns(WrapperTask):

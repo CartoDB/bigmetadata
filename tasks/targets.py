@@ -233,6 +233,14 @@ class TableTarget(Target):
         else:
             self._table = None
 
+    @property
+    def tablename(self):
+        return self._tablename
+
+    @property
+    def schema(self):
+        return 'observatory'
+
     def sync(self):
         '''
         Whether this data should be synced to carto. Defaults to True.

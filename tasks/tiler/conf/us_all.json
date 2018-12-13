@@ -549,12 +549,6 @@
                     "column_name": "income_200000_or_more",
                     "type": "numeric",
                     "nullable": true
-                },
-                {
-                    "id": "us.zillow.AllHomesPlusMultifamily_Zri",
-                    "column_name": "allhomesplusmultifamily_zri",
-                    "type": "numeric",
-                    "nullable": true
                 }
             ]
         },
