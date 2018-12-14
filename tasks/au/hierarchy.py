@@ -8,7 +8,8 @@ LOGGER = get_logger(__name__)
 COUNTRY = 'au'
 
 
-LEVELS = [GEO_MB, GEO_SA1, GEO_SA2, GEO_SA3, GEO_SA4, GEO_POA, GEO_STE]
+# This must be sorted from smaller geometries to larger ones
+LEVELS = [GEO_MB, GEO_SA1, GEO_POA, GEO_SA2, GEO_SA3, GEO_SA4, GEO_STE]
 
 
 class AUDenormalizedHierarchy(DenormalizedHierarchy):
