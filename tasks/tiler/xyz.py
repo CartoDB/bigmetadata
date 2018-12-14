@@ -78,13 +78,13 @@ class TilesTempTable(Task, ConfigFile):
                            ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
                            ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
                     FROM data
-                    '''.format(schema=config['schema'], table=self._get_table_name(config),
+                    '''.format(schema=self.schema, table=self._get_table_name(config),
                                x=tile[0], y=tile[1], z=tile[2])
             session.execute(query)
         session.commit()
 
     def _create_table(self, session, config):
-        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(config['schema']))
+        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(self.schema))
         sql_table = '''CREATE TABLE IF NOT EXISTS \"{schema}\".\"{table}\"(
                        x INTEGER NOT NULL,
                        y INTEGER NOT NULL,
@@ -93,15 +93,19 @@ class TilesTempTable(Task, ConfigFile):
                        envelope Geometry,
                        ext Geometry,
                        CONSTRAINT {table}_pk PRIMARY KEY (z,x,y)
-                    )'''.format(schema=config['schema'],
+                    )'''.format(schema=self.schema,
                                 table=self._get_table_name(config))
         session.execute(sql_table)
         session.commit()
 
+    @property
+    def schema(self):
+        return 'tiler_tmp'
+
     def output(self):
         targets = []
         for config in self.config_data["tables"]:
-            targets.append(PostgresTarget(config['schema'],
+            targets.append(PostgresTarget(self.schema,
                                           self._get_table_name(config)))
         return targets
 
