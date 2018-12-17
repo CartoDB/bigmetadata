@@ -147,7 +147,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
         for column in self._get_columns():
             if column['id'] == GEONAME_COLUMN:
-                column['id'] = self.config_data["geolevels"][self.geography]["geoname"]
+                column['id'] = self.config_data["geolevels"][self.geography][GEONAME_COLUMN]
             columns_ids.append(column['id'])
 
         return columns_ids
@@ -272,9 +272,10 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                         name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
                       ) for x in columns]
         in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
+        LOGGER.info('Columns: {}'.format(columns))
         obs_getmcdomvt_types = ["{name} {type}".format(
             name=column['column_name'], type=column['type']
-        ) for column in sorted(columns, key=lambda c: c['column_name'])]
+        ) for column in columns]
         LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
         query = '''
                 INSERT INTO "{schema}".{table} (x, y, z, geoid,
