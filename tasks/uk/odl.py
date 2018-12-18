@@ -82,6 +82,13 @@ class PostcodeDistrictsColumns(ColumnsTask):
             id='pd_id',
             type='Text',
             name='Postcode District ID',
+            weight=0,
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='pd_name',
+            type='Text',
+            name='Postcode District ID',
             weight=1,
             targets={geom: GEOM_REF},
             tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
@@ -90,6 +97,7 @@ class PostcodeDistrictsColumns(ColumnsTask):
         return OrderedDict([
             ('the_geom', geom),
             ('geographycode', geomref),
+            ('name', geomname)
         ])
 
 
@@ -124,7 +132,7 @@ class PostcodeDistricts(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
@@ -178,6 +186,13 @@ class PostcodeSectorsColumns(ColumnsTask):
             id='ps_id',
             type='Text',
             name='Postcode Sector ID',
+            weight=0,
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='ps_name',
+            type='Text',
+            name='Postcode Sector ID',
             weight=1,
             targets={geom: GEOM_REF},
             tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
@@ -186,6 +201,7 @@ class PostcodeSectorsColumns(ColumnsTask):
         return OrderedDict([
             ('the_geom', geom),
             ('geographycode', geomref),
+            ('name', geomname)
         ])
 
 
@@ -220,7 +236,7 @@ class PostcodeSectors(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)

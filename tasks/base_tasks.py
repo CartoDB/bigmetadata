@@ -1804,7 +1804,7 @@ class InterpolationTask(BaseInterpolationTask):
                     ) q GROUP BY {target_geom_geoid}
                '''.format(
                     output=self.output().table,
-                    sum_colnames=', '.join(['round(sum({x} / Nullif(area_ratio, 0))) {x}'.format(x=x) for x in colnames]),
+                    sum_colnames=', '.join(['round(sum({x} * Nullif(area_ratio, 0))) {x}'.format(x=x) for x in colnames]),
                     out_colnames=', '.join(colnames),
                     in_colnames=', '.join(colnames),
                     source_data_table=input_['source_data'].table,
