@@ -91,7 +91,7 @@ class GetParentsFunction(Task, _CountryTask):
                 FROM {input_relations}'''.format(input_relations=rel_table)
         levels = [l[0] for l in session.execute(levels_query).fetchall()]
 
-        level_types = ', '.join(['{} text'.format(l) for l in levels])
+        level_types = ', '.join(['"{}" text'.format(l) for l in levels])
         cols_type = """
                 "{schema}".{function}_levels
             """.format(schema=schema, function=function)
