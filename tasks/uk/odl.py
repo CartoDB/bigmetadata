@@ -82,8 +82,9 @@ class PostcodeDistrictsColumns(ColumnsTask):
             id='pd_id',
             type='Text',
             name='Postcode District ID',
-            weight=0,
-            targets={geom: GEOM_REF}
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
@@ -177,8 +178,9 @@ class PostcodeSectorsColumns(ColumnsTask):
             id='ps_id',
             type='Text',
             name='Postcode Sector ID',
-            weight=0,
-            targets={geom: GEOM_REF}
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
