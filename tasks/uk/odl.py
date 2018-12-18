@@ -83,12 +83,21 @@ class PostcodeDistrictsColumns(ColumnsTask):
             type='Text',
             name='Postcode District ID',
             weight=0,
-            targets={geom: GEOM_REF}
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='pd_name',
+            type='Text',
+            name='Postcode District ID',
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
             ('the_geom', geom),
             ('geographycode', geomref),
+            ('name', geomname)
         ])
 
     @staticmethod
@@ -131,7 +140,7 @@ class PostcodeDistricts(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
@@ -194,12 +203,21 @@ class PostcodeSectorsColumns(ColumnsTask):
             type='Text',
             name='Postcode Sector ID',
             weight=0,
-            targets={geom: GEOM_REF}
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='ps_name',
+            type='Text',
+            name='Postcode Sector ID',
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
             ('the_geom', geom),
             (self.geoid_column(), geomref),
+            (self.geoname_column(), geomname)
         ])
 
     @staticmethod
@@ -242,7 +260,7 @@ class PostcodeSectors(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)

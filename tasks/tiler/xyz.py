@@ -16,6 +16,15 @@ import csv
 LOGGER = get_logger(__name__)
 GEONAME_COLUMN = 'geoname'
 
+Z_RANGES = [
+    range(0, 8),    # 0-7
+    range(8, 10),   # 8-9
+    range(10, 11),  # 10
+    range(11, 12),  # 11
+    range(12, 13),  # 12
+    range(13, 14),  # 13
+    range(14, 15),  # 14
+]
 
 class ConfigFile():
     def _get_config_data(self, config_file):
@@ -69,13 +78,13 @@ class TilesTempTable(Task, ConfigFile):
                            ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
                            ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
                     FROM data
-                    '''.format(schema=config['schema'], table=self._get_table_name(config),
+                    '''.format(schema=self.schema, table=self._get_table_name(config),
                                x=tile[0], y=tile[1], z=tile[2])
             session.execute(query)
         session.commit()
 
     def _create_table(self, session, config):
-        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(config['schema']))
+        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(self.schema))
         sql_table = '''CREATE TABLE IF NOT EXISTS \"{schema}\".\"{table}\"(
                        x INTEGER NOT NULL,
                        y INTEGER NOT NULL,
@@ -84,15 +93,19 @@ class TilesTempTable(Task, ConfigFile):
                        envelope Geometry,
                        ext Geometry,
                        CONSTRAINT {table}_pk PRIMARY KEY (z,x,y)
-                    )'''.format(schema=config['schema'],
+                    )'''.format(schema=self.schema,
                                 table=self._get_table_name(config))
         session.execute(sql_table)
         session.commit()
 
+    @property
+    def schema(self):
+        return 'tiler_tmp'
+
     def output(self):
         targets = []
         for config in self.config_data["tables"]:
-            targets.append(PostgresTarget(config['schema'],
+            targets.append(PostgresTarget(self.schema,
                                           self._get_table_name(config)))
         return targets
 
@@ -104,6 +117,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
     config_file = Parameter()
+    geom_tablename_suffix = Parameter(default=None, significant=False)
 
     table_postfix = None
     mc_geography_level = None
@@ -133,7 +147,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
         for column in self._get_columns():
             if column['id'] == GEONAME_COLUMN:
-                column['id'] = self.config_data["geolevels"][self.geography]["geoname"]
+                column['id'] = self.config_data["geolevels"][self.geography][GEONAME_COLUMN]
             columns_ids.append(column['id'])
 
         return columns_ids
@@ -143,6 +157,12 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
         for config in config_data["tables"]:
             if config['table'] == self.output().tablename:
                 return config['columns']
+
+    def _get_table_column_names(self):
+        columns = []
+        for column in self._get_columns():
+            columns.append(column.get('column_alias', column['column_name']))
+        return columns
 
     def _get_table_columns(self):
         columns = []
@@ -170,45 +190,122 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                     mvt_geometry Geometry,
                     area_ratio NUMERIC,
                     area NUMERIC,
-                    {cols},
-                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (z,x,y,geoid)
+                    {cols}
                 )
+                PARTITION BY LIST (z)
                 '''.format(schema=output.schema,
                            table=output.tablename,
                            cols=", ".join(self._get_table_columns()))
         session.execute(query)
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        zs = ['{}'.format(z) for z in z_range]
+        column_names = self._get_table_column_names()
+
+        query = '''
+                CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
+                PARTITION OF "{schema}".{table} ({col_names})
+                FOR VALUES IN ({values})
+                WITH (
+                    autovacuum_enabled = false,
+                    toast.autovacuum_enabled = false
+                )
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0],
+                           col_names=', '.join(column_names),
+                           values=','.join(zs))
+        session.execute(query)
+
+        drop_index_query = '''
+                DROP INDEX IF EXISTS "{schema}".{table}_{z}_idx
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0])
+        session.execute(drop_index_query)
+
         session.execute('''
-            ALTER TABLE "{schema}".{table}
+            ALTER TABLE "{schema}".{table}_{z}
             ALTER COLUMN mvt_geometry
             SET STORAGE EXTERNAL
         '''.format(schema=output.schema,
-                   table=output.tablename))
+                   table=output.tablename,
+                   z=z_range[0]))
         session.commit()
+
+    def _create_index(self):
+        session = current_session()
+        output = self.output()
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        index_query = '''
+                      CREATE UNIQUE INDEX IF NOT EXISTS {table}_{z}_idx
+                      ON "{schema}".{table}_{z}
+                      (z, x, y, geoid)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(index_query)
+
+
+    def _set_normal_parameters(self):
+        session = current_session()
+        output = self.output()
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        autovacuum_query = '''
+                      ALTER TABLE "{schema}".{table}_{z}
+                      SET (autovacuum_enabled = true,
+                          toast.autovacuum_enabled = true)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(autovacuum_query)
+
 
     def _insert_data(self):
         session = current_session()
 
         columns = self._get_columns()
         out_columns = [x.get('column_alias', x['column_name']) for x in columns]
-        in_columns = ["((aa).mvtdata::json->>'{name}')::{type} as {alias}".format(
+        in_columns = ["q.{name} as {alias}".format(
                         name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
                       ) for x in columns]
         in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
-
+        LOGGER.info('Columns: {}'.format(columns))
+        obs_getmcdomvt_types = ["{name} {type}".format(
+            name=column['column_name'], type=column['type']
+        ) for column in columns]
         LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
         query = '''
                 INSERT INTO "{schema}".{table} (x, y, z, geoid,
                                                 area_ratio, area, mvt_geometry,
                                                 {out_columns})
-                SELECT (aa).x, (aa).y, (aa).zoom z, (aa).mvtdata::json->>'id'::text as geoid,
-                       ((aa).mvtdata::json->>'area_ratio')::numeric as area_ratio,
-                       ((aa).mvtdata::json->>'area')::numeric as area, (aa).mvtgeom,
+                SELECT q.x, q.y, q.zoom z, q.id as geoid,
+                       q.area_ratio as area_ratio,
+                       q.area as area, q.mvtgeom,
                        {in_columns}
                   FROM (
-                    SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
-                    ARRAY[{in_columns_ids}]::TEXT[],
-                    ARRAY[]::TEXT[], '{country}', ARRAY[]::TEXT[], ARRAY[]::TEXT[],
-                    {simplification_tolerance}, '{table_postfix}', {mc_geography_level}) aa
+                    SELECT * FROM cdb_observatory.OBS_GetMCDOMVT(
+                        {zoom_level},
+                        '{geography}',
+                        ARRAY[{in_columns_ids}]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        '{country}',
+                        ARRAY[]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        {simplification_tolerance},
+                        '{table_postfix}',
+                        {mc_geography_level},
+                        False, -- area_normalized
+                        True, -- use_meta_cache
+                        4096, -- extent
+                        256, -- buf
+                        True, -- clip_geom
+                        {geom_tablename_suffix} -- geom_tablename_suffix
+                    ) AS result(x integer, y integer, zoom integer, mvtgeom geometry,
+                                id text, {obs_getmcdomvt_types},
+                                area_ratio float, area float)
                     ) q
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
@@ -218,10 +315,13 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
                            in_columns=','.join(in_columns),
                            in_columns_ids=','.join(in_columns_ids),
                            country=self._get_country(),
+                           obs_getmcdomvt_types=','.join(obs_getmcdomvt_types),
                            simplification_tolerance=self._get_simplification_tolerance(),
                            table_postfix=self.table_postfix if self.table_postfix is not None else '',
                            mc_geography_level="'{}'".format(self.mc_geography_level)
-                                              if self.mc_geography_level is not None else 'NULL')
+                                              if self.mc_geography_level is not None else 'NULL',
+                           geom_tablename_suffix="'{}'".format(self.geom_tablename_suffix)
+                                              if self.geom_tablename_suffix is not None else 'NULL')
 
         session.execute(query)
         session.commit()
@@ -229,6 +329,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     def run(self):
         self._create_table()
         self._insert_data()
+        self._create_index()
+        self._set_normal_parameters()
 
     def output(self):
         config_data = self._get_config_data(self.config_file)
@@ -236,7 +338,7 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
 
     def complete(self):
         session = current_session()
-        exists = None
+        exists = False
 
         try:
             query = '''

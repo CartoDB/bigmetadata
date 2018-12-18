@@ -2,7 +2,8 @@ from luigi import WrapperTask, Parameter
 import json
 import os
 from lib.logger import get_logger
-from .simplification import SimplifyGeometriesMapshaper, SimplifyGeometriesPostGIS
+from .simplification import SimplifyGeometriesMapshaper, \
+    SimplifyGeometriesPostGIS, SIMPLIFIED_SUFFIX
 
 SCHEMA = 'schema'
 TABLE_ID = 'tableid'
@@ -31,6 +32,7 @@ class Simplify(WrapperTask):
     schema = Parameter()
     table = Parameter()
     table_id = Parameter(default='')
+    suffix = Parameter(default=SIMPLIFIED_SUFFIX)
 
     def __init__(self, *args, **kwargs):
         super(Simplify, self).__init__(*args, **kwargs)
@@ -45,15 +47,20 @@ class Simplify(WrapperTask):
             LOGGER.error("Simplification not found. Edit 'simplifications.json' and add an entry for '{}'".format(self.table_key.lower()))
 
         simplification = params.get(SIMPLIFICATION, DEFAULT_SIMPLIFICATION)
-        LOGGER.info("Simplifying %s using %s", self.table, simplification)
+        LOGGER.info("Simplifying %s.%s using %s", self.schema, self.table, simplification)
+        table_output = '{tablename}{suffix}'.format(tablename=self.table, suffix=self.suffix)
         if simplification == SIMPLIFICATION_MAPSHAPER:
-            return SimplifyGeometriesMapshaper(schema=self.schema, table_input=self.table,
+            return SimplifyGeometriesMapshaper(schema=self.schema,
+                                               table_input=self.table,
+                                               table_output=table_output,
                                                geomfield=params[GEOM_FIELD],
                                                retainfactor=params[FACTOR],
                                                skipfailures=params.get(SKIP_FAILURES, DEFAULT_SKIPFAILURES),
                                                maxmemory=params.get(MAX_MEMORY, DEFAULT_MAXMEMORY))
         elif simplification == SIMPLIFICATION_POSTGIS:
-            return SimplifyGeometriesPostGIS(schema=self.schema, table_input=self.table,
+            return SimplifyGeometriesPostGIS(schema=self.schema,
+                                             table_input=self.table,
+                                             table_output=table_output,
                                              geomfield=params[GEOM_FIELD],
                                              retainfactor=params[FACTOR])
         else:

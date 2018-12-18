@@ -144,8 +144,9 @@ class PostcodeAreasColumns(ColumnsTask):
             id='pa_name',
             type='Text',
             name='GB Postcode Area Name',
-            weight=0,
-            targets={geom: GEOM_REF}
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
