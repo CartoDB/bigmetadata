@@ -236,7 +236,7 @@ class PostcodeSectors(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name, name
+                SELECT ST_MakeValid(wkb_geometry), replace(name, ' ', '_'), name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
