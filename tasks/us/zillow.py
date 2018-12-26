@@ -178,6 +178,20 @@ class DownloadZillow(Task):
     def run(self):
         copyfile(self.input().path, self.output().path)
 
+        # Fix a problem with Zillow 2018-11. A `ñ` is incorrectly encoded as 0xB1, it should be 0xC3 0xB1 (in UTF-8)
+        # As far as I can see, 0xB1 is not `ñ` in any common encoding (tested all ISO-8859-X and UTF-X)
+        #
+        # 0x61 0xB1 serves to give context and make this a little safe in case they fix this in the future
+        #                     |  E |  s |  p |  a |  ñ    |  o |  l |  a
+        # Original: Espa.ola  | 45 | 73 | 70 | 61 | b1    | 6f | 6c | 61
+        # Modified: Española  | 45 | 73 | 70 | 61 | c3 b1 | 6f | 6c | 61
+        contents = ''
+        with open(self.output().path, 'rb') as fin:
+            contents = fin.read()
+        contents = contents.replace(b'\x61\xB1', b'\x61\xC3\xB1')
+        with open(self.output().path, 'wb') as fout:
+            fout.write(contents)
+
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) +
                            '_' + underscore_slugify(self.last_time) + '.csv')
