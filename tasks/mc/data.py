@@ -1,6 +1,6 @@
-import os, re, sqlalchemy
-import urllib.request
 import itertools
+import os
+import sqlalchemy
 from luigi import Parameter, WrapperTask
 from tasks.base_tasks import (RepoFileGUnzipTask, CSV2TempTableTask, TempTableTask)
 from tasks.meta import current_session
@@ -533,4 +533,3 @@ class AllMCCountries(WrapperTask):
     def requires(self):
         return [AllMCData(country=country, until_month=self.until_month, month=self.month)
             for country in ['us', 'ca', 'uk', 'au']]
-
