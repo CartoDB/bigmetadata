@@ -1,4 +1,4 @@
-import os, re
+import os, re, sqlalchemy
 import urllib.request
 import itertools
 from luigi import Parameter, WrapperTask
@@ -415,8 +415,6 @@ class MCData(TempTableTask):
         session.execute(query)
         session.commit()
 
-    PK_EXISTS_RE = '.*multiple primary keys for table \".*\" are not allowed.*'
-
     def _create_constraints(self, session):
         output = self.output()
         LOGGER.info('Creating constraints for {}'.format(output.table))
@@ -432,8 +430,8 @@ class MCData(TempTableTask):
                 )
         try:
             session.execute(query)
-        except Exception as e:
-            if re.match(self.PK_EXISTS_RE, str(e)):
+        except sqlalchemy.exc.ProgrammingError as e:
+            if e.orig.pgcode == '42P16':
                 LOGGER.info('PK already exists at {}'.format(output.tablename))
             else:
                 raise e
@@ -535,3 +533,4 @@ class AllMCCountries(WrapperTask):
     def requires(self):
         return [AllMCData(country=country, until_month=self.until_month, month=self.month)
             for country in ['us', 'ca', 'uk', 'au']]
+
