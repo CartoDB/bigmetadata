@@ -108,8 +108,9 @@ def geoname_format(country, name):
                        metro_level_name=METRO_LEVEL_NAME.get(country, 'metro'))
 
 
-HOST = 'http://172.17.0.1:8000/mc'
-# HOST = 'http://host.docker.internal:8000/mc'
+# You can override this host with MC_DOWNLOAD_PATH
+# Example: MC_DOWNLOAD_PATH=http://host.docker.internal:8000/mc
+MC_PATH = 'http://172.17.0.1:8000/mc'
 COMPLETE_URL = '{host}/carto_{country}_mrli_scores.csv.gz'
 UNTIL_URL = '{host}/carto_{country}_mrli_scores_until_{month}.csv.gz'
 MONTH_URL = '{host}/carto_{country}_mrli_scores_{month}.csv.gz'
@@ -132,19 +133,20 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
     month = Parameter(default=None)
 
     def get_url(self):
+        path = os.environ.get('MC_DOWNLOAD_PATH', MC_PATH)
         if self.until_month:
             return UNTIL_URL.format(
-                host=HOST,
+                host=path,
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country],
                 month=self.until_month)
         elif self.month:
             return MONTH_URL.format(
-                host=HOST,
+                host=path,
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country],
                 month=self.month)
         else:
             return COMPLETE_URL.format(
-                host=HOST,
+                host=path,
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country])
 
 
