@@ -122,6 +122,7 @@ class ImportData(CSV2TempTableTask):
 
         return os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
                                                                                      state_code=state_code))
+
     def _datafile_path(self, tablename, state_code):
         filename = '{tablename}[-_]{state_code}.[xX][lL][sS]'.format(tablename=tablename,
                                                                      state_code=state_code)
