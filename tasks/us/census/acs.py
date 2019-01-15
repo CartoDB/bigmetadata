@@ -33,15 +33,14 @@ SAMPLE_5YR = '5yr'
 GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CONGRESSIONAL_DISTRICT,
                SCHOOL_DISTRICT_ELEMENTARY, SCHOOL_DISTRICT_SECONDARY, SCHOOL_DISTRICT_UNIFIED,
                CBSA, PLACE]
-YEARS = ['2015', '2016']
-SAMPLES = [SAMPLE_5YR]
+YEARS = ['2010', '2014', '2015', '2016']
+SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
 
 
 class DownloadACS(LoadPostgresFromZipFile):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
-    URL = 'https://s3.amazonaws.com/census-backup/acs/{year}/' \
-            'acs{year}_{sample}/acs{year}_{sample}_backup.sql.gz'
+    URL = 'https://storage.googleapis.com/carto-tilesetsapi/data-observatory/acs/acs{year}_{sample}_backup.sql.gz'
 
     year = Parameter()
     sample = Parameter()

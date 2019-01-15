@@ -87,6 +87,8 @@ RENTALS = ('AllHomesPlusMultifamily', 'SingleFamilyResidenceRental',
 MEDIAN_VALUE_HOMETYPES = ('AllHomes',)
 MEDIAN_RENTAL_HOMETYPES = ('AllHomes', 'Sfr', 'CondoCoop',)
 
+TIGER_YEAR = '2016'
+
 
 def measure_name(hometype):
     if hometype in HOMES:
@@ -332,9 +334,9 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns(year='2015'),
-            'sumlevel': SumLevel(year='2015', geography='zcta5'),
-            'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
+            'geoids': GeoidColumns(year=TIGER_YEAR),
+            'sumlevel': SumLevel(year=TIGER_YEAR, geography='zcta5'),
+            'shorelineclip': ShorelineClip(year=TIGER_YEAR, geography='zcta5')
         }
         for hometype, _ in HOMETYPES.items():
             measure = measure_name(hometype)
@@ -373,8 +375,8 @@ class Zillow(TableTask):
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name_sl', input_['geoids'][tiger_geo + '_2015' + GEOID_SUMLEVEL_COLUMN]),
-            ('region_name_sc', input_['geoids'][tiger_geo + '_2015' + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('region_name_sl', input_['geoids']['{}_{}{}'.format(tiger_geo,TIGER_YEAR,GEOID_SUMLEVEL_COLUMN)]),
+            ('region_name_sc', input_['geoids']['{}_{}{}'.format(tiger_geo,TIGER_YEAR,GEOID_SUMLEVEL_COLUMN)]),
         ])
         columns.update(input_['metadata'])
 
@@ -440,4 +442,4 @@ class ZillowMetaWrapper(MetaWrapper):
         if self.year == 2010 and self.month <= 10:
             return
         yield Zillow(geography=self.geography, year=self.year, month=self.month)
-        yield SumLevel(year=str(2015), geography='zcta5')
+        yield SumLevel(year=TIGER_YEAR, geography='zcta5')
