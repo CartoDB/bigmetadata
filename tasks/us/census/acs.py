@@ -35,6 +35,11 @@ GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CON
                CBSA, PLACE]
 YEARS = ['2010', '2014', '2015', '2016']
 SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
+MINIMUM_TIGER_YEAR = 2015
+
+
+def tiger_year_for_acs(acs_year):
+    return str(max(MINIMUM_TIGER_YEAR, int(acs_year)))
 
 
 class DownloadACS(LoadPostgresFromZipFile):
@@ -76,14 +81,15 @@ class Quantiles(TableTask):
     geography = Parameter()
 
     def requires(self):
+        tiger_year = tiger_year_for_acs(self.year)
         return {
             'columns': QuantileColumns(year=self.year, sample=self.sample, geography=self.geography),
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
-            'tiger': GeoidColumns(year=self.year),
-            'sumlevel': SumLevel(geography=self.geography, year=self.year),
-            'shorelineclip': ShorelineClip(geography=self.geography, year=self.year)
+            'tiger': GeoidColumns(year=tiger_year),
+            'sumlevel': SumLevel(geography=self.geography, year=tiger_year),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=tiger_year)
         }
 
     def version(self):
@@ -173,16 +179,17 @@ class Extract(TableTask):
         return 14
 
     def requires(self):
+        tiger_year = tiger_year_for_acs(self.year)
         dependencies = {
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
-            'tiger': GeoidColumns(year=self.year),
+            'tiger': GeoidColumns(year=tiger_year),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'sumlevel': SumLevel(geography=self.geography, year=self.year),
-            'shorelineclip': ShorelineClip(geography=self.geography, year=self.year)
+            'sumlevel': SumLevel(geography=self.geography, year=tiger_year),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=tiger_year)
         }
 
         if self.geography == BLOCK:
-            dependencies['interpolation'] = TigerBlocksInterpolation(year=self.year)
+            dependencies['interpolation'] = TigerBlocksInterpolation(year=tiger_year)
             dependencies['bg_extract'] = Extract(geography=BLOCK_GROUP, sample=self.sample, year=self.year)
 
         return dependencies
