@@ -8,6 +8,7 @@ from tasks.base_tasks import TableTask, MetaWrapper, LoadPostgresFromZipFile, Re
 from tasks.util import grouper
 from tasks.us.census.tiger import SumLevel, ShorelineClip, TigerBlocksInterpolation
 from tasks.us.census.tiger import (SUMLEVELS, GeoidColumns, GEOID_SUMLEVEL_COLUMN, GEOID_SHORELINECLIPPED_COLUMN)
+from tasks.us.census.tiger import YEARS as TIGER_YEARS
 from tasks.meta import (current_session, GEOM_REF)
 from .acs_columns.columns import QuantileColumns, Columns
 
@@ -35,7 +36,6 @@ GEOGRAPHIES = [STATE, COUNTY, CENSUS_TRACT, BLOCK_GROUP, BLOCK, PUMA, ZCTA5, CON
                CBSA, PLACE]
 YEARS = ['2010', '2014', '2015', '2016']
 SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
-MINIMUM_TIGER_YEAR = 2015
 
 
 class DownloadACS(LoadPostgresFromZipFile):
@@ -111,7 +111,7 @@ class Quantiles(TableTask):
                                                      end=int(self.year)))
 
     def tiger_year(self):
-        return str(max(MINIMUM_TIGER_YEAR, int(self.year)))
+        return str(max(int(self.year), min(TIGER_YEARS)))
 
     def populate(self):
         connection = current_session()
@@ -197,7 +197,7 @@ class Extract(TableTask):
                                                      end=int(self.year)))
 
     def tiger_year(self):
-        return str(max(MINIMUM_TIGER_YEAR, int(self.year)))
+        return str(max(int(self.year), min(TIGER_YEARS)))
 
     def targets(self):
         return {
