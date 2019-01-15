@@ -38,10 +38,6 @@ SAMPLES = [SAMPLE_5YR, SAMPLE_1YR]
 MINIMUM_TIGER_YEAR = 2015
 
 
-def tiger_year_for_acs(acs_year):
-    return str(max(MINIMUM_TIGER_YEAR, int(acs_year)))
-
-
 class DownloadACS(LoadPostgresFromZipFile):
 
     # http://censusreporter.tumblr.com/post/73727555158/easier-access-to-acs-data
@@ -81,15 +77,14 @@ class Quantiles(TableTask):
     geography = Parameter()
 
     def requires(self):
-        tiger_year = tiger_year_for_acs(self.year)
         return {
             'columns': QuantileColumns(year=self.year, sample=self.sample, geography=self.geography),
             'table': Extract(year=self.year,
                              sample=self.sample,
                              geography=self.geography),
-            'tiger': GeoidColumns(year=tiger_year),
-            'sumlevel': SumLevel(geography=self.geography, year=tiger_year),
-            'shorelineclip': ShorelineClip(geography=self.geography, year=tiger_year)
+            'tiger': GeoidColumns(year=self.tiger_year()),
+            'sumlevel': SumLevel(geography=self.geography, year=self.tiger_year()),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=self.tiger_year())
         }
 
     def version(self):
@@ -104,8 +99,8 @@ class Quantiles(TableTask):
     def columns(self):
         input_ = self.input()
         columns = OrderedDict({
-            'geoidsl': input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN],
-            'geoidsc': input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]
+            'geoidsl': input_['tiger'][self.geography + '_{}'.format(self.tiger_year()) + GEOID_SUMLEVEL_COLUMN],
+            'geoidsc': input_['tiger'][self.geography + '_{}'.format(self.tiger_year()) + GEOID_SHORELINECLIPPED_COLUMN]
         })
         columns.update(input_['columns'])
         return columns
@@ -114,6 +109,9 @@ class Quantiles(TableTask):
         sample = int(self.sample[0])
         return get_timespan('{start} - {end}'.format(start=int(self.year) - sample + 1,
                                                      end=int(self.year)))
+
+    def tiger_year(self):
+        return str(max(MINIMUM_TIGER_YEAR, int(self.year)))
 
     def populate(self):
         connection = current_session()
@@ -179,17 +177,16 @@ class Extract(TableTask):
         return 14
 
     def requires(self):
-        tiger_year = tiger_year_for_acs(self.year)
         dependencies = {
             'acs': Columns(year=self.year, sample=self.sample, geography=self.geography),
-            'tiger': GeoidColumns(year=tiger_year),
+            'tiger': GeoidColumns(year=self.tiger_year()),
             'data': DownloadACS(year=self.year, sample=self.sample),
-            'sumlevel': SumLevel(geography=self.geography, year=tiger_year),
-            'shorelineclip': ShorelineClip(geography=self.geography, year=tiger_year)
+            'sumlevel': SumLevel(geography=self.geography, year=self.tiger_year()),
+            'shorelineclip': ShorelineClip(geography=self.geography, year=self.tiger_year())
         }
 
         if self.geography == BLOCK:
-            dependencies['interpolation'] = TigerBlocksInterpolation(year=tiger_year)
+            dependencies['interpolation'] = TigerBlocksInterpolation(year=self.tiger_year())
             dependencies['bg_extract'] = Extract(geography=BLOCK_GROUP, sample=self.sample, year=self.year)
 
         return dependencies
@@ -198,6 +195,9 @@ class Extract(TableTask):
         sample = int(self.sample[0])
         return get_timespan('{start} - {end}'.format(start=int(self.year) - sample + 1,
                                                      end=int(self.year)))
+
+    def tiger_year(self):
+        return str(max(MINIMUM_TIGER_YEAR, int(self.year)))
 
     def targets(self):
         return {
@@ -208,8 +208,8 @@ class Extract(TableTask):
     def columns(self):
         input_ = self.input()
         cols = OrderedDict([
-            ('geoidsl', input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SUMLEVEL_COLUMN]),
-            ('geoidsc', input_['tiger'][self.geography + '_{}'.format(self.year) + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('geoidsl', input_['tiger'][self.geography + '_{}'.format(self.tiger_year()) + GEOID_SUMLEVEL_COLUMN]),
+            ('geoidsc', input_['tiger'][self.geography + '_{}'.format(self.tiger_year()) + GEOID_SHORELINECLIPPED_COLUMN]),
         ])
         for colkey, col in input_['acs'].items():
             cols[colkey] = col
