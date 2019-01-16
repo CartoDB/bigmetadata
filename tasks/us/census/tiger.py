@@ -30,6 +30,7 @@ LOGGER = get_logger(__name__)
 GEOID_SUMLEVEL_COLUMN = "_geoidsl"
 GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
 BLOCK = 'block'
+YEARS = [2015, 2016]
 
 
 class TigerSourceTags(TagsTask):
