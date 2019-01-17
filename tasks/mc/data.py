@@ -131,6 +131,9 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
     country = Parameter()
     until_month = Parameter(default=None)
     month = Parameter(default=None)
+    # Needed if the file is not the full month but a subset (for example,
+    # it only contains zip codes)
+    content = Parameter(default=None)
 
     def get_url(self):
         path = os.environ.get('MC_DOWNLOAD_PATH', MC_PATH)
@@ -154,13 +157,17 @@ class ImportMCData(CSV2TempTableTask):
     country = Parameter()
     until_month = Parameter(default=None)
     month = Parameter(default=None)
+    # Needed if the file is not the full month but a subset (for example,
+    # it only contains zip codes)
+    content = Parameter(default=None)
 
     FILE_EXTENSION = 'csv'
 
     def requires(self):
         return DownloadGUnzipMC(country=self.country,
                                 until_month=self.until_month,
-                                month=self.month)
+                                month=self.month,
+                                content=self.content)
 
     def coldef(self):
         '''
@@ -180,10 +187,13 @@ class MCDataBaseTable(TempTableTask):
     geography = Parameter()
     until_month = Parameter(default=None)
     month = Parameter(default=None)
+    # Needed if the file is not the full month but a subset (for example,
+    # it only contains zip codes)
+    content = Parameter(default=None)
 
     def requires(self):
         return ImportMCData(country=self.country, until_month=self.until_month,
-                            month=self.month)
+                            month=self.month, content=self.content)
 
     def get_geography_name(self):
         return self.geography.replace('_', ' ')
@@ -336,6 +346,9 @@ class MCData(TempTableTask):
     geography = Parameter()
     until_month = Parameter(default=None)
     month = Parameter(default=None)
+    # Needed if the file is not the full month but a subset (for example,
+    # it only contains zip codes)
+    content = Parameter(default=None)
 
     @property
     def mc_schema(self):
@@ -343,7 +356,8 @@ class MCData(TempTableTask):
 
     def requires(self):
         return MCDataBaseTable(country=self.country, geography=self.geography,
-                               until_month=self.until_month, month=self.month)
+                               until_month=self.until_month, month=self.month,
+                               content=self.content)
 
     def _create_table(self, session):
         LOGGER.info('Creating table {}'.format(self.output().table))
@@ -518,10 +532,14 @@ class AllMCData(WrapperTask):
     country = Parameter()
     until_month = Parameter(default=None)
     month = Parameter(default=None)
+    # Needed if the file is not the full month but a subset (for example,
+    # it only contains zip codes)
+    content = Parameter(default=None)
 
     def requires(self):
         return [MCData(geography=geography, country=self.country,
-                until_month=self.until_month, month=self.month)
+                until_month=self.until_month, month=self.month,
+                content=self.content)
          for geography in [x.replace(' ', '_')
                            for x in GEOGRAPHIES[self.country]]]
 
