@@ -101,11 +101,33 @@ METRO_LEVEL_NAME = {
     'uk': 'pc_district',
 }
 
+# From 201807 some columns (CA, UK) where homogeneized towards US notation:
+# CA: growth_prov_score stability_prov_score transactions_prov_score sales_prov_score
+#       ->
+#     ticket_size_state_score growth_state_score stability_state_score transactions_state_score sales_state_score
+# UK: ticket_size_pc_district_score growth_pc_district_score stability_pc_district_score transactions_pc_district_score sales_pc_district_score ticket_size_pc_area_score growth_pc_area_score stability_pc_area_score transactions_pc_area_score sales_pc_area_score
+#       ->
+#     ticket_size_metro_score growth_metro_score stability_metro_score transactions_metro_score sales_metro_score ticket_size_state_score growth_state_score stability_state_score transactions_state_score sales_state_score
+COLUMN_UNIF_MONTH= '201807'
 
-def geoname_format(country, name):
-    return name.format(country_level_name='country',
-                       state_level_name=STATE_LEVEL_NAME.get(country, 'state'),
-                       metro_level_name=METRO_LEVEL_NAME.get(country, 'metro'))
+def is_after(month_a, month_b):
+    y_a = int(month_a[:4])
+    y_b = int(month_b[:4])
+    m_a = int(month_a[4:])
+    m_b = int(month_b[4:])
+
+    return y_a > y_b or (y_a == y_b and m_a > m_b)
+
+
+def geoname_format(country, name, month=None):
+    if month and (month == COLUMN_UNIF_MONTH or is_after(month, COLUMN_UNIF_MONTH)):
+        return name.format(country_level_name='country',
+                           state_level_name='state',
+                           metro_level_name='metro')
+    else:
+        return name.format(country_level_name='country',
+                           state_level_name=STATE_LEVEL_NAME.get(country, 'state'),
+                           metro_level_name=METRO_LEVEL_NAME.get(country, 'metro'))
 
 
 # You can override this host with MC_DOWNLOAD_PATH
@@ -271,24 +293,25 @@ class MCDataBaseTable(TempTableTask):
             query = '''
                     INSERT INTO {output_table}
                     SELECT {region_id}, {month}, {category},
-                           {total_merchants_column}::NUMERIC,
-                           {ticket_size_country_score_column}::NUMERIC,
-                           {ticket_size_metro_score_column}::NUMERIC,
-                           {ticket_size_state_score_column}::NUMERIC,
-                           {growth_country_score_column}::NUMERIC,
-                           {growth_metro_score_column}::NUMERIC,
-                           {growth_state_score_column}::NUMERIC,
-                           {stability_country_score_column}::NUMERIC,
-                           {stability_metro_score_column}::NUMERIC,
-                           {stability_state_score_column}::NUMERIC,
-                           {transactions_country_score_column}::NUMERIC,
-                           {transactions_metro_score_column}::NUMERIC,
-                           {transactions_state_score_column}::NUMERIC,
-                           {sales_country_score_column}::NUMERIC,
-                           {sales_metro_score_column}::NUMERIC,
-                           {sales_state_score_column}::NUMERIC
+                           cdb_observatory.first({total_merchants_column}::NUMERIC),
+                           cdb_observatory.first({ticket_size_country_score_column}::NUMERIC),
+                           cdb_observatory.first({ticket_size_metro_score_column}::NUMERIC),
+                           cdb_observatory.first({ticket_size_state_score_column}::NUMERIC),
+                           cdb_observatory.first({growth_country_score_column}::NUMERIC),
+                           cdb_observatory.first({growth_metro_score_column}::NUMERIC),
+                           cdb_observatory.first({growth_state_score_column}::NUMERIC),
+                           cdb_observatory.first({stability_country_score_column}::NUMERIC),
+                           cdb_observatory.first({stability_metro_score_column}::NUMERIC),
+                           cdb_observatory.first({stability_state_score_column}::NUMERIC),
+                           cdb_observatory.first({transactions_country_score_column}::NUMERIC),
+                           cdb_observatory.first({transactions_metro_score_column}::NUMERIC),
+                           cdb_observatory.first({transactions_state_score_column}::NUMERIC),
+                           cdb_observatory.first({sales_country_score_column}::NUMERIC),
+                           cdb_observatory.first({sales_metro_score_column}::NUMERIC),
+                           cdb_observatory.first({sales_state_score_column}::NUMERIC)
                           FROM {input_table}
                           WHERE {region_type} = '{geography}'
+                          GROUP BY {region_id}, {month}, {category}
                     '''.format(
                         output_table=self.output().table,
                         input_table=self.input().table,
@@ -297,35 +320,35 @@ class MCDataBaseTable(TempTableTask):
                         category=CATEGORY_COLUMN[0],
                         total_merchants_column=TOTAL_MERCHANTS_COLUMN[0],
                         ticket_size_country_score_column=geoname_format(self.country,
-                                                                        TICKET_SIZE_COUNTRY_SCORE_COLUMN[0]),
+                                                                        TICKET_SIZE_COUNTRY_SCORE_COLUMN[0], self.month),
                         ticket_size_metro_score_column=geoname_format(self.country,
-                                                                      TICKET_SIZE_METRO_SCORE_COLUMN[0]),
+                                                                      TICKET_SIZE_METRO_SCORE_COLUMN[0], self.month),
                         ticket_size_state_score_column=geoname_format(self.country,
-                                                                      TICKET_SIZE_STATE_SCORE_COLUMN[0]),
+                                                                      TICKET_SIZE_STATE_SCORE_COLUMN[0], self.month),
                         growth_country_score_column=geoname_format(self.country,
-                                                                   GROWTH_COUNTRY_SCORE_COLUMN[0]),
+                                                                   GROWTH_COUNTRY_SCORE_COLUMN[0], self.month),
                         growth_metro_score_column=geoname_format(self.country,
-                                                                 GROWTH_METRO_SCORE_COLUMN[0]),
+                                                                 GROWTH_METRO_SCORE_COLUMN[0], self.month),
                         growth_state_score_column=geoname_format(self.country,
-                                                                 GROWTH_STATE_SCORE_COLUMN[0]),
+                                                                 GROWTH_STATE_SCORE_COLUMN[0], self.month),
                         stability_country_score_column=geoname_format(self.country,
-                                                                      STABILITY_COUNTRY_SCORE_COLUMN[0]),
+                                                                      STABILITY_COUNTRY_SCORE_COLUMN[0], self.month),
                         stability_metro_score_column=geoname_format(self.country,
-                                                                    STABILITY_METRO_SCORE_COLUMN[0]),
+                                                                    STABILITY_METRO_SCORE_COLUMN[0], self.month),
                         stability_state_score_column=geoname_format(self.country,
-                                                                    STABILITY_STATE_SCORE_COLUMN[0]),
+                                                                    STABILITY_STATE_SCORE_COLUMN[0], self.month),
                         transactions_country_score_column=geoname_format(self.country,
-                                                                         TRANSACTIONS_COUNTRY_SCORE_COLUMN[0]),
+                                                                         TRANSACTIONS_COUNTRY_SCORE_COLUMN[0], self.month),
                         transactions_metro_score_column=geoname_format(self.country,
-                                                                       TRANSACTIONS_METRO_SCORE_COLUMN[0]),
+                                                                       TRANSACTIONS_METRO_SCORE_COLUMN[0], self.month),
                         transactions_state_score_column=geoname_format(self.country,
-                                                                       TRANSACTIONS_STATE_SCORE_COLUMN[0]),
+                                                                       TRANSACTIONS_STATE_SCORE_COLUMN[0], self.month),
                         sales_country_score_column=geoname_format(self.country,
-                                                                  SALES_COUNTRY_SCORE_COLUMN[0]),
+                                                                  SALES_COUNTRY_SCORE_COLUMN[0], self.month),
                         sales_metro_score_column=geoname_format(self.country,
-                                                                SALES_METRO_SCORE_COLUMN[0]),
+                                                                SALES_METRO_SCORE_COLUMN[0], self.month),
                         sales_state_score_column=geoname_format(self.country,
-                                                                SALES_STATE_SCORE_COLUMN[0]),
+                                                                SALES_STATE_SCORE_COLUMN[0], self.month),
                         region_type=REGION_TYPE_COLUMN[0],
                         geography=INPUT_FILE_GEOGRAPHY_ALIAS.get(geography, geography)
                     )
