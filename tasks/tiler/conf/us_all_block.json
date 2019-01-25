@@ -383,6 +383,30 @@
           "nullable": true
         },
         {
+          "id": "us.census.acs.B23006001",
+          "column_name": "pop_25_64",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "id": "us.census.acs.B07009002",
+          "column_name": "less_than_high_school_graduate",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "id": "us.census.acs.B07009003",
+          "column_name": "high_school_including_ged",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "id": "us.census.acs.B07009004",
+          "column_name": "some_college_and_associates_degree",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
           "id": "us.census.acs.B15003001",
           "column_name": "pop_25_years_over",
           "type": "numeric",
@@ -523,6 +547,12 @@
         {
           "id": "us.census.acs.B19001017",
           "column_name": "income_200000_or_more",
+          "type": "numeric",
+          "nullable": true
+        },
+        {
+          "id": "us.zillow.AllHomesPlusMultifamily_Zri",
+          "column_name": "allhomesplusmultifamily_zri",
           "type": "numeric",
           "nullable": true
         }

@@ -36,6 +36,7 @@ from tasks.simplify import Simplify
 
 LOGGER = get_logger(__name__)
 
+MAX_PG_IDENTIFIER_LENGTH = 63
 
 class ColumnsTask(Task):
     '''
@@ -227,18 +228,6 @@ class TagsTask(Task):
                 tag.version = self.version()
             output[orig_id] = TagTarget(tag, self)
         return output
-
-    def complete(self):
-        '''
-        Custom complete method that attempts to check if output exists, as is
-        default, but in case of failure allows attempt to run dependencies (a
-        missing dependency could result in exception on `output`).
-        '''
-        deps = self.deps()
-        if deps and not all([d.complete() for d in deps]):
-            return False
-        else:
-            return super(TagsTask, self).complete()
 
 
 class TableToCartoViaImportAPI(Task):
@@ -506,6 +495,13 @@ class TempTableTask(Task):
     def on_success(self):
         session_commit(self)
 
+    def target_tablename(self):
+        '''
+        Can be overriden to expose a different table name
+        :return:
+        '''
+        return unqualified_task_id(self.task_id)[:MAX_PG_IDENTIFIER_LENGTH]
+
     def run(self):
         '''
         Must be overriden by subclass.  Should create and populate a table
@@ -522,7 +518,7 @@ class TempTableTask(Task):
         table lives in a special-purpose schema in Postgres derived using
         :func:`~.util.classpath`.
         '''
-        return PostgresTarget(classpath(self), unqualified_task_id(self.task_id))
+        return PostgresTarget(classpath(self), self.target_tablename())
 
 
 @TempTableTask.event_handler(Event.START)
