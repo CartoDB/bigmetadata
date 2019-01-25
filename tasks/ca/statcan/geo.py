@@ -250,10 +250,7 @@ class GeographyColumns(ColumnsTask):
 class Geography(TableTask):
 
     resolution = Parameter(default=GEO_PR)
-    # FIXME: don't merge to master with this flag on. It's a workaround so
-    # CA can be run for the tiler without regenerating all the geographies.
-    # Once a new DO dump is deployed, this is not needed.
-    year = IntParameter(significant=False)
+    year = IntParameter()
 
     def version(self):
         return 10
