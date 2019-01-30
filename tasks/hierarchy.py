@@ -71,6 +71,9 @@ class DenormalizedHierarchy(Task, _CountryTask):
 class GetParentsFunction(Task, _CountryTask):
     year = IntParameter()
 
+    def version(self):
+        return 2
+
     def requires(self):
         '''
         Subclasses must override this and return a dictionary with the following elements:
@@ -90,6 +93,7 @@ class GetParentsFunction(Task, _CountryTask):
                 SELECT DISTINCT parent_level
                 FROM {input_relations}'''.format(input_relations=rel_table)
         levels = [l[0] for l in session.execute(levels_query).fetchall()]
+        levels += ["{}_id".format(l) for l in levels]
 
         level_types = ', '.join(['"{}" text'.format(l) for l in levels])
         cols_type = """
@@ -122,7 +126,10 @@ class GetParentsFunction(Task, _CountryTask):
                         INNER JOIN children c ON c.parent_id = p.child_id AND c.parent_level = p.child_level
                         LEFT JOIN {input_geonames} n ON p.parent_id = n.geoid AND p.parent_level = n.level
                     )
-                    SELECT ('{{' || string_agg('"' || parent_level || '": "' || geoname || '"', ',') || '}}')::JSONB
+                    SELECT ('{{' || string_agg(
+                                        '"' || parent_level || '": "' || geoname || '", ' ||
+                                        '"' || parent_level || '_id": "' || parent_id || '"',
+                                        ',') || '}}')::JSONB
                         INTO children
                         FROM children
                     WHERE geoname IS NOT NULL;
