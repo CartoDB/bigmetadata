@@ -131,8 +131,7 @@ class GetParentsFunction(Task, _CountryTask):
                                         '"' || parent_level || '_id": "' || parent_id || '"',
                                         ',') || '}}')::JSONB
                         INTO children
-                        FROM children
-                    WHERE geoname IS NOT NULL;
+                        FROM children;
 
                     RETURN children;
                 END
