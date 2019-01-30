@@ -1807,8 +1807,8 @@ DENOMINATOR_ALIASES = {
         'G42_Tot_P_F': 'G42_Tot_F'
     },
     'G43A': {
-        'G43A_Tot_P_P': 'G43A_P_Tot_Tot',
-        'G43A_Tot_P_F': 'G43A_F_Tot_Tot',
+        'G43A_Tot_P_P': 'G43B_P_Tot_Tot',
+        'G43A_Tot_P_F': 'G43B_F_Tot_Tot',
         'G43A_Tot_P_M': 'G43A_M_Tot_Tot',
         "G43A_P_Hours_wkd_NS_75_84": "G43B_P_Hours_wkd_NS_75_84",
         "G43A_P_Emp_awy_f_wrk_20_24": "G43B_P_Emp_awy_f_wrk_20_24",
@@ -1824,7 +1824,6 @@ DENOMINATOR_ALIASES = {
         "G43A_P_Tot_75_84": "G43B_P_Tot_75_84",
         "G43A_P_Emp_awy_f_wrk_65_74": "G43B_P_Emp_awy_f_wrk_65_74",
         "G43A_P_Not_in_LF_65_74": "G43B_P_Not_in_LF_65_74",
-        "G43A_P_Tot_Tot": "G43B_P_Tot_Tot",
         "G43A_P_Emp_FullT_15_19": "G43B_P_Emp_FullT_15_19",
         "G43A_P_Tot_45_54": "G43B_P_Tot_45_54",
         "G43A_P_Hours_wkd_NS_65_74": "G43B_P_Hours_wkd_NS_65_74",
@@ -1834,7 +1833,6 @@ DENOMINATOR_ALIASES = {
         "G43A_P_Emp_awy_f_wrk_85ov": "G43B_P_Emp_awy_f_wrk_85ov",
         "G43A_P_Tot_Emp_45_54": "G43B_P_Tot_Emp_45_54",
         "G43A_P_Tot_65_74": "G43B_P_Tot_65_74",
-        "G43A_F_Tot_Tot": "G43B_F_Tot_Tot",
         "G43A_P_Tot_Unemp_35_44": "G43B_P_Tot_Unemp_35_44",
         "G43A_P_Hours_wkd_NS_20_24": "G43B_P_Hours_wkd_NS_20_24",
         "G43A_P_Hours_wkd_NS_Tot": "G43B_P_Hours_wkd_NS_Tot",
@@ -1933,23 +1931,22 @@ DENOMINATOR_ALIASES = {
         "G43A_P_Not_in_LF_Tot": "G43B_P_Not_in_LF_Tot"
     },
     'G43B': {
-        'G43B_Tot_P_P': 'G43A_P_Tot_Tot',
-        'G43B_Tot_P_F': 'G43A_F_Tot_Tot',
+        'G43B_Tot_P_P': 'G43B_P_Tot_Tot',
+        'G43B_Tot_P_F': 'G43B_F_Tot_Tot',
         'G43B_Tot_P_M': 'G43A_M_Tot_Tot'
     },
     'G45A': {
-        'G45A_Tot_P_P': 'G45A_T_LPLFS_Tot_Tot',
+        'G45A_Tot_P_P': 'G45B_T_LPLFS_Tot_Tot',
         'G45A_Tot_P_M': 'G45A_M_LPLFS_T_T',
         'G45A_Tot_P_F': 'G45A_F_LPLFS_T_T',
-        "G45A_T_LPLFS_Tot_Tot": "G45B_T_LPLFS_Tot_Tot"
     },
     'G45B': {
-        'G45B_Tot_P_P': 'G45A_T_LPLFS_Tot_Tot',
+        'G45B_Tot_P_P': 'G45B_T_LPLFS_Tot_Tot',
         'G45B_Tot_P_M': 'G45A_M_LPLFS_T_T',
         'G45B_Tot_P_F': 'G45A_F_LPLFS_T_T'
     },
     'G46A': {
-        'G46A_Tot_P_P': 'G46A_P_Tot_Total',
+        'G46A_Tot_P_P': 'G46B_P_Tot_Total',
         'G46A_Tot_P_M': 'G46A_M_Tot_Total',
         'G46A_Tot_P_F': 'G46A_F_Tot_Total',
         "G46A_P_BachDeg_55_64": "G46B_P_BachDeg_55_64",
@@ -1976,7 +1973,6 @@ DENOMINATOR_ALIASES = {
         "G46A_P_Lev_Edu_NS_15_24": "G46B_P_Lev_Edu_NS_15_24",
         "G46A_P_Cert_Lev_Tot_85ov": "G46B_P_Cert_Lev_Tot_85ov",
         "G46A_P_Cert_Lev_Tot_Total": "G46B_P_Cert_Lev_Tot_Total",
-        "G46A_P_Tot_Total": "G46B_P_Tot_Total",
         "G46A_P_Cert_Levl_nfd_25_34": "G46B_P_Cert_Levl_nfd_25_34",
         "G46A_P_Tot_75_84": "G46B_P_Tot_75_84",
         "G46A_P_Cert_Lev_Tot_45_54": "G46B_P_Cert_Lev_Tot_45_54",
@@ -2051,14 +2047,12 @@ DENOMINATOR_ALIASES = {
         "G46A_P_Tot_85ov": "G46B_P_Tot_85ov"
     },
     'G46B': {
-        'G46B_Tot_P_P': 'G46A_P_Tot_Total',
-        'G46B_Tot_P_M': 'G46A_M_Tot_Total',
-        'G46B_Tot_P_F': 'G46A_F_Tot_Total'
+        'G46B_Tot_P_P': 'G46B_P_Tot_Total'
     },
     'G47A': {
-        'G47A_Tot_P_P': 'G47A_P_Tot_Tot',
+        'G47A_Tot_P_P': 'G47C_P_Tot_Tot',
         'G47A_Tot_P_M': 'G47A_M_Tot_Tot',
-        'G47A_Tot_P_F': 'G47A_F_Tot_Tot',
+        'G47A_Tot_P_F': 'G47B_F_Tot_Tot',
         "G47A_P_InfoTech_Tot": "G47B_P_InfoTech_Tot",
         "G47A_P_Eng_RelTec_35_44": "G47B_P_Eng_RelTec_35_44",
         "G47A_P_FldStd_NS_35_44": "G47B_P_FldStd_NS_35_44",
@@ -2083,7 +2077,6 @@ DENOMINATOR_ALIASES = {
         "G47A_P_FldStd_InadDes_65_74": "G47B_P_FldStd_InadDes_65_74",
         "G47A_P_Mgnt_Com_35_44": "G47B_P_Mgnt_Com_35_44",
         "G47A_P_Society_Cult_Tot": "G47B_P_Society_Cult_Tot",
-        "G47A_F_Tot_Tot": "G47B_F_Tot_Tot",
         "G47A_P_Society_Cult_35_44": "G47B_P_Society_Cult_35_44",
         "G47A_P_Educ_45_54": "G47B_P_Educ_45_54",
         "G47A_P_Ag_Envir_Rltd_Sts_35_44": "G47B_P_Ag_Envir_Rltd_Sts_35_44",
@@ -2161,7 +2154,6 @@ DENOMINATOR_ALIASES = {
         "G47A_P_FldStd_NS_65_74": "G47B_P_FldStd_NS_65_74",
         "G47A_P_InfoTech_85ov": "G47B_P_InfoTech_85ov",
         "G47A_P_Fd_Hosp_Psnl_Svcs_85ov": "G47B_P_Fd_Hosp_Psnl_Svcs_85ov",
-        "G47A_P_Tot_Tot": "G47C_P_Tot_Tot",
         "G47A_P_MixFld_Prgm_25_34": "G47B_P_MixFld_Prgm_25_34",
         "G47A_P_ArchtBldng_45_54": "G47B_P_ArchtBldng_45_54",
         "G47A_P_Tot_45_54": "G47B_P_Tot_45_54",
@@ -2196,9 +2188,9 @@ DENOMINATOR_ALIASES = {
         "G47A_P_Fd_Hosp_Psnl_Svcs_25_34": "G47B_P_Fd_Hosp_Psnl_Svcs_25_34"
     },
     'G47B': {
-        'G47B_Tot_P_P': 'G47A_P_Tot_Tot',
+        'G47B_Tot_P_P': 'G47C_P_Tot_Tot',
         'G47B_Tot_P_M': 'G47A_M_Tot_Tot',
-        'G47B_Tot_P_F': 'G47A_F_Tot_Tot',
+        'G47B_Tot_P_F': 'G47B_F_Tot_Tot',
         "G47B_P_Tot_75_84": "G47C_P_Tot_75_84",
         "G47B_P_Tot_65_74": "G47C_P_Tot_65_74",
         "G47B_P_Tot_Tot": "G47C_P_Tot_Tot",
@@ -2206,14 +2198,12 @@ DENOMINATOR_ALIASES = {
         "G47B_P_Tot_55_64": "G47C_P_Tot_55_64"
     },
     'G47C': {
-        'G47C_Tot_P_P': 'G47A_P_Tot_Tot',
-        'G47C_Tot_P_M': 'G47A_M_Tot_Tot',
-        'G47C_Tot_P_F': 'G47A_F_Tot_Tot'
+        'G47C_Tot_P_P': 'G47C_P_Tot_Tot'
     },
     'G48A': {
-        'G48A_Tot_P_P': 'G48A_P_Total_Total',
+        'G48A_Tot_P_P': 'G48C_P_Total_Total',
         'G48A_Tot_P_M': 'G48A_M_Total_Total',
-        'G48A_Tot_P_F': 'G48A_F_Total_Total',
+        'G48A_Tot_P_F': 'G48B_F_Total_Total',
         "G48A_P_AgriEnviRelStu_Occ_Pro": "G48B_P_AgriEnviRelStu_Occ_Pro",
         "G48A_P_FS_ID_Occ_Pro": "G48C_P_FS_ID_Occ_Pro",
         "G48A_P_NatPhySci_Occ_MOD": "G48B_P_NatPhySci_Occ_MOD",
@@ -2288,7 +2278,6 @@ DENOMINATOR_ALIASES = {
         "G48A_P_SocietCultu_Occ_Pro": "G48B_P_SocietCultu_Occ_Pro",
         "G48A_P_Health_Occ_CPS": "G48B_P_Health_Occ_CPS",
         "G48A_P_MixFieldProg_Occ_CA": "G48C_P_MixFieldProg_Occ_CA",
-        "G48A_P_Total_Total": "G48C_P_Total_Total",
         "G48A_P_Educat_Occ_MOD": "G48B_P_Educat_Occ_MOD",
         "G48A_P_MixFieldProg_Total": "G48C_P_MixFieldProg_Total",
         "G48A_P_InfoTechn_Occ_CPS": "G48B_P_InfoTechn_Occ_CPS",
@@ -2349,7 +2338,6 @@ DENOMINATOR_ALIASES = {
         "G48A_P_InfoTechn_Occ_Sal": "G48B_P_InfoTechn_Occ_Sal",
         "G48A_P_AgriEnviRelStu_Occ_Mng": "G48B_P_AgriEnviRelStu_Occ_Mng",
         "G48A_P_FS_ID_Occ_CA": "G48C_P_FS_ID_Occ_CA",
-        "G48A_F_Total_Total": "G48B_F_Total_Total",
         "G48A_P_FS_NS_Occ_CA": "G48C_P_FS_NS_Occ_CA",
         "G48A_P_FoodHospPersServ_Occ_TTW": "G48C_P_FoodHospPersServ_Occ_TTW",
         "G48A_P_SocietCultu_Occ_Lab": "G48B_P_SocietCultu_Occ_Lab",
@@ -2367,9 +2355,9 @@ DENOMINATOR_ALIASES = {
         "G48A_P_Health_Occ_MOD": "G48B_P_Health_Occ_MOD"
     },
     'G48B': {
-        'G48B_Tot_P_P': 'G48A_P_Total_Total',
+        'G48B_Tot_P_P': 'G48C_P_Total_Total',
         'G48B_Tot_P_M': 'G48A_M_Total_Total',
-        'G48B_Tot_P_F': 'G48A_F_Total_Total',
+        'G48B_Tot_P_F': 'G48B_F_Total_Total',
         "G48B_P_Tot_Occ_Pro": "G48C_P_Tot_Occ_Pro",
         "G48B_P_MixFieldProg_Total": "G48C_P_MixFieldProg_Total",
         "G48B_P_FS_ID_Occ_Pro": "G48C_P_FS_ID_Occ_Pro",
@@ -2386,7 +2374,6 @@ DENOMINATOR_ALIASES = {
         "G48B_P_FoodHospPersServ_Total": "G48C_P_FoodHospPersServ_Total",
         "G48B_P_FS_ID_Occ_Sal": "G48C_P_FS_ID_Occ_Sal",
         "G48B_P_MixFieldProg_Occ_IDNS": "G48C_P_MixFieldProg_Occ_IDNS",
-        "G48B_P_Total_Total": "G48C_P_Total_Total",
         "G48B_P_FoodHospPersServ_Occ_CA": "G48C_P_FoodHospPersServ_Occ_CA",
         "G48B_P_FS_NS_Occ_Sal": "G48C_P_FS_NS_Occ_Sal",
         "G48B_P_FS_ID_Occ_TTW": "G48C_P_FS_ID_Occ_TTW",
@@ -2422,16 +2409,13 @@ DENOMINATOR_ALIASES = {
         "G48B_P_MixFieldProg_Occ_Mng": "G48C_P_MixFieldProg_Occ_Mng"
     },
     'G48C': {
-        'G48C_Tot_P_P': 'G48A_P_Total_Total',
-        'G48C_Tot_P_M': 'G48A_M_Total_Total',
-        'G48C_Tot_P_F': 'G48A_F_Total_Total'
+        'G48C_Tot_P_P': 'G48C_P_Total_Total'
     },
     'G49A': {
-        'G49A_Tot_P_P': 'G49A_P_Tot_Tot',
+        'G49A_Tot_P_P': 'G49C_P_Tot_Tot',
         'G49A_Tot_P_M': 'G49A_M_Tot_Tot',
-        'G49A_Tot_P_F': 'G49A_F_Tot_Tot',
+        'G49A_Tot_P_F': 'G49B_F_Tot_Tot',
         "G49A_P_AdvDi_Di_Dip_CA": "G49C_P_AdvDi_Di_Dip_CA",
-        "G49A_P_Tot_Tot": "G49C_P_Tot_Tot",
         "G49A_P_GrDiGrCer_GrDiGrCerNFD_IDNS": "G49B_P_GrDiGrCer_GrDiGrCerNFD_IDNS",
         "G49A_P_GrDiGrCer_GrDiGrCerNFD_CPS": "G49B_P_GrDiGrCer_GrDiGrCerNFD_CPS",
         "G49A_P_GrDi_GrCer_GradCer_Tot": "G49B_P_GrDi_GrCer_GradCer_Tot",
@@ -2532,7 +2516,6 @@ DENOMINATOR_ALIASES = {
         "G49A_P_PoDe_MasDe_Tot": "G49B_P_PoDe_MasDe_Tot",
         "G49A_P_LE_ID_Tot": "G49C_P_LE_ID_Tot",
         "G49A_P_BaDe_BaDe_Mng": "G49B_P_BaDe_BaDe_Mng",
-        "G49A_F_Tot_Tot": "G49B_F_Tot_Tot",
         "G49A_P_PoDe_PoDe_NFD_MOD": "G49B_P_PoDe_PoDe_NFD_MOD",
         "G49A_P_AdvDi_Di_AdvDi_Di_NFD_Lab": "G49B_P_AdvDi_Di_AdvDi_Di_NFD_Lab",
         "G49A_P_GrDi_GrCer_GradCer_Pro": "G49B_P_GrDi_GrCer_GradCer_Pro",
@@ -2593,9 +2576,9 @@ DENOMINATOR_ALIASES = {
         "G49A_P_Cert_CertI_II_Pro": "G49C_P_Cert_CertI_II_Pro"
     },
     'G49B': {
-        'G49B_Tot_P_P': 'G49A_P_Tot_Tot',
+        'G49B_Tot_P_P': 'G49C_P_Tot_Tot',
         'G49B_Tot_P_M': 'G49A_M_Tot_Tot',
-        'G49B_Tot_P_F': 'G49A_F_Tot_Tot',
+        'G49B_Tot_P_F': 'G49B_F_Tot_Tot',
         "G49B_P_AdvDi_Di_AdvDi_AsDe_CPS": "G49C_P_AdvDi_Di_AdvDi_AsDe_CPS",
         "G49B_P_AdvDi_Di_AdvDi_AsDe_MOD": "G49C_P_AdvDi_Di_AdvDi_AsDe_MOD",
         "G49B_P_Cert_Cert_nfd_Mng": "G49C_P_Cert_Cert_nfd_Mng",
@@ -2627,7 +2610,6 @@ DENOMINATOR_ALIASES = {
         "G49B_P_Cert_CertI_II_MOD": "G49C_P_Cert_CertI_II_MOD",
         "G49B_P_Cert_CertI_II_TTW": "G49C_P_Cert_CertI_II_TTW",
         "G49B_P_Cert_Cert_nfd_TTW": "G49C_P_Cert_Cert_nfd_TTW",
-        "G49B_P_Tot_Tot": "G49C_P_Tot_Tot",
         "G49B_P_LE_ID_Sal": "G49C_P_LE_ID_Sal",
         "G49B_P_Cert_CertI_II_Tot": "G49C_P_Cert_CertI_II_Tot",
         "G49B_P_AdvDi_Di_Dip_Sal": "G49C_P_AdvDi_Di_Dip_Sal",
@@ -2678,14 +2660,12 @@ DENOMINATOR_ALIASES = {
         "G49B_P_Cert_CertI_II_Lab": "G49C_P_Cert_CertI_II_Lab"
     },
     'G49C': {
-        'G49C_Tot_P_P': 'G49A_P_Tot_Tot',
-        'G49C_Tot_P_M': 'G49A_M_Tot_Tot',
-        'G49C_Tot_P_F': 'G49A_F_Tot_Tot'
+        'G49C_Tot_P_P': 'G49C_P_Tot_Tot'
     },
     'G50A': {
-        'G50A_Tot_P_P': 'G50A_P_ToT_ToT',
+        'G50A_Tot_P_P': 'G50C_P_ToT_ToT',
         'G50A_Tot_P_M': 'G50A_M_ToT_ToT',
-        'G50A_Tot_P_F': 'G50A_F_ToT_ToT',
+        'G50A_Tot_P_F': 'G50B_F_ToT_ToT',
         "G50A_P_FinInsurS_BD": "G50B_P_FinInsurS_BD",
         "G50A_P_ArtRecServ_BD": "G50C_P_ArtRecServ_BD",
         "G50A_P_Min_BD": "G50B_P_Min_BD",
@@ -2769,7 +2749,6 @@ DENOMINATOR_ALIASES = {
         "G50A_P_AccomFoodS_AdD_D": "G50B_P_AccomFoodS_AdD_D",
         "G50A_P_Min_AdD_D": "G50B_P_Min_AdD_D",
         "G50A_P_AdminSupServ_AdD_D": "G50B_P_AdminSupServ_AdD_D",
-        "G50A_P_ToT_ToT": "G50C_P_ToT_ToT",
         "G50A_P_FinInsurS_PD": "G50B_P_FinInsurS_PD",
         "G50A_P_Mnfg_GD_GC": "G50B_P_Mnfg_GD_GC",
         "G50A_P_ArtRecServ_GD_GC": "G50C_P_ArtRecServ_GD_GC",
@@ -2830,15 +2809,14 @@ DENOMINATOR_ALIASES = {
         "G50A_P_PubAdmiSafety_PD": "G50B_P_PubAdmiSafety_PD",
         "G50A_P_Mnfg_ToT": "G50B_P_Mnfg_ToT",
         "G50A_P_Cnstn_Cert": "G50B_P_Cnstn_Cert",
-        "G50A_F_ToT_ToT": "G50B_F_ToT_ToT",
         "G50A_P_EGW_WS_ID_NS": "G50B_P_EGW_WS_ID_NS",
         "G50A_P_ToT_PD": "G50C_P_ToT_PD",
         "G50A_P_AgriForestFish_GD_GC": "G50B_P_AgriForestFish_GD_GC"
     },
     'G50B': {
-        'G50B_Tot_P_P': 'G50A_P_ToT_ToT',
+        'G50B_Tot_P_P': 'G50C_P_ToT_ToT',
         'G50B_Tot_P_M': 'G50A_M_ToT_ToT',
-        'G50B_Tot_P_F': 'G50A_F_ToT_ToT',
+        'G50B_Tot_P_F': 'G50B_F_ToT_ToT',
         "G50B_P_OthServ_GD_GC": "G50C_P_OthServ_GD_GC",
         "G50B_P_ID_NS_Cert": "G50C_P_ID_NS_Cert",
         "G50B_P_ID_NS_ID_NS": "G50C_P_ID_NS_ID_NS",
@@ -2860,7 +2838,6 @@ DENOMINATOR_ALIASES = {
         "G50B_P_ArtRecServ_Cert": "G50C_P_ArtRecServ_Cert",
         "G50B_P_EducTrain_ID_NS": "G50C_P_EducTrain_ID_NS",
         "G50B_P_ToT_GD_GC": "G50C_P_ToT_GD_GC",
-        "G50B_P_ToT_ToT": "G50C_P_ToT_ToT",
         "G50B_P_ToT_PD": "G50C_P_ToT_PD",
         "G50B_P_ArtRecServ_ID_NS": "G50C_P_ArtRecServ_ID_NS",
         "G50B_P_EducTrain_ToT": "G50C_P_EducTrain_ToT",
@@ -2882,14 +2859,12 @@ DENOMINATOR_ALIASES = {
         "G50B_P_EducTrain_Cert": "G50C_P_EducTrain_Cert"
     },
     'G50C': {
-        'G50C_Tot_P_P': 'G50A_P_ToT_ToT',
-        'G50C_Tot_P_M': 'G50A_M_Tot_Tot',
-        'G50C_Tot_P_F': 'G50A_F_Tot_Tot'
+        'G50C_Tot_P_P': 'G50C_P_ToT_ToT'
     },
     'G51A': {
         'G51A_Tot_P_P': None,
-        'G51A_Tot_P_M': 'G51A_M_Tot_Tot',
-        'G51A_Tot_P_F': 'G51A_F_Tot_Tot',
+        'G51A_Tot_P_M': 'G51B_M_Tot_Tot',
+        'G51A_Tot_P_F': 'G51C_F_Tot_Tot',
         "G51A_P_Info_media_teleco_Tot": "G51C_P_Info_media_teleco_Tot",
         "G51A_P_Fin_Insur_65_74": "G51C_P_Fin_Insur_65_74",
         "G51A_P_Oth_scs_15_19": "G51D_P_Oth_scs_15_19",
@@ -2974,7 +2949,6 @@ DENOMINATOR_ALIASES = {
         "G51A_P_El_Gas_Wt_Waste_15_19": "G51C_P_El_Gas_Wt_Waste_15_19",
         "G51A_P_Oth_scs_75_84": "G51D_P_Oth_scs_75_84",
         "G51A_P_Ag_For_Fshg_20_24": "G51C_P_Ag_For_Fshg_20_24",
-        "G51A_M_Tot_Tot": "G51B_M_Tot_Tot",
         "G51A_P_WhlesaleTde_55_64": "G51C_P_WhlesaleTde_55_64",
         "G51A_P_HlthCare_SocAs_20_24": "G51C_P_HlthCare_SocAs_20_24",
         "G51A_P_Public_admin_sfty_85ov": "G51C_P_Public_admin_sfty_85ov",
@@ -3002,7 +2976,6 @@ DENOMINATOR_ALIASES = {
         "G51A_P_Pro_scien_tec_55_64": "G51C_P_Pro_scien_tec_55_64",
         "G51A_P_Art_recn_25_34": "G51C_P_Art_recn_25_34",
         "G51A_P_Educ_trng_35_44": "G51C_P_Educ_trng_35_44",
-        "G51A_F_Tot_Tot": "G51C_F_Tot_Tot",
         "G51A_P_Accom_food_55_64": "G51C_P_Accom_food_55_64",
         "G51A_P_WhlesaleTde_45_54": "G51C_P_WhlesaleTde_45_54",
         "G51A_P_Oth_scs_45_54": "G51D_P_Oth_scs_45_54",
@@ -3096,8 +3069,8 @@ DENOMINATOR_ALIASES = {
     },
     'G51B': {
         'G51B_Tot_P_P': None,
-        'G51B_Tot_P_M': 'G51A_M_Tot_Tot',
-        'G51B_Tot_P_F': 'G51A_F_Tot_Tot',
+        'G51B_Tot_P_M': 'G51B_M_Tot_Tot',
+        'G51B_Tot_P_F': 'G51C_F_Tot_Tot',
         "G51B_P_Accom_food_25_34": "G51C_P_Accom_food_25_34",
         "G51B_P_Trans_post_wrehsg_25_34": "G51C_P_Trans_post_wrehsg_25_34",
         "G51B_P_Mining_Tot": "G51C_P_Mining_Tot",
@@ -3300,9 +3273,9 @@ DENOMINATOR_ALIASES = {
         "G51B_P_Admin_supp_25_34": "G51C_P_Admin_supp_25_34"
     },
     'G51C': {
-        'G51C_Tot_P_P': 'G51A_P_Tot_Tot',
-        'G51C_Tot_P_M': 'G51A_M_Tot_Tot',
-        'G51C_Tot_P_F': 'G51A_F_Tot_Tot',
+        'G51C_Tot_P_P': 'G51D_P_Tot_Tot',
+        'G51C_Tot_P_M': 'G51B_M_Tot_Tot',
+        'G51C_Tot_P_F': 'G51C_F_Tot_Tot',
         "G51C_P_ID_NS_45_54": "G51D_P_ID_NS_45_54",
         "G51C_P_ID_NS_15_19": "G51D_P_ID_NS_15_19",
         "G51C_P_Tot_Tot": "G51D_P_Tot_Tot",
@@ -3325,14 +3298,12 @@ DENOMINATOR_ALIASES = {
         "G51C_P_ID_NS_Tot": "G51D_P_ID_NS_Tot"
     },
     'G51D': {
-        'G51D_Tot_P_P': 'G51A_P_Tot_Tot',
-        'G51D_Tot_P_M': 'G51A_M_Tot_Tot',
-        'G51D_Tot_P_F': 'G51A_F_Tot_Tot'
+        'G51D_Tot_P_P': 'G51D_P_Tot_Tot'
     },
     'G52A': {
-        'G52A_Tot_P_P': 'G52A_P_Tot_Tot',
-        'G52A_Tot_P_F': 'G52A_F_Tot_Tot',
-        'G52A_Tot_P_M': 'G52A_M_Tot_Tot',
+        'G52A_Tot_P_P': 'G52D_P_Tot_Tot',
+        'G52A_Tot_P_F': 'G52C_F_Tot_Tot',
+        'G52A_Tot_P_M': 'G52B_M_Tot_Tot',
         "G52A_P_EducTrain_hours_NS": "G52C_P_EducTrain_hours_NS",
         "G52A_P_HealthCareSocA_0": "G52C_P_HealthCareSocA_0",
         "G52A_P_Cnstn_Tot": "G52C_P_Cnstn_Tot",
@@ -3378,7 +3349,6 @@ DENOMINATOR_ALIASES = {
         "G52A_P_AgriForestFish_25_34": "G52C_P_AgriForestFish_25_34",
         "G52A_P_RTrade_35_39": "G52C_P_RTrade_35_39",
         "G52A_P_PubAdmiSafety_0": "G52C_P_PubAdmiSafety_0",
-        "G52A_M_Tot_Tot": "G52B_M_Tot_Tot",
         "G52A_P_InfoMedTelecom_1_15": "G52C_P_InfoMedTelecom_1_15",
         "G52A_P_AccomFoodS_40": "G52C_P_AccomFoodS_40",
         "G52A_P_InfoMedTelecom_16_24": "G52C_P_InfoMedTelecom_16_24",
@@ -3482,7 +3452,6 @@ DENOMINATOR_ALIASES = {
         "G52A_P_ProScieTechServ_41_48": "G52C_P_ProScieTechServ_41_48",
         "G52A_P_AgriForestFish_40": "G52C_P_AgriForestFish_40",
         "G52A_P_ProScieTechServ_0": "G52C_P_ProScieTechServ_0",
-        "G52A_P_Tot_Tot": "G52D_P_Tot_Tot",
         "G52A_P_AccomFoodS_41_48": "G52C_P_AccomFoodS_41_48",
         "G52A_P_RentHirREserv_35_39": "G52C_P_RentHirREserv_35_39",
         "G52A_P_ArtRecServ_Tot": "G52C_P_ArtRecServ_Tot",
@@ -3497,7 +3466,6 @@ DENOMINATOR_ALIASES = {
         "G52A_P_ProScieTechServ_hours_NS": "G52C_P_ProScieTechServ_hours_NS",
         "G52A_P_WTrade_41_48": "G52C_P_WTrade_41_48",
         "G52A_P_OthServ_0": "G52D_P_OthServ_0",
-        "G52A_F_Tot_Tot": "G52C_F_Tot_Tot",
         "G52A_P_AdminSupServ_35_39": "G52C_P_AdminSupServ_35_39",
         "G52A_P_InfoMedTelecom_40": "G52C_P_InfoMedTelecom_40",
         "G52A_P_ArtRecServ_16_24": "G52C_P_ArtRecServ_16_24",
@@ -3538,13 +3506,12 @@ DENOMINATOR_ALIASES = {
         "G52A_P_ProScieTechServ_35_39": "G52C_P_ProScieTechServ_35_39"
     },
     'G52B': {
-        'G52B_Tot_P_P': 'G52A_P_Tot_Tot',
-        'G52B_Tot_P_F': 'G52A_F_Tot_Tot',
-        'G52B_Tot_P_M': 'G52A_M_Tot_Tot',
+        'G52B_Tot_P_P': 'G52D_P_Tot_Tot',
+        'G52B_Tot_P_F': 'G52C_F_Tot_Tot',
+        'G52B_Tot_P_M': 'G52B_M_Tot_Tot',
         "G52B_P_ArtRecServ_35_39": "G52C_P_ArtRecServ_35_39",
         "G52B_P_Cnstn_35_39": "G52C_P_Cnstn_35_39",
         "G52B_P_AccomFoodS_hours_NS": "G52C_P_AccomFoodS_hours_NS",
-        "G52B_P_Tot_Tot": "G52D_P_Tot_Tot",
         "G52B_P_RTrade_49over": "G52C_P_RTrade_49over",
         "G52B_P_PubAdmiSafety_49over": "G52C_P_PubAdmiSafety_49over",
         "G52B_P_FinInsurS_25_34": "G52C_P_FinInsurS_25_34",
@@ -3743,9 +3710,9 @@ DENOMINATOR_ALIASES = {
         "G52B_P_RTrade_1_15": "G52C_P_RTrade_1_15"
     },
     'G52C': {
-        'G52C_Tot_P_P': 'G52A_P_Tot_Tot',
-        'G52C_Tot_P_F': 'G52A_F_Tot_Tot',
-        'G52C_Tot_P_M': 'G52A_M_Tot_Tot',
+        'G52C_Tot_P_P': 'G52D_P_Tot_Tot',
+        'G52C_Tot_P_F': 'G52C_F_Tot_Tot',
+        'G52C_Tot_P_M': 'G52B_M_Tot_Tot',
         "G52C_P_ID_NS_1_15": "G52D_P_ID_NS_1_15",
         "G52C_P_ID_NS_16_24": "G52D_P_ID_NS_16_24",
         "G52C_P_ID_NS_40": "G52D_P_ID_NS_40",
@@ -3758,7 +3725,6 @@ DENOMINATOR_ALIASES = {
         "G52C_P_Tot_40": "G52D_P_Tot_40",
         "G52C_P_ID_NS_hours_NS": "G52D_P_ID_NS_hours_NS",
         "G52C_P_ID_NS_Tot": "G52D_P_ID_NS_Tot",
-        "G52C_P_Tot_Tot": "G52D_P_Tot_Tot",
         "G52C_P_Tot_25_34": "G52D_P_Tot_25_34",
         "G52C_P_Tot_16_24": "G52D_P_Tot_16_24",
         "G52C_P_Tot_0": "G52D_P_Tot_0",
@@ -3768,12 +3734,10 @@ DENOMINATOR_ALIASES = {
         "G52C_P_Tot_41_48": "G52D_P_Tot_41_48"
     },
     'G52D': {
-        'G52D_Tot_P_P': 'G52A_P_Tot_Tot',
-        'G52D_Tot_P_F': 'G52A_F_Tot_Tot',
-        'G52D_Tot_P_M': 'G52A_M_Tot_Tot'
+        'G52D_Tot_P_P': 'G52D_P_Tot_Tot'
     },
     'G57A': {
-        'G57A_Tot_P_P': 'G57A_P_Tot_Tot',
+        'G57A_Tot_P_P': 'G57B_P_Tot_Tot',
         'G57A_Tot_P_F': 'G57A_F_Tot_Tot',
         'G57A_Tot_P_M': 'G57A_M_Tot_Tot',
         "G57A_P_Tot_Mach_oper_drivers": "G57B_P_Tot_Mach_oper_drivers",
@@ -3788,9 +3752,7 @@ DENOMINATOR_ALIASES = {
         "G57A_P_Tot_TechnicTrades_W": "G57B_P_Tot_TechnicTrades_W"
     },
     'G57B': {
-        'G57B_Tot_P_P': 'G57A_P_Tot_Tot',
-        'G57B_Tot_P_F': 'G57A_F_Tot_Tot',
-        'G57B_Tot_P_M': 'G57A_M_Tot_Tot'
+        'G57B_Tot_P_P': 'G57B_P_Tot_Tot'
     },
     'G58A': {
         'G58A_Tot_P_P': 'G58B_P_Tot_Tot',
@@ -4011,22 +3973,11 @@ def _iterate_input_file():
             name = row[2].replace('_', ' ')
             datapack = row[3]
             description = row[5]
-            for row in reader:
-                table = row[3][:3]
 
-                if table not in tables.keys():
-                    continue
+            denominators = _create_denominators(short, datapack)
+            denominators = _filter_denominators(denominators, datapack, short)
 
-                sequential = row[0]
-                short = row[1]
-                name = row[2].replace('_', ' ')
-                datapack = row[3]
-                description = row[5]
-
-                denominators = _create_denominators(short, datapack)
-                denominators = _filter_denominators(denominators, datapack, short)
-
-                yield sequential, short, name, datapack, description, denominators, table
+            yield sequential, short, name, datapack, description, denominators, table
 
 
 all_denominators = []
