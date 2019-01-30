@@ -31,15 +31,16 @@ TABLES = {
            'B20A', 'B20B', 'B21', 'B22A', 'B22B', 'B23A', 'B23B', 'B24', 'B25', 'B26', 'B27', 'B28', 'B29', 'B30',
            'B31', 'B32', 'B33', 'B34', 'B35', 'B36', 'B37', 'B38', 'B39', 'B40A', 'B40B', 'B41A', 'B41B', 'B41C',
            'B42A', 'B42B', 'B43A', 'B43B', 'B43C', 'B43D', 'B44A', 'B44B', 'B45A', 'B45B', 'B46', ],
-    2016: ['G01', 'G02', 'G03', 'G04A', 'G04B', 'G05', 'G06', 'G07', 'G08',
-           'G09A', 'G09B', 'G09C', 'G09D', 'G09E', 'G09F', 'G09G', 'G09H', 'G10A', 'G10B', 'G10C',
-           'G11A', 'G11B', 'G11C', 'G12A', 'G12B', 'G13A', 'G13B', 'G13C', 'G14', 'G15', 'G16A', 'G16B',
-           'G17A', 'G17B', 'G17C', 'G18', 'G19', 'G20A', 'G20B', 'G21', 'G22A', 'G22B', 'G23A', 'G23B', 'G24', 'G25',
-           'G26', 'G27', 'G28', 'G29', 'G30', 'G31', 'G32', 'G33', 'G34', 'G35', 'G36', 'G37', 'G38', 'G39', 'G40',
-           'G41', 'G42', 'G43A', 'G43B', 'G44A', 'G44B', 'G44C', 'G44D', 'G44E', 'G44F', 'G45A', 'G45B', 'G46A', 'G46B',
-           'G47A', 'G47B', 'G47C', 'G48A', 'G48B', 'G48C', 'G49A', 'G49B', 'G49C', 'G50A', 'G50B', 'G50C',
-           'G51A', 'G51B', 'G51C', 'G51D', 'G52A', 'G52B', 'G52C', 'G52D', 'G53A', 'G53B', 'G54A', 'G54B',
-           'G55A', 'G55B', 'G56A', 'G56B', 'G57A', 'G57B', 'G58A', 'G58B', 'G59', ]
+    # 2016: ['G01', 'G02', 'G03', 'G04A', 'G04B', 'G05', 'G06', 'G07', 'G08',
+    #        'G09A', 'G09B', 'G09C', 'G09D', 'G09E', 'G09F', 'G09G', 'G09H', 'G10A', 'G10B', 'G10C',
+    #        'G11A', 'G11B', 'G11C', 'G12A', 'G12B', 'G13A', 'G13B', 'G13C', 'G14', 'G15', 'G16A', 'G16B',
+    #        'G17A', 'G17B', 'G17C', 'G18', 'G19', 'G20A', 'G20B', 'G21', 'G22A', 'G22B', 'G23A', 'G23B', 'G24', 'G25',
+    #        'G26', 'G27', 'G28', 'G29', 'G30', 'G31', 'G32', 'G33', 'G34', 'G35', 'G36', 'G37', 'G38', 'G39', 'G40',
+    #        'G41', 'G42', 'G43A', 'G43B', 'G44A', 'G44B', 'G44C', 'G44D', 'G44E', 'G44F', 'G45A', 'G45B', 'G46A', 'G46B',
+    #        'G47A', 'G47B', 'G47C', 'G48A', 'G48B', 'G48C', 'G49A', 'G49B', 'G49C', 'G50A', 'G50B', 'G50C',
+    #        'G51A', 'G51B', 'G51C', 'G51D', 'G52A', 'G52B', 'G52C', 'G52D', 'G53A', 'G53B', 'G54A', 'G54B',
+    #        'G55A', 'G55B', 'G56A', 'G56B', 'G57A', 'G57B', 'G58A', 'G58B', 'G59', ]
+    2016: ['G26', 'G27', 'G28', 'G29', 'G30', 'G31', 'G32', 'G33', 'G34', 'G35', 'G36', 'G37', 'G38', 'G39', 'G40',]
 }
 
 URL = 'http://www.censusdata.abs.gov.au/CensusOutput/copsubdatapacks.nsf/All%20docs%20by%20catNo/{year}_{profile}_{resolution}_for_{state}/$File/{year}_{profile}_{resolution}_for_{state}_short-header.zip'
@@ -185,6 +186,7 @@ class Columns(ColumnsTask):
                 column_reqs.update(value)
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
+        rows = {}
 
         session = current_session()
         with open(os.path.join(os.path.dirname(__file__), filepath)) as csv_meta_file:
@@ -193,63 +195,15 @@ class Columns(ColumnsTask):
             for line in reader:
                 id_ = line[0]               # A: Sequential
                 tablename = line[4]         # H: Tablename
-
                 # ignore tables we don't care about right now
                 if not id_.startswith(self.profile[0]) or \
                    not tablename.startswith(self.tablename):
                     continue
+                col_id = line[1]
+                rows[col_id] = line
 
-                col_id = line[1]            # B: short
-                col_name = line[2]          # C: name
-                denominators = line[3]      # D: denominators
-                col_unit = line[5]          # F: unit
-                col_subsections = line[6]   # G: subsection
-                if tablename == '{}02'.format(self.profile[0]):
-                    col_agg = line[8]       # I: AGG (for B02 only)
-                else:
-                    col_agg = None
-                tabledesc = line[10]        # K: Table description
-
-                denominators = denominators.split('|')
-
-                targets_dict = {}
-                for denom_id in denominators:
-                    denom_id = denom_id.strip()
-                    if not denom_id:
-                        continue
-
-                    reltype = 'denominator'
-                    if col_agg in ['median', 'average']:
-                        reltype = 'universe'
-
-                    if denom_id in column_reqs:
-                        targets_dict[column_reqs[denom_id].get(session)] = reltype
-                    else:
-                        targets_dict[cols[denom_id]] = reltype
-
-                targets_dict.pop(None, None)
-
-                cols[col_id] = OBSColumn(
-                    id=col_id,
-                    type='Numeric',
-                    name=col_name,
-                    description=tabledesc,
-                    # Ranking of importance, sometimes used to favor certain measures in auto-selection
-                    # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
-                    weight=5,
-                    aggregate=col_agg or 'sum',
-                    # Tags are our way of noting aspects of this measure like its unit, the country
-                    # it's relevant to, and which section(s) of the catalog it should appear in
-                    tags=[source, license, country, unittags[col_unit]],
-                    targets=targets_dict
-                )
-
-                # append the rest of the subsection tags
-                col_subsections = col_subsections.split('|')
-                for subsection in col_subsections:
-                    subsection = subsection.strip()
-                    subsection_tag = subsectiontags[subsection]
-                    cols[col_id].tags.append(subsection_tag)
+        for col_id in rows:
+            self._process_col(rows[col_id], rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags)
 
         columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
         parameters = '{{"year":"{year}","resolution":"{resolution}", "tablename":"{tablename}"}}'.format(
@@ -262,6 +216,65 @@ class Columns(ColumnsTask):
         dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meta')
         with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
             return json.load(f)
+
+    def _process_col(self, line, rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags):
+        col_id = line[1]            # B: short
+        col_name = line[2]          # C: name
+        denominators = line[3]      # D: denominators
+        col_unit = line[5]          # F: unit
+
+        if tablename == '{}02'.format(self.profile[0]):
+            col_agg = line[8]       # I: AGG (for B02 only)
+        else:
+            col_agg = None
+        tabledesc = line[10]        # K: Table description
+
+        denominators = denominators.split('|')
+
+        targets_dict = {}
+        for denom_id in denominators:
+            denom_id = denom_id.strip()
+            if not denom_id:
+                continue
+
+            reltype = 'denominator'
+            if col_agg in ['median', 'average']:
+                reltype = 'universe'
+
+            if denom_id in column_reqs:
+                targets_dict[column_reqs[denom_id].get(session)] = reltype
+            else:
+                if denom_id not in cols:
+                    # we load denominators recursively to avoid having to order
+                    # them in the source CSV file
+                    self._process_col(rows[denom_id], rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags)
+                targets_dict[cols[denom_id]] = reltype
+
+        targets_dict.pop(None, None)
+
+        cols[col_id] = OBSColumn(
+            id=col_id,
+            type='Numeric',
+            name=col_name,
+            description=tabledesc,
+            # Ranking of importance, sometimes used to favor certain measures in auto-selection
+            # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
+            weight=5,
+            aggregate=col_agg or 'sum',
+            # Tags are our way of noting aspects of this measure like its unit, the country
+            # it's relevant to, and which section(s) of the catalog it should appear in
+            tags=[source, license, country, unittags[col_unit]],
+            targets=targets_dict
+        )
+
+        # append the rest of the subsection tags
+        col_subsections = line[6]   # G: subsection
+        col_subsections = col_subsections.split('|')
+        for subsection in col_subsections:
+            subsection = subsection.strip()
+            subsection_tag = subsectiontags[subsection]
+            cols[col_id].tags.append(subsection_tag)
+
 
 
 class AllColumnsResolution(WrapperTask):
@@ -335,6 +348,7 @@ class XCP(TableTask):
             return 'region_id'
         else:
             if self.resolution == 'SA1':
+                # WATCH OUT
                 return '{}_{}_{}'.format(self.resolution, '7DIGITCODE', self.year)
             elif self.resolution == 'SA2':
                 return '{}_{}_{}'.format(self.resolution, 'MAINCODE', self.year)
