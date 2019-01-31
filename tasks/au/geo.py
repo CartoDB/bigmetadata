@@ -203,6 +203,12 @@ class GeographyColumns(ColumnsTask, GeographyMeta):
             weight=0,
             targets={geom: GEOM_REF},
         )
+        external_id = OBSColumn(
+            type='Text',
+            id='{}_external_id_{}'.format(self.resolution, self.year),
+            weight=0,
+            targets={geom: GEOM_REF},
+        )
         parent_id = OBSColumn(
             type='Text',
             id='{}_parent_id_{}'.format(self.resolution, self.year),
@@ -230,6 +236,7 @@ class GeographyColumns(ColumnsTask, GeographyMeta):
         cols = OrderedDict([
             ('geom_name', geom_name),
             ('geom_id', geom_id),
+            ('external_id', external_id),
             ('parent_id', parent_id),
             ('the_geom', geom),
         ])
@@ -285,10 +292,12 @@ class Geography(TableTask, GeographyMeta):
                 INSERT INTO {output}
                 SELECT {geom_name} as geom_name,
                        {region_col} as geom_id,
+                       {external_id} as external_id,
                        {parent_col}
                        wkb_geometry as the_geom
                 FROM {input}
                 '''.format(geom_name=self._get_geo_meta(self.year)[self.resolution]['proper_name'],
+                           external_id=self._get_geo_meta(self.year)[self.resolution]['external_id'],
                            region_col=self._get_geo_meta(self.year)[self.resolution]['region_col'],
                            parent_col=parent_col,
                            output=self.output().table,
