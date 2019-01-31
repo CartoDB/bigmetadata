@@ -346,10 +346,7 @@ class XCP(TableTask):
         if self.year == 2011:
             return 'region_id'
         else:
-            if self.resolution == 'SA1':
-                # WATCH OUT
-                return '{}_{}_{}'.format(self.resolution, '7DIGITCODE', self.year)
-            elif self.resolution == 'SA2':
+            if self.resolution in ['SA1', 'SA2']:
                 return '{}_{}_{}'.format(self.resolution, 'MAINCODE', self.year)
             else:
                 return '{}_{}_{}'.format(self.resolution, 'CODE', self.year)
