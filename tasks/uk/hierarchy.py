@@ -21,7 +21,8 @@ LEVEL_CLASSES = {
     'datashare_pa_geo': PostcodeAreas
 }
 
-LEVELS = list(LEVEL_CLASSES.keys())
+# LEVEL_CLASSES.keys() can't be used because it doesn't guarantee order
+LEVELS = ['cdrc_the_geom', 'odl_ps_geo', 'gov_lsoa_geo', 'gov_msoa_geo', 'odl_pd_geo', 'datashare_pa_geo']
 
 
 def geography(level):
