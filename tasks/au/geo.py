@@ -297,8 +297,8 @@ class Geography(TableTask, GeographyMeta):
                        wkb_geometry as the_geom
                 FROM {input}
                 '''.format(geom_name=self._get_geo_meta(self.year)[self.resolution]['proper_name'],
-                           external_id=self._get_geo_meta(self.year)[self.resolution]['external_id'],
                            region_col=self._get_geo_meta(self.year)[self.resolution]['region_col'],
+                           external_id=self._get_geo_meta(self.year)[self.resolution]['external_id'],
                            parent_col=parent_col,
                            output=self.output().table,
                            input=self.input()['data'].table)
