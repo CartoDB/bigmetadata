@@ -166,7 +166,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         cols = OrderedDict()
@@ -302,7 +302,7 @@ class XCP(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def targets(self):
         return {
@@ -347,7 +347,6 @@ class XCP(TableTask):
             return 'region_id'
         else:
             if self.resolution == 'SA1':
-                # WATCH OUT
                 return '{}_{}_{}'.format(self.resolution, '7DIGITCODE', self.year)
             elif self.resolution == 'SA2':
                 return '{}_{}_{}'.format(self.resolution, 'MAINCODE', self.year)
