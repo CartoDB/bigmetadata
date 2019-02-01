@@ -87,6 +87,8 @@ RENTALS = ('AllHomesPlusMultifamily', 'SingleFamilyResidenceRental',
 MEDIAN_VALUE_HOMETYPES = ('AllHomes',)
 MEDIAN_RENTAL_HOMETYPES = ('AllHomes', 'Sfr', 'CondoCoop',)
 
+TIGER_YEAR = '2016'
+
 
 def measure_name(hometype):
     if hometype in HOMES:
@@ -177,6 +179,20 @@ class DownloadZillow(Task):
 
     def run(self):
         copyfile(self.input().path, self.output().path)
+
+        # Fix a problem with Zillow 2018-11. A `ñ` is incorrectly encoded as 0xB1, it should be 0xC3 0xB1 (in UTF-8)
+        # As far as I can see, 0xB1 is not `ñ` in any common encoding (tested all ISO-8859-X and UTF-X)
+        #
+        # 0x61 0xB1 serves to give context and make this a little safe in case they fix this in the future
+        #                     |  E |  s |  p |  a |  ñ    |  o |  l |  a
+        # Original: Espa.ola  | 45 | 73 | 70 | 61 | b1    | 6f | 6c | 61
+        # Modified: Española  | 45 | 73 | 70 | 61 | c3 b1 | 6f | 6c | 61
+        contents = ''
+        with open(self.output().path, 'rb') as fin:
+            contents = fin.read()
+        contents = contents.replace(b'\x61\xB1', b'\x61\xC3\xB1')
+        with open(self.output().path, 'wb') as fout:
+            fout.write(contents)
 
     def output(self):
         return LocalTarget(os.path.join('tmp', classpath(self), self.task_id) +
@@ -318,9 +334,9 @@ class Zillow(TableTask):
     def requires(self):
         requirements = {
             'metadata': ZillowValueColumns(),
-            'geoids': GeoidColumns(year='2015'),
-            'sumlevel': SumLevel(year='2015', geography='zcta5'),
-            'shorelineclip': ShorelineClip(year='2015', geography='zcta5')
+            'geoids': GeoidColumns(year=TIGER_YEAR),
+            'sumlevel': SumLevel(year=TIGER_YEAR, geography='zcta5'),
+            'shorelineclip': ShorelineClip(year=TIGER_YEAR, geography='zcta5')
         }
         for hometype, _ in HOMETYPES.items():
             measure = measure_name(hometype)
@@ -359,8 +375,8 @@ class Zillow(TableTask):
             raise Exception('unrecognized geography {}'.format(self.geography))
 
         columns = OrderedDict([
-            ('region_name_sl', input_['geoids'][tiger_geo + '_2015' + GEOID_SUMLEVEL_COLUMN]),
-            ('region_name_sc', input_['geoids'][tiger_geo + '_2015' + GEOID_SHORELINECLIPPED_COLUMN]),
+            ('region_name_sl', input_['geoids']['{}_{}{}'.format(tiger_geo, TIGER_YEAR, GEOID_SUMLEVEL_COLUMN)]),
+            ('region_name_sc', input_['geoids']['{}_{}{}'.format(tiger_geo, TIGER_YEAR, GEOID_SHORELINECLIPPED_COLUMN)]),
         ])
         columns.update(input_['metadata'])
 
@@ -426,4 +442,4 @@ class ZillowMetaWrapper(MetaWrapper):
         if self.year == 2010 and self.month <= 10:
             return
         yield Zillow(geography=self.geography, year=self.year, month=self.month)
-        yield SumLevel(year=str(2015), geography='zcta5')
+        yield SumLevel(year=TIGER_YEAR, geography='zcta5')

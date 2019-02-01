@@ -2156,6 +2156,46 @@
 				"geography": "block"
 			},
 			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
 				"sample": "1yr",
 				"geography": "school_district_elementary"
 			},
@@ -2178,6 +2218,46 @@
 			{
 				"sample": "5yr",
 				"geography": "block"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "county"
 			},
 			{
 				"sample": "1yr",
@@ -2204,6 +2284,46 @@
 				"geography": "block"
 			},
 			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "county"
+			},
+			{
 				"sample": "1yr",
 				"geography": "school_district_elementary"
 			},
@@ -2226,6 +2346,46 @@
 			{
 				"sample": "5yr",
 				"geography": "block"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "census_tract"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_elementary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_secondary"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "school_district_unified"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "cbsa"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "zcta5"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "place"
+			},
+			{
+				"year": "2016",
+				"sample": "5yr",
+				"geography": "county"
 			},
 			{
 				"sample": "1yr",

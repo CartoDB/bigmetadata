@@ -30,6 +30,7 @@ LOGGER = get_logger(__name__)
 GEOID_SUMLEVEL_COLUMN = "_geoidsl"
 GEOID_SHORELINECLIPPED_COLUMN = "_geoidsc"
 BLOCK = 'block'
+YEARS = [2015, 2016]
 
 
 class TigerSourceTags(TagsTask):
@@ -376,8 +377,8 @@ class TigerGeographyShapefileToSQL(TempTableTask):
 
 
 class DownloadTiger(LoadPostgresFromZipFile):
-    url_template = 'https://s3.amazonaws.com/census-backup/tiger/{year}/tiger{year}_backup.sql.gz'
-    year = IntParameter()
+    url_template = 'https://storage.googleapis.com/carto-tilesetsapi/data-observatory/tiger/tiger{year}_backup.sql.gz'
+    year = Parameter()
 
     def version(self):
         return 1
