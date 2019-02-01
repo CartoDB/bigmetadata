@@ -222,7 +222,7 @@ class PostcodeSectorsColumns(ColumnsTask):
 
     @staticmethod
     def geoname_column():
-        return 'geographycode'
+        return 'geographyname'
 
     @staticmethod
     def geoid_column():
