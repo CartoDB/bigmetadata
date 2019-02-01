@@ -510,6 +510,16 @@ class MCData(TempTableTask):
         session.execute(query)
         session.commit()
 
+    def _remove_underscores(self, session, schema, table, column):
+        if self.country != 'uk' or self.geography not in ['postcode_sector', 'postcode_unit']:
+            return
+
+        session.execute('''
+            UPDATE "{schema}".{table}
+            SET {column} = REPLACE({column}, '_', ' ')
+            WHERE {column} LIKE '%\_%'
+        '''.format(schema=schema, table=table, column=column))
+
     def run(self):
         session = current_session()
         try:
@@ -519,6 +529,10 @@ class MCData(TempTableTask):
             for catid, catname in CATEGORIES.items():  # Insert the rest of the categories
                 if catid != 'TR':
                     self._update_category(session, (catid, catname))
+            self._remove_underscores(session,
+                                     self.output().schema,
+                                     self.output().tablename,
+                                     'region_id')
         except Exception as e:
             LOGGER.error('Error creating/populating {table}: {error}'.format(
                 table=self.output().table,
