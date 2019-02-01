@@ -16,6 +16,7 @@ from luigi import IntParameter, Parameter, WrapperTask
 import os
 import glob
 
+TIGER_YEAR = '2016'
 
 class DownloadQCEW(RepoFileUnzipTask):
 
@@ -208,10 +209,10 @@ class QCEW(TableTask):
     def requires(self):
         requirements = {
             'data': SimpleQCEW(year=self.year, qtr=self.qtr),
-            'geoid_cols': GeoidColumns(year='2015'),
+            'geoid_cols': GeoidColumns(year=TIGER_YEAR),
             'naics': OrderedDict(),
-            'sumlevel': SumLevel(year='2015', geography='county'),
-            'shorelineclip': ShorelineClip(year='2015', geography='county'),
+            'sumlevel': SumLevel(year=TIGER_YEAR, geography='county'),
+            'shorelineclip': ShorelineClip(year=TIGER_YEAR, geography='county'),
         }
         for naics_code in NAICS_CODES.keys():
             if not is_public_administration(naics_code):
@@ -237,8 +238,8 @@ class QCEW(TableTask):
         # The column name
         input_ = self.input()
         cols = OrderedDict([
-            ('area_fipssl', input_['geoid_cols']['county' + GEOID_SUMLEVEL_COLUMN]),
-            ('area_fipssc', input_['geoid_cols']['county' + GEOID_SHORELINECLIPPED_COLUMN])
+            ('area_fipssl', input_['geoid_cols']['county_{}{}'.format(TIGER_YEAR, GEOID_SUMLEVEL_COLUMN)]),
+            ('area_fipssc', input_['geoid_cols']['county_{}{}'.format(TIGER_YEAR, GEOID_SHORELINECLIPPED_COLUMN)])
         ])
         for naics_code, naics_cols in input_['naics'].items():
             for key, coltarget in naics_cols.items():
