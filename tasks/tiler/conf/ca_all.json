@@ -13,17 +13,17 @@
             "zoomlevels": [5, 6, 7, 8, 9],
             "simplification": 0.01
         },
-        "forward_sortation_area": {
-            "geography": "ca.statcan.geo.fsa",
-            "geoname": "ca.statcan.geo.fsa_name",
-            "zoomlevels": [10, 11, 12],
-            "simplification": 0.001
-        },
         "dissemination_area": {
             "geography": "ca.statcan.geo.da_",
             "geoname": "ca.statcan.geo.da__name",
-            "zoomlevels": [13, 14],
-            "simplification": 0.0001
+            "zoomlevels": [10, 11, 12],
+            "simplification": 0.001
+        },
+        "dissemination_block": {
+            "geography": "ca.statcan.geo.db_",
+            "geoname": "ca.statcan.geo.da__name",
+            "zoomlevels": [10, 11, 12],
+            "simplification": 0.001
         }
     },
     "tables": [
