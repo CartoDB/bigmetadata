@@ -24,6 +24,7 @@ PROFILES = {
 }
 
 STATES = ('NSW', 'Vic', 'Qld', 'SA', 'WA', 'Tas', 'NT', 'ACT', 'OT', )
+CONVERT_TO_7_DIGIT = ['SA1', ]
 
 TABLES = {
     2011: ['B01', 'B02', 'B03', 'B04A', 'B04B', 'B05', 'B06', 'B07', 'B08A', 'B08B', 'B09', 'B10A', 'B10B', 'B10C',
@@ -176,7 +177,7 @@ class Columns(ColumnsTask):
         unittags = input_['units']
         country = input_['sections']['au']
         source = input_['source']['au-census']
-        license = input_['license']['au-datapacks-license']
+        licensetags = input_['license']['au-datapacks-license']
 
         # column req's from other tables
         column_reqs = {}
@@ -202,7 +203,7 @@ class Columns(ColumnsTask):
                 rows[col_id] = line
 
         for col_id in rows:
-            self._process_col(rows[col_id], rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags)
+            self._process_col(col_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags)
 
         columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
         parameters = '{{"year":"{year}","resolution":"{resolution}", "tablename":"{tablename}"}}'.format(
@@ -216,11 +217,13 @@ class Columns(ColumnsTask):
         with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
             return json.load(f)
 
-    def _process_col(self, line, rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags):
-        col_id = line[1]            # B: short
+    def _process_col(self, col_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags):
+        line = rows[col_id]
         col_name = line[2]          # C: name
         denominators = line[3]      # D: denominators
         col_unit = line[5]          # F: unit
+        col_subsections = line[6].split('|') # G: subsection
+        subsection_tags = [subsectiontags[s.strip()] for s in col_subsections]
 
         if tablename == '{}02'.format(self.profile[0]):
             col_agg = line[8]       # I: AGG (for B02 only)
@@ -246,7 +249,7 @@ class Columns(ColumnsTask):
                 if denom_id not in cols:
                     # we load denominators recursively to avoid having to order
                     # them in the source CSV file
-                    self._process_col(rows[denom_id], rows, session, column_reqs, cols, tablename, source, license, country, unittags, subsectiontags)
+                    self._process_col(denom_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags)
                 targets_dict[cols[denom_id]] = reltype
 
         targets_dict.pop(None, None)
@@ -262,18 +265,9 @@ class Columns(ColumnsTask):
             aggregate=col_agg or 'sum',
             # Tags are our way of noting aspects of this measure like its unit, the country
             # it's relevant to, and which section(s) of the catalog it should appear in
-            tags=[source, license, country, unittags[col_unit]],
+            tags=[source, licensetags, country, unittags[col_unit]] + subsection_tags,
             targets=targets_dict
         )
-
-        # append the rest of the subsection tags
-        col_subsections = line[6]   # G: subsection
-        col_subsections = col_subsections.split('|')
-        for subsection in col_subsections:
-            subsection = subsection.strip()
-            subsection_tag = subsectiontags[subsection]
-            cols[col_id].tags.append(subsection_tag)
-
 
 
 class AllColumnsResolution(WrapperTask):
@@ -420,12 +414,30 @@ class XCP(TableTask):
 
             in_colnames[0] = '"{}"'.format(self._get_geoid())
 
-            cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
-                  'SELECT {in_colnames} FROM {input} '.format(
-                      output=self.output().table,
-                      input=intable,
-                      in_colnames=', '.join(in_colnames),
-                      out_colnames='", "'.join(out_colnames))
+            if self.resolution in CONVERT_TO_7_DIGIT:
+                # we need 11 digit IDs (from the geography table) because
+                # the data table only has 7 digit IDs
+                in_colnames[0] = 'geo.geom_id'
+                cmd = '''
+                    INSERT INTO {output} ("{out_colnames}")
+                    SELECT {in_colnames}
+                    FROM {input} input
+                    INNER JOIN {input_geotable} geo
+                        ON (input."{input_geoid}" = LEFT(geo.geom_id, 1) || right(geo.geom_id, 6))
+                    '''.format(
+                          output=self.output().table,
+                          input=intable,
+                          input_geotable=self.input()['geo'].table,
+                          input_geoid=self._get_geoid(),
+                          in_colnames=', '.join(in_colnames),
+                          out_colnames='", "'.join(out_colnames))
+            else:
+                cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
+                      'SELECT {in_colnames} FROM {input} '.format(
+                          output=self.output().table,
+                          input=intable,
+                          in_colnames=', '.join(in_colnames),
+                          out_colnames='", "'.join(out_colnames))
             try:
                 session.execute(cmd)
             except Exception as err:
