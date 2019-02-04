@@ -222,7 +222,7 @@ class Columns(ColumnsTask):
         col_name = line[2]          # C: name
         denominators = line[3]      # D: denominators
         col_unit = line[5]          # F: unit
-        col_subsections = line[6].split('|') # G: subsection
+        col_subsections = line[6].split('|')  # G: subsection
         subsection_tags = [subsectiontags[s.strip()] for s in col_subsections]
 
         if tablename == '{}02'.format(self.profile[0]):
