@@ -108,7 +108,7 @@
                     "nullable": true
                 },
                 {
-                    "id": "au.data.BG1_Age_15_19_yr_M",
+                    "id": "au.data.G01_Age_15_19_yr_M",
                     "column_name": "g01_age_15_19_yr_m",
                     "column_alias": "male_15_to_19",
                     "type": "numeric",
@@ -270,7 +270,7 @@
                 },
                 {
                     "id": "au.data.G01_High_yr_schl_comp_D_n_g_sch_P",
-                    "column_name": "g01_high_yr_schl_comp_f_n_g_sch_p",
+                    "column_name": "g01_high_yr_schl_comp_d_n_g_sch_p",
                     "column_alias": "did_not_go_to_school",
                     "type": "numeric",
                     "nullable": true
@@ -318,9 +318,9 @@
                     "nullable": true
                 },
                 {
-                    "id": "au.data.G28_FI_1500_749_Tot",
-                    "column_name": "g28_fi_1500_749_tot",
-                    "column_alias": "income_1500_749",
+                    "id": "au.data.G28_FI_1500_1749_Tot",
+                    "column_name": "g28_fi_1500_1749_tot",
+                    "column_alias": "income_1500_1749",
                     "type": "numeric",
                     "nullable": true
                 },
@@ -360,9 +360,9 @@
                     "nullable": true
                 },
                 {
-                    "id": "au.data.G28_FI_400_449_Tot",
-                    "column_name": "g28_fi_400_449_tot",
-                    "column_alias": "income_400_449",
+                    "id": "au.data.G28_FI_400_499_Tot",
+                    "column_name": "g28_fi_400_499_tot",
+                    "column_alias": "income_400_499",
                     "type": "numeric",
                     "nullable": true
                 },
