@@ -24,7 +24,7 @@ PROFILES = {
 }
 
 STATES = ('NSW', 'Vic', 'Qld', 'SA', 'WA', 'Tas', 'NT', 'ACT', 'OT', )
-CONVERT_TO_7_DIGIT = ['SA1', ]
+CONVERT_TO_11_DIGIT = ['SA1', ]
 
 TABLES = {
     2011: ['B01', 'B02', 'B03', 'B04A', 'B04B', 'B05', 'B06', 'B07', 'B08A', 'B08B', 'B09', 'B10A', 'B10B', 'B10C',
@@ -414,7 +414,7 @@ class XCP(TableTask):
 
             in_colnames[0] = '"{}"'.format(self._get_geoid())
 
-            if self.resolution in CONVERT_TO_7_DIGIT:
+            if self.resolution in CONVERT_TO_11_DIGIT:
                 # we need 11 digit IDs (from the geography table) because
                 # the data table only has 7 digit IDs
                 in_colnames[0] = 'geo.geom_id'
