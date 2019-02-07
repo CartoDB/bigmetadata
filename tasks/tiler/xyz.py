@@ -148,7 +148,8 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
         for column in self._get_columns():
             if column['id'] == GEONAME_COLUMN:
                 column['id'] = self.config_data["geolevels"][self.geography][GEONAME_COLUMN]
-            columns_ids.append(column['id'])
+            if self.geography not in column.get('exception_levels', []):
+                columns_ids.append(column['id'])
 
         return columns_ids
 
@@ -267,15 +268,21 @@ class SimpleTilerDOXYZTableTask(Task, ConfigFile):
         session = current_session()
 
         columns = self._get_columns()
-        out_columns = [x.get('column_alias', x['column_name']) for x in columns]
+
+        available_columns = [column for column in columns
+                             if self.geography not in
+                             column.get('exception_levels', [])]
+        LOGGER.debug('Columns: {}'.format(columns))
+        LOGGER.debug('Available columns: {}'.format(available_columns))
+
+        out_columns = [x.get('column_alias', x['column_name']) for x in available_columns]
         in_columns = ["q.{name} as {alias}".format(
                         name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
-                      ) for x in columns]
+                      ) for x in available_columns]
         in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
-        LOGGER.info('Columns: {}'.format(columns))
         obs_getmcdomvt_types = ["{name} {type}".format(
             name=column['column_name'], type=column['type']
-        ) for column in columns]
+        ) for column in available_columns]
         LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
         query = '''
                 INSERT INTO "{schema}".{table} (x, y, z, geoid,

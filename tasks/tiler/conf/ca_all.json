@@ -247,14 +247,16 @@
                     "column_name": "c1684_t",
                     "column_alias": "no_certificate_diploma_or_degree",
                     "type": "numeric",
-                    "nullable": true
+                    "nullable": true,
+                    "exception_levels": ["forward_sortation_area", "dissemination_area", "dissemination_block"]
                 },
                 {
                     "id": "ca.statcan.census2016.cols_census.c1685_t",
                     "column_name": "c1685_t",
                     "column_alias": "high_school_diploma_or_equivalent",
                     "type": "numeric",
-                    "nullable": true
+                    "nullable": true,
+                    "exception_levels": ["forward_sortation_area", "dissemination_area", "dissemination_block"]
                 },
                 {
                     "id": "ca.statcan.census2016.cols_census.c1686_t",
