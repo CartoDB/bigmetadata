@@ -1,4 +1,5 @@
 from lib.logger import get_logger
+from collections import OrderedDict
 from tasks.hierarchy import DenormalizedHierarchy, GetParentsFunction, \
     Hierarchy, HierarchyInfoUnion, HierarchyChildParentsUnion, \
     HierarchyChildParent, LevelHierarchy, LevelInfo
@@ -12,14 +13,14 @@ LOGGER = get_logger(__name__)
 
 COUNTRY = 'uk'
 
-LEVEL_CLASSES = {
+LEVEL_CLASSES = OrderedDict({
     'cdrc_the_geom': OutputAreas,
     'odl_ps_geo': PostcodeSectors,
     'gov_lsoa_geo': LowerLayerSuperOutputAreas,
     'gov_msoa_geo': MiddleLayerSuperOutputAreas,
     'odl_pd_geo': PostcodeDistricts,
     'datashare_pa_geo': PostcodeAreas
-}
+})
 
 LEVELS = list(LEVEL_CLASSES.keys())
 
