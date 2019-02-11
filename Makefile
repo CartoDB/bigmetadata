@@ -412,10 +412,16 @@ uk-census-middle-super-output-areas:
 	make -- run uk.census.wrapper.CensusMiddleSuperOutputAreas
 
 ### us
-us-all: us-bls us-acs-2015 us-acs-2016 us-lodes us-spielman us-tiger-2015 us-tiger-2016 us-enviroatlas us-huc us-zillow
+us-all: us-bls us-acs-2010 us-acs-2014 us-acs-2015 us-acs-2016 us-lodes us-spielman us-tiger-2015 us-tiger-2016 us-enviroatlas us-huc us-zillow
 
 us-bls:
 	make -- run us.bls.AllQCEW --maxtimespan 2017Q1
+
+us-acs-2010:
+	make -- run us.census.acs.ACSAll --year 2010
+
+us-acs-2014:
+	make -- run us.census.acs.ACSAll --year 2014
 
 us-acs-2015:
 	make -- run us.census.acs.ACSAll --year 2015

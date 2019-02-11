@@ -103,14 +103,17 @@ class ImportData(CSV2TempTableTask):
 
         # The provided CSV files are not well-formed, so we convert the provided XLS files into CSV
         # All files are {tablename}_{state}.xls (or XLS), except Basico-MG.xls
-        filename = '{tablename}[-_]{state_code}.[xX][lL][sS]'.format(tablename=self.tablename,
-                                                                     state_code=state_code)
-
-        path = glob.glob(os.path.join(self.input().path, '**', filename), recursive=True)[0]
-
-        df = pd.read_excel(path)
+        df = pd.read_excel(self._datafile_path(self.tablename, state_code))
         if self.tablename != 'Basico':
             df = df.apply(pd.to_numeric, errors="coerce")
+
+        # In the 20180416 version, SP_Capital-Domicilio02 files have wrong IDs (all have been rounded to 55031E+14)
+        # But the order of sectors is constant in all files of the same state, so we copy them from a different file
+        # This used to be correct in 2017's version of the file
+        if self.state.lower() == 'sp_capital' and self.tablename == 'Domicilio02':
+            domicilio01 = pd.read_excel(self._datafile_path('Domicilio01', state_code))
+            df['Cod_setor'] = domicilio01['Cod_setor']
+
         df.to_csv(os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
                                                                                         state_code=state_code)),
                   index=False,
@@ -120,6 +123,11 @@ class ImportData(CSV2TempTableTask):
         return os.path.join(self.input().path, '{tablename}_{state_code}.csv'.format(tablename=self.tablename,
                                                                                      state_code=state_code))
 
+    def _datafile_path(self, tablename, state_code):
+        filename = '{tablename}[-_]{state_code}.[xX][lL][sS]'.format(tablename=tablename,
+                                                                     state_code=state_code)
+
+        return glob.glob(os.path.join(self.input().path, '**', filename), recursive=True)[0]
 
 class ImportAllTables(BaseParams, WrapperTask):
 
