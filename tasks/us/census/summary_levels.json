@@ -282,7 +282,7 @@
             "geoid": "geoid10",
             "aland": "aland10",
             "awater": "awater10",
-            "name": null
+            "name": "geoid10"
         }
     }
 }
