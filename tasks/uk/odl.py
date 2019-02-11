@@ -222,7 +222,7 @@ class PostcodeSectorsColumns(ColumnsTask):
 
     @staticmethod
     def geoname_column():
-        return 'geographycode'
+        return 'geographyname'
 
     @staticmethod
     def geoid_column():
@@ -260,7 +260,7 @@ class PostcodeSectors(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), replace(name, ' ', '_'), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
