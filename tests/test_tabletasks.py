@@ -198,13 +198,15 @@ def test_carto_2_temp_table_task():
     Convert a table on CARTO to a temp table.
     '''
     task = TestCSV2TempTableTask()
-    before_table_count = current_session().execute(
+    session = current_session()
+    before_table_count = session.execute(
         'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
     runtask(task)
     table = task.output()
-    assert_equal(current_session().execute(
+    assert_equal(session.execute(
         'SELECT COUNT(*) FROM {}'.format(
             table.table)).fetchone()[0], 10)
-    after_table_count = current_session().execute(
+    after_table_count = session.execute(
         'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
     assert_equal(before_table_count, after_table_count)
+    session.close()

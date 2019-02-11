@@ -9,6 +9,10 @@ from tasks.meta import (OBSColumn, OBSTable, metadata, Geometry, Point,
                         Linestring, OBSColumnTable, OBSTag, current_session)
 from sqlalchemy import Table, types, Column
 
+from lib.logger import get_logger
+
+LOGGER = get_logger(__name__)
+
 
 class PostgresTarget(Target):
     '''
@@ -34,22 +38,30 @@ class PostgresTarget(Target):
     def schema(self):
         return self._schema
 
+    @property
+    def qualified_tablename(self):
+        return '"{}".{}'.format(self.schema, self.tablename)
+
     def _existenceness(self):
         '''
         Returns 0 if the table does not exist, 1 if it exists but has no
         rows (is empty), and 2 if it exists and has one or more rows.
         '''
         session = current_session()
-        resp = session.execute('SELECT COUNT(*) FROM information_schema.tables '
-                               "WHERE table_schema ILIKE '{schema}'  "
-                               "  AND table_name ILIKE '{tablename}' ".format(
-                                   schema=self._schema,
-                                   tablename=self._tablename))
+        sql = '''
+                SELECT COUNT(*) FROM information_schema.tables
+                WHERE table_schema ILIKE '{schema}'
+                  AND table_name ILIKE '{tablename}'
+              '''.format(
+            schema=self._schema,
+            tablename=self._tablename)
+        resp = session.execute(sql)
         if int(resp.fetchone()[0]) == 0:
             return 0
         resp = session.execute(
             'SELECT row_number() over () FROM "{schema}".{tablename} WHERE {where} LIMIT 1'.format(
-                schema=self._schema, tablename=self._tablename, where=self._where))
+                schema=self._schema, tablename=self._tablename,
+                where=self._where))
         if resp.fetchone() is None:
             return 1
         else:
@@ -176,12 +188,16 @@ class TagTarget(Target):
         self._tag = tag
         self._task = task
 
+    _tag_cache = {}
+
     def get(self, session):
         '''
-        Return a copy of the underlying OBSColumn in the specified session.
+        Return a copy of the underlying OBSTag in the specified session.
         '''
-        with session.no_autoflush:
-            return session.query(OBSTag).get(self._id)
+        if not self._tag_cache.get(self._id, None):
+            with session.no_autoflush:
+                self._tag_cache[self._id] = session.query(OBSTag).get(self._id)
+        return self._tag_cache[self._id]
 
     def update_or_create(self):
         with current_session().no_autoflush:
@@ -190,22 +206,21 @@ class TagTarget(Target):
     def exists(self):
         session = current_session()
         existing = self.get(session)
-        new_version = float(self._tag.version or 0.0)
+        new_version = self._tag.version or 0.0
         if existing:
-            existing_version = float(existing.version or 0.0)
-            current_session().expunge(existing)
-        else:
-            existing_version = 0.0
-        if existing and existing_version == new_version:
-            return True
-        elif existing and existing_version > new_version:
-            raise Exception('Metadata version mismatch: cannot run task {task} '
-                            '(id "{id}") '
-                            'with ETL version ({etl}) older than what is in '
-                            'DB ({db})'.format(task=self._task.task_id,
-                                               id=self._id,
-                                               etl=new_version,
-                                               db=existing_version))
+            if existing in session:
+                session.expunge(existing)
+            existing_version = existing.version or 0.0
+            if float(existing_version) == float(new_version):
+                return True
+            if existing_version > new_version:
+                raise Exception('Metadata version mismatch: cannot run task {task} '
+                                '(id "{id}") '
+                                'with ETL version ({etl}) older than what is in '
+                                'DB ({db})'.format(task=self._task.task_id,
+                                                   id=self._id,
+                                                   etl=new_version,
+                                                   db=existing_version))
         return False
 
 
@@ -221,6 +236,7 @@ class TableTarget(Target):
         obs_table.tablename = '{prefix}{name}'.format(prefix=OBSERVATORY_PREFIX, name=sha1(
             underscore_slugify(self._id).encode('utf-8')).hexdigest())
         self.table = '{schema}.{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
+        self.qualified_tablename = '"{schema}".{table}'.format(schema=OBSERVATORY_SCHEMA, table=obs_table.tablename)
         self.obs_table = obs_table
         self._tablename = obs_table.tablename
         self._schema = schema
@@ -232,6 +248,14 @@ class TableTarget(Target):
             self._table = metadata.tables[obs_table.tablename]
         else:
             self._table = None
+
+    @property
+    def tablename(self):
+        return self._tablename
+
+    @property
+    def schema(self):
+        return 'observatory'
 
     def sync(self):
         '''
@@ -398,3 +422,57 @@ class RepoTarget(LocalTarget):
     def exists(self):
         path = self._get_path()
         return path and os.path.isfile(path)
+
+
+class ConstraintExistsTarget(Target):
+    def __init__(self, schema, table, constraint):
+        self.schema = schema
+        self.tablename = table
+        self.constraint = constraint
+        self.session = current_session()
+
+    @property
+    def table(self):
+        return '"{schema}".{tablename}'.format(schema=self.schema,
+                                               tablename=self.tablename)
+
+    def exists(self):
+        sql = "SELECT 1 FROM information_schema.constraint_column_usage " \
+              "WHERE table_schema = '{schema}' " \
+              "  AND table_name ilike '{table}' " \
+              "  AND constraint_name = '{constraint}'"
+        check = sql.format(schema=self.schema,
+                           table=self.tablename,
+                           constraint=self.constraint)
+        return len(self.session.execute(check).fetchall()) > 0
+
+
+class PostgresFunctionTarget(Target):
+    def __init__(self, schema, function_name):
+        self._schema = schema
+        self._function_name = function_name
+        self._session = current_session()
+
+    @property
+    def function(self):
+        return '"{schema}".{function_name}'.format(schema=self._schema,
+                                                   function_name=self._function_name)
+
+    @property
+    def function_name(self):
+        return self._function_name
+
+    @property
+    def schema(self):
+        return self._schema
+
+    def exists(self):
+        query = '''
+                SELECT 1 FROM information_schema.routines
+                WHERE routine_schema = '{schema}'
+                AND routine_name = '{function_name}'
+                '''.format(
+                    schema=self._schema,
+                    function_name=self._function_name)
+
+        return len(self._session.execute(query).fetchall()) > 0

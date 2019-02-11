@@ -47,7 +47,7 @@ class TigerSourceTags(TagsTask):
 
 
 class ClippedGeomColumns(ColumnsTask):
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 16
@@ -82,23 +82,29 @@ class ClippedGeomColumns(ColumnsTask):
             if level['interpolated']:
                 additional_tags.append(boundary_type['interpolation_boundary'])
 
-            cols[colname + '_clipped'] = OBSColumn(
-                type='Geometry',
-                name='Shoreline clipped ' + '_{}'.format(self.year) + col.name,
-                weight=Decimal(col.weight) + Decimal(0.01),
-                description='A cartography-ready version of {name}'.format(
-                    name=col.name),
-                targets={col: 'cartography'},
-                tags=[sections['united_states'],
-                      subsections['boundary'],
-                      source, license] + additional_tags
-            )
+            try:
+                cols[colname + '_clipped'] = OBSColumn(
+                    type='Geometry',
+                    name='Shoreline clipped ' + '_{}'.format(self.year) + col.name,
+                    weight=Decimal(col.weight) + Decimal(0.01),
+                    description='A cartography-ready version of {name}'.format(
+                        name=col.name),
+                    targets={col: 'cartography'},
+                    tags=[sections['united_states'],
+                          subsections['boundary'],
+                          source, license] + additional_tags
+                )
+            except Exception as e:
+                LOGGER.error(
+                    "Error loading column {}, {}, {}".format(colname, col, coltarget._id))
+                raise e
+
 
         return cols
 
 
 class GeomColumns(ColumnsTask):
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 18
@@ -174,7 +180,7 @@ class GeoidColumns(ColumnsTask):
     This allows external tables to depend on both shoreline clipped and non-shoreline clipped geometries.
     '''
 
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 8
@@ -212,7 +218,7 @@ class GeoidColumns(ColumnsTask):
 
 class GeonameColumns(ColumnsTask):
 
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 3
@@ -286,7 +292,7 @@ class UnzipTigerGeography(Task):
     Unzip tiger geography
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -319,7 +325,7 @@ class TigerGeographyShapefileToSQL(TempTableTask):
     Take downloaded shapefiles and load them into Postgres
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -390,7 +396,7 @@ class DownloadTiger(LoadPostgresFromZipFile):
 
 
 class SimplifiedDownloadTiger(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -407,7 +413,7 @@ class SimplifiedDownloadTiger(Task):
 
 
 class SimplifyByState(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def run(self):
@@ -435,7 +441,7 @@ class SimplifyByState(Task):
 
 
 class SplitByState(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
     state = Parameter()
 
@@ -444,6 +450,14 @@ class SplitByState(Task):
 
     def run(self):
         session = current_session()
+        sql_index = '''
+                    CREATE INDEX IF NOT EXISTS {table_input}_statefp10_idx
+                    ON "{schema_input}".{table_input} (statefp10)
+                    '''
+        session.execute(sql_index.format(
+            schema_input='tiger{year}'.format(year=self.year),
+            table_input=SUMLEVELS[self.geography]['table']))
+
         query = '''
                 CREATE TABLE {table_output} AS
                 SELECT *
@@ -463,7 +477,7 @@ class SplitByState(Task):
 
 
 class SimplifyGeoChunkByState(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
     state = Parameter()
 
@@ -500,7 +514,7 @@ class SimplifyGeoByState(SimplifyByState):
 
 class SimpleShoreline(TempTableTask):
 
-    year = Parameter()
+    year = IntParameter()
 
     def requires(self):
         return {
@@ -536,7 +550,7 @@ class SplitSumLevel(TempTableTask):
     vertices.  Assumes there is a geoid and the_geom column.
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -565,7 +579,7 @@ class JoinTigerWaterGeoms(TempTableTask):
     off the split pos id (technically the union on pos geom is extraneous)
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -602,7 +616,7 @@ class DiffTigerWaterGeoms(TempTableTask):
     Calculate the difference between the pos and neg geoms
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -625,7 +639,7 @@ class PreunionTigerWaterGeoms(TempTableTask):
     water) geoms
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -664,7 +678,7 @@ class UnionTigerWaterGeoms(TempTableTask):
     the output geoms
     '''
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -682,7 +696,7 @@ class UnionTigerWaterGeoms(TempTableTask):
 
 
 class SimplifiedUnionTigerWaterGeoms(SimplifiedTempTableTask):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def requires(self):
@@ -690,7 +704,7 @@ class SimplifiedUnionTigerWaterGeoms(SimplifiedTempTableTask):
 
 
 class SplitUnionTigerWaterGeomsByState(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
     state = Parameter()
 
@@ -718,7 +732,7 @@ class SplitUnionTigerWaterGeomsByState(Task):
 
 
 class SimplifyUnionTigerWaterGeomsChunkByState(Task):
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
     state = Parameter()
 
@@ -761,7 +775,7 @@ class ShorelineClip(TableTask):
     # MTFCC meanings:
     # http://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2009/TGRSHP09AF.pdf
 
-    year = Parameter()
+    year = IntParameter()
     geography = Parameter()
 
     def version(self):
@@ -817,7 +831,7 @@ class ShorelineClip(TableTask):
 class SumLevel(TableTask):
 
     geography = Parameter()
-    year = Parameter()
+    year = IntParameter()
 
     @property
     def geoid(self):
@@ -890,7 +904,7 @@ class SumLevel(TableTask):
 class GeoNamesTable(TableTask):
 
     geography = Parameter()
-    year = Parameter()
+    year = IntParameter()
 
     def version(self):
         return 5

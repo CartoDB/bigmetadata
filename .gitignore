@@ -30,3 +30,4 @@ docs/build
 perftest/*.json
 /repository
 /venv
+**/env

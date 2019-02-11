@@ -1,7 +1,7 @@
 from tasks.us.census.tiger import ShorelineClip
 from tasks.targets import PostgresTarget
-from luigi import IntParameter, Parameter, WrapperTask, Task
-from tasks.meta import current_session, async_pool
+from luigi import IntParameter, Parameter, Task, WrapperTask
+from tasks.meta import current_session
 from lib.logger import get_logger
 from lib.tileutils import tile2bounds
 from lib.geo import bboxes_intersect
@@ -14,21 +14,38 @@ import backoff
 import csv
 
 LOGGER = get_logger(__name__)
+GEONAME_COLUMN = 'geoname'
+
+Z_RANGES = [
+    range(0, 8),    # 0-7
+    range(8, 10),   # 8-9
+    range(10, 11),  # 10
+    range(11, 12),  # 11
+    range(12, 13),  # 12
+    range(13, 14),  # 13
+    range(14, 15),  # 14
+]
+
+class ConfigFile():
+    def _get_config_data(self, config_file):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        with (open('{}/conf/{}'.format(dir_path, config_file))) as f:
+            return json.load(f)
 
 
-class TilesTempTable(Task):
+class TilesTempTable(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
     config_file = Parameter()
 
     def __init__(self, *args, **kwargs):
         super(TilesTempTable, self).__init__(*args, **kwargs)
-        self.config_data = self._get_config_data()
+        self.config_data = self._get_config_data(self.config_file)
 
     def run(self):
         session = current_session()
-        config_data = self._get_config_data()
-        for config in config_data:
+        config_data = self._get_config_data(self.config_file)
+        for config in config_data["tables"]:
             self._create_table(session, config)
             tiles = self._calculate_tiles(config)
             self._store_tiles(session, tiles, config)
@@ -52,22 +69,22 @@ class TilesTempTable(Task):
 
     def _store_tiles(self, session, tiles, config):
         for tile in tiles:
-            bounds = 'SELECT cdb_observatory.OBS_GetTileBoundsx'
             query = '''
                     WITH data as (
                         SELECT {x} x, {y} y, {z} z, cdb_observatory.OBS_GetTileBounds({z},{x},{y}) bounds
                     )
                     INSERT INTO \"{schema}\".\"{table}\" (x,y,z,bounds,envelope,ext)
-                    SELECT x, y, z, bounds bounds, ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
-                    ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
+                    SELECT x, y, z, bounds bounds,
+                           ST_MakeEnvelope(bounds[1], bounds[2], bounds[3], bounds[4], 4326) envelope,
+                           ST_MakeBox2D(ST_Point(bounds[1], bounds[2]), ST_Point(bounds[3], bounds[4])) ext
                     FROM data
-                    '''.format(schema=config['schema'], table=self._get_table_name(config),
+                    '''.format(schema=self.schema, table=self._get_table_name(config),
                                x=tile[0], y=tile[1], z=tile[2])
             session.execute(query)
         session.commit()
 
     def _create_table(self, session, config):
-        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(config['schema']))
+        session.execute('CREATE SCHEMA IF NOT EXISTS \"{}\"'.format(self.schema))
         sql_table = '''CREATE TABLE IF NOT EXISTS \"{schema}\".\"{table}\"(
                        x INTEGER NOT NULL,
                        y INTEGER NOT NULL,
@@ -75,267 +92,77 @@ class TilesTempTable(Task):
                        bounds Numeric[],
                        envelope Geometry,
                        ext Geometry,
-                       CONSTRAINT {table}_pk PRIMARY KEY (x,y,z)
-                    )'''.format(schema=config['schema'],
+                       CONSTRAINT {table}_pk PRIMARY KEY (z,x,y)
+                    )'''.format(schema=self.schema,
                                 table=self._get_table_name(config))
         session.execute(sql_table)
         session.commit()
 
+    @property
+    def schema(self):
+        return 'tiler_tmp'
+
     def output(self):
         targets = []
-        for config in self.config_data:
-            targets.append(PostgresTarget(config['schema'],
+        for config in self.config_data["tables"]:
+            targets.append(PostgresTarget(self.schema,
                                           self._get_table_name(config)))
         return targets
 
     def _get_table_name(self, config):
         return "{table}_tiles_temp_{geo}_{zoom}".format(table=config['table'], geo=self.geography, zoom=self.zoom_level)
 
-    def _get_config_data(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/conf/{}'.format(dir_path, self.config_file))) as f:
-            return json.load(f)
 
-
-class TilerXYZTableTask(Task):
-
+class SimpleTilerDOXYZTableTask(Task, ConfigFile):
     zoom_level = IntParameter()
     geography = Parameter()
+    config_file = Parameter()
+    geom_tablename_suffix = Parameter(default=None, significant=False)
 
-    def __init__(self, *args, **kwargs):
-        super(TilerXYZTableTask, self).__init__(*args, **kwargs)
-        self.config_data = self._get_config_data()
-
-    def get_config_file(self):
-        raise NotImplementedError('Config file must be implemented by the child class')
-
-    def get_geography_level(self, level):
-        raise NotImplementedError('Geography levels file must be implemented by the child class')
-
-    def get_columns(self, config, shard_value=None):
-        raise NotImplementedError('Get columns function must be implemented by the child class')
-
-    def get_table_columns(self, config, shard_value=None):
-        raise NotImplementedError('Get Table columns function must be implemented by the child class')
-
-    def get_tile_query(self, config, tile, geography, shard_value=None):
-        raise NotImplementedError('Get tile query function must be implemented by the child class')
-
-    def run(self):
-        config_data = self._get_config_data()
-        for config in config_data:
-            if not config.get('bypass', False):
-                table_bboxes = config['bboxes']
-                tables_data = self._get_table_names(config)
-                for table_data in tables_data:
-                    start_time = time.time()
-                    LOGGER.info("Processing table {}".format(table_data['table']))
-                    self._create_schema_and_table(table_data, config)
-                    self._generate_csv_tiles(self.zoom_level, table_data, config, table_bboxes)
-                    self._insert_tiles(table_data)
-                    end_time = time.time()
-                    LOGGER.info("Finished processing table {}. It took {} seconds".format(
-                        table_data['table'],
-                        (end_time - start_time)
-                    ))
-
-    def _get_table_names(self, config):
-        table_names = []
-        if config['sharded']:
-            for value in config['sharding']['values']:
-                table_names.append({"schema": config['schema'],
-                                    "table": "{}_{}".format(config['table'], value),
-                                    "value": value})
-        else:
-            table_names.append({"schema": config['schema'], "table": config['table'], "value": None})
-
-        return table_names
-
-    def _create_schema_and_table(self, table_data, config):
-        session = current_session()
-        session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
-        cols_schema = self.get_table_columns(config, table_data['value'])
-        sql_table = '''CREATE TABLE IF NOT EXISTS {table}(
-                       x INTEGER NOT NULL,
-                       y INTEGER NOT NULL,
-                       z INTEGER NOT NULL,
-                       mvt_geometry Geometry,
-                       geoid VARCHAR NOT NULL,
-                       area_ratio NUMERIC,
-                       area NUMERIC,
-                       {cols},
-                       CONSTRAINT {table_name}_pk PRIMARY KEY (x,y,z,geoid)
-                    )'''.format(table=self._get_table_name(table_data),
-                                table_name=table_data['table'],
-                                cols=", ".join(cols_schema))
-
-        session.execute(sql_table)
-        session.commit()
-
-    def _get_config_data(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/conf/{}'.format(dir_path, self.get_config_file()))) as f:
-            return json.load(f)
-
-    def _tile_in_bboxes(self, zoom, x, y, bboxes):
-        rect1 = tile2bounds(zoom, x, y)
-        for bbox in bboxes:
-            rect2 = [bbox['xmin'], bbox['ymin'], bbox['xmax'], bbox['ymax']]
-            if bboxes_intersect(rect1, rect2):
-                return True
-
-        return False
-
-    def _generate_csv_tiles(self, zoom, table_data, config, bboxes_config):
-        tiles = []
-        tile_start = time.time()
-        for x in range(0, (pow(2, zoom) + 1)):
-            for y in range(0, (pow(2, zoom) + 1)):
-                if self._tile_in_bboxes(zoom, x, y, bboxes_config):
-                    tiles.append([x, y, zoom])
-        tile_end = time.time()
-
-        LOGGER.info("Tiles to be processed: {}. Calculated in {} seconds".format(len(tiles), (tile_end - tile_start)))
-
-        sql_start = time.time()
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        try:
-            exceptions = loop.run_until_complete(self._generate_tiles(tiles, config, table_data))
-            exceptions =  [e for e in exceptions if e is not None]
-
-            if exceptions:
-                LOGGER.warning("Exception/s found processing tiles: {}".format("\n".join([str(e) for e in exceptions if e is not None])))
-        finally:
-            loop.close()
-        sql_end = time.time()
-
-        LOGGER.info("Generated tiles it took {} seconds".format(sql_end - sql_start))
-
-    def batch(self, iterable, n=1):
-        iterable_lenght = len(iterable)
-        for ndx in range(0, iterable_lenght, n):
-            yield iterable[ndx:min(ndx + n, iterable_lenght)]
-
-    @backoff.on_exception(backoff.expo,
-                          (asyncio.TimeoutError,
-                           concurrent.futures._base.TimeoutError),
-                          max_time=600)
-
-    async def _generate_tiles(self, tiles, config, table_data):
-        with open(self._get_csv_filename(table_data), 'w+') as csvfile:
-            db_pool = await async_pool()
-            columns = self.get_columns(config, table_data['value'])
-            csvwriter = csv.writer(csvfile)
-            headers = ['x', 'y', 'z', 'mvt_geometry', 'geoid', 'area_ratio', 'area']
-            headers += [column.get('column_alias', column['column_name']).lower() for column in columns]
-            csvwriter.writerow(headers)
-            geography_level = self.get_geography_level(self.geography)
-            batch_no = 1
-            for tiles_batch in self.batch(tiles, 100):
-                LOGGER.info("Processing batch {} with {} elements".format(batch_no, len(tiles_batch)))
-                batch_start = time.time()
-                executed_tiles = [self._generate_tile(db_pool, csvwriter, tile, geography_level, config, table_data['value'])
-                                  for tile in tiles_batch]
-                exceptions = await asyncio.gather(*executed_tiles, return_exceptions=True)
-                batch_end = time.time()
-                LOGGER.info("Batch {} processed in {} seconds".format(batch_no, (batch_end - batch_start)))
-                batch_no += 1
-
-            return exceptions
-
-    @backoff.on_exception(backoff.expo,
-                          (asyncio.TimeoutError,
-                           concurrent.futures._base.TimeoutError),
-                          max_time=600)
-
-    async def _generate_tile(self, db_pool, csvwriter, tile, geography, config, shard_value=None):
-        tile_query = self.get_tile_query(config, tile, geography, shard_value)
-
-        conn = None
-        try:
-            conn = await db_pool.acquire()
-            tile_start = time.time()
-
-            records = await conn.fetch(tile_query)
-
-            tile_end = time.time()
-            LOGGER.debug('Generated tile [{}/{}/{}] in {} seconds'.format(tile[0], tile[1], tile[2],
-                                                                          (tile_end - tile_start)))
-            for record in records:
-                csvwriter.writerow(tuple(record))
-            else:
-                LOGGER.debug('Tile [{}/{}/{}] without data'.format(tile[0], tile[1], tile[2], (tile_end - tile_start)))
-        except BaseException as e:
-            LOGGER.error('Tile [{}/{}/{}] returned exception {}'.format(tile[0], tile[1], tile[2], e))
-            raise e
-        finally:
-            await db_pool.release(conn)
-
-    def _insert_tiles(self, table_data):
-        table_name = self._get_table_name(table_data)
-        copy_start = time.time()
-        session = current_session()
-        with open(self._get_csv_filename(table_data), 'rb') as f:
-            cursor = session.connection().connection.cursor()
-            sql_copy = """
-                        COPY {table} FROM STDIN WITH CSV HEADER DELIMITER AS ','
-                       """.format(table=table_name)
-            cursor.copy_expert(sql=sql_copy, file=f)
-            session.commit()
-            cursor.close()
-        copy_end = time.time()
-        LOGGER.info("Copy tiles for table {} took {} seconds".format(table_data['table'],copy_end - copy_start))
-
-    def output(self):
-        targets = []
-        for config in self.config_data:
-            tables_data = self._get_table_names(config)
-            for table_data in tables_data:
-                targets.append(PostgresTarget(table_data['schema'],
-                                              table_data['table'],
-                                              where='z = {}'.format(self.zoom_level)))
-        return targets
-
-    def _get_table_name(self, table_data):
-        return "\"{schema}\".\"{table}\"".format(schema=table_data['schema'], table=table_data['table'])
-
-    def _get_csv_filename(self, table_data):
-        if not os.path.exists('tmp/tiler'):
-            os.makedirs('tmp/tiler')
-        return "tmp/tiler/tiler_{table_name}_{geography}.csv".format(table_name=table_data['table'],
-                                                                     geography=self.geography)
-
-
-class SimpleTilerDOXYZTableTask(Task):
-
-    zoom_level = IntParameter()
-    geography = Parameter()
+    table_postfix = None
+    mc_geography_level = None
 
     def __init__(self, *args, **kwargs):
         super(SimpleTilerDOXYZTableTask, self).__init__(*args, **kwargs)
         self.columns = self._get_columns()
+        self.mc_geography_level = self.geography
+        self.config_data = self._get_config_data(self.config_file)
 
     def requires(self):
         return TilesTempTable(zoom_level=self.zoom_level,
                               geography=self.geography,
-                              config_file=self.get_config_file())
+                              config_file=self.config_file)
 
-    def get_config_file(self):
-        raise NotImplementedError('get_config_file must be implemented by the child class')
+    def _get_country(self):
+        return self.config_data["country"]
+
+    def _get_simplification_tolerance(self):
+        return self.config_data["geolevels"][self.geography].get("simplification", 0)
 
     def get_geography_name(self):
-        raise NotImplementedError('get_geography_name must be implemented by the child class')
+        return self.config_data["geolevels"][self.geography]["geography"]
 
     def get_columns_ids(self):
-        return [x['id'] for x in self._get_columns()]
+        columns_ids = []
+
+        for column in self._get_columns():
+            if column['id'] == GEONAME_COLUMN:
+                column['id'] = self.config_data["geolevels"][self.geography][GEONAME_COLUMN]
+            columns_ids.append(column['id'])
+
+        return columns_ids
 
     def _get_columns(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        with (open('{}/conf/{}'.format(dir_path, self.get_config_file()))) as f:
-            for table in json.load(f):
-                if table['table'] == self.output().tablename:
-                    return table['columns']
+        config_data = self._get_config_data(self.config_file)
+        for config in config_data["tables"]:
+            if config['table'] == self.output().tablename:
+                return config['columns']
+
+    def _get_table_column_names(self):
+        columns = []
+        for column in self._get_columns():
+            columns.append(column.get('column_alias', column['column_name']))
+        return columns
 
     def _get_table_columns(self):
         columns = []
@@ -349,10 +176,11 @@ class SimpleTilerDOXYZTableTask(Task):
     def _create_table(self):
         session = current_session()
 
-        LOGGER.info('Creating schema "{schema}" if needed'.format(schema=self.output().schema))
+        output = self.output()
+        LOGGER.info('Creating schema "{schema}" if needed'.format(schema=output.schema))
         session.execute('CREATE SCHEMA IF NOT EXISTS tiler')
 
-        LOGGER.info('Creating table {table} if needed'.format(table=self.output().table))
+        LOGGER.info('Creating table {table} if needed'.format(table=output.table))
         query = '''
                 CREATE TABLE IF NOT EXISTS "{schema}".{table}(
                     x INTEGER NOT NULL,
@@ -362,47 +190,138 @@ class SimpleTilerDOXYZTableTask(Task):
                     mvt_geometry Geometry,
                     area_ratio NUMERIC,
                     area NUMERIC,
-                    {cols},
-                    CONSTRAINT {schema}_{table}_pk PRIMARY KEY (x,y,z,geoid)
+                    {cols}
                 )
-                '''.format(schema=self.output().schema,
-                           table=self.output().tablename,
+                PARTITION BY LIST (z)
+                '''.format(schema=output.schema,
+                           table=output.tablename,
                            cols=", ".join(self._get_table_columns()))
-
         session.execute(query)
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        zs = ['{}'.format(z) for z in z_range]
+        column_names = self._get_table_column_names()
+
+        query = '''
+                CREATE TABLE IF NOT EXISTS "{schema}".{table}_{z}
+                PARTITION OF "{schema}".{table} ({col_names})
+                FOR VALUES IN ({values})
+                WITH (
+                    autovacuum_enabled = false,
+                    toast.autovacuum_enabled = false
+                )
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0],
+                           col_names=', '.join(column_names),
+                           values=','.join(zs))
+        session.execute(query)
+
+        drop_index_query = '''
+                DROP INDEX IF EXISTS "{schema}".{table}_{z}_idx
+                '''.format(schema=output.schema,
+                           table=output.tablename,
+                           z=z_range[0])
+        session.execute(drop_index_query)
+
+        session.execute('''
+            ALTER TABLE "{schema}".{table}_{z}
+            ALTER COLUMN mvt_geometry
+            SET STORAGE EXTERNAL
+        '''.format(schema=output.schema,
+                   table=output.tablename,
+                   z=z_range[0]))
         session.commit()
+
+    def _create_index(self):
+        session = current_session()
+        output = self.output()
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        index_query = '''
+                      CREATE UNIQUE INDEX IF NOT EXISTS {table}_{z}_idx
+                      ON "{schema}".{table}_{z}
+                      (z, x, y, geoid)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(index_query)
+
+
+    def _set_normal_parameters(self):
+        session = current_session()
+        output = self.output()
+
+        z_range = next(r for r in Z_RANGES if self.zoom_level in r)
+        autovacuum_query = '''
+                      ALTER TABLE "{schema}".{table}_{z}
+                      SET (autovacuum_enabled = true,
+                          toast.autovacuum_enabled = true)
+                      '''.format(schema=output.schema,
+                                 table=output.tablename,
+                                 z=z_range[0])
+        session.execute(autovacuum_query)
+
 
     def _insert_data(self):
         session = current_session()
 
         columns = self._get_columns()
         out_columns = [x.get('column_alias', x['column_name']) for x in columns]
-        in_columns = ["((aa).mvtdata::json->>'{name}')::{type} as {alias}".format(
+        in_columns = ["q.{name} as {alias}".format(
                         name=x['column_name'], type=x['type'], alias=x.get('column_alias', x['column_name'])
                       ) for x in columns]
         in_columns_ids = ["'{}'".format(x) for x in self.get_columns_ids()]
-
+        LOGGER.info('Columns: {}'.format(columns))
+        obs_getmcdomvt_types = ["{name} {type}".format(
+            name=column['column_name'], type=column['type']
+        ) for column in columns]
         LOGGER.info('Inserting data into {table}'.format(table=self.output().table))
         query = '''
                 INSERT INTO "{schema}".{table} (x, y, z, geoid,
                                                 area_ratio, area, mvt_geometry,
                                                 {out_columns})
-                SELECT (aa).x, (aa).y, (aa).zoom z, (aa).mvtdata::json->>'id'::text as geoid,
-                       ((aa).mvtdata::json->>'area_ratio')::numeric as area_ratio,
-                       ((aa).mvtdata::json->>'area')::numeric as area, (aa).mvtgeom,
+                SELECT q.x, q.y, q.zoom z, q.id as geoid,
+                       q.area_ratio as area_ratio,
+                       q.area as area, q.mvtgeom,
                        {in_columns}
                   FROM (
-                    SELECT cdb_observatory.OBS_GetMCDOMVT({zoom_level}, '{geography}',
-                    ARRAY[{in_columns_ids}]::TEXT[],
-                    ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]) aa
-                    ) q;
+                    SELECT * FROM cdb_observatory.OBS_GetMCDOMVT(
+                        {zoom_level},
+                        '{geography}',
+                        ARRAY[{in_columns_ids}]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        '{country}',
+                        ARRAY[]::TEXT[],
+                        ARRAY[]::TEXT[],
+                        {simplification_tolerance},
+                        '{table_postfix}',
+                        {mc_geography_level},
+                        False, -- area_normalized
+                        True, -- use_meta_cache
+                        4096, -- extent
+                        256, -- buf
+                        True, -- clip_geom
+                        {geom_tablename_suffix} -- geom_tablename_suffix
+                    ) AS result(x integer, y integer, zoom integer, mvtgeom geometry,
+                                id text, {obs_getmcdomvt_types},
+                                area_ratio float, area float)
+                    ) q
                 '''.format(schema=self.output().schema,
                            table=self.output().tablename,
                            zoom_level=self.zoom_level,
                            geography=self.get_geography_name(),
                            out_columns=','.join(out_columns),
                            in_columns=','.join(in_columns),
-                           in_columns_ids=','.join(in_columns_ids))
+                           in_columns_ids=','.join(in_columns_ids),
+                           country=self._get_country(),
+                           obs_getmcdomvt_types=','.join(obs_getmcdomvt_types),
+                           simplification_tolerance=self._get_simplification_tolerance(),
+                           table_postfix=self.table_postfix if self.table_postfix is not None else '',
+                           mc_geography_level="'{}'".format(self.mc_geography_level)
+                                              if self.mc_geography_level is not None else 'NULL',
+                           geom_tablename_suffix="'{}'".format(self.geom_tablename_suffix)
+                                              if self.geom_tablename_suffix is not None else 'NULL')
 
         session.execute(query)
         session.commit()
@@ -410,24 +329,42 @@ class SimpleTilerDOXYZTableTask(Task):
     def run(self):
         self._create_table()
         self._insert_data()
+        self._create_index()
+        self._set_normal_parameters()
 
     def output(self):
-        raise NotImplementedError('output must be implemented by the child class')
+        config_data = self._get_config_data(self.config_file)
+        return PostgresTarget('tiler', 'xyz_{country}_do_geoms'.format(country=config_data["country"]))
 
     def complete(self):
         session = current_session()
-        count = 0
+        exists = False
 
         try:
             query = '''
-                    SELECT count(*) FROM "{schema}".{table} WHERE z = {zoom_level}
+                    SELECT 1 FROM "{schema}".{table}
+                    WHERE z = {zoom_level}
+                    LIMIT 1
                     '''.format(schema=self.output().schema,
                                table=self.output().tablename,
                                zoom_level=self.zoom_level,)
-            count = session.execute(query).fetchone()[0]
-            if count > 0:
+            exists = session.execute(query).fetchone() is not None
+            if exists:
                 LOGGER.warn('The zoom level is already loaded')
         except Exception:
             LOGGER.info('Error checking output. Maybe the table doesn\'t exist')
 
-        return count > 0
+        return exists
+
+
+class AllSimpleDOXYZTables(WrapperTask, ConfigFile):
+    config_file = Parameter()
+
+    def requires(self):
+        self.config_data = self._get_config_data(self.config_file)
+        return [
+            SimpleTilerDOXYZTableTask(zoom_level=zoom,
+                                      geography=level,
+                                      config_file=self.config_file)
+            for level, info in self.config_data["geolevels"].items()
+            for zoom in info["zoomlevels"]]

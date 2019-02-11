@@ -170,7 +170,7 @@ class GeographyColumns(ColumnsTask, GeographyMeta):
     resolution = Parameter()
 
     def version(self):
-        return 3
+        return 4
 
     def requires(self):
         return {
@@ -248,7 +248,7 @@ class Geography(TableTask, GeographyMeta):
     resolution = Parameter()
 
     def version(self):
-        return 5
+        return 6
 
     def requires(self):
         return {

@@ -24,6 +24,7 @@ PROFILES = {
 }
 
 STATES = ('NSW', 'Vic', 'Qld', 'SA', 'WA', 'Tas', 'NT', 'ACT', 'OT', )
+CONVERT_TO_11_DIGIT = ['SA1', ]
 
 TABLES = {
     2011: ['B01', 'B02', 'B03', 'B04A', 'B04B', 'B05', 'B06', 'B07', 'B08A', 'B08B', 'B09', 'B10A', 'B10B', 'B10C',
@@ -166,7 +167,7 @@ class Columns(ColumnsTask):
         return requirements
 
     def version(self):
-        return 7
+        return 8
 
     def columns(self):
         cols = OrderedDict()
@@ -176,7 +177,7 @@ class Columns(ColumnsTask):
         unittags = input_['units']
         country = input_['sections']['au']
         source = input_['source']['au-census']
-        license = input_['license']['au-datapacks-license']
+        licensetags = input_['license']['au-datapacks-license']
 
         # column req's from other tables
         column_reqs = {}
@@ -185,6 +186,7 @@ class Columns(ColumnsTask):
                 column_reqs.update(value)
 
         filepath = "meta/Metadata_{year}_{profile}_DataPack.csv".format(year=self.year, profile=self.profile)
+        rows = {}
 
         session = current_session()
         with open(os.path.join(os.path.dirname(__file__), filepath)) as csv_meta_file:
@@ -193,63 +195,15 @@ class Columns(ColumnsTask):
             for line in reader:
                 id_ = line[0]               # A: Sequential
                 tablename = line[4]         # H: Tablename
-
                 # ignore tables we don't care about right now
                 if not id_.startswith(self.profile[0]) or \
                    not tablename.startswith(self.tablename):
                     continue
+                col_id = line[1]
+                rows[col_id] = line
 
-                col_id = line[1]            # B: short
-                col_name = line[2]          # C: name
-                denominators = line[3]      # D: denominators
-                col_unit = line[5]          # F: unit
-                col_subsections = line[6]   # G: subsection
-                if tablename == '{}02'.format(self.profile[0]):
-                    col_agg = line[8]       # I: AGG (for B02 only)
-                else:
-                    col_agg = None
-                tabledesc = line[10]        # K: Table description
-
-                denominators = denominators.split('|')
-
-                targets_dict = {}
-                for denom_id in denominators:
-                    denom_id = denom_id.strip()
-                    if not denom_id:
-                        continue
-
-                    reltype = 'denominator'
-                    if col_agg in ['median', 'average']:
-                        reltype = 'universe'
-
-                    if denom_id in column_reqs:
-                        targets_dict[column_reqs[denom_id].get(session)] = reltype
-                    else:
-                        targets_dict[cols[denom_id]] = reltype
-
-                targets_dict.pop(None, None)
-
-                cols[col_id] = OBSColumn(
-                    id=col_id,
-                    type='Numeric',
-                    name=col_name,
-                    description=tabledesc,
-                    # Ranking of importance, sometimes used to favor certain measures in auto-selection
-                    # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
-                    weight=5,
-                    aggregate=col_agg or 'sum',
-                    # Tags are our way of noting aspects of this measure like its unit, the country
-                    # it's relevant to, and which section(s) of the catalog it should appear in
-                    tags=[source, license, country, unittags[col_unit]],
-                    targets=targets_dict
-                )
-
-                # append the rest of the subsection tags
-                col_subsections = col_subsections.split('|')
-                for subsection in col_subsections:
-                    subsection = subsection.strip()
-                    subsection_tag = subsectiontags[subsection]
-                    cols[col_id].tags.append(subsection_tag)
+        for col_id in rows:
+            self._process_col(col_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags)
 
         columnsFilter = ColumnsDeclarations(os.path.join(os.path.dirname(__file__), 'census_columns.json'))
         parameters = '{{"year":"{year}","resolution":"{resolution}", "tablename":"{tablename}"}}'.format(
@@ -262,6 +216,58 @@ class Columns(ColumnsTask):
         dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'meta')
         with (open('{}/{}'.format(dir_path, '{}_{}_requirements.json'.format(self.profile, self.year)))) as f:
             return json.load(f)
+
+    def _process_col(self, col_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags):
+        line = rows[col_id]
+        col_name = line[2]          # C: name
+        denominators = line[3]      # D: denominators
+        col_unit = line[5]          # F: unit
+        col_subsections = line[6].split('|')  # G: subsection
+        subsection_tags = [subsectiontags[s.strip()] for s in col_subsections]
+
+        if tablename == '{}02'.format(self.profile[0]):
+            col_agg = line[8]       # I: AGG (for B02 only)
+        else:
+            col_agg = None
+        tabledesc = line[10]        # K: Table description
+
+        denominators = denominators.split('|')
+
+        targets_dict = {}
+        for denom_id in denominators:
+            denom_id = denom_id.strip()
+            if not denom_id:
+                continue
+
+            reltype = 'denominator'
+            if col_agg in ['median', 'average']:
+                reltype = 'universe'
+
+            if denom_id in column_reqs:
+                targets_dict[column_reqs[denom_id].get(session)] = reltype
+            else:
+                if denom_id not in cols:
+                    # we load denominators recursively to avoid having to order
+                    # them in the source CSV file
+                    self._process_col(denom_id, rows, session, column_reqs, cols, tablename, source, licensetags, country, unittags, subsectiontags)
+                targets_dict[cols[denom_id]] = reltype
+
+        targets_dict.pop(None, None)
+
+        cols[col_id] = OBSColumn(
+            id=col_id,
+            type='Numeric',
+            name=col_name,
+            description=tabledesc,
+            # Ranking of importance, sometimes used to favor certain measures in auto-selection
+            # Weight of 0 will hide this column from the user.  We generally use between 0 and 10
+            weight=5,
+            aggregate=col_agg or 'sum',
+            # Tags are our way of noting aspects of this measure like its unit, the country
+            # it's relevant to, and which section(s) of the catalog it should appear in
+            tags=[source, licensetags, country, unittags[col_unit]] + subsection_tags,
+            targets=targets_dict
+        )
 
 
 class AllColumnsResolution(WrapperTask):
@@ -290,7 +296,7 @@ class XCP(TableTask):
     resolution = Parameter()
 
     def version(self):
-        return 4
+        return 5
 
     def targets(self):
         return {
@@ -408,12 +414,30 @@ class XCP(TableTask):
 
             in_colnames[0] = '"{}"'.format(self._get_geoid())
 
-            cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
-                  'SELECT {in_colnames} FROM {input} '.format(
-                      output=self.output().table,
-                      input=intable,
-                      in_colnames=', '.join(in_colnames),
-                      out_colnames='", "'.join(out_colnames))
+            if self.resolution in CONVERT_TO_11_DIGIT:
+                # we need 11 digit IDs (from the geography table) because
+                # the data table only has 7 digit IDs
+                in_colnames[0] = 'geo.geom_id'
+                cmd = '''
+                    INSERT INTO {output} ("{out_colnames}")
+                    SELECT {in_colnames}
+                    FROM {input} input
+                    INNER JOIN {input_geotable} geo
+                        ON (input."{input_geoid}" = LEFT(geo.geom_id, 1) || right(geo.geom_id, 6))
+                    '''.format(
+                          output=self.output().table,
+                          input=intable,
+                          input_geotable=self.input()['geo'].table,
+                          input_geoid=self._get_geoid(),
+                          in_colnames=', '.join(in_colnames),
+                          out_colnames='", "'.join(out_colnames))
+            else:
+                cmd = 'INSERT INTO {output} ("{out_colnames}") ' \
+                      'SELECT {in_colnames} FROM {input} '.format(
+                          output=self.output().table,
+                          input=intable,
+                          in_colnames=', '.join(in_colnames),
+                          out_colnames='", "'.join(out_colnames))
             try:
                 session.execute(cmd)
             except Exception as err:
