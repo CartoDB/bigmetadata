@@ -21,7 +21,7 @@
         },
         "dissemination_block": {
             "geography": "ca.statcan.geo.db_",
-            "geoname": "ca.statcan.geo.da__name",
+            "geoname": "ca.statcan.geo.db__name",
             "zoomlevels": [13, 14],
             "simplification": 0.0001
         }
