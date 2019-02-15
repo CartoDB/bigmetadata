@@ -35,7 +35,7 @@ services:
       - 80
 
   bigmetadata_daemon:
-    image: carto/bigmetadata
+    image: carto/bigmetadata:1.1
     volumes:
       - .:/bigmetadata
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp
@@ -61,7 +61,7 @@ services:
     command: "luigid"
 
   bigmetadata:
-    image: carto/bigmetadata
+    image: carto/bigmetadata:1.1
     volumes:
       - .:/bigmetadata
       - ${DO_LOCAL_TMP_DIR:-./tmp}:/bigmetadata/tmp

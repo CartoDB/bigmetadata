@@ -476,3 +476,15 @@ class PostgresFunctionTarget(Target):
                     function_name=self._function_name)
 
         return len(self._session.execute(query).fetchall()) > 0
+
+
+class URLTarget(Target):
+    def __init__(self, url):
+        self.value = url
+        self.path = url
+
+    def exists(self):
+        return True
+
+    def url(self):
+        return self.value

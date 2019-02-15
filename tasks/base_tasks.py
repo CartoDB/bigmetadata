@@ -17,17 +17,19 @@ from collections import OrderedDict
 from datetime import date
 
 from luigi import (Task, Parameter, LocalTarget, BoolParameter, IntParameter,
-                   ListParameter, DateParameter, WrapperTask, Event)
+                   ListParameter, DateParameter, WrapperTask, Event, ExternalTask)
 from luigi.contrib.s3 import S3Target
 
 from sqlalchemy.dialects.postgresql import JSON
+
+from google.cloud import storage
 
 from lib.util import digest_file
 from lib.logger import get_logger
 
 from tasks.meta import (OBSColumn, OBSTable, metadata, current_session,
                         session_commit, session_rollback, GEOM_REF)
-from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget, RepoTarget)
+from tasks.targets import (ColumnTarget, TagTarget, CartoDBTarget, PostgresTarget, TableTarget, RepoTarget, URLTarget)
 from tasks.util import (classpath, query_cartodb, sql_to_cartodb_table, underscore_slugify, shell,
                         create_temp_schema, unqualified_task_id, generate_tile_summary, uncompress_file,
                         copyfile)
@@ -1906,3 +1908,44 @@ class ReverseCoupledInterpolationTask(BaseInterpolationTask):
                 )
 
         current_session().execute(stmt)
+
+
+class URLTask(ExternalTask):
+    url = Parameter()
+
+    def output(self):
+        return URLTarget(self.url)
+
+
+class GoogleStorageTask(Task):
+    bucket = Parameter()
+    # The path to the file ("name" in Google Storage conventions)
+    name = Parameter()
+
+    @staticmethod
+    def google_application_credentials():
+        return os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', None)
+
+    def run(self):
+        self._download_blob(self.bucket, self.name, self._destination())
+
+    def _destination(self):
+        return '/bigmetadata/tmp/{}'.format(self.name.split('/')[-1])
+
+    def _download_blob(self, bucket_name, source_blob_name, destination_file_name):
+        """Downloads a blob from the bucket."""
+        storage_client = storage.Client()
+        bucket = storage_client.get_bucket(bucket_name)
+        blob = bucket.blob(source_blob_name)
+
+        LOGGER.info('Downloading blob {} to {}.'.format(
+            source_blob_name,
+            destination_file_name))
+
+        blob.download_to_filename(destination_file_name)
+
+    def complete(self):
+        return os.path.exists(self._destination())
+
+    def output(self):
+        return URLTarget('{}'.format(self._destination()))
