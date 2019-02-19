@@ -1948,4 +1948,4 @@ class GoogleStorageTask(Task):
         return os.path.exists(self._destination())
 
     def output(self):
-        return URLTarget('{}'.format(self._destination()))
+        return URLTarget(self._destination())

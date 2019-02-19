@@ -480,7 +480,6 @@ class PostgresFunctionTarget(Target):
 
 class URLTarget(Target):
     def __init__(self, url):
-        self.value = url
         self.path = url
 
     def exists(self):
