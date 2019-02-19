@@ -177,7 +177,7 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
             return URLTask(url=url)
 
     def get_url(self):
-        return self.input().url()
+        return self.input().url
 
     def _file(self):
         if self.until_month:
