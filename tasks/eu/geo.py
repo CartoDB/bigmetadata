@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from luigi import LocalTarget, Task, IntParameter, WrapperTask
+from luigi import LocalTarget, Task, IntParameter, WrapperTask, Parameter
 
 from lib.timespan import get_timespan
 
@@ -12,7 +12,6 @@ from tasks.tags import SectionTags, SubsectionTags, BoundaryTags
 from collections import OrderedDict
 
 import os
-
 
 class SourceLicenseTags(TagsTask):
 
@@ -62,23 +61,28 @@ class DownloadGeographies(Task):
 
 class ImportSHNGeoms(GeoFile2TempTableTask):
     level = IntParameter()
+    country = Parameter(default='FullEurope')  # ES, GB... (data folder)
+    file = Parameter(default='PolbndA_optionKS.shp')
 
     def requires(self):
         return DownloadGeographies()
 
     def input_files(self):
         # ~/bigmetadata/tmp/eurostat.geo/DownloadGeographies__99914b932b/EGM_10-1-0SHP_20171110/DATA/FullEurope | grep PolbndA_optionKS
-        return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', 'FullEurope', 'PolbndA_optionKS.shp')
+        dir = self.country if self.country == 'FullEurope' else 'Countries/{}'.format(self.country)
+        return os.path.join(self.input().path, 'EGM_10-1-0SHP_20171110', 'DATA', dir, self.file)
 
 
 class SimplifiedImportSHNGeoms(SimplifiedTempTableTask):
     level = IntParameter()
+    country = Parameter(default='FullEurope')  # ES, GB... (data folder)
+    file = Parameter(default='PolbndA_optionKS.shp')
 
     def get_table_id(self):
         return '.'.join([self.input().schema, '_'.join(self.input().tablename.split('_')[:-1])])
 
     def requires(self):
-        return ImportSHNGeoms(level=self.level)
+        return ImportSHNGeoms(level=self.level, country=self.country, file=self.file)
 
 
 class ImportSHNNames(GeoFile2TempTableTask):
@@ -128,6 +132,9 @@ class ImportNUTSNames(CSV2TempTableTask):
 
 
 class NUTSSHNCrosswalk(TempTableTask):
+    '''
+    Crosses NUTS3 with SHN
+    '''
 
     def requires(self):
         return {
@@ -241,7 +248,7 @@ class NUTSColumns(ColumnsTask):
         boundary_type = input_['boundary']
 
         nuts = OBSColumn(
-            id='nuts{}'.format(self.level),
+            id=NUTSColumns.geoname_column(self.level),
             type='Geometry',
             name='NUTS Level {}'.format(self.level),
             tags=[section, subsection, source_license['eurographics-license'],
@@ -251,11 +258,19 @@ class NUTSColumns(ColumnsTask):
         )
 
         return OrderedDict([
-            ('nuts{}_id'.format(self.level), OBSColumn(
+            (NUTSColumns.geoid_column(self.level), OBSColumn(
                 type='Text',
                 targets={nuts: GEOM_REF})),
             ('the_geom', nuts)
         ])
+
+    @staticmethod
+    def geoname_column(level):
+        return 'nuts{}'.format(level)
+
+    @staticmethod
+    def geoid_column(level):
+        return 'nuts{}_id'.format(level)
 
 
 class NUTSGeometries(TableTask):

@@ -289,6 +289,11 @@
 		"geomfield": "wkb_geometry",
 		"factor": "9.7"
 	},
+	"eu.geo.importshngeoms_1": {
+		"schema": "observatory",
+		"geomfield": "wkb_geometry",
+		"factor": "9.6"
+	},
 	"eu.geo.importshngeoms_2": {
 		"schema": "observatory",
 		"geomfield": "wkb_geometry",
@@ -298,6 +303,11 @@
 		"schema": "observatory",
 		"geomfield": "wkb_geometry",
 		"factor": "9.1"
+	},
+	"eu.geo.importshngeoms_gb_polbnda_shp_1": {
+		"schema": "observatory",
+		"geomfield": "wkb_geometry",
+		"factor": "9.6"
 	},
 
 	"FR": "-------------------------------------",
