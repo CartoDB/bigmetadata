@@ -11,12 +11,13 @@ from luigi import Task, Parameter
 
 from lib.copy import copy_from_csv
 from lib.targets import DirectoryTarget
-from tasks.meta import current_session
-from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, RepoFile
-from tasks.util import copyfile
+from lib.timespan import get_timespan
+from tasks.base_tasks import RepoFileUnzipTask, TempTableTask, RepoFile, \
+    GeoFile2TempTableTask, TableTask, ColumnsTask
+from tasks.meta import current_session, GEOM_REF, OBSColumn, OBSTable
+from tasks.tags import SectionTags, SubsectionTags, LicenseTags, BoundaryTags
 
-from .metadata import sanitize_identifier
-
+from .metadata import sanitize_identifier, SourceTags
 
 class DownloadUK(Task):
     API_URL = 'https://www.nomisweb.co.uk/api/v01/dataset/def.sdmx.json?search={}*'
@@ -140,3 +141,125 @@ class ImportEnglandWalesLocal(TempTableTask):
                 cols,
                 csvfile
             )
+
+
+class ImportNUTS1Geoms(GeoFile2TempTableTask):
+    def requires(self):
+        return DownloadNUTS1Geographies()
+
+    def input_files(self):
+        return self.input().path
+
+
+class DownloadNUTS1Geographies(RepoFileUnzipTask):
+    URL='https://opendata.arcgis.com/datasets/01fd6b2d7600446d8af768005992f76a_2.zip?outSR=%7B%22wkid%22%3A27700%2C%22latestWkid%22%3A27700%7D'
+
+    def get_url(self):
+        return self.URL
+
+
+class NUTS1Columns(ColumnsTask):
+    def version(self):
+        return 1
+
+    def requires(self):
+        return {
+            'subsections': SubsectionTags(),
+            'sections': SectionTags(),
+            'license': LicenseTags(),
+            'boundary': BoundaryTags(),
+            'uk_census_sources': SourceTags()
+        }
+
+    def columns(self):
+        input_ = self.input()
+
+        license = input_['license']['uk_ogl']
+        source = input_['uk_census_sources']['ons']
+        boundary_type = input_['boundary']
+        geom = OBSColumn(
+            type='Geometry',
+            name='NUTS 1',
+            description='The Classification of Territorial Units for '
+                        'Statistics, (NUTS, for the French nomenclature '
+                        'd\'unités territoriales statistiques), is a geocode '
+                        'standard for referencing the administrative '
+                        'divisions of countries for statistical purposes. The '
+                        'standard was developed by the European Union.'
+                        'changed). '
+                        '-`Wikipedia <https://en.wikipedia.org/'
+                        'wiki/First-level_NUTS_of_the_European_Union>`_',
+            weight=8,
+            tags=[input_['subsections']['boundary'], input_['sections']['uk'], source, license,
+                  boundary_type['cartographic_boundary']]
+        )
+        geomref = OBSColumn(
+            type='Text',
+            name='NUTS 1 ID',
+            weight=0,
+            targets={geom: GEOM_REF}
+        )
+
+        geomname = OBSColumn(
+            type='Text',
+            name='NUTS 1 Name',
+            weight=1,
+            targets={geom: GEOM_REF}
+        )
+
+        return OrderedDict([
+            ('the_geom', geom),
+            (self.geoid_column(), geomref),
+            (self.geoname_column(), geomname)
+        ])
+
+    @staticmethod
+    def geoid_column():
+        return 'nuts1_id'
+
+    @staticmethod
+    def geoname_column():
+        return 'nuts1_name'
+
+
+class NUTS1UK(TableTask):
+    def requires(self):
+        return {
+            'geoms': ImportNUTS1Geoms(),
+            'geom_columns': NUTS1Columns()
+        }
+
+    def version(self):
+        return 1
+
+    def table_timespan(self):
+        return get_timespan('2015')
+
+    def targets(self):
+        return {
+            OBSTable(id='.'.join([self.schema(), self.name()])): GEOM_REF,
+        }
+
+    def columns(self):
+        return OrderedDict(self.input()['geom_columns'])
+
+    def populate(self):
+        session = current_session()
+        query = 'INSERT INTO {output} ' \
+                'SELECT ST_MakeValid(wkb_geometry) as the_geom, ' \
+                'nuts118cd as {nuts_id},' \
+                'nuts118nm as {nuts_name} ' \
+                'FROM {input}'.format(output=self.output().table,
+                                      input=self.input()[
+                                          'geoms'].table,
+                                      nuts_id=NUTS1Columns.geoid_column(),
+                                      nuts_name=NUTS1Columns.geoname_column())
+        session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return NUTS1Columns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return NUTS1Columns.geoname_column()
