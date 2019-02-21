@@ -36,16 +36,6 @@ class SourceTags(TagsTask):
                    ]
 
 
-def cdrc_downloader(url, output_path):
-    if 'CDRC_COOKIE' not in os.environ:
-        raise ValueError('This task requires a CDRC cookie. Put it in the `.env` file\n'
-                         'e.g: CDRC_COOKIE=\'auth_tkt="00000000000000000username!userid_type:unicode"\'')
-    shell('wget --header=\'Cookie: {cookie}\' -O {output} {url}'.format(
-        output=output_path,
-        url=url,
-        cookie=os.environ['CDRC_COOKIE']))
-
-
 class DownloadOutputAreas(RepoFileUnzipTask):
     # https://data.cdrc.ac.uk/dataset/cdrc-2011-oac-geodata-pack-uk
     URL = 'https://data.cdrc.ac.uk/dataset/68771b14-72aa-4ad7-99f3-0b8d1124cb1b/resource/8fff55da-6235-459c-b66d-017577b060d3/download/output-area-classification.zip'
@@ -54,7 +44,7 @@ class DownloadOutputAreas(RepoFileUnzipTask):
         return RepoFile(resource_id=self.task_id,
                         version=self.version(),
                         url=self.URL,
-                        downloader=cdrc_downloader)
+                        downloader='cdrc')
 
 
 class ImportOutputAreas(GeoFile2TempTableTask):

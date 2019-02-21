@@ -2,7 +2,7 @@ import os, re, sqlalchemy
 import urllib.request
 import itertools
 from luigi import Parameter, WrapperTask
-from tasks.base_tasks import (RepoFileGUnzipTask, CSV2TempTableTask, TempTableTask)
+from tasks.base_tasks import (RepoFileGUnzipTask, CSV2TempTableTask, TempTableTask, GoogleStorageTask, URLTask)
 from tasks.meta import current_session
 from tasks.targets import PostgresTarget
 
@@ -133,9 +133,10 @@ def geoname_format(country, name, month=None):
 # You can override this host with MC_DOWNLOAD_PATH
 # Example: MC_DOWNLOAD_PATH=http://host.docker.internal:8000/mc
 MC_PATH = 'http://172.17.0.1:8000/mc'
-COMPLETE_URL = '{host}/carto_{country}_mrli_scores.csv.gz'
-UNTIL_URL = '{host}/carto_{country}_mrli_scores_until_{month}.csv.gz'
-MONTH_URL = '{host}/carto_{country}_mrli_scores_{month}.csv.gz'
+
+COMPLETE_FILE = 'carto_{country}_mrli_scores.csv.gz'
+UNTIL_FILE = 'carto_{country}_mrli_scores_until_{month}.csv.gz'
+MONTH_FILE = 'carto_{country}_mrli_scores_{month}.csv.gz'
 
 INPUT_FILE_GEOGRAPHY_ALIAS = {
     'zcta5': 'zip code'
@@ -148,6 +149,9 @@ INPUT_FILE_COUNTRY_ALIAS = {
     'us': 'usa'
 }
 
+GS_BUCKET = 'carto-mastercard-mrli'
+GS_BUCKET_PATH = 'score/{}'
+
 
 class DownloadGUnzipMC(RepoFileGUnzipTask):
     country = Parameter()
@@ -157,21 +161,35 @@ class DownloadGUnzipMC(RepoFileGUnzipTask):
     # it only contains zip codes)
     content = Parameter(default=None)
 
+    def requires(self):
+        # As RepoFileGUnzipTask requires defining a `get_url` and we can't
+        # generate a valid URL for Google Cloud, it must be downloaded first
+        # and pointed to a local file.
+        # In order to have a consistent input, the "locally downloaded case"
+        # becomes a simple URLTask that is just a wrapper for a known URL.
+        if GoogleStorageTask.google_application_credentials():
+            return GoogleStorageTask(
+                bucket=GS_BUCKET,
+                name=GS_BUCKET_PATH.format(self._file()))
+        else:
+            path = os.environ.get('MC_DOWNLOAD_PATH', MC_PATH)
+            url = "{host}/{file}".format(host=path, file=self._file())
+            return URLTask(url=url)
+
     def get_url(self):
-        path = os.environ.get('MC_DOWNLOAD_PATH', MC_PATH)
+        return self.input().url
+
+    def _file(self):
         if self.until_month:
-            return UNTIL_URL.format(
-                host=path,
+            return UNTIL_FILE.format(
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country],
                 month=self.until_month)
         elif self.month:
-            return MONTH_URL.format(
-                host=path,
+            return MONTH_FILE.format(
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country],
                 month=self.month)
         else:
-            return COMPLETE_URL.format(
-                host=path,
+            return COMPLETE_FILE.format(
                 country=INPUT_FILE_COUNTRY_ALIAS[self.country])
 
 

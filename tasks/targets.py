@@ -1,6 +1,10 @@
 import os
 import requests
 
+from urllib.error import URLError
+from urllib.parse import urlparse
+from urllib.request import urlopen
+
 from luigi import Target, LocalTarget
 from hashlib import sha1
 
@@ -476,3 +480,23 @@ class PostgresFunctionTarget(Target):
                     function_name=self._function_name)
 
         return len(self._session.execute(query).fetchall()) > 0
+
+
+class URLTarget(Target):
+    '''
+    Accepts both local paths and urls
+    '''
+    def __init__(self, url):
+        self.path = url
+        scheme = urlparse(url).scheme
+        if scheme == '':
+            self.url = 'file://{}'.format(url)
+        else:
+            self.url = url
+
+    def exists(self):
+        try:
+            urlopen(self.url)
+            return True
+        except URLError:
+            return False
