@@ -22,7 +22,7 @@ class SourceLicenseTags(TagsTask):
                 id='eurographics-license',
                 name='EuroGeographics Open Data Licence',
                 type='license',
-                description='This product includes Intellectual Property from European National Mapping and Cadastral Authorities and is licensed on behalf of these by EuroGeographics. Original product is available for free at `www.eurogeographics.org <www.eurogeographics.org>`_ Terms of the licence available at `http://www.eurogeographics.org/form/topographic-data-eurogeographics <http://www.eurogeographics.org/form/topographic-data-eurogeographics>`_'),
+                description='This product includes Intellectual Property from European National Mapping and Cadastral Authorities and is licensed on behalf of these by EuroGeographics. Original product is available for free at `www.eurogeographics.org <www.eurogeographics.org>`_ Terms of the licence available at `https://eurogeographics.org/products-and-services/open-data/opendata-licensing/ <https://eurogeographics.org/products-and-services/open-data/opendata-licensing/>`_'),
             OBSTag(
                 id='eurographics-source',
                 name='EuroGraphics EuroGlobalMap',
