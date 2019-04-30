@@ -2,26 +2,26 @@
     "country": "ca",
     "geolevels": {
         "province": {
-            "geography": "ca.statcan.geo.pr_",
-            "geoname": "ca.statcan.geo.pr__name",
+            "geography": "ca.statcan.geo.pr__2011",
+            "geoname": "ca.statcan.geo.pr__name_2011",
             "zoomlevels": [0, 1, 2, 3, 4],
             "simplification": 0.1
         },
         "census_division": {
-            "geography": "ca.statcan.geo.cd_",
-            "geoname": "ca.statcan.geo.cd__name",
+            "geography": "ca.statcan.geo.cd__2011",
+            "geoname": "ca.statcan.geo.cd__name_2011",
             "zoomlevels": [5, 6, 7, 8, 9],
             "simplification": 0.01
         },
-        "forward_sortation_area": {
-            "geography": "ca.statcan.geo.fsa",
-            "geoname": "ca.statcan.geo.fsa_name",
+        "dissemination_area": {
+            "geography": "ca.statcan.geo.da__2011",
+            "geoname": "ca.statcan.geo.da__name_2011",
             "zoomlevels": [10, 11, 12],
             "simplification": 0.001
         },
-        "dissemination_area": {
-            "geography": "ca.statcan.geo.da_",
-            "geoname": "ca.statcan.geo.da__name",
+        "dissemination_block": {
+            "geography": "ca.statcan.geo.db__2011",
+            "geoname": "ca.statcan.geo.db__name_2011",
             "zoomlevels": [13, 14],
             "simplification": 0.0001
         }
@@ -40,7 +40,7 @@
             ],
             "columns": [
                 {
-                    "id": "ca.statcan.geo.geom_name",
+                    "id": "geoname",
                     "column_name": "geom_name",
                     "column_alias": "name",
                     "type": "text",

@@ -47,6 +47,10 @@ class DenormalizedHierarchy(Task, _CountryTask):
     def run(self):
         session = current_session()
 
+        session.execute('CREATE SCHEMA IF NOT EXISTS {schema}'.format(
+            schema=self.output().schema)
+        )
+
         LOGGER.info('Creating table {table}'.format(table=self.output().table))
         query = '''
                 CREATE TABLE {output} AS
