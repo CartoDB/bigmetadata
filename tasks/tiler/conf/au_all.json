@@ -2,38 +2,38 @@
     "country": "au",
     "geolevels": {
         "state": {
-            "geography": "au.geo.STE",
-            "geoname": "au.geo.STE_name",
+            "geography": "au.geo.STE_2016",
+            "geoname": "au.geo.STE_name_2016",
             "zoomlevels": [0, 1, 2, 3],
             "simplification": 0.1
         },
         "sa4": {
-            "geography": "au.geo.SA4",
-            "geoname": "au.geo.SA4_name",
+            "geography": "au.geo.SA4_2016",
+            "geoname": "au.geo.SA4_name_2016",
             "zoomlevels": [4, 5, 6],
             "simplification": 0.01
         },
         "sa3": {
-            "geography": "au.geo.SA3",
-            "geoname": "au.geo.SA3_name",
+            "geography": "au.geo.SA3_2016",
+            "geoname": "au.geo.SA3_name_2016",
             "zoomlevels": [7, 8, 9],
             "simplification": 0.001
         },
         "sa2": {
-            "geography": "au.geo.SA2",
-            "geoname": "au.geo.SA2_name",
+            "geography": "au.geo.SA2_2016",
+            "geoname": "au.geo.SA2_name_2016",
             "zoomlevels": [10, 11],
             "simplification": 0.0001
         },
         "sa1": {
-            "geography": "au.geo.SA1",
-            "geoname": "au.geo.SA1_name",
+            "geography": "au.geo.SA1_2016",
+            "geoname": "au.geo.SA1_name_2016",
             "zoomlevels": [12, 13],
             "simplification": 0.0001
         },
         "mesh_block": {
-            "geography": "au.geo.MB",
-            "geoname": "au.geo.MB_name",
+            "geography": "au.geo.MB_2016",
+            "geoname": "au.geo.MB_name_2016",
             "zoomlevels": [14],
             "simplification": 0.0001
         }
@@ -59,317 +59,331 @@
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Tot_P_P",
-                    "column_name": "b01_tot_p_p",
+                    "id": "au.data.G01_Tot_P_P",
+                    "column_name": "g01_tot_p_p",
                     "column_alias": "total_pop",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Tot_P_M",
-                    "column_name": "b01_tot_p_m",
+                    "id": "au.data.G01_Tot_P_M",
+                    "column_name": "g01_tot_p_m",
                     "column_alias": "male_pop",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Tot_P_F",
-                    "column_name": "b01_tot_p_f",
+                    "id": "au.data.G01_Tot_P_F",
+                    "column_name": "g01_tot_p_f",
                     "column_alias": "female_pop",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_0_4_yr_M",
-                    "column_name": "b01_age_0_4_yr_m",
+                    "id": "au.data.G01_Age_0_4_yr_M",
+                    "column_name": "g01_age_0_4_yr_m",
                     "column_alias": "male_under_5",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_0_4_yr_F",
-                    "column_name": "b01_age_0_4_yr_f",
+                    "id": "au.data.G01_Age_0_4_yr_F",
+                    "column_name": "g01_age_0_4_yr_f",
                     "column_alias": "female_under_5",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_5_14_yr_M",
-                    "column_name": "b01_age_5_14_yr_m",
+                    "id": "au.data.G01_Age_5_14_yr_M",
+                    "column_name": "g01_age_5_14_yr_m",
                     "column_alias": "male_5_to_14",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_5_14_yr_F",
-                    "column_name": "b01_age_5_14_yr_f",
+                    "id": "au.data.G01_Age_5_14_yr_F",
+                    "column_name": "g01_age_5_14_yr_f",
                     "column_alias": "female_5_to_14",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_15_19_yr_M",
-                    "column_name": "b01_age_15_19_yr_m",
+                    "id": "au.data.G01_Age_15_19_yr_M",
+                    "column_name": "g01_age_15_19_yr_m",
                     "column_alias": "male_15_to_19",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_15_19_yr_F",
-                    "column_name": "b01_age_15_19_yr_f",
+                    "id": "au.data.G01_Age_15_19_yr_F",
+                    "column_name": "g01_age_15_19_yr_f",
                     "column_alias": "female_15_to_19",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_20_24_yr_M",
-                    "column_name": "b01_age_20_24_yr_m",
+                    "id": "au.data.G01_Age_20_24_yr_M",
+                    "column_name": "g01_age_20_24_yr_m",
                     "column_alias": "male_20_to_24",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_20_24_yr_F",
-                    "column_name": "b01_age_20_24_yr_f",
+                    "id": "au.data.G01_Age_20_24_yr_F",
+                    "column_name": "g01_age_20_24_yr_f",
                     "column_alias": "female_20_to_24",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_25_34_yr_M",
-                    "column_name": "b01_age_25_34_yr_m",
+                    "id": "au.data.G01_Age_25_34_yr_M",
+                    "column_name": "g01_age_25_34_yr_m",
                     "column_alias": "male_25_to_34",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_25_34_yr_F",
-                    "column_name": "b01_age_25_34_yr_f",
+                    "id": "au.data.G01_Age_25_34_yr_F",
+                    "column_name": "g01_age_25_34_yr_f",
                     "column_alias": "female_25_to_34",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_35_44_yr_M",
-                    "column_name": "b01_age_35_44_yr_m",
+                    "id": "au.data.G01_Age_35_44_yr_M",
+                    "column_name": "g01_age_35_44_yr_m",
                     "column_alias": "male_35_to_44",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_35_44_yr_F",
-                    "column_name": "b01_age_35_44_yr_f",
+                    "id": "au.data.G01_Age_35_44_yr_F",
+                    "column_name": "g01_age_35_44_yr_f",
                     "column_alias": "female_35_to_44",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_45_54_yr_M",
-                    "column_name": "b01_age_45_54_yr_m",
+                    "id": "au.data.G01_Age_45_54_yr_M",
+                    "column_name": "g01_age_45_54_yr_m",
                     "column_alias": "male_45_to_54",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_45_54_yr_F",
-                    "column_name": "b01_age_45_54_yr_f",
+                    "id": "au.data.G01_Age_45_54_yr_F",
+                    "column_name": "g01_age_45_54_yr_f",
                     "column_alias": "female_45_to_54",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_55_64_yr_M",
-                    "column_name": "b01_age_55_64_yr_m",
+                    "id": "au.data.G01_Age_55_64_yr_M",
+                    "column_name": "g01_age_55_64_yr_m",
                     "column_alias": "male_55_to_64",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_55_64_yr_F",
-                    "column_name": "b01_age_55_64_yr_f",
+                    "id": "au.data.G01_Age_55_64_yr_F",
+                    "column_name": "g01_age_55_64_yr_f",
                     "column_alias": "female_55_to_64",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_65_74_yr_M",
-                    "column_name": "b01_age_65_74_yr_m",
+                    "id": "au.data.G01_Age_65_74_yr_M",
+                    "column_name": "g01_age_65_74_yr_m",
                     "column_alias": "male_65_to_54",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_65_74_yr_F",
-                    "column_name": "b01_age_65_74_yr_f",
+                    "id": "au.data.G01_Age_65_74_yr_F",
+                    "column_name": "g01_age_65_74_yr_f",
                     "column_alias": "female_65_to_54",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_75_84_yr_M",
-                    "column_name": "b01_age_75_84_yr_m",
+                    "id": "au.data.G01_Age_75_84_yr_M",
+                    "column_name": "g01_age_75_84_yr_m",
                     "column_alias": "male_75_to_84",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_75_84_yr_F",
-                    "column_name": "b01_age_75_84_yr_f",
+                    "id": "au.data.G01_Age_75_84_yr_F",
+                    "column_name": "g01_age_75_84_yr_f",
                     "column_alias": "female_75_to_84",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_85ov_M",
-                    "column_name": "b01_age_85ov_m",
+                    "id": "au.data.G01_Age_85ov_M",
+                    "column_name": "g01_age_85ov_m",
                     "column_alias": "male_85_and_over",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_Age_85ov_F",
-                    "column_name": "b01_age_85ov_f",
+                    "id": "au.data.G01_Age_85ov_F",
+                    "column_name": "g01_age_85ov_f",
                     "column_alias": "female_85_and_over",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_Yr_12_eq_P",
-                    "column_name": "b01_high_yr_schl_comp_yr_12_eq_p",
+                    "id": "au.data.G01_High_yr_schl_comp_Yr_12_eq_P",
+                    "column_name": "g01_high_yr_schl_comp_yr_12_eq_p",
                     "column_alias": "school_12_years",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_Yr_11_eq_P",
-                    "column_name": "b01_high_yr_schl_comp_yr_11_eq_p",
+                    "id": "au.data.G01_High_yr_schl_comp_Yr_11_eq_P",
+                    "column_name": "g01_high_yr_schl_comp_yr_11_eq_p",
                     "column_alias": "school_11_years",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_Yr_10_eq_P",
-                    "column_name": "b01_high_yr_schl_comp_yr_10_eq_p",
+                    "id": "au.data.G01_High_yr_schl_comp_Yr_10_eq_P",
+                    "column_name": "g01_high_yr_schl_comp_yr_10_eq_p",
                     "column_alias": "school_10_years",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_Yr_9_eq_P",
-                    "column_name": "b01_high_yr_schl_comp_yr_9_eq_p",
+                    "id": "au.data.G01_High_yr_schl_comp_Yr_9_eq_P",
+                    "column_name": "g01_high_yr_schl_comp_yr_9_eq_p",
                     "column_alias": "school_9_years",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_Yr_8_belw_P",
-                    "column_name": "b01_high_yr_schl_comp_yr_8_belw_p",
+                    "id": "au.data.G01_High_yr_schl_comp_Yr_8_belw_P",
+                    "column_name": "g01_high_yr_schl_comp_yr_8_belw_p",
                     "column_alias": "school_8_years",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B01_High_yr_schl_comp_D_n_g_sch_P",
-                    "column_name": "b01_high_yr_schl_comp_f_n_g_sch_p",
+                    "id": "au.data.G01_High_yr_schl_comp_D_n_g_sch_P",
+                    "column_name": "g01_high_yr_schl_comp_d_n_g_sch_p",
                     "column_alias": "did_not_go_to_school",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_4000_more_Tot",
-                    "column_name": "b26_fi_4000_more_tot",
+                    "id": "au.data.G28_FI_4000_more_Tot",
+                    "column_name": "g28_fi_4000_more_tot",
                     "column_alias": "income_4000_or_more",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_3500_3999_Tot",
-                    "column_name": "b26_fi_3500_3999_tot",
+                    "id": "au.data.G28_FI_3500_3999_Tot",
+                    "column_name": "g28_fi_3500_3999_tot",
                     "column_alias": "income_3500_3999",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_3000_3499_Tot",
-                    "column_name": "b26_fi_3000_3499_tot",
+                    "id": "au.data.G28_FI_3000_3499_Tot",
+                    "column_name": "g28_fi_3000_3499_tot",
                     "column_alias": "income_3000_3499",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_2500_2999_Tot",
-                    "column_name": "b26_fi_2500_2999_tot",
+                    "id": "au.data.G28_FI_2500_2999_Tot",
+                    "column_name": "g28_fi_2500_2999_tot",
                     "column_alias": "income_2500_2999",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_2000_2499_Tot",
-                    "column_name": "b26_fi_2000_2499_tot",
+                    "id": "au.data.G28_FI_2000_2499_Tot",
+                    "column_name": "g28_fi_2000_2499_tot",
                     "column_alias": "income_2000_2499",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_1500_1999_Tot",
-                    "column_name": "b26_fi_1500_1999_tot",
-                    "column_alias": "income_1500_1999",
+                    "id": "au.data.G28_FI_1750_1999_Tot",
+                    "column_name": "g28_fi_1750_1999_tot",
+                    "column_alias": "income_1750_1999",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_1250_1499_Tot",
-                    "column_name": "b26_fi_1250_1499_tot",
+                    "id": "au.data.G28_FI_1500_1749_Tot",
+                    "column_name": "g28_fi_1500_1749_tot",
+                    "column_alias": "income_1500_1749",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "au.data.G28_FI_1250_1499_Tot",
+                    "column_name": "g28_fi_1250_1499_tot",
                     "column_alias": "income_1250_1499",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_1000_1249_Tot",
-                    "column_name": "b26_fi_1000_1249_tot",
+                    "id": "au.data.G28_FI_1000_1249_Tot",
+                    "column_name": "g28_fi_1000_1249_tot",
                     "column_alias": "income_1000_1249",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_800_999_Tot",
-                    "column_name": "b26_fi_800_999_tot",
+                    "id": "au.data.G28_FI_800_999_Tot",
+                    "column_name": "g28_fi_800_999_tot",
                     "column_alias": "income_800_999",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_600_799_Tot",
-                    "column_name": "b26_fi_600_799_tot",
-                    "column_alias": "income_600_799",
+                    "id": "au.data.G28_FI_650_799_Tot",
+                    "column_name": "g28_fi_650_799_tot",
+                    "column_alias": "income_650_799",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_400_599_Tot",
-                    "column_name": "b26_fi_400_599_tot",
-                    "column_alias": "income_400_599",
+                    "id": "au.data.G28_FI_500_649_Tot",
+                    "column_name": "g28_fi_500_649_tot",
+                    "column_alias": "income_500_649",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_300_399_Tot",
-                    "column_name": "b26_fi_300_399_tot",
+                    "id": "au.data.G28_FI_400_499_Tot",
+                    "column_name": "g28_fi_400_499_tot",
+                    "column_alias": "income_400_499",
+                    "type": "numeric",
+                    "nullable": true
+                },
+                {
+                    "id": "au.data.G28_FI_300_399_Tot",
+                    "column_name": "g28_fi_300_399_tot",
                     "column_alias": "income_300_399",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_200_299_Tot",
-                    "column_name": "b26_fi_200_299_tot",
-                    "column_alias": "income_200_299",
+                    "id": "au.data.G28_FI_150_299_Tot",
+                    "column_name": "g28_fi_150_299_tot",
+                    "column_alias": "income_150_299",
                     "type": "numeric",
                     "nullable": true
                 },
                 {
-                    "id": "au.data.B26_FI_1_199_Tot",
-                    "column_name": "b26_fi_1_199_tot",
-                    "column_alias": "income_1_199",
+                    "id": "au.data.G28_FI_1_149_Tot",
+                    "column_name": "g28_fi_1_149_tot",
+                    "column_alias": "income_1_149",
                     "type": "numeric",
                     "nullable": true
                 }
