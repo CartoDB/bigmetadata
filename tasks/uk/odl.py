@@ -83,13 +83,30 @@ class PostcodeDistrictsColumns(ColumnsTask):
             type='Text',
             name='Postcode District ID',
             weight=0,
-            targets={geom: GEOM_REF}
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='pd_name',
+            type='Text',
+            name='Postcode District ID',
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
             ('the_geom', geom),
             ('geographycode', geomref),
+            ('name', geomname)
         ])
+
+    @staticmethod
+    def geoname_column():
+        return 'geographycode'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
 
 
 class PostcodeDistricts(TableTask):
@@ -123,12 +140,20 @@ class PostcodeDistricts(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return PostcodeDistrictsColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return PostcodeDistrictsColumns.geoname_column()
 
 
 class ImportPostcodeSectors(GeoFile2TempTableTask):
@@ -178,13 +203,30 @@ class PostcodeSectorsColumns(ColumnsTask):
             type='Text',
             name='Postcode Sector ID',
             weight=0,
-            targets={geom: GEOM_REF}
+            targets={geom: GEOM_REF},
+        )
+        geomname = OBSColumn(
+            id='ps_name',
+            type='Text',
+            name='Postcode Sector ID',
+            weight=1,
+            targets={geom: GEOM_REF},
+            tags=[input_['sections']['uk'], input_['subsections']['boundary'], source, license]
         )
 
         return OrderedDict([
             ('the_geom', geom),
-            ('geographycode', geomref),
+            (self.geoid_column(), geomref),
+            (self.geoname_column(), geomname)
         ])
+
+    @staticmethod
+    def geoname_column():
+        return 'geographyname'
+
+    @staticmethod
+    def geoid_column():
+        return 'geographycode'
 
 
 class PostcodeSectors(TableTask):
@@ -218,12 +260,20 @@ class PostcodeSectors(TableTask):
 
         query = '''
                 INSERT INTO {output}
-                SELECT ST_MakeValid(wkb_geometry), name
+                SELECT ST_MakeValid(wkb_geometry), name, name
                 FROM {input}
                 '''.format(output=self.output().table,
                            input=self.input()['data'].table)
 
         session.execute(query)
+
+    @staticmethod
+    def geoid_column():
+        return PostcodeSectorsColumns.geoid_column()
+
+    @staticmethod
+    def geoname_column():
+        return PostcodeSectorsColumns.geoname_column()
 
 
 class ODLWrapper(WrapperTask):

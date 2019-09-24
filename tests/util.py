@@ -43,6 +43,7 @@ def setup():
     session.execute('CREATE SCHEMA observatory')
     session.commit()
     Base.metadata.create_all()
+    session.close()
 
 
 def teardown():
@@ -54,6 +55,7 @@ def teardown():
     Base.metadata.drop_all()
     session.execute('DROP SCHEMA IF EXISTS observatory CASCADE')
     session.commit()
+    session.close()
 
 
 def runtask(task, superclasses=None):
@@ -98,8 +100,9 @@ def session_scope():
     """Provide a transactional scope around a series of operations."""
     from tasks.meta import current_session, session_commit, session_rollback
     try:
-        yield current_session()
-        session_commit(None)
+        session = current_session()
+        yield session
+        session_commit(None, session)
     except Exception as e:
         session_rollback(None, e)
         raise

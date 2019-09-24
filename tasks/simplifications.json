@@ -173,6 +173,10 @@
 		"geomfield": "wkb_geometry",
 		"factor": "13.5"
 	},
+  	"ca.statcan.geo.geography_cd___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "7"
+	},
 	"ca.statcan.geo.importgeography_cma_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "10"
@@ -189,13 +193,25 @@
 		"geomfield": "wkb_geometry",
 		"factor": "12"
 	},
+	"ca.statcan.geo.geography_pr___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "5"
+	},
 	"ca.statcan.geo.importgeography_da__2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "7"
 	},
+  	"ca.statcan.geo.geography_da___2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "3"
+	},
 	"ca.statcan.geo.importgeography_fsa_2011": {
 		"geomfield": "wkb_geometry",
 		"factor": "12"
+	},
+	"ca.statcan.geo.geography_fsa__2011_oversimpl": {
+		"geomfield": "the_geom",
+		"factor": "5"
 	},
 	"ca.statcan.geo.importgeography_db__2011": {
 		"geomfield": "wkb_geometry",
@@ -273,6 +289,11 @@
 		"geomfield": "wkb_geometry",
 		"factor": "9.7"
 	},
+	"eu.geo.importshngeoms_1": {
+		"schema": "observatory",
+		"geomfield": "wkb_geometry",
+		"factor": "9.6"
+	},
 	"eu.geo.importshngeoms_2": {
 		"schema": "observatory",
 		"geomfield": "wkb_geometry",
@@ -282,6 +303,11 @@
 		"schema": "observatory",
 		"geomfield": "wkb_geometry",
 		"factor": "9.1"
+	},
+	"eu.geo.importshngeoms_gb_polbnda_shp_1": {
+		"schema": "observatory",
+		"geomfield": "wkb_geometry",
+		"factor": "9.6"
 	},
 
 	"FR": "-------------------------------------",

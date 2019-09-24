@@ -179,17 +179,20 @@ def test_csv_2_temp_table_task():
     assert_equal(before_table_count, after_table_count)
 
 
-@with_setup(setup, teardown)
-def test_download_unzip_task():
-    '''
-    Download unzip task should download remote assets and unzip them locally.
-    '''
-    task = TestRepoFileUnzipTask()
-    if task.output().exists():
-        shell('rm -r {}'.format(task.output().path))
-    assert_false(task.output().exists())
-    runtask(task)
-    assert_true(task.output().exists())
+# This test is disabled because RepoFileUnzipTask extends RepoFileUncompressTask,
+# which uses `yield` inside `run` for a dynamic dependency. Dynamic
+# dependencies are not supported by our task runner.
+# @with_setup(setup, teardown)
+# def test_download_unzip_task():
+#     '''
+#     Download unzip task should download remote assets and unzip them locally.
+#     '''
+#     task = TestRepoFileUnzipTask()
+#     if task.output().exists():
+#         shell('rm -r {}'.format(task.output().path))
+#     assert_false(task.output().exists())
+#     runtask(task)
+#     assert_true(task.output().exists())
 
 
 @with_setup(setup, teardown)
@@ -198,13 +201,15 @@ def test_carto_2_temp_table_task():
     Convert a table on CARTO to a temp table.
     '''
     task = TestCSV2TempTableTask()
-    before_table_count = current_session().execute(
+    session = current_session()
+    before_table_count = session.execute(
         'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
     runtask(task)
     table = task.output()
-    assert_equal(current_session().execute(
+    assert_equal(session.execute(
         'SELECT COUNT(*) FROM {}'.format(
             table.table)).fetchone()[0], 10)
-    after_table_count = current_session().execute(
+    after_table_count = session.execute(
         'SELECT COUNT(*) FROM observatory.obs_table').fetchone()[0]
     assert_equal(before_table_count, after_table_count)
+    session.close()

@@ -15,7 +15,6 @@ DEFAULT_P_RETAIN_FACTOR_MAPSHAPER = '10'
 DEFAULT_P_RETAIN_FACTOR_POSTGIS = '50'  # Retain factors used for simplification (this is NOT a percentage) \
 # The higher the retain factor, the lower the simplification
 DEFAULT_MAX_MEMORY = '8192'
-SIMPL_SUFFIX = '_simpl'
 
 
 def tmp_directory(schema, table):
@@ -87,12 +86,8 @@ class SimplifyGeometriesMapshaper(Task):
     def __init__(self, *args, **kwargs):
         super(SimplifyGeometriesMapshaper, self).__init__(*args, **kwargs)
 
-        self.table_out = '{tablename}{suffix}'.format(tablename=self.table_input, suffix=SIMPL_SUFFIX)
-        if self.table_output:
-            self.table_out = self.table_output
-
     def requires(self):
-        return SimplifyShapefile(schema=self.schema, table_input=self.table_input, table_output=self.table_out,
+        return SimplifyShapefile(schema=self.schema, table_input=self.table_input, table_output=self.table_output,
                                  geomfield=self.geomfield, retainfactor=self.retainfactor,
                                  skipfailures=self.skipfailures, maxmemory=self.maxmemory)
 
@@ -105,7 +100,7 @@ class SimplifyGeometriesMapshaper(Task):
                     schema=self.output().schema,
                     table=self.output().tablename,
                     geomfield=self.geomfield,
-                    shp_path=os.path.join(self.input().path, shp_filename(self.table_out)))
+                    shp_path=os.path.join(self.input().path, shp_filename(self.table_output)))
         shell(cmd)
 
         session = CurrentSession().get()
@@ -115,7 +110,7 @@ class SimplifyGeometriesMapshaper(Task):
         session.commit()
 
     def output(self):
-        return PostgresTarget(self.schema, self.table_out)
+        return PostgresTarget(self.schema, self.table_output)
 
 
 def simplification_factor(schema, table, geomfield, divisor_power):
@@ -130,16 +125,12 @@ def simplification_factor(schema, table, geomfield, divisor_power):
 class SimplifyGeometriesPostGIS(Task):
     schema = Parameter()
     table_input = Parameter()
-    table_output = Parameter(default='')
+    table_output = Parameter()
     geomfield = Parameter(default=DEFAULT_GEOMFIELD)
     retainfactor = Parameter(default=DEFAULT_P_RETAIN_FACTOR_POSTGIS)
 
     def __init__(self, *args, **kwargs):
         super(SimplifyGeometriesPostGIS, self).__init__(*args, **kwargs)
-
-        self.table_out = '{tablename}{suffix}'.format(tablename=self.table_input, suffix=SIMPL_SUFFIX)
-        if self.table_output:
-            self.table_out = self.table_output
 
     def run(self):
         session = CurrentSession().get()
@@ -155,16 +146,17 @@ class SimplifyGeometriesPostGIS(Task):
         simplified_geomfield = 'ST_CollectionExtract(ST_MakeValid(ST_SimplifyVW({geomfield}, {factor})), 3) ' \
                                '{geomfield}'.format(geomfield=self.geomfield, factor=factor)
 
-        session.execute('CREATE TABLE "{schema}".{table_out} '
+        session.execute('CREATE TABLE "{schema}".{table_output} '
                         'AS SELECT {fields} '
                         'FROM "{schema}".{table_in} '.format(
-                            schema=self.output().schema, table_in=self.table_input, table_out=self.output().tablename,
+                            schema=self.output().schema, table_in=self.table_input,
+                            table_output=self.output().tablename,
                             fields=', '.join([x[0] if x[0] != self.geomfield else simplified_geomfield
                                              for x in columns])))
         session.commit()
-        session.execute('CREATE INDEX {table_out}_{geomfield}_geo ON '
-                        '"{schema}".{table_out} USING GIST ({geomfield})'.format(
-                            table_out=self.output().tablename, geomfield=self.geomfield, schema=self.output().schema))
+        session.execute('CREATE INDEX {table_output}_{geomfield}_geo ON '
+                        '"{schema}".{table_output} USING GIST ({geomfield})'.format(
+                            table_output=self.output().tablename, geomfield=self.geomfield, schema=self.output().schema))
 
     def output(self):
-        return PostgresTarget(self.schema, self.table_out)
+        return PostgresTarget(self.schema, self.table_output)

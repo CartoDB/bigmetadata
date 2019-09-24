@@ -6,6 +6,8 @@ functions for persisting metadata about tables loaded via ETL
 
 import os
 import re
+import inspect
+import functools
 
 from luigi import Target
 
@@ -21,9 +23,88 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 from sqlalchemy.types import UserDefinedType
 
 from lib.logger import get_logger
+from logging import DEBUG
 import asyncpg
 
 LOGGER = get_logger(__name__)
+
+
+class CurrentSession(object):
+
+    def __init__(self, async_conn=False):
+        self._session = None
+        self._pid = None
+        self._async_conn = False
+        # https://docs.python.org/3/howto/logging.html#optimization
+        self.debug_logging_enabled = LOGGER.isEnabledFor(DEBUG)
+
+    def begin(self):
+        if not self._session:
+            self._session = sessionmaker(bind=get_engine())()
+        self._pid = os.getpid()
+
+    def get(self):
+        # If we forked, there would be a PID mismatch and we need a new
+        # connection
+        if self._pid != os.getpid():
+            self._session = None
+            LOGGER.debug('FORKED: {} not {}'.format(self._pid, os.getpid()))
+        if not self._session:
+            self.begin()
+        try:
+            self._session.execute("SELECT 1")
+            # Useful for debugging. This is called thousands of times
+            if self.debug_logging_enabled:
+                curframe = inspect.currentframe()
+                calframe = inspect.getouterframes(curframe, 2)
+                callers = ' <- '.join([c[3] for c in calframe[1:9]])
+                # TODO: don't know why, `.debug` won't work at this point
+                LOGGER.info('callers: {}'.format(callers))
+        except:
+            self._session = None
+            self.begin()
+        return self._session
+
+    def commit(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot commit forked connection')
+        if not self._session:
+            return
+        try:
+            self._session.commit()
+        except:
+            self._session.rollback()
+            self._session.expunge_all()
+            raise
+        finally:
+            self._session.close()
+            self._session = None
+
+    def rollback(self):
+        if self._pid != os.getpid():
+            raise Exception('cannot rollback forked connection')
+        if not self._session:
+            return
+        try:
+            self._session.rollback()
+        except:
+            raise
+        finally:
+            self._session.expunge_all()
+            self._session.close()
+            self._session = None
+
+
+_current_session = CurrentSession()
+
+
+def current_session():
+    '''
+    Returns the session relevant to the currently operating :class:`Task`, if
+    any.  Outside the context of a :class:`Task`, this can still be used for
+    manual session management.
+    '''
+    return _current_session.get()
 
 
 def natural_sort_key(s, _nsre=re.compile('([0-9]+)')):
@@ -298,13 +379,13 @@ class OBSColumnTable(Base):
     colname_constraint = UniqueConstraint(table_id, colname)
 
 
-def tag_creator(tagtarget):
+def tag_creator(tagtarget, session):
     if tagtarget is None:
         raise Exception('None passed to tagtarget')
-    tag = tagtarget.get(current_session()) or tagtarget._tag
+    tag = tagtarget.get(session) or tagtarget._tag
     coltag = OBSColumnTag(tag=tag, tag_id=tag.id)
-    if tag in current_session():
-        current_session().expunge(tag)
+    if tag in session:
+        session.expunge(tag)
     return coltag
 
 
@@ -511,7 +592,11 @@ class OBSColumn(Base):
                                # these together across geoms: AVG, SUM etc.
 
     tables = relationship("OBSColumnTable", back_populates="column", cascade="all,delete")
-    tags = association_proxy('column_column_tags', 'tag', creator=tag_creator)
+    session = current_session()
+    # Passing the same session object to the creator saves thousands
+    # of `select 1` queries, because each use of the session was pinging
+    tag_creator_with_session = functools.partial(tag_creator, session=session)
+    tags = association_proxy('column_column_tags', 'tag', creator=tag_creator_with_session)
 
     targets = association_proxy('tgts', 'reltype', creator=coltocoltargets_creator)
 
@@ -894,83 +979,14 @@ class OBSTimespan(UniqueMixin, Base):
     def unique_filter(cls, query, id):
         return query.filter(OBSTimespan.id == id)
 
-class CurrentSession(object):
-
-    def __init__(self, async_conn=False):
-        self._session = None
-        self._pid = None
-        self._async_conn = False
-
-    def begin(self):
-        if not self._session:
-            self._session = sessionmaker(bind=get_engine())()
-        self._pid = os.getpid()
-
-    def get(self):
-        # If we forked, there would be a PID mismatch and we need a new
-        # connection
-        if self._pid != os.getpid():
-            self._session = None
-            LOGGER.debug('FORKED: {} not {}'.format(self._pid, os.getpid()))
-        if not self._session:
-            self.begin()
-        try:
-            self._session.execute("SELECT 1")
-        except:
-            self._session = None
-            self.begin()
-        return self._session
-
-    def commit(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot commit forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.commit()
-        except:
-            self._session.rollback()
-            self._session.expunge_all()
-            raise
-        finally:
-            self._session.close()
-            self._session = None
-
-    def rollback(self):
-        if self._pid != os.getpid():
-            raise Exception('cannot rollback forked connection')
-        if not self._session:
-            return
-        try:
-            self._session.rollback()
-        except:
-            raise
-        finally:
-            self._session.expunge_all()
-            self._session.close()
-            self._session = None
-
-
-_current_session = CurrentSession()
-
-
-def current_session():
-    '''
-    Returns the session relevant to the currently operating :class:`Task`, if
-    any.  Outside the context of a :class:`Task`, this can still be used for
-    manual session management.
-    '''
-    return _current_session.get()
-
-
 #@luigi.Task.event_handler(Event.SUCCESS)
-def session_commit(task):
+def session_commit(task, session=_current_session):
     '''
     commit the global session
     '''
     LOGGER.info('commit {}'.format(task.task_id if task else ''))
     try:
-        _current_session.commit()
+        session.commit()
     except IntegrityError as iex:
         # if re.search(r'obs_timespan_pkey', iex.orig.args[0]):
         #     import ipdb; ipdb.set_trace()
