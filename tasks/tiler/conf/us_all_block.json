@@ -186,13 +186,13 @@
         },
         {
           "id": "us.census.acs.B01001018",
-          "column_name": "male_60_61",
+          "column_name": "male_60_to_61",
           "type": "numeric",
           "nullable": true
         },
         {
           "id": "us.census.acs.B01001019",
-          "column_name": "male_62_64",
+          "column_name": "male_62_to_64",
           "type": "numeric",
           "nullable": true
         },
