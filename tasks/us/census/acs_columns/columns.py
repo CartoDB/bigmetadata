@@ -2098,7 +2098,7 @@ class Columns(ColumnsTask):
             tags=[subsections['age_gender'], unit_people])
 
         #  - B01001018: 60 and 61 Years
-        male_60_61 = OBSColumn(
+        male_60_to_61 = OBSColumn(
             id='B01001018',
             type='Numeric',
             name='Men age 60 to 61',
@@ -2109,7 +2109,7 @@ class Columns(ColumnsTask):
             tags=[subsections['age_gender'], unit_people])
 
         #  - B01001019: 62 To 64 Years
-        male_62_64 = OBSColumn(
+        male_62_to_64 = OBSColumn(
             id='B01001019',
             type='Numeric',
             name='Men age 62 to 64',
