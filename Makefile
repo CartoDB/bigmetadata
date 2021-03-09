@@ -252,10 +252,11 @@ deploy-html-catalog:
 deploy-html-redirect:
 	cd redirect && \
 	touch .nojekyll && \
+	rm -rf .git && \
 	git init && \
 	git checkout -B gh-pages && \
 	git add . && \
-	git commit -m "updating catalog" && \
+	git commit -m "updating redirect" && \
 	(git remote add origin git@github.com:cartodb/bigmetadata.git || : ) && \
 	git push -f origin gh-pages
 
