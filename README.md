@@ -42,8 +42,9 @@ See [QUICKSTART](docs/source/quickstart.rst).
 
 Most of the common tasks have already been wrapped up in the `Makefile`:
 
+* `make deploy-html-redirect`: Deploy a redirect (https://carto.com/data/) to Github Pages
 * `make catalog`: Regenerate the catalog
-* `make deploy-html-catalog`: Deploy the catalog to Github Pages
+* `make deploy-html-catalog`: [DEPRECATED] Deploy the catalog to Github Pages
 * `make sh`: Drop into the bigmetadata container to run shell scripts
 * `make python`: Drop into an interactive Python shell in the bigmetadata
   container
