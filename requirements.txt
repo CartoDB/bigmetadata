@@ -1,4 +1,4 @@
-requests==2.18.0
+requests==2.20.0
 luigi==2.7.5
 pylint==1.6.4
 psycopg2-binary==2.7.4
